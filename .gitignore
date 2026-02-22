@@ -1,0 +1,37 @@
+# Claude Code Config Backup - .gitignore
+# Only backup essential configuration files
+
+# === SENSITIVE - NEVER commit ===
+.credentials.json
+*.credentials*
+
+# === Auto-generated caches ===
+plugins/
+debug/
+file-history/
+statsig/
+backups/
+cache/
+chrome/
+paste-cache/
+plans/
+scripts/
+sessions/
+shell-snapshots/
+tasks/
+todos/
+mcp-needs-auth-cache.json
+security_warnings_state_*.json
+
+# === Session data ===
+projects/
+history.jsonl
+*.jsonl
+
+# === OS files ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ATUM Audit
+audit_store/
