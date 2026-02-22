@@ -1,0 +1,66 @@
+# Claude Code Plugins — Install List
+# Generated: 2026-02-22
+# Usage: Run each line to reinstall all plugins
+# Or use install.sh which does this automatically
+#
+# Format: claude plugin install <marketplace>:<plugin>
+# Disabled plugins marked with # DISABLED
+
+# --- Marketplace: everything-claude-code (community) ---
+# First add the marketplace:
+# claude plugin marketplace add everything-claude-code https://github.com/affaan-m/everything-claude-code.git
+claude plugin install everything-claude-code:everything-claude-code
+
+# --- Marketplace: claude-plugins-official (Anthropic) ---
+# This marketplace is auto-added on first install
+claude plugin install claude-plugins-official:agent-sdk-dev
+claude plugin install claude-plugins-official:asana
+claude plugin install claude-plugins-official:atlassian
+claude plugin install claude-plugins-official:circleback
+claude plugin install claude-plugins-official:clangd-lsp
+claude plugin install claude-plugins-official:claude-code-setup
+claude plugin install claude-plugins-official:claude-md-management
+claude plugin install claude-plugins-official:code-review
+# DISABLED: claude plugin install claude-plugins-official:code-simplifier
+claude plugin install claude-plugins-official:coderabbit
+claude plugin install claude-plugins-official:commit-commands
+# DISABLED: claude plugin install claude-plugins-official:context7
+claude plugin install claude-plugins-official:csharp-lsp
+# DISABLED: claude plugin install claude-plugins-official:explanatory-output-style
+claude plugin install claude-plugins-official:feature-dev
+claude plugin install claude-plugins-official:figma
+claude plugin install claude-plugins-official:firebase
+claude plugin install claude-plugins-official:firecrawl
+claude plugin install claude-plugins-official:frontend-design
+claude plugin install claude-plugins-official:github
+claude plugin install claude-plugins-official:gitlab
+claude plugin install claude-plugins-official:gopls-lsp
+claude plugin install claude-plugins-official:greptile
+claude plugin install claude-plugins-official:hookify
+claude plugin install claude-plugins-official:huggingface-skills
+claude plugin install claude-plugins-official:jdtls-lsp
+claude plugin install claude-plugins-official:kotlin-lsp
+claude plugin install claude-plugins-official:laravel-boost
+claude plugin install claude-plugins-official:learning-output-style
+claude plugin install claude-plugins-official:playground
+claude plugin install claude-plugins-official:playwright
+claude plugin install claude-plugins-official:plugin-dev
+claude plugin install claude-plugins-official:posthog
+claude plugin install claude-plugins-official:pr-review-toolkit
+claude plugin install claude-plugins-official:pyright-lsp
+claude plugin install claude-plugins-official:qodo-skills
+claude plugin install claude-plugins-official:ralph-loop
+claude plugin install claude-plugins-official:rust-analyzer-lsp
+claude plugin install claude-plugins-official:security-guidance
+claude plugin install claude-plugins-official:semgrep
+claude plugin install claude-plugins-official:sentry
+claude plugin install claude-plugins-official:serena
+claude plugin install claude-plugins-official:skill-creator
+claude plugin install claude-plugins-official:slack
+claude plugin install claude-plugins-official:sonatype-guide
+claude plugin install claude-plugins-official:stripe
+claude plugin install claude-plugins-official:supabase
+claude plugin install claude-plugins-official:superpowers
+claude plugin install claude-plugins-official:swift-lsp
+claude plugin install claude-plugins-official:typescript-lsp
+claude plugin install claude-plugins-official:vercel
