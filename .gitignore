@@ -15,7 +15,6 @@ cache/
 chrome/
 paste-cache/
 plans/
-scripts/
 sessions/
 shell-snapshots/
 tasks/
@@ -23,10 +22,14 @@ todos/
 mcp-needs-auth-cache.json
 security_warnings_state_*.json
 
-# === Session data ===
-projects/
+# === Session data (exclude logs, keep memory) ===
 history.jsonl
 *.jsonl
+# Track projects/*/memory/ for MEMORY.md but exclude session transcripts
+projects/**/sessions/
+projects/**/*.jsonl
+# Exclude UUID session directories (subagents, tool-results)
+projects/*/[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]-*/
 
 # === OS files ===
 .DS_Store
