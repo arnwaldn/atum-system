@@ -1,0 +1,63 @@
+{
+  "watch_paths": [
+    "./"
+  ],
+  "exclude_patterns": [
+    "**/.git/**",
+    "**/__pycache__/**",
+    "**/node_modules/**",
+    "**/.venv/**",
+    "**/venv/**",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/*.pyc",
+    "**/audit_store/**",
+    "**/*.backup.*",
+    "*.backup.*"
+  ],
+  "hash_algorithm": "sha256",
+  "dual_hash": false,
+  "store_path": "./audit_store",
+  "ontology_file": "audit.ttl",
+  "scan_interval_seconds": 300,
+  "max_file_size_bytes": 524288000,
+  "file_categories": {
+    "code": [
+      ".py",
+      ".js",
+      ".ts",
+      ".jsx",
+      ".tsx",
+      ".rs",
+      ".go",
+      ".java",
+      ".cs",
+      ".dart",
+      ".rb",
+      ".php"
+    ],
+    "config": [
+      ".json",
+      ".yaml",
+      ".yml",
+      ".toml",
+      ".env",
+      ".xml"
+    ],
+    "spec": [
+      ".md",
+      ".txt",
+      ".rst"
+    ],
+    "media": [
+      ".png",
+      ".jpg",
+      ".jpeg",
+      ".svg",
+      ".webp"
+    ]
+  },
+  "log_level": "INFO",
+  "enable_watchdog": true,
+  "compact_after_events": 10000
+}
