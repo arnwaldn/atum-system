@@ -28,6 +28,7 @@ Actions:
    - .gitignore? -> `gitignore-reference.md` pour le bon template
    - Profile README? -> `profile-readme-reference.md` pour styles
    - Learning path? -> `roadmap-sh-reference.md` pour roadmaps
+   - Claude Code config (agent, command, hook, skill)? -> `aitmpl-reference.md` pour 7,388 templates
 4. Si aucun template ne correspond -> scaffolder from scratch avec le stack ci-dessous
 
 **Presenter a l'utilisateur**: "J'ai trouve X templates proches et Y references utiles. Voici ce que je recommande..."

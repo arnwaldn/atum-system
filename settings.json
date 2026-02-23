@@ -37,13 +37,13 @@
     "agent-sdk-dev@claude-plugins-official": true,
     "asana@claude-plugins-official": true,
     "atlassian@claude-plugins-official": true,
-    "circleback@claude-plugins-official": true,
+    "circleback@claude-plugins-official": false,
     "clangd-lsp@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": false,
-    "coderabbit@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "coderabbit@claude-plugins-official": false,
     "commit-commands@claude-plugins-official": true,
     "context7@claude-plugins-official": false,
     "csharp-lsp@claude-plugins-official": true,
@@ -59,9 +59,9 @@
     "greptile@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
     "huggingface-skills@claude-plugins-official": true,
-    "jdtls-lsp@claude-plugins-official": true,
-    "kotlin-lsp@claude-plugins-official": true,
-    "laravel-boost@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": false,
+    "kotlin-lsp@claude-plugins-official": false,
+    "laravel-boost@claude-plugins-official": false,
     "learning-output-style@claude-plugins-official": true,
     "playground@claude-plugins-official": true,
     "playwright@claude-plugins-official": true,
@@ -75,14 +75,14 @@
     "security-guidance@claude-plugins-official": true,
     "semgrep@claude-plugins-official": true,
     "sentry@claude-plugins-official": true,
-    "serena@claude-plugins-official": true,
+    "serena@claude-plugins-official": false,
     "skill-creator@claude-plugins-official": true,
-    "slack@claude-plugins-official": true,
+    "slack@claude-plugins-official": false,
     "sonatype-guide@claude-plugins-official": true,
     "stripe@claude-plugins-official": true,
     "supabase@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
-    "swift-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": true,
     "vercel@claude-plugins-official": true
   },
@@ -104,10 +104,30 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/dangerous-command-blocker.py\""
+            "command": "python \"C:/Users/arnau/.claude/hooks/git-guard.py\""
           }
         ],
-        "description": "Block dangerous shell commands (rm -rf /, fork bombs, etc.)"
+        "description": "Git guard: block dangerous commands, enforce conventional commits, protect branches"
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/arnau/.claude/hooks/lock-file-protector.js\""
+          }
+        ],
+        "description": "Block direct modifications to dependency lock files"
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [[ -f \"$CLAUDE_TOOL_FILE_PATH\" ]]; then cp \"$CLAUDE_TOOL_FILE_PATH\" \"$CLAUDE_TOOL_FILE_PATH.backup.$(date +%s)\" 2>/dev/null || true; fi"
+          }
+        ],
+        "description": "Create backup before editing files"
       }
     ],
     "PostToolUse": [
@@ -130,6 +150,46 @@
           }
         ],
         "description": "ATUM: show compliance summary after git commit"
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/arnau/.claude/hooks/auto-test-runner.js\""
+          }
+        ],
+        "description": "Suggest running related tests after source file modifications"
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/arnau/.claude/hooks/dependency-checker.py\""
+          }
+        ],
+        "description": "Auto-audit dependencies when package.json/requirements.txt/Cargo.toml modified"
+      },
+      {
+        "matcher": "Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.js || \"$CLAUDE_TOOL_FILE_PATH\" == *.ts || \"$CLAUDE_TOOL_FILE_PATH\" == *.jsx || \"$CLAUDE_TOOL_FILE_PATH\" == *.tsx || \"$CLAUDE_TOOL_FILE_PATH\" == *.json || \"$CLAUDE_TOOL_FILE_PATH\" == *.css || \"$CLAUDE_TOOL_FILE_PATH\" == *.html ]]; then npx prettier --write \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.py ]]; then black \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.go ]]; then gofmt -w \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.rs ]]; then rustfmt \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.php ]]; then php-cs-fixer fix \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; fi"
+          }
+        ],
+        "description": "Auto-format files after edit (prettier/black/gofmt/rustfmt/php-cs-fixer)"
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/arnau/.claude/hooks/post-commit-quality-gate.js\""
+          }
+        ],
+        "description": "Suggest quality checks (lint, typecheck, test) after git commit"
       }
     ],
     "SessionStart": [

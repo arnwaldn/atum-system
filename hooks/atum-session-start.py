@@ -54,6 +54,8 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except Exception:
-        pass  # Never block Claude
+    except ImportError as e:
+        print(f"[ATUM] WARNING: import failed — {e}. Check ATUM_PROJECT_DIR.", file=sys.stderr)
+    except Exception as e:
+        print(f"[ATUM] WARNING: session-start hook error — {e}", file=sys.stderr)
     sys.exit(0)

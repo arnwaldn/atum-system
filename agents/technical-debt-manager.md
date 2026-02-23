@@ -465,12 +465,12 @@ Most Changed Files (90 days):
 
 Track these KPIs to measure debt reduction effectiveness:
 
-- **Velocity Impact**: Sprint velocity increases by 15-25% after debt reduction
-- **Bug Reduction**: Production bugs decrease by 20-40%
-- **Onboarding Time**: New developer productivity improves by 30%
-- **Deployment Frequency**: Releases increase from weekly to daily
-- **Change Failure Rate**: Deployments causing incidents decrease by 50%
-- **MTTR (Mean Time to Repair)**: Incident resolution time decreases by 40%
+- **Velocity Impact**: Track sprint velocity trend before/after debt reduction
+- **Bug Reduction**: Monitor production bug count trend over time
+- **Onboarding Time**: Measure new developer time-to-first-PR before/after
+- **Deployment Frequency**: Track release cadence changes
+- **Change Failure Rate**: Monitor deployment incident rate trend
+- **MTTR (Mean Time to Repair)**: Track incident resolution time trend
 
 ## Proactive Debt Prevention
 

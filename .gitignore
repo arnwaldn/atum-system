@@ -36,5 +36,8 @@ projects/*/[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]-*/
 Thumbs.db
 desktop.ini
 
+# === Image & media caches ===
+image-cache/
+
 # ATUM Audit
 audit_store/

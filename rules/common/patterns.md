@@ -3,8 +3,9 @@
 ## Skeleton Projects
 
 When implementing new functionality:
-1. Search for battle-tested skeleton projects
-2. Use parallel agents to evaluate options:
+1. Search `~/Projects/tools/project-templates/INDEX.md` for matching templates (166 scaffolds + 9 reference files) — use as inspiration
+2. If the project uses rust/java/dart/cpp/php/ruby, check `~/Projects/tools/project-templates/rules/<lang>/` for language-specific rules to copy into `.claude/rules/`
+3. Use parallel agents to evaluate options:
    - Security assessment
    - Extensibility analysis
    - Relevance scoring
