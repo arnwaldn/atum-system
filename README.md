@@ -18,9 +18,9 @@ bash install.sh
 |----------|-------|-------------|
 | Hooks | 14 | Secret scanner, git guard, loop detector, auto-formatter, session memory, etc. |
 | Commands | 20 | `/scaffold`, `/security-audit`, `/tdd`, `/deploy`, `/compliance`, etc. |
-| Agents | 33 | Architect, phaser-expert, ml-engineer, blockchain-expert, etc. |
+| Agents | 34 | Architect, phaser-expert, ml-engineer, blockchain-expert, geospatial-expert, etc. |
 | Modes | 4 | architect, autonomous, brainstorm, quality |
-| Rules | 25 | Coding style, security, testing, anti-hallucination (common + TS/Python/Go) |
+| Rules | 26 | Coding style, security, testing, resilience, anti-hallucination (common + TS/Python/Go) |
 | Scripts | 1 | Context monitor statusline |
 | MCP Servers | 16 | GitHub, Memory, Railway, Cloudflare, Context7, Gmail, etc. |
 | Plugins | 50 | ECC, Superpowers, Playwright, Firebase, Figma, Stripe, etc. |
@@ -30,7 +30,7 @@ bash install.sh
 ```
 hooks/              PreToolUse/PostToolUse/Stop/SessionStart hooks
 commands/           Slash commands (/scaffold, /tdd, /deploy, etc.)
-agents/             Specialized agents (33 domain experts)
+agents/             Specialized agents (34 domain experts)
 modes/              Custom modes (architect, autonomous, brainstorm, quality)
 rules/              Global rules (common/, typescript/, python/, golang/)
 scripts/            Helper scripts (context-monitor.py)
