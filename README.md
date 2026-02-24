@@ -57,7 +57,7 @@ claude.json.template  MCP server configs (replace PAT placeholders)
 
 ## Supported Platforms
 
-- Windows (Git Bash / MSYS2)
+- Windows (Git Bash / MSYS2 / WSL)
 - macOS
 - Linux
 
