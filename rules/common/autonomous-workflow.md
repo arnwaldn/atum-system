@@ -110,6 +110,8 @@ Use skills when they match — don't wait for user to invoke:
 - About to claim "done" → invoke verification-before-completion skill
 - Multiple independent tasks → invoke dispatching-parallel-agents skill
 - Debugging → invoke systematic-debugging skill
+- Frontend UI/design work → invoke **ui-ux-pro-max** skill (search colors, styles, typography, patterns)
+- Landing page / marketing site → query `--domain product` then `--domain landing` for data-driven design
 
 ## Decision Authority
 

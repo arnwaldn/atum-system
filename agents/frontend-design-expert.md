@@ -82,6 +82,31 @@ Design Spec → Storybook Story → Accessible Component
                               Visual Test → a11y Audit → Ship
 ```
 
+## UI/UX Pro Max Integration
+
+Le plugin **ui-ux-pro-max** fournit des bases de donnees interrogeables pour des recommandations design data-driven. Utiliser SYSTEMATIQUEMENT avant toute decision visuelle.
+
+### Commande de recherche
+```bash
+python3 ~/.claude/plugins/cache/ui-ux-pro-max-skill/ui-ux-pro-max/2.2.1/src/ui-ux-pro-max/scripts/search.py "<query>" --domain <domain> [-n <max_results>]
+```
+
+### Workflow design recommande
+1. **Identifier le type de produit** → `--domain product` (retourne style, palette, pattern)
+2. **Choisir le style UI** → `--domain style` (67 styles avec CSS, AI prompts, checklists)
+3. **Selectionner la palette** → `--domain color` (96 palettes par industrie)
+4. **Choisir la typographie** → `--domain typography` (57 pairings Google Fonts)
+5. **Structure page** → `--domain landing` (24 patterns CTA/conversion)
+6. **Guidelines UX** → `--domain ux` (99 regles Do/Don't)
+7. **Charts** → `--domain chart` (25 types avec librairies)
+8. **Stack-specific** → `--stack react|nextjs|vue|svelte|flutter|tailwind|shadcn`
+
+### Quand l'utiliser
+- AVANT de choisir des couleurs → `--domain color`
+- AVANT de choisir un style visuel → `--domain style`
+- AVANT de structurer une landing page → `--domain landing`
+- Pour connaitre les anti-patterns par industrie → `--domain product`
+
 ## Quand m'utiliser
 
 - Creation ou evolution de design systems
@@ -90,3 +115,4 @@ Design Spec → Storybook Story → Accessible Component
 - Setup Storybook et documentation UI
 - Optimisation performance frontend
 - Implementation dark mode / theming
+- Choix de style, palette, typographie pour tout projet frontend
