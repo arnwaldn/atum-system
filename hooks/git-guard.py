@@ -71,6 +71,12 @@ if re.search(r'git\s+commit\b', command) and not command.strip().startswith('#')
 # ============================================================
 # 3. PREVENT DIRECT PUSH
 # ============================================================
+# Backup/config repos where direct push to main is expected
+BACKUP_REPOS = [
+    'claude-code-config',
+    'project-templates',
+]
+
 if re.search(r'git\s+push\b', command):
     protected_branches = ['main', 'master', 'production', 'release']
     is_force = bool(re.search(r'--force\b|-f\b', command))
@@ -80,6 +86,9 @@ if re.search(r'git\s+push\b', command):
         if re.search(rf'\b{branch}\b', command):
             target_branch = branch
             break
+
+    # Check if command targets a whitelisted backup repo (by path or remote URL in command)
+    is_backup_repo = any(repo in command for repo in BACKUP_REPOS)
 
     if is_force and target_branch:
         print(json.dumps({
@@ -93,7 +102,7 @@ if re.search(r'git\s+push\b', command):
             "reason": "BLOCKED: Force push detected. Use --force-with-lease instead."
         }))
         sys.exit(0)
-    elif target_branch:
+    elif target_branch and not is_backup_repo:
         print(json.dumps({
             "decision": "block",
             "reason": f"WARNING: Direct push to '{target_branch}' detected.\nConsider using a feature branch and creating a PR."

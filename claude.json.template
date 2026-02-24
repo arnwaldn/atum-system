@@ -384,7 +384,7 @@
         "@modelcontextprotocol/server-github"
       ],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "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"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "REPLACE_WITH_YOUR_GITHUB_PAT"
       }
     }
   },

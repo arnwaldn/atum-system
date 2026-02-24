@@ -11,14 +11,14 @@
       "Bash(claude plugin list:*)",
       "Bash(for file in \"suggest-compact.js\" \"pre-compact.js\" \"session-start.js\" \"post-edit-format.js\" \"post-edit-typecheck.js\" \"post-edit-console-warn.js\" \"check-console-log.js\" \"session-end.js\" \"evaluate-session.js\")",
       "Bash(do)",
-      "Bash(if [ -f \"/c/Users/arnau/.claude/plugins/cache/everything-claude-code/everything-claude-code/1.4.1/scripts/hooks/$file\" ])",
+      "Bash(if [ -f \"$PLUGIN_ROOT/scripts/hooks/$file\" ])",
       "Bash(then)",
       "Bash(echo:*)",
       "Bash(else)",
       "Bash(fi)",
       "Bash(done)",
       "Bash(node -e:*)",
-      "Bash(PLUGIN_ROOT=\"/c/Users/arnau/.claude/plugins/cache/everything-claude-code/everything-claude-code/1.4.1\")",
+      "Bash(PLUGIN_ROOT=\"$HOME/.claude/plugins/cache/everything-claude-code\"*)",
       "Bash(CLAUDE_PLUGIN_ROOT=\"$PLUGIN_ROOT\" node:*)",
       "Bash(curl:*)",
       "Bash(npx:*)",
@@ -26,8 +26,6 @@
       "Bash(CLAUDE_PLUGIN_ROOT=\"$WIN_ROOT\" node \"$WIN_ROOT\\\\scripts\\\\hooks\\\\suggest-compact.js\")",
       "Bash(CLAUDE_PLUGIN_ROOT=\"$WIN_ROOT\" node:*)",
       "Bash(npm view:*)",
-      "Bash(/c/Users/arnau/Desktop/test-tmux-hook.js:*)",
-      "Bash(/c/Users/arnau/Desktop/test-gitpush-hook.js:*)",
       "Bash(node:*)"
     ],
     "defaultMode": "default"
@@ -94,7 +92,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/secret-scanner.py\""
+            "command": "python \"$HOME/.claude/hooks/secret-scanner.py\""
           }
         ],
         "description": "Scan for hardcoded secrets before writing files or committing"
@@ -104,7 +102,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/git-guard.py\""
+            "command": "python \"$HOME/.claude/hooks/git-guard.py\""
           }
         ],
         "description": "Git guard: block dangerous commands, enforce conventional commits, protect branches"
@@ -114,7 +112,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/lock-file-protector.js\""
+            "command": "node \"$HOME/.claude/hooks/lock-file-protector.js\""
           }
         ],
         "description": "Block direct modifications to dependency lock files"
@@ -136,7 +134,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/atum-post-write.py\""
+            "command": "python \"$HOME/.claude/hooks/atum-post-write.py\""
           }
         ],
         "description": "ATUM: hash and register files in audit store after write/edit"
@@ -146,7 +144,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/atum-compliance-check.py\""
+            "command": "python \"$HOME/.claude/hooks/atum-compliance-check.py\""
           }
         ],
         "description": "ATUM: show compliance summary after git commit"
@@ -156,7 +154,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/auto-test-runner.js\""
+            "command": "node \"$HOME/.claude/hooks/auto-test-runner.js\""
           }
         ],
         "description": "Suggest running related tests after source file modifications"
@@ -166,7 +164,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/dependency-checker.py\""
+            "command": "python \"$HOME/.claude/hooks/dependency-checker.py\""
           }
         ],
         "description": "Auto-audit dependencies when package.json/requirements.txt/Cargo.toml modified"
@@ -186,7 +184,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/post-commit-quality-gate.js\""
+            "command": "node \"$HOME/.claude/hooks/post-commit-quality-gate.js\""
           }
         ],
         "description": "Suggest quality checks (lint, typecheck, test) after git commit"
@@ -196,7 +194,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/loop-detector.js\""
+            "command": "node \"$HOME/.claude/hooks/loop-detector.js\""
           }
         ],
         "description": "Detect repeated identical tool calls (loop prevention)"
@@ -208,7 +206,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/session-memory.js\""
+            "command": "node \"$HOME/.claude/hooks/session-memory.js\""
           }
         ],
         "description": "Auto-save session summary to daily memory file"
@@ -220,7 +218,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/atum-session-start.py\""
+            "command": "python \"$HOME/.claude/hooks/atum-session-start.py\""
           }
         ],
         "description": "ATUM: auto-detect and initialize project tracking"
