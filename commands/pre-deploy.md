@@ -55,6 +55,15 @@ npm audit --audit-level=high
 - [ ] Labels sur inputs
 - [ ] Skip link present
 
+#### Conformite Reglementaire
+- [ ] Profil compliance detecte (`/compliance profile`)
+- [ ] Banniere cookies fonctionnelle (si marche EU)
+- [ ] Page politique de confidentialite presente (/privacy)
+- [ ] Registre des traitements documente (RGPD)
+- [ ] Traitement donnees paiement verifie (si paiements)
+- [ ] Accessibilite WCAG 2.2 AA (si marche EU)
+- [ ] SBOM genere (si NIS2/CRA applicable)
+
 #### Securite
 - [ ] HTTPS only
 - [ ] Headers securite configures

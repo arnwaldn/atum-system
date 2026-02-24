@@ -27,7 +27,7 @@ const dirname = path.dirname(filePath);
 const nameNoExt = path.basename(filePath, ext);
 
 // Skip non-source files
-const SOURCE_EXTS = new Set(['.ts', '.tsx', '.js', '.jsx', '.py', '.go', '.rs', '.dart']);
+const SOURCE_EXTS = new Set(['.ts', '.tsx', '.js', '.jsx', '.py', '.go', '.rs', '.dart', '.sol', '.gd']);
 if (!SOURCE_EXTS.has(ext)) {
   process.exit(0);
 }
@@ -57,6 +57,7 @@ const SKIP_FILES = new Set([
   'webpack.config.js', 'rollup.config.js', 'esbuild.config.js',
   'setup.py', 'setup.cfg', 'pyproject.toml', 'conftest.py',
   'main.go', 'Cargo.toml', 'build.rs', 'pubspec.yaml',
+  'hardhat.config.ts', 'hardhat.config.js', 'project.godot',
 ]);
 
 if (SKIP_FILES.has(basename)) {
@@ -120,6 +121,28 @@ function findTestFile() {
       candidates.push(path.join(dirname, `${nameNoExt}_test.rs`));
       break;
     }
+    case '.sol': {
+      // Lock.sol → test/Lock.ts, test/Lock.test.ts
+      const testsDir = findUpward(dirname, 'test');
+      if (testsDir) {
+        candidates.push(
+          path.join(testsDir, `${nameNoExt}.ts`),
+          path.join(testsDir, `${nameNoExt}.test.ts`),
+          path.join(testsDir, `${nameNoExt}.t.sol`),
+        );
+      }
+      break;
+    }
+    case '.gd': {
+      // player.gd → test/test_player.gd, tests/test_player.gd
+      candidates.push(
+        path.join(dirname, `test_${basename}`),
+        path.join(dirname, 'test', `test_${basename}`),
+        path.join(dirname, '..', 'test', `test_${basename}`),
+        path.join(dirname, '..', 'tests', `test_${basename}`),
+      );
+      break;
+    }
   }
 
   return candidates.find(c => {
@@ -157,6 +180,12 @@ function detectFramework() {
       if (files.includes('go.mod') && ext === '.go') return 'go';
       // Dart
       if (files.includes('pubspec.yaml') && ext === '.dart') return 'flutter';
+      // Hardhat
+      if (files.includes('hardhat.config.ts') || files.includes('hardhat.config.js')) {
+        if (ext === '.sol' || ext === '.ts') return 'hardhat';
+      }
+      // Godot
+      if (files.includes('project.godot') && ext === '.gd') return 'godot';
       // Check package.json for test script
       if (files.includes('package.json')) {
         try {
@@ -198,6 +227,12 @@ switch (framework) {
     break;
   case 'flutter':
     command = `flutter test ${relTestFile}`;
+    break;
+  case 'hardhat':
+    command = `npx hardhat test ${relTestFile}`;
+    break;
+  case 'godot':
+    command = `godot-console --headless --path . -s ${relTestFile}`;
     break;
   default:
     command = `<run test: ${relTestFile}>`;

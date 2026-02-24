@@ -35,6 +35,23 @@ Actions:
 
 ---
 
+## ETAPE 0.5 — Profil Compliance
+
+**Si le projet cible un marche commercial** (e-commerce, SaaS, sante, finance, enfants, IA):
+
+1. Determiner le **secteur** du projet
+2. Lire la checklist sectorielle: `~/Projects/tools/project-templates/compliance/sectors/<secteur>.md`
+3. Integrer les fondations compliance dans le scaffold:
+   - Cookie consent component (si marche EU)
+   - Privacy policy page (/privacy)
+   - Terms page (/terms)
+   - Security headers (CSP, HSTS, X-Frame-Options)
+   - DSR API stubs si donnees personnelles
+
+**Presenter a l'utilisateur**: "Profil compliance: [secteur]. Reglementations applicables: [liste]. Fondations compliance incluses dans le scaffold."
+
+---
+
 ## STACK PAR DEFAUT (2026)
 
 | Composant | Technologie |

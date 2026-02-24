@@ -53,13 +53,22 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 2. Migrate: generate proper migration files
 3. Validate: check for N+1, missing indexes, data integrity
 
+### Regulatory Compliance
+**Detect**: payment integration, user data collection, health data, children's content, e-commerce, EU market, cookies, AI deployment
+**Auto-actions**:
+1. Profile: detect sector + applicable regulations
+2. Audit: invoke **compliance-expert** agent
+3. Implement: add missing compliance patterns (cookie consent, privacy page, DSR API)
+4. Verify: run `/compliance audit`, show CRITICAL/HIGH/MEDIUM/LOW report
+
 ### Deploy / Ship
 **Detect**: "deploy", "ship", "release", "push to prod"
 **Auto-actions**:
 1. Pre-flight: lint, typecheck, all tests pass
 2. Security: no secrets, dependencies audited
-3. Build: verify production build succeeds
-4. Deploy: use appropriate platform tools
+3. Compliance: verify `/compliance profile` reviewed
+4. Build: verify production build succeeds
+5. Deploy: use appropriate platform tools
 
 ## Quality Gates (Automatic — Never Skip)
 
@@ -87,6 +96,7 @@ Every code change MUST pass these before marking complete:
 | Design system/UI | frontend-design-expert agent |
 | Security audit needed | security-expert agent |
 | Creating MCP server | mcp-expert agent |
+| Blockchain/smart contracts | blockchain-expert agent |
 | Research/evaluation | research-expert agent |
 
 ## Skill Selection (Automatic)
