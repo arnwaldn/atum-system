@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
  * Session Memory Hook (Stop)
- * Auto-saves a lightweight session summary to daily memory files.
- * Inspired by openclaw's session-memory pattern.
+ * Auto-saves structured session summaries to daily memory files.
+ * Consumes stats accumulated by loop-detector hook.
  *
- * Saves to: ~/.claude/projects/<project>/memory/YYYY-MM-DD-<slug>.md
+ * Saves to: ~/.claude/projects/<project>/memory/sessions/YYYY-MM-DD-<id>.md
  * Auto-cleanup: files older than 30 days are removed.
  */
 
@@ -12,6 +12,8 @@ const fs = require("fs");
 const path = require("path");
 
 const MAX_AGE_DAYS = 30;
+const TEMP = process.env.TEMP || "/tmp";
+const STATS_FILE = path.join(TEMP, "claude-session-stats.json");
 
 function readStdin() {
   try {
@@ -21,35 +23,68 @@ function readStdin() {
   }
 }
 
-function slugify(text) {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "")
-    .slice(0, 40);
-}
-
 function getDateStr() {
-  const d = new Date();
-  return d.toISOString().slice(0, 10);
+  return new Date().toISOString().slice(0, 10);
 }
 
-function cleanOldFiles(memoryDir) {
+function getTimeStr() {
+  return new Date().toISOString().slice(11, 16);
+}
+
+function loadStats() {
   try {
-    const files = fs.readdirSync(memoryDir);
+    return JSON.parse(fs.readFileSync(STATS_FILE, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+function clearStats() {
+  try {
+    fs.unlinkSync(STATS_FILE);
+  } catch {
+    // best-effort
+  }
+}
+
+function cleanOldFiles(dir) {
+  try {
+    const files = fs.readdirSync(dir);
     const cutoff = Date.now() - MAX_AGE_DAYS * 86400000;
     for (const file of files) {
-      // Only clean auto-generated daily files (YYYY-MM-DD-*.md), not MEMORY.md
       if (!/^\d{4}-\d{2}-\d{2}-.+\.md$/.test(file)) continue;
-      const filePath = path.join(memoryDir, file);
+      const filePath = path.join(dir, file);
       const stat = fs.statSync(filePath);
       if (stat.mtimeMs < cutoff) {
         fs.unlinkSync(filePath);
       }
     }
   } catch {
-    // Cleanup is best-effort
+    // best-effort
   }
+}
+
+function formatDuration(ms) {
+  const mins = Math.round(ms / 60000);
+  if (mins < 60) return `${mins}min`;
+  const h = Math.floor(mins / 60);
+  const m = mins % 60;
+  return `${h}h${m > 0 ? m + "min" : ""}`;
+}
+
+function topTools(toolCounts, limit) {
+  return Object.entries(toolCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([name, count]) => `${name}(${count})`)
+    .join(", ");
+}
+
+function shortenPath(p) {
+  // Shorten Windows paths for readability
+  return p
+    .replace(/^C:\\Users\\arnau\\/i, "~/")
+    .replace(/\\/g, "/");
 }
 
 try {
@@ -57,77 +92,100 @@ try {
   const stopReason = input.stop_reason || "";
   const sessionId = process.env.CLAUDE_SESSION_ID || "unknown";
 
-  // Determine memory directory
-  // Try project-specific memory first, fall back to global
+  // Load accumulated stats from loop-detector
+  const stats = loadStats();
+
+  // Only save if meaningful work was done
+  const totalCalls = stats ? stats.totalCalls : 0;
+  if (totalCalls < 3) {
+    clearStats();
+    process.exit(0);
+  }
+
+  // Determine memory directory — use sessions/ subdirectory
   const projectDir = process.env.CLAUDE_PROJECT_DIR || "";
+  const home = process.env.HOME || process.env.USERPROFILE || "";
   let memoryDir;
 
   if (projectDir) {
-    // Project-specific: ~/.claude/projects/<escaped-path>/memory/
     const escapedProject = projectDir.replace(/[\\/:]/g, "-").replace(/^-+|-+$/g, "");
-    memoryDir = path.join(
-      process.env.HOME || process.env.USERPROFILE || "",
-      ".claude",
-      "projects",
-      escapedProject,
-      "memory"
-    );
+    memoryDir = path.join(home, ".claude", "projects", escapedProject, "memory", "sessions");
   } else {
-    memoryDir = path.join(
-      process.env.HOME || process.env.USERPROFILE || "",
-      ".claude",
-      "memory"
-    );
+    memoryDir = path.join(home, ".claude", "memory", "sessions");
   }
 
-  // Ensure directory exists
   fs.mkdirSync(memoryDir, { recursive: true });
 
-  // Build summary from loop-detector state (tool call count proxy)
-  const loopStateFile = path.join(
-    process.env.TEMP || "/tmp",
-    "claude-loop-detector.json"
-  );
-  let toolCallCount = 0;
-  try {
-    const loopState = JSON.parse(fs.readFileSync(loopStateFile, "utf8"));
-    toolCallCount = (loopState.history || []).length;
-  } catch {
-    // No loop state = short session
-  }
-
-  // Only save if meaningful work was done (proxy: >3 tool calls tracked)
-  if (toolCallCount < 3) {
-    process.exit(0);
-  }
-
   const dateStr = getDateStr();
-  const slug = slugify(stopReason || sessionId);
-  const fileName = `${dateStr}-${slug}.md`;
+  const timeStr = getTimeStr();
+  const shortId = sessionId.slice(0, 8);
+  const fileName = `${dateStr}-${shortId}.md`;
   const filePath = path.join(memoryDir, fileName);
 
-  // Don't overwrite if already exists (multiple sessions same day)
+  // If file exists, append a counter
+  let finalPath = filePath;
   if (fs.existsSync(filePath)) {
-    process.exit(0);
+    let counter = 2;
+    while (fs.existsSync(path.join(memoryDir, `${dateStr}-${shortId}-${counter}.md`))) {
+      counter++;
+    }
+    finalPath = path.join(memoryDir, `${dateStr}-${shortId}-${counter}.md`);
   }
 
-  const content = [
-    `# Session ${dateStr}`,
-    "",
-    `- **Session ID**: ${sessionId.slice(0, 8)}...`,
-    `- **Stop reason**: ${stopReason || "unknown"}`,
-    `- **Tool calls tracked**: ${toolCallCount}`,
-    `- **Project**: ${projectDir || "global"}`,
-    "",
-    "---",
-    "*Auto-generated by session-memory hook. Edit MEMORY.md for curated notes.*",
-    "",
-  ].join("\n");
+  // Calculate duration
+  const duration = stats && stats.startedAt ? formatDuration(Date.now() - stats.startedAt) : "?";
 
-  fs.writeFileSync(filePath, content);
+  // Build structured summary
+  const lines = [
+    `# Session: ${dateStr} ${timeStr}`,
+    `**ID**: ${shortId} | **Duration**: ${duration} | **Calls**: ${totalCalls} | **Errors**: ${stats ? stats.errors : 0}`,
+    "",
+  ];
 
-  // Clean old files
+  // Tool usage breakdown
+  if (stats && stats.toolCounts) {
+    lines.push(`## Tools`);
+    lines.push(topTools(stats.toolCounts, 10));
+    lines.push("");
+  }
+
+  // Files modified
+  if (stats && stats.filesModified && stats.filesModified.length > 0) {
+    lines.push(`## Files Modified`);
+    for (const f of stats.filesModified) {
+      lines.push(`- ${shortenPath(f)}`);
+    }
+    lines.push("");
+  }
+
+  // Files read (top 10 only)
+  if (stats && stats.filesRead && stats.filesRead.length > 0) {
+    lines.push(`## Files Read`);
+    const shown = stats.filesRead.slice(0, 10);
+    for (const f of shown) {
+      lines.push(`- ${shortenPath(f)}`);
+    }
+    if (stats.filesRead.length > 10) {
+      lines.push(`- ...and ${stats.filesRead.length - 10} more`);
+    }
+    lines.push("");
+  }
+
+  // Context
+  lines.push(`## Context`);
+  lines.push(`- **Project**: ${projectDir ? shortenPath(projectDir) : "global"}`);
+  lines.push(`- **Stop**: ${stopReason || "user"}`);
+  lines.push("");
+
+  lines.push("---");
+  lines.push("*Auto-generated by session-memory hook*");
+  lines.push("");
+
+  fs.writeFileSync(finalPath, lines.join("\n"));
+
+  // Clean old files and clear stats
   cleanOldFiles(memoryDir);
+  clearStats();
 } catch {
   // Hook must never block — fail silently
   process.exit(0);
