@@ -11,10 +11,10 @@
 - **Shell**: bash (MINGW64/Git Bash)
 - **Workspace**: `C:\Users\arnau\Projects\` (web, mobile, api, desktop, fullstack, tools, learning)
 
-## Claude Code Setup (updated 2026-02-24 — portable installer)
+## Claude Code Setup (updated 2026-02-25 — WorldMonitor enhancements)
 
 ### Summary
-- 6 config files, 33 agents, 66 sub-agents, 20 commands, 4 modes, 25 rules (+ 24 templates)
+- 6 config files, 34 agents, 68 sub-agents, 20 commands, 4 modes, 26 rules (+ 24 templates)
 - 26 hooks (13 custom [11 fichiers + 2 inline] + 13 ECC), 52 plugins (50 actifs / 2 inactifs), 115+ skills
 - 24/27 MCP OK (tested 2026-02-24) — fetch supprime (npm 404), filesystem CWD bug, greptile OAuth 404 | 15 local (.claude.json) + 1 local (.mcp.json) + 3 plugin + 12 remote claude.ai = 31 serveurs
 - **Tools**: jq (winget), mcporter 0.7.3 (npm) — MCP debug CLI
@@ -25,7 +25,7 @@
 ### Commands (20) — `~/.claude/commands/`
 atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, health, migrate, optimize, prd, pre-deploy, review-fix, scaffold, security-audit, **session-analyzer**, setup-cicd, status, tdd, team, ultra-think
 
-### Agents (33 custom + 33 plugin/built-in = 66 sub-agents) — `~/.claude/agents/`
+### Agents (34 custom + 34 plugin/built-in = 68 sub-agents) — `~/.claude/agents/`
 - **Generalist**: architect-reviewer, codebase-pattern-finder, critical-thinking, database-optimizer, error-detective, technical-debt-manager, research-expert
 - **Game dev**: game-architect, phaser-expert, threejs-game-expert, unity-expert, godot-expert, networking-expert
 - **Mobile/Desktop**: flutter-dart-expert, expo-expert, tauri-expert
@@ -35,6 +35,7 @@ atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, health, 
 - **Compliance**: compliance-expert
 - **Frontend**: frontend-design-expert, accessibility-auditor
 - **Blockchain**: blockchain-expert
+- **Geospatial**: geospatial-expert
 - **Specialist**: api-designer, auto-test-generator, documentation-generator, graphql-expert, migration-expert, performance-optimizer, windows-scripting-expert, mcp-expert
 
 ### Modes (4) — `~/.claude/modes/`

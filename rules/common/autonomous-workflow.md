@@ -97,6 +97,8 @@ Every code change MUST pass these before marking complete:
 | Security audit needed | security-expert agent |
 | Creating MCP server | mcp-expert agent |
 | Blockchain/smart contracts | blockchain-expert agent |
+| Maps/geospatial/globe visualization | geospatial-expert agent |
+| Regulatory compliance (RGPD, PCI, HIPAA) | compliance-expert agent |
 | Research/evaluation | research-expert agent |
 
 ## Skill Selection (Automatic)
