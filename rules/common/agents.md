@@ -1,6 +1,6 @@
 # Agent Orchestration
 
-## Full Agent Registry (31 agents)
+## Full Agent Registry (33 agents)
 
 | Agent | Domain | Auto-trigger |
 |-------|--------|-------------|
@@ -35,6 +35,8 @@
 | accessibility-auditor | a11y | WCAG compliance audit |
 | data-engineer | Data pipelines | ETL, data processing |
 | windows-scripting-expert | Windows | PowerShell, batch, Windows APIs |
+| blockchain-expert | Blockchain/Web3 | Hardhat, Solidity, smart contracts, EVM |
+| compliance-expert | Regulatory compliance | User data, payments, health data, e-commerce, AI deployment |
 
 ## Auto-Invocation Rules
 

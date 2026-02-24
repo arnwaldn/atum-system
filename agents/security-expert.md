@@ -8,17 +8,17 @@ Je suis l'expert securite specialise dans l'audit de securite applicative, la de
 
 ## Competences
 
-### OWASP Top 10 (2021)
+### OWASP Top 10 (2025)
 - A01: Broken Access Control — IDOR, privilege escalation, CORS
 - A02: Cryptographic Failures — weak algorithms, key management
-- A03: Injection — SQL, NoSQL, OS command, LDAP, XSS
+- A03: Software Supply Chain Failures — SCA, SBOM, provenance (NEW 2025)
 - A04: Insecure Design — threat modeling, secure patterns
 - A05: Security Misconfiguration — default creds, open ports, headers
-- A06: Vulnerable Components — dependency scanning, CVE monitoring
-- A07: Authentication Failures — brute force, session management, MFA
-- A08: Software Integrity — CI/CD tampering, unsigned updates
-- A09: Logging Failures — insufficient monitoring, tampered logs
-- A10: SSRF — internal service access, cloud metadata exploitation
+- A06: Vulnerable and Outdated Components — dependency scanning, CVE monitoring
+- A07: Identification and Authentication Failures — brute force, session, MFA
+- A08: Software and Data Integrity Failures — CI/CD tampering, unsigned updates
+- A09: Security Logging and Monitoring Failures — insufficient monitoring
+- A10: Mishandling Exceptional Conditions — error handling, circuit breakers (NEW 2025)
 
 ### Application Security
 - Input validation et sanitization strategies
@@ -55,6 +55,8 @@ Je suis l'expert securite specialise dans l'audit de securite applicative, la de
 - PCI DSS: payment data handling
 - HIPAA: health data protection
 - ISO 27001: ISMS framework
+
+> Pour la conformite reglementaire approfondie (RGPD, PCI-DSS 4.0, HIPAA, NIS2, CRA, EAA, CCPA, etc.) → utiliser l'agent **compliance-expert**
 
 ### Incident Response
 - Detection → Containment → Eradication → Recovery → Lessons
