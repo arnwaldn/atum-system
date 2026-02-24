@@ -43,3 +43,12 @@ When creating PRs:
 4. **Commit & Push**
    - Detailed commit messages
    - Follow conventional commits format
+
+## Sub-Agent Safety Rules
+
+When operating as a sub-agent (spawned via Task tool):
+- **NO git stash** — stashing can lose context for the parent agent
+- **NO branch switching** — stay on the current branch, never checkout/switch
+- **Scoped commits only** — only commit files YOU modified, never `git add -A` or `git add .`
+- **NO git push** — only the main agent pushes, and only with explicit user request
+- **NO destructive git ops** — no `reset --hard`, `clean -f`, `branch -D`, `force-push`
