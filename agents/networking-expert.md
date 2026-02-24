@@ -64,6 +64,16 @@ Local Prediction ←←←←←←←← Server Reconciliation ←←←
 - Geographic distribution (edge servers)
 - Rate limiting et backpressure
 
+### Data Freshness & Offline Patterns
+- **Freshness tracking** — classify data as fresh (<15min), stale (1h), very_stale (6h), error, no_data
+- **Stale-on-error** — serve cached data with visual indicator when upstream fails
+- **Intelligence gaps** — explicitly report what you CAN'T see (data sources down)
+- **Reconnection with state recovery** — WebSocket: queue messages during disconnect, replay on reconnect; SSE: use `Last-Event-ID` header for gap-free recovery
+- **Polling adaptatif** — start aggressive (5s), backoff on idle (30s), resume on activity
+- **Offline-first sync queue** — queue mutations in IndexedDB, flush on reconnect, handle conflicts (last-write-wins or merge)
+- **Tab visibility** — pause polling/animations when tab is hidden, resume on focus
+- **Circuit breaker per-source** — individual data feeds fail independently with cooldowns
+
 ## Quand m'utiliser
 
 - Projets multiplayer (jeux, collaboration)
@@ -71,3 +81,5 @@ Local Prediction ←←←←←←←← Server Reconciliation ←←←
 - Architecture WebSocket/WebRTC
 - Optimisation latence et synchronisation d'etat
 - Migration polling → WebSocket/SSE
+- Dashboards multi-sources avec data freshness tracking
+- Applications offline-first avec sync queue

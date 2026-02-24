@@ -139,6 +139,40 @@ export async function POST(request: NextRequest) {
 }
 ```
 
+## Schema-First API Design
+
+### Approach
+Define the API contract FIRST (schema), then generate code:
+```
+Schema definition (.proto, OpenAPI, JSON Schema)
+  → Generate typed clients (TypeScript, Python, Go)
+  → Generate server stubs/handlers
+  → Generate documentation (OpenAPI, AsyncAPI)
+  → Contract testing at CI time (breaking change detection)
+```
+
+### Protocol Buffers (.proto)
+- Use for high-performance, typed APIs (gRPC, code generation)
+- Define messages and services with field validation
+- Version via package naming: `package api.v1;`
+- Never remove or renumber fields — mark as `reserved`
+
+### OpenAPI / JSON Schema
+- Use for REST APIs (wider ecosystem, browser-friendly)
+- Generate from code (decorators) or code from spec (codegen)
+- Tools: `openapi-generator`, `orval`, Zod → OpenAPI via `zod-to-openapi`
+
+### Schema Evolution Rules
+- NEVER remove fields (mark deprecated, keep accepting)
+- NEVER change field types (add new field instead)
+- New required fields must have defaults
+- Version via URL path (`/v1/`, `/v2/`) or header
+
+### Contract Testing
+- Compare new schema against previous version at CI time
+- `buf breaking` (proto), `openapi-diff` (REST)
+- Block PRs that introduce breaking changes without version bump
+
 ## OpenAPI Documentation
 ```yaml
 openapi: 3.0.3

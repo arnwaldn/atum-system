@@ -306,4 +306,41 @@ hindsight_retain({
 
 ---
 
+## Multi-Source Data Aggregation
+
+### Signal Fusion Pattern
+When aggregating data from multiple heterogeneous sources:
+```
+Source A (API) ──┐
+Source B (RSS) ──┼──→ Normalize → Deduplicate → Correlate → Score → Alert
+Source C (WS)  ──┘
+```
+- **Normalize** — map each source to a common schema (timestamp, geo, type, severity)
+- **Deduplicate** — Haversine distance + time window for spatial dedup; Jaccard similarity for text dedup
+- **Correlate** — detect convergence (3+ signal types in same geographic/temporal window)
+- **Score** — composite scoring with weighted signals and baseline comparison
+
+### Source Credibility Tiering
+Assign trust levels to heterogeneous sources:
+```
+Tier 1: Wire services, official APIs (Reuters, USGS)     → confidence 1.0
+Tier 2: Major outlets, established providers              → confidence 0.85
+Tier 3: Specialized/niche sources                         → confidence 0.7
+Tier 4: Aggregators, blogs, unverified                    → confidence 0.5
+```
+Weight downstream scoring by source tier.
+
+### Deduplication Strategies
+- **Spatial** — Haversine distance < threshold (e.g., 10km) + same day → merge
+- **Textual** — Jaccard word-overlap > 0.6 → near-duplicate, merge
+- **Temporal** — sliding windows (2h current vs 7d baseline) for spike detection
+- **Entity** — same entity across sources (alias matching with word-boundary regex)
+
+### Anomaly Detection (Statistical Baselines)
+- **Welford's online algorithm** — streaming mean/variance, numerically stable
+- **Per-dimension baselines** — separate baselines per event type, region, weekday, month
+- **Z-score thresholds** — 1.5 (low), 2.0 (medium), 3.0 (critical)
+- **Minimum samples** — require 10+ data points before flagging anomalies
+- **Rolling window** — 90-day baseline, refreshed continuously
+
 *ULTRA-CREATE v27.18 - Data Engineer Agent*

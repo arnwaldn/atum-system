@@ -632,6 +632,45 @@ npm run tauri icon ./app-icon.png
 - **Outputs**: .AppImage (portable), .deb (Debian/Ubuntu)
 - **Requirements**: WebKitGTK 4.1+
 
+## Advanced Patterns
+
+### Sidecar Process (Node.js/Python)
+Run a local server alongside the Tauri app for tasks that benefit from a scripting runtime:
+```
+Tauri (Rust) → spawn sidecar on port 46123
+  → inject session token as env var
+  → frontend fetches localhost:46123 with Bearer token
+  → sidecar handles API proxying, RSS parsing, local AI
+  → on sidecar failure → transparent fallback to cloud API
+```
+- Token auth: generate unique hex token per launch via `RandomState`
+- Health endpoint exempt from auth (for monitoring)
+- Traffic logging: ring buffer of last 200 requests
+
+### OS Keychain Vault
+Store secrets in the OS credential manager, never in plaintext:
+```
+macOS: Keychain Services
+Windows: Credential Manager
+Linux: libsecret / GNOME Keyring
+```
+- Consolidate all secrets into ONE keychain entry (single JSON blob)
+- Reduces macOS auth prompts from N to 1 per launch
+- Hot-reload: broadcast `localStorage` change event when saving in Settings window
+- Verify keys against provider API on save (soft-pass on network error)
+
+### Cloud Fallback
+When local handler fails, transparently proxy to cloud deployment:
+```
+Local handler → success → return
+  → error/5xx → mark as cloudPreferred
+    → proxy to cloud API (strip Origin/Referer headers)
+    → cache cloud response locally
+```
+- Stale-on-error: serve last successful response on upstream failure
+- Negative caching: 5-minute cooldown after failures
+- In-flight deduplication: concurrent requests share single upstream call
+
 ## Regles
 1. **Tauri 2.0** - Utiliser les plugins officiels v2
 2. **Permissions** - Capabilities minimales nécessaires
@@ -640,3 +679,5 @@ npm run tauri icon ./app-icon.png
 5. **Error handling** - Result<T, String> pour tous les commands
 6. **State management** - Mutex pour état partagé côté Rust
 7. **Auto-update** - Implémenter pour apps en production
+8. **Sidecar** - Token-authenticated, cloud fallback, traffic logging
+9. **Secrets** - OS keychain vault, never plaintext config files
