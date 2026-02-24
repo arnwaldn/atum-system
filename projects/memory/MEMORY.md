@@ -11,15 +11,16 @@
 - **Shell**: bash (MINGW64/Git Bash)
 - **Workspace**: `C:\Users\arnau\Projects\` (web, mobile, api, desktop, fullstack, tools, learning)
 
-## Claude Code Setup (updated 2026-02-24 — MCP audit corrected)
+## Claude Code Setup (updated 2026-02-24 — portable installer)
 
 ### Summary
 - 6 config files, 33 agents, 66 sub-agents, 20 commands, 4 modes, 25 rules (+ 24 templates)
 - 26 hooks (13 custom [11 fichiers + 2 inline] + 13 ECC), 52 plugins (50 actifs / 2 inactifs), 115+ skills
-- 24/27 MCP OK (tested 2026-02-24) — fetch supprime (npm 404), filesystem CWD bug, greptile OAuth 404 | 16 local (.claude.json) + 1 local (.mcp.json) + 3 plugin + 12 remote claude.ai = 32 serveurs
+- 24/27 MCP OK (tested 2026-02-24) — fetch supprime (npm 404), filesystem CWD bug, greptile OAuth 404 | 15 local (.claude.json) + 1 local (.mcp.json) + 3 plugin + 12 remote claude.ai = 31 serveurs
 - **Tools**: jq (winget), mcporter 0.7.3 (npm) — MCP debug CLI
 - 10 langages, 20+ frameworks/outils, 184 templates + 10 references
 - **34/34 project types simulated and verified production-ready**
+- **Portable**: `settings.json` uses `$HOME` paths, `install.sh` cross-platform (Win/Mac/Linux)
 
 ### Commands (20) — `~/.claude/commands/`
 atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, health, migrate, optimize, prd, pre-deploy, review-fix, scaffold, security-audit, **session-analyzer**, setup-cicd, status, tdd, team, ultra-think
@@ -108,7 +109,7 @@ architect, autonomous, brainstorm, quality
 - Hooks NOT auto-discovered — must register in `settings.json`; NEVER duplicate in settings.local.json
 - JS hooks: `fs.readFileSync(0, 'utf8')` for stdin on Windows; Python: `sys.stdin.read()`
 - Agents/commands/modes = ZERO context cost when not invoked; only rules always loaded
-- git-guard.py: consolidates 4 checks (~74ms), heredoc bug (use `-m "msg"`), blocks ALL pushes to main
+- git-guard.py: consolidates 4 checks (~74ms), heredoc bug (use `-m "msg"`), blocks pushes to main EXCEPT backup repos (whitelist: `claude-code-config`, `project-templates`)
 - ECC `.md` blocker: Windows regex issues — use Bash heredoc for .md writes in .claude/
 - ATUM: `agent.compliance` is PROPERTY not method; `agent.query()` returns list of dicts; `fmt='md'` not 'markdown'
 - ATUM: AuditAgent creates audit_store in CWD — needs ATUM_PROJECT_DIR fallback
@@ -141,7 +142,9 @@ architect, autonomous, brainstorm, quality
 - tsgo: `tsgo --noEmit` for fast typecheck; preview status, fall back to `tsc` for production
 - pnpm minimumReleaseAge: `.npmrc` config, pnpm v10+ only (ignored by npm)
 - secret-scanner.py only scans on `git commit` — Write/Edit pass through silently
-- GitHub backups: `arnwaldn/claude-code-config` + `arnwaldn/project-templates`
+- GitHub backups: `arnwaldn/claude-code-config` (with `install.sh` portable installer) + `arnwaldn/project-templates`
+- settings.json portability: hook commands use `$HOME/.claude/hooks/...` — Claude Code's hook runner expands `$HOME` correctly; direct Bash test with `node "$HOME/..."` fails (Git Bash POSIX→Windows path issue) but actual hooks work fine
+- git-guard whitelist: checks `any(repo in command for repo in BACKUP_REPOS)` — detects repo name in the Bash command string (cd path or remote URL)
 - ToolSearch: `+keyword` cherche dans les DESCRIPTIONS, pas les noms — pour MCP tools, TOUJOURS `select:mcp__server__tool_name`
 - filesystem MCP: utilise CWD comme allowed dir (pas l'argument) quand lance depuis System32 → utiliser desktop-commander a la place
 - fetch MCP (`@anthropic-ai/mcp-server-fetch`) n'existe PAS sur npm — supprime de .claude.json; WebFetch built-in suffit
