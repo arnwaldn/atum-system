@@ -1,6 +1,6 @@
 # Agent Orchestration
 
-## Full Agent Registry (33 agents)
+## Full Agent Registry (34 agents)
 
 | Agent | Domain | Auto-trigger |
 |-------|--------|-------------|
@@ -37,6 +37,7 @@
 | windows-scripting-expert | Windows | PowerShell, batch, Windows APIs |
 | blockchain-expert | Blockchain/Web3 | Hardhat, Solidity, smart contracts, EVM |
 | compliance-expert | Regulatory compliance | User data, payments, health data, e-commerce, AI deployment |
+| geospatial-expert | Maps & spatial | deck.gl, MapLibre, Leaflet, GeoJSON, spatial indexing |
 
 ## Auto-Invocation Rules
 
