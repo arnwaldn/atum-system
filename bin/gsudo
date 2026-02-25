@@ -1,0 +1,2 @@
+#!/bin/bash
+"/c/Program Files/gsudo/2.6.1/gsudo.exe" "$@"

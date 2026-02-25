@@ -11,13 +11,13 @@
 - **Shell**: bash (MINGW64/Git Bash)
 - **Workspace**: `C:\Users\arnau\Projects\` (web, mobile, api, desktop, fullstack, tools, learning)
 
-## Claude Code Setup (updated 2026-02-25 — WorldMonitor enhancements)
+## Claude Code Setup (updated 2026-02-25 — ui-ux-pro-max plugin)
 
 ### Summary
 - 6 config files, 34 agents, 68 sub-agents, 20 commands, 4 modes, 26 rules (+ 24 templates)
-- 26 hooks (13 custom [11 fichiers + 2 inline] + 13 ECC), 52 plugins (50 actifs / 2 inactifs), 115+ skills
+- 26 hooks (13 custom [11 fichiers + 2 inline] + 13 ECC), 53 plugins (51 actifs / 2 inactifs), 115+ skills
 - 24/27 MCP OK (tested 2026-02-24) — fetch supprime (npm 404), filesystem CWD bug, greptile OAuth 404 | 15 local (.claude.json) + 1 local (.mcp.json) + 3 plugin + 12 remote claude.ai = 31 serveurs
-- **Tools**: jq (winget), mcporter 0.7.3 (npm) — MCP debug CLI
+- **Tools**: jq (winget), mcporter 0.7.3 (npm), gsudo 2.6.1 (winget), acpx 0.1.8 (npm)
 - 10 langages, 20+ frameworks/outils, 184 templates + 10 references
 - **34/34 project types simulated and verified production-ready**
 - **Portable**: `settings.json` uses `$HOME` paths, `install.sh` cross-platform (Win/Mac/Linux)
@@ -41,8 +41,8 @@ atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, health, 
 ### Modes (4) — `~/.claude/modes/`
 architect, autonomous, brainstorm, quality
 
-### Rules (25 global files) — `~/.claude/rules/`
-- common/ (13): agents, anti-hallucination, autonomous-workflow, coding-style, compliance, git-workflow, hooks, monorepo, patterns, performance, security, system-messages, testing
+### Rules (26 global files) — `~/.claude/rules/`
+- common/ (14): agents, anti-hallucination, autonomous-workflow, coding-style, compliance, git-workflow, hooks, monorepo, patterns, performance, **resilience**, security, system-messages, testing
 - typescript/ (4): coding-style, patterns, security, testing
 - python/ (4): coding-style, patterns, security, testing
 - golang/ (4): coding-style, patterns, security, testing
@@ -151,6 +151,10 @@ architect, autonomous, brainstorm, quality
 - fetch MCP (`@anthropic-ai/mcp-server-fetch`) n'existe PAS sur npm — supprime de .claude.json; WebFetch built-in suffit
 - greptile plugin: OAuth 404 — necessite re-authentification; API key retiree de settings.local.json (etait en clair)
 - Modes = fichiers `.md` (pas `.yml`) dans `~/.claude/modes/`
+- gsudo 2.6.1: `~/bin/gsudo` wrapper → `/c/Program Files/gsudo/2.6.1/gsudo.exe`; CacheMode Auto, CacheDuration 1h
+- acpx 0.1.8: headless ACP CLI, config `~/.acpx/config.json` (defaultAgent claude, approve-all); `acpx claude -s name "prompt"`
+- Autonomie: Write(*), Edit(*), NotebookEdit(*), Task(*), EnterPlanMode, ExitPlanMode, EnterWorktree(*) dans allow; chrome MCP simplifie en wildcard
+- Philosophie autonomie: zero prompt d'execution MAIS consultation pour choix importants et suppressions
 - Loop-detector bug fix: `history.push()` DOIT etre APRES detection, sinon ping-pong jamais declenche (currentHash === lastHash toujours vrai)
 - MEMORY.md must stay <200 lines (truncated after)
 
