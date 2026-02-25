@@ -1,0 +1,6 @@
+{
+  "defaultAgent": "claude",
+  "defaultPermissions": "approve-all",
+  "ttl": 600,
+  "timeout": 300
+}
