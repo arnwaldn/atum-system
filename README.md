@@ -1,6 +1,6 @@
 # Claude Code Config
 
-Complete Claude Code environment — hooks, commands, agents, modes, rules, MCP servers, and settings.
+Complete Claude Code environment with full autonomy — hooks, commands, agents, modes, rules, MCP servers, permissions, and tooling.
 
 ## Quick Install
 
@@ -23,7 +23,23 @@ bash install.sh
 | Rules | 26 | Coding style, security, testing, resilience, anti-hallucination (common + TS/Python/Go) |
 | Scripts | 1 | Context monitor statusline |
 | MCP Servers | 16 | GitHub, Memory, Railway, Cloudflare, Context7, Gmail, etc. |
-| Plugins | 50 | ECC, Superpowers, Playwright, Firebase, Figma, Stripe, etc. |
+| Plugins | 51 | ECC, Superpowers, Playwright, Firebase, Figma, Stripe, etc. |
+| Permissions | 38 | Full autonomy — Write, Edit, Task, Bash, MCP all auto-approved |
+| Tools | 2 | gsudo (Windows admin elevation), acpx (headless ACP sessions) |
+
+## Autonomy Model
+
+Claude Code executes any action **without permission prompts** — Write, Edit, Bash, Task (subagents), MCP tools are all pre-approved. Safety is maintained through **hooks** (not permissions):
+
+| Hook | Protection |
+|------|-----------|
+| secret-scanner.py | Blocks hardcoded tokens/keys before any Write/Edit/Bash |
+| git-guard.py | Blocks push to main, rm -rf, force-push, enforces conventional commits |
+| lock-file-protector.js | Blocks direct modification of lock files |
+| file-backup | Creates .backup before every Edit |
+| loop-detector.js | Detects repeated identical tool calls |
+
+**Philosophy**: Zero execution friction, but Claude still consults the user for important design decisions and before deletions.
 
 ## Structure
 
@@ -34,10 +50,37 @@ agents/             Specialized agents (34 domain experts)
 modes/              Custom modes (architect, autonomous, brainstorm, quality)
 rules/              Global rules (common/, typescript/, python/, golang/)
 scripts/            Helper scripts (context-monitor.py)
+bin/                Tool wrappers for Git Bash (gsudo, jq, etc.)
+acpx/               acpx headless session config
+projects/           Memory templates
 settings.json       Main config — hooks, plugins, permissions (SOURCE OF TRUTH)
-settings.local.json Local overrides — statusline, env vars
+settings.local.json Local overrides — statusline, env vars, deny list
 claude.json.template  MCP server configs (replace PAT placeholders)
 ```
+
+## Tools
+
+### gsudo (Windows only)
+
+[gsudo](https://github.com/gerardog/gsudo) — `sudo` equivalent for Windows. Installed via `winget`, with credential caching (1 hour). Allows Claude Code to run admin commands (`winget install`, `netsh`, `sc`, etc.) after a single UAC confirmation.
+
+```bash
+gsudo winget install <package>
+gsudo netsh advfirewall firewall add rule ...
+```
+
+### acpx
+
+[acpx](https://github.com/openclaw/acpx) — Headless CLI for Agent Client Protocol. Run Claude Code sessions without a terminal, with persistent sessions, queuing, and parallel workstreams.
+
+```bash
+acpx claude "fix the failing tests"             # persistent session
+acpx claude -s backend "refactor the API"        # named session
+acpx claude --approve-all "scaffold and test"    # full autonomy
+acpx claude --no-wait "run test suite"           # fire-and-forget
+```
+
+Config: `~/.acpx/config.json` (defaultAgent: claude, approve-all)
 
 ## Post-Install
 
@@ -47,6 +90,7 @@ claude.json.template  MCP server configs (replace PAT placeholders)
 3. **Configure remote MCP** in claude.ai settings:
    Figma, Notion, Supabase, Vercel, Canva, Gamma, Make, Zapier, etc.
 4. **Edit `~/.claude.json`** to add your GitHub PAT if skipped during install
+5. **First gsudo use** will trigger one UAC prompt, then cached for 1 hour
 
 ## Portability
 
@@ -54,6 +98,8 @@ claude.json.template  MCP server configs (replace PAT placeholders)
 - Hooks use `$HOME`, `$TEMP`, `$CLAUDE_TOOL_FILE_PATH` — no hardcoded paths
 - Commands, agents, modes, rules are pure Markdown — fully portable
 - The install script backs up any existing config before overwriting
+- gsudo installed only on Windows; skipped on macOS/Linux
+- acpx installed globally via npm on all platforms
 
 ## Supported Platforms
 
