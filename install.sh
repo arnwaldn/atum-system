@@ -81,8 +81,10 @@ confirm_install() {
     echo "  - 4 modes        (architect, autonomous, brainstorm, quality)"
     echo "  - 26 rules       (coding-style, security, resilience, testing, etc.)"
     echo "  - 1 script       (context-monitor.py statusline)"
-    echo "  - settings.json  (hooks, plugins, permissions)"
+    echo "  - settings.json  (hooks, plugins, full autonomy permissions)"
     echo "  - MCP servers    (.claude.json with 16 servers)"
+    echo "  - bin wrappers   (gsudo for admin elevation)"
+    echo "  - acpx config    (headless ACP sessions)"
     echo ""
     echo -e "  Target: ${CYAN}$CLAUDE_DIR/${NC}"
     echo ""
@@ -205,7 +207,77 @@ configure_mcp() {
 }
 
 # ============================================================
-# 8. SETUP MEMORY
+# 8. INSTALL TOOLS (gsudo, acpx)
+# ============================================================
+install_tools() {
+    info "Installing autonomy tools..."
+
+    # --- bin wrappers ---
+    mkdir -p "$HOME/bin"
+    if [ -d "$SCRIPT_DIR/bin" ]; then
+        cp "$SCRIPT_DIR/bin/"* "$HOME/bin/" 2>/dev/null || true
+        chmod +x "$HOME/bin/"* 2>/dev/null || true
+        ok "bin/ wrappers copied to ~/bin/"
+    fi
+
+    # --- gsudo (Windows only) ---
+    if [ "$OS" = "windows" ]; then
+        if command -v gsudo &>/dev/null || [ -f "/c/Program Files/gsudo/2.6.1/gsudo.exe" ]; then
+            ok "gsudo already installed"
+        else
+            info "Installing gsudo (Windows sudo equivalent)..."
+            if command -v winget &>/dev/null; then
+                winget install gerardog.gsudo --accept-package-agreements --accept-source-agreements 2>/dev/null
+                if [ -f "/c/Program Files/gsudo/2.6.1/gsudo.exe" ]; then
+                    ok "gsudo installed"
+                    # Create wrapper if not already in bin/
+                    if [ ! -f "$HOME/bin/gsudo" ]; then
+                        echo '#!/bin/bash' > "$HOME/bin/gsudo"
+                        echo '"/c/Program Files/gsudo/2.6.1/gsudo.exe" "$@"' >> "$HOME/bin/gsudo"
+                        chmod +x "$HOME/bin/gsudo"
+                    fi
+                    # Configure cache
+                    "$HOME/bin/gsudo" config CacheMode Auto 2>/dev/null || true
+                    "$HOME/bin/gsudo" config CacheDuration "01:00:00" 2>/dev/null || true
+                    ok "gsudo cache configured (Auto, 1h)"
+                else
+                    warn "gsudo install failed — install manually: winget install gerardog.gsudo"
+                fi
+            else
+                warn "winget not available — install gsudo manually"
+            fi
+        fi
+    else
+        info "gsudo: skipped (Windows only)"
+    fi
+
+    # --- acpx ---
+    if command -v acpx &>/dev/null; then
+        ok "acpx already installed"
+    else
+        info "Installing acpx (headless ACP CLI)..."
+        npm install -g acpx@latest 2>/dev/null
+        if command -v acpx &>/dev/null; then
+            ok "acpx installed"
+        else
+            warn "acpx install failed — install manually: npm install -g acpx@latest"
+        fi
+    fi
+
+    # --- acpx config ---
+    if [ -d "$SCRIPT_DIR/acpx" ]; then
+        mkdir -p "$HOME/.acpx"
+        if [ ! -f "$HOME/.acpx/config.json" ]; then
+            cp "$SCRIPT_DIR/acpx/config.json" "$HOME/.acpx/config.json"
+            ok "acpx config installed"
+        else
+            ok "acpx config already exists — skipping"
+        fi
+    fi
+}
+
+# ============================================================
+# 9. SETUP MEMORY
 # ============================================================
 setup_memory() {
     if [ -d "$SCRIPT_DIR/projects" ]; then
@@ -216,7 +288,7 @@ setup_memory() {
 }
 
 # ============================================================
-# 9. GIT CONFIG (if not set)
+# 10. GIT CONFIG (if not set)
 # ============================================================
 setup_git() {
     local name=$(git config --global user.name 2>/dev/null || true)
@@ -235,7 +307,7 @@ setup_git() {
 }
 
 # ============================================================
-# 10. VERIFY
+# 11. VERIFY
 # ============================================================
 verify() {
     echo ""
@@ -249,6 +321,17 @@ verify() {
             ok "$dir: $n files"
         fi
     done
+
+    # Bin wrappers
+    if [ -d "$HOME/bin" ]; then
+        local bcount=$(ls -1 "$HOME/bin" 2>/dev/null | wc -l | tr -d ' ')
+        ok "~/bin: $bcount wrappers"
+    fi
+
+    # acpx config
+    if [ -f "$HOME/.acpx/config.json" ]; then
+        ok "acpx config: present"
+    fi
 
     # Validate JSON
     for f in "$CLAUDE_DIR/settings.json" "$CLAUDE_DIR/settings.local.json"; do
@@ -265,7 +348,7 @@ verify() {
 }
 
 # ============================================================
-# 11. POST-INSTALL SUMMARY
+# 12. POST-INSTALL SUMMARY
 # ============================================================
 summary() {
     echo ""
@@ -285,6 +368,8 @@ summary() {
     echo "    ~/.claude/         hooks, commands, agents, modes, rules"
     echo "    ~/.claude.json     MCP server configs"
     echo "    ~/.claude/settings.json   main config (SOURCE OF TRUTH)"
+    echo "    ~/.acpx/config.json       acpx headless sessions"
+    echo "    ~/bin/                    tool wrappers (gsudo, jq, etc.)"
     echo ""
 }
 
@@ -304,6 +389,7 @@ main() {
     copy_files
     install_settings
     configure_mcp
+    install_tools
     setup_memory
     setup_git
     verify
