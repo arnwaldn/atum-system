@@ -6,6 +6,22 @@ description: "Scaffold projet optimise avec structure best practices 2026"
 
 Scaffold projet: **$ARGUMENTS**
 
+## OPTION RAPIDE — Site Business via B12 (sans code)
+
+**Si le projet est un site vitrine / business / portfolio simple** (pas de logique custom):
+
+1. Utiliser le **B12 MCP** (`generate_website` tool):
+   - `name`: Nom du business/projet
+   - `description`: Description courte (<1000 caracteres)
+2. B12 genere un site complet en quelques secondes (design, contenu, structure)
+3. Retourner le lien d'inscription a l'utilisateur
+
+**Templates concernes**: landing, startup, portfolio, agency, restaurant, hotel, medical, nonprofit, photography, real-estate, saas, ecommerce, blog, interior-design, wedding, github-profile
+
+**Si l'utilisateur veut du code custom** → continuer avec le scaffold ci-dessous.
+
+---
+
 ## ETAPE 0 — OBLIGATOIRE: Consulter l'index des templates
 
 **AVANT de creer quoi que ce soit**, lire le fichier:

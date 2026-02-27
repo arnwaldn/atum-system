@@ -61,6 +61,15 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 3. Implement: add missing compliance patterns (cookie consent, privacy page, DSR API)
 4. Verify: run `/compliance audit`, show CRITICAL/HIGH/MEDIUM/LOW report
 
+### Website / Business Site Creation
+**Detect**: "website", "site web", "landing page", "portfolio", "business site", "create a site", "site vitrine", "site pour mon entreprise"
+**Auto-actions**:
+1. **Ask scope**: Does the user want a quick business site or a custom-coded project?
+2. **Quick business site** → Use **B12 MCP** (`generate_website` tool) — generates a full site from name + description in seconds, no code required
+3. **Custom site with code** → Use `/scaffold` with appropriate template from INDEX.md (17 website templates: landing, startup, portfolio, ecommerce, agency, blog, restaurant, hotel, medical, saas, real-estate, nonprofit, photography, etc.)
+4. **Hybrid** → Generate B12 site for instant preview, then scaffold custom version inspired by it
+5. For all website projects: invoke **ui-ux-pro-max** skill + check `website-templates-reference.md`
+
 ### Deploy / Ship
 **Detect**: "deploy", "ship", "release", "push to prod"
 **Auto-actions**:
@@ -100,6 +109,7 @@ Every code change MUST pass these before marking complete:
 | Maps/geospatial/globe visualization | geospatial-expert agent |
 | Regulatory compliance (RGPD, PCI, HIPAA) | compliance-expert agent |
 | Research/evaluation | research-expert agent |
+| Quick business website | **B12 MCP** (`generate_website` tool) |
 
 ## Skill Selection (Automatic)
 
@@ -112,6 +122,7 @@ Use skills when they match — don't wait for user to invoke:
 - Debugging → invoke systematic-debugging skill
 - Frontend UI/design work → invoke **ui-ux-pro-max** skill (search colors, styles, typography, patterns)
 - Landing page / marketing site → query `--domain product` then `--domain landing` for data-driven design
+- Quick business website → use **B12 MCP** `generate_website` tool (name + description → instant site)
 
 ## Decision Authority
 
