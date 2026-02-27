@@ -82,7 +82,7 @@ confirm_install() {
     echo "  - 26 rules       (coding-style, security, resilience, testing, etc.)"
     echo "  - 1 script       (context-monitor.py statusline)"
     echo "  - settings.json  (hooks, plugins, full autonomy permissions)"
-    echo "  - MCP servers    (.claude.json with 16 servers)"
+    echo "  - MCP servers    (.claude.json with 17 servers incl. B12)"
     echo "  - bin wrappers   (gsudo for admin elevation)"
     echo "  - acpx config    (headless ACP sessions)"
     echo ""
@@ -194,16 +194,54 @@ configure_mcp() {
     echo ""
     read -rp "  GitHub PAT: " github_pat
 
+    # Resolve HOME path for cross-platform compatibility
+    local home_path
+    home_path=$(cd "$HOME" && pwd -W 2>/dev/null || pwd)
+    home_path="${home_path//\\/\/}"  # Normalize to forward slashes
+
     if [ -n "$github_pat" ]; then
-        sed "s/REPLACE_WITH_YOUR_GITHUB_PAT/$github_pat/g" \
+        sed -e "s/REPLACE_WITH_YOUR_GITHUB_PAT/$github_pat/g" \
+            -e "s|REPLACE_WITH_HOME_DIR|$home_path|g" \
             "$SCRIPT_DIR/claude.json.template" > "$CLAUDE_JSON"
         ok ".claude.json with GitHub MCP"
     else
-        sed "s/REPLACE_WITH_YOUR_GITHUB_PAT//g" \
+        sed -e "s/REPLACE_WITH_YOUR_GITHUB_PAT//g" \
+            -e "s|REPLACE_WITH_HOME_DIR|$home_path|g" \
             "$SCRIPT_DIR/claude.json.template" > "$CLAUDE_JSON"
         ok ".claude.json (GitHub PAT not set — edit later)"
     fi
     echo ""
+}
+
+# ============================================================
+# 7.5. INSTALL B12 MCP (local build from GitHub)
+# ============================================================
+install_b12_mcp() {
+    info "Installing B12 Website Generator MCP..."
+    local B12_DIR="$HOME/Projects/tools/website-generator-mcp-server"
+
+    if [ -d "$B12_DIR/src/server.js" ] || [ -f "$B12_DIR/src/server.js" ]; then
+        ok "B12 MCP already installed at $B12_DIR"
+    else
+        mkdir -p "$HOME/Projects/tools"
+        if git clone https://github.com/b12io/website-generator-mcp-server.git "$B12_DIR" 2>/dev/null; then
+            cd "$B12_DIR" && npm install --silent 2>/dev/null
+            # Fix: add "type": "module" for ESM imports
+            python3 -c "
+import json
+with open('package.json', 'r') as f:
+    data = json.load(f)
+if 'type' not in data:
+    data['type'] = 'module'
+    with open('package.json', 'w') as f:
+        json.dump(data, f, indent=2)
+" 2>/dev/null
+            cd - >/dev/null
+            ok "B12 MCP cloned and installed"
+        else
+            warn "B12 MCP clone failed — install manually: git clone https://github.com/b12io/website-generator-mcp-server.git ~/Projects/tools/website-generator-mcp-server"
+        fi
+    fi
 }
 
 # ============================================================
@@ -389,6 +427,7 @@ main() {
     copy_files
     install_settings
     configure_mcp
+    install_b12_mcp
     install_tools
     setup_memory
     setup_git

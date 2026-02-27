@@ -386,6 +386,12 @@
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "REPLACE_WITH_YOUR_GITHUB_PAT"
       }
+    },
+    "b12": {
+      "command": "node",
+      "args": [
+        "REPLACE_WITH_HOME_DIR/Projects/tools/website-generator-mcp-server/src/server.js"
+      ]
     }
   },
   "showSpinnerTree": false,
