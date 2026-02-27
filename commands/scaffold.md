@@ -18,6 +18,8 @@ Scaffold projet: **$ARGUMENTS**
 
 **Templates concernes**: landing, startup, portfolio, agency, restaurant, hotel, medical, nonprofit, photography, real-estate, saas, ecommerce, blog, interior-design, wedding, github-profile
 
+**Compliance**: Les sites B12 sont heberges par B12.io — verifier que RGPD/cookies sont geres si marche EU.
+
 **Si l'utilisateur veut du code custom** → continuer avec le scaffold ci-dessous.
 
 ---
