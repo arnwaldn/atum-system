@@ -76,13 +76,13 @@ check_prereqs() {
 confirm_install() {
     echo -e "${BOLD}This will install:${NC}"
     echo "  - 14 hooks      (PreToolUse, PostToolUse, Stop, SessionStart)"
-    echo "  - 20 commands    (/scaffold, /security-audit, /tdd, etc.)"
+    echo "  - 22 commands    (/scaffold, /security-audit, /tdd, /webmcp, etc.)"
     echo "  - 34 agents      (architect, phaser-expert, ml-engineer, geospatial, etc.)"
     echo "  - 4 modes        (architect, autonomous, brainstorm, quality)"
-    echo "  - 26 rules       (coding-style, security, resilience, testing, etc.)"
+    echo "  - 27 rules       (coding-style, security, resilience, testing, etc.)"
     echo "  - 1 script       (context-monitor.py statusline)"
     echo "  - settings.json  (hooks, plugins, full autonomy permissions)"
-    echo "  - MCP servers    (.claude.json with 17 servers incl. B12)"
+    echo "  - MCP servers    (.claude.json with 18 servers incl. B12, WebMCP)"
     echo "  - bin wrappers   (gsudo for admin elevation)"
     echo "  - acpx config    (headless ACP sessions)"
     echo ""
@@ -199,15 +199,53 @@ configure_mcp() {
     home_path=$(cd "$HOME" && pwd -W 2>/dev/null || pwd)
     home_path="${home_path//\\/\/}"  # Normalize to forward slashes
 
+    # On macOS/Linux, replace "cmd", "/c" wrapper with direct npx calls
+    if [ "$OS" != "windows" ]; then
+        # Remove cmd /c wrapper: "cmd" → "npx", remove "/c" arg, merge args
+        python3 -c "
+import json, sys
+with open(sys.argv[1]) as f:
+    data = json.load(f)
+for name, srv in data.get('mcpServers', {}).items():
+    if srv.get('command') == 'cmd' and srv.get('args', [''])[0] == '/c':
+        args = srv['args'][1:]  # remove /c
+        if args and args[0] in ('npx', 'npm'):
+            srv['command'] = args[0]
+            srv['args'] = args[1:]
+with open(sys.argv[2], 'w') as f:
+    json.dump(data, f, indent=2)
+    f.write('\n')
+" "$SCRIPT_DIR/claude.json.template" "$CLAUDE_JSON"
+    else
+        cp "$SCRIPT_DIR/claude.json.template" "$CLAUDE_JSON"
+    fi
+
+    # Replace all placeholders
+    sed -i \
+        -e "s|REPLACE_WITH_YOUR_GITHUB_PAT|${github_pat}|g" \
+        -e "s|REPLACE_WITH_HOME_DIR|${home_path}|g" \
+        -e "s|REPLACE_WITH_YOUR_PROJECT_REF|YOUR_PROJECT_REF|g" \
+        "$CLAUDE_JSON"
+
+    # Remove _comment fields (clean output)
+    python3 -c "
+import json
+with open('$CLAUDE_JSON') as f:
+    data = json.load(f)
+data.pop('_comment', None)
+data.pop('_instructions', None)
+for srv in data.get('mcpServers', {}).values():
+    for k in list(srv.keys()):
+        if k.startswith('_comment'):
+            del srv[k]
+with open('$CLAUDE_JSON', 'w') as f:
+    json.dump(data, f, indent=2)
+    f.write('\n')
+" 2>/dev/null || true
+
     if [ -n "$github_pat" ]; then
-        sed -e "s/REPLACE_WITH_YOUR_GITHUB_PAT/$github_pat/g" \
-            -e "s|REPLACE_WITH_HOME_DIR|$home_path|g" \
-            "$SCRIPT_DIR/claude.json.template" > "$CLAUDE_JSON"
         ok ".claude.json with GitHub MCP"
     else
-        sed -e "s/REPLACE_WITH_YOUR_GITHUB_PAT//g" \
-            -e "s|REPLACE_WITH_HOME_DIR|$home_path|g" \
-            "$SCRIPT_DIR/claude.json.template" > "$CLAUDE_JSON"
         ok ".claude.json (GitHub PAT not set — edit later)"
     fi
     echo ""

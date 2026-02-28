@@ -81,10 +81,11 @@ function topTools(toolCounts, limit) {
 }
 
 function shortenPath(p) {
-  // Shorten Windows paths for readability
+  // Shorten paths for readability (cross-platform)
+  const home = (process.env.HOME || process.env.USERPROFILE || "").replace(/\\/g, "/");
   return p
-    .replace(/^C:\\Users\\arnau\\/i, "~/")
-    .replace(/\\/g, "/");
+    .replace(/\\/g, "/")
+    .replace(new RegExp("^" + home.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"), "~");
 }
 
 try {
