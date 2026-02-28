@@ -11,17 +11,19 @@
 - **Shell**: bash (MINGW64/Git Bash)
 - **Workspace**: `C:\Users\arnau\Projects\` (web, mobile, api, desktop, fullstack, tools, learning)
 
-## Claude Code Setup (updated 2026-02-25 — WorldMonitor enhancements)
+## Claude Code Setup (updated 2026-02-28 — v2.1.62 + webmcp optimized)
 
 ### Summary
-- 6 config files, 34 agents, 68 sub-agents, 20 commands, 4 modes, 26 rules (+ 24 templates)
-- 26 hooks (13 custom [11 fichiers + 2 inline] + 13 ECC), 52 plugins (50 actifs / 2 inactifs), 115+ skills
-- 27 MCP connectes (verified) + 8 non connectes | 465 outils totaux (24 built-in + 441 MCP)
+- 6 config files, 34 agents, 68 sub-agents, 21 commands, 4 modes, 27 rules (+ 24 templates)
+- 26 hooks (13 custom [11 fichiers + 2 inline] + 13 ECC), 53 plugins (51 actifs / 2 inactifs), 115+ skills
+- 27/30 MCP OK (updated 2026-02-28) — fetch supprime (npm 404), filesystem CWD bug, greptile OAuth 404 | 18 local (.claude.json) + 1 local (.mcp.json) + 3 plugin + 12 remote claude.ai = 34 serveurs
+- **Tools**: jq (winget), mcporter 0.7.3 (npm), gsudo 2.6.1 (winget), acpx 0.1.8 (npm)
 - 10 langages, 20+ frameworks/outils, 184 templates + 10 references
 - **34/34 project types simulated and verified production-ready**
+- **Portable**: `settings.json` uses `$HOME` paths, `install.sh` cross-platform (Win/Mac/Linux)
 
-### Commands (19) — `~/.claude/commands/`
-atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, health, migrate, optimize, prd, pre-deploy, review-fix, scaffold, security-audit, setup-cicd, status, tdd, team, ultra-think
+### Commands (21) — `~/.claude/commands/`
+atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, health, migrate, optimize, prd, pre-deploy, review-fix, scaffold, security-audit, **session-analyzer**, setup-cicd, status, tdd, team, ultra-think, **website**
 
 ### Agents (34 custom + 34 plugin/built-in = 68 sub-agents) — `~/.claude/agents/`
 - **Generalist**: architect-reviewer, codebase-pattern-finder, critical-thinking, database-optimizer, error-detective, technical-debt-manager, research-expert
@@ -39,8 +41,8 @@ atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, health, 
 ### Modes (4) — `~/.claude/modes/`
 architect, autonomous, brainstorm, quality
 
-### Rules (25 global files) — `~/.claude/rules/`
-- common/ (13): agents, anti-hallucination, autonomous-workflow, coding-style, compliance, git-workflow, hooks, monorepo, patterns, performance, security, system-messages, testing
+### Rules (26 global files) — `~/.claude/rules/`
+- common/ (15): agents, anti-hallucination, autonomous-workflow, coding-style, compliance, **decision-principle**, git-workflow, hooks, monorepo, patterns, performance, **resilience**, security, system-messages, testing
 - typescript/ (4): coding-style, patterns, security, testing
 - python/ (4): coding-style, patterns, security, testing
 - golang/ (4): coding-style, patterns, security, testing
@@ -55,15 +57,16 @@ architect, autonomous, brainstorm, quality
 ### Config files (6)
 - `~/.claude/settings.json` (~220 lignes) — SOURCE DE VERITE
 - `~/.claude/settings.local.json` (25 lignes) — statusLine, deny, env
-- `~/.mcp.json` (13 lignes) — atum-audit MCP only (DeepGraph + project-profile removed)
+- `~/.mcp.json` (13 lignes) — atum-audit MCP (Claude Desktop); AUSSI dans .claude.json (Claude Code CLI)
 - `~/.npmrc` — pnpm supply-chain security (minimumReleaseAge=2880)
 - `~/.claude/scripts/context-monitor.py` — StatusLine
 - `~/.claude/projects/.../memory/MEMORY.md` — Memoire persistante
 
-### MCP Servers (27 connectes, verified 2026-02-23)
-- **Local (12)**: github, firecrawl, memory, sequential-thinking, railway, cloudflare-docs, context7, magic, filesystem, gmail, desktop-commander, claude-in-chrome
-- **Plugin (3)**: firebase, greptile, playwright
-- **Remote claude.ai (12)**: Canva, Cloudflare, Figma, Gamma, Hugging Face, Invideo, Learning Commons, Make, Notion, Supabase, Vercel, Zapier
+### MCP Servers (27/30 OK, updated 2026-02-28)
+- **Local (13/14 OK)**: github, memory, sequential-thinking, railway, cloudflare-docs, context7, magic, gmail, desktop-commander, claude-in-chrome, b12, **webmcp** (website→MCP bridge, local fork optimized) | ⚠️ filesystem (CWD bug)
+- **Plugin (2/3 OK)**: firebase, playwright | ❌ greptile (OAuth 404)
+- **Remote claude.ai (12/12 OK)**: Canva, Cloudflare, Figma, Gamma, Hugging Face, Invideo, Learning Commons, Make, Notion, Supabase, Vercel, Zapier
+- **Extras in .claude.json (6, non connectes)**: supabase-local (placeholder), vercel-local, clickhouse, cloudflare-workers-builds, cloudflare-workers-bindings, cloudflare-observability
 
 ### ATUM/OWL (EU AI Act) — 166/166 tests, 17/17 functional checks
 - **Module**: `atum_audit` — `pip install -e .` | rdflib 7.6.0, pyshacl 0.31.0, mcp 1.23.3
@@ -107,7 +110,7 @@ architect, autonomous, brainstorm, quality
 - Hooks NOT auto-discovered — must register in `settings.json`; NEVER duplicate in settings.local.json
 - JS hooks: `fs.readFileSync(0, 'utf8')` for stdin on Windows; Python: `sys.stdin.read()`
 - Agents/commands/modes = ZERO context cost when not invoked; only rules always loaded
-- git-guard.py: consolidates 4 checks (~74ms), heredoc bug (use `-m "msg"`), blocks ALL pushes to main
+- git-guard.py: consolidates 4 checks (~74ms), heredoc bug (use `-m "msg"`), blocks pushes to main EXCEPT backup repos (whitelist: `claude-code-config`, `project-templates`)
 - ECC `.md` blocker: Windows regex issues — use Bash heredoc for .md writes in .claude/
 - ATUM: `agent.compliance` is PROPERTY not method; `agent.query()` returns list of dicts; `fmt='md'` not 'markdown'
 - ATUM: AuditAgent creates audit_store in CWD — needs ATUM_PROJECT_DIR fallback
@@ -119,6 +122,17 @@ architect, autonomous, brainstorm, quality
 - PHP php.ini path: `C:\Users\arnau\AppData\Local\Microsoft\WinGet\Packages\PHP.PHP.8.4_Microsoft.Winget.Source_8wekyb3d8bbwe\php.ini`
 - Avast intercepte SSL PHP/Composer/Ruby — desactiver temporairement ou configurer exclusion pour PHP/Ruby
 - Avast verrouille des dossiers (handles fantomes) — impossible a supprimer sans reboot; utiliser tache planifiee
+- Avast self-defense (`aswSP.sys`) bloque TOUTE modif registre Avast meme avec gsudo admin → exclusions = GUI uniquement
+- Claude Desktop Cowork = VM Hyper-V (`cowork-vm`) via HCS, independante de Claude Code CLI
+- Cowork VM: `sessiondata.vhdx` = Lun 2 — JAMAIS auto-cree sur Windows (bug #24962), creer via `diskpart create vdisk type=expandable maximum=10240`
+- Cowork VM: `.auto_reinstall_attempted` bloque les retentatives — supprimer pour debloquer
+- Cowork VM: WinNat FONCTIONNE sur Win 11 Home — `New-NetNat` OK si HNS network supprime AVANT
+- Cowork VM: sequence fix reseau = Stop Claude → supprimer HNS network → `New-NetNat CoworkNAT 172.16.0.0/24` → relancer
+- Cowork VM: HCS JSON error 0xC037010D + guest timeout = bug Claude Desktop (issues #24962 #24974), non fixable cote user
+- Cowork VM: Avast probablement bloque vsock (WSAECONNABORTED) — desactiver temporairement pour tester
+- Cowork VM paths: `%LOCALAPPDATA%\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Roaming\Claude\vm_bundles\claudevm.bundle\`
+- Cowork logs: `%LOCALAPPDATA%\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Roaming\Claude\logs\cowork_vm_node.log`
+- gsudo + powershell depuis Git Bash: `$_` se fait manger → toujours passer par un fichier `.ps1`
 - Ruby native gems: need MSYS2 ucrt64 toolchain + make — PATH: `/c/Ruby33-x64/bin:/c/msys64/ucrt64/bin:/c/msys64/usr/bin`
 - Composer: `curl --ssl-no-revoke` pour telecharger `composer.phar` → wrapper bash dans `~/bin/composer`
 - Python 3.13 venvs: peuvent manquer pip → toujours `python -m ensurepip --upgrade` apres creation
@@ -129,16 +143,41 @@ architect, autonomous, brainstorm, quality
 - Windows locked dirs: `shutil.rmtree` echoue si Avast/indexer tient un handle → `cmd.exe /C rd /s /q` ou tache planifiee
 - Godot 4.6.1: winget can't create symlinks without admin → wrappers in `~/bin/godot` and `~/bin/godot-console`
 - Hardhat 3.x: `defineConfig` + `plugins: [toolbox]` (NOT `import` side-effects); `hardhat-toolbox-viem` (NOT `hardhat-toolbox`); `node:test` (NOT mocha); `"type": "module"` required; `--init` is interactive (manual setup in non-interactive shells)
-- Loop-detector hook: skip Read/Grep/Glob (read-only tools expected to repeat); state in $TEMP; auto-reset after 10min
-- Session-memory hook: Stop event, saves to project memory dir, auto-cleanup >30 days, only if >3 tool calls
+- Loop-detector hook: 3 detectors (consecutive repeats, ping-pong A↔B, context exhaustion 80/120 calls); skip Read/Grep/Glob; accumulates session stats in `$TEMP/claude-session-stats.json`
+- security-audit command: 6 scopes (deps, secrets, owasp, hardening, **host**, all) — `host` audits machine-level security (PATH, firewall, BitLocker, MCP configs, SSH keys)
+- Session-memory hook: Stop event, consumes stats from loop-detector, saves structured summary (tools, files modified/read, duration, errors) to `memory/sessions/`; auto-cleanup >30 days
+- mcporter: `mcporter list`, `mcporter call <server.tool> key=value` — debug MCP servers sans passer par Claude Code
+- jq 1.8.1: winget installe dans WinGet/Packages/ (pas dans PATH Git Bash) → wrapper `~/bin/jq`
+- OpenClaw skills analysis (2026-02-24): 52 skills scanned, 7 Tier 1 identified; adopted session-stats + mcporter + session-analyzer pattern
+- Forfait Claude Max = pas de cost-tracking necessaire (forfait fixe)
 - Oxlint: `oxlint file.js` — 30ms for 93 rules on 16 threads; complement to ESLint (not replacement)
 - tsgo: `tsgo --noEmit` for fast typecheck; preview status, fall back to `tsc` for production
 - pnpm minimumReleaseAge: `.npmrc` config, pnpm v10+ only (ignored by npm)
 - secret-scanner.py only scans on `git commit` — Write/Edit pass through silently
-- GitHub backups: `arnwaldn/claude-code-config` + `arnwaldn/project-templates`
+- GitHub backups: `arnwaldn/claude-code-config` (with `install.sh` portable installer) + `arnwaldn/project-templates`
+- settings.json portability: hook commands use `$HOME/.claude/hooks/...` — Claude Code's hook runner expands `$HOME` correctly; direct Bash test with `node "$HOME/..."` fails (Git Bash POSIX→Windows path issue) but actual hooks work fine
+- git-guard whitelist: checks `any(repo in command for repo in BACKUP_REPOS)` — detects repo name in the Bash command string (cd path or remote URL)
+- ToolSearch: `+keyword` cherche dans les DESCRIPTIONS, pas les noms — pour MCP tools, TOUJOURS `select:mcp__server__tool_name`
+- filesystem MCP: utilise CWD comme allowed dir (pas l'argument) quand lance depuis System32 → utiliser desktop-commander a la place
+- fetch MCP (`@anthropic-ai/mcp-server-fetch`) n'existe PAS sur npm — supprime de .claude.json; WebFetch built-in suffit
+- greptile plugin: OAuth 404 — necessite re-authentification; API key retiree de settings.local.json (etait en clair)
+- Modes = fichiers `.md` (pas `.yml`) dans `~/.claude/modes/`
+- gsudo 2.6.1: `~/bin/gsudo` wrapper → `/c/Program Files/gsudo/2.6.1/gsudo.exe`; CacheMode Auto, CacheDuration 1h
+- acpx 0.1.8: headless ACP CLI, config `~/.acpx/config.json` (defaultAgent claude, approve-all); `acpx claude -s name "prompt"`
+- Autonomie: Write(*), Edit(*), NotebookEdit(*), Task(*), EnterPlanMode, ExitPlanMode, EnterWorktree(*) dans allow; chrome MCP simplifie en wildcard
+- Philosophie autonomie: zero prompt d'execution MAIS consultation pour choix importants et suppressions
+- Loop-detector bug fix: `history.push()` DOIT etre APRES detection, sinon ping-pong jamais declenche (currentHash === lastHash toujours vrai)
+- B12 MCP: npm 404 (pas publie) → clone GitHub `b12io/website-generator-mcp-server` dans `~/Projects/tools/`; necessite `"type": "module"` dans package.json; 1 tool `generate_website(name, description)` → URL signup B12; aussi DXT extension (manifest.json); integre dans 8 fichiers (autonomous-workflow, scaffold, patterns, INDEX.md, install.sh, claude.json.template, /website command, .claude.json); mcporter test OK
+- "Integration intelligente" = pas juste config MCP, mais tisser dans workflows (auto-detection), commands (discoverabilite), templates (cross-refs), infra (portabilite)
+- Claude Code v2.1.62: update from 2.1.49 fixes 21 plugin manifest errors (Unrecognized keys: category, source, strict, logo)
+- MCP cmd /c wrapper: all 10 npx-based servers wrapped with `cmd /c npx` for Windows compatibility (.claude.json)
+- GITHUB_PERSONAL_ACCESS_TOKEN: added to settings.local.json env (fixes github plugin MCP auth error)
+- MCP context bloat: ~133K tokens from tool definitions (Make=32K, Canva=10K, github=9K, desktop-commander=9K) — monitor, cannot reduce without removing servers
+- WebMCP optimized (5 phases complete): forked to `~/Projects/tools/webmcp-optimized/`; P1: server.js 694→368 lines (RESPONSE_EXTRACTORS map, sendRequest helper, exponential backoff); P2: websocket-server.js 1440→161 lines (split into cli.js, daemon.js, http-server.js, ws-bridge.js 681 lines); P3: pending request cleanup on disconnect, drainPendingRequests on shutdown; P4: CORS default localhost (env WEBMCP_CORS_ORIGINS); P5: 25 tests (node:test) — config, http-server, tokens, ws-bridge integration (tool register/list/call forwarding); npm build broken on Windows (esbuild setRawMode) → run from source; .claude.json uses `node C:/Users/arnau/Projects/tools/webmcp-optimized/src/websocket-server.js --mcp`
 - MEMORY.md must stay <200 lines (truncated after)
 
 ## Preferences
 - Output style: Learning mode
 - winget = primary package manager
 - Git: user.name Arnaud, user.email arnaud.porcel@gmail.com, SSH ed25519
+- **Decision principle (CRITICAL)**: Avant CHAQUE decision, se demander "Qu'est-ce qu'un dev senior de tres haut niveau ferait ?" — solutions directes, pas de bidouillage ni workarounds inutiles, autonomie totale

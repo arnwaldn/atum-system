@@ -82,6 +82,15 @@ Output: User profile object with name, email, bio
 Errors: 404 if user not found, 403 if unauthorized
 ```
 
+### WebMCP (Website → MCP Bridge)
+- **Local fork**: `~/Projects/tools/webmcp-optimized/` (optimized from jasonjmcghee/WebMCP)
+- **Architecture**: Website (JS widget) ↔ WebSocket ↔ Bridge Server ↔ MCP Stdio Server ↔ Claude Code
+- **Usage**: Any website can declare MCP tools by embedding `<script src="webmcp.js">` + registering tools
+- **Key tools**: `_webmcp_get-token` (generate registration token), `_webmcp_define-mcp-tool` (define tool schema)
+- **Source modules**: cli.js, daemon.js, http-server.js, ws-bridge.js, server.js (MCP stdio)
+- **Windows**: Run from source (`node src/websocket-server.js --mcp`), npm build broken (setRawMode crash)
+- **Config**: In `~/.claude.json` as `webmcp` server entry
+
 ## Quand m'utiliser
 
 - Creation de MCP servers custom
@@ -90,3 +99,4 @@ Errors: 404 if user not found, 403 if unauthorized
 - Deploiement et distribution de MCPs
 - Design de schemas d'outils MCP
 - Migration entre transports (stdio → SSE)
+- **WebMCP**: connecter un site web comme source de tools MCP
