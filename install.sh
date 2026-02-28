@@ -245,6 +245,28 @@ if 'type' not in data:
 }
 
 # ============================================================
+# 7b. INSTALL WEBMCP (website→MCP bridge)
+# ============================================================
+install_webmcp() {
+    info "Installing WebMCP (website→MCP bridge)..."
+    local WEBMCP_DIR="$HOME/Projects/tools/webmcp-optimized"
+
+    if [ -d "$WEBMCP_DIR/src/websocket-server.js" ] || [ -f "$WEBMCP_DIR/src/websocket-server.js" ]; then
+        ok "WebMCP already installed at $WEBMCP_DIR"
+    else
+        mkdir -p "$HOME/Projects/tools"
+        if git clone https://github.com/jasonjmcghee/webmcp.git "$WEBMCP_DIR" 2>/dev/null; then
+            cd "$WEBMCP_DIR" && npm install --silent 2>/dev/null
+            cd - >/dev/null
+            ok "WebMCP cloned and installed"
+            warn "NOTE: Apply optimizations from the project fork if available"
+        else
+            warn "WebMCP clone failed — install manually: git clone https://github.com/jasonjmcghee/webmcp.git ~/Projects/tools/webmcp-optimized"
+        fi
+    fi
+}
+
+# ============================================================
 # 8. INSTALL TOOLS (gsudo, acpx)
 # ============================================================
 install_tools() {
@@ -428,6 +450,7 @@ main() {
     install_settings
     configure_mcp
     install_b12_mcp
+    install_webmcp
     install_tools
     setup_memory
     setup_git

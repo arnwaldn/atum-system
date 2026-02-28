@@ -70,6 +70,15 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 4. **Hybrid** → Generate B12 site for instant preview, then scaffold custom version inspired by it
 5. For all website projects: invoke **ui-ux-pro-max** skill + check `website-templates-reference.md`
 
+### Web App Testing / Website as MCP Tool Source
+**Detect**: "test my web app", "connect this website", "expose tools from", "webmcp", "make my site programmable", "register web tools", embedded `<script>` widget, user building/testing a web application, user wants Claude to interact with a custom web dashboard or internal tool
+**Auto-actions**:
+1. **Generate token**: Call `_webmcp_get-token` tool to create a registration token
+2. **Instruct user**: Tell them to paste the token into the WebMCP widget on their website
+3. **Verify**: Once connected, the website's custom tools appear in Claude Code's tool list
+4. **Use tools**: Call the registered tools directly — no browser automation needed
+5. **When to suggest**: If user is debugging a web app and claude-in-chrome is insufficient (needs structured data, not DOM scraping), suggest WebMCP as the programmatic alternative
+
 ### Deploy / Ship
 **Detect**: "deploy", "ship", "release", "push to prod"
 **Auto-actions**:
@@ -110,6 +119,7 @@ Every code change MUST pass these before marking complete:
 | Regulatory compliance (RGPD, PCI, HIPAA) | compliance-expert agent |
 | Research/evaluation | research-expert agent |
 | Quick business website | **B12 MCP** (`generate_website` tool) |
+| Web app testing / website tools | **WebMCP** (`_webmcp_get-token` → register → use tools) |
 
 ## Skill Selection (Automatic)
 
@@ -123,6 +133,7 @@ Use skills when they match — don't wait for user to invoke:
 - Frontend UI/design work → invoke **ui-ux-pro-max** skill (search colors, styles, typography, patterns)
 - Landing page / marketing site → query `--domain product` then `--domain landing` for data-driven design
 - Quick business website → use **B12 MCP** `generate_website` tool (name + description → instant site)
+- Web app interaction needing structured data → suggest **WebMCP** (`_webmcp_get-token` tool) instead of browser automation
 
 ## Decision Authority
 

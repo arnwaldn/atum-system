@@ -392,6 +392,13 @@
       "args": [
         "REPLACE_WITH_HOME_DIR/Projects/tools/website-generator-mcp-server/src/server.js"
       ]
+    },
+    "webmcp": {
+      "command": "node",
+      "args": [
+        "REPLACE_WITH_WEBMCP_PATH/src/websocket-server.js",
+        "--mcp"
+      ]
     }
   },
   "showSpinnerTree": false,
