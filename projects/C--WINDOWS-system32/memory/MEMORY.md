@@ -11,12 +11,13 @@
 - **Shell**: bash (MINGW64/Git Bash)
 - **Workspace**: `C:\Users\arnau\Projects\` (web, mobile, api, desktop, fullstack, tools, learning)
 
-## Claude Code Setup (updated 2026-02-28 — v2.1.62 + webmcp optimized)
+## Claude Code Setup (updated 2026-02-28 — v2.1.63 + SkillsMP audit)
 
 ### Summary
 - 6 config files, 34 agents, 68 sub-agents, 21 commands, 4 modes, 27 rules (+ 24 templates)
-- 26 hooks (13 custom [11 fichiers + 2 inline] + 13 ECC), 53 plugins (51 actifs / 2 inactifs), 115+ skills
-- 27/30 MCP OK (updated 2026-02-28) — fetch supprime (npm 404), filesystem CWD bug, greptile OAuth 404 | 18 local (.claude.json) + 1 local (.mcp.json) + 3 plugin + 12 remote claude.ai = 34 serveurs
+- 29 hooks (16 custom [14 fichiers + 2 inline] + 13 ECC), 56 plugins (54 actifs / 2 inactifs), 143+ skills (115 plugin + 28 standalone)
+- 25/27 MCP OK — filesystem CWD bug, greptile OAuth 404 | 15 local (.claude.json) + 1 local (.mcp.json) + 3 plugin + 12 remote claude.ai = 31 serveurs
+- **Autonomie max**: 45 allow entries, 40 NLP triggers FR+EN, Skill(*)+WebSearch(*)+ToolSearch(*) auto-permit
 - **Tools**: jq (winget), mcporter 0.7.3 (npm), gsudo 2.6.1 (winget), acpx 0.1.8 (npm)
 - 10 langages, 20+ frameworks/outils, 184 templates + 10 references
 - **34/34 project types simulated and verified production-ready**
@@ -49,8 +50,8 @@ architect, autonomous, brainstorm, quality
 - **Templates** (24 files in `~/Projects/tools/project-templates/rules/`)
 - **Context budget**: ~7,700 tokens/session (~3.9% of 200K)
 
-### Hooks — 26 effectifs, 14 fichiers, 3 sources
-- **Custom (13)**: secret-scanner, git-guard, lock-file-protector, file-backup, atum-session-start, atum-post-write, atum-compliance-check, auto-test-runner, dependency-checker, multi-lang-formatter, post-commit-quality-gate, **loop-detector** (PostToolUse), **session-memory** (Stop)
+### Hooks — 29 effectifs, 17 fichiers, 3 sources
+- **Custom (16)**: secret-scanner, git-guard, lock-file-protector, file-backup, atum-session-start, atum-post-write, atum-compliance-check, auto-test-runner, dependency-checker, multi-lang-formatter, post-commit-quality-gate, **loop-detector** (PostToolUse), **session-memory** (Stop), **post-tool-failure-logger** (PostToolUse), **config-change-guard** (PostToolUse), **worktree-setup** (PostToolUse/Bash)
 - **Reserve (3)**: dangerous-command-blocker, conventional-commits-enforcer, prevent-direct-push
 - **Plugin ECC (13)**: git push reminder, .md blocker (regex fixed: .md only), suggest-compact, pre-compact, session-start, PR URL logger, build-analysis, auto-format, typecheck, console.log warn, check console.log, session-end, evaluate-session
 
@@ -62,11 +63,28 @@ architect, autonomous, brainstorm, quality
 - `~/.claude/scripts/context-monitor.py` — StatusLine
 - `~/.claude/projects/.../memory/MEMORY.md` — Memoire persistante
 
-### MCP Servers (27/30 OK, updated 2026-02-28)
-- **Local (13/14 OK)**: github, memory, sequential-thinking, railway, cloudflare-docs, context7, magic, gmail, desktop-commander, claude-in-chrome, b12, **webmcp** (website→MCP bridge, local fork optimized) | ⚠️ filesystem (CWD bug)
+### MCP Servers (25/27 OK, updated 2026-02-28)
+- **Local (13/14 OK)**: github, memory, sequential-thinking, railway, cloudflare-docs, context7, magic, gmail, desktop-commander, claude-in-chrome, b12, **webmcp**, **skillsync** (@stranzwersweb2/skillsync-mcp) | ⚠️ filesystem (CWD bug)
 - **Plugin (2/3 OK)**: firebase, playwright | ❌ greptile (OAuth 404)
-- **Remote claude.ai (12/12 OK)**: Canva, Cloudflare, Figma, Gamma, Hugging Face, Invideo, Learning Commons, Make, Notion, Supabase, Vercel, Zapier
-- **Extras in .claude.json (6, non connectes)**: supabase-local (placeholder), vercel-local, clickhouse, cloudflare-workers-builds, cloudflare-workers-bindings, cloudflare-observability
+- **Remote claude.ai (12/12 OK)**: Canva, Cloudflare, Cloudinary, Context7, Excalidraw, Figma, Gamma, GraphOS, Hugging Face, Invideo, Jam, Make, Microsoft Learn, Netlify, Notion, Stripe, Supabase, Vercel, Webflow, Zapier
+- **Extras retires**: clickhouse, cloudflare-workers-builds/bindings/observability (4 inactifs supprimes)
+
+### Standalone Skills (28) — `~/.claude/skills/`
+- **Documents**: pdf, docx, xlsx, pptx
+- **Architecture**: domain-driven-design, clean-architecture, system-design, ddia-systems
+- **Reasoning**: the-fool, spec-miner, context-engineering-kit
+- **Security**: supply-chain-risk-auditor, open-source-license-compliance
+- **Visualization**: design-doc-mermaid, claude-d3js-skill, audit-flow
+- **DevOps/SRE**: sre-engineer, chaos-engineer
+- **AI/ML**: rag-architect
+- **UI/UX**: refactoring-ui
+- **Testing**: property-based-testing
+- **Performance**: high-perf-browser
+- **Product**: jobs-to-be-done, mom-test
+- **Prompts**: prompt-architect
+- **Windows**: powershell-windows
+- **Accessibility**: claude-a11y-skill
+- **MCP**: mcp-builder
 
 ### ATUM/OWL (EU AI Act) — 166/166 tests, 17/17 functional checks
 - **Module**: `atum_audit` — `pip install -e .` | rdflib 7.6.0, pyshacl 0.31.0, mcp 1.23.3
@@ -118,20 +136,13 @@ architect, autonomous, brainstorm, quality
 - Docker Desktop daemon needs manual start — not auto-started on boot
 - `rm -rf` blocked by git-guard.py — use `python shutil.rmtree()`
 - Windows .git cleanup: read-only objects — `shutil.rmtree(path, onexc=force_remove)` with `os.chmod(path, stat.S_IWRITE)`
-- PHP winget: no php.ini by default — created at `PHP_DIR/php.ini` with openssl/curl/mbstring + cacert.pem
-- PHP php.ini path: `C:\Users\arnau\AppData\Local\Microsoft\WinGet\Packages\PHP.PHP.8.4_Microsoft.Winget.Source_8wekyb3d8bbwe\php.ini`
+- PHP winget: no php.ini by default — created at `C:\Users\arnau\AppData\Local\...\PHP.PHP.8.4_...\php.ini` with openssl/curl/mbstring + cacert.pem
 - Avast intercepte SSL PHP/Composer/Ruby — desactiver temporairement ou configurer exclusion pour PHP/Ruby
 - Avast verrouille des dossiers (handles fantomes) — impossible a supprimer sans reboot; utiliser tache planifiee
 - Avast self-defense (`aswSP.sys`) bloque TOUTE modif registre Avast meme avec gsudo admin → exclusions = GUI uniquement
 - Claude Desktop Cowork = VM Hyper-V (`cowork-vm`) via HCS, independante de Claude Code CLI
-- Cowork VM: `sessiondata.vhdx` = Lun 2 — JAMAIS auto-cree sur Windows (bug #24962), creer via `diskpart create vdisk type=expandable maximum=10240`
-- Cowork VM: `.auto_reinstall_attempted` bloque les retentatives — supprimer pour debloquer
-- Cowork VM: WinNat FONCTIONNE sur Win 11 Home — `New-NetNat` OK si HNS network supprime AVANT
-- Cowork VM: sequence fix reseau = Stop Claude → supprimer HNS network → `New-NetNat CoworkNAT 172.16.0.0/24` → relancer
-- Cowork VM: HCS JSON error 0xC037010D + guest timeout = bug Claude Desktop (issues #24962 #24974), non fixable cote user
-- Cowork VM: Avast probablement bloque vsock (WSAECONNABORTED) — desactiver temporairement pour tester
-- Cowork VM paths: `%LOCALAPPDATA%\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Roaming\Claude\vm_bundles\claudevm.bundle\`
-- Cowork logs: `%LOCALAPPDATA%\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Roaming\Claude\logs\cowork_vm_node.log`
+- Cowork VM: bugs #24962 #24974 (sessiondata.vhdx, HCS JSON error); fix reseau: Stop Claude → supprimer HNS network → New-NetNat CoworkNAT; Avast bloque vsock
+- Cowork VM paths: `%LOCALAPPDATA%\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Roaming\Claude\`
 - gsudo + powershell depuis Git Bash: `$_` se fait manger → toujours passer par un fichier `.ps1`
 - Ruby native gems: need MSYS2 ucrt64 toolchain + make — PATH: `/c/Ruby33-x64/bin:/c/msys64/ucrt64/bin:/c/msys64/usr/bin`
 - Composer: `curl --ssl-no-revoke` pour telecharger `composer.phar` → wrapper bash dans `~/bin/composer`
@@ -169,11 +180,17 @@ architect, autonomous, brainstorm, quality
 - Loop-detector bug fix: `history.push()` DOIT etre APRES detection, sinon ping-pong jamais declenche (currentHash === lastHash toujours vrai)
 - B12 MCP: npm 404 (pas publie) → clone GitHub `b12io/website-generator-mcp-server` dans `~/Projects/tools/`; necessite `"type": "module"` dans package.json; 1 tool `generate_website(name, description)` → URL signup B12; aussi DXT extension (manifest.json); integre dans 8 fichiers (autonomous-workflow, scaffold, patterns, INDEX.md, install.sh, claude.json.template, /website command, .claude.json); mcporter test OK
 - "Integration intelligente" = pas juste config MCP, mais tisser dans workflows (auto-detection), commands (discoverabilite), templates (cross-refs), infra (portabilite)
-- Claude Code v2.1.62: update from 2.1.49 fixes 21 plugin manifest errors (Unrecognized keys: category, source, strict, logo)
-- MCP cmd /c wrapper: all 10 npx-based servers wrapped with `cmd /c npx` for Windows compatibility (.claude.json)
-- GITHUB_PERSONAL_ACCESS_TOKEN: added to settings.local.json env (fixes github plugin MCP auth error)
-- MCP context bloat: ~133K tokens from tool definitions (Make=32K, Canva=10K, github=9K, desktop-commander=9K) — monitor, cannot reduce without removing servers
-- WebMCP optimized (5 phases complete): forked to `~/Projects/tools/webmcp-optimized/`; P1: server.js 694→368 lines (RESPONSE_EXTRACTORS map, sendRequest helper, exponential backoff); P2: websocket-server.js 1440→161 lines (split into cli.js, daemon.js, http-server.js, ws-bridge.js 681 lines); P3: pending request cleanup on disconnect, drainPendingRequests on shutdown; P4: CORS default localhost (env WEBMCP_CORS_ORIGINS); P5: 25 tests (node:test) — config, http-server, tokens, ws-bridge integration (tool register/list/call forwarding); npm build broken on Windows (esbuild setRawMode) → run from source; .claude.json uses `node C:/Users/arnau/Projects/tools/webmcp-optimized/src/websocket-server.js --mcp`
+- Claude Code v2.1.63: updated from 2.1.62; features: /simplify, /batch, auto-memory, PostToolUseFailure/ConfigChange/WorktreeCreate hook events
+- MCP cmd /c wrapper: all npx-based servers wrapped with `cmd /c npx` for Windows (.claude.json)
+- MCP context bloat: ~133K tokens from tool definitions — ToolSearch compresses to ~8-12K effective
+- WebMCP optimized: forked to `~/Projects/tools/webmcp-optimized/`; run from source (esbuild broken on Windows)
+- SkillsMP audit (2026-02-28): 770+ skills evaluated, 28 installed, 4 rejected for conflicts, 500+ rejected for redundancy
+- settings.json duplicate hooks: JSON ne supporte pas les cles dupliquees — 2e bloc ecrase le 1er silencieusement
+- GitHub PAT: retire de .claude.json (herite de settings.local.json env); DOIT etre revoque sur GitHub
+- Skills standalone: auto-decouverte dans ~/.claude/skills/*/SKILL.md, 0 context cost au repos, 16K char budget descriptions
+- Skill auto-invocation: documente comme non garanti (~70-80%); /skill-name = 100% fiable (fallback)
+- SkillSync MCP (@stranzwersweb2/skillsync-mcp): security scanner; "path traversal" warnings = info (skills normaux)
+- autonomous-workflow.md: 40 NLP triggers FR+EN pour routage contextuel skill/agent/MCP
 - MEMORY.md must stay <200 lines (truncated after)
 
 ## Preferences

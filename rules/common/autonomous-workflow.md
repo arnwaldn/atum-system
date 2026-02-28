@@ -135,6 +135,68 @@ Use skills when they match — don't wait for user to invoke:
 - Quick business website → use **B12 MCP** `generate_website` tool (name + description → instant site)
 - Web app interaction needing structured data → suggest **WebMCP** (`_webmcp_get-token` tool) instead of browser automation
 
+## Contextual NLP Routing (Skills Auto-Invocation)
+
+Detect intent from natural language → invoke matching skill automatically:
+
+### Document Processing
+- ".pdf", "PDF", "extract PDF" → `/pdf`
+- ".docx", "Word", "document Word" → `/docx`
+- ".xlsx", "Excel", "spreadsheet", "formule" → `/xlsx`
+- ".pptx", "PowerPoint", "slides", "presentation" → `/pptx`
+
+### Architecture & Design Patterns
+- "bounded context", "aggregate", "domain event", "ubiquitous language" → `domain-driven-design`
+- "clean architecture", "hexagonal", "ports and adapters" → `clean-architecture`
+- "system design", "scalability", "load balancer", "CDN" → `system-design`
+- "DDIA", "distributed systems", "consensus", "replication" → `ddia-systems`
+
+### Legacy & Reasoning
+- "legacy code", "reverse engineer", "no docs", "comprendre ce code" → `spec-miner`
+- "devil's advocate", "think harder", "structured reasoning" → `the-fool`
+
+### Security & Compliance (extended)
+- "supply chain", "dependency audit", "CVE", "transitive deps" → `supply-chain-risk-auditor`
+- "license", "GPL", "MIT", "Apache", "SPDX", "open source" → `open-source-license-compliance`
+
+### Visualization
+- "diagram", "sequence diagram", "flowchart", "Mermaid" → `design-doc-mermaid`
+- "D3", "chart", "data visualization", "interactive graph" → `claude-d3js-skill`
+
+### Prompt & UI
+- "prompt", "CO-STAR", "RISEN", "optimize prompt" → `prompt-architect`
+- "UI polish", "spacing", "visual hierarchy", "typography" → `refactoring-ui`
+
+### ML/AI & DevOps (extended)
+- "RAG", "vector database", "embeddings", "chunking" → `rag-architect`
+- "SLO", "SLI", "error budget", "postmortem", "reliability" → `sre-engineer`
+- "chaos engineering", "fault injection", "resilience test" → `chaos-engineer`
+
+### Accessibility & Windows
+- "accessibility", "WCAG", "a11y", "screen reader", "aria" → `claude-a11y-skill`
+- "PowerShell", "Windows script", "registry", "WMI" → `powershell-windows`
+
+### Testing & Performance (extended)
+- "property-based test", "fuzzing", "hypothesis", "invariant" → `property-based-testing`
+- "Core Web Vitals", "LCP", "CLS", "FID", "lighthouse" → `high-perf-browser`
+
+### Product Discovery
+- "jobs to be done", "JTBD", "user need" → `jobs-to-be-done`
+- "mom test", "customer interview", "idea validation" → `mom-test`
+
+### MCP & Context
+- "create MCP", "scaffold MCP server" → `mcp-builder`
+- "context degradation", "agent handoff", "fresh agent" → `context-engineering-kit`
+- "audit flow", "trace system flow", "flow diagram" → `audit-flow`
+
+### External Services (MCP remote)
+- "Stripe", "paiement", "checkout" → Stripe MCP
+- "Netlify", "deploy static" → Netlify MCP
+- "Cloudinary", "upload image", "CDN images" → Cloudinary MCP
+- "docs Microsoft", "Azure" → Microsoft Learn MCP
+- "Linear", "issue tracking", "backlog" → Linear plugin
+- "Pinecone", "vector store" → Pinecone plugin
+
 ## Decision Authority
 
 Make decisions autonomously for:

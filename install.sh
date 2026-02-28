@@ -75,18 +75,19 @@ check_prereqs() {
 # ============================================================
 confirm_install() {
     echo -e "${BOLD}This will install:${NC}"
-    echo "  - 14 hooks      (PreToolUse, PostToolUse, Stop, SessionStart)"
-    echo "  - 22 commands    (/scaffold, /security-audit, /tdd, /webmcp, etc.)"
-    echo "  - 34 agents      (architect, phaser-expert, ml-engineer, geospatial, etc.)"
-    echo "  - 4 modes        (architect, autonomous, brainstorm, quality)"
-    echo "  - 27 rules       (coding-style, security, resilience, testing, etc.)"
-    echo "  - 1 script       (context-monitor.py statusline)"
-    echo "  - 184 templates  (scaffolds + references from project-templates)"
-    echo "  - 49+ plugins    (community + official, from plugins.txt)"
-    echo "  - settings.json  (hooks, plugins, full autonomy permissions)"
-    echo "  - MCP servers    (.claude.json with 18 servers incl. B12, WebMCP)"
-    echo "  - bin wrappers   (gsudo for admin elevation)"
-    echo "  - acpx config    (headless ACP sessions)"
+    echo "  - 17 hooks       (PreToolUse, PostToolUse, Stop, SessionStart)"
+    echo "  - 22 commands     (/scaffold, /security-audit, /tdd, /website, /webmcp, etc.)"
+    echo "  - 34 agents       (architect, phaser-expert, ml-engineer, geospatial, etc.)"
+    echo "  - 28 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, etc.)"
+    echo "  - 4 modes         (architect, autonomous, brainstorm, quality)"
+    echo "  - 27 rules        (coding-style, security, resilience, decision-principle, etc.)"
+    echo "  - 56 plugins      (ECC, code-review, figma, firebase, stripe, linear, etc.)"
+    echo "  - 1 script        (context-monitor.py statusline)"
+    echo "  - 184 templates   (scaffolds + references from project-templates)"
+    echo "  - settings.json   (hooks, plugins, full autonomy permissions)"
+    echo "  - MCP servers     (.claude.json with 16 servers incl. B12, WebMCP, SkillSync)"
+    echo "  - bin wrappers    (gsudo for admin elevation)"
+    echo "  - acpx config     (headless ACP sessions)"
     echo ""
     echo -e "  Target: ${CYAN}$CLAUDE_DIR/${NC}"
     echo ""
@@ -106,7 +107,7 @@ backup_existing() {
         local ts=$(date +%Y%m%d-%H%M%S)
         local backup="$CLAUDE_DIR/.backup-$ts"
         mkdir -p "$backup"
-        for item in hooks commands agents modes rules scripts settings.json settings.local.json; do
+        for item in hooks commands agents modes rules scripts skills settings.json settings.local.json; do
             [ -e "$CLAUDE_DIR/$item" ] && cp -r "$CLAUDE_DIR/$item" "$backup/" 2>/dev/null || true
         done
         ok "Backed up existing config to $backup/"
@@ -135,6 +136,17 @@ copy_files() {
         cp -r "$SCRIPT_DIR/rules" "$CLAUDE_DIR/"
         local rcount=$(find "$SCRIPT_DIR/rules" -name "*.md" | wc -l | tr -d ' ')
         ok "rules/ ($rcount files)"
+    fi
+
+    # Skills (with subdirectories and scripts)
+    if [ -d "$SCRIPT_DIR/skills" ]; then
+        mkdir -p "$CLAUDE_DIR/skills"
+        for skill_dir in "$SCRIPT_DIR/skills"/*/; do
+            [ -d "$skill_dir" ] || continue
+            cp -r "$skill_dir" "$CLAUDE_DIR/skills/"
+        done
+        local scount=$(find "$SCRIPT_DIR/skills" -maxdepth 2 -name "SKILL.md" | wc -l | tr -d ' ')
+        ok "skills/ ($scount skills)"
     fi
 
     # Make hooks executable
@@ -501,6 +513,13 @@ verify() {
         fi
     done
 
+    # Skills
+    if [ -d "$CLAUDE_DIR/skills" ]; then
+        local sn=$(find "$CLAUDE_DIR/skills" -maxdepth 2 -name "SKILL.md" | wc -l | tr -d ' ')
+        total=$((total + sn))
+        ok "skills: $sn installed"
+    fi
+
     # Bin wrappers
     if [ -d "$HOME/bin" ]; then
         local bcount=$(ls -1 "$HOME/bin" 2>/dev/null | wc -l | tr -d ' ')
@@ -537,16 +556,17 @@ summary() {
     echo ""
     echo "  Next steps:"
     echo "  1. Restart Claude Code"
-    echo "  2. Configure remote MCP servers in claude.ai:"
-    echo "     Figma, Notion, Supabase, Vercel, Canva, etc."
-    echo "  3. If plugins failed, re-run: bash install.sh --plugins-only"
+    echo "  2. Set GitHub PAT if not done: export GITHUB_PERSONAL_ACCESS_TOKEN=..."
+    echo "  3. Configure remote MCP servers in claude.ai:"
+    echo "     Figma, Notion, Supabase, Vercel, Canva, Stripe, etc."
+    echo "  4. If plugins failed, re-run: bash install.sh --plugins-only"
     echo ""
     echo "  Config locations:"
-    echo "    ~/.claude/         hooks, commands, agents, modes, rules"
-    echo "    ~/.claude.json     MCP server configs"
-    echo "    ~/.claude/settings.json   main config (SOURCE OF TRUTH)"
-    echo "    ~/.acpx/config.json       acpx headless sessions"
-    echo "    ~/bin/                    tool wrappers (gsudo, jq, etc.)"
+    echo "    ~/.claude/              hooks, commands, agents, modes, rules, skills"
+    echo "    ~/.claude.json          MCP server configs"
+    echo "    ~/.claude/settings.json main config (SOURCE OF TRUTH)"
+    echo "    ~/.acpx/config.json     acpx headless sessions"
+    echo "    ~/bin/                   tool wrappers (gsudo, jq, etc.)"
     echo ""
 }
 

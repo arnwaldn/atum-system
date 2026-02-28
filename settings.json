@@ -38,7 +38,22 @@
       "mcp__claude_ai_Notion__*",
       "mcp__claude_ai_Supabase__*",
       "mcp__claude_ai_Vercel__*",
-      "mcp__claude_ai_Zapier__*"
+      "mcp__claude_ai_Zapier__*",
+      "Skill(*)",
+      "WebSearch(*)",
+      "ToolSearch(*)",
+      "mcp__b12__*",
+      "mcp__webmcp__*",
+      "mcp__claude_ai_Cloudinary__*",
+      "mcp__claude_ai_Context7__*",
+      "mcp__claude_ai_Excalidraw__*",
+      "mcp__claude_ai_GraphOS_MCP_Tools__*",
+      "mcp__claude_ai_Jam__*",
+      "mcp__claude_ai_Microsoft_Learn__*",
+      "mcp__claude_ai_Netlify__*",
+      "mcp__claude_ai_Stripe__*",
+      "mcp__claude_ai_Webflow__*",
+      "mcp__skillsync__*"
     ],
     "defaultMode": "default"
   },
@@ -137,6 +152,33 @@
         ]
       },
       {
+        "matcher": "Write|Edit|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/post-tool-failure-logger.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/config-change-guard.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/worktree-setup.js\""
+          }
+        ]
+      },
+      {
         "matcher": "*",
         "hooks": [
           {
@@ -222,147 +264,10 @@
     "swift-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "vercel@claude-plugins-official": true,
-    "ui-ux-pro-max@ui-ux-pro-max-skill": true
+    "ui-ux-pro-max@ui-ux-pro-max-skill": true,
+    "linear@claude-plugins-official": true,
+    "pinecone@claude-plugins-official": true,
+    "php-lsp@claude-plugins-official": true
   },
-  "autoUpdatesChannel": "latest",
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Write|Edit|Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$HOME/.claude/hooks/secret-scanner.py\""
-          }
-        ],
-        "description": "Scan for hardcoded secrets before writing files or committing"
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$HOME/.claude/hooks/git-guard.py\""
-          }
-        ],
-        "description": "Git guard: block dangerous commands, enforce conventional commits, protect branches"
-      },
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/lock-file-protector.js\""
-          }
-        ],
-        "description": "Block direct modifications to dependency lock files"
-      },
-      {
-        "matcher": "Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [[ -f \"$CLAUDE_TOOL_FILE_PATH\" ]]; then cp \"$CLAUDE_TOOL_FILE_PATH\" \"$CLAUDE_TOOL_FILE_PATH.backup.$(date +%s)\" 2>/dev/null || true; fi"
-          }
-        ],
-        "description": "Create backup before editing files"
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$HOME/.claude/hooks/atum-post-write.py\""
-          }
-        ],
-        "description": "ATUM: hash and register files in audit store after write/edit"
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$HOME/.claude/hooks/atum-compliance-check.py\""
-          }
-        ],
-        "description": "ATUM: show compliance summary after git commit"
-      },
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/auto-test-runner.js\""
-          }
-        ],
-        "description": "Suggest running related tests after source file modifications"
-      },
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$HOME/.claude/hooks/dependency-checker.py\""
-          }
-        ],
-        "description": "Auto-audit dependencies when package.json/requirements.txt/Cargo.toml modified"
-      },
-      {
-        "matcher": "Edit|MultiEdit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.js || \"$CLAUDE_TOOL_FILE_PATH\" == *.ts || \"$CLAUDE_TOOL_FILE_PATH\" == *.jsx || \"$CLAUDE_TOOL_FILE_PATH\" == *.tsx || \"$CLAUDE_TOOL_FILE_PATH\" == *.json || \"$CLAUDE_TOOL_FILE_PATH\" == *.css || \"$CLAUDE_TOOL_FILE_PATH\" == *.html || \"$CLAUDE_TOOL_FILE_PATH\" == *.sol ]]; then npx prettier --write \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.py ]]; then black \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.go ]]; then gofmt -w \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.rs ]]; then rustfmt \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.php ]]; then php-cs-fixer fix \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; fi"
-          }
-        ],
-        "description": "Auto-format files after edit (prettier/black/gofmt/rustfmt/php-cs-fixer)"
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/post-commit-quality-gate.js\""
-          }
-        ],
-        "description": "Suggest quality checks (lint, typecheck, test) after git commit"
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/loop-detector.js\""
-          }
-        ],
-        "description": "Detect repeated identical tool calls (loop prevention)"
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/session-memory.js\""
-          }
-        ],
-        "description": "Auto-save session summary to daily memory file"
-      }
-    ],
-    "SessionStart": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$HOME/.claude/hooks/atum-session-start.py\""
-          }
-        ],
-        "description": "ATUM: auto-detect and initialize project tracking"
-      }
-    ]
-  }
+  "autoUpdatesChannel": "latest"
 }
