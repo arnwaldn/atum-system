@@ -20,6 +20,7 @@
     "DISABLE_COST_WARNINGS": "1",
     "MCP_TIMEOUT": "30000",
     "MCP_TOOL_TIMEOUT": "60000",
-    "ATUM_PROJECT_DIR": "C:\\Users\\arnau\\Desktop\\agent-owl"
+    "ATUM_PROJECT_DIR": "C:\\Users\\arnau\\Desktop\\agent-owl",
+    "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
   }
 }
