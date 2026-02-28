@@ -47,7 +47,7 @@ check_prereqs() {
     info "Checking prerequisites..."
     local missing=0
 
-    for cmd in node python git; do
+    for cmd in node python3 git; do
         if command -v "$cmd" &>/dev/null; then
             ok "$cmd ($($cmd --version 2>/dev/null | head -1))"
         else
@@ -234,12 +234,20 @@ with open(sys.argv[2], 'w') as f:
         cp "$SCRIPT_DIR/claude.json.template" "$CLAUDE_JSON"
     fi
 
-    # Replace all placeholders
-    sed -i \
-        -e "s|REPLACE_WITH_YOUR_GITHUB_PAT|${github_pat}|g" \
-        -e "s|REPLACE_WITH_HOME_DIR|${home_path}|g" \
-        -e "s|REPLACE_WITH_YOUR_PROJECT_REF|YOUR_PROJECT_REF|g" \
-        "$CLAUDE_JSON"
+    # Replace all placeholders (BSD sed on macOS needs -i '', GNU sed needs -i)
+    if [ "$OS" = "macos" ]; then
+        sed -i '' \
+            -e "s|REPLACE_WITH_YOUR_GITHUB_PAT|${github_pat}|g" \
+            -e "s|REPLACE_WITH_HOME_DIR|${home_path}|g" \
+            -e "s|REPLACE_WITH_YOUR_PROJECT_REF|YOUR_PROJECT_REF|g" \
+            "$CLAUDE_JSON"
+    else
+        sed -i \
+            -e "s|REPLACE_WITH_YOUR_GITHUB_PAT|${github_pat}|g" \
+            -e "s|REPLACE_WITH_HOME_DIR|${home_path}|g" \
+            -e "s|REPLACE_WITH_YOUR_PROJECT_REF|YOUR_PROJECT_REF|g" \
+            "$CLAUDE_JSON"
+    fi
 
     # Remove _comment fields (clean output)
     python3 -c "
@@ -438,24 +446,29 @@ install_plugins() {
     local total=0
 
     while IFS= read -r line; do
-        # Skip empty lines and pure comments
+        # Skip empty lines and comments
         [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
 
-        # Skip DISABLED plugins
-        if [[ "$line" =~ ^#[[:space:]]*DISABLED ]]; then
+        # Parse format: "plugin_id (status)" or "claude plugin install plugin_id"
+        if [[ "$line" =~ ^([^[:space:]]+)[[:space:]]+\(disabled\) ]]; then
             skipped=$((skipped + 1))
             continue
-        fi
-
-        # Extract the install command (lines starting with "claude plugin install")
-        if [[ "$line" =~ ^claude[[:space:]]+plugin[[:space:]]+install[[:space:]]+(.*) ]]; then
+        elif [[ "$line" =~ ^([^[:space:]]+)[[:space:]]+\(enabled\) ]]; then
+            local plugin_id="${BASH_REMATCH[1]}"
+            total=$((total + 1))
+            if claude plugin install "$plugin_id" 2>/dev/null; then
+                installed=$((installed + 1))
+            else
+                failed=$((failed + 1))
+            fi
+        elif [[ "$line" =~ ^claude[[:space:]]+plugin[[:space:]]+install[[:space:]]+(.*) ]]; then
+            # Legacy format: "claude plugin install plugin_id"
             local plugin="${BASH_REMATCH[1]}"
             total=$((total + 1))
             if $line 2>/dev/null; then
                 installed=$((installed + 1))
             else
                 failed=$((failed + 1))
-                warn "Failed: $plugin"
             fi
         fi
     done < "$PLUGINS_FILE"
