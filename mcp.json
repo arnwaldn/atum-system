@@ -1,4 +1,13 @@
 {
-  "_comment": "Project-level MCP servers. Add project-specific servers here.",
-  "mcpServers": {}
+  "mcpServers": {
+    "atum-audit": {
+      "command": "python",
+      "args": [
+        "C:\\Users\\arnau\\Desktop\\agent-owl\\atum_mcp_server.py"
+      ],
+      "env": {
+        "ATUM_PROJECT_DIR": "C:\\Users\\arnau\\Desktop\\agent-owl"
+      }
+    }
+  }
 }

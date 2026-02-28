@@ -1,6 +1,6 @@
 # Claude Code Config
 
-Complete Claude Code environment with full autonomy — hooks, commands, agents, modes, rules, MCP servers, permissions, and tooling.
+Complete Claude Code environment with full autonomy — hooks, commands, agents, skills, modes, rules, MCP servers, permissions, and tooling.
 
 ## Quick Install
 
@@ -16,15 +16,16 @@ bash install.sh
 
 | Category | Count | Description |
 |----------|-------|-------------|
-| Hooks | 14 | Secret scanner, git guard, loop detector, auto-formatter, session memory, etc. |
-| Commands | 20 | `/scaffold`, `/security-audit`, `/tdd`, `/deploy`, `/compliance`, etc. |
-| Agents | 34 | Architect, phaser-expert, ml-engineer, blockchain-expert, geospatial-expert, etc. |
+| Hooks | 17 | Secret scanner, git guard, loop detector, auto-formatter, failure logger, config guard, etc. |
+| Commands | 22 | `/scaffold`, `/security-audit`, `/tdd`, `/deploy`, `/compliance`, `/website`, `/webmcp`, etc. |
+| Agents | 34 | Architect, phaser-expert, ml-engineer, blockchain-expert, geospatial-expert, compliance-expert, etc. |
+| Skills | 28 | PDF, DOCX, XLSX, PPTX, DDD, clean-arch, RAG, Mermaid, supply-chain audit, prompt-architect, etc. |
 | Modes | 4 | architect, autonomous, brainstorm, quality |
-| Rules | 26 | Coding style, security, testing, resilience, anti-hallucination (common + TS/Python/Go) |
+| Rules | 27 | Coding style, security, testing, resilience, anti-hallucination, decision-principle (common + TS/Python/Go) |
 | Scripts | 1 | Context monitor statusline |
-| MCP Servers | 16 | GitHub, Memory, Railway, Cloudflare, Context7, Gmail, etc. |
-| Plugins | 51 | ECC, Superpowers, Playwright, Firebase, Figma, Stripe, etc. |
-| Permissions | 38 | Full autonomy — Write, Edit, Task, Bash, MCP all auto-approved |
+| MCP Servers | 16 | GitHub, Memory, Railway, Cloudflare, Context7, Gmail, B12, SkillSync, WebMCP, etc. |
+| Plugins | 56 | ECC, Superpowers, Playwright, Firebase, Figma, Stripe, Linear, Pinecone, etc. |
+| Permissions | 57 | Full autonomy — Write, Edit, Task, Bash, Skill, WebSearch, all MCP auto-approved |
 | Tools | 2 | gsudo (Windows admin elevation), acpx (headless ACP sessions) |
 
 ## Autonomy Model
@@ -38,24 +39,29 @@ Claude Code executes any action **without permission prompts** — Write, Edit, 
 | lock-file-protector.js | Blocks direct modification of lock files |
 | file-backup | Creates .backup before every Edit |
 | loop-detector.js | Detects repeated identical tool calls |
+| post-tool-failure-logger.js | Logs tool failures to structured JSON |
+| config-change-guard.js | Warns when config files modified during session |
+| worktree-setup.js | Auto-setup worktree (.env copy, npm install, deterministic port) |
 
 **Philosophy**: Zero execution friction, but Claude still consults the user for important design decisions and before deletions.
 
 ## Structure
 
 ```
-hooks/              PreToolUse/PostToolUse/Stop/SessionStart hooks
-commands/           Slash commands (/scaffold, /tdd, /deploy, etc.)
+hooks/              PreToolUse/PostToolUse/Stop/SessionStart hooks (17 files)
+commands/           Slash commands (/scaffold, /tdd, /deploy, /website, etc.)
 agents/             Specialized agents (34 domain experts)
+skills/             On-demand skills (28: pdf, docx, DDD, RAG, Mermaid, etc.)
 modes/              Custom modes (architect, autonomous, brainstorm, quality)
 rules/              Global rules (common/, typescript/, python/, golang/)
 scripts/            Helper scripts (context-monitor.py)
 bin/                Tool wrappers for Git Bash (gsudo, jq, etc.)
 acpx/               acpx headless session config
 projects/           Memory templates
+plugins.txt         Plugin registry (56 plugins, 54 active)
 settings.json       Main config — hooks, plugins, permissions (SOURCE OF TRUTH)
 settings.local.json Local overrides — statusline, env vars, deny list
-claude.json.template  MCP server configs (replace PAT placeholders)
+claude.json.template  MCP server configs (replace PAT/path placeholders)
 ```
 
 ## Tools
@@ -85,18 +91,40 @@ Config: `~/.acpx/config.json` (defaultAgent: claude, approve-all)
 ## Post-Install
 
 1. **Restart Claude Code** to load the new config
-2. **Install plugins**: `claude plugins marketplace add everything-claude-code ...`
-   (see `settings.json` `enabledPlugins` for the full list)
+2. **Set GitHub PAT** if skipped: `export GITHUB_PERSONAL_ACCESS_TOKEN=...`
 3. **Configure remote MCP** in claude.ai settings:
-   Figma, Notion, Supabase, Vercel, Canva, Gamma, Make, Zapier, etc.
-4. **Edit `~/.claude.json`** to add your GitHub PAT if skipped during install
-5. **First gsudo use** will trigger one UAC prompt, then cached for 1 hour
+   Figma, Notion, Supabase, Vercel, Canva, Stripe, Gamma, Make, Zapier, etc.
+4. **First gsudo use** (Windows) will trigger one UAC prompt, then cached for 1 hour
+
+## Skills (28)
+
+On-demand skills loaded into context only when triggered (zero cost when idle):
+
+| Domain | Skills |
+|--------|--------|
+| Documents | pdf, docx, xlsx, pptx |
+| Architecture | domain-driven-design, clean-architecture, system-design, ddia-systems |
+| Visualization | design-doc-mermaid, claude-d3js-skill |
+| Security | supply-chain-risk-auditor, open-source-license-compliance |
+| ML/AI | rag-architect |
+| DevOps | sre-engineer, chaos-engineer, high-perf-browser |
+| Product | jobs-to-be-done, mom-test |
+| Analysis | spec-miner, the-fool, prompt-architect |
+| UI/A11y | refactoring-ui, claude-a11y-skill |
+| Testing | property-based-testing |
+| Tooling | mcp-builder, powershell-windows, context-engineering-kit, audit-flow |
+
+## NLP Auto-Routing
+
+The system auto-detects user intent and invokes the right tool — 40 triggers (FR+EN) defined in `rules/common/autonomous-workflow.md`.
+
+Examples: "Create a PDF" → `/pdf` | "Bounded context" → `domain-driven-design` | "Make a diagram" → `design-doc-mermaid` | "Audit dependencies" → `supply-chain-risk-auditor` | "Quick website" → B12 MCP
 
 ## Portability
 
 - `settings.json` uses `$HOME` for hook paths — works on any machine
 - Hooks use `$HOME`, `$TEMP`, `$CLAUDE_TOOL_FILE_PATH` — no hardcoded paths
-- Commands, agents, modes, rules are pure Markdown — fully portable
+- Commands, agents, modes, rules, skills are pure Markdown — fully portable
 - The install script backs up any existing config before overwriting
 - gsudo installed only on Windows; skipped on macOS/Linux
 - acpx installed globally via npm on all platforms

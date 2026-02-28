@@ -1,92 +1,142 @@
 {
-  "_comment": "Claude Code MCP Server Configuration Template",
-  "_instructions": [
-    "1. Run install.sh to auto-generate ~/.claude.json from this template",
-    "2. Or copy manually and replace REPLACE_WITH_* placeholders",
-    "3. REPLACE_WITH_HOME_DIR = your home directory (e.g. C:/Users/you or /home/you)",
-    "4. REPLACE_WITH_YOUR_GITHUB_PAT = GitHub Personal Access Token",
-    "5. REPLACE_WITH_YOUR_PROJECT_REF = Supabase project ref (optional)"
-  ],
   "mcpServers": {
-    "github": {
-      "type": "stdio",
+    "supabase": {
       "command": "cmd",
-      "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "REPLACE_WITH_YOUR_GITHUB_PAT"
-      },
-      "_comment_macos_linux": "On macOS/Linux, replace cmd /c with just: npx -y @modelcontextprotocol/server-github"
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--project-ref=REPLACE_WITH_YOUR_PROJECT_REF"
+      ]
     },
     "memory": {
       "command": "cmd",
-      "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-memory"],
-      "_comment_macos_linux": "On macOS/Linux: npx -y @modelcontextprotocol/server-memory"
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
     },
     "sequential-thinking": {
       "command": "cmd",
-      "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-sequential-thinking"]
-    },
-    "context7": {
-      "command": "cmd",
-      "args": ["/c", "npx", "-y", "@upstash/context7-mcp"]
-    },
-    "magic": {
-      "command": "cmd",
-      "args": ["/c", "npx", "-y", "@magicuidesign/mcp@latest"]
-    },
-    "railway": {
-      "command": "cmd",
-      "args": ["/c", "npx", "-y", "@railway/mcp-server"]
-    },
-    "desktop-commander": {
-      "command": "cmd",
-      "args": ["/c", "npx", "-y", "@wonderwhy-er/desktop-commander"]
-    },
-    "gmail": {
-      "type": "stdio",
-      "command": "cmd",
-      "args": ["/c", "npx", "@gongrzhe/server-gmail-autoauth-mcp"],
-      "env": {}
-    },
-    "filesystem": {
-      "command": "cmd",
-      "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-filesystem", "REPLACE_WITH_HOME_DIR"]
-    },
-    "supabase": {
-      "command": "cmd",
-      "args": ["/c", "npx", "-y", "@supabase/mcp-server-supabase@latest", "--project-ref=REPLACE_WITH_YOUR_PROJECT_REF"]
-    },
-    "b12": {
-      "command": "node",
-      "args": ["REPLACE_WITH_HOME_DIR/Projects/tools/website-generator-mcp-server/src/server.js"]
-    },
-    "webmcp": {
-      "command": "node",
-      "args": ["REPLACE_WITH_HOME_DIR/Projects/tools/webmcp-optimized/src/websocket-server.js", "--mcp"]
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
     },
     "vercel": {
       "type": "http",
       "url": "https://mcp.vercel.com"
     },
+    "railway": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@railway/mcp-server"
+      ]
+    },
     "cloudflare-docs": {
       "type": "http",
       "url": "https://docs.mcp.cloudflare.com/mcp"
     },
-    "cloudflare-workers-builds": {
-      "type": "http",
-      "url": "https://builds.mcp.cloudflare.com/mcp"
+    "context7": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@upstash/context7-mcp"
+      ]
     },
-    "cloudflare-workers-bindings": {
-      "type": "http",
-      "url": "https://bindings.mcp.cloudflare.com/mcp"
+    "magic": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@magicuidesign/mcp@latest"
+      ]
     },
-    "cloudflare-observability": {
-      "type": "http",
-      "url": "https://observability.mcp.cloudflare.com/mcp"
+    "filesystem": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "REPLACE_WITH_HOME_DIR"
+      ]
     },
-    "clickhouse": {
-      "type": "http",
-      "url": "https://mcp.clickhouse.cloud/mcp"
+    "gmail": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "@gongrzhe/server-gmail-autoauth-mcp"
+      ],
+      "env": {}
+    },
+    "desktop-commander": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@wonderwhy-er/desktop-commander"
+      ]
+    },
+    "github": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "REPLACE_WITH_YOUR_GITHUB_PAT"
+      }
+    },
+    "b12": {
+      "command": "node",
+      "args": [
+        "REPLACE_WITH_HOME_DIR/Projects/tools/website-generator-mcp-server/src/server.js"
+      ]
+    },
+    "atum-audit": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "python",
+        "C:\\Users\\arnau\\Desktop\\agent-owl\\atum_mcp_server.py"
+      ],
+      "env": {
+        "ATUM_PROJECT_DIR": "C:\\Users\\arnau\\Desktop\\agent-owl"
+      }
+    },
+    "webmcp": {
+      "command": "node",
+      "args": [
+        "REPLACE_WITH_HOME_DIR/Projects/tools/webmcp-optimized/src/websocket-server.js",
+        "--mcp"
+      ]
+    },
+    "skillsync": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@stranzwersweb2/skillsync-mcp@latest"
+      ]
     }
   }
 }
