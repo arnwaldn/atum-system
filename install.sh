@@ -81,6 +81,8 @@ confirm_install() {
     echo "  - 4 modes        (architect, autonomous, brainstorm, quality)"
     echo "  - 27 rules       (coding-style, security, resilience, testing, etc.)"
     echo "  - 1 script       (context-monitor.py statusline)"
+    echo "  - 184 templates  (scaffolds + references from project-templates)"
+    echo "  - 49+ plugins    (community + official, from plugins.txt)"
     echo "  - settings.json  (hooks, plugins, full autonomy permissions)"
     echo "  - MCP servers    (.claude.json with 18 servers incl. B12, WebMCP)"
     echo "  - bin wrappers   (gsudo for admin elevation)"
@@ -293,13 +295,12 @@ install_webmcp() {
         ok "WebMCP already installed at $WEBMCP_DIR"
     else
         mkdir -p "$HOME/Projects/tools"
-        if git clone https://github.com/jasonjmcghee/webmcp.git "$WEBMCP_DIR" 2>/dev/null; then
+        if git clone https://github.com/arnwaldn/webmcp-optimized.git "$WEBMCP_DIR" 2>/dev/null; then
             cd "$WEBMCP_DIR" && npm install --silent 2>/dev/null
             cd - >/dev/null
-            ok "WebMCP cloned and installed"
-            warn "NOTE: Apply optimizations from the project fork if available"
+            ok "WebMCP cloned and installed (optimized fork)"
         else
-            warn "WebMCP clone failed — install manually: git clone https://github.com/jasonjmcghee/webmcp.git ~/Projects/tools/webmcp-optimized"
+            warn "WebMCP clone failed — install manually: git clone https://github.com/arnwaldn/webmcp-optimized.git ~/Projects/tools/webmcp-optimized"
         fi
     fi
 }
@@ -371,6 +372,86 @@ install_tools() {
         else
             ok "acpx config already exists — skipping"
         fi
+    fi
+}
+
+# ============================================================
+# 8b. INSTALL PROJECT TEMPLATES
+# ============================================================
+install_templates() {
+    info "Installing project templates..."
+    local TEMPLATES_DIR="$HOME/Projects/tools/project-templates"
+
+    if [ -d "$TEMPLATES_DIR/.git" ]; then
+        # Already cloned — pull latest
+        cd "$TEMPLATES_DIR" && git pull --ff-only 2>/dev/null && cd - >/dev/null
+        ok "Project templates updated at $TEMPLATES_DIR"
+    else
+        mkdir -p "$HOME/Projects/tools"
+        if git clone https://github.com/arnwaldn/project-templates.git "$TEMPLATES_DIR" 2>/dev/null; then
+            ok "Project templates cloned ($(find "$TEMPLATES_DIR" -maxdepth 2 -type d | wc -l | tr -d ' ') dirs)"
+        else
+            warn "Clone failed — install manually: git clone https://github.com/arnwaldn/project-templates.git ~/Projects/tools/project-templates"
+        fi
+    fi
+}
+
+# ============================================================
+# 8c. INSTALL PLUGINS (from plugins.txt)
+# ============================================================
+install_plugins() {
+    info "Installing Claude Code plugins..."
+
+    if ! command -v claude &>/dev/null; then
+        warn "Claude Code CLI not found — skipping plugin install"
+        warn "After installing CLI, run: bash install.sh --plugins-only"
+        return
+    fi
+
+    local PLUGINS_FILE="$SCRIPT_DIR/plugins.txt"
+    if [ ! -f "$PLUGINS_FILE" ]; then
+        warn "plugins.txt not found — skipping"
+        return
+    fi
+
+    # Add community marketplace (idempotent)
+    info "Adding community marketplace..."
+    claude plugin marketplace add everything-claude-code https://github.com/affaan-m/everything-claude-code.git 2>/dev/null || true
+    ok "Marketplace: everything-claude-code"
+
+    # Parse and install each plugin
+    local installed=0
+    local failed=0
+    local skipped=0
+    local total=0
+
+    while IFS= read -r line; do
+        # Skip empty lines and pure comments
+        [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+
+        # Skip DISABLED plugins
+        if [[ "$line" =~ ^#[[:space:]]*DISABLED ]]; then
+            skipped=$((skipped + 1))
+            continue
+        fi
+
+        # Extract the install command (lines starting with "claude plugin install")
+        if [[ "$line" =~ ^claude[[:space:]]+plugin[[:space:]]+install[[:space:]]+(.*) ]]; then
+            local plugin="${BASH_REMATCH[1]}"
+            total=$((total + 1))
+            if $line 2>/dev/null; then
+                installed=$((installed + 1))
+            else
+                failed=$((failed + 1))
+                warn "Failed: $plugin"
+            fi
+        fi
+    done < "$PLUGINS_FILE"
+
+    if [ $total -gt 0 ]; then
+        ok "Plugins: $installed/$total installed ($skipped disabled, $failed failed)"
+    else
+        warn "No plugins found in plugins.txt"
     fi
 }
 
@@ -456,11 +537,9 @@ summary() {
     echo ""
     echo "  Next steps:"
     echo "  1. Restart Claude Code"
-    echo "  2. Install plugins (if not already):"
-    echo "     claude plugins marketplace add everything-claude-code ..."
-    echo "     (see settings.json enabledPlugins for full list)"
-    echo "  3. Configure remote MCP servers in claude.ai:"
+    echo "  2. Configure remote MCP servers in claude.ai:"
     echo "     Figma, Notion, Supabase, Vercel, Canva, etc."
+    echo "  3. If plugins failed, re-run: bash install.sh --plugins-only"
     echo ""
     echo "  Config locations:"
     echo "    ~/.claude/         hooks, commands, agents, modes, rules"
@@ -480,6 +559,14 @@ main() {
     echo -e "  ${CYAN}==============================${NC}"
     echo ""
 
+    # Support --plugins-only flag for re-running plugin install
+    if [ "${1:-}" = "--plugins-only" ]; then
+        detect_os
+        install_plugins
+        echo -e "\n${GREEN}${BOLD}  Plugin install complete.${NC}\n"
+        return
+    fi
+
     detect_os
     check_prereqs
     confirm_install
@@ -490,6 +577,8 @@ main() {
     install_b12_mcp
     install_webmcp
     install_tools
+    install_templates
+    install_plugins
     setup_memory
     setup_git
     verify

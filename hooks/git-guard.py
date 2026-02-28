@@ -75,6 +75,7 @@ if re.search(r'git\s+commit\b', command) and not command.strip().startswith('#')
 BACKUP_REPOS = [
     'claude-code-config',
     'project-templates',
+    'webmcp-optimized',
 ]
 
 if re.search(r'git\s+push\b', command):
