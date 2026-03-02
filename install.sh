@@ -75,17 +75,17 @@ check_prereqs() {
 # ============================================================
 confirm_install() {
     echo -e "${BOLD}This will install:${NC}"
-    echo "  - 17 hooks       (PreToolUse, PostToolUse, Stop, SessionStart)"
-    echo "  - 23 commands     (/scaffold, /security-audit, /tdd, /website, /webmcp, /schedule, etc.)"
-    echo "  - 34 agents       (architect, phaser-expert, ml-engineer, geospatial, etc.)"
-    echo "  - 29 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, etc.)"
+    echo "  - 17 hooks       (PreToolUse, PostToolUse, Notification, Stop, SessionStart)"
+    echo "  - 24 commands     (/scaffold, /security-audit, /tdd, /website, /webmcp, /schedule, etc.)"
+    echo "  - 35 agents       (architect, phaser-expert, ml-engineer, geospatial, no-code, etc.)"
+    echo "  - 31 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, release-notes, etc.)"
     echo "  - 4 modes         (architect, autonomous, brainstorm, quality)"
     echo "  - 26 rules        (coding-style, security, resilience, decision-principle, etc.)"
     echo "  - 56 plugins      (ECC, code-review, figma, firebase, stripe, linear, etc.)"
     echo "  - 1 script        (context-monitor.py statusline)"
     echo "  - 184 templates   (scaffolds + references from project-templates)"
     echo "  - settings.json   (hooks, plugins, full autonomy permissions)"
-    echo "  - MCP servers     (.claude.json with 14 servers incl. B12, WebMCP, SkillSync)"
+    echo "  - MCP servers     (.claude.json with 19 servers incl. B12, WebMCP, Notion, Airtable)"
     echo "  - bin wrappers    (gsudo for admin elevation)"
     echo "  - acpx config     (headless ACP sessions)"
     echo ""
@@ -270,6 +270,14 @@ with open('$CLAUDE_JSON', 'w') as f:
     else
         ok ".claude.json (GitHub PAT not set — edit later)"
     fi
+    echo ""
+
+    # Remind about required env vars
+    echo -e "  ${YELLOW}[IMPORTANT]${NC} Add these env vars to your ~/.bashrc for MCP servers:"
+    echo "    export GITHUB_PERSONAL_ACCESS_TOKEN=\"\$(gh auth token 2>/dev/null)\""
+    echo "    export GOOGLE_OAUTH_CLIENT_SECRET=\"your-google-oauth-client-secret\""
+    echo "    export OPENAPI_MCP_HEADERS='{\"Authorization\":\"Bearer your-notion-token\",\"Notion-Version\":\"2022-06-28\"}'"
+    echo "    export AIRTABLE_API_KEY=\"your-airtable-pat\""
     echo ""
 }
 

@@ -13,7 +13,7 @@
       "mcp__claude-in-chrome__*",
       "mcp__github__*",
       "mcp__memory__*",
-      "mcp__gmail__*",
+      "mcp__google-workspace__*",
       "mcp__sequential-thinking__*",
       "mcp__railway__*",
       "mcp__cloudflare-docs__*",
@@ -52,7 +52,13 @@
       "mcp__claude_ai_Netlify__*",
       "mcp__claude_ai_Stripe__*",
       "mcp__claude_ai_Webflow__*",
-      "mcp__skillsync__*"
+      "mcp__skillsync__*",
+      "mcp__make__*",
+      "mcp__airtable__*",
+      "mcp__notion__*",
+      "mcp__figma__*",
+      "mcp__webflow__*",
+      "mcp__plugin_pinecone_pinecone__*"
     ],
     "defaultMode": "default"
   },
@@ -194,6 +200,26 @@
           {
             "type": "command",
             "command": "node \"$HOME/.claude/hooks/session-memory.js\""
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -Command \"[Console]::Beep(800,300); [Console]::Beep(1000,200)\""
+          }
+        ]
+      },
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -Command \"[Console]::Beep(600,500)\""
           }
         ]
       }

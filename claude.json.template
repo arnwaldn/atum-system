@@ -1,6 +1,6 @@
 {
   "_comment": "Claude Code MCP Servers — Portable template. Replace placeholders before use.",
-  "_instructions": "REPLACE_WITH_YOUR_GITHUB_PAT → your GitHub Personal Access Token | REPLACE_WITH_HOME_DIR → your home directory (e.g. C:/Users/you or /Users/you)",
+  "_instructions": "REPLACE_WITH_HOME_DIR → your home directory (e.g. C:/Users/you or /Users/you) | Secrets via env vars in ~/.bashrc: GITHUB_PERSONAL_ACCESS_TOKEN, GOOGLE_OAUTH_CLIENT_SECRET, GOOGLE_OAUTH_CLIENT_ID, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY",
   "mcpServers": {
     "memory": {
       "command": "cmd",
@@ -55,16 +55,21 @@
         "@magicuidesign/mcp@latest"
       ]
     },
-    "gmail": {
+    "google-workspace": {
       "type": "stdio",
-      "command": "cmd",
+      "command": "$UV_EXE_PATH",
       "args": [
-        "/c",
-        "npx",
-        "-y",
-        "@gongrzhe/server-gmail-autoauth-mcp"
+        "run",
+        "--project",
+        "$HOME/Projects/tools/google_workspace_mcp",
+        "$HOME/Projects/tools/google_workspace_mcp/main.py",
+        "--single-user",
+        "--tool-tier",
+        "extended"
       ],
-      "env": {}
+      "env": {
+        "GOOGLE_OAUTH_CLIENT_ID": "$GOOGLE_OAUTH_CLIENT_ID"
+      }
     },
     "desktop-commander": {
       "command": "cmd",
@@ -84,9 +89,7 @@
         "-y",
         "@modelcontextprotocol/server-github"
       ],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "REPLACE_WITH_YOUR_GITHUB_PAT"
-      }
+      "env": {}
     },
     "b12": {
       "command": "node",
@@ -120,6 +123,38 @@
         "-y",
         "@stranzwersweb2/skillsync-mcp@latest"
       ]
+    },
+    "notion": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@notionhq/notion-mcp-server"
+      ],
+      "env": {}
+    },
+    "airtable": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "airtable-mcp-server"
+      ],
+      "env": {}
+    },
+    "figma": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "webflow": {
+      "type": "http",
+      "url": "https://mcp.webflow.com/sse"
+    },
+    "make": {
+      "type": "http",
+      "url": "https://mcp.make.com"
     }
   }
 }
