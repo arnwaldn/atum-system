@@ -13,7 +13,7 @@
   "timeoutSeconds": 120,
   "worktree": false,
   "notify": {
-    "on": ["completion"],
+    "on": ["always"],
     "email": "arnaud.porcel@gmail.com",
     "includeOutput": true
   },
