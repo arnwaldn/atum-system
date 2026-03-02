@@ -47,7 +47,7 @@ check_prereqs() {
     info "Checking prerequisites..."
     local missing=0
 
-    for cmd in node python git; do
+    for cmd in node python3 git; do
         if command -v "$cmd" &>/dev/null; then
             ok "$cmd ($($cmd --version 2>/dev/null | head -1))"
         else
@@ -75,18 +75,19 @@ check_prereqs() {
 # ============================================================
 confirm_install() {
     echo -e "${BOLD}This will install:${NC}"
-    echo "  - 14 hooks      (PreToolUse, PostToolUse, Stop, SessionStart)"
-    echo "  - 22 commands    (/scaffold, /security-audit, /tdd, /webmcp, etc.)"
-    echo "  - 34 agents      (architect, phaser-expert, ml-engineer, geospatial, etc.)"
-    echo "  - 4 modes        (architect, autonomous, brainstorm, quality)"
-    echo "  - 27 rules       (coding-style, security, resilience, testing, etc.)"
-    echo "  - 1 script       (context-monitor.py statusline)"
-    echo "  - 184 templates  (scaffolds + references from project-templates)"
-    echo "  - 49+ plugins    (community + official, from plugins.txt)"
-    echo "  - settings.json  (hooks, plugins, full autonomy permissions)"
-    echo "  - MCP servers    (.claude.json with 18 servers incl. B12, WebMCP)"
-    echo "  - bin wrappers   (gsudo for admin elevation)"
-    echo "  - acpx config    (headless ACP sessions)"
+    echo "  - 17 hooks       (PreToolUse, PostToolUse, Notification, Stop, SessionStart)"
+    echo "  - 24 commands     (/scaffold, /security-audit, /tdd, /website, /webmcp, /schedule, etc.)"
+    echo "  - 35 agents       (architect, phaser-expert, ml-engineer, geospatial, no-code, etc.)"
+    echo "  - 31 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, release-notes, etc.)"
+    echo "  - 4 modes         (architect, autonomous, brainstorm, quality)"
+    echo "  - 26 rules        (coding-style, security, resilience, decision-principle, etc.)"
+    echo "  - 56 plugins      (ECC, code-review, figma, firebase, stripe, linear, etc.)"
+    echo "  - 1 script        (context-monitor.py statusline)"
+    echo "  - 184 templates   (scaffolds + references from project-templates)"
+    echo "  - settings.json   (hooks, plugins, full autonomy permissions)"
+    echo "  - MCP servers     (.claude.json with 19 servers incl. B12, WebMCP, Notion, Airtable)"
+    echo "  - bin wrappers    (gsudo for admin elevation)"
+    echo "  - acpx config     (headless ACP sessions)"
     echo ""
     echo -e "  Target: ${CYAN}$CLAUDE_DIR/${NC}"
     echo ""
@@ -106,7 +107,7 @@ backup_existing() {
         local ts=$(date +%Y%m%d-%H%M%S)
         local backup="$CLAUDE_DIR/.backup-$ts"
         mkdir -p "$backup"
-        for item in hooks commands agents modes rules scripts settings.json settings.local.json; do
+        for item in hooks commands agents modes rules scripts skills settings.json settings.local.json; do
             [ -e "$CLAUDE_DIR/$item" ] && cp -r "$CLAUDE_DIR/$item" "$backup/" 2>/dev/null || true
         done
         ok "Backed up existing config to $backup/"
@@ -135,6 +136,17 @@ copy_files() {
         cp -r "$SCRIPT_DIR/rules" "$CLAUDE_DIR/"
         local rcount=$(find "$SCRIPT_DIR/rules" -name "*.md" | wc -l | tr -d ' ')
         ok "rules/ ($rcount files)"
+    fi
+
+    # Skills (with subdirectories and scripts)
+    if [ -d "$SCRIPT_DIR/skills" ]; then
+        mkdir -p "$CLAUDE_DIR/skills"
+        for skill_dir in "$SCRIPT_DIR/skills"/*/; do
+            [ -d "$skill_dir" ] || continue
+            cp -r "$skill_dir" "$CLAUDE_DIR/skills/"
+        done
+        local scount=$(find "$SCRIPT_DIR/skills" -maxdepth 2 -name "SKILL.md" | wc -l | tr -d ' ')
+        ok "skills/ ($scount skills)"
     fi
 
     # Make hooks executable
@@ -201,9 +213,9 @@ configure_mcp() {
     home_path=$(cd "$HOME" && pwd -W 2>/dev/null || pwd)
     home_path="${home_path//\\/\/}"  # Normalize to forward slashes
 
-    # On macOS/Linux, replace "cmd", "/c" wrapper with direct npx calls
+    # On macOS/Linux, replace "cmd", "/c" wrapper with direct calls
     if [ "$OS" != "windows" ]; then
-        # Remove cmd /c wrapper: "cmd" → "npx", remove "/c" arg, merge args
+        # Remove cmd /c wrapper: "cmd" → actual command, remove "/c" arg
         python3 -c "
 import json, sys
 with open(sys.argv[1]) as f:
@@ -211,8 +223,8 @@ with open(sys.argv[1]) as f:
 for name, srv in data.get('mcpServers', {}).items():
     if srv.get('command') == 'cmd' and srv.get('args', [''])[0] == '/c':
         args = srv['args'][1:]  # remove /c
-        if args and args[0] in ('npx', 'npm'):
-            srv['command'] = args[0]
+        if args and args[0] in ('npx', 'npm', 'python', 'python3'):
+            srv['command'] = 'python3' if args[0] == 'python' else args[0]
             srv['args'] = args[1:]
 with open(sys.argv[2], 'w') as f:
     json.dump(data, f, indent=2)
@@ -222,12 +234,20 @@ with open(sys.argv[2], 'w') as f:
         cp "$SCRIPT_DIR/claude.json.template" "$CLAUDE_JSON"
     fi
 
-    # Replace all placeholders
-    sed -i \
-        -e "s|REPLACE_WITH_YOUR_GITHUB_PAT|${github_pat}|g" \
-        -e "s|REPLACE_WITH_HOME_DIR|${home_path}|g" \
-        -e "s|REPLACE_WITH_YOUR_PROJECT_REF|YOUR_PROJECT_REF|g" \
-        "$CLAUDE_JSON"
+    # Replace all placeholders (BSD sed on macOS needs -i '', GNU sed needs -i)
+    if [ "$OS" = "macos" ]; then
+        sed -i '' \
+            -e "s|REPLACE_WITH_YOUR_GITHUB_PAT|${github_pat}|g" \
+            -e "s|REPLACE_WITH_HOME_DIR|${home_path}|g" \
+
+            "$CLAUDE_JSON"
+    else
+        sed -i \
+            -e "s|REPLACE_WITH_YOUR_GITHUB_PAT|${github_pat}|g" \
+            -e "s|REPLACE_WITH_HOME_DIR|${home_path}|g" \
+
+            "$CLAUDE_JSON"
+    fi
 
     # Remove _comment fields (clean output)
     python3 -c "
@@ -250,6 +270,14 @@ with open('$CLAUDE_JSON', 'w') as f:
     else
         ok ".claude.json (GitHub PAT not set — edit later)"
     fi
+    echo ""
+
+    # Remind about required env vars
+    echo -e "  ${YELLOW}[IMPORTANT]${NC} Add these env vars to your ~/.bashrc for MCP servers:"
+    echo "    export GITHUB_PERSONAL_ACCESS_TOKEN=\"\$(gh auth token 2>/dev/null)\""
+    echo "    export GOOGLE_OAUTH_CLIENT_SECRET=\"your-google-oauth-client-secret\""
+    echo "    export OPENAPI_MCP_HEADERS='{\"Authorization\":\"Bearer your-notion-token\",\"Notion-Version\":\"2022-06-28\"}'"
+    echo "    export AIRTABLE_API_KEY=\"your-airtable-pat\""
     echo ""
 }
 
@@ -426,24 +454,29 @@ install_plugins() {
     local total=0
 
     while IFS= read -r line; do
-        # Skip empty lines and pure comments
+        # Skip empty lines and comments
         [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
 
-        # Skip DISABLED plugins
-        if [[ "$line" =~ ^#[[:space:]]*DISABLED ]]; then
+        # Parse format: "plugin_id (status)" or "claude plugin install plugin_id"
+        if [[ "$line" =~ ^([^[:space:]]+)[[:space:]]+\(disabled\) ]]; then
             skipped=$((skipped + 1))
             continue
-        fi
-
-        # Extract the install command (lines starting with "claude plugin install")
-        if [[ "$line" =~ ^claude[[:space:]]+plugin[[:space:]]+install[[:space:]]+(.*) ]]; then
+        elif [[ "$line" =~ ^([^[:space:]]+)[[:space:]]+\(enabled\) ]]; then
+            local plugin_id="${BASH_REMATCH[1]}"
+            total=$((total + 1))
+            if claude plugin install "$plugin_id" 2>/dev/null; then
+                installed=$((installed + 1))
+            else
+                failed=$((failed + 1))
+            fi
+        elif [[ "$line" =~ ^claude[[:space:]]+plugin[[:space:]]+install[[:space:]]+(.*) ]]; then
+            # Legacy format: "claude plugin install plugin_id"
             local plugin="${BASH_REMATCH[1]}"
             total=$((total + 1))
             if $line 2>/dev/null; then
                 installed=$((installed + 1))
             else
                 failed=$((failed + 1))
-                warn "Failed: $plugin"
             fi
         fi
     done < "$PLUGINS_FILE"
@@ -501,6 +534,13 @@ verify() {
         fi
     done
 
+    # Skills
+    if [ -d "$CLAUDE_DIR/skills" ]; then
+        local sn=$(find "$CLAUDE_DIR/skills" -maxdepth 2 -name "SKILL.md" | wc -l | tr -d ' ')
+        total=$((total + sn))
+        ok "skills: $sn installed"
+    fi
+
     # Bin wrappers
     if [ -d "$HOME/bin" ]; then
         local bcount=$(ls -1 "$HOME/bin" 2>/dev/null | wc -l | tr -d ' ')
@@ -537,16 +577,17 @@ summary() {
     echo ""
     echo "  Next steps:"
     echo "  1. Restart Claude Code"
-    echo "  2. Configure remote MCP servers in claude.ai:"
-    echo "     Figma, Notion, Supabase, Vercel, Canva, etc."
-    echo "  3. If plugins failed, re-run: bash install.sh --plugins-only"
+    echo "  2. Set GitHub PAT if not done: export GITHUB_PERSONAL_ACCESS_TOKEN=..."
+    echo "  3. Configure remote MCP servers in claude.ai:"
+    echo "     Figma, Notion, Supabase, Vercel, Canva, Stripe, etc."
+    echo "  4. If plugins failed, re-run: bash install.sh --plugins-only"
     echo ""
     echo "  Config locations:"
-    echo "    ~/.claude/         hooks, commands, agents, modes, rules"
-    echo "    ~/.claude.json     MCP server configs"
-    echo "    ~/.claude/settings.json   main config (SOURCE OF TRUTH)"
-    echo "    ~/.acpx/config.json       acpx headless sessions"
-    echo "    ~/bin/                    tool wrappers (gsudo, jq, etc.)"
+    echo "    ~/.claude/              hooks, commands, agents, modes, rules, skills"
+    echo "    ~/.claude.json          MCP server configs"
+    echo "    ~/.claude/settings.json main config (SOURCE OF TRUTH)"
+    echo "    ~/.acpx/config.json     acpx headless sessions"
+    echo "    ~/bin/                   tool wrappers (gsudo, jq, etc.)"
     echo ""
 }
 

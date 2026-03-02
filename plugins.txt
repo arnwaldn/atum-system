@@ -1,66 +1,60 @@
-# Claude Code Plugins — Install List
-# Generated: 2026-02-22
-# Usage: Run each line to reinstall all plugins
-# Or use install.sh which does this automatically
-#
-# Format: claude plugin install <marketplace>:<plugin>
-# Disabled plugins marked with # DISABLED
+# Claude Code Plugins Registry
+# Total: 56 (54 active, 2 inactive)
+# Format: plugin_id (status)
 
-# --- Marketplace: everything-claude-code (community) ---
-# First add the marketplace:
-# claude plugin marketplace add everything-claude-code https://github.com/affaan-m/everything-claude-code.git
-claude plugin install everything-claude-code:everything-claude-code
-
-# --- Marketplace: claude-plugins-official (Anthropic) ---
-# This marketplace is auto-added on first install
-claude plugin install claude-plugins-official:agent-sdk-dev
-claude plugin install claude-plugins-official:asana
-claude plugin install claude-plugins-official:atlassian
-claude plugin install claude-plugins-official:circleback
-claude plugin install claude-plugins-official:clangd-lsp
-claude plugin install claude-plugins-official:claude-code-setup
-claude plugin install claude-plugins-official:claude-md-management
-claude plugin install claude-plugins-official:code-review
-# DISABLED: claude plugin install claude-plugins-official:code-simplifier
-claude plugin install claude-plugins-official:coderabbit
-claude plugin install claude-plugins-official:commit-commands
-# DISABLED: claude plugin install claude-plugins-official:context7
-claude plugin install claude-plugins-official:csharp-lsp
-# DISABLED: claude plugin install claude-plugins-official:explanatory-output-style
-claude plugin install claude-plugins-official:feature-dev
-claude plugin install claude-plugins-official:figma
-claude plugin install claude-plugins-official:firebase
-claude plugin install claude-plugins-official:firecrawl
-claude plugin install claude-plugins-official:frontend-design
-claude plugin install claude-plugins-official:github
-claude plugin install claude-plugins-official:gitlab
-claude plugin install claude-plugins-official:gopls-lsp
-claude plugin install claude-plugins-official:greptile
-claude plugin install claude-plugins-official:hookify
-claude plugin install claude-plugins-official:huggingface-skills
-claude plugin install claude-plugins-official:jdtls-lsp
-claude plugin install claude-plugins-official:kotlin-lsp
-claude plugin install claude-plugins-official:laravel-boost
-claude plugin install claude-plugins-official:learning-output-style
-claude plugin install claude-plugins-official:playground
-claude plugin install claude-plugins-official:playwright
-claude plugin install claude-plugins-official:plugin-dev
-claude plugin install claude-plugins-official:posthog
-claude plugin install claude-plugins-official:pr-review-toolkit
-claude plugin install claude-plugins-official:pyright-lsp
-claude plugin install claude-plugins-official:qodo-skills
-claude plugin install claude-plugins-official:ralph-loop
-claude plugin install claude-plugins-official:rust-analyzer-lsp
-claude plugin install claude-plugins-official:security-guidance
-claude plugin install claude-plugins-official:semgrep
-claude plugin install claude-plugins-official:sentry
-claude plugin install claude-plugins-official:serena
-claude plugin install claude-plugins-official:skill-creator
-claude plugin install claude-plugins-official:slack
-claude plugin install claude-plugins-official:sonatype-guide
-claude plugin install claude-plugins-official:stripe
-claude plugin install claude-plugins-official:supabase
-claude plugin install claude-plugins-official:superpowers
-claude plugin install claude-plugins-official:swift-lsp
-claude plugin install claude-plugins-official:typescript-lsp
-claude plugin install claude-plugins-official:vercel
+agent-sdk-dev@claude-plugins-official (enabled)
+asana@claude-plugins-official (enabled)
+atlassian@claude-plugins-official (enabled)
+circleback@claude-plugins-official (disabled)
+clangd-lsp@claude-plugins-official (enabled)
+claude-code-setup@claude-plugins-official (enabled)
+claude-md-management@claude-plugins-official (enabled)
+code-review@claude-plugins-official (enabled)
+code-simplifier@claude-plugins-official (enabled)
+coderabbit@claude-plugins-official (enabled)
+commit-commands@claude-plugins-official (enabled)
+context7@claude-plugins-official (enabled)
+csharp-lsp@claude-plugins-official (enabled)
+everything-claude-code@everything-claude-code (enabled)
+explanatory-output-style@claude-plugins-official (enabled)
+feature-dev@claude-plugins-official (enabled)
+figma@claude-plugins-official (enabled)
+firebase@claude-plugins-official (enabled)
+firecrawl@claude-plugins-official (enabled)
+frontend-design@claude-plugins-official (enabled)
+github@claude-plugins-official (enabled)
+gitlab@claude-plugins-official (enabled)
+gopls-lsp@claude-plugins-official (enabled)
+greptile@claude-plugins-official (enabled)
+hookify@claude-plugins-official (enabled)
+huggingface-skills@claude-plugins-official (enabled)
+jdtls-lsp@claude-plugins-official (enabled)
+kotlin-lsp@claude-plugins-official (enabled)
+laravel-boost@claude-plugins-official (enabled)
+learning-output-style@claude-plugins-official (enabled)
+linear@claude-plugins-official (enabled)
+php-lsp@claude-plugins-official (enabled)
+pinecone@claude-plugins-official (enabled)
+playground@claude-plugins-official (enabled)
+playwright@claude-plugins-official (enabled)
+plugin-dev@claude-plugins-official (enabled)
+posthog@claude-plugins-official (enabled)
+pr-review-toolkit@claude-plugins-official (enabled)
+pyright-lsp@claude-plugins-official (enabled)
+qodo-skills@claude-plugins-official (enabled)
+ralph-loop@claude-plugins-official (enabled)
+rust-analyzer-lsp@claude-plugins-official (enabled)
+security-guidance@claude-plugins-official (enabled)
+semgrep@claude-plugins-official (enabled)
+sentry@claude-plugins-official (enabled)
+serena@claude-plugins-official (enabled)
+skill-creator@claude-plugins-official (enabled)
+slack@claude-plugins-official (disabled)
+sonatype-guide@claude-plugins-official (enabled)
+stripe@claude-plugins-official (enabled)
+supabase@claude-plugins-official (enabled)
+superpowers@claude-plugins-official (enabled)
+swift-lsp@claude-plugins-official (enabled)
+typescript-lsp@claude-plugins-official (enabled)
+ui-ux-pro-max@ui-ux-pro-max-skill (enabled)
+vercel@claude-plugins-official (enabled)
