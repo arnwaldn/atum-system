@@ -1,0 +1,127 @@
+{
+  "contrats_assurance": [
+    {
+      "id": "ASS-001",
+      "type": "rc_pro",
+      "nom": "Responsabilite Civile Professionnelle",
+      "assureur": null,
+      "numero_contrat": null,
+      "date_souscription": null,
+      "date_renouvellement": null,
+      "prime_annuelle": null,
+      "couverture": {
+        "plafond_general": null,
+        "plafond_par_sinistre": null,
+        "franchise": null
+      },
+      "garanties": [
+        "Faute professionnelle, erreur, omission",
+        "Retard de livraison",
+        "Non-conformite des livrables",
+        "Atteinte aux droits de propriete intellectuelle de tiers",
+        "Perte de donnees confiees par le client"
+      ],
+      "statut": "a_souscrire",
+      "priorite": "CRITIQUE",
+      "notes": "Indispensable pour agence dev. Requis par la plupart des clients dans les appels d'offres. Acteurs : Hiscox, AXA, Maif Pro, Covea."
+    },
+    {
+      "id": "ASS-002",
+      "type": "cyber",
+      "nom": "Cyber Assurance",
+      "assureur": null,
+      "numero_contrat": null,
+      "date_souscription": null,
+      "date_renouvellement": null,
+      "prime_annuelle": null,
+      "couverture": {
+        "plafond_general": null,
+        "plafond_par_sinistre": null,
+        "franchise": null
+      },
+      "garanties": [
+        "Violation de donnees / fuite",
+        "Attaque ransomware",
+        "Responsabilite cyber vis-a-vis des tiers",
+        "Frais de notification RGPD",
+        "Frais de gestion de crise",
+        "Perte d'exploitation suite a incident cyber"
+      ],
+      "statut": "recommande",
+      "priorite": "HAUTE",
+      "notes": "Fortement recommande pour editeur SaaS traitant des donnees clients. Acteurs : Hiscox, Stoik, Dattak."
+    },
+    {
+      "id": "ASS-003",
+      "type": "multirisque_bureau",
+      "nom": "Multirisque Bureaux / Locaux",
+      "assureur": null,
+      "numero_contrat": null,
+      "date_souscription": null,
+      "date_renouvellement": null,
+      "prime_annuelle": null,
+      "garanties": [
+        "Incendie, degat des eaux",
+        "Vol de materiel",
+        "Bris de machine",
+        "Responsabilite civile exploitation"
+      ],
+      "statut": "a_souscrire_si_locaux",
+      "priorite": "MOYENNE",
+      "notes": "Necessaire si ATUM loue des bureaux. Pas necessaire si full remote."
+    },
+    {
+      "id": "ASS-004",
+      "type": "prevoyance_cadres",
+      "nom": "Prevoyance Cadres (Convention Syntec)",
+      "assureur": null,
+      "numero_contrat": null,
+      "date_souscription": null,
+      "date_renouvellement": null,
+      "prime_annuelle": null,
+      "garanties": [
+        "Deces",
+        "Incapacite temporaire de travail",
+        "Invalidite permanente"
+      ],
+      "statut": "obligatoire_des_1er_salarie_cadre",
+      "priorite": "HAUTE",
+      "notes": "Obligatoire pour les cadres (IC) de la convention Syntec. Cotisation min 1.50% tranche A."
+    },
+    {
+      "id": "ASS-005",
+      "type": "mutuelle",
+      "nom": "Complementaire Sante Obligatoire",
+      "assureur": null,
+      "numero_contrat": null,
+      "date_souscription": null,
+      "date_renouvellement": null,
+      "prime_annuelle": null,
+      "garanties": [
+        "Panier de soins minimum ANI",
+        "Portabilite 12 mois"
+      ],
+      "statut": "obligatoire_des_1er_salarie",
+      "priorite": "HAUTE",
+      "notes": "Obligatoire depuis 2016. 50% minimum pris en charge par l'employeur."
+    }
+  ],
+  "rappels": [
+    {
+      "action": "Souscrire RC Pro",
+      "deadline": "Avant 1er contrat client",
+      "statut": "urgent"
+    },
+    {
+      "action": "Evaluer cyber assurance",
+      "deadline": "Avant lancement SaaS en production",
+      "statut": "a_faire"
+    },
+    {
+      "action": "Souscrire prevoyance + mutuelle",
+      "deadline": "Avant 1ere embauche",
+      "statut": "a_faire"
+    }
+  ],
+  "updated_at": "2026-03-02"
+}

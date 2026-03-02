@@ -1,0 +1,29 @@
+{
+  "denomination": "ATUM SAS",
+  "forme": "Societe par Actions Simplifiee (SAS) a capital variable",
+  "capital_initial": 1000,
+  "capital_plancher": 1000,
+  "capital_plafond": 10000000,
+  "valeur_nominale_action": 1,
+  "nombre_actions": 1000,
+  "siege": "Aix-en-Provence, France",
+  "rcs": "en cours d'immatriculation",
+  "date_creation": "2026-01",
+  "exercice_social": {
+    "debut": "01-01",
+    "fin": "12-31"
+  },
+  "premier_exercice": {
+    "debut": "date immatriculation",
+    "fin": "2026-12-31"
+  },
+  "duree_ans": 99,
+  "banque": "Qonto",
+  "objet_social_resume": "Dev logiciel & IA, agence de developpement, incubation work for equity, edition SaaS, conseil tech non reglemente, PI",
+  "activites_exclues": "Aucune activite reglementee (pas de service financier, investissement, gestion pour tiers, bancaire, paiement)",
+  "competence_juridictionnelle": "Tribunal de Commerce de Paris",
+  "contact": {
+    "email": "contact@atum.tech"
+  },
+  "updated_at": "2026-03-02"
+}

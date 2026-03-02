@@ -1,0 +1,26 @@
+{
+  "id": "atum-info-trim",
+  "name": "Rappel information trimestrielle ATUM SAS",
+  "description": "J+15 apres chaque fin de trimestre : preparer le rapport d'information trimestrielle pour les associes (Art. 24.2 statuts)",
+  "trigger": {
+    "type": "cron",
+    "cron": "0 9 15 1,4,7,10 *"
+  },
+  "prompt": "RAPPEL OBLIGATION ATUM SAS : L'information trimestrielle des associes est due (Art. 24.2 statuts). Delai : 15 jours apres fin de trimestre. Contenu obligatoire : comptes de gestion, tresorerie, KPIs, roadmap produit, risques et opportunites. Utiliser /agence-atum docs generate rapport-trimestriel pour generer le rapport.",
+  "cwd": "C:/Users/arnau",
+  "model": "haiku",
+  "maxBudgetUsd": 1,
+  "timeoutSeconds": 180,
+  "worktree": false,
+  "notify": {
+    "on": ["always"],
+    "email": "arnaud.porcel@gmail.com",
+    "includeOutput": true
+  },
+  "enabled": true,
+  "retries": 0,
+  "retryDelaySeconds": 0,
+  "concurrencyGroup": "default",
+  "tags": ["atum", "legal", "trimestriel"],
+  "createdAt": "2026-03-02T21:00:00Z"
+}

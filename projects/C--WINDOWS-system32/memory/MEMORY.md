@@ -11,21 +11,22 @@
 - **Shell**: bash (MINGW64/Git Bash)
 - **Workspace**: `C:\Users\arnau\Projects\` (web, mobile, api, desktop, fullstack, tools, learning)
 
-## Claude Code Setup (updated 2026-02-28 — v2.1.62 + webmcp optimized)
+## Claude Code Setup (updated 2026-03-02 — v2.1.63 + claude-scheduler)
 
 ### Summary
-- 6 config files, 34 agents, 68 sub-agents, 21 commands, 4 modes, 27 rules (+ 24 templates)
-- 26 hooks (13 custom [11 fichiers + 2 inline] + 13 ECC), 53 plugins (51 actifs / 2 inactifs), 115+ skills
-- 27/30 MCP OK (updated 2026-02-28) — fetch supprime (npm 404), filesystem CWD bug, greptile OAuth 404 | 18 local (.claude.json) + 1 local (.mcp.json) + 3 plugin + 12 remote claude.ai = 34 serveurs
+- 6 config files, **36 agents**, 70 sub-agents, **25 commands**, 4 modes, 26 rules (+ 24 templates)
+- 31 hooks (17 scripts [8 JS + 9 PY] + 2 Notification + 2 inline + 13 ECC), 56 plugins (54 actifs / 2 inactifs), **147+ skills** (115 plugin + **32 standalone**)
+- **19 local** (.claude.json) + 1 local (.mcp.json) + 2 plugin + 23 remote claude.ai = **45 serveurs** | ❌ greptile (OAuth 404) | ⚠️ 3 HTTP dupliques (figma/webflow/make)
+- **Autonomie max**: **61 allow entries**, **58 NLP triggers** FR+EN, Skill(*)+WebSearch(*)+ToolSearch(*) auto-permit
 - **Tools**: jq (winget), mcporter 0.7.3 (npm), gsudo 2.6.1 (winget), acpx 0.1.8 (npm)
 - 10 langages, 20+ frameworks/outils, 184 templates + 10 references
 - **34/34 project types simulated and verified production-ready**
 - **Portable**: `settings.json` uses `$HOME` paths, `install.sh` cross-platform (Win/Mac/Linux)
 
-### Commands (21) — `~/.claude/commands/`
-atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, health, migrate, optimize, prd, pre-deploy, review-fix, scaffold, security-audit, **session-analyzer**, setup-cicd, status, tdd, team, ultra-think, **website**
+### Commands (25) — `~/.claude/commands/`
+**agence-atum**, atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, health, migrate, optimize, prd, pre-deploy, **projet-automatisation**, review-fix, scaffold, **schedule**, security-audit, **session-analyzer**, setup-cicd, status, tdd, team, ultra-think, **webmcp**, **website**
 
-### Agents (34 custom + 34 plugin/built-in = 68 sub-agents) — `~/.claude/agents/`
+### Agents (35 custom + 34 plugin/built-in = 69 sub-agents) — `~/.claude/agents/`
 - **Generalist**: architect-reviewer, codebase-pattern-finder, critical-thinking, database-optimizer, error-detective, technical-debt-manager, research-expert
 - **Game dev**: game-architect, phaser-expert, threejs-game-expert, unity-expert, godot-expert, networking-expert
 - **Mobile/Desktop**: flutter-dart-expert, expo-expert, tauri-expert
@@ -36,21 +37,23 @@ atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, health, 
 - **Frontend**: frontend-design-expert, accessibility-auditor
 - **Blockchain**: blockchain-expert
 - **Geospatial**: geospatial-expert
+- **No-code**: no-code-automation-expert
+- **Admin**: agence-atum-expert
 - **Specialist**: api-designer, auto-test-generator, documentation-generator, graphql-expert, migration-expert, performance-optimizer, windows-scripting-expert, mcp-expert
 
 ### Modes (4) — `~/.claude/modes/`
 architect, autonomous, brainstorm, quality
 
 ### Rules (26 global files) — `~/.claude/rules/`
-- common/ (15): agents, anti-hallucination, autonomous-workflow, coding-style, compliance, **decision-principle**, git-workflow, hooks, monorepo, patterns, performance, **resilience**, security, system-messages, testing
+- common/ (14): anti-hallucination, autonomous-workflow (includes agent registry), coding-style, compliance, **decision-principle**, git-workflow, hooks, monorepo, patterns, performance, **resilience**, security, system-messages, testing
 - typescript/ (4): coding-style, patterns, security, testing
 - python/ (4): coding-style, patterns, security, testing
 - golang/ (4): coding-style, patterns, security, testing
 - **Templates** (24 files in `~/Projects/tools/project-templates/rules/`)
 - **Context budget**: ~7,700 tokens/session (~3.9% of 200K)
 
-### Hooks — 26 effectifs, 14 fichiers, 3 sources
-- **Custom (13)**: secret-scanner, git-guard, lock-file-protector, file-backup, atum-session-start, atum-post-write, atum-compliance-check, auto-test-runner, dependency-checker, multi-lang-formatter, post-commit-quality-gate, **loop-detector** (PostToolUse), **session-memory** (Stop)
+### Hooks — 29 effectifs, 17 fichiers, 3 sources
+- **Custom (16)**: secret-scanner, git-guard, lock-file-protector, file-backup, atum-session-start, atum-post-write, atum-compliance-check, auto-test-runner, dependency-checker, multi-lang-formatter, post-commit-quality-gate, **loop-detector** (PostToolUse), **session-memory** (Stop), **post-tool-failure-logger** (PostToolUse), **config-change-guard** (PostToolUse), **worktree-setup** (PostToolUse/Bash)
 - **Reserve (3)**: dangerous-command-blocker, conventional-commits-enforcer, prevent-direct-push
 - **Plugin ECC (13)**: git push reminder, .md blocker (regex fixed: .md only), suggest-compact, pre-compact, session-start, PR URL logger, build-analysis, auto-format, typecheck, console.log warn, check console.log, session-end, evaluate-session
 
@@ -62,55 +65,59 @@ architect, autonomous, brainstorm, quality
 - `~/.claude/scripts/context-monitor.py` — StatusLine
 - `~/.claude/projects/.../memory/MEMORY.md` — Memoire persistante
 
-### MCP Servers (27/30 OK, updated 2026-02-28)
-- **Local (13/14 OK)**: github, memory, sequential-thinking, railway, cloudflare-docs, context7, magic, gmail, desktop-commander, claude-in-chrome, b12, **webmcp** (website→MCP bridge, local fork optimized) | ⚠️ filesystem (CWD bug)
-- **Plugin (2/3 OK)**: firebase, playwright | ❌ greptile (OAuth 404)
-- **Remote claude.ai (12/12 OK)**: Canva, Cloudflare, Figma, Gamma, Hugging Face, Invideo, Learning Commons, Make, Notion, Supabase, Vercel, Zapier
-- **Extras in .claude.json (6, non connectes)**: supabase-local (placeholder), vercel-local, clickhouse, cloudflare-workers-builds, cloudflare-workers-bindings, cloudflare-observability
+### MCP Servers (42/43 OK, updated 2026-03-02)
+- **Local (17 OK)**: github, memory, sequential-thinking, railway, cloudflare-docs, context7, magic, **google-workspace** (83 outils, 12 services Google, OAuth ACTIF), desktop-commander, claude-in-chrome, b12, **webmcp**, **skillsync**, atum-audit, **notion** (env var heritage), **airtable** (env var heritage), **make** (HTTP OAuth)
+- **No-code local (3 — dupliques remotes)**: figma (HTTP mcp.figma.com = doublon remote claude.ai/Figma), webflow (HTTP mcp.webflow.com = doublon remote claude.ai/Webflow), make (HTTP mcp.make.com = doublon remote claude.ai/Make) — servent de fallback/redondance, pas d'outils propres
+- **Plugin (2/3 OK)**: firebase (⚠️ needs `firebase login`), playwright | ❌ greptile (OAuth 404 upstream)
+- **Remote claude.ai (23 OK)**: Canva, Cloudflare, Cloudinary, Context7, Excalidraw, Figma, Gamma, Gmail, Google Calendar, GraphOS, Hugging Face, Invideo, Jam, Learning Commons KG, Make, Microsoft Learn, Netlify, Notion, Stripe, Supabase, Vercel, Webflow, Zapier
+- **Secrets**: migres de .claude.json → .bashrc env vars (GOOGLE_OAUTH_CLIENT_SECRET, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY) — heritage automatique par subprocess
+- **Retires**: filesystem (CWD bug→desktop-commander), supabase local (placeholder), clickhouse, cloudflare-workers-*
 
-### ATUM/OWL (EU AI Act) — 166/166 tests, 17/17 functional checks
-- **Module**: `atum_audit` — `pip install -e .` | rdflib 7.6.0, pyshacl 0.31.0, mcp 1.23.3
+### Standalone Skills (29) — `~/.claude/skills/`
+- **Documents**: pdf, docx, xlsx, pptx
+- **Architecture**: domain-driven-design, clean-architecture, system-design, ddia-systems
+- **Reasoning**: the-fool, spec-miner, context-engineering-kit
+- **Security**: supply-chain-risk-auditor, open-source-license-compliance
+- **Visualization**: design-doc-mermaid, claude-d3js-skill, audit-flow
+- **DevOps/SRE**: sre-engineer, chaos-engineer
+- **AI/ML**: rag-architect
+- **UI/UX**: refactoring-ui
+- **Testing**: property-based-testing
+- **Performance**: high-perf-browser
+- **Product**: jobs-to-be-done, mom-test
+- **Prompts**: prompt-architect
+- **Windows**: powershell-windows
+- **Accessibility**: claude-a11y-skill
+- **MCP**: mcp-builder
+- **Automation**: scheduler
+- **Release**: release-notes
+- **Admin**: agence-atum
+
+### Agence ATUM SAS — Systeme Admin (v2.0, 2026-03-02)
+- **Skill**: `~/.claude/skills/agence-atum/SKILL.md` + 6 references (statuts-resume, business-plan-targets, templates-catalog, facturation-regles, syntec-grille, rgpd-guide)
+- **Command**: `/agence-atum` — 16 sous-commandes (dashboard, finance, legal, billing, contracts, compliance, frais, products, clients, equity, team, docs, sync, init, help)
+- **Agent**: `agence-atum-expert` — gouvernance, finances, facturation, contrats, RH, RGPD, pipeline, obligations
+- **Data store**: `~/.claude/data/agence-atum/` — 15 JSON (societe, actionnariat, budget, quarter, produits, pipeline, participations, obligations, registre, compteurs, contrats/registre, contrats/cgv, equipe, rgpd/registre-traitements, assurances)
+- **Templates**: 13 modeles (pv-ordinaire, pv-extraordinaire, convocation, rapport-trimestriel, convention-reglementee, fiche-projet, devis, facture, relance, contrat-prestation, nda, cgv, contrat-freelance)
+- **Directories**: facturation/devis/, facturation/factures/, contrats/, timetracking/, rgpd/, frais/
+- **Scheduler**: 7 taches (ag-annuelle, info-trim, declaration-is, tva, relance-factures, cfe, dsn)
+- **NLP triggers**: 26 patterns FR dans autonomous-workflow.md
+- **MCP integrations**: Google Workspace (Gmail, Calendar, Sheets, Docs), Notion, skill /docx pour DOCX
+
+### ATUM/OWL (EU AI Act) v2.0.0 — 166/166 tests, 17/17 functional checks
+- **Module**: `atum_audit` at `~/Desktop/agent-owl/` | rdflib 7.6.0, pyshacl 0.31.0, mcp 1.23.3
 - **MCP server**: 15 tools registered, `from mcp.server import FastMCP` (NOT from fastmcp)
-- **API**: AuditAgent `.compliance` (PROPERTY not method), `.stats()`, `.query()` → list of dicts, `.full_scan()`, `.verify_file()`, `.violations()`, `.history()`, `.flush()`
-- **ComplianceManager**: `.register_ai_system()`, `.compliance_report(system_name)`, `.validate_system()`, `.annex_iv_status()` → dataclass (attribute access), `.export_report(system_name, fmt='md')` (NOT 'markdown')
+- **API**: `AuditAgent(config_path='atum-audit.config.json')` — `.compliance` (PROPERTY→ComplianceManager), `.stats()`, `.query()` → list of dicts, `.full_scan()`, `.verify_file()`, `.violations()`, `.history()`, `.flush()`
+- **ComplianceManager**: acces via `agent.compliance` (NOT standalone) — `.register_ai_system()`, `.compliance_report()`, `.validate_system()`, `.annex_iv_status()` → dataclass, `.export_report(fmt='md')`, `.check_retention_compliance()`
 
-### Simulations (34/34 project types verified)
-- **JS/TS Frontend (4)**: Vue 3, Nuxt 3 (v4.3.1), SvelteKit, Vanilla+Vite+Tailwind — all PASS
-- **JS/TS Backend (5)**: Fastify, Hono, Express+TS, Deno, NestJS 11 — all PASS
-- **Python (5)**: FastAPI, Django 6, Flask, Typer CLI, Python Library — all PASS
-- **Go (3)**: REST API, CLI, gRPC (mock) — all PASS
-- **Rust (2)**: CLI, Axum Web — all PASS (works directly from Git Bash now)
-- **Java (2)**: Spring Boot 3.5, Java standalone — all PASS
-- **.NET (1)**: ASP.NET Core API (.NET 9) — PASS
-- **PHP (2)**: Vanilla, Laravel 12.52 — all PASS
-- **Ruby (2)**: Minitest standalone, Rails 8.1 — all PASS
-- **Game (3)**: Three.js, Phaser 3, Godot 4.6.1 — all PASS
-- **Blockchain (1)**: Hardhat 3.1.9 — PASS
-- **ML (1)**: scikit-learn pipeline — PASS
-- **Desktop (2)**: Electron v40.6, Tauri CLI 2.10 — all PASS
-- **DevOps (1)**: Docker Compose — PASS
-
-## Installed Dev Stack (2026-02-23)
-- **Languages**: Node v24.13.1, Python 3.13.2, Go 1.26.0, Rust 1.93.1, .NET 9.0.311, Java 21.0.10, Deno 2.6.10, PHP 8.4.18, Ruby 3.3.10, Dart 3.11.0
-- **JS/TS**: TypeScript 5.9.3, Vite 7.3.1, Next.js 16.1.6, Angular 21.1, Vue CLI 5, NestJS 11, Nuxt 3.33, Tailwind 4.2
-- **Python**: Django 6.0, Flask 3.1, FastAPI 0.129, pytest 9.0.2, black 26.1.0, ruff 0.15.1, mypy 1.19.1
-- **PHP/Ruby**: Composer 2.9.5 (`~/bin/composer.phar`), Laravel 12.52, Rails 8.1.2
-- **Build Tools**: VS Build Tools 2022 v17.14.27 (MSVC C++), MSYS2 20251213 (GCC 15.2.0 ucrt64 + make), Android Studio 2025.2.3
-- **Sysinternals**: handle64.exe (`~/bin/`) — pour diagnostiquer les locks fichiers
-- **Desktop**: Electron 40.6, Tauri CLI 2.10.0
-- **Game Engine**: Godot 4.6.1 (`~/bin/godot`, `~/bin/godot-console`)
-- **Blockchain**: Hardhat 3.1.9 (via npx)
-- **DB**: SQLite native, PostgreSQL/Redis/MongoDB/MySQL via Docker
-- **Linting**: Oxlint 1.50.0 (Rust-based, 10-100x faster than ESLint), tsgo 7.0.0-dev (Rust-based TS typecheck)
-- **Testing**: Jest 30.1.3, Vitest 4.0.18, Playwright 1.58.2, pytest + pytest-cov
-- **DevOps**: Docker 29.2.0, git 2.53.0, gh CLI 2.87.0, Vercel CLI 50.19.1
-- **Supply-chain**: pnpm minimumReleaseAge=2880 (refuse packages < 2 days old)
+- **Simulations**: 34/34 project types verified — details in `memory/simulations.md`
+- **Dev stack**: 10 langages, 20+ frameworks — details in `memory/dev-stack.md`
 
 ## Key Learnings
 - Hooks NOT auto-discovered — must register in `settings.json`; NEVER duplicate in settings.local.json
 - JS hooks: `fs.readFileSync(0, 'utf8')` for stdin on Windows; Python: `sys.stdin.read()`
 - Agents/commands/modes = ZERO context cost when not invoked; only rules always loaded
-- git-guard.py: consolidates 4 checks (~74ms), heredoc bug (use `-m "msg"`), blocks pushes to main EXCEPT backup repos (whitelist: `claude-code-config`, `project-templates`)
+- git-guard.py: consolidates 4 checks (~74ms), heredoc bug (use `-m "msg"`), blocks pushes to main EXCEPT backup repos whitelist; for non-backup repos, temporarily add to BACKUP_REPOS, push with full URL, then restore
 - ECC `.md` blocker: Windows regex issues — use Bash heredoc for .md writes in .claude/
 - ATUM: `agent.compliance` is PROPERTY not method; `agent.query()` returns list of dicts; `fmt='md'` not 'markdown'
 - ATUM: AuditAgent creates audit_store in CWD — needs ATUM_PROJECT_DIR fallback
@@ -118,20 +125,13 @@ architect, autonomous, brainstorm, quality
 - Docker Desktop daemon needs manual start — not auto-started on boot
 - `rm -rf` blocked by git-guard.py — use `python shutil.rmtree()`
 - Windows .git cleanup: read-only objects — `shutil.rmtree(path, onexc=force_remove)` with `os.chmod(path, stat.S_IWRITE)`
-- PHP winget: no php.ini by default — created at `PHP_DIR/php.ini` with openssl/curl/mbstring + cacert.pem
-- PHP php.ini path: `C:\Users\arnau\AppData\Local\Microsoft\WinGet\Packages\PHP.PHP.8.4_Microsoft.Winget.Source_8wekyb3d8bbwe\php.ini`
+- PHP winget: no php.ini by default — created at `C:\Users\arnau\AppData\Local\...\PHP.PHP.8.4_...\php.ini` with openssl/curl/mbstring + cacert.pem
 - Avast intercepte SSL PHP/Composer/Ruby — desactiver temporairement ou configurer exclusion pour PHP/Ruby
 - Avast verrouille des dossiers (handles fantomes) — impossible a supprimer sans reboot; utiliser tache planifiee
 - Avast self-defense (`aswSP.sys`) bloque TOUTE modif registre Avast meme avec gsudo admin → exclusions = GUI uniquement
 - Claude Desktop Cowork = VM Hyper-V (`cowork-vm`) via HCS, independante de Claude Code CLI
-- Cowork VM: `sessiondata.vhdx` = Lun 2 — JAMAIS auto-cree sur Windows (bug #24962), creer via `diskpart create vdisk type=expandable maximum=10240`
-- Cowork VM: `.auto_reinstall_attempted` bloque les retentatives — supprimer pour debloquer
-- Cowork VM: WinNat FONCTIONNE sur Win 11 Home — `New-NetNat` OK si HNS network supprime AVANT
-- Cowork VM: sequence fix reseau = Stop Claude → supprimer HNS network → `New-NetNat CoworkNAT 172.16.0.0/24` → relancer
-- Cowork VM: HCS JSON error 0xC037010D + guest timeout = bug Claude Desktop (issues #24962 #24974), non fixable cote user
-- Cowork VM: Avast probablement bloque vsock (WSAECONNABORTED) — desactiver temporairement pour tester
-- Cowork VM paths: `%LOCALAPPDATA%\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Roaming\Claude\vm_bundles\claudevm.bundle\`
-- Cowork logs: `%LOCALAPPDATA%\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Roaming\Claude\logs\cowork_vm_node.log`
+- Cowork VM: bugs #24962 #24974 (sessiondata.vhdx, HCS JSON error); fix reseau: Stop Claude → supprimer HNS network → New-NetNat CoworkNAT; Avast bloque vsock
+- Cowork VM paths: `%LOCALAPPDATA%\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Roaming\Claude\`
 - gsudo + powershell depuis Git Bash: `$_` se fait manger → toujours passer par un fichier `.ps1`
 - Ruby native gems: need MSYS2 ucrt64 toolchain + make — PATH: `/c/Ruby33-x64/bin:/c/msys64/ucrt64/bin:/c/msys64/usr/bin`
 - Composer: `curl --ssl-no-revoke` pour telecharger `composer.phar` → wrapper bash dans `~/bin/composer`
@@ -145,7 +145,7 @@ architect, autonomous, brainstorm, quality
 - Hardhat 3.x: `defineConfig` + `plugins: [toolbox]` (NOT `import` side-effects); `hardhat-toolbox-viem` (NOT `hardhat-toolbox`); `node:test` (NOT mocha); `"type": "module"` required; `--init` is interactive (manual setup in non-interactive shells)
 - Loop-detector hook: 3 detectors (consecutive repeats, ping-pong A↔B, context exhaustion 80/120 calls); skip Read/Grep/Glob; accumulates session stats in `$TEMP/claude-session-stats.json`
 - security-audit command: 6 scopes (deps, secrets, owasp, hardening, **host**, all) — `host` audits machine-level security (PATH, firewall, BitLocker, MCP configs, SSH keys)
-- Session-memory hook: Stop event, consumes stats from loop-detector, saves structured summary (tools, files modified/read, duration, errors) to `memory/sessions/`; auto-cleanup >30 days
+- Session-memory hook: Stop event, consumes stats from loop-detector, saves structured summary to `memory/sessions/`; auto-cleanup >7 days (was 30)
 - mcporter: `mcporter list`, `mcporter call <server.tool> key=value` — debug MCP servers sans passer par Claude Code
 - jq 1.8.1: winget installe dans WinGet/Packages/ (pas dans PATH Git Bash) → wrapper `~/bin/jq`
 - OpenClaw skills analysis (2026-02-24): 52 skills scanned, 7 Tier 1 identified; adopted session-stats + mcporter + session-analyzer pattern
@@ -153,12 +153,12 @@ architect, autonomous, brainstorm, quality
 - Oxlint: `oxlint file.js` — 30ms for 93 rules on 16 threads; complement to ESLint (not replacement)
 - tsgo: `tsgo --noEmit` for fast typecheck; preview status, fall back to `tsc` for production
 - pnpm minimumReleaseAge: `.npmrc` config, pnpm v10+ only (ignored by npm)
-- secret-scanner.py only scans on `git commit` — Write/Edit pass through silently
+- secret-scanner.py only scans on `git commit` — matcher changed to `Bash` only (was Write|Edit|Bash wastefully)
 - GitHub backups: `arnwaldn/claude-code-config` (with `install.sh` portable installer) + `arnwaldn/project-templates`
 - settings.json portability: hook commands use `$HOME/.claude/hooks/...` — Claude Code's hook runner expands `$HOME` correctly; direct Bash test with `node "$HOME/..."` fails (Git Bash POSIX→Windows path issue) but actual hooks work fine
 - git-guard whitelist: checks `any(repo in command for repo in BACKUP_REPOS)` — detects repo name in the Bash command string (cd path or remote URL)
 - ToolSearch: `+keyword` cherche dans les DESCRIPTIONS, pas les noms — pour MCP tools, TOUJOURS `select:mcp__server__tool_name`
-- filesystem MCP: utilise CWD comme allowed dir (pas l'argument) quand lance depuis System32 → utiliser desktop-commander a la place
+- filesystem MCP: retired (CWD bug) — desktop-commander is the replacement
 - fetch MCP (`@anthropic-ai/mcp-server-fetch`) n'existe PAS sur npm — supprime de .claude.json; WebFetch built-in suffit
 - greptile plugin: OAuth 404 — necessite re-authentification; API key retiree de settings.local.json (etait en clair)
 - Modes = fichiers `.md` (pas `.yml`) dans `~/.claude/modes/`
@@ -169,12 +169,29 @@ architect, autonomous, brainstorm, quality
 - Loop-detector bug fix: `history.push()` DOIT etre APRES detection, sinon ping-pong jamais declenche (currentHash === lastHash toujours vrai)
 - B12 MCP: npm 404 (pas publie) → clone GitHub `b12io/website-generator-mcp-server` dans `~/Projects/tools/`; necessite `"type": "module"` dans package.json; 1 tool `generate_website(name, description)` → URL signup B12; aussi DXT extension (manifest.json); integre dans 8 fichiers (autonomous-workflow, scaffold, patterns, INDEX.md, install.sh, claude.json.template, /website command, .claude.json); mcporter test OK
 - "Integration intelligente" = pas juste config MCP, mais tisser dans workflows (auto-detection), commands (discoverabilite), templates (cross-refs), infra (portabilite)
-- Claude Code v2.1.62: update from 2.1.49 fixes 21 plugin manifest errors (Unrecognized keys: category, source, strict, logo)
-- MCP cmd /c wrapper: all 10 npx-based servers wrapped with `cmd /c npx` for Windows compatibility (.claude.json)
-- GITHUB_PERSONAL_ACCESS_TOKEN: added to settings.local.json env (fixes github plugin MCP auth error)
-- MCP context bloat: ~133K tokens from tool definitions (Make=32K, Canva=10K, github=9K, desktop-commander=9K) — monitor, cannot reduce without removing servers
-- WebMCP optimized (5 phases complete): forked to `~/Projects/tools/webmcp-optimized/`; P1: server.js 694→368 lines (RESPONSE_EXTRACTORS map, sendRequest helper, exponential backoff); P2: websocket-server.js 1440→161 lines (split into cli.js, daemon.js, http-server.js, ws-bridge.js 681 lines); P3: pending request cleanup on disconnect, drainPendingRequests on shutdown; P4: CORS default localhost (env WEBMCP_CORS_ORIGINS); P5: 25 tests (node:test) — config, http-server, tokens, ws-bridge integration (tool register/list/call forwarding); npm build broken on Windows (esbuild setRawMode) → run from source; .claude.json uses `node C:/Users/arnau/Projects/tools/webmcp-optimized/src/websocket-server.js --mcp`
+- Claude Code v2.1.63: updated from 2.1.62; features: /simplify, /batch, auto-memory, PostToolUseFailure/ConfigChange/WorktreeCreate hook events
+- MCP cmd /c wrapper: all npx-based servers wrapped with `cmd /c npx` for Windows (.claude.json)
+- MCP context bloat: ~133K tokens from tool definitions — ToolSearch compresses to ~8-12K effective
+- WebMCP optimized: forked to `~/Projects/tools/webmcp-optimized/`; run from source (esbuild broken on Windows)
+- SkillsMP audit (2026-02-28): 770+ skills evaluated, 28 installed, 4 rejected for conflicts, 500+ rejected for redundancy
+- settings.json duplicate hooks: JSON ne supporte pas les cles dupliquees — 2e bloc ecrase le 1er silencieusement
+- GitHub PAT: retire de .claude.json; herite du shell via `export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"` dans .bashrc; retire aussi de settings.local.json env
+- Skills standalone: auto-decouverte dans ~/.claude/skills/*/SKILL.md, 0 context cost au repos, 16K char budget descriptions
+- Skill auto-invocation: documente comme non garanti (~70-80%); /skill-name = 100% fiable (fallback)
+- SkillSync MCP (@stranzwersweb2/skillsync-mcp): security scanner; "path traversal" warnings = info (skills normaux)
+- autonomous-workflow.md: 40 NLP triggers FR+EN pour routage contextuel skill/agent/MCP
+- claude-scheduler: daemon Node.js PM2 (`~/.claude/scheduler/`), tasks JSON (`~/.claude/schedules/`), SQLite history, HTTP :4820, cron+events+webhook, Gmail MCP notifs; `pm2 start/stop/logs claude-scheduler`
+- Flask+Alembic production: NEVER run db.create_all() inside create_app() — use separate CLI command AFTER migrations (see `memory/gigroute-project.md`)
+- google-workspace MCP: `taylorwilsdon/google_workspace_mcp` v1.14.1 cloné dans `~/Projects/tools/`; 83 outils (extended tier), 12 services Google; commande = uv.exe direct (pas cmd /c); **OAuth ACTIF** (4 calendriers, docs OK); remplace ancien gmail MCP
+- Audit 2026-03-02: secrets migres .claude.json → .bashrc (GOOGLE_OAUTH_CLIENT_SECRET, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY); MCP servers heritent env vars du shell parent (meme pattern que GITHUB_PERSONAL_ACCESS_TOKEN); 3 HTTP dupliques (figma/webflow/make) = fallback des remotes claude.ai; firebase needs `firebase login`; greptile OAuth 404 = upstream
+- uv 0.10.7: winget `astral-sh.uv`, exe dans WinGet/Packages/, wrappers bash `~/bin/uv` et `~/bin/uvx`
 - MEMORY.md must stay <200 lines (truncated after)
+
+## Active Projects
+- **GigRoute**: Flask SaaS tour manager — LIVE on Render, beta-ready (details: `memory/gigroute-project.md`)
+- **Maestro No-Code P12**: Formation hackathon 23 mars → jury 6 avril (details: `memory/maestro-formation.md`)
+  - MCP OK: Airtable (7 bases), Notion (bot "claude créa"), Google Workspace (OAuth actif) | Figma OK (remote), Webflow OK (remote), Make (remote only)
+  - Vidéos Wistia sans sous-titres — contenu textuel extrait (corrigés, exercices, ressources)
 
 ## Preferences
 - Output style: Learning mode

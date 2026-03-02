@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "prix_min_projet": 50000,
+    "prix_max_projet": 150000,
+    "cible_projets_an3": "20-30 projets/an",
+    "revenus_cible_an3": 3000000
+  },
+  "projets_en_cours": [],
+  "projets_termines": [],
+  "prospects": [],
+  "stats": {
+    "total_projets_2026": 0,
+    "ca_agence_2026": 0,
+    "panier_moyen": 0
+  },
+  "updated_at": "2026-03-02"
+}
