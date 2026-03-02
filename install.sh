@@ -76,16 +76,16 @@ check_prereqs() {
 confirm_install() {
     echo -e "${BOLD}This will install:${NC}"
     echo "  - 17 hooks       (PreToolUse, PostToolUse, Stop, SessionStart)"
-    echo "  - 22 commands     (/scaffold, /security-audit, /tdd, /website, /webmcp, etc.)"
+    echo "  - 23 commands     (/scaffold, /security-audit, /tdd, /website, /webmcp, /schedule, etc.)"
     echo "  - 34 agents       (architect, phaser-expert, ml-engineer, geospatial, etc.)"
-    echo "  - 28 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, etc.)"
+    echo "  - 29 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, etc.)"
     echo "  - 4 modes         (architect, autonomous, brainstorm, quality)"
-    echo "  - 27 rules        (coding-style, security, resilience, decision-principle, etc.)"
+    echo "  - 26 rules        (coding-style, security, resilience, decision-principle, etc.)"
     echo "  - 56 plugins      (ECC, code-review, figma, firebase, stripe, linear, etc.)"
     echo "  - 1 script        (context-monitor.py statusline)"
     echo "  - 184 templates   (scaffolds + references from project-templates)"
     echo "  - settings.json   (hooks, plugins, full autonomy permissions)"
-    echo "  - MCP servers     (.claude.json with 16 servers incl. B12, WebMCP, SkillSync)"
+    echo "  - MCP servers     (.claude.json with 14 servers incl. B12, WebMCP, SkillSync)"
     echo "  - bin wrappers    (gsudo for admin elevation)"
     echo "  - acpx config     (headless ACP sessions)"
     echo ""
@@ -213,9 +213,9 @@ configure_mcp() {
     home_path=$(cd "$HOME" && pwd -W 2>/dev/null || pwd)
     home_path="${home_path//\\/\/}"  # Normalize to forward slashes
 
-    # On macOS/Linux, replace "cmd", "/c" wrapper with direct npx calls
+    # On macOS/Linux, replace "cmd", "/c" wrapper with direct calls
     if [ "$OS" != "windows" ]; then
-        # Remove cmd /c wrapper: "cmd" → "npx", remove "/c" arg, merge args
+        # Remove cmd /c wrapper: "cmd" → actual command, remove "/c" arg
         python3 -c "
 import json, sys
 with open(sys.argv[1]) as f:
@@ -223,8 +223,8 @@ with open(sys.argv[1]) as f:
 for name, srv in data.get('mcpServers', {}).items():
     if srv.get('command') == 'cmd' and srv.get('args', [''])[0] == '/c':
         args = srv['args'][1:]  # remove /c
-        if args and args[0] in ('npx', 'npm'):
-            srv['command'] = args[0]
+        if args and args[0] in ('npx', 'npm', 'python', 'python3'):
+            srv['command'] = 'python3' if args[0] == 'python' else args[0]
             srv['args'] = args[1:]
 with open(sys.argv[2], 'w') as f:
     json.dump(data, f, indent=2)
@@ -239,13 +239,13 @@ with open(sys.argv[2], 'w') as f:
         sed -i '' \
             -e "s|REPLACE_WITH_YOUR_GITHUB_PAT|${github_pat}|g" \
             -e "s|REPLACE_WITH_HOME_DIR|${home_path}|g" \
-            -e "s|REPLACE_WITH_YOUR_PROJECT_REF|YOUR_PROJECT_REF|g" \
+
             "$CLAUDE_JSON"
     else
         sed -i \
             -e "s|REPLACE_WITH_YOUR_GITHUB_PAT|${github_pat}|g" \
             -e "s|REPLACE_WITH_HOME_DIR|${home_path}|g" \
-            -e "s|REPLACE_WITH_YOUR_PROJECT_REF|YOUR_PROJECT_REF|g" \
+
             "$CLAUDE_JSON"
     fi
 

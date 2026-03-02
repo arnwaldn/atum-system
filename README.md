@@ -17,15 +17,15 @@ bash install.sh
 | Category | Count | Description |
 |----------|-------|-------------|
 | Hooks | 17 | Secret scanner, git guard, loop detector, auto-formatter, failure logger, config guard, etc. |
-| Commands | 22 | `/scaffold`, `/security-audit`, `/tdd`, `/deploy`, `/compliance`, `/website`, `/webmcp`, etc. |
+| Commands | 23 | `/scaffold`, `/security-audit`, `/tdd`, `/deploy`, `/compliance`, `/website`, `/webmcp`, `/schedule`, etc. |
 | Agents | 34 | Architect, phaser-expert, ml-engineer, blockchain-expert, geospatial-expert, compliance-expert, etc. |
-| Skills | 28 | PDF, DOCX, XLSX, PPTX, DDD, clean-arch, RAG, Mermaid, supply-chain audit, prompt-architect, etc. |
+| Skills | 29 | PDF, DOCX, XLSX, PPTX, DDD, clean-arch, RAG, Mermaid, supply-chain audit, prompt-architect, scheduler, etc. |
 | Modes | 4 | architect, autonomous, brainstorm, quality |
-| Rules | 27 | Coding style, security, testing, resilience, anti-hallucination, decision-principle (common + TS/Python/Go) |
+| Rules | 26 | Coding style, security, testing, resilience, anti-hallucination, decision-principle (common + TS/Python/Go) |
 | Scripts | 1 | Context monitor statusline |
-| MCP Servers | 16 | GitHub, Memory, Railway, Cloudflare, Context7, Gmail, B12, SkillSync, WebMCP, etc. |
+| MCP Servers | 14 | GitHub, Memory, Railway, Cloudflare, Context7, Gmail, B12, ATUM, SkillSync, WebMCP, etc. |
 | Plugins | 56 | ECC, Superpowers, Playwright, Firebase, Figma, Stripe, Linear, Pinecone, etc. |
-| Permissions | 57 | Full autonomy — Write, Edit, Task, Bash, Skill, WebSearch, all MCP auto-approved |
+| Permissions | 55 | Full autonomy — Write, Edit, Task, Bash, Skill, WebSearch, all MCP auto-approved |
 | Tools | 2 | gsudo (Windows admin elevation), acpx (headless ACP sessions) |
 
 ## Autonomy Model
@@ -34,7 +34,7 @@ Claude Code executes any action **without permission prompts** — Write, Edit, 
 
 | Hook | Protection |
 |------|-----------|
-| secret-scanner.py | Blocks hardcoded tokens/keys before any Write/Edit/Bash |
+| secret-scanner.py | Blocks hardcoded tokens/keys before git commit (Bash only) |
 | git-guard.py | Blocks push to main, rm -rf, force-push, enforces conventional commits |
 | lock-file-protector.js | Blocks direct modification of lock files |
 | file-backup | Creates .backup before every Edit |
@@ -51,9 +51,9 @@ Claude Code executes any action **without permission prompts** — Write, Edit, 
 hooks/              PreToolUse/PostToolUse/Stop/SessionStart hooks (17 files)
 commands/           Slash commands (/scaffold, /tdd, /deploy, /website, etc.)
 agents/             Specialized agents (34 domain experts)
-skills/             On-demand skills (28: pdf, docx, DDD, RAG, Mermaid, etc.)
+skills/             On-demand skills (29: pdf, docx, DDD, RAG, Mermaid, scheduler, etc.)
 modes/              Custom modes (architect, autonomous, brainstorm, quality)
-rules/              Global rules (common/, typescript/, python/, golang/)
+rules/              Global rules (26 files: common/, typescript/, python/, golang/)
 scripts/            Helper scripts (context-monitor.py)
 bin/                Tool wrappers for Git Bash (gsudo, jq, etc.)
 acpx/               acpx headless session config
@@ -96,7 +96,7 @@ Config: `~/.acpx/config.json` (defaultAgent: claude, approve-all)
    Figma, Notion, Supabase, Vercel, Canva, Stripe, Gamma, Make, Zapier, etc.
 4. **First gsudo use** (Windows) will trigger one UAC prompt, then cached for 1 hour
 
-## Skills (28)
+## Skills (29)
 
 On-demand skills loaded into context only when triggered (zero cost when idle):
 
@@ -113,6 +113,7 @@ On-demand skills loaded into context only when triggered (zero cost when idle):
 | UI/A11y | refactoring-ui, claude-a11y-skill |
 | Testing | property-based-testing |
 | Tooling | mcp-builder, powershell-windows, context-engineering-kit, audit-flow |
+| Automation | scheduler |
 
 ## NLP Auto-Routing
 

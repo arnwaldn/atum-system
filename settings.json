@@ -20,8 +20,7 @@
       "mcp__context7__*",
       "mcp__magic__*",
       "mcp__desktop-commander__*",
-      "mcp__filesystem__*",
-      "mcp__plugin_firebase_firebase__*",
+            "mcp__plugin_firebase_firebase__*",
       "mcp__plugin_playwright_playwright__*",
       "mcp__plugin_context7_context7__*",
       "mcp__plugin_greptile_greptile__*",
@@ -60,7 +59,7 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Write|Edit|Bash",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
