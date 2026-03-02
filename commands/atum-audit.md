@@ -59,12 +59,12 @@ Parse the user's argument to determine which operation to run:
 
 ```
 /atum-audit scan
-/atum-audit verify C:\Users\arnau\Projects\myapp\src\main.py
+/atum-audit verify ~/Projects/myapp/src/main.py
 /atum-audit status MyChatbot
 /atum-audit validate MyChatbot
 /atum-audit annex-iv MyChatbot
 /atum-audit violations
 /atum-audit sparql "SELECT ?s ?p ?o WHERE { ?s a atum:AISystem . ?s ?p ?o } LIMIT 10"
-/atum-audit init C:\Users\arnau\Projects\new-app
+/atum-audit init ~/Projects/new-app
 /atum-audit projects
 ```

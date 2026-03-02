@@ -31,6 +31,9 @@ projects/**/*.jsonl
 # Exclude UUID session directories (subagents, tool-results)
 projects/*/[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]-*/
 
+# === Auto-generated skills ===
+skills/learned/
+
 # === Python cache ===
 __pycache__/
 *.pyc
