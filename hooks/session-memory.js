@@ -11,7 +11,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const MAX_AGE_DAYS = 30;
+const MAX_AGE_DAYS = 7;
 const TEMP = process.env.TEMP || "/tmp";
 const STATS_FILE = path.join(TEMP, "claude-session-stats.json");
 

@@ -1,0 +1,26 @@
+{
+  "id": "atum-cfe",
+  "name": "Rappel CFE ATUM SAS",
+  "description": "Rappel annuel : payer la Cotisation Fonciere des Entreprises avant le 15 decembre",
+  "trigger": {
+    "type": "cron",
+    "cron": "0 9 1 12 *"
+  },
+  "prompt": "RAPPEL FISCAL ATUM SAS : La CFE (Cotisation Fonciere des Entreprises) est a payer avant le 15 decembre. Actions : 1) Verifier l'avis d'imposition CFE sur impots.gouv.fr 2) Verifier si exoneration applicable (1ere annee, zone franche) 3) Proceder au telepaiement avant la date limite. Montant estime : variable selon valeur locative.",
+  "cwd": "C:/Users/arnau",
+  "model": "haiku",
+  "maxBudgetUsd": 0.5,
+  "timeoutSeconds": 120,
+  "worktree": false,
+  "notify": {
+    "on": ["completion"],
+    "email": "arnaud.porcel@gmail.com",
+    "includeOutput": true
+  },
+  "enabled": true,
+  "retries": 0,
+  "retryDelaySeconds": 0,
+  "concurrencyGroup": "default",
+  "tags": ["atum", "fiscal", "annuel"],
+  "createdAt": "2026-03-02T22:00:00Z"
+}

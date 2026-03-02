@@ -1,0 +1,35 @@
+{
+  "id": "daily-health-check",
+  "name": "Daily Health Check",
+  "description": "Run system health check every weekday morning before work",
+  "trigger": {
+    "type": "cron",
+    "cron": "30 7 * * 1-5"
+  },
+  "prompt": "/health",
+  "cwd": "C:/Users/arnau",
+  "model": "haiku",
+  "maxBudgetUsd": 1,
+  "timeoutSeconds": 180,
+  "worktree": false,
+  "notify": {
+    "on": [
+      "failure"
+    ],
+    "email": "arnaud.porcel@gmail.com",
+    "includeOutput": true
+  },
+  "enabled": true,
+  "retries": 1,
+  "retryDelaySeconds": 30,
+  "concurrencyGroup": "default",
+  "tags": [
+    "health",
+    "daily"
+  ],
+  "createdAt": "2026-03-01T12:00:00Z",
+  "updatedAt": "2026-03-01T20:01:19.572Z",
+  "lastRunAt": "2026-03-01T20:01:19.567Z",
+  "lastRunStatus": "success",
+  "runCount": 5
+}
