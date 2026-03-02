@@ -54,6 +54,10 @@ function main() {
       }
     }
 
+    // Rotation: keep last 400 entries when exceeding 500
+    if (entries.length >= 500) {
+      entries = entries.slice(-400);
+    }
     entries.push(entry);
     fs.writeFileSync(LOG_FILE, JSON.stringify(entries, null, 2), 'utf8');
 

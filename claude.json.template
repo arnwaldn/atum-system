@@ -1,15 +1,7 @@
 {
+  "_comment": "Claude Code MCP Servers — Portable template. Replace placeholders before use.",
+  "_instructions": "REPLACE_WITH_YOUR_GITHUB_PAT → your GitHub Personal Access Token | REPLACE_WITH_HOME_DIR → your home directory (e.g. C:/Users/you or /Users/you)",
   "mcpServers": {
-    "supabase": {
-      "command": "cmd",
-      "args": [
-        "/c",
-        "npx",
-        "-y",
-        "@supabase/mcp-server-supabase@latest",
-        "--project-ref=REPLACE_WITH_YOUR_PROJECT_REF"
-      ]
-    },
     "memory": {
       "command": "cmd",
       "args": [
@@ -63,22 +55,13 @@
         "@magicuidesign/mcp@latest"
       ]
     },
-    "filesystem": {
-      "command": "cmd",
-      "args": [
-        "/c",
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "REPLACE_WITH_HOME_DIR"
-      ]
-    },
     "gmail": {
       "type": "stdio",
       "command": "cmd",
       "args": [
         "/c",
         "npx",
+        "-y",
         "@gongrzhe/server-gmail-autoauth-mcp"
       ],
       "env": {}
@@ -116,10 +99,10 @@
       "args": [
         "/c",
         "python",
-        "C:\\Users\\arnau\\Desktop\\agent-owl\\atum_mcp_server.py"
+        "REPLACE_WITH_HOME_DIR/Desktop/agent-owl/atum_mcp_server.py"
       ],
       "env": {
-        "ATUM_PROJECT_DIR": "C:\\Users\\arnau\\Desktop\\agent-owl"
+        "ATUM_PROJECT_DIR": "REPLACE_WITH_HOME_DIR/Desktop/agent-owl"
       }
     },
     "webmcp": {
