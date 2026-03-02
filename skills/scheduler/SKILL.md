@@ -96,11 +96,11 @@ When not specified by the user, apply these defaults:
 | `timeoutSeconds` | 180 for quick checks, 600 for audits, 900 for heavy work |
 | `maxBudgetUsd` | 1.00 for haiku tasks, 5.00 for sonnet, 10.00 for opus (context cache ~$0.25 minimum) |
 | `notify.on` | `["failure"]` for routine tasks, `["always"]` for important/weekly tasks |
-| `notify.email` | `arnaud.porcel@gmail.com` |
+| `notify.email` | `user@example.com` |
 | `notify.includeOutput` | `true` |
 | `retries` | 1 for quick tasks, 0 for heavy tasks |
 | `concurrencyGroup` | `"default"` for light tasks, `"heavy"` for audits/reviews |
-| `cwd` | Current project if in a project, `C:/Users/arnau` otherwise |
+| `cwd` | Current project if in a project, user home directory otherwise |
 | `worktree` | `false` by default |
 
 ## Prompt Mapping: User Intent → Claude Command
@@ -132,7 +132,7 @@ When not specified by the user, apply these defaults:
   "model": "haiku",
   "maxBudgetUsd": 0.10,
   "timeoutSeconds": 120,
-  "notify": { "on": ["failure"], "email": "arnaud.porcel@gmail.com", "includeOutput": true },
+  "notify": { "on": ["failure"], "email": "user@example.com", "includeOutput": true },
   "enabled": true, "retries": 1, "retryDelaySeconds": 30,
   "concurrencyGroup": "default", "tags": ["health", "daily"]
 }
@@ -149,7 +149,7 @@ When not specified by the user, apply these defaults:
   "model": "sonnet",
   "maxBudgetUsd": 0.50,
   "timeoutSeconds": 600,
-  "notify": { "on": ["always"], "email": "arnaud.porcel@gmail.com", "includeOutput": true },
+  "notify": { "on": ["always"], "email": "user@example.com", "includeOutput": true },
   "enabled": true, "retries": 0, "retryDelaySeconds": 0,
   "concurrencyGroup": "heavy", "tags": ["security", "weekly"]
 }
@@ -166,7 +166,7 @@ When not specified by the user, apply these defaults:
   "model": "sonnet",
   "maxBudgetUsd": 0.30,
   "timeoutSeconds": 300,
-  "notify": { "on": ["failure"], "email": "arnaud.porcel@gmail.com", "includeOutput": true },
+  "notify": { "on": ["failure"], "email": "user@example.com", "includeOutput": true },
   "enabled": true, "retries": 0, "retryDelaySeconds": 0,
   "concurrencyGroup": "default", "tags": ["tests", "ci"]
 }
@@ -183,7 +183,7 @@ When not specified by the user, apply these defaults:
   "model": "sonnet",
   "maxBudgetUsd": 0.50,
   "timeoutSeconds": 300,
-  "notify": { "on": ["always"], "email": "arnaud.porcel@gmail.com", "includeOutput": true },
+  "notify": { "on": ["always"], "email": "user@example.com", "includeOutput": true },
   "enabled": true, "retries": 0, "retryDelaySeconds": 0,
   "concurrencyGroup": "heavy", "tags": ["database", "migration"]
 }
