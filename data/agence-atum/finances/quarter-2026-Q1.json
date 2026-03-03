@@ -2,67 +2,39 @@
   "periode": "2026-Q1",
   "statut": "en_cours",
   "revenus_reels": {
-    "moteur_services": {
-      "agence_dev": 0,
-      "integrations_odoo": 0,
-      "formations_conseil": 0,
-      "sous_total": 0
-    },
-    "moteur_saas": {
-      "gigroute": 0,
-      "tradingbrain": 0,
-      "quick_summarize": 0,
-      "owl_eu_ai_act": 0,
-      "sous_total": 0
-    },
-    "moteur_satellites": {
-      "sites_niche_adsense": 0,
-      "affiliation": 0,
-      "sous_total": 0
-    },
-    "work_for_equity": {
-      "api_horodatage": 0,
-      "sous_total": 0
-    },
-    "ca_total": 0
+    "tourflow": 0,
+    "tradingbrain": 0,
+    "quick_summarize": 0,
+    "api_horodatage": 0,
+    "agence_dev": 0,
+    "autres_saas": 0
   },
   "charges_reelles": {
     "salaires_charges": 0,
     "marketing_acquisition": 0,
     "infrastructure_cloud_api": 0,
-    "odoo_sh": 0,
     "sous_traitance": 0,
-    "frais_generaux": 0,
-    "total": 0
+    "frais_generaux": 0
   },
-  "ebitda": 0,
-  "marge_ebitda_pct": 0,
   "tresorerie": {
     "debut": 1000,
     "fin": 0
   },
   "kpis": {
     "mrr": 0,
-    "arr": 0,
-    "clients_gigroute": 0,
+    "clients_tourflow": 0,
     "clients_tradingbrain": 0,
     "clients_quick_summarize": 0,
-    "clients_owl": 0,
-    "projets_agence_en_cours": 0,
-    "sites_satellites_actifs": 0,
     "churn_moyen_pct": 0,
     "cac_moyen": 0,
-    "ltv_moyen": 0,
-    "ltv_cac_ratio": 0
+    "ltv_moyen": 0
   },
   "variance_vs_budget": {
     "ca_variance": 0,
-    "ca_variance_pct": 0,
     "charges_variance": 0,
-    "charges_variance_pct": 0,
     "commentaire": ""
   },
   "evenements_cles": [],
   "notes": "Premier trimestre — societe en cours d'immatriculation",
-  "updated_at": "2026-03-03"
+  "updated_at": "2026-03-02"
 }

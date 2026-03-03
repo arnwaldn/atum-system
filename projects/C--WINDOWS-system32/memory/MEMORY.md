@@ -11,25 +11,25 @@
 - **Shell**: bash (MINGW64/Git Bash)
 - **Workspace**: `C:\Users\arnau\Projects\` (web, mobile, api, desktop, fullstack, tools, learning)
 
-## Claude Code Setup (updated 2026-03-03 — v2.1.63 + claude-scheduler + Happy Coder)
+## Claude Code Setup (updated 2026-03-02 — v2.1.63 + claude-scheduler)
 
 ### Summary
-- 6 config files, **37 agents**, 70 sub-agents, **26 commands**, 4 modes, 27 rules (+ 24 templates)
-- 32 hooks (18 scripts [9 JS + 9 PY] + 2 Notification + 2 inline + 13 ECC), 56 plugins (54 actifs / 2 inactifs), **149+ skills** (115 plugin + **34 standalone**)
-- **21 local** (.claude.json) + 1 local (.mcp.json) + 2 plugin + 23 remote claude.ai = **47 serveurs** | ❌ greptile (OAuth 404) | ⚠️ 3 HTTP dupliques (figma/webflow/make)
-- **Autonomie max**: **63 allow entries**, **84 NLP triggers** FR+EN (incl. mobile dev), Skill(*)+WebSearch(*)+ToolSearch(*) auto-permit
-- **Tools**: jq (winget), mcporter 0.7.3 (npm), gsudo 2.6.1 (winget), acpx 0.1.8 (npm), **happy-coder 0.13.0** (npm)
+- 6 config files, **36 agents**, 70 sub-agents, **25 commands**, 4 modes, 26 rules (+ 24 templates)
+- 31 hooks (17 scripts [8 JS + 9 PY] + 2 Notification + 2 inline + 13 ECC), 56 plugins (54 actifs / 2 inactifs), **147+ skills** (115 plugin + **32 standalone**)
+- **19 local** (.claude.json) + 1 local (.mcp.json) + 2 plugin + 23 remote claude.ai = **45 serveurs** | ❌ greptile (OAuth 404) | ⚠️ 3 HTTP dupliques (figma/webflow/make)
+- **Autonomie max**: **61 allow entries**, **58 NLP triggers** FR+EN, Skill(*)+WebSearch(*)+ToolSearch(*) auto-permit
+- **Tools**: jq (winget), mcporter 0.7.3 (npm), gsudo 2.6.1 (winget), acpx 0.1.8 (npm)
 - 10 langages, 20+ frameworks/outils, 184 templates + 10 references
 - **34/34 project types simulated and verified production-ready**
 - **Portable**: `settings.json` uses `$HOME` paths, `install.sh` cross-platform (Win/Mac/Linux)
 
-### Commands (26) — `~/.claude/commands/`
-**agence-atum**, atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, **happy**, health, migrate, optimize, prd, pre-deploy, **projet-automatisation**, review-fix, scaffold, **schedule**, security-audit, **session-analyzer**, setup-cicd, status, tdd, team, ultra-think, **webmcp**, **website**
+### Commands (25) — `~/.claude/commands/`
+**agence-atum**, atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, health, migrate, optimize, prd, pre-deploy, **projet-automatisation**, review-fix, scaffold, **schedule**, security-audit, **session-analyzer**, setup-cicd, status, tdd, team, ultra-think, **webmcp**, **website**
 
-### Agents (36 custom + 34 plugin/built-in = 70 sub-agents) — `~/.claude/agents/`
+### Agents (35 custom + 34 plugin/built-in = 69 sub-agents) — `~/.claude/agents/`
 - **Generalist**: architect-reviewer, codebase-pattern-finder, critical-thinking, database-optimizer, error-detective, technical-debt-manager, research-expert
 - **Game dev**: game-architect, phaser-expert, threejs-game-expert, unity-expert, godot-expert, networking-expert
-- **Mobile/Desktop**: flutter-dart-expert, expo-expert, tauri-expert, **happy-expert**
+- **Mobile/Desktop**: flutter-dart-expert, expo-expert, tauri-expert
 - **DevOps/Infra**: devops-expert, ci-cd-engineer
 - **AI/ML**: ml-engineer, data-engineer
 - **Security**: security-expert
@@ -44,8 +44,8 @@
 ### Modes (4) — `~/.claude/modes/`
 architect, autonomous, brainstorm, quality
 
-### Rules (27 global files) — `~/.claude/rules/`
-- common/ (15): anti-hallucination, autonomous-workflow (includes agent registry), coding-style, compliance, **decision-principle**, git-workflow, hooks, monorepo, patterns, performance, **resilience**, security, system-messages, testing, **whatsapp-persona**
+### Rules (26 global files) — `~/.claude/rules/`
+- common/ (14): anti-hallucination, autonomous-workflow (includes agent registry), coding-style, compliance, **decision-principle**, git-workflow, hooks, monorepo, patterns, performance, **resilience**, security, system-messages, testing
 - typescript/ (4): coding-style, patterns, security, testing
 - python/ (4): coding-style, patterns, security, testing
 - golang/ (4): coding-style, patterns, security, testing
@@ -53,7 +53,7 @@ architect, autonomous, brainstorm, quality
 - **Context budget**: ~7,700 tokens/session (~3.9% of 200K)
 
 ### Hooks — 29 effectifs, 17 fichiers, 3 sources
-- **Custom (17)**: secret-scanner, git-guard, lock-file-protector, file-backup, atum-session-start, atum-post-write, atum-compliance-check, auto-test-runner, dependency-checker, multi-lang-formatter, post-commit-quality-gate, **loop-detector** (PostToolUse), **session-memory** (Stop), **hindsight-session-retain** (Stop), **post-tool-failure-logger** (PostToolUse), **config-change-guard** (PostToolUse), **worktree-setup** (PostToolUse/Bash)
+- **Custom (16)**: secret-scanner, git-guard, lock-file-protector, file-backup, atum-session-start, atum-post-write, atum-compliance-check, auto-test-runner, dependency-checker, multi-lang-formatter, post-commit-quality-gate, **loop-detector** (PostToolUse), **session-memory** (Stop), **post-tool-failure-logger** (PostToolUse), **config-change-guard** (PostToolUse), **worktree-setup** (PostToolUse/Bash)
 - **Reserve (3)**: dangerous-command-blocker, conventional-commits-enforcer, prevent-direct-push
 - **Plugin ECC (13)**: git push reminder, .md blocker (regex fixed: .md only), suggest-compact, pre-compact, session-start, PR URL logger, build-analysis, auto-format, typecheck, console.log warn, check console.log, session-end, evaluate-session
 
@@ -65,16 +65,15 @@ architect, autonomous, brainstorm, quality
 - `~/.claude/scripts/context-monitor.py` — StatusLine
 - `~/.claude/projects/.../memory/MEMORY.md` — Memoire persistante
 
-### MCP Servers (44/45 OK, updated 2026-03-03)
-- **Local (19 OK)**: github, memory, sequential-thinking, railway, cloudflare-docs, context7, magic, **google-workspace** (83 outils, 12 services Google, OAuth ACTIF), desktop-commander, claude-in-chrome, b12, **webmcp**, **skillsync**, atum-audit, **notion** (env var heritage), **airtable** (env var heritage), **make** (HTTP OAuth), **hindsight-shared** (HTTP, bank atum), **hindsight-personal** (HTTP, bank arnaud)
+### MCP Servers (42/43 OK, updated 2026-03-02)
+- **Local (17 OK)**: github, memory, sequential-thinking, railway, cloudflare-docs, context7, magic, **google-workspace** (83 outils, 12 services Google, OAuth ACTIF), desktop-commander, claude-in-chrome, b12, **webmcp**, **skillsync**, atum-audit, **notion** (env var heritage), **airtable** (env var heritage), **make** (HTTP OAuth)
 - **No-code local (3 — dupliques remotes)**: figma (HTTP mcp.figma.com = doublon remote claude.ai/Figma), webflow (HTTP mcp.webflow.com = doublon remote claude.ai/Webflow), make (HTTP mcp.make.com = doublon remote claude.ai/Make) — servent de fallback/redondance, pas d'outils propres
 - **Plugin (2/3 OK)**: firebase (⚠️ needs `firebase login`), playwright | ❌ greptile (OAuth 404 upstream)
 - **Remote claude.ai (23 OK)**: Canva, Cloudflare, Cloudinary, Context7, Excalidraw, Figma, Gamma, Gmail, Google Calendar, GraphOS, Hugging Face, Invideo, Jam, Learning Commons KG, Make, Microsoft Learn, Netlify, Notion, Stripe, Supabase, Vercel, Webflow, Zapier
-- **Hindsight (shared memory)**: HF Space `Arnwald84/atum-hindsight` (Docker, cpu-basic, public); LLM=Gemini 2.5 Flash; banks: atum/arnaud/pablo/wahid; 3 directives; 5 mental models; **seeded: 22/90 docs** (cpu-basic limits, re-seeding); MCP at /mcp/{bank}/; env: HINDSIGHT_URL, HINDSIGHT_API_KEY, ATUM_USER, GEMINI_API_KEY; **Persistent storage (E2E VERIFIED 2026-03-03)**: pg_dump/pg_restore via HF Dataset `Arnwald84/atum-hindsight-backup` (private); entrypoint.sh: start Hindsight → restore → restart Hindsight (critical: API must restart to see pg_restore data); backup every 6h + SIGTERM handler; history rotation 5 snapshots; client: health-check (*/30min, auto-reseed), export (*/6h, JSONL); pg0 PG 18.1.0 + pgvector 0.8.1, data in `~/.pg0/`, NOT HINDSIGHT_DATA_DIR; **Key learnings**: `set -e` kills on non-zero exit → use `cmd || var=$?` pattern; must restart Hindsight after pg_restore (cached state); env secrets: HF_TOKEN, HF_BACKUP_REPO; git-guard whitelist: atum-hindsight; deploy repo: `~/Projects/tools/atum-hindsight-deploy/hf-space-repo/`
-- **Secrets**: migres de .claude.json → .bashrc env vars (GOOGLE_OAUTH_CLIENT_SECRET, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY, HINDSIGHT_API_KEY) — heritage automatique par subprocess
+- **Secrets**: migres de .claude.json → .bashrc env vars (GOOGLE_OAUTH_CLIENT_SECRET, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY) — heritage automatique par subprocess
 - **Retires**: filesystem (CWD bug→desktop-commander), supabase local (placeholder), clickhouse, cloudflare-workers-*
 
-### Standalone Skills (31) — `~/.claude/skills/`
+### Standalone Skills (29) — `~/.claude/skills/`
 - **Documents**: pdf, docx, xlsx, pptx
 - **Architecture**: domain-driven-design, clean-architecture, system-design, ddia-systems
 - **Reasoning**: the-fool, spec-miner, context-engineering-kit
@@ -93,29 +92,17 @@ architect, autonomous, brainstorm, quality
 - **Automation**: scheduler
 - **Release**: release-notes
 - **Admin**: agence-atum
-- **Browser/TUI**: agent-browser (headless Playwright CLI), terminal-emulator (TUI testing)
 
-### Happy Coder (mobile/remote access) — v0.13.0
-- **CLI**: `happy` (wrapper claude), `happy codex`, `happy-mcp` (Codex MCP bridge only)
-- **Config**: `~/.happy/` (settings.json, access.key, daemon.state.json, logs/)
-- **Server**: cloud (app.happy.engineering), E2E encrypted (AES-256-GCM / XSalsa20-Poly1305)
-- **Protocol**: JSON HTTP `/v1`-`/v2` + Socket.IO `/v1/updates`
-- **Integration**: command `/happy` (8 sous-commandes), agent happy-expert, 2 skills, 5 NLP triggers
-- **Note**: `happy` needs interactive TTY — raw mode error in non-interactive shells is normal
-- **App mobile**: iOS App Store + Android Play Store
-- **happy-mcp**: Codex MCP stdio bridge, NOT a Claude Code MCP server
-
-### Agence ATUM SAS — Systeme Admin (v3.0 BP V2, 2026-03-03)
-- **Workspace**: `~/Documents/ATUM-Agency/` — structure numerotee 01-12 + templates/ + _archive/
-  - `01-fondateurs/` (strategie/, BP V2), `02-identite-visuelle/` (4 logos PNG + charte PDF), `03-gouvernance/` (pv, convocations, conventions), `04-finances/` (rapports-trimestriels, bilans), `05-facturation/` (devis, factures, relances), `06-contrats/` (prestations, nda, freelances, cgv), `07-clients/` (_template-client), `08-prospects/` (pipeline.md), `09-equipe/` (registre, timetracking, frais), `10-conformite/` (rgpd, assurances), `11-produits/` (strategie), `12-veille/`
-- **Identite visuelle OBLIGATOIRE**: TOUS les documents generes (devis, factures, contrats, PV, rapports, relances) doivent apposer le logo ATUM. Logos dans `02-identite-visuelle/` (transparent=defaut, blanc=fond clair, noir=fond sombre, icone=favicon)
-- **Skill**: SKILL.md + 6 references — BP V2 (3 moteurs, bootstrap, "le produit EST la demo")
-- **Command**: `/agence-atum` — 20 sous-commandes (+odoo, satellites, strategy, branding)
-- **Data store JSON**: `~/.claude/data/agence-atum/` — 16 JSON (+ odoo-infrastructure.json)
-- **Config locale**: `~/Documents/ATUM-Agency/atum.local.md` — alimente depuis societe.json (racine workspace)
-- **Architecture double**: Data store JSON (calculs/KPIs) + Workspace ATUM-Agency (documents/humains)
-- **Google Drive backup** (OBLIGATOIRE): Apres TOUTE modification admin ATUM (documents, fichiers, structure), synchroniser sur Google Drive `ATUM SAS/` (meme arborescence 01-12). Utiliser `mcp__google-workspace__create_drive_file` (fileUrl file://) pour upload, `update_drive_file` pour deplacements. Details dans `memory/drive-atum.md`
-- **RGPD**: 10 traitements (T-001 a T-010, T-010=Hindsight memoire institutionnelle)
+### Agence ATUM SAS — Systeme Admin (v2.0, 2026-03-02)
+- **Skill**: `~/.claude/skills/agence-atum/SKILL.md` + 6 references (statuts-resume, business-plan-targets, templates-catalog, facturation-regles, syntec-grille, rgpd-guide)
+- **Command**: `/agence-atum` — 16 sous-commandes (dashboard, finance, legal, billing, contracts, compliance, frais, products, clients, equity, team, docs, sync, init, help)
+- **Agent**: `agence-atum-expert` — gouvernance, finances, facturation, contrats, RH, RGPD, pipeline, obligations
+- **Data store**: `~/.claude/data/agence-atum/` — 15 JSON (societe, actionnariat, budget, quarter, produits, pipeline, participations, obligations, registre, compteurs, contrats/registre, contrats/cgv, equipe, rgpd/registre-traitements, assurances)
+- **Templates**: 13 modeles (pv-ordinaire, pv-extraordinaire, convocation, rapport-trimestriel, convention-reglementee, fiche-projet, devis, facture, relance, contrat-prestation, nda, cgv, contrat-freelance)
+- **Directories**: facturation/devis/, facturation/factures/, contrats/, timetracking/, rgpd/, frais/
+- **Scheduler**: 7 taches (ag-annuelle, info-trim, declaration-is, tva, relance-factures, cfe, dsn)
+- **NLP triggers**: 26 patterns FR dans autonomous-workflow.md
+- **MCP integrations**: Google Workspace (Gmail, Calendar, Sheets, Docs), Notion, skill /docx pour DOCX
 
 ### ATUM/OWL (EU AI Act) v2.0.0 — 166/166 tests, 17/17 functional checks
 - **Module**: `atum_audit` at `~/Desktop/agent-owl/` | rdflib 7.6.0, pyshacl 0.31.0, mcp 1.23.3
@@ -198,8 +185,6 @@ architect, autonomous, brainstorm, quality
 - google-workspace MCP: `taylorwilsdon/google_workspace_mcp` v1.14.1 cloné dans `~/Projects/tools/`; 83 outils (extended tier), 12 services Google; commande = uv.exe direct (pas cmd /c); **OAuth ACTIF** (4 calendriers, docs OK); remplace ancien gmail MCP
 - Audit 2026-03-02: secrets migres .claude.json → .bashrc (GOOGLE_OAUTH_CLIENT_SECRET, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY); MCP servers heritent env vars du shell parent (meme pattern que GITHUB_PERSONAL_ACCESS_TOKEN); 3 HTTP dupliques (figma/webflow/make) = fallback des remotes claude.ai; firebase needs `firebase login`; greptile OAuth 404 = upstream
 - uv 0.10.7: winget `astral-sh.uv`, exe dans WinGet/Packages/, wrappers bash `~/bin/uv` et `~/bin/uvx`
-- Happy Coder v0.13.0: `npm install -g happy-coder`; Ink TUI; `happy-mcp` = Codex MCP bridge; agent-browser = headless CLI complement to chrome
-- Hindsight shared memory (DEPLOYED 2026-03-03): Docker `ghcr.io/vectorize-io/hindsight:latest` (full image, NOT slim — slim lacks sentence-transformers); local Docker + Cloudflare Quick Tunnel (HTTPS, URL changes each restart); Groq free tier LLM; 4 banks (atum/arnaud/pablo/wahid); 23 docs, 297 facts, 29K links, 5 mental models; API v2: retain=`POST /memories` with `{items:[{content,context,document_id}]}`, recall=`POST /memories/recall` with `{query}` → `{results:[]}`, banks=`PUT /banks/{id}`; env vars: HINDSIGHT_URL + HINDSIGHT_API_KEY + ATUM_USER + GROQ_API_KEY dans .bashrc; deploy dir: `~/Projects/tools/atum-hindsight-deploy/` (docker-compose.yml + start-hindsight.sh); hooks: hindsight-session-retain.js (Stop) + atum-post-write.py (retain workspace files); MCP: hindsight-shared + hindsight-personal dans .claude.json; RGPD: T-010
 - MEMORY.md must stay <200 lines (truncated after)
 
 ## Active Projects

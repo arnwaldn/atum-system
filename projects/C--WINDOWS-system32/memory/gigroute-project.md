@@ -49,16 +49,6 @@ initial → ... → a8b0c2d4e6f8 → b9c1d3e5f7a9 (subscriptions/billing)
 ## Smoke-Tested Pages (2026-03-02, all 200 OK)
 Dashboard, Bands, Venues, Tours, Guestlist, Payments, Calendar, Reports, Invoices, Billing, Documents, Settings
 
-## Mobile Transformation (2026-03-03)
-- **Objectif**: App Store (iOS) + Google Play (Android) via Expo/React Native
-- **Plan detaille**: `~/.claude/plans/purrfect-purring-neumann.md`
-- **API gap**: ~30% couverture actuelle (13 GET endpoints), besoin ~48 CRUD endpoints
-- **Effort estime**: 76-100 jours (5 chantiers), 12-14 semaines en parallele
-- **Stack mobile**: Expo SDK 55, expo-router, tanstack-query, zustand, nativewind
-- **Toolchain installe**: EAS CLI 18.0.6, Android SDK 34, Watchman, Stripe CLI 1.37.2
-- **Projet mobile**: `~/Projects/mobile/gigroute/` (a creer)
-- **Pas de Mac**: EAS Build cloud pour iOS builds
-
 ## Git History (latest)
 - `d19747a` fix: separate db.create_all() from Alembic to fix PostgreSQL deploy
 - `e2b0c4c` fix: use dialect-agnostic migration helpers and ensure tables in production

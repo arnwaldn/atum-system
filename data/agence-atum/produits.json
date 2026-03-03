@@ -1,54 +1,10 @@
 {
-  "modele_revenus": {
-    "description": "3 moteurs de revenus complementaires (BP V2, mars 2026)",
-    "moteurs": [
-      {
-        "nom": "Services",
-        "type": "cash_immediat",
-        "description": "Agence dev, integrateurs Odoo, audits, formations",
-        "role": "Genere du cash immediat pour financer la croissance"
-      },
-      {
-        "nom": "SaaS",
-        "type": "mrr_recurrent",
-        "description": "GigRoute, TradingBrain, Quick Summarize, OWL",
-        "role": "Revenus recurrents mensuels (MRR), valorisation long terme"
-      },
-      {
-        "nom": "Sites Satellites",
-        "type": "revenus_passifs",
-        "description": "Sites de niche monetises via AdSense et affiliation",
-        "role": "Revenus passifs complementaires, SEO, visibilite marque"
-      }
-    ]
-  },
-  "strategie_commerciale": {
-    "nom": "Le produit EST la demo",
-    "description": "On ne vend pas une promesse, on montre le resultat. Le prospect recoit un apercu fonctionnel de son produit AVANT de payer.",
-    "processus": [
-      "1. Generer une V1 personnalisee pour le prospect (site, audit, app, etc.)",
-      "2. Heberger sur URL temporaire",
-      "3. Envoyer le lien de preview (pas un email commercial classique)",
-      "4. Bouton 'Acheter et deployer' (Stripe integration)",
-      "5. Auto-deploiement sur domaine client apres paiement"
-    ],
-    "applications": [
-      { "vertical": "Sites vitrines", "demo": "Site V1 genere avec branding prospect, URL temp, bouton deploy" },
-      { "vertical": "OWL (EU AI Act)", "demo": "Pre-scan automatique + mini-rapport gratuit + bouton audit complet" },
-      { "vertical": "Odoo", "demo": "Instance pre-configuree avec nom/logo/catalogue du prospect" },
-      { "vertical": "Apps mobiles/SaaS", "demo": "Prototype interactif avec branding prospect, bouton essai" },
-      { "vertical": "Formation/E-learning", "demo": "Quiz personnalise + score + bouton deploiement formation complete" }
-    ]
-  },
   "produits": [
     {
-      "nom": "GigRoute",
-      "ancien_nom": "TourFlow",
-      "description": "SaaS gestion de tournees et groupes pour artistes et organisateurs",
+      "nom": "TourFlow",
+      "description": "Gestion de groupes et tournees",
       "statut": "production",
-      "url_prod": "https://gigroute.onrender.com",
-      "stack": "Flask + PostgreSQL + Render",
-      "cible": "Artistes, managers, organisateurs de tournees, agences de booking",
+      "cible": "Agences de voyage, tour operators",
       "prix_min": 49,
       "prix_max": 99,
       "prix_moyen": 100,
@@ -58,12 +14,12 @@
       "ltv_cible": 3600,
       "cibles_an": { "an1": 200, "an2": 400, "an3": 600 },
       "arr_cible_an3": 720000,
-      "concurrents": ["Rezdy", "TourCMS", "Master Tour"],
-      "differentiation": "IA predictive + Prix -40% + UX moderne"
+      "concurrents": ["Rezdy", "TourCMS"],
+      "differentiation": "IA predictive + Prix -40%"
     },
     {
       "nom": "TradingBrain",
-      "description": "Assistant IA de trading conversationnel",
+      "description": "Assistant IA de trading",
       "statut": "finalisation",
       "lancement": "2026-Q2",
       "cible": "Traders particuliers et semi-pro",
@@ -94,52 +50,24 @@
       "arr_cible_an3": 299400,
       "concurrents": ["Notion AI", "ChatGPT"],
       "differentiation": "Specialise resume + Extension native"
-    },
-    {
-      "nom": "OWL",
-      "description": "Audit de conformite EU AI Act — SaaS + service",
-      "statut": "production",
-      "stack": "Python + rdflib + pyshacl + MCP server",
-      "cible": "Entreprises deployant de l'IA en UE (PME, ETI, grands comptes)",
-      "prix_min": 99,
-      "prix_max": 999,
-      "prix_moyen": 299,
-      "tiers": ["Scan Express", "Audit Standard", "Audit Premium + Suivi"],
-      "clients_actuels": 0,
-      "churn_mensuel_cible_pct": 3,
-      "cac_cible": 100,
-      "ltv_cible": 3600,
-      "cibles_an": { "an1": 100, "an2": 300, "an3": 600 },
-      "arr_cible_an3": 360000,
-      "concurrents": ["Holistic AI", "Credo AI", "IBM OpenPages"],
-      "differentiation": "Pre-scan gratuit automatique + rapport instantane + suivi continu IA",
-      "demo_strategy": "Pre-scan du systeme IA du prospect → mini-rapport gratuit → bouton audit complet payant"
     }
   ],
-  "sites_satellites": {
-    "description": "Reseau de sites de niche monetises (AdSense + affiliation)",
-    "objectif_an1": 10,
-    "revenus_cibles_par_site_mois": "200-500 EUR",
-    "stack": "Odoo Website Builder / templates ATUM",
-    "monetisation": ["Google AdSense", "Affiliation", "Lead generation vers produits ATUM"],
-    "gestion": "Deploiement et maintenance via Odoo SH multi-sites"
-  },
   "pipeline_produits": [
-    { "nom": "Clarity OS", "description": "IA de decisions strategiques pour PME", "statut": "etude", "lancement_estime": "2026-Q4", "prix_cible": "Freemium + 199/mois" },
-    { "nom": "OAC", "description": "Configuration Odoo par la voix (IA)", "statut": "concept", "lancement_estime": "2027-Q1" },
-    { "nom": "Premium Concierge AI", "description": "Assistant IA conciergerie CSP+", "statut": "concept", "lancement_estime": "2027-Q2" },
+    { "nom": "Clarity OS", "description": "IA de decisions strategiques", "statut": "etude", "lancement_estime": "2026-Q4", "prix_cible": "Freemium + 199/mois" },
+    { "nom": "OAC", "description": "Configuration Odoo par la voix", "statut": "concept", "lancement_estime": "2027-Q1" },
+    { "nom": "Premium Concierge AI", "description": "Assistant IA CSP+", "statut": "concept", "lancement_estime": "2027-Q2" },
     { "nom": "AIDU", "description": "Expert administratif IA", "statut": "concept", "lancement_estime": "2027" },
     { "nom": "ADOS", "description": "Systeme multi-agents pour bases de donnees", "statut": "concept", "lancement_estime": "2027-Q2" }
   ],
   "roadmap": [
-    { "trimestre": "2026-Q1", "actions": "GigRoute en prod (Render) + TradingBrain MVP Beta (100 testeurs) + OWL v1.0 (MCP + SaaS)" },
-    { "trimestre": "2026-Q2", "actions": "TradingBrain Launch Public + GigRoute v2.0 (IA predictive) + Odoo SH Custom operationnel + 3 premiers sites satellites" },
-    { "trimestre": "2026-Q3", "actions": "Quick Summarize v2 (resume video) + API Horodatage scaling + 5 sites satellites supplementaires" },
-    { "trimestre": "2026-Q4", "actions": "Clarity OS Prototype + AIDU Etude de marche + 10 sites satellites actifs" },
+    { "trimestre": "2026-Q1", "actions": "TradingBrain MVP Beta (100 testeurs)" },
+    { "trimestre": "2026-Q2", "actions": "TradingBrain Launch Public + TourFlow v2.0 (IA predictive)" },
+    { "trimestre": "2026-Q3", "actions": "Quick Summarize v2 (resume video) + API Horodatage scaling" },
+    { "trimestre": "2026-Q4", "actions": "Clarity OS Prototype + AIDU Etude de marche" },
     { "trimestre": "2027-Q1", "actions": "Clarity OS Beta + OAC Prototype Odoo" },
     { "trimestre": "2027-Q2", "actions": "Premium Concierge AI Lancement + ADOS v1.0" },
     { "trimestre": "2027-Q3-Q4", "actions": "Scaling international (UK, DE, ES)" },
     { "trimestre": "2028", "actions": "Consolidation + Preparation levee/exit" }
   ],
-  "updated_at": "2026-03-03"
+  "updated_at": "2026-03-02"
 }
