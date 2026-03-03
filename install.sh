@@ -75,18 +75,19 @@ check_prereqs() {
 # ============================================================
 confirm_install() {
     echo -e "${BOLD}This will install:${NC}"
-    echo "  - 17 hooks       (PreToolUse, PostToolUse, Notification, Stop, SessionStart)"
-    echo "  - 24 commands     (/scaffold, /security-audit, /tdd, /website, /webmcp, /schedule, etc.)"
-    echo "  - 35 agents       (architect, phaser-expert, ml-engineer, geospatial, no-code, etc.)"
-    echo "  - 31 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, release-notes, etc.)"
+    echo "  - 18 hooks       (PreToolUse, PostToolUse, Notification, Stop, SessionStart)"
+    echo "  - 26 commands     (/scaffold, /security-audit, /tdd, /website, /webmcp, /schedule, /happy, etc.)"
+    echo "  - 37 agents       (architect, expo-expert, ml-engineer, geospatial, happy-expert, etc.)"
+    echo "  - 34 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, agent-browser, etc.)"
     echo "  - 4 modes         (architect, autonomous, brainstorm, quality)"
-    echo "  - 26 rules        (coding-style, security, resilience, decision-principle, etc.)"
+    echo "  - 27 rules        (coding-style, security, resilience, decision-principle, whatsapp-persona, etc.)"
     echo "  - 56 plugins      (ECC, code-review, figma, firebase, stripe, linear, etc.)"
     echo "  - 1 script        (context-monitor.py statusline)"
     echo "  - 184 templates   (scaffolds + references from project-templates)"
     echo "  - settings.json   (hooks, plugins, full autonomy permissions)"
-    echo "  - MCP servers     (.claude.json with 19 servers incl. B12, WebMCP, Notion, Airtable)"
-    echo "  - bin wrappers    (gsudo for admin elevation)"
+    echo "  - MCP servers     (.claude.json with 22 servers incl. B12, WebMCP, Hindsight, WhatsApp)"
+    echo "  - data store      (agence-atum JSON data + schedules)"
+    echo "  - bin wrappers    (Windows: gsudo, jq, stripe, watchman, etc.)"
     echo "  - acpx config     (headless ACP sessions)"
     echo ""
     echo -e "  Target: ${CYAN}$CLAUDE_DIR/${NC}"
@@ -147,6 +148,27 @@ copy_files() {
         done
         local scount=$(find "$SCRIPT_DIR/skills" -maxdepth 2 -name "SKILL.md" | wc -l | tr -d ' ')
         ok "skills/ ($scount skills)"
+    fi
+
+    # Data store (recursive — agence-atum JSON)
+    if [ -d "$SCRIPT_DIR/data" ]; then
+        cp -r "$SCRIPT_DIR/data" "$CLAUDE_DIR/"
+        local dcount=$(find "$SCRIPT_DIR/data" -name "*.json" | wc -l | tr -d ' ')
+        ok "data/ ($dcount JSON files)"
+    fi
+
+    # Schedules (task definitions only, not history)
+    if [ -d "$SCRIPT_DIR/schedules" ]; then
+        mkdir -p "$CLAUDE_DIR/schedules"
+        cp "$SCRIPT_DIR/schedules/"*.json "$CLAUDE_DIR/schedules/" 2>/dev/null || true
+        local schcount=$(ls -1 "$SCRIPT_DIR/schedules/"*.json 2>/dev/null | wc -l | tr -d ' ')
+        ok "schedules/ ($schcount task definitions)"
+    fi
+
+    # Scheduler daemon
+    if [ -d "$SCRIPT_DIR/scheduler" ]; then
+        cp -r "$SCRIPT_DIR/scheduler" "$CLAUDE_DIR/"
+        ok "scheduler/ (daemon)"
     fi
 
     # Make hooks executable
@@ -213,9 +235,18 @@ configure_mcp() {
     home_path=$(cd "$HOME" && pwd -W 2>/dev/null || pwd)
     home_path="${home_path//\\/\/}"  # Normalize to forward slashes
 
+    # Resolve UV path for cross-platform compatibility
+    local uv_path
+    if command -v uv &>/dev/null; then
+        uv_path=$(command -v uv)
+    elif [ "$OS" = "windows" ]; then
+        uv_path="$HOME/bin/uv"
+    else
+        uv_path="uv"
+    fi
+
     # On macOS/Linux, replace "cmd", "/c" wrapper with direct calls
     if [ "$OS" != "windows" ]; then
-        # Remove cmd /c wrapper: "cmd" → actual command, remove "/c" arg
         python3 -c "
 import json, sys
 with open(sys.argv[1]) as f:
@@ -233,6 +264,19 @@ with open(sys.argv[2], 'w') as f:
     else
         cp "$SCRIPT_DIR/claude.json.template" "$CLAUDE_JSON"
     fi
+
+    # Replace \$UV_EXE_PATH and \$HOME placeholders
+    python3 -c "
+import json, sys, os
+with open(sys.argv[1]) as f:
+    raw = f.read()
+raw = raw.replace('\$UV_EXE_PATH', sys.argv[2])
+raw = raw.replace('\$HOME', sys.argv[3])
+data = json.loads(raw)
+with open(sys.argv[1], 'w') as f:
+    json.dump(data, f, indent=2)
+    f.write('\n')
+" "$CLAUDE_JSON" "$uv_path" "$home_path" 2>/dev/null || true
 
     # Replace all placeholders (BSD sed on macOS needs -i '', GNU sed needs -i)
     if [ "$OS" = "macos" ]; then
@@ -273,11 +317,15 @@ with open('$CLAUDE_JSON', 'w') as f:
     echo ""
 
     # Remind about required env vars
-    echo -e "  ${YELLOW}[IMPORTANT]${NC} Add these env vars to your ~/.bashrc for MCP servers:"
+    echo -e "  ${YELLOW}[IMPORTANT]${NC} Add these env vars to your ~/.bashrc (or ~/.zshrc) for MCP servers:"
     echo "    export GITHUB_PERSONAL_ACCESS_TOKEN=\"\$(gh auth token 2>/dev/null)\""
     echo "    export GOOGLE_OAUTH_CLIENT_SECRET=\"your-google-oauth-client-secret\""
     echo "    export OPENAPI_MCP_HEADERS='{\"Authorization\":\"Bearer your-notion-token\",\"Notion-Version\":\"2022-06-28\"}'"
     echo "    export AIRTABLE_API_KEY=\"your-airtable-pat\""
+    echo "    export HINDSIGHT_API_KEY=\"your-hindsight-api-key\""
+    echo "    export ATUM_USER=\"your-name\""
+    echo "    export GROQ_API_KEY=\"your-groq-key\"  # for Hindsight LLM"
+    echo "    export GEMINI_API_KEY=\"your-gemini-key\"  # for Hindsight LLM"
     echo ""
 }
 
@@ -334,17 +382,72 @@ install_webmcp() {
 }
 
 # ============================================================
+# 7c. INSTALL GOOGLE WORKSPACE MCP
+# ============================================================
+install_google_workspace_mcp() {
+    info "Installing Google Workspace MCP..."
+    local GW_DIR="$HOME/Projects/tools/google_workspace_mcp"
+
+    if [ -f "$GW_DIR/main.py" ]; then
+        ok "Google Workspace MCP already installed at $GW_DIR"
+    else
+        mkdir -p "$HOME/Projects/tools"
+        if git clone https://github.com/taylorwilsdon/google_workspace_mcp.git "$GW_DIR" 2>/dev/null; then
+            cd "$GW_DIR"
+            if command -v uv &>/dev/null; then
+                uv sync 2>/dev/null || true
+            elif command -v pip3 &>/dev/null; then
+                pip3 install -r requirements.txt 2>/dev/null || true
+            fi
+            cd - >/dev/null
+            ok "Google Workspace MCP cloned (requires OAuth setup)"
+        else
+            warn "Google Workspace MCP clone failed — install manually"
+        fi
+    fi
+}
+
+# ============================================================
+# 7d. INSTALL WHATSAPP MCP
+# ============================================================
+install_whatsapp_mcp() {
+    info "Installing WhatsApp MCP..."
+    local WA_DIR="$HOME/Projects/tools/whatsapp-mcp"
+
+    if [ -f "$WA_DIR/whatsapp-mcp-server/main.py" ]; then
+        ok "WhatsApp MCP already installed at $WA_DIR"
+    else
+        mkdir -p "$HOME/Projects/tools"
+        if git clone https://github.com/lharries/whatsapp-mcp.git "$WA_DIR" 2>/dev/null; then
+            cd "$WA_DIR/whatsapp-mcp-server"
+            if command -v uv &>/dev/null; then
+                uv sync 2>/dev/null || true
+            elif command -v pip3 &>/dev/null; then
+                pip3 install -r requirements.txt 2>/dev/null || true
+            fi
+            cd - >/dev/null
+            ok "WhatsApp MCP cloned (requires WhatsApp Web auth)"
+        else
+            warn "WhatsApp MCP clone failed — install manually"
+        fi
+    fi
+}
+
+# ============================================================
 # 8. INSTALL TOOLS (gsudo, acpx)
 # ============================================================
 install_tools() {
     info "Installing autonomy tools..."
 
-    # --- bin wrappers ---
-    mkdir -p "$HOME/bin"
-    if [ -d "$SCRIPT_DIR/bin" ]; then
+    # --- bin wrappers (Windows only — contain /c/ paths) ---
+    if [ "$OS" = "windows" ] && [ -d "$SCRIPT_DIR/bin" ]; then
+        mkdir -p "$HOME/bin"
         cp "$SCRIPT_DIR/bin/"* "$HOME/bin/" 2>/dev/null || true
         chmod +x "$HOME/bin/"* 2>/dev/null || true
-        ok "bin/ wrappers copied to ~/bin/"
+        local bcount=$(ls -1 "$SCRIPT_DIR/bin" 2>/dev/null | wc -l | tr -d ' ')
+        ok "bin/ wrappers ($bcount files) copied to ~/bin/"
+    elif [ "$OS" != "windows" ]; then
+        info "bin/ wrappers skipped (Windows-specific paths)"
     fi
 
     # --- gsudo (Windows only) ---
@@ -583,11 +686,12 @@ summary() {
     echo "  4. If plugins failed, re-run: bash install.sh --plugins-only"
     echo ""
     echo "  Config locations:"
-    echo "    ~/.claude/              hooks, commands, agents, modes, rules, skills"
-    echo "    ~/.claude.json          MCP server configs"
+    echo "    ~/.claude/              hooks, commands, agents, modes, rules, skills, data, schedules"
+    echo "    ~/.claude.json          MCP server configs (22 servers)"
     echo "    ~/.claude/settings.json main config (SOURCE OF TRUTH)"
     echo "    ~/.acpx/config.json     acpx headless sessions"
-    echo "    ~/bin/                   tool wrappers (gsudo, jq, etc.)"
+    echo "    ~/bin/                   tool wrappers (Windows only)"
+    echo "    ~/Projects/tools/       local MCP servers (B12, WebMCP, Google Workspace, WhatsApp)"
     echo ""
 }
 
@@ -617,6 +721,8 @@ main() {
     configure_mcp
     install_b12_mcp
     install_webmcp
+    install_google_workspace_mcp
+    install_whatsapp_mcp
     install_tools
     install_templates
     install_plugins
