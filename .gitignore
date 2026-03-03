@@ -48,3 +48,6 @@ image-cache/
 
 # ATUM Audit
 audit_store/
+
+# Scheduler history (SQLite runtime data)
+schedules/.history/

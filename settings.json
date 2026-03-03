@@ -143,7 +143,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.js || \"$CLAUDE_TOOL_FILE_PATH\" == *.ts || \"$CLAUDE_TOOL_FILE_PATH\" == *.jsx || \"$CLAUDE_TOOL_FILE_PATH\" == *.tsx || \"$CLAUDE_TOOL_FILE_PATH\" == *.json || \"$CLAUDE_TOOL_FILE_PATH\" == *.css || \"$CLAUDE_TOOL_FILE_PATH\" == *.html || \"$CLAUDE_TOOL_FILE_PATH\" == *.sol ]]; then npx prettier --write \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.py ]]; then black \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.go ]]; then gofmt -w \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.rs ]]; then rustfmt \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.php ]]; then php-cs-fixer fix \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; fi"
+            "command": "bash \"$HOME/.claude/hooks/auto-format.sh\""
           }
         ]
       },
@@ -153,24 +153,6 @@
           {
             "type": "command",
             "command": "node \"$HOME/.claude/hooks/post-commit-quality-gate.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "Write|Edit|Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/post-tool-failure-logger.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/config-change-guard.js\""
           }
         ]
       },
@@ -200,6 +182,45 @@
           {
             "type": "command",
             "command": "node \"$HOME/.claude/hooks/session-memory.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/hindsight-session-retain.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/atum-dashboard-sync.js\""
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/post-tool-failure-logger.js\""
+          }
+        ]
+      }
+    ],
+    "ConfigChange": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/config-change-guard.js\""
           }
         ]
       }
@@ -260,7 +281,7 @@
     "github@claude-plugins-official": true,
     "gitlab@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
-    "greptile@claude-plugins-official": true,
+    "greptile@claude-plugins-official": false,
     "hookify@claude-plugins-official": true,
     "huggingface-skills@claude-plugins-official": true,
     "jdtls-lsp@claude-plugins-official": true,
