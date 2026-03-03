@@ -16,7 +16,7 @@
 ### Summary
 - 6 config files, **36 agents**, 70 sub-agents, **25 commands**, 4 modes, 26 rules (+ 24 templates)
 - 18 hook entries (17 scripts [8 JS + 9 PY] + 2 Notification + 13 ECC), 56 plugins (54 actifs / 2 inactifs), **147+ skills** (115 plugin + **32 standalone**)
-- **22 local** (.claude.json) + 1 local (.mcp.json) + 2 plugin + 23 remote claude.ai = **48 serveurs** | ❌ greptile (OAuth 404) | ⚠️ 3 HTTP dupliques (figma/webflow/make)
+- **21 local** (.claude.json template) + 1 local (.mcp.json) + 2 plugin + 23 remote claude.ai = **47 serveurs** | ❌ greptile (OAuth 404) | ⚠️ 3 HTTP dupliques (figma/webflow/make)
 - **Autonomie max**: **63 allow entries**, **70 NLP triggers** FR+EN, Skill(*)+WebSearch(*)+ToolSearch(*) auto-permit
 - **Tools**: jq (winget), mcporter 0.7.3 (npm), gsudo 2.6.1 (winget), acpx 0.1.8 (npm), **happy-coder 0.13.0** (npm)
 - 10 langages, 20+ frameworks/outils, 184 templates + 10 references
@@ -52,8 +52,8 @@ architect, autonomous, brainstorm, quality
 - **Templates** (24 files in `~/Projects/tools/project-templates/rules/`)
 - **Context budget**: ~7,700 tokens/session (~3.9% of 200K)
 
-### Hooks — 29 effectifs, 17 fichiers, 3 sources
-- **Custom (16)**: secret-scanner, git-guard, lock-file-protector, file-backup, atum-session-start, atum-post-write, atum-compliance-check, auto-test-runner, dependency-checker, multi-lang-formatter, post-commit-quality-gate, **loop-detector** (PostToolUse), **session-memory** (Stop), **post-tool-failure-logger** (PostToolUse), **config-change-guard** (PostToolUse), **worktree-setup** (PostToolUse/Bash)
+### Hooks — 18 entries settings.json, 17 scripts, 3 sources
+- **Custom (14)**: secret-scanner, git-guard, lock-file-protector, atum-session-start, atum-post-write, atum-compliance-check, auto-test-runner, dependency-checker, post-commit-quality-gate, **loop-detector** (PostToolUse), **session-memory** (Stop), **post-tool-failure-logger** (PostToolUse), **config-change-guard** (PostToolUse), **worktree-setup** (PostToolUse/Bash)
 - **Reserve (3)**: dangerous-command-blocker, conventional-commits-enforcer, prevent-direct-push
 - **Plugin ECC (13)**: git push reminder, .md blocker (regex fixed: .md only), suggest-compact, pre-compact, session-start, PR URL logger, build-analysis, auto-format, typecheck, console.log warn, check console.log, session-end, evaluate-session
 
@@ -65,9 +65,9 @@ architect, autonomous, brainstorm, quality
 - `~/.claude/scripts/context-monitor.py` — StatusLine
 - `~/.claude/projects/.../memory/MEMORY.md` — Memoire persistante
 
-### MCP Servers (47/48 OK, updated 2026-03-03)
-- **Local (19 OK)**: github, memory, sequential-thinking, railway, cloudflare-docs, context7, magic, **google-workspace** (83 outils, 12 services Google, OAuth ACTIF), desktop-commander, claude-in-chrome, b12, **webmcp**, **skillsync**, atum-audit, **notion** (env var heritage), **airtable** (env var heritage), **make** (HTTP OAuth), **hindsight-shared** (HTTP, bank atum), **hindsight-personal** (HTTP, bank arnaud)
-- **No-code local (3 — dupliques remotes)**: figma (HTTP mcp.figma.com = doublon remote claude.ai/Figma), webflow (HTTP mcp.webflow.com = doublon remote claude.ai/Webflow), make (HTTP mcp.make.com = doublon remote claude.ai/Make) — servent de fallback/redondance, pas d'outils propres
+### MCP Servers (46/47 OK, updated 2026-03-03)
+- **Local (18 in template)**: github, memory, sequential-thinking, vercel, railway, cloudflare-docs, context7, magic, **google-workspace** (83 outils, 12 services Google, OAuth ACTIF), desktop-commander, b12, **webmcp**, **skillsync**, atum-audit, **notion** (env var heritage), **airtable** (env var heritage), **hindsight-shared** (HTTP, bank atum), **hindsight-personal** (HTTP, bank arnaud)
+- **No-code local (3 — dupliques remotes)**: figma, webflow, make — HTTP proxies of remote claude.ai counterparts, serve as fallback
 - **Plugin (2/3 OK)**: firebase (⚠️ needs `firebase login`), playwright | ❌ greptile (OAuth 404 upstream)
 - **Remote claude.ai (23 OK)**: Canva, Cloudflare, Cloudinary, Context7, Excalidraw, Figma, Gamma, Gmail, Google Calendar, GraphOS, Hugging Face, Invideo, Jam, Learning Commons KG, Make, Microsoft Learn, Netlify, Notion, Stripe, Supabase, Vercel, Webflow, Zapier
 - **Secrets**: migres de .claude.json → .bashrc env vars (GOOGLE_OAUTH_CLIENT_SECRET, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY, HINDSIGHT_API_KEY) — heritage automatique par subprocess
