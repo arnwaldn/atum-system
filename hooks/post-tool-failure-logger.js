@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * post-tool-failure-logger.js
- * PostToolUse hook — logs tool failures to $TEMP/claude-tool-failures.json
- * Matcher: Write|Edit|Bash
+ * PostToolUseFailure hook — logs tool failures to $TEMP/claude-tool-failures.json
+ * Matcher: * (fires only on tool errors)
  * ALWAYS exits 0 (never blocks)
  */
 
@@ -20,9 +20,10 @@ function main() {
     }
 
     const data = JSON.parse(raw);
-    const toolError = data.tool_error || '';
+    // PostToolUseFailure payload uses 'error' field (not 'tool_error')
+    const toolError = data.error || data.tool_error || '';
 
-    // Only log if there's an actual error
+    // Only log if there's an actual error (should always have one in PostToolUseFailure)
     if (!toolError || toolError.trim() === '') {
       process.exit(0);
     }

@@ -5,7 +5,7 @@
  * Consumes stats accumulated by loop-detector hook.
  *
  * Saves to: ~/.claude/projects/<project>/memory/sessions/YYYY-MM-DD-<id>.md
- * Auto-cleanup: files older than 30 days are removed.
+ * Auto-cleanup: files older than 7 days are removed.
  */
 
 const fs = require("fs");

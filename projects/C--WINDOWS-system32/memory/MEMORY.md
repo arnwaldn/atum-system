@@ -45,15 +45,15 @@
 architect, autonomous, brainstorm, quality
 
 ### Rules (26 global files) — `~/.claude/rules/`
-- common/ (14): anti-hallucination, autonomous-workflow (includes agent registry), coding-style, compliance, **decision-principle**, git-workflow, hooks, monorepo, patterns, performance, **resilience**, security, system-messages, testing
+- common/ (15): anti-hallucination, autonomous-workflow (core triggers only, 7KB), coding-style, compliance, **decision-principle**, git-workflow, hooks, monorepo, patterns, performance, **resilience**, security, system-messages, testing, whatsapp-persona
 - typescript/ (4): coding-style, patterns, security, testing
 - python/ (4): coding-style, patterns, security, testing
 - golang/ (4): coding-style, patterns, security, testing
 - **Templates** (24 files in `~/Projects/tools/project-templates/rules/`)
 - **Context budget**: ~7,700 tokens/session (~3.9% of 200K)
 
-### Hooks — 18 entries settings.json, 17 scripts, 3 sources
-- **Custom (14)**: secret-scanner, git-guard, lock-file-protector, atum-session-start, atum-post-write, atum-compliance-check, auto-test-runner, dependency-checker, post-commit-quality-gate, **loop-detector** (PostToolUse), **session-memory** (Stop), **post-tool-failure-logger** (PostToolUse), **config-change-guard** (PostToolUse), **worktree-setup** (PostToolUse/Bash)
+### Hooks — 21 entries settings.json, 18 scripts, 3 sources (updated 2026-03-03)
+- **Custom (16)**: secret-scanner, git-guard, lock-file-protector, backup (PreToolUse/Edit inline), atum-session-start, atum-post-write, atum-compliance-check, auto-test-runner, dependency-checker, **auto-format.sh** (PostToolUse/Edit|MultiEdit), post-commit-quality-gate, **worktree-setup** (PostToolUse/Bash), **loop-detector** (PostToolUse/*), **session-memory** (Stop), **hindsight-session-retain** (Stop — was MISSING, now registered), **post-tool-failure-logger** (PostToolUseFailure — migrated from PostToolUse), **config-change-guard** (ConfigChange — migrated from PostToolUse)
 - **Reserve (3)**: dangerous-command-blocker, conventional-commits-enforcer, prevent-direct-push
 - **Plugin ECC (13)**: git push reminder, .md blocker (regex fixed: .md only), suggest-compact, pre-compact, session-start, PR URL logger, build-analysis, auto-format, typecheck, console.log warn, check console.log, session-end, evaluate-session
 
@@ -73,7 +73,7 @@ architect, autonomous, brainstorm, quality
 - **Secrets**: migres de .claude.json → .bashrc env vars (GOOGLE_OAUTH_CLIENT_SECRET, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY, HINDSIGHT_API_KEY) — heritage automatique par subprocess
 - **Retires**: filesystem (CWD bug→desktop-commander), supabase local (placeholder), clickhouse, cloudflare-workers-*, whatsapp (command/rules removed)
 
-### Standalone Skills (32) — `~/.claude/skills/`
+### Standalone Skills (33) — `~/.claude/skills/`
 - **Documents**: pdf, docx, xlsx, pptx
 - **Architecture**: domain-driven-design, clean-architecture, system-design, ddia-systems
 - **Reasoning**: the-fool, spec-miner, context-engineering-kit
@@ -160,7 +160,7 @@ architect, autonomous, brainstorm, quality
 - ToolSearch: `+keyword` cherche dans les DESCRIPTIONS, pas les noms — pour MCP tools, TOUJOURS `select:mcp__server__tool_name`
 - filesystem MCP: retired (CWD bug) — desktop-commander is the replacement
 - fetch MCP (`@anthropic-ai/mcp-server-fetch`) n'existe PAS sur npm — supprime de .claude.json; WebFetch built-in suffit
-- greptile plugin: OAuth 404 — necessite re-authentification; API key retiree de settings.local.json (etait en clair)
+- greptile plugin: OAuth 404 — desactive dans settings.json (2026-03-03); API key retiree de settings.local.json
 - Modes = fichiers `.md` (pas `.yml`) dans `~/.claude/modes/`
 - gsudo 2.6.1: `~/bin/gsudo` wrapper → `/c/Program Files/gsudo/2.6.1/gsudo.exe`; CacheMode Auto, CacheDuration 1h
 - acpx 0.1.8: headless ACP CLI, config `~/.acpx/config.json` (defaultAgent claude, approve-all); `acpx claude -s name "prompt"`
@@ -179,12 +179,13 @@ architect, autonomous, brainstorm, quality
 - Skills standalone: auto-decouverte dans ~/.claude/skills/*/SKILL.md, 0 context cost au repos, 16K char budget descriptions
 - Skill auto-invocation: documente comme non garanti (~70-80%); /skill-name = 100% fiable (fallback)
 - SkillSync MCP (@stranzwersweb2/skillsync-mcp): security scanner; "path traversal" warnings = info (skills normaux)
-- autonomous-workflow.md: 40 NLP triggers FR+EN pour routage contextuel skill/agent/MCP
+- autonomous-workflow.md: split 2026-03-03 — core triggers (7KB rule) + routing tables moved to `autonomous-routing` skill (12KB, 70+ NLP triggers); saves ~11KB/session
 - claude-scheduler: daemon Node.js PM2 (`~/.claude/scheduler/`), tasks JSON (`~/.claude/schedules/`), SQLite history, HTTP :4820, cron+events+webhook, Gmail MCP notifs; `pm2 start/stop/logs claude-scheduler`
 - Flask+Alembic production: NEVER run db.create_all() inside create_app() — use separate CLI command AFTER migrations (see `memory/gigroute-project.md`)
 - google-workspace MCP: `taylorwilsdon/google_workspace_mcp` v1.14.1 cloné dans `~/Projects/tools/`; 83 outils (extended tier), 12 services Google; commande = uv.exe direct (pas cmd /c); **OAuth ACTIF** (4 calendriers, docs OK); remplace ancien gmail MCP
 - Audit 2026-03-02: secrets migres .claude.json → .bashrc (GOOGLE_OAUTH_CLIENT_SECRET, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY); MCP servers heritent env vars du shell parent (meme pattern que GITHUB_PERSONAL_ACCESS_TOKEN); 3 HTTP dupliques (figma/webflow/make) = fallback des remotes claude.ai; firebase needs `firebase login`; greptile OAuth 404 = upstream
 - uv 0.10.7: winget `astral-sh.uv`, exe dans WinGet/Packages/, wrappers bash `~/bin/uv` et `~/bin/uvx`
+- Audit 2026-03-03: hindsight-session-retain.js was MISSING from settings.json (Stop hook never registered); post-tool-failure-logger migrated to PostToolUseFailure event; config-change-guard migrated to ConfigChange event; auto-format inline command extracted to auto-format.sh; WorktreeCreate hook REPLACES default git behavior (NOT post-creation) — keep worktree-setup on PostToolUse/Bash
 - MEMORY.md must stay <200 lines (truncated after)
 
 ## Active Projects

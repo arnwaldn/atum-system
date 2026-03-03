@@ -69,13 +69,159 @@ REFS_DIR = HOME / ".claude" / "skills" / "agence-atum" / "references"
 # Token budget: Groq free tier = 200K tokens/day
 # llama-3.1-8b-instant: ~2K tokens per extraction
 # Budget: ~100 documents per day safely
-RATE_LIMIT_SECONDS = 5  # 5s between documents to avoid rate limits
-MAX_CONTENT_CHARS = 15000  # Truncate very large files
+RATE_LIMIT_SECONDS = 15  # 15s between documents (cpu-basic needs significant breathing room)
+MAX_CONTENT_CHARS = 5000  # Truncate to prevent >50 consolidation ops per doc (crash threshold ~50-67)
+
+# Backpressure: prevent consolidation queue from overwhelming cpu-basic
+# Each retain triggers ~20-30 consolidation ops (entity extraction via Gemini + graph)
+# cpu-basic processes ~8 ops/min, so we must be very conservative
+BATCH_SIZE = 1              # Check after EVERY retain (cpu-basic can't handle bursts)
+CONSOLIDATION_THRESHOLD = 3   # Max pending consolidations before waiting (very conservative)
+BACKPRESSURE_WAIT = 30      # Seconds between backpressure checks
+MAX_WAIT_CYCLES = 40        # 40 x 30s = 20min max wait before continuing
+INITIAL_WAIT_CYCLES = 40    # 40 x 30s = 20min max wait for initial drain
 
 # =============================================================================
 # Stats tracking
 # =============================================================================
 stats = {"ok": 0, "fail": 0, "skip": 0, "total_tokens_estimate": 0}
+_batch_count = 0  # Global retain call counter for backpressure
+_server_down = False  # Set True on 503 or crash detection — stops further retains
+_last_known_nodes = 0  # Track node count to detect Space restarts
+REST_EVERY_N_DOCS = 5  # After every 5 docs, rest to let CPU cool down
+REST_DURATION = 300  # 5 minutes of complete inactivity (cpu-basic needs long breaks)
+
+
+# =============================================================================
+# Backpressure
+# =============================================================================
+def wait_for_initial_drain() -> bool:
+    """Wait for the server's consolidation queue to drain before starting seed.
+
+    After a pg_restore, the server may have 200+ pending consolidations.
+    Seeding on top of that will crash cpu-basic. Wait until queue is near-zero.
+    Returns True if ready, False if timed out (seed will proceed cautiously).
+    """
+    print("\n  Checking server consolidation queue before seeding...")
+    for cycle in range(INITIAL_WAIT_CYCLES):
+        try:
+            resp = requests.get(
+                f"{HINDSIGHT_URL}/v1/default/banks/{BANK_ID}/stats",
+                headers=HEADERS,
+                timeout=15,
+            )
+            if resp.status_code != 200:
+                print(f"  Stats returned {resp.status_code} — waiting...")
+                time.sleep(BACKPRESSURE_WAIT)
+                continue
+
+            data = resp.json()
+            pending = data.get("pending_consolidation", 0)
+            nodes = data.get("total_nodes", 0)
+
+            if pending <= CONSOLIDATION_THRESHOLD:
+                print(f"  Queue drained: {pending} pending, {nodes} nodes — ready to seed")
+                return True
+
+            print(
+                f"  [{cycle+1}/{INITIAL_WAIT_CYCLES}] "
+                f"Waiting for drain: {pending} pending, {nodes} nodes... "
+                f"(next check in {BACKPRESSURE_WAIT}s)"
+            )
+            time.sleep(BACKPRESSURE_WAIT)
+
+        except requests.RequestException as e:
+            print(f"  Connection error: {e} — retrying in {BACKPRESSURE_WAIT}s...")
+            time.sleep(BACKPRESSURE_WAIT)
+
+    print(f"  WARNING: Queue not drained after {INITIAL_WAIT_CYCLES} cycles — proceeding cautiously")
+    return False
+
+
+def wait_for_consolidation() -> None:
+    """Backpressure: wait if consolidation queue is too deep.
+
+    Queries /stats for pending_consolidation count. If above CONSOLIDATION_THRESHOLD,
+    waits in a loop until the queue drains or MAX_WAIT_CYCLES is reached.
+    Detects Space restarts by monitoring node count drops.
+    On network errors, proceeds after 3 consecutive failures.
+    """
+    global _server_down, _last_known_nodes
+    consecutive_errors = 0
+    for cycle in range(MAX_WAIT_CYCLES):
+        try:
+            resp = requests.get(
+                f"{HINDSIGHT_URL}/v1/default/banks/{BANK_ID}/stats",
+                headers=HEADERS,
+                timeout=15,
+            )
+            if resp.status_code != 200:
+                return  # Can't check — proceed anyway
+
+            consecutive_errors = 0
+            data = resp.json()
+            pending = data.get("pending_consolidation", 0)
+            nodes = data.get("total_nodes", 0)
+
+            # Crash detection: if nodes dropped significantly, Space restarted
+            if _last_known_nodes > 20 and nodes < _last_known_nodes * 0.5:
+                print(
+                    f"    CRASH DETECTED: nodes dropped {_last_known_nodes} -> {nodes}. "
+                    f"Space restarted. Aborting seed."
+                )
+                _server_down = True
+                return
+
+            _last_known_nodes = max(_last_known_nodes, nodes)
+
+            if pending <= CONSOLIDATION_THRESHOLD:
+                if cycle > 0:
+                    print(f"    Backpressure OK: {pending} pending (resumed)")
+                return
+
+            print(
+                f"    Backpressure: {pending} pending consolidations, "
+                f"waiting {BACKPRESSURE_WAIT}s... (cycle {cycle+1}/{MAX_WAIT_CYCLES})"
+            )
+            time.sleep(BACKPRESSURE_WAIT)
+
+        except requests.RequestException as e:
+            consecutive_errors += 1
+            if consecutive_errors >= 3:
+                print(f"    WARNING: Stats unreachable after 3 attempts — continuing")
+                return
+            print(f"    Backpressure check failed ({consecutive_errors}/3): {e}")
+            time.sleep(5)
+
+    print(f"    WARNING: consolidation still high after {MAX_WAIT_CYCLES} cycles — continuing")
+
+
+def check_backpressure() -> None:
+    """Increment batch counter, check backpressure, and rest periodically."""
+    global _batch_count
+    _batch_count += 1
+    if _batch_count % BATCH_SIZE == 0:
+        wait_for_consolidation()
+    # Rest period: after every N docs, drain queue to 0 then let CPU cool
+    if _batch_count % REST_EVERY_N_DOCS == 0 and not _server_down:
+        print(f"    REST: {REST_EVERY_N_DOCS} docs done — draining queue first...")
+        # Wait for pending to reach 0 (full drain)
+        for _ in range(MAX_WAIT_CYCLES):
+            try:
+                resp = requests.get(
+                    f"{HINDSIGHT_URL}/v1/default/banks/{BANK_ID}/stats",
+                    headers=HEADERS, timeout=15,
+                )
+                if resp.status_code == 200:
+                    pending = resp.json().get("pending_consolidation", 0)
+                    if pending == 0:
+                        break
+                    print(f"      Draining: {pending} pending...")
+            except requests.RequestException:
+                pass
+            time.sleep(BACKPRESSURE_WAIT)
+        print(f"    REST: cooling down {REST_DURATION}s (CPU idle)...")
+        time.sleep(REST_DURATION)
 
 
 # =============================================================================
@@ -83,6 +229,16 @@ stats = {"ok": 0, "fail": 0, "skip": 0, "total_tokens_estimate": 0}
 # =============================================================================
 def retain(content: str, document_id: str, context: str = "") -> bool:
     """Retain content into the shared bank."""
+    global _server_down
+
+    # Abort if server is down (503 detected)
+    if _server_down:
+        stats["fail"] += 1
+        return False
+
+    # Backpressure: check consolidation queue every BATCH_SIZE calls
+    check_backpressure()
+
     # Truncate if too long
     if len(content) > MAX_CONTENT_CHARS:
         content = content[:MAX_CONTENT_CHARS] + "\n\n[TRUNCATED — original was longer]"
@@ -120,6 +276,11 @@ def retain(content: str, document_id: str, context: str = "") -> bool:
             if resp2.status_code in (200, 201, 202):
                 stats["ok"] += 1
                 return True
+        if resp.status_code == 503:
+            print(f"    SERVER DOWN (503) — aborting seed to prevent crash cascade")
+            _server_down = True
+            stats["fail"] += 1
+            return False
         print(f"    WARN: HTTP {resp.status_code}: {error_text}")
         stats["fail"] += 1
         return False
@@ -530,17 +691,29 @@ def main():
         verify()
         return
 
-    # Run all phases
+    # Wait for consolidation queue to drain before starting
+    # (critical after pg_restore which queues 200+ consolidations on cpu-basic)
+    wait_for_initial_drain()
+
+    # Run all phases (backpressure checks happen inside retain())
     seed_atum_agency_text()
-    seed_atum_agency_pdfs()
-    seed_projects()
-    seed_claude_data()
-    create_mental_models()
-    verify()
+    if not _server_down:
+        seed_atum_agency_pdfs()
+    if not _server_down:
+        seed_projects()
+    if not _server_down:
+        seed_claude_data()
+    if not _server_down:
+        create_mental_models()
+    if not _server_down:
+        verify()
 
     # Summary
     print("=" * 60)
-    print(f"  DONE")
+    if _server_down:
+        print(f"  ABORTED — server went down (503)")
+    else:
+        print(f"  DONE")
     print(f"  OK: {stats['ok']}, FAIL: {stats['fail']}, SKIP: {stats['skip']}")
     print(f"  Estimated tokens used: ~{stats['total_tokens_estimate']:,}")
     print("=" * 60)
