@@ -14,8 +14,8 @@
 ## Claude Code Setup (updated 2026-03-03 — v2.1.63 + claude-scheduler + mobile dev)
 
 ### Summary
-- 6 config files, **36 agents**, 70 sub-agents, **25 commands**, 4 modes, 26 rules (+ 24 templates)
-- 18 hook entries (17 scripts [8 JS + 9 PY] + 2 Notification + 13 ECC), 56 plugins (54 actifs / 2 inactifs), **147+ skills** (115 plugin + **32 standalone**)
+- 6 config files, **37 agents**, 70 sub-agents, **27 commands**, 4 modes, 27 rules (+ 24 templates)
+- 18 hook entries (9 JS + 9 PY + 2 Notification + 13 ECC), 56 plugins (54 actifs / 2 inactifs), **149+ skills** (115 plugin + **34 standalone**)
 - **21 local** (.claude.json template) + 1 local (.mcp.json) + 2 plugin + 23 remote claude.ai = **47 serveurs** | ❌ greptile (OAuth 404) | ⚠️ 3 HTTP dupliques (figma/webflow/make)
 - **Autonomie max**: **63 allow entries**, **70 NLP triggers** FR+EN, Skill(*)+WebSearch(*)+ToolSearch(*) auto-permit
 - **Tools**: jq (winget), mcporter 0.7.3 (npm), gsudo 2.6.1 (winget), acpx 0.1.8 (npm), **happy-coder 0.13.0** (npm)
@@ -23,13 +23,13 @@
 - **34/34 project types simulated and verified production-ready**
 - **Portable**: `settings.json` uses `$HOME` paths, `install.sh` cross-platform (Win/Mac/Linux)
 
-### Commands (25) — `~/.claude/commands/`
-**agence-atum**, atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, health, migrate, optimize, prd, pre-deploy, **projet-automatisation**, review-fix, scaffold, **schedule**, security-audit, **session-analyzer**, setup-cicd, status, tdd, team, ultra-think, **webmcp**, **website**
+### Commands (27) — `~/.claude/commands/`
+**agence-atum**, atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, **happy**, health, migrate, optimize, prd, pre-deploy, **projet-automatisation**, review-fix, scaffold, **schedule**, security-audit, **session-analyzer**, setup-cicd, status, tdd, team, ultra-think, **webmcp**, **website**, **whatsapp**
 
-### Agents (36 custom + 34 plugin/built-in = 70 sub-agents) — `~/.claude/agents/`
+### Agents (37 custom + 34 plugin/built-in = 71 sub-agents) — `~/.claude/agents/`
 - **Generalist**: architect-reviewer, codebase-pattern-finder, critical-thinking, database-optimizer, error-detective, technical-debt-manager, research-expert
 - **Game dev**: game-architect, phaser-expert, threejs-game-expert, unity-expert, godot-expert, networking-expert
-- **Mobile/Desktop**: flutter-dart-expert, expo-expert, tauri-expert
+- **Mobile/Desktop**: flutter-dart-expert, expo-expert, tauri-expert, **happy-expert**
 - **DevOps/Infra**: devops-expert, ci-cd-engineer
 - **AI/ML**: ml-engineer, data-engineer
 - **Security**: security-expert
