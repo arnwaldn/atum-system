@@ -11,14 +11,14 @@
 - **Shell**: bash (MINGW64/Git Bash)
 - **Workspace**: `C:\Users\arnau\Projects\` (web, mobile, api, desktop, fullstack, tools, learning)
 
-## Claude Code Setup (updated 2026-03-02 — v2.1.63 + claude-scheduler)
+## Claude Code Setup (updated 2026-03-03 — v2.1.63 + claude-scheduler + mobile dev)
 
 ### Summary
 - 6 config files, **36 agents**, 70 sub-agents, **25 commands**, 4 modes, 26 rules (+ 24 templates)
-- 31 hooks (17 scripts [8 JS + 9 PY] + 2 Notification + 2 inline + 13 ECC), 56 plugins (54 actifs / 2 inactifs), **147+ skills** (115 plugin + **32 standalone**)
-- **19 local** (.claude.json) + 1 local (.mcp.json) + 2 plugin + 23 remote claude.ai = **45 serveurs** | ❌ greptile (OAuth 404) | ⚠️ 3 HTTP dupliques (figma/webflow/make)
-- **Autonomie max**: **61 allow entries**, **58 NLP triggers** FR+EN, Skill(*)+WebSearch(*)+ToolSearch(*) auto-permit
-- **Tools**: jq (winget), mcporter 0.7.3 (npm), gsudo 2.6.1 (winget), acpx 0.1.8 (npm)
+- 18 hook entries (17 scripts [8 JS + 9 PY] + 2 Notification + 13 ECC), 56 plugins (54 actifs / 2 inactifs), **147+ skills** (115 plugin + **32 standalone**)
+- **22 local** (.claude.json) + 1 local (.mcp.json) + 2 plugin + 23 remote claude.ai = **48 serveurs** | ❌ greptile (OAuth 404) | ⚠️ 3 HTTP dupliques (figma/webflow/make)
+- **Autonomie max**: **63 allow entries**, **70 NLP triggers** FR+EN, Skill(*)+WebSearch(*)+ToolSearch(*) auto-permit
+- **Tools**: jq (winget), mcporter 0.7.3 (npm), gsudo 2.6.1 (winget), acpx 0.1.8 (npm), **happy-coder 0.13.0** (npm)
 - 10 langages, 20+ frameworks/outils, 184 templates + 10 references
 - **34/34 project types simulated and verified production-ready**
 - **Portable**: `settings.json` uses `$HOME` paths, `install.sh` cross-platform (Win/Mac/Linux)
@@ -26,7 +26,7 @@
 ### Commands (25) — `~/.claude/commands/`
 **agence-atum**, atum-audit, compliance, db, deploy, feature-analyzer, feature-pipeline, health, migrate, optimize, prd, pre-deploy, **projet-automatisation**, review-fix, scaffold, **schedule**, security-audit, **session-analyzer**, setup-cicd, status, tdd, team, ultra-think, **webmcp**, **website**
 
-### Agents (35 custom + 34 plugin/built-in = 69 sub-agents) — `~/.claude/agents/`
+### Agents (36 custom + 34 plugin/built-in = 70 sub-agents) — `~/.claude/agents/`
 - **Generalist**: architect-reviewer, codebase-pattern-finder, critical-thinking, database-optimizer, error-detective, technical-debt-manager, research-expert
 - **Game dev**: game-architect, phaser-expert, threejs-game-expert, unity-expert, godot-expert, networking-expert
 - **Mobile/Desktop**: flutter-dart-expert, expo-expert, tauri-expert
@@ -65,15 +65,15 @@ architect, autonomous, brainstorm, quality
 - `~/.claude/scripts/context-monitor.py` — StatusLine
 - `~/.claude/projects/.../memory/MEMORY.md` — Memoire persistante
 
-### MCP Servers (42/43 OK, updated 2026-03-02)
-- **Local (17 OK)**: github, memory, sequential-thinking, railway, cloudflare-docs, context7, magic, **google-workspace** (83 outils, 12 services Google, OAuth ACTIF), desktop-commander, claude-in-chrome, b12, **webmcp**, **skillsync**, atum-audit, **notion** (env var heritage), **airtable** (env var heritage), **make** (HTTP OAuth)
+### MCP Servers (47/48 OK, updated 2026-03-03)
+- **Local (19 OK)**: github, memory, sequential-thinking, railway, cloudflare-docs, context7, magic, **google-workspace** (83 outils, 12 services Google, OAuth ACTIF), desktop-commander, claude-in-chrome, b12, **webmcp**, **skillsync**, atum-audit, **notion** (env var heritage), **airtable** (env var heritage), **make** (HTTP OAuth), **hindsight-shared** (HTTP, bank atum), **hindsight-personal** (HTTP, bank arnaud)
 - **No-code local (3 — dupliques remotes)**: figma (HTTP mcp.figma.com = doublon remote claude.ai/Figma), webflow (HTTP mcp.webflow.com = doublon remote claude.ai/Webflow), make (HTTP mcp.make.com = doublon remote claude.ai/Make) — servent de fallback/redondance, pas d'outils propres
 - **Plugin (2/3 OK)**: firebase (⚠️ needs `firebase login`), playwright | ❌ greptile (OAuth 404 upstream)
 - **Remote claude.ai (23 OK)**: Canva, Cloudflare, Cloudinary, Context7, Excalidraw, Figma, Gamma, Gmail, Google Calendar, GraphOS, Hugging Face, Invideo, Jam, Learning Commons KG, Make, Microsoft Learn, Netlify, Notion, Stripe, Supabase, Vercel, Webflow, Zapier
-- **Secrets**: migres de .claude.json → .bashrc env vars (GOOGLE_OAUTH_CLIENT_SECRET, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY) — heritage automatique par subprocess
-- **Retires**: filesystem (CWD bug→desktop-commander), supabase local (placeholder), clickhouse, cloudflare-workers-*
+- **Secrets**: migres de .claude.json → .bashrc env vars (GOOGLE_OAUTH_CLIENT_SECRET, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY, HINDSIGHT_API_KEY) — heritage automatique par subprocess
+- **Retires**: filesystem (CWD bug→desktop-commander), supabase local (placeholder), clickhouse, cloudflare-workers-*, whatsapp (command/rules removed)
 
-### Standalone Skills (29) — `~/.claude/skills/`
+### Standalone Skills (32) — `~/.claude/skills/`
 - **Documents**: pdf, docx, xlsx, pptx
 - **Architecture**: domain-driven-design, clean-architecture, system-design, ddia-systems
 - **Reasoning**: the-fool, spec-miner, context-engineering-kit
@@ -89,7 +89,7 @@ architect, autonomous, brainstorm, quality
 - **Windows**: powershell-windows
 - **Accessibility**: claude-a11y-skill
 - **MCP**: mcp-builder
-- **Automation**: scheduler
+- **Automation**: scheduler, no-code-maestro
 - **Release**: release-notes
 - **Admin**: agence-atum
 
