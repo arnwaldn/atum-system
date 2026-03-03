@@ -278,6 +278,7 @@ with open('$CLAUDE_JSON', 'w') as f:
     echo "    export GOOGLE_OAUTH_CLIENT_SECRET=\"your-google-oauth-client-secret\""
     echo "    export OPENAPI_MCP_HEADERS='{\"Authorization\":\"Bearer your-notion-token\",\"Notion-Version\":\"2022-06-28\"}'"
     echo "    export AIRTABLE_API_KEY=\"your-airtable-pat\""
+    echo "    # Hindsight vars are configured by install_hindsight (HINDSIGHT_URL, HINDSIGHT_API_KEY, ATUM_USER, GROQ_API_KEY)"
     echo ""
 }
 
@@ -331,6 +332,95 @@ install_webmcp() {
             warn "WebMCP clone failed — install manually: git clone https://github.com/arnwaldn/webmcp-optimized.git ~/Projects/tools/webmcp-optimized"
         fi
     fi
+}
+
+# ============================================================
+# 7c. CONFIGURE HINDSIGHT (shared memory)
+# ============================================================
+install_hindsight() {
+    info "Configuring Hindsight shared memory..."
+
+    local HINDSIGHT_URL="https://arnwald84-atum-hindsight.hf.space"
+
+    echo ""
+    echo -e "  ${CYAN}Hindsight Shared Memory Setup${NC}"
+    echo "  Hindsight provides persistent shared memory for the ATUM team."
+    echo "  URL: ${HINDSIGHT_URL}"
+    echo ""
+
+    echo "  Which co-founder is this machine?"
+    echo "    1) Arnaud"
+    echo "    2) Pablo"
+    echo "    3) Wahid"
+    echo ""
+    read -rp "  Choice [1-3]: " atum_user_choice
+
+    local atum_user
+    case "$atum_user_choice" in
+        1) atum_user="arnaud" ;;
+        2) atum_user="pablo" ;;
+        3) atum_user="wahid" ;;
+        *) warn "Invalid choice — defaulting to arnaud"; atum_user="arnaud" ;;
+    esac
+
+    echo ""
+    read -rp "  Hindsight API key (leave empty to skip): " hindsight_api_key
+
+    echo ""
+    read -rp "  Groq API key (leave empty to skip): " groq_api_key
+
+    # --- Add env vars to ~/.bashrc (if not already present) ---
+    local bashrc="$HOME/.bashrc"
+    touch "$bashrc"
+
+    if ! grep -q '^export HINDSIGHT_URL=' "$bashrc" 2>/dev/null; then
+        echo "export HINDSIGHT_URL=\"${HINDSIGHT_URL}\"" >> "$bashrc"
+        ok "Added HINDSIGHT_URL to ~/.bashrc"
+    else
+        ok "HINDSIGHT_URL already in ~/.bashrc"
+    fi
+
+    if [ -n "$hindsight_api_key" ]; then
+        if ! grep -q '^export HINDSIGHT_API_KEY=' "$bashrc" 2>/dev/null; then
+            echo "export HINDSIGHT_API_KEY=\"${hindsight_api_key}\"" >> "$bashrc"
+            ok "Added HINDSIGHT_API_KEY to ~/.bashrc"
+        else
+            ok "HINDSIGHT_API_KEY already in ~/.bashrc"
+        fi
+    else
+        warn "HINDSIGHT_API_KEY not set — add it later to ~/.bashrc"
+    fi
+
+    if ! grep -q '^export ATUM_USER=' "$bashrc" 2>/dev/null; then
+        echo "export ATUM_USER=\"${atum_user}\"" >> "$bashrc"
+        ok "Added ATUM_USER to ~/.bashrc"
+    else
+        ok "ATUM_USER already in ~/.bashrc"
+    fi
+
+    if [ -n "$groq_api_key" ]; then
+        if ! grep -q '^export GROQ_API_KEY=' "$bashrc" 2>/dev/null; then
+            echo "export GROQ_API_KEY=\"${groq_api_key}\"" >> "$bashrc"
+            ok "Added GROQ_API_KEY to ~/.bashrc"
+        else
+            ok "GROQ_API_KEY already in ~/.bashrc"
+        fi
+    else
+        warn "GROQ_API_KEY not set — add it later to ~/.bashrc"
+    fi
+
+    # --- Replace REPLACE_ATUM_USER in .claude.json ---
+    if [ -f "$CLAUDE_JSON" ]; then
+        if [ "$OS" = "macos" ]; then
+            sed -i '' "s|REPLACE_ATUM_USER|${atum_user}|g" "$CLAUDE_JSON"
+        else
+            sed -i "s|REPLACE_ATUM_USER|${atum_user}|g" "$CLAUDE_JSON"
+        fi
+        ok "Replaced REPLACE_ATUM_USER with '${atum_user}' in .claude.json"
+    fi
+
+    ok "Hindsight configured for ${atum_user}"
+    echo ""
 }
 
 # ============================================================
@@ -617,6 +707,7 @@ main() {
     configure_mcp
     install_b12_mcp
     install_webmcp
+    install_hindsight
     install_tools
     install_templates
     install_plugins
