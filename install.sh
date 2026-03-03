@@ -283,13 +283,11 @@ with open(sys.argv[1], 'w') as f:
         sed -i '' \
             -e "s|REPLACE_WITH_YOUR_GITHUB_PAT|${github_pat}|g" \
             -e "s|REPLACE_WITH_HOME_DIR|${home_path}|g" \
-
             "$CLAUDE_JSON"
     else
         sed -i \
             -e "s|REPLACE_WITH_YOUR_GITHUB_PAT|${github_pat}|g" \
             -e "s|REPLACE_WITH_HOME_DIR|${home_path}|g" \
-
             "$CLAUDE_JSON"
     fi
 
