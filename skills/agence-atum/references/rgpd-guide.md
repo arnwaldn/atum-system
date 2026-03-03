@@ -19,7 +19,7 @@
 | Base legale | Usage ATUM |
 |---|---|
 | **Consentement (6.1.a)** | Newsletter, cookies non essentiels, Quick Summarize (contenu) |
-| **Execution contractuelle (6.1.b)** | SaaS (GigRoute, TradingBrain, OWL), prestations client, RH |
+| **Execution contractuelle (6.1.b)** | SaaS (TourFlow, TradingBrain), prestations client, RH |
 | **Obligation legale (6.1.c)** | Comptabilite, declarations sociales, registre du personnel |
 | **Interet legitime (6.1.f)** | Prospection B2B, securite des systemes, analytics |
 
@@ -32,15 +32,12 @@ ATUM decide des finalites et moyens du traitement :
 - Gestion prospects/clients
 - RH (salaries, freelances)
 - TradingBrain, Quick Summarize (propres produits B2C)
-- OWL (audits EU AI Act — RT quand audit propre)
-- Sites satellites (reseau de sites niche)
 - Site web, newsletter
 
 ### Sous-traitant (Art. 28)
 ATUM traite des donnees pour le compte d'un client :
-- GigRoute (ex-TourFlow) — SaaS gestion tournees pour clients
+- TourFlow (SaaS pour clients)
 - Projets client agence (dev d'applications)
-- OWL (quand mandate par le client pour l'audit)
 
 → **DPA obligatoire** avec chaque client pour lequel ATUM est sous-traitant
 
@@ -75,7 +72,6 @@ Obligatoire si traitement a risque eleve :
 - Surveillance systematique a grande echelle
 
 → Pour ATUM : probablement requis pour TradingBrain (profilage investisseurs) si le service evolue
-→ Pour OWL : evaluer si les audits impliquent un traitement a grande echelle de donnees techniques IA
 
 ### DPA — Data Processing Agreement (Art. 28)
 Template minimal :
@@ -158,7 +154,6 @@ Template minimal :
 
 ### Application ATUM
 - Quick Summarize → API LLM potentiellement US → CCT requises ou DPF si provider certifie
-- Sites satellites → Google AdSense US → Data Processing Framework (DPF certifie)
 - Hebergement cloud → Privilegier fournisseurs EU (OVH, Scaleway) ou US avec DPF (AWS, GCP, Azure)
 
 ---
@@ -166,7 +161,7 @@ Template minimal :
 ## Checklist conformite ATUM
 
 - [ ] Registre des traitements a jour
-- [ ] DPA signe avec chaque client SaaS (GigRoute, OWL si mandate)
+- [ ] DPA signe avec chaque client SaaS
 - [ ] Politique de confidentialite sur site web
 - [ ] Bandeau cookies conforme (consentement avant depots)
 - [ ] CGU SaaS incluant clauses RGPD

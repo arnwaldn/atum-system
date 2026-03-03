@@ -111,16 +111,7 @@ Every code change MUST pass these before marking complete:
 4. **Security clean** — no hardcoded secrets, inputs validated
 5. **Patterns match** — follow existing codebase conventions
 
-### Happy Coder (Mobile/Remote Access)
-**Detect**: "happy", "mobile", "telephone", "phone", "remote session", "acces mobile", "depuis mon telephone", "from my phone", "controle a distance", "remote control", "device switch", "happy doctor", "happy daemon"
-**Auto-actions**:
-1. For status/diagnostics: run `happy doctor` or check `~/.happy/daemon.state.json`
-2. For auth/connect/start: inform user to run interactively from terminal (`happy auth`, `happy`, `happy codex`)
-3. For troubleshooting: invoke **happy-expert** agent
-4. For browser automation (headless CLI): invoke `agent-browser` skill
-5. For TUI/CLI testing: invoke `terminal-emulator` skill
-
-## Full Agent Registry (35 agents)
+## Full Agent Registry (34 agents)
 
 | Agent | Domain | Auto-trigger |
 |-------|--------|-------------|
@@ -160,7 +151,6 @@ Every code change MUST pass these before marking complete:
 | geospatial-expert | Maps & spatial | deck.gl, MapLibre, Leaflet, GeoJSON, spatial indexing |
 | no-code-automation-expert | No-code/Make.com | Automatisations, blueprints, Airtable+Make+Notion integrations |
 | agence-atum-expert | Admin ATUM SAS | Gouvernance, finances, pipeline agence, obligations legales |
-| happy-expert | Happy Coder | Happy auth, sessions, daemon, mobile access, E2E encryption |
 
 NEVER wait for user to request an agent. Detect and invoke. ALWAYS parallelize independent agent work.
 
@@ -187,11 +177,6 @@ NEVER wait for user to request an agent. Detect and invoke. ALWAYS parallelize i
 | Research/evaluation | research-expert agent |
 | Quick business website | **B12 MCP** (`generate_website` tool) |
 | Web app testing / website tools | **WebMCP** (`_webmcp_get-token` → register → use tools) |
-| Mobile app development (Expo/RN) | expo-expert agent |
-| Mobile app development (Flutter) | flutter-dart-expert agent |
-| Mobile/remote Claude access | happy-expert agent |
-| Headless browser automation (CLI) | `agent-browser` skill |
-| Interactive CLI/TUI testing | `terminal-emulator` skill |
 
 ## Skill Selection (Automatic)
 
@@ -207,9 +192,6 @@ Use skills when they match — don't wait for user to invoke:
 - Quick business website → use **B12 MCP** `generate_website` tool (name + description → instant site)
 - Web app interaction needing structured data → suggest **WebMCP** (`_webmcp_get-token` tool) instead of browser automation
 - Scheduling/automation request → invoke **scheduler** skill autonomously (NL → cron/event → JSON → daemon reload)
-- Mobile/remote access to Claude → invoke `/happy` command or **happy-expert** agent
-- Headless browser testing (no GUI) → invoke `agent-browser` skill (complements claude-in-chrome)
-- TUI/CLI interactive testing → invoke `terminal-emulator` skill
 
 ## Contextual NLP Routing (Skills Auto-Invocation)
 
@@ -306,31 +288,6 @@ Detect intent from natural language → invoke matching skill automatically:
 - "assurance", "RC Pro", "cyber assurance" → `agence-atum` (compliance assurances)
 - "note de frais", "remboursement", "frais deplacement" → `agence-atum` (frais)
 - "Syntec", "convention collective", "grille salariale" → `agence-atum` (compliance syntec)
-- "Odoo", "modules Odoo", "Peppol", "facturation electronique" → `agence-atum` (odoo)
-- "sites satellites", "AdSense", "affiliation", "site niche" → `agence-atum` (satellites)
-- "strategie commerciale", "le produit est la demo", "demo prospect" → `agence-atum` (strategy)
-- "charte graphique", "logo ATUM", "identite visuelle", "branding" → `agence-atum` (branding)
-- "GigRoute", "gestion tournees" → `agence-atum` (products)
-- "OWL", "EU AI Act", "audit IA", "conformite IA" → `agence-atum` (products)
-- "3 moteurs", "moteurs revenus", "bootstrap" → `agence-atum` (finance moteurs)
-
-### Happy Coder (Mobile/Remote)
-- "happy", "happy coder", "happy doctor", "happy daemon" → `/happy` command
-- "mobile", "telephone", "phone", "depuis mon tel", "from my phone" → `/happy` command + happy-expert agent
-- "remote session", "acces a distance", "controle distant", "device switch" → `/happy` command
-- "agent-browser", "headless browser", "browser automation CLI", "test en navigateur" → `agent-browser` skill
-- "tui test", "terminal test", "test CLI interactif", "test TUI", "simulate terminal" → `terminal-emulator` skill
-
-### Mobile Development (Expo / React Native)
-- "app mobile", "mobile app", "application mobile", "smartphone app" → expo-expert agent
-- "expo", "Expo", "react native", "React Native", "RN app" → expo-expert agent
-- "EAS", "eas build", "eas submit", "store deploy" → expo-expert agent
-- "android app", "ios app", "App Store", "Play Store", "Google Play" → expo-expert agent
-- "flutter", "Flutter", "dart", "Dart app" → flutter-dart-expert agent
-- "cross-platform", "multiplateforme", "iOS et Android" → expo-expert agent (default) or flutter-dart-expert
-- "push notification", "notif mobile", "FCM", "expo notifications" → expo-expert agent
-- "deep link", "universal link", "app scheme" → expo-expert agent
-- "QR code scan", "camera mobile", "expo camera" → expo-expert agent
 
 ### External Services (MCP remote)
 - "Stripe", "paiement", "checkout" → Stripe MCP
@@ -339,13 +296,6 @@ Detect intent from natural language → invoke matching skill automatically:
 - "docs Microsoft", "Azure" → Microsoft Learn MCP
 - "Linear", "issue tracking", "backlog" → Linear plugin
 - "Pinecone", "vector store" → Pinecone plugin
-
-### Shared Memory (Hindsight)
-- "memoire partagee", "shared memory", "hindsight" → hindsight-shared MCP (bank atum)
-- "rappelle-toi", "souviens-toi", "retiens que", "note pour l'equipe" → hindsight-shared retain
-- "qu'est-ce qu'on avait decide", "quelle decision", "historique decisions" → hindsight-shared recall
-- "point sur", "resume de", "synthese", "mental model" → hindsight-shared reflect
-- "ma memoire perso", "note personnelle", "mes notes" → hindsight-personal retain/recall
 
 ## Decision Authority
 

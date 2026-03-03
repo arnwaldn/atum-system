@@ -22,7 +22,7 @@
     {
       "article": 4,
       "titre": "Facturation et paiement",
-      "resume": "Services : < 1 000 EUR = 100% a la commande ; 1-5 000 EUR = 50/50 ; > 5 000 EUR = echeancier proportionnel (premiere tranche preponderante). SaaS : zero freemium, essai 14-30j, mensuel ou annuel (-15%). Regie TJM : mensuel, 30j. Paiement par virement bancaire (Qonto)"
+      "resume": "Facturation selon echeancier du devis. Paiement par virement bancaire. Delai selon Art. L441-10 Code de commerce"
     },
     {
       "article": 5,
@@ -71,5 +71,5 @@
     }
   ],
   "template": "templates/cgv.md",
-  "updated_at": "2026-03-03"
+  "updated_at": "2026-03-02"
 }

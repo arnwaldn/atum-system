@@ -28,8 +28,8 @@
     "daily"
   ],
   "createdAt": "2026-03-01T12:00:00Z",
-  "updatedAt": "2026-03-03T06:31:35.452Z",
-  "lastRunAt": "2026-03-03T06:31:35.451Z",
+  "updatedAt": "2026-03-01T20:01:19.572Z",
+  "lastRunAt": "2026-03-01T20:01:19.567Z",
   "lastRunStatus": "success",
-  "runCount": 6
+  "runCount": 5
 }
