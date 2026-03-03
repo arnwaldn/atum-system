@@ -95,11 +95,19 @@ L'acompte doit faire reference a sa propre facture d'acompte (AC-YYYY-NNN).
 | Fin de mois | 45 jours fin de mois |
 | Defaut (sans accord) | 30 jours |
 
-### Convention ATUM (par defaut)
-- **Devis < 5 000 EUR** : paiement a reception
-- **Devis 5 000 - 20 000 EUR** : 30 jours date de facture
-- **Devis > 20 000 EUR** : 30% acompte + solde 30 jours apres livraison
+### Convention ATUM (par defaut — BP V2, mars 2026)
+
+#### Prestations de services (agence, audit, formation)
+- **Devis < 1 000 EUR** : 100% a la commande (paiement integral avant demarrage)
+- **Devis 1 000 - 5 000 EUR** : 50% a la commande + 50% a la livraison
+- **Devis > 5 000 EUR** : echeancier proportionnel, premiere tranche preponderante (40-50% a la commande, jalons intermediaires, solde a livraison)
 - **Regie (TJM)** : facturation mensuelle, 30 jours date de facture
+
+#### SaaS (GigRoute, TradingBrain, Quick Summarize, OWL, etc.)
+- **Zero freemium** : pas d'offre gratuite permanente
+- **Essai gratuit** : 14 jours (standard) a 30 jours max (sur demande)
+- **Paiement** : mensuel ou annuel (remise -15% sur annuel)
+- **Renouvellement** : tacite reconduction, resiliation a tout moment
 
 ---
 

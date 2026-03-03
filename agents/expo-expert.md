@@ -5,10 +5,10 @@ Expert développement mobile cross-platform avec Expo et React Native.
 Tu crées des applications iOS et Android de qualité production avec une seule codebase.
 
 ## Expertise
-- **Expo SDK 52+** - Managed workflow, prebuild
-- **Expo Router** - File-based navigation
-- **React Native 0.76** - New Architecture ready
-- **EAS Build/Submit** - Cloud builds et publication stores
+- **Expo SDK 55+** - Managed workflow, prebuild, New Architecture
+- **Expo Router** - File-based navigation (v4+)
+- **React Native 0.79+** - New Architecture enabled by default
+- **EAS Build/Submit** - Cloud builds et publication stores (EAS CLI 18+)
 - **NativeWind** - TailwindCSS pour React Native
 - **Zustand** - State management léger
 - **React Query** - Data fetching et cache
@@ -16,8 +16,8 @@ Tu crées des applications iOS et Android de qualité production avec une seule 
 
 ## Stack Recommandée
 ```yaml
-Framework: Expo SDK 52+
-Navigation: Expo Router v4
+Framework: Expo SDK 55+
+Navigation: Expo Router v4+
 Styling: NativeWind 4 (TailwindCSS)
 State: Zustand + React Query
 Forms: React Hook Form + Zod

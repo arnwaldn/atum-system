@@ -33,10 +33,10 @@
     },
     {
       "id": "T-003",
-      "nom": "TourFlow — Plateforme SaaS gestion de tournees",
-      "finalite": "Fourniture du service SaaS aux clients TourFlow",
+      "nom": "GigRoute (ex-TourFlow) — Plateforme SaaS gestion de tournees",
+      "finalite": "Fourniture du service SaaS aux clients GigRoute",
       "base_legale": "Execution contractuelle (Art. 6.1.b)",
-      "categories_personnes": ["Utilisateurs du SaaS (tour managers, artistes, staff)"],
+      "categories_personnes": ["Utilisateurs du SaaS (tour managers, artistes, booking agents, staff)"],
       "categories_donnees": ["Nom, email, telephone", "Donnees de tournees (dates, lieux, contrats)", "Donnees financieres (cachets, budgets)"],
       "destinataires": ["Hebergeur cloud (UE)", "Client final (responsable de traitement)"],
       "transferts_hors_ue": "Non (infrastructure UE)",
@@ -94,6 +94,46 @@
       "duree_conservation": "Definie par le client dans le DPA",
       "mesures_securite": ["Selon cahier des charges", "Audit securite pre-livraison"],
       "role_atum": "Sous-traitant (Art. 28 RGPD) — DPA specifique par projet"
+    },
+    {
+      "id": "T-008",
+      "nom": "OWL — Audit conformite EU AI Act",
+      "finalite": "Fourniture du service d'audit de conformite EU AI Act pour systemes IA clients",
+      "base_legale": "Execution contractuelle (Art. 6.1.b)",
+      "categories_personnes": ["Representants legaux des entreprises auditees", "Equipes techniques (contacts pour l'audit)"],
+      "categories_donnees": ["Nom, email, fonction des contacts", "Donnees techniques sur les systemes IA (architecture, datasets, metriques)", "Rapports d'audit et recommandations"],
+      "destinataires": ["Equipe audit ATUM", "Client final"],
+      "transferts_hors_ue": "Non (traitement local)",
+      "duree_conservation": "Duree du contrat + 5 ans (obligation de traçabilite EU AI Act)",
+      "mesures_securite": ["Chiffrement au repos et en transit", "Acces restreint equipe audit", "Anonymisation des donnees dans les rapports generiques"],
+      "role_atum": "Responsable de traitement (audit propre) ou Sous-traitant (si mandate par le client)"
+    },
+    {
+      "id": "T-009",
+      "nom": "Sites satellites — Reseau de sites de niche",
+      "finalite": "Operation de sites web de niche monetises (AdSense, affiliation, lead generation)",
+      "base_legale": "Consentement (Art. 6.1.a) pour cookies/analytics + Interet legitime (Art. 6.1.f) pour fonctionnement",
+      "categories_personnes": ["Visiteurs des sites satellites"],
+      "categories_donnees": ["Cookies techniques et publicitaires (AdSense)", "IP (logs serveur)", "Donnees de navigation anonymisees"],
+      "destinataires": ["Google AdSense", "Partenaires affiliation", "Hebergeur (Odoo.sh)"],
+      "transferts_hors_ue": "Possible (Google AdSense US) — Data Processing Framework",
+      "duree_conservation": "Cookies : 13 mois max / Logs : 12 mois",
+      "mesures_securite": ["Bandeau cookies conforme ePrivacy", "HTTPS", "Minimisation des donnees"],
+      "role_atum": "Responsable de traitement"
+    },
+    {
+      "id": "T-010",
+      "nom": "Memoire institutionnelle ATUM (Hindsight)",
+      "finalite": "Memoire collective partagee de l'agence — suivi decisions, projets, clients, gouvernance",
+      "base_legale": "Interet legitime (Art. 6.1.f) — capitalisation des connaissances pour la continuite operationnelle",
+      "categories_personnes": ["Co-fondateurs ATUM (3 utilisateurs)", "Contacts clients mentionnes dans les sessions"],
+      "categories_donnees": ["Decisions strategiques et de gouvernance", "Metriques financieres (CA, MRR, budget)", "Avancement projets et livrables", "Interactions et relations clients", "Resumes de sessions de travail Claude Code"],
+      "destinataires": ["Equipe co-fondateurs ATUM (acces exclusif)"],
+      "transferts_hors_ue": "Possible (Groq US pour extraction LLM) — Clauses contractuelles types (Art. 46.2.c)",
+      "duree_conservation": "Duree de vie de la societe",
+      "mesures_securite": ["Chiffrement HTTPS en transit", "Authentification Bearer token", "Acces restreint aux 3 co-fondateurs", "Hebergement Oracle Cloud (region UE si disponible)", "Donnees personnelles minimisees dans les resumes"],
+      "role_atum": "Responsable de traitement",
+      "sous_traitants": ["Oracle Cloud (hebergement VM)", "Groq (LLM extraction de faits)", "Cloudflare (tunnel HTTPS — optionnel)"]
     }
   ],
   "droits_personnes": {
@@ -112,5 +152,5 @@
     "incidents": [],
     "procedure": "Notification CNIL sous 72h si risque pour les droits des personnes. Notification des personnes concernees si risque eleve."
   },
-  "updated_at": "2026-03-02"
+  "updated_at": "2026-03-03"
 }

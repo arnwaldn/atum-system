@@ -78,16 +78,17 @@ Tous les templates sont dans `~/.claude/data/agence-atum/templates/`
 
 **Variables principales** :
 - `trimestre` (Q1/Q2/Q3/Q4), `annee` — periode
-- Tableau CR : `rev_tourflow`, `bud_tourflow`, `var_tourflow`, `var_pct_tourflow` (idem pour chaque produit)
+- Tableau CR 3 Moteurs : `rev_agence`, `rev_odoo`, `rev_formations` (Services) + `rev_gigroute`, `rev_tradingbrain`, `rev_quicksummarize`, `rev_owl` (SaaS) + `rev_satellites` (Satellites) + `rev_equity` (Work for Equity). Chaque ligne a `bud_*`, `var_*`, `var_pct_*`. Sous-totaux : `st_services`, `st_saas`, `st_satellites`, `st_equity`
 - `ca_total`, `charges_total`, `ebitda`, `marge_ebitda` — synthese + budget + variance
 - `tresorerie`, `creances`, `total_actif`, `capital`, `reserves`, `dettes` — bilan simplifie
 - `mois[]` : `nom`, `treso_debut`, `encaissements`, `decaissements`, `treso_fin` — tresorerie mensuelle
-- `mrr`, `arr`, `clients_*`, `churn`, `cac`, `ltv_cac` — KPIs + cibles + progression
+- KPIs : `mrr`, `arr`, `clients_gigroute`, `clients_tradingbrain`, `clients_quicksummarize`, `clients_owl`, `sites_satellites`, `projets_agence`, `tjm_moyen`, `churn`, `cac`, `ltv_cac`, `breakeven_status`
 - `roadmap[]` : `produit`, `objectif`, `statut`, `commentaire` — avancement
 - `risques[]` : `nom`, `probabilite`, `impact`, `description`, `mitigation`
 - `opportunites[]` : `nom`, `description`
 
 **Donnees sources** : `finances/quarter-YYYY-QN.json`, `produits.json`, `budget-2026.json`
+**Archivage** : `~/Documents/ATUM-Agency/04-finances/rapports-trimestriels/`
 
 ---
 
