@@ -12,7 +12,47 @@ Exit code: always 0 (never blocks Claude)
 import json
 import os
 import sys
+import threading
 from pathlib import Path
+from urllib.request import Request, urlopen
+from urllib.error import URLError
+
+
+def retain_to_hindsight(filepath: str):
+    """Fire-and-forget: send ATUM workspace file change to Hindsight."""
+    url = os.environ.get("HINDSIGHT_URL", "").rstrip("/")
+    key = os.environ.get("HINDSIGHT_API_KEY", "")
+    user = os.environ.get("ATUM_USER", "arnaud")
+    if not url or not key:
+        return
+
+    home = Path.home()
+    atum_workspace = home / "Documents" / "ATUM-Agency"
+    fp = Path(filepath).resolve()
+
+    # Only retain files in the ATUM workspace
+    try:
+        fp.relative_to(atum_workspace)
+    except ValueError:
+        return
+
+    short_path = str(fp).replace(str(home), "~").replace("\\", "/")
+    content = f"Fichier ATUM modifie par {user}: {short_path}"
+    doc_id = f"atum-write-{short_path.replace('/', '-').replace('~', '')}"
+    payload = json.dumps({
+        "items": [{"content": content, "context": "atum-workspace", "document_id": doc_id}],
+    }).encode("utf-8")
+
+    try:
+        req = Request(
+            f"{url}/v1/default/banks/atum/memories",
+            data=payload,
+            headers={"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
+            method="POST",
+        )
+        urlopen(req, timeout=10)
+    except (URLError, OSError):
+        pass  # fire-and-forget
 
 
 def main():
@@ -50,6 +90,11 @@ def main():
 
     agent.process_file_event(str(fp), "modified")
     agent.flush()
+
+    # Fire-and-forget: send to Hindsight shared memory (non-blocking)
+    t = threading.Thread(target=retain_to_hindsight, args=(filepath,), daemon=True)
+    t.start()
+    t.join(timeout=5)  # wait max 5s, then abandon
 
 
 if __name__ == "__main__":

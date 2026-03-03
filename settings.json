@@ -58,7 +58,9 @@
       "mcp__notion__*",
       "mcp__figma__*",
       "mcp__webflow__*",
-      "mcp__plugin_pinecone_pinecone__*"
+      "mcp__plugin_pinecone_pinecone__*",
+      "mcp__hindsight-shared__*",
+      "mcp__hindsight-personal__*"
     ],
     "defaultMode": "default"
   },
@@ -200,6 +202,15 @@
           {
             "type": "command",
             "command": "node \"$HOME/.claude/hooks/session-memory.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/hindsight-session-retain.js\""
           }
         ]
       }

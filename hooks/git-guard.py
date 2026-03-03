@@ -76,6 +76,7 @@ BACKUP_REPOS = [
     'claude-code-config',
     'project-templates',
     'webmcp-optimized',
+    'atum-hindsight',
 ]
 
 if re.search(r'git\s+push\b', command):

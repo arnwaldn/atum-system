@@ -46,5 +46,14 @@ desktop.ini
 # === Image & media caches ===
 image-cache/
 
+# === Telemetry (auto-generated) ===
+telemetry/
+
+# === Scheduler runtime data ===
+schedules/.history/
+
+# === Local overrides ===
+settings.local.json
+
 # ATUM Audit
 audit_store/
