@@ -1,6 +1,6 @@
 {
-  "_comment": "Claude Code MCP Servers — Portable template. Replace placeholders before use.",
-  "_instructions": "REPLACE_WITH_HOME_DIR → your home directory (e.g. C:/Users/you or /Users/you) | Secrets via env vars in ~/.bashrc: GITHUB_PERSONAL_ACCESS_TOKEN, GOOGLE_OAUTH_CLIENT_SECRET, GOOGLE_OAUTH_CLIENT_ID, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY",
+  "_comment": "Claude Code MCP Servers \u00e2\u20ac\u201d Portable template. Replace placeholders before use.",
+  "_instructions": "REPLACE_WITH_HOME_DIR \u00e2\u2020\u2019 your home directory (e.g. C:/Users/you or /Users/you) | Secrets via env vars in ~/.bashrc: GITHUB_PERSONAL_ACCESS_TOKEN, GOOGLE_OAUTH_CLIENT_SECRET, GOOGLE_OAUTH_CLIENT_ID, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY",
   "mcpServers": {
     "memory": {
       "command": "cmd",
@@ -155,6 +155,30 @@
     "make": {
       "type": "http",
       "url": "https://mcp.make.com"
+    },
+    "hindsight-shared": {
+      "type": "http",
+      "url": "https://arnwald84-atum-hindsight.hf.space/mcp/atum/",
+      "headers": {
+        "Authorization": "Bearer ${HINDSIGHT_API_KEY}"
+      }
+    },
+    "hindsight-personal": {
+      "type": "http",
+      "url": "https://arnwald84-atum-hindsight.hf.space/mcp/${ATUM_USER}/",
+      "headers": {
+        "Authorization": "Bearer ${HINDSIGHT_API_KEY}"
+      }
+    },
+    "whatsapp": {
+      "type": "stdio",
+      "command": "$UV_EXE_PATH",
+      "args": [
+        "--directory",
+        "$HOME/Projects/tools/whatsapp-mcp/whatsapp-mcp-server",
+        "run",
+        "main.py"
+      ]
     }
   }
 }
