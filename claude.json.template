@@ -1,6 +1,6 @@
 {
   "_comment": "Claude Code MCP Servers — Portable template. Replace placeholders before use.",
-  "_instructions": "REPLACE_WITH_HOME_DIR → your home directory (e.g. C:/Users/you or /Users/you) | Secrets via env vars in ~/.bashrc: GITHUB_PERSONAL_ACCESS_TOKEN, GOOGLE_OAUTH_CLIENT_SECRET, GOOGLE_OAUTH_CLIENT_ID, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY",
+  "_instructions": "REPLACE_WITH_HOME_DIR → your home directory (e.g. C:/Users/you or /Users/you) | REPLACE_ATUM_USER → arnaud/pablo/wahid | Secrets via env vars in ~/.bashrc: GITHUB_PERSONAL_ACCESS_TOKEN, GOOGLE_OAUTH_CLIENT_SECRET, GOOGLE_OAUTH_CLIENT_ID, OPENAPI_MCP_HEADERS, AIRTABLE_API_KEY, HINDSIGHT_API_KEY, GROQ_API_KEY",
   "mcpServers": {
     "memory": {
       "command": "cmd",
@@ -155,6 +155,20 @@
     "make": {
       "type": "http",
       "url": "https://mcp.make.com"
+    },
+    "hindsight-shared": {
+      "type": "http",
+      "url": "https://arnwald84-atum-hindsight.hf.space/mcp/atum/",
+      "headers": {
+        "Authorization": "Bearer ${HINDSIGHT_API_KEY}"
+      }
+    },
+    "hindsight-personal": {
+      "type": "http",
+      "url": "https://arnwald84-atum-hindsight.hf.space/mcp/REPLACE_ATUM_USER/",
+      "headers": {
+        "Authorization": "Bearer ${HINDSIGHT_API_KEY}"
+      }
     }
   }
 }
