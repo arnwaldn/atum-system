@@ -1,0 +1,35 @@
+{
+  "id": "hindsight-export",
+  "name": "Hindsight Client-Side Export",
+  "description": "Every 6h: export all memories from atum+arnaud banks to local JSONL via deterministic /memories/list API. Push to HF Dataset as secondary backup.",
+  "trigger": {
+    "type": "cron",
+    "cron": "0 */6 * * *"
+  },
+  "prompt": "Run this export script and report results:\n\npython3 C:/Users/arnau/Projects/tools/claude-code-config/scripts/hindsight-export.py\n\nReport: memories exported per bank, HF upload status.",
+  "cwd": "C:/Users/arnau",
+  "model": "haiku",
+  "maxBudgetUsd": 0.1,
+  "timeoutSeconds": 300,
+  "worktree": false,
+  "notify": {
+    "on": [
+      "failure"
+    ],
+    "email": "arnaud.porcel@gmail.com",
+    "includeOutput": true
+  },
+  "enabled": true,
+  "retries": 1,
+  "retryDelaySeconds": 60,
+  "concurrencyGroup": "default",
+  "tags": [
+    "hindsight",
+    "backup"
+  ],
+  "runCount": 1,
+  "lastRunAt": "2026-03-03T17:01:59.488Z",
+  "lastRunStatus": "success",
+  "updatedAt": "2026-03-03T17:01:59.499Z",
+  "createdAt": "2026-03-03T17:01:59.499Z"
+}
