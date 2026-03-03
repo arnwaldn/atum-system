@@ -1,0 +1,35 @@
+{
+  "id": "hindsight-keepalive",
+  "name": "Hindsight Keep-Alive + Health Monitor",
+  "description": "Every 30min: ping /health (prevent sleep) + check memory count via /stats. If bank empty (post-restart), wait for server-side restore then trigger reseed.",
+  "trigger": {
+    "type": "cron",
+    "cron": "*/30 * * * *"
+  },
+  "prompt": "Run this health check script silently and report only the key results:\n\npython3 C:/Users/arnau/Projects/tools/claude-code-config/scripts/hindsight-health-check.py\n\nReport: health status, memory count, and whether reseed was triggered.",
+  "cwd": "C:/Users/arnau",
+  "model": "haiku",
+  "maxBudgetUsd": 0.1,
+  "timeoutSeconds": 300,
+  "worktree": false,
+  "notify": {
+    "on": [
+      "failure"
+    ],
+    "email": "arnaud.porcel@gmail.com",
+    "includeOutput": true
+  },
+  "enabled": true,
+  "retries": 1,
+  "retryDelaySeconds": 30,
+  "concurrencyGroup": "default",
+  "tags": [
+    "hindsight",
+    "infrastructure"
+  ],
+  "createdAt": "2026-03-03T15:32:04.904Z",
+  "updatedAt": "2026-03-03T18:34:44.472Z",
+  "lastRunAt": "2026-03-03T18:34:44.451Z",
+  "lastRunStatus": "success",
+  "runCount": 1
+}

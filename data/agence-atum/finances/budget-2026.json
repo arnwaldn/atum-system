@@ -1,43 +1,69 @@
 {
   "annee": 2026,
   "label": "An1",
+  "modele": "3 moteurs — BP V2 (mars 2026)",
+  "approche": "Bootstrap — zero salaries, 100% capacite production, reinvestissement revenus",
   "revenus_previsionnels": {
-    "tourflow": 180000,
-    "tradingbrain": 432000,
-    "quick_summarize": 60000,
-    "api_horodatage": 180000,
-    "agence_dev": 600000,
-    "autres_saas": 0
+    "moteur_services": {
+      "agence_dev": 600000,
+      "integrations_odoo": 120000,
+      "formations_conseil": 60000,
+      "sous_total": 780000
+    },
+    "moteur_saas": {
+      "gigroute": 180000,
+      "tradingbrain": 432000,
+      "quick_summarize": 60000,
+      "owl_eu_ai_act": 120000,
+      "sous_total": 792000
+    },
+    "moteur_satellites": {
+      "sites_niche_adsense": 30000,
+      "affiliation": 10000,
+      "sous_total": 40000
+    },
+    "work_for_equity": {
+      "api_horodatage": 180000,
+      "sous_total": 180000
+    }
   },
   "charges_previsionnelles": {
-    "salaires_charges": 180000,
-    "marketing_acquisition": 290000,
-    "infrastructure_cloud_api": 72000,
+    "salaires_charges": 0,
+    "remuneration_associes": 0,
+    "marketing_acquisition": 200000,
+    "infrastructure_cloud_api": 96000,
+    "odoo_sh": 7200,
     "sous_traitance": 72000,
-    "frais_generaux": 58000
+    "frais_generaux": 58000,
+    "notes": "Zero salaries An1 (bootstrap). Infra augmentee pour Odoo SH + OWL. Marketing reduit vs BP V1 (pas besoin de brule cash en acquisition quand 'le produit est la demo')"
   },
   "totaux": {
-    "ca_total": 1452000,
-    "charges_total": 672000,
-    "ebitda": 780000,
-    "marge_ebitda_pct": 54,
-    "amortissements": 10000,
-    "resultat_net": 770000,
-    "marge_nette_pct": 53
+    "ca_total_services": 780000,
+    "ca_total_saas": 792000,
+    "ca_total_satellites": 40000,
+    "ca_total_equity": 180000,
+    "ca_total": 1792000,
+    "charges_total": 433200,
+    "ebitda": 1358800,
+    "marge_ebitda_pct": 76,
+    "notes": "Marge significativement amelioree vs BP V1 (54%) grace a l'approche bootstrap + ajout OWL + satellites"
   },
   "tresorerie": {
     "debut": 1000,
     "investissements": 110000,
-    "fin_previsionnelle": 671000
+    "fin_previsionnelle": 1249800
   },
   "dividendes_previsionnels": 0,
   "kpis_cibles": {
-    "mrr_cible": 121000,
-    "arr_cible": 1452000,
-    "clients_tourflow": 200,
+    "mrr_cible": 149000,
+    "arr_cible": 1792000,
+    "clients_gigroute": 200,
     "clients_tradingbrain": 300,
     "clients_quick_summarize": 1000,
-    "equipe": "2-3 personnes"
+    "clients_owl": 100,
+    "sites_satellites": 10,
+    "equipe": "3 associes (zero salaries)",
+    "breakeven": "Q2 2026 (accelere vs Q3 BP V1)"
   },
-  "updated_at": "2026-03-02"
+  "updated_at": "2026-03-03"
 }
