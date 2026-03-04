@@ -17,7 +17,7 @@ bash install.sh
 | Category | Count | Description |
 |----------|-------|-------------|
 | Hooks | 22 | Secret scanner, git guard, typecheck, loop detector, auto-formatter, dashboard sync, hindsight retain, etc. |
-| Commands | 28 | `/scaffold`, `/security-audit`, `/tdd`, `/deploy`, `/happy`, `/whatsapp`, `/schedule`, `/dashboard-atum`, etc. |
+| Commands | 29 | `/scaffold`, `/security-audit`, `/tdd`, `/deploy`, `/happy`, `/whatsapp`, `/schedule`, `/dashboard-atum`, `/projet`, etc. |
 | Agents | 37 | Architect, phaser-expert, ml-engineer, happy-expert, geospatial, compliance, etc. |
 | Skills | 35 | PDF, DOCX, DDD, RAG, Mermaid, agent-browser, terminal-emulator, scheduler, release-notes, etc. |
 | Modes | 4 | architect, autonomous, brainstorm, quality |
