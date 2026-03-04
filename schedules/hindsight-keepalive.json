@@ -28,5 +28,8 @@
     "infrastructure"
   ],
   "createdAt": "2026-03-03T15:32:04.904Z",
-  "updatedAt": "2026-03-04T00:00:00.000Z"
+  "updatedAt": "2026-03-04T09:00:30.982Z",
+  "lastRunAt": "2026-03-04T09:00:30.980Z",
+  "lastRunStatus": "failure",
+  "runCount": 4
 }
