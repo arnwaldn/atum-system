@@ -148,6 +148,16 @@
         ]
       },
       {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/typecheck.sh\"",
+            "timeout": 15000
+          }
+        ]
+      },
+      {
         "matcher": "Bash",
         "hooks": [
           {
