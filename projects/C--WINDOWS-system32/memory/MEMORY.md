@@ -198,4 +198,5 @@ architect, autonomous, brainstorm, quality
 - Output style: Learning mode
 - winget = primary package manager
 - Git: user.name Arnaud, user.email arnaud.porcel@gmail.com, SSH ed25519
+- **Browser automation**: TOUJOURS utiliser Claude in Chrome (navigateur reel avec sessions actives) — Playwright uniquement en fallback si Claude in Chrome est indisponible
 - **Decision principle (CRITICAL)**: Avant CHAQUE decision, se demander "Qu'est-ce qu'un dev senior de tres haut niveau ferait ?" — solutions directes, pas de bidouillage ni workarounds inutiles, autonomie totale
