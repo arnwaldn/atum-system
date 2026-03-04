@@ -252,6 +252,10 @@
           {
             "type": "command",
             "command": "python \"$HOME/.claude/hooks/atum-session-start.py\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/atum-project-scanner.js\""
           }
         ]
       }
