@@ -40,3 +40,13 @@ Generate release notes from the git history above.
 5. If `$ARGUMENTS` is provided, use it as the version name. Otherwise use "Unreleased".
 
 6. Output in the language matching the project (French if README/docs are in French, English otherwise).
+
+7. **CHANGELOG.md auto-update** — If a `CHANGELOG.md` file exists at the project root:
+   - Read the existing CHANGELOG.md
+   - Prepend the new release section at the top (after the main `# Changelog` heading)
+   - Preserve all existing entries — NEVER delete or modify past releases
+   - Use [Keep a Changelog](https://keepachangelog.com) format: Added, Changed, Deprecated, Removed, Fixed, Security
+   - Map conventional commits: feat→Added, fix→Fixed, perf→Changed, refactor→Changed, docs→Changed, BREAKING→Changed
+   - If no `CHANGELOG.md` exists, offer to create one with the current release as first entry
+
+8. If `$ARGUMENTS` contains `--changelog`, ONLY update CHANGELOG.md (skip console output).

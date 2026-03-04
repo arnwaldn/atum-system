@@ -165,11 +165,49 @@ Pour chaque projet NEW, demander confirmation a l'utilisateur avec AskUserQuesti
 
 Si ajout confirme :
 ```bash
-curl -sk -X POST "$SUPABASE_URL/rest/v1/projects" \
+# 1. Inserer dans Supabase (avec Prefer: return=representation pour recuperer l'UUID)
+RESPONSE=$(curl -sk -X POST "$SUPABASE_URL/rest/v1/projects" \
   -H "apikey: $SERVICE_KEY" \
   -H "Authorization: Bearer $SERVICE_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"ref": "PRJ-2026-0XX", "name": "$NAME", "status": "$STATUS", "progress": $PROGRESS, ...}'
+  -H "Prefer: return=representation" \
+  -d '{"ref": "PRJ-2026-0XX", "name": "$NAME", "status": "$STATUS", "progress": $PROGRESS, ...}')
+
+# 2. Extraire l'UUID du projet cree
+PROJECT_UUID=$(echo "$RESPONSE" | python -c "import sys,json; print(json.load(sys.stdin)[0]['id'])")
+
+# 3. Creer .atum.json a la racine du projet pour activer l'auto-sync
+cat > "$PROJECT_DIR/.atum.json" << EOF
+{
+  "project_id": "$PROJECT_UUID",
+  "project_ref": "PRJ-2026-0XX",
+  "dashboard_url": "$DASHBOARD_URL",
+  "supabase_url": "$SUPABASE_URL",
+  "auto_sync": true
+}
+EOF
+
+# 4. Ajouter .atum.json au .gitignore si git repo
+if [ -d "$PROJECT_DIR/.git" ] && ! grep -q "\.atum\.json" "$PROJECT_DIR/.gitignore" 2>/dev/null; then
+  echo "" >> "$PROJECT_DIR/.gitignore"
+  echo "# ATUM Dashboard config" >> "$PROJECT_DIR/.gitignore"
+  echo ".atum.json" >> "$PROJECT_DIR/.gitignore"
+fi
+
+# 5. Ajouter au registre central ~/.claude/atum-projects.json (pour le scanner SessionStart)
+python3 -c "
+import json, os
+registry = os.path.join(os.environ['HOME'], '.claude', 'atum-projects.json')
+data = json.load(open(registry))
+# Verifier que le projet n'existe pas deja
+if not any(p['id'] == '$PROJECT_UUID' for p in data['projects']):
+    data['projects'].append({
+        'id': '$PROJECT_UUID',
+        'name': '$NAME',
+        'path': '$PROJECT_DIR'.replace(os.environ['HOME'], '~')
+    })
+    json.dump(data, open(registry, 'w'), indent=2, ensure_ascii=False)
+"
 ```
 
 ### 4c. Logger l'evenement d'audit
