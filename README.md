@@ -21,7 +21,7 @@ bash install.sh
 | Agents | 37 | Architect, phaser-expert, ml-engineer, happy-expert, geospatial, compliance, etc. |
 | Skills | 35 | PDF, DOCX, DDD, RAG, Mermaid, agent-browser, terminal-emulator, scheduler, release-notes, etc. |
 | Modes | 4 | architect, autonomous, brainstorm, quality |
-| Rules | 27 | Coding style, security, testing, resilience, whatsapp-persona (common + TS/Python/Go) |
+| Rules | 28 | Coding style, security, testing, resilience, pedagogie, whatsapp-persona (common + TS/Python/Go) |
 | Scripts | 5 | Context monitor, seed-hindsight, seed-workspace, hindsight-export, hindsight-health-check |
 | MCP Servers | 22 | GitHub, Memory, Railway, Cloudflare, B12, WebMCP, WhatsApp, Hindsight, Google Workspace, etc. |
 | Plugins | 56 | ECC, Superpowers, Playwright, Firebase, Figma, Stripe, Linear, Pinecone, etc. |
@@ -59,7 +59,7 @@ commands/           Slash commands (/scaffold, /tdd, /deploy, /happy, /whatsapp,
 agents/             Specialized agents (37 domain experts)
 skills/             On-demand skills (35: pdf, docx, DDD, RAG, release-notes, etc.)
 modes/              Custom modes (architect, autonomous, brainstorm, quality)
-rules/              Global rules (27 files: common/, typescript/, python/, golang/)
+rules/              Global rules (28 files: common/, typescript/, python/, golang/)
 scripts/            Helper scripts (context-monitor, seed-hindsight, hindsight-export, etc.)
 bin/                Tool wrappers for Git Bash (gsudo, jq, uv, uvx, composer)
 acpx/               acpx headless session config
