@@ -76,7 +76,7 @@ check_prereqs() {
 confirm_install() {
     echo -e "${BOLD}This will install:${NC}"
     echo "  - 22 hooks       (PreToolUse, PostToolUse, PostToolUseFailure, ConfigChange, Notification, Stop, SessionStart)"
-    echo "  - 28 commands     (/scaffold, /security-audit, /tdd, /deploy, /website, /webmcp, /schedule, /whatsapp, /happy, etc.)"
+    echo "  - 29 commands     (/scaffold, /security-audit, /tdd, /deploy, /website, /webmcp, /schedule, /whatsapp, /happy, /projet, etc.)"
     echo "  - 37 agents       (architect, expo-expert, ml-engineer, geospatial, no-code, happy-expert, etc.)"
     echo "  - 35 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, release-notes, etc.)"
     echo "  - 4 modes         (architect, autonomous, brainstorm, quality)"
