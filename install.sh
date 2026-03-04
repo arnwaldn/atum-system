@@ -75,19 +75,19 @@ check_prereqs() {
 # ============================================================
 confirm_install() {
     echo -e "${BOLD}This will install:${NC}"
-    echo "  - 18 hooks       (PreToolUse, PostToolUse, Notification, Stop, SessionStart)"
-    echo "  - 27 commands     (/scaffold, /security-audit, /tdd, /website, /webmcp, /schedule, /whatsapp, /happy, etc.)"
+    echo "  - 22 hooks       (PreToolUse, PostToolUse, PostToolUseFailure, ConfigChange, Notification, Stop, SessionStart)"
+    echo "  - 28 commands     (/scaffold, /security-audit, /tdd, /deploy, /website, /webmcp, /schedule, /whatsapp, /happy, etc.)"
     echo "  - 37 agents       (architect, expo-expert, ml-engineer, geospatial, no-code, happy-expert, etc.)"
-    echo "  - 34 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, agent-browser, terminal-emulator, etc.)"
+    echo "  - 35 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, release-notes, etc.)"
     echo "  - 4 modes         (architect, autonomous, brainstorm, quality)"
     echo "  - 27 rules        (coding-style, security, resilience, decision-principle, whatsapp-persona, etc.)"
     echo "  - 56 plugins      (ECC, code-review, figma, firebase, stripe, linear, etc.)"
-    echo "  - 1 script        (context-monitor.py statusline)"
+    echo "  - 5 scripts       (context-monitor, seed-hindsight, hindsight-export, etc.)"
     echo "  - 184 templates   (scaffolds + references from project-templates)"
     echo "  - settings.json   (hooks, plugins, full autonomy permissions)"
-    echo "  - MCP servers     (.claude.json with 21 servers incl. B12, WebMCP, Hindsight)"
-    echo "  - data store      (agence-atum JSON data + schedules)"
-    echo "  - bin wrappers    (Windows: gsudo, jq, stripe, watchman, etc.)"
+    echo "  - MCP servers     (.claude.json with 22 servers incl. B12, WebMCP, Hindsight, WhatsApp)"
+    echo "  - data store      (agence-atum JSON data + schedules + project registry)"
+    echo "  - bin wrappers    (Windows: gsudo, jq, uv, uvx, composer)"
     echo "  - acpx config     (headless ACP sessions)"
     echo ""
     echo -e "  Target: ${CYAN}$CLAUDE_DIR/${NC}"
@@ -169,6 +169,12 @@ copy_files() {
     if [ -d "$SCRIPT_DIR/scheduler" ]; then
         cp -r "$SCRIPT_DIR/scheduler" "$CLAUDE_DIR/"
         ok "scheduler/ (daemon)"
+    fi
+
+    # Project registry (atum-projects.json)
+    if [ -f "$SCRIPT_DIR/atum-projects.json" ]; then
+        cp "$SCRIPT_DIR/atum-projects.json" "$CLAUDE_DIR/atum-projects.json"
+        ok "atum-projects.json (project registry)"
     fi
 
     # Make hooks executable
@@ -318,15 +324,23 @@ with open('$CLAUDE_JSON', 'w') as f:
     # Detect profile for display
     local _profile_hint="~/.bashrc"
     [ "$OS" = "macos" ] && _profile_hint="~/.zshrc"
-    echo -e "  ${YELLOW}[IMPORTANT]${NC} Add these env vars to your ${_profile_hint} for MCP servers:"
+    echo -e "  ${YELLOW}[IMPORTANT]${NC} Add these env vars to your ${_profile_hint}:"
+    echo ""
+    echo "    # MCP servers"
     echo "    export GITHUB_PERSONAL_ACCESS_TOKEN=\"\$(gh auth token 2>/dev/null)\""
     echo "    export GOOGLE_OAUTH_CLIENT_SECRET=\"your-google-oauth-client-secret\""
     echo "    export OPENAPI_MCP_HEADERS='{\"Authorization\":\"Bearer your-notion-token\",\"Notion-Version\":\"2022-06-28\"}'"
     echo "    export AIRTABLE_API_KEY=\"your-airtable-pat\""
+    echo ""
+    echo "    # Hindsight shared memory"
     echo "    export HINDSIGHT_API_KEY=\"your-hindsight-api-key\""
     echo "    export ATUM_USER=\"your-name\""
-    echo "    export GROQ_API_KEY=\"your-groq-key\"  # for Hindsight LLM"
-    echo "    export GEMINI_API_KEY=\"your-gemini-key\"  # for Hindsight LLM"
+    echo "    export GROQ_API_KEY=\"your-groq-key\""
+    echo "    export GEMINI_API_KEY=\"your-gemini-key\""
+    echo ""
+    echo "    # ATUM Dashboard auto-sync"
+    echo "    export ATUM_DASHBOARD_KEY=\"your-dashboard-api-key\""
+    echo "    export ATUM_SUPABASE_SERVICE_KEY=\"your-supabase-service-role-key\""
     echo ""
 }
 
@@ -776,14 +790,15 @@ summary() {
     echo ""
     echo "  Next steps:"
     echo "  1. Restart Claude Code"
-    echo "  2. Set GitHub PAT if not done: export GITHUB_PERSONAL_ACCESS_TOKEN=..."
-    echo "  3. Configure remote MCP servers in claude.ai:"
+    echo "  2. Set env vars if not done (see output above)"
+    echo "  3. Configure remote MCP servers in claude.ai settings:"
     echo "     Figma, Notion, Supabase, Vercel, Canva, Stripe, etc."
     echo "  4. If plugins failed, re-run: bash install.sh --plugins-only"
+    echo "  5. For ATUM Dashboard: create API key at atum-dashboard.netlify.app/settings"
     echo ""
     echo "  Config locations:"
     echo "    ~/.claude/              hooks, commands, agents, modes, rules, skills, data, schedules"
-    echo "    ~/.claude.json          MCP server configs (22 servers)"
+    echo "    ~/.claude.json          MCP server configs"
     echo "    ~/.claude/settings.json main config (SOURCE OF TRUTH)"
     echo "    ~/.acpx/config.json     acpx headless sessions"
     echo "    ~/bin/                   tool wrappers (Windows only)"
