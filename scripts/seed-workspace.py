@@ -711,12 +711,62 @@ def main():
     # Summary
     print("=" * 60)
     if _server_down:
-        print(f"  ABORTED — server went down (503)")
+        print(f"  ABORTED -- server went down (503)")
     else:
         print(f"  DONE")
     print(f"  OK: {stats['ok']}, FAIL: {stats['fail']}, SKIP: {stats['skip']}")
     print(f"  Estimated tokens used: ~{stats['total_tokens_estimate']:,}")
     print("=" * 60)
+
+    # Post-seed finalization: wait for full consolidation then remove SKIP_RESTORE
+    if not _server_down and stats["ok"] > 0:
+        finalize_after_seed()
+
+
+def finalize_after_seed() -> None:
+    """Wait for consolidation to complete, then remove SKIP_RESTORE so restore works."""
+    print("\n  Post-seed finalization...")
+
+    # Wait for pending_consolidation = 0
+    print("  Waiting for full consolidation (pending=0)...")
+    for cycle in range(60):  # 60 x 30s = 30 min max
+        try:
+            resp = requests.get(
+                f"{HINDSIGHT_URL}/v1/default/banks/{BANK_ID}/stats",
+                headers=HEADERS, timeout=15,
+            )
+            if resp.status_code == 200:
+                pending = resp.json().get("pending_consolidation", 0)
+                nodes = resp.json().get("total_nodes", 0)
+                if pending == 0:
+                    print(f"  Consolidation complete: {nodes} nodes, 0 pending")
+                    break
+                print(f"  Consolidation: {pending} pending, {nodes} nodes... ({cycle+1}/60)")
+        except requests.RequestException:
+            pass
+        time.sleep(30)
+
+    # Remove SKIP_RESTORE via HuggingFace Hub API
+    hf_token = os.environ.get("HF_TOKEN", "")
+    if not hf_token:
+        print("  HF_TOKEN not set -- cannot remove SKIP_RESTORE automatically")
+        print("  Manual step: remove SKIP_RESTORE secret from Space settings")
+        return
+
+    try:
+        from huggingface_hub import HfApi
+        api = HfApi(token=hf_token)
+        repo_id = "Arnwald84/atum-hindsight"
+        try:
+            api.delete_space_secret(repo_id, "SKIP_RESTORE")
+            print(f"  SKIP_RESTORE removed from {repo_id}")
+        except Exception as e:
+            if "404" in str(e) or "not found" in str(e).lower():
+                print(f"  SKIP_RESTORE already removed (not found)")
+            else:
+                print(f"  WARNING: Could not remove SKIP_RESTORE: {e}")
+    except ImportError:
+        print("  huggingface_hub not installed -- remove SKIP_RESTORE manually")
 
 
 if __name__ == "__main__":

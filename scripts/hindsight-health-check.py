@@ -24,9 +24,10 @@ from pathlib import Path
 
 URL = os.environ.get("HINDSIGHT_URL", "").rstrip("/")
 KEY = os.environ.get("HINDSIGHT_API_KEY", "")
-SEED_SCRIPT = str(
-    Path.home() / "Projects/tools/claude-code-config/scripts/seed-workspace.py"
-)
+# Search installed location first, then fall back to dev repo
+_installed = Path.home() / ".claude" / "scripts" / "seed-workspace.py"
+_dev_repo = Path.home() / "Projects" / "tools" / "claude-code-config" / "scripts" / "seed-workspace.py"
+SEED_SCRIPT = str(_installed if _installed.exists() else _dev_repo)
 RESTORE_WAIT = 90  # seconds to wait for server-side restore
 
 HEADERS = {"Authorization": f"Bearer {KEY}", "Content-Type": "application/json"}
