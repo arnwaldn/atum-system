@@ -315,7 +315,10 @@ with open('$CLAUDE_JSON', 'w') as f:
     echo ""
 
     # Remind about required env vars
-    echo -e "  ${YELLOW}[IMPORTANT]${NC} Add these env vars to your ~/.bashrc (or ~/.zshrc) for MCP servers:"
+    # Detect profile for display
+    local _profile_hint="~/.bashrc"
+    [ "$OS" = "macos" ] && _profile_hint="~/.zshrc"
+    echo -e "  ${YELLOW}[IMPORTANT]${NC} Add these env vars to your ${_profile_hint} for MCP servers:"
     echo "    export GITHUB_PERSONAL_ACCESS_TOKEN=\"\$(gh auth token 2>/dev/null)\""
     echo "    export GOOGLE_OAUTH_CLIENT_SECRET=\"your-google-oauth-client-secret\""
     echo "    export OPENAPI_MCP_HEADERS='{\"Authorization\":\"Bearer your-notion-token\",\"Notion-Version\":\"2022-06-28\"}'"
@@ -466,44 +469,41 @@ install_hindsight() {
     echo ""
     read -rp "  Groq API key (leave empty to skip): " groq_api_key
 
-    # --- Add env vars to ~/.bashrc (if not already present) ---
-    local bashrc="$HOME/.bashrc"
-    touch "$bashrc"
-
-    if ! grep -q '^export HINDSIGHT_URL=' "$bashrc" 2>/dev/null; then
-        echo "export HINDSIGHT_URL=\"${HINDSIGHT_URL}\"" >> "$bashrc"
-        ok "Added HINDSIGHT_URL to ~/.bashrc"
+    # --- Detect shell profile (macOS=zshrc, Windows/Linux=bashrc) ---
+    local profile
+    if [ "$OS" = "macos" ]; then
+        profile="$HOME/.zshrc"
     else
-        ok "HINDSIGHT_URL already in ~/.bashrc"
+        profile="$HOME/.bashrc"
     fi
+    touch "$profile"
+    local profile_name
+    profile_name="$(basename "$profile")"
+
+    # --- Add env vars to shell profile (if not already present) ---
+    _add_env() {
+        local var_name="$1" var_value="$2"
+        if ! grep -q "^export ${var_name}=" "$profile" 2>/dev/null; then
+            echo "export ${var_name}=\"${var_value}\"" >> "$profile"
+            ok "Added ${var_name} to ~/${profile_name}"
+        else
+            ok "${var_name} already in ~/${profile_name}"
+        fi
+    }
+
+    _add_env "HINDSIGHT_URL" "${HINDSIGHT_URL}"
+    _add_env "ATUM_USER" "${atum_user}"
 
     if [ -n "$hindsight_api_key" ]; then
-        if ! grep -q '^export HINDSIGHT_API_KEY=' "$bashrc" 2>/dev/null; then
-            echo "export HINDSIGHT_API_KEY=\"${hindsight_api_key}\"" >> "$bashrc"
-            ok "Added HINDSIGHT_API_KEY to ~/.bashrc"
-        else
-            ok "HINDSIGHT_API_KEY already in ~/.bashrc"
-        fi
+        _add_env "HINDSIGHT_API_KEY" "${hindsight_api_key}"
     else
-        warn "HINDSIGHT_API_KEY not set — add it later to ~/.bashrc"
-    fi
-
-    if ! grep -q '^export ATUM_USER=' "$bashrc" 2>/dev/null; then
-        echo "export ATUM_USER=\"${atum_user}\"" >> "$bashrc"
-        ok "Added ATUM_USER to ~/.bashrc"
-    else
-        ok "ATUM_USER already in ~/.bashrc"
+        warn "HINDSIGHT_API_KEY not set — add it later to ~/${profile_name}"
     fi
 
     if [ -n "$groq_api_key" ]; then
-        if ! grep -q '^export GROQ_API_KEY=' "$bashrc" 2>/dev/null; then
-            echo "export GROQ_API_KEY=\"${groq_api_key}\"" >> "$bashrc"
-            ok "Added GROQ_API_KEY to ~/.bashrc"
-        else
-            ok "GROQ_API_KEY already in ~/.bashrc"
-        fi
+        _add_env "GROQ_API_KEY" "${groq_api_key}"
     else
-        warn "GROQ_API_KEY not set — add it later to ~/.bashrc"
+        warn "GROQ_API_KEY not set — add it later to ~/${profile_name}"
     fi
 
     # --- Replace REPLACE_ATUM_USER in .claude.json ---
@@ -514,6 +514,15 @@ install_hindsight() {
             sed -i "s|REPLACE_ATUM_USER|${atum_user}|g" "$CLAUDE_JSON"
         fi
         ok "Replaced REPLACE_ATUM_USER with '${atum_user}' in .claude.json"
+    fi
+
+    # --- Install Python deps for seed/health scripts ---
+    info "Installing Python dependencies for Hindsight scripts..."
+    if python3 -c "import requests" 2>/dev/null; then
+        ok "requests already installed"
+    else
+        pip3 install --user requests 2>/dev/null || pip install --user requests 2>/dev/null || \
+            warn "Could not install requests — run manually: pip3 install requests"
     fi
 
     ok "Hindsight configured for ${atum_user}"

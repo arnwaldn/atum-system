@@ -1,0 +1,26 @@
+{
+  "id": "appart-aix-search",
+  "name": "Recherche Appartement Aix-en-Provence",
+  "description": "Recherche quotidienne d'appartements via Playwright (navigation réelle) autour d'Aix-en-Provence. Déduplique par rapport aux emails précédents. Envoie uniquement les nouveautés à arnaud.porcel@gmail.com.",
+  "trigger": {
+    "type": "cron",
+    "cron": "0 12 * * *"
+  },
+  "prompt": "## CONTEXTE\nTu effectues une recherche quotidienne d'appartements pour Arnaud. Tu DOIS utiliser Playwright (mcp__plugin_playwright_playwright) pour naviguer sur les sites immobiliers et extraire les VRAIS liens directs vers chaque annonce individuelle. N'utilise JAMAIS WebSearch seul — les résultats ne contiennent pas de liens directs.\n\n## ÉTAPE 1 — CONSULTER LES EMAILS PRÉCÉDENTS (DÉDUPLICATION)\nAvant toute recherche :\n1. Utilise mcp__google-workspace__search_gmail_messages avec user_google_email='arnaud.porcel@gmail.com' et query='subject:Recherche Appartement Aix-en-Provence from:me'\n2. Lis le contenu des 3 derniers emails avec mcp__google-workspace__get_gmail_message_content\n3. Extrais toutes les URLs d'annonces déjà envoyées → constitue une LISTE DE DÉDUPLICATION\n\n## ÉTAPE 2 — FERMER CHROME ET LANCER PLAYWRIGHT\n1. Exécute : taskkill //F //IM chrome.exe (via Bash)\n2. Supprime les lock files : rm /c/Users/arnau/AppData/Local/ms-playwright/mcp-chrome-*/lockfile (via Bash)\n3. Lance Playwright browser_navigate\n\n## ÉTAPE 3 — NAVIGUER SUR LES SITES IMMOBILIERS\nNavigue sur ces URLs avec Playwright (browser_navigate) et extrais les annonces :\n\n### PAP.fr (prioritaire — liens directs fiables)\n- URL : https://www.pap.fr/annonce/locations-appartement-aix-en-provence-13-g11424-jusqu-a-1000-euros\n- Si popup cookies → cliquer 'Continuer sans accepter'\n- Extrais : prix, surface, pièces, localisation, description, URL directe (format /annonces/appartement-...)\n\n### ParuVendu\n- URL : https://www.paruvendu.fr/immobilier/location/appartement-parking-garage/aix-en-provence/\n- Extrais les annonces avec liens directs\n\n### Autres sites à tenter (si le temps le permet)\n- LocService : https://www.locservice.fr/bouches-du-rhone-13/location-appartement-aix-en-provence.html\n- Nestoria : https://www.nestoria.fr/aix-en-provence/appartement/location\n\n## ÉTAPE 4 — FILTRER\nCritères STRICTS (TOUS obligatoires) :\n- ≤ 1000€/mois charges comprises\n- PAS de colocation (exclure toute annonce mentionnant 'colocation', 'chambre en colocation', 'colocataire')\n- PAS dans la région de Marseille\n- Terrasse OU balcon OU petit jardin (obligatoire)\n- Place de parking pour voiture (obligatoire)\n- Garage fermé / box pour moto (obligatoire ou 'possibilité de garage')\n\nCommunes dans le rayon de 10 km : Aix-en-Provence (tous codes postaux), Luynes, Puyricard, Eguilles, Venelles, Meyreuil, Gardanne, Bouc-Bel-Air, Fuveau, Trets, Peynier\n\n## ÉTAPE 5 — DÉDUPLIQUER\nCompare chaque annonce avec la liste de l'étape 1. Doublon = même URL OU même combinaison (adresse + loyer + surface). Ne garde QUE les nouvelles annonces.\n\n## ÉTAPE 6 — ENVOYER L'EMAIL\nUtilise mcp__google-workspace__send_gmail_message avec user_google_email='arnaud.porcel@gmail.com', to='arnaud.porcel@gmail.com', body_format='html'.\n\n### Si nouvelles annonces trouvées :\n- Objet : '🏠 Recherche Appartement Aix-en-Provence — Nouveautés du [DATE]'\n- Corps HTML : pour chaque annonce, inclure titre, loyer, surface, localisation, description, critères vérifiés (✅/❓), et un LIEN CLIQUABLE DIRECT vers l'annonce (pas vers une page de recherche)\n\n### Si AUCUNE nouvelle annonce :\n- Objet : '🏠 Recherche Appartement Aix-en-Provence — Aucune nouveauté le [DATE]'\n- Corps : message court confirmant la recherche effectuée, nombre de sites consultés, aucun nouvel appartement trouvé\n\nIMPORTANT : Chaque lien dans l'email DOIT pointer vers UNE annonce spécifique. JAMAIS vers une page de recherche générique.",
+  "cwd": "C:/WINDOWS/system32",
+  "model": "sonnet",
+  "maxBudgetUsd": 8,
+  "timeoutSeconds": 900,
+  "worktree": false,
+  "notify": {
+    "on": ["success", "failure"],
+    "email": "arnaud.porcel@gmail.com",
+    "includeOutput": false
+  },
+  "enabled": true,
+  "retries": 2,
+  "retryDelaySeconds": 120,
+  "concurrencyGroup": "default",
+  "tags": ["immobilier", "daily", "personal", "playwright"],
+  "createdAt": "2026-03-04T01:30:00Z"
+}

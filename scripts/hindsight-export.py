@@ -33,7 +33,8 @@ HEADERS = {"Authorization": f"Bearer {KEY}", "Content-Type": "application/json"}
 CTX = ssl.create_default_context()
 LOCAL_DIR = Path.home() / ".claude" / "hindsight-export"
 
-BANKS = ["atum", "arnaud"]
+ATUM_USER = os.environ.get("ATUM_USER", "arnaud")
+BANKS = ["atum", ATUM_USER]
 PAGE_SIZE = 100
 
 
