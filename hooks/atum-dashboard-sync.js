@@ -177,29 +177,60 @@ async function main() {
     },
   });
 
-  // Send to dashboard API
-  const url = config.dashboard_url.replace(/\/$/, "") + "/api/sync";
-  const payload = {
-    project_id: config.project_id,
-    events,
-  };
+  // Try dashboard API first, fall back to direct Supabase insert
+  const dashboardUrl = config.dashboard_url.replace(/\/$/, "") + "/api/sync";
+  const payload = { project_id: config.project_id, events };
+  let synced = false;
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify(payload),
-    signal: AbortSignal.timeout(10000),
-  });
+  // Strategy 1: Dashboard API (when /api/sync works with service role key)
+  try {
+    const resp = await fetch(dashboardUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(10000),
+    });
+    if (resp.ok) synced = true;
+  } catch {}
 
-  // Log result for debugging (optional)
-  if (!response.ok) {
-    const errText = await response.text();
+  // Strategy 2: Direct Supabase REST API insert (reliable fallback)
+  if (!synced) {
+    const supabaseUrl = config.supabase_url || process.env.ATUM_SUPABASE_URL;
+    const supabaseKey = config.supabase_service_key || process.env.ATUM_SUPABASE_SERVICE_KEY;
+    if (supabaseUrl && supabaseKey) {
+      const rows = events.map((e) => ({
+        project_id: config.project_id,
+        event_type: e.event_type,
+        title: e.title,
+        description: e.description || null,
+        metadata: e.metadata || null,
+        source: "claude_code",
+        session_id: e.session_id || null,
+      }));
+      try {
+        const resp = await fetch(`${supabaseUrl}/rest/v1/dev_events`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: supabaseKey,
+            Authorization: `Bearer ${supabaseKey}`,
+            Prefer: "return=minimal",
+          },
+          body: JSON.stringify(rows),
+          signal: AbortSignal.timeout(10000),
+        });
+        if (resp.ok) synced = true;
+      } catch {}
+    }
+  }
+
+  if (!synced) {
     fs.writeFileSync(
       path.join(TEMP, "atum-sync-last-error.json"),
-      JSON.stringify({ status: response.status, body: errText, timestamp: new Date().toISOString() })
+      JSON.stringify({ error: "Both sync strategies failed", timestamp: new Date().toISOString() })
     );
   }
 }
