@@ -575,6 +575,52 @@ install_collective_memory() {
                 warn "Sync script not found at $SYNC_SCRIPT"
             fi
         fi
+
+        # --- Auto-start PM2 on boot ---
+        if [ "$OS" = "windows" ]; then
+            if MSYS_NO_PATHCONV=1 schtasks /query /tn "PM2-Resurrect" &>/dev/null; then
+                ok "PM2 auto-start already configured (schtasks)"
+            else
+                if MSYS_NO_PATHCONV=1 schtasks /create /tn "PM2-Resurrect" /tr "cmd /c pm2 resurrect" /sc onlogon /rl limited /f &>/dev/null; then
+                    ok "PM2 auto-start configured (schtasks: PM2-Resurrect)"
+                else
+                    warn "Could not create scheduled task — run as admin or create manually"
+                    warn "schtasks /create /tn PM2-Resurrect /tr \"cmd /c pm2 resurrect\" /sc onlogon /rl limited /f"
+                fi
+            fi
+        elif [ "$OS" = "macos" ]; then
+            local PLIST_DIR="$HOME/Library/LaunchAgents"
+            local PLIST_FILE="$PLIST_DIR/com.atum.pm2-resurrect.plist"
+            if [ -f "$PLIST_FILE" ]; then
+                ok "PM2 auto-start already configured (launchd)"
+            else
+                mkdir -p "$PLIST_DIR"
+                cat > "$PLIST_FILE" << 'PLIST'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.atum.pm2-resurrect</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-lc</string>
+        <string>pm2 resurrect</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/tmp/pm2-resurrect.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/pm2-resurrect.log</string>
+</dict>
+</plist>
+PLIST
+                launchctl load "$PLIST_FILE" 2>/dev/null || true
+                ok "PM2 auto-start configured (launchd: com.atum.pm2-resurrect)"
+            fi
+        fi
     else
         warn "PM2 not installed — install with: npm install -g pm2"
         warn "Then start sync: pm2 start ~/.claude/scripts/collective-memory-sync.js --name atum-memory-sync"
