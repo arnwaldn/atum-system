@@ -229,6 +229,105 @@ function buildContent(stats, dateStr, timeStr, duration, shortId, shortProject) 
   return { content: lines.join("\n"), category: category };
 }
 
+// --- Transactive memory: who knows what ---
+
+var WHO_KNOWS_FILE = path.join(MEMORY_DIR, "who-knows-what.md");
+
+function detectTopics(stats) {
+  // Combine all signals to detect what this session was about
+  var topics = [];
+  var techs = detectTechnologies(stats.filesModified, stats.filesRead, stats.bashCommands);
+  var files = (stats.filesModified || []).map(function(f) { return f.replace(/\\/g, "/").toLowerCase(); });
+  var cmds = (stats.bashCommands || []).join(" ").toLowerCase();
+  var commits = (stats.commitMessages || []).join(" ").toLowerCase();
+  var allText = files.join(" ") + " " + cmds + " " + commits;
+
+  // Detect project names from file paths
+  var projectPatterns = [
+    [/gigroute/i, "GigRoute"],
+    [/whatsapp/i, "WhatsApp Bridge"],
+    [/claude-code-config/i, "Infrastructure Claude Code"],
+    [/collective-memory/i, "Memoire collective"],
+    [/atum.audit|agent.owl/i, "ATUM Audit (EU AI Act)"],
+    [/scheduler/i, "Scheduler"],
+  ];
+  for (var i = 0; i < projectPatterns.length; i++) {
+    if (projectPatterns[i][0].test(allText)) {
+      topics.push(projectPatterns[i][1]);
+    }
+  }
+
+  // Add technologies as context
+  if (techs.length > 0) {
+    topics.push(techs.join(", "));
+  }
+
+  return topics;
+}
+
+function updateWhoKnowsWhat(stats) {
+  var topics = detectTopics(stats);
+  if (topics.length === 0) return;
+
+  var topicLabel = topics.join(", ");
+
+  try {
+    var content = "";
+    try { content = fs.readFileSync(WHO_KNOWS_FILE, "utf8"); } catch { /* file doesn't exist yet */ }
+
+    if (!content) {
+      // Create initial structure
+      content = "# Qui sait quoi — ATUM SAS\nDerniere mise a jour: " + new Date().toISOString().slice(0, 10) + "\n\n## arnaud\n\n## pablo\n\n## wahid\n\n";
+    }
+
+    // Find the user's section
+    var userHeader = "## " + ATUM_USER;
+    var userIndex = content.indexOf(userHeader);
+    if (userIndex === -1) {
+      // User section doesn't exist — add it
+      content += "\n" + userHeader + "\n- " + topicLabel + " — 1 session\n";
+    } else {
+      // Find the end of user's section (next ## or end of file)
+      var sectionStart = userIndex + userHeader.length;
+      var nextSection = content.indexOf("\n## ", sectionStart);
+      var sectionEnd = nextSection === -1 ? content.length : nextSection;
+      var userSection = content.slice(sectionStart, sectionEnd);
+
+      // Check if topic already exists in this user's section
+      var updated = false;
+      var lines = userSection.split("\n");
+      for (var i = 0; i < lines.length; i++) {
+        // Check if any main topic from this session matches an existing line
+        for (var t = 0; t < topics.length; t++) {
+          if (topics[t].length > 3 && lines[i].toLowerCase().includes(topics[t].toLowerCase())) {
+            // Update session count
+            var countMatch = lines[i].match(/(\d+) session/);
+            if (countMatch) {
+              var newCount = parseInt(countMatch[1], 10) + 1;
+              lines[i] = lines[i].replace(/\d+ session/, newCount + " session");
+            }
+            updated = true;
+            break;
+          }
+        }
+      }
+
+      if (!updated) {
+        // Add new topic line
+        lines.push("- " + topicLabel + " — 1 session");
+      }
+
+      var newSection = lines.join("\n");
+      content = content.slice(0, sectionStart) + newSection + content.slice(sectionEnd);
+    }
+
+    // Update timestamp
+    content = content.replace(/Derniere mise a jour: .+/, "Derniere mise a jour: " + new Date().toISOString().slice(0, 10));
+
+    fs.writeFileSync(WHO_KNOWS_FILE, content);
+  } catch { /* best effort — never crash */ }
+}
+
 function gitSync(commitMsg) {
   try {
     execFileSync("git", ["add", "-A"], {
@@ -279,6 +378,9 @@ function main() {
   var fileName = dateStr + "-" + timeStr.replace(":", "") + "-" + shortId + ".md";
   var filePath = path.join(SESSIONS_DIR, fileName);
   fs.writeFileSync(filePath, result.content);
+
+  // Update transactive memory index (who-knows-what)
+  updateWhoKnowsWhat(stats || {});
 
   // Git sync (best-effort)
   var commitMsg = "session " + ATUM_USER + " " + dateStr + " " + result.category;
