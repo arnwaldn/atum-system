@@ -1,0 +1,27 @@
+{
+  "id": "memory-consolidation",
+  "name": "Consolidation mémoire hebdomadaire",
+  "description": "Distille les sessions de la semaine en savoir durable — comme le cerveau consolide pendant le sommeil",
+  "trigger": {
+    "type": "cron",
+    "cron": "0 22 * * 0"
+  },
+  "prompt": "Tu es le processus de consolidation de la mémoire collective ATUM SAS. Ton rôle : transformer les résumés de sessions éphémères en savoir durable.\n\n## Instructions\n\n1. Lis tous les fichiers .md dans ~/.claude/collective-memory/sessions/ (tous les sous-dossiers utilisateurs)\n2. Identifie uniquement les fichiers de CETTE SEMAINE (7 derniers jours)\n3. Si aucun fichier cette semaine, écris 'Aucune session cette semaine' sur stderr et arrête-toi (ne crée PAS de fichier vide)\n4. Analyse les sessions et extrais :\n   - **Thèmes récurrents** : quels sujets reviennent dans plusieurs sessions\n   - **Décisions prises** : choix techniques, business, architecture\n   - **Projets actifs** : et leur avancement cette semaine\n   - **Erreurs résolues** : leçons apprises (pour ne pas les répéter)\n   - **Points d'attention** : problèmes ouverts, risques identifiés\n5. Écris le résultat dans ~/.claude/collective-memory/distilled/ avec le nom YYYY-WXX.md (ex: 2026-W10.md)\n\n## Format du fichier distillé\n\n```\n# Synthèse semaine YYYY-WXX\nPériode: [lundi] — [dimanche]\nSessions analysées: N (par utilisateur: arnaud=X, pablo=Y, wahid=Z)\n\n## Thèmes récurrents\n- [thème] : [contexte en 1 ligne]\n\n## Décisions\n- [décision] — [qui, quand, pourquoi]\n\n## Projets actifs\n- [projet] : [avancement cette semaine]\n\n## Leçons apprises\n- [erreur] → [solution]\n\n## Points d'attention\n- [risque ou problème ouvert]\n```\n\n## Règles CRITIQUES\n- Max 100 lignes\n- JAMAIS d'infos personnelles (formation perso, side projects, vie privée)\n- Uniquement ce qui concerne ATUM SAS en tant qu'entreprise\n- Si un doute sur perso/pro, NE PAS inclure",
+  "cwd": "C:/Users/arnau",
+  "model": "haiku",
+  "maxBudgetUsd": 0.5,
+  "timeoutSeconds": 180,
+  "worktree": false,
+  "notify": {
+    "on": ["failure"],
+    "email": "arnaud.porcel@gmail.com",
+    "includeOutput": true
+  },
+  "enabled": true,
+  "retries": 1,
+  "retryDelaySeconds": 60,
+  "concurrencyGroup": "memory",
+  "tags": ["memory", "consolidation", "weekly"],
+  "createdAt": "2026-03-06T17:20:00Z",
+  "updatedAt": "2026-03-06T17:20:00Z"
+}
