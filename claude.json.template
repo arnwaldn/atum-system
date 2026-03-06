@@ -156,20 +156,6 @@
       "type": "http",
       "url": "https://mcp.make.com"
     },
-    "hindsight-shared": {
-      "type": "http",
-      "url": "https://arnwald84-atum-hindsight.hf.space/mcp/atum/",
-      "headers": {
-        "Authorization": "Bearer ${HINDSIGHT_API_KEY}"
-      }
-    },
-    "hindsight-personal": {
-      "type": "http",
-      "url": "https://arnwald84-atum-hindsight.hf.space/mcp/REPLACE_ATUM_USER/",
-      "headers": {
-        "Authorization": "Bearer ${HINDSIGHT_API_KEY}"
-      }
-    },
     "whatsapp": {
       "type": "stdio",
       "command": "$UV_EXE_PATH",
