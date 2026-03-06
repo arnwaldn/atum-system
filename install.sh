@@ -82,10 +82,10 @@ confirm_install() {
     echo "  - 4 modes         (architect, autonomous, brainstorm, quality)"
     echo "  - 27 rules        (coding-style, security, resilience, decision-principle, whatsapp-persona, etc.)"
     echo "  - 56 plugins      (ECC, code-review, figma, firebase, stripe, linear, etc.)"
-    echo "  - 5 scripts       (context-monitor, seed-hindsight, hindsight-export, etc.)"
+    echo "  - 3 scripts       (context-monitor, collective-memory-sync, migrate-hindsight)"
     echo "  - 184 templates   (scaffolds + references from project-templates)"
     echo "  - settings.json   (hooks, plugins, full autonomy permissions)"
-    echo "  - MCP servers     (.claude.json with 22 servers incl. B12, WebMCP, Hindsight, WhatsApp)"
+    echo "  - MCP servers     (.claude.json with 20 servers incl. B12, WebMCP, WhatsApp)"
     echo "  - data store      (agence-atum JSON data + schedules + project registry)"
     echo "  - bin wrappers    (Windows: gsudo, jq, uv, uvx, composer)"
     echo "  - acpx config     (headless ACP sessions)"
@@ -332,11 +332,8 @@ with open('$CLAUDE_JSON', 'w') as f:
     echo "    export OPENAPI_MCP_HEADERS='{\"Authorization\":\"Bearer your-notion-token\",\"Notion-Version\":\"2022-06-28\"}'"
     echo "    export AIRTABLE_API_KEY=\"your-airtable-pat\""
     echo ""
-    echo "    # Hindsight shared memory"
-    echo "    export HINDSIGHT_API_KEY=\"your-hindsight-api-key\""
-    echo "    export ATUM_USER=\"your-name\""
-    echo "    export GROQ_API_KEY=\"your-groq-key\""
-    echo "    export GEMINI_API_KEY=\"your-gemini-key\""
+    echo "    # ATUM team"
+    echo "    export ATUM_USER=\"your-name\"  # arnaud, pablo, or wahid"
     echo ""
     echo "    # ATUM Dashboard auto-sync"
     echo "    export ATUM_DASHBOARD_KEY=\"your-dashboard-api-key\""
@@ -449,17 +446,15 @@ install_whatsapp_mcp() {
 }
 
 # ============================================================
-# 7d. CONFIGURE HINDSIGHT (shared memory)
+# 7d. INSTALL COLLECTIVE MEMORY (GitHub-synced shared memory)
 # ============================================================
-install_hindsight() {
-    info "Configuring Hindsight shared memory..."
-
-    local HINDSIGHT_URL="https://arnwald84-atum-hindsight.hf.space"
+install_collective_memory() {
+    info "Installing Collective Memory (GitHub-synced)..."
 
     echo ""
-    echo -e "  ${CYAN}Hindsight Shared Memory Setup${NC}"
-    echo "  Hindsight provides persistent shared memory for the ATUM team."
-    echo "  URL: ${HINDSIGHT_URL}"
+    echo -e "  ${CYAN}ATUM Collective Memory Setup${NC}"
+    echo "  Shared memory via private GitHub repo (arnwaldn/atum-memory)."
+    echo "  Zero server, zero cost, real-time sync via git."
     echo ""
 
     echo "  Which co-founder is this machine?"
@@ -477,13 +472,7 @@ install_hindsight() {
         *) warn "Invalid choice — defaulting to arnaud"; atum_user="arnaud" ;;
     esac
 
-    echo ""
-    read -rp "  Hindsight API key (leave empty to skip): " hindsight_api_key
-
-    echo ""
-    read -rp "  Groq API key (leave empty to skip): " groq_api_key
-
-    # --- Detect shell profile (macOS=zshrc, Windows/Linux=bashrc) ---
+    # --- Detect shell profile ---
     local profile
     if [ "$OS" = "macos" ]; then
         profile="$HOME/.zshrc"
@@ -494,7 +483,6 @@ install_hindsight() {
     local profile_name
     profile_name="$(basename "$profile")"
 
-    # --- Add env vars to shell profile (if not already present) ---
     _add_env() {
         local var_name="$1" var_value="$2"
         if ! grep -q "^export ${var_name}=" "$profile" 2>/dev/null; then
@@ -505,41 +493,53 @@ install_hindsight() {
         fi
     }
 
-    _add_env "HINDSIGHT_URL" "${HINDSIGHT_URL}"
     _add_env "ATUM_USER" "${atum_user}"
 
-    if [ -n "$hindsight_api_key" ]; then
-        _add_env "HINDSIGHT_API_KEY" "${hindsight_api_key}"
+    # --- Clone collective-memory repo ---
+    local MEMORY_DIR="$HOME/.claude/collective-memory"
+    if [ -d "$MEMORY_DIR/.git" ]; then
+        ok "Collective memory repo already cloned at $MEMORY_DIR"
+        cd "$MEMORY_DIR" && git pull --ff-only 2>/dev/null && cd - >/dev/null || true
     else
-        warn "HINDSIGHT_API_KEY not set — add it later to ~/${profile_name}"
-    fi
-
-    if [ -n "$groq_api_key" ]; then
-        _add_env "GROQ_API_KEY" "${groq_api_key}"
-    else
-        warn "GROQ_API_KEY not set — add it later to ~/${profile_name}"
-    fi
-
-    # --- Replace REPLACE_ATUM_USER in .claude.json ---
-    if [ -f "$CLAUDE_JSON" ]; then
-        if [ "$OS" = "macos" ]; then
-            sed -i '' "s|REPLACE_ATUM_USER|${atum_user}|g" "$CLAUDE_JSON"
+        info "Cloning collective memory repo..."
+        if git clone https://github.com/arnwaldn/atum-memory.git "$MEMORY_DIR" 2>/dev/null; then
+            ok "Collective memory repo cloned to $MEMORY_DIR"
         else
-            sed -i "s|REPLACE_ATUM_USER|${atum_user}|g" "$CLAUDE_JSON"
+            warn "Clone failed — ensure you have access to arnwaldn/atum-memory"
+            warn "Ask Arnaud to add you as collaborator, then run:"
+            warn "  git clone https://github.com/arnwaldn/atum-memory.git ~/.claude/collective-memory"
         fi
-        ok "Replaced REPLACE_ATUM_USER with '${atum_user}' in .claude.json"
     fi
 
-    # --- Install Python deps for seed/health scripts ---
-    info "Installing Python dependencies for Hindsight scripts..."
-    if python3 -c "import requests" 2>/dev/null; then
-        ok "requests already installed"
+    # --- Configure git user for auto-commits ---
+    if [ -d "$MEMORY_DIR/.git" ]; then
+        cd "$MEMORY_DIR"
+        git config user.name "${atum_user}" 2>/dev/null || true
+        git config user.email "${atum_user}@atum.fr" 2>/dev/null || true
+        cd - >/dev/null
+        ok "Git user configured for collective-memory"
+    fi
+
+    # --- Start PM2 sync process ---
+    if command -v pm2 &>/dev/null; then
+        if pm2 list 2>/dev/null | grep -q "atum-memory-sync"; then
+            ok "PM2 sync process already running"
+        else
+            local SYNC_SCRIPT="$HOME/.claude/scripts/collective-memory-sync.js"
+            if [ -f "$SYNC_SCRIPT" ]; then
+                pm2 start "$SYNC_SCRIPT" --name atum-memory-sync 2>/dev/null
+                pm2 save 2>/dev/null || true
+                ok "PM2 sync started (pull/push every 30s)"
+            else
+                warn "Sync script not found at $SYNC_SCRIPT"
+            fi
+        fi
     else
-        pip3 install --user requests 2>/dev/null || pip install --user requests 2>/dev/null || \
-            warn "Could not install requests — run manually: pip3 install requests"
+        warn "PM2 not installed — install with: npm install -g pm2"
+        warn "Then start sync: pm2 start ~/.claude/scripts/collective-memory-sync.js --name atum-memory-sync"
     fi
 
-    ok "Hindsight configured for ${atum_user}"
+    ok "Collective memory configured for ${atum_user}"
     echo ""
 }
 
@@ -834,7 +834,7 @@ main() {
     install_webmcp
     install_google_workspace_mcp
     install_whatsapp_mcp
-    install_hindsight
+    install_collective_memory
     install_tools
     install_templates
     install_plugins

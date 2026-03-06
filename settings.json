@@ -200,7 +200,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/hindsight-session-retain.js\""
+            "command": "node \"$HOME/.claude/hooks/collective-memory-retain.js\""
           }
         ]
       },
@@ -266,6 +266,11 @@
           {
             "type": "command",
             "command": "node \"$HOME/.claude/hooks/atum-project-scanner.js\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/collective-memory-start.js\"",
+            "timeout": 15000
           }
         ]
       }
