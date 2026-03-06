@@ -58,12 +58,22 @@
       "mcp__notion__*",
       "mcp__figma__*",
       "mcp__webflow__*",
-      "mcp__plugin_pinecone_pinecone__*"
+      "mcp__plugin_pinecone_pinecone__*",
+      "mcp__whatsapp__*"
     ],
     "defaultMode": "default"
   },
   "hooks": {
     "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$HOME/.claude/hooks/clean-shell-snapshots.py\""
+          }
+        ]
+      },
       {
         "matcher": "Bash",
         "hooks": [
@@ -259,6 +269,10 @@
       {
         "matcher": "*",
         "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$HOME/.claude/hooks/clean-shell-snapshots.py\""
+          },
           {
             "type": "command",
             "command": "python \"$HOME/.claude/hooks/atum-session-start.py\""
