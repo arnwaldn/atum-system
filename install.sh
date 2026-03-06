@@ -446,7 +446,43 @@ install_whatsapp_mcp() {
 }
 
 # ============================================================
-# 7d. INSTALL COLLECTIVE MEMORY (GitHub-synced shared memory)
+# 7d. AUTO-DETECT ATUM CO-FOUNDER
+# ============================================================
+detect_atum_user() {
+    # Priority 1: env var (set by previous install)
+    if [ -n "${ATUM_USER:-}" ]; then
+        echo "$ATUM_USER"; return
+    fi
+    # Priority 2: git email (substring match)
+    local email
+    email=$(git config --global user.email 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    case "$email" in
+        *arnaud*) echo "arnaud"; return ;;
+        *pablo*)  echo "pablo"; return ;;
+        *wahid*)  echo "wahid"; return ;;
+    esac
+    # Priority 3: git name (substring match)
+    local gname
+    gname=$(git config --global user.name 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    case "$gname" in
+        *arnaud*) echo "arnaud"; return ;;
+        *pablo*)  echo "pablo"; return ;;
+        *wahid*)  echo "wahid"; return ;;
+    esac
+    # Priority 4: OS username
+    local osuser
+    osuser=$(whoami 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    case "$osuser" in
+        *arnau*) echo "arnaud"; return ;;
+        *pablo*) echo "pablo"; return ;;
+        *wahid*) echo "wahid"; return ;;
+    esac
+    # Not detected
+    echo ""
+}
+
+# ============================================================
+# 7e. INSTALL COLLECTIVE MEMORY (GitHub-synced shared memory)
 # ============================================================
 install_collective_memory() {
     info "Installing Collective Memory (GitHub-synced)..."
@@ -457,20 +493,25 @@ install_collective_memory() {
     echo "  Zero server, zero cost, real-time sync via git."
     echo ""
 
-    echo "  Which co-founder is this machine?"
-    echo "    1) Arnaud"
-    echo "    2) Pablo"
-    echo "    3) Wahid"
-    echo ""
-    read -rp "  Choice [1-3]: " atum_user_choice
-
     local atum_user
-    case "$atum_user_choice" in
-        1) atum_user="arnaud" ;;
-        2) atum_user="pablo" ;;
-        3) atum_user="wahid" ;;
-        *) warn "Invalid choice — defaulting to arnaud"; atum_user="arnaud" ;;
-    esac
+    atum_user=$(detect_atum_user)
+
+    if [ -n "$atum_user" ]; then
+        ok "Co-fondateur detecte : ${atum_user}"
+    else
+        echo "  Quel cofondateur utilise cette machine ?"
+        echo "    1) Arnaud"
+        echo "    2) Pablo"
+        echo "    3) Wahid"
+        echo ""
+        read -rp "  Choix [1-3]: " atum_user_choice
+        case "$atum_user_choice" in
+            1) atum_user="arnaud" ;;
+            2) atum_user="pablo" ;;
+            3) atum_user="wahid" ;;
+            *) warn "Choix invalide — arnaud par defaut"; atum_user="arnaud" ;;
+        esac
+    fi
 
     # --- Detect shell profile ---
     local profile
