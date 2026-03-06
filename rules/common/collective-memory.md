@@ -48,6 +48,18 @@ Avant d'ecrire quoi que ce soit dans la memoire collective, se poser cette quest
 | Apprentissage d'une erreur sur un projet ATUM | PROFESSIONNEL | Beneficie a l'equipe |
 | Apprentissage d'une erreur sur un projet perso | PERSONNEL | Ne concerne pas ATUM |
 
+## Quand sauvegarder (triggers obligatoires)
+
+Ecrire IMMEDIATEMENT dans la memoire collective quand :
+- **Decision prise** : choix de stack, pivot produit, changement d'architecture sur un projet ATUM
+- **Info client** : echeance, feedback, nouvelle demande, livraison
+- **Commit important** : deploy en production, merge de feature majeure, fix critique
+- **Info business** : nouveau contrat, tarif, partenariat, obligation legale
+- **Rappel systeme** : quand le message `[MEMOIRE COLLECTIVE]` apparait, verifier et sauvegarder
+
+Ne PAS attendre la fin de session. Sauvegarder au moment ou l'information est produite.
+Le PM2 sync poussera le fichier sur GitHub dans les 30 secondes.
+
 ## Quoi sauvegarder (agence uniquement)
 
 Quand tu identifies un de ces elements, ecris-le dans `~/.claude/collective-memory/explicit/{ATUM_USER}/` :
