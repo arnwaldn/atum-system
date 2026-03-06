@@ -59,7 +59,7 @@ function findAtumConfig() {
 
 function gitExec(args, cwd) {
   try {
-    return execFileSync("git", args, { cwd, encoding: "utf8", timeout: 5000 }).trim();
+    return execFileSync("git", args, { cwd, encoding: "utf8", timeout: 5000, windowsHide: true, stdio: "pipe" }).trim();
   } catch {
     return "";
   }
