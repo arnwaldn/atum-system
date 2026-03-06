@@ -1,15 +1,61 @@
-# Memoire Collective ATUM — Extraction Automatique
+# Memoire Collective ATUM — Regles
 
-Pendant chaque session, identifie et sauvegarde les informations importantes pour l'equipe ATUM.
+## REGLE DE CONFIDENTIALITE (PRIMORDIALE — AVANT TOUTE ECRITURE)
 
-## Quoi sauvegarder
+La memoire collective est un depot **partage entre les 3 cofondateurs** (Arnaud, Pablo, Wahid).
+Chaque fichier ecrit dans `~/.claude/collective-memory/` est **visible par tous**.
+Cette regle de tri est **OBLIGATOIRE** et s'applique a **TOUS les cofondateurs** sans exception.
+
+### Test systematique AVANT chaque ecriture
+
+Avant d'ecrire quoi que ce soit dans la memoire collective, se poser cette question :
+
+> "Cette information concerne-t-elle ATUM SAS en tant qu'entreprise,
+> ou bien la vie personnelle/individuelle d'un cofondateur ?"
+
+- **ATUM SAS → ecrire** dans la memoire collective
+- **Personnel → NE PAS ecrire** (garder en memoire locale uniquement)
+
+### PROFESSIONNEL (memoire collective)
+
+| Categorie | Exemples concrets |
+|-----------|-------------------|
+| Projets ATUM | GigRoute (statut, stack, decisions), produits en cours |
+| Clients & prospects | Echeances, feedback, demandes, livraisons |
+| Infrastructure partagee | Google Drive ATUM, WhatsApp Cloclo, MCP servers communs |
+| Business | Tarifs, devis, factures, contrats, pipeline commercial |
+| Gouvernance | PV d'AG, decisions actionnariat, obligations legales |
+| Conventions techniques | Patterns de code communs, choix de stack pour les projets ATUM |
+
+### PERSONNEL (memoire locale UNIQUEMENT — JAMAIS dans la collective)
+
+| Categorie | Exemples concrets |
+|-----------|-------------------|
+| Formations individuelles | Maestro, cours en ligne, certifications perso |
+| Projets personnels | Side projects hors ATUM, trading, hobbies |
+| Vie privee | Adresse, sante, famille, finances personnelles |
+| Preferences individuelles | Config IDE, habitudes de travail, style de code perso |
+| Donnees sensibles | Mots de passe perso, comptes bancaires, donnees medicales |
+
+### Cas ambigus — regle de decision
+
+| Situation | Verdict | Raison |
+|-----------|---------|--------|
+| Formation payee par ATUM pour un projet ATUM | PROFESSIONNEL | Investissement agence |
+| Formation perso meme si les competences servent a ATUM | PERSONNEL | Initiative individuelle |
+| Config machine commune (hooks, scripts partages) | PROFESSIONNEL | Infrastructure equipe |
+| Config machine specifique (plugins IDE perso) | PERSONNEL | Preference individuelle |
+| Apprentissage d'une erreur sur un projet ATUM | PROFESSIONNEL | Beneficie a l'equipe |
+| Apprentissage d'une erreur sur un projet perso | PERSONNEL | Ne concerne pas ATUM |
+
+## Quoi sauvegarder (agence uniquement)
 
 Quand tu identifies un de ces elements, ecris-le dans `~/.claude/collective-memory/explicit/{ATUM_USER}/` :
-- **Decisions** techniques ou strategiques (choix de stack, conventions, process)
+- **Decisions** techniques ou strategiques de l'agence
 - **Informations client** (echeances, feedback, demandes, livraisons)
-- **Conventions** et patterns decouverts ou etablis
-- **Erreurs resolues** avec la solution (pour ne pas les repeter)
-- **Changements d'architecture** ou de stack significatifs
+- **Conventions** et patterns etablis pour les projets ATUM
+- **Erreurs resolues** sur des projets ATUM (pour ne pas les repeter)
+- **Changements d'architecture** ou de stack sur les projets ATUM
 - **Informations business** (tarifs, contrats, pipeline, partenariats)
 
 ## Format du fichier
@@ -24,10 +70,11 @@ Quand tu identifies un de ces elements, ecris-le dans `~/.claude/collective-memo
 Tags: explicit, {categorie}, {ATUM_USER}
 ```
 
-Categories : `decision`, `client`, `business`, `strategie`, `technique`, `equipe`
+Categories : `decision`, `client`, `business`, `strategie`, `technique`, `equipe`, `infra`, `projet`
 
 ## Quand NE PAS sauvegarder
 
+- Informations personnelles d'un cofondateur (regle ci-dessus)
 - Details de debugging temporaires sans valeur durable
 - Connaissances generiques de programmation (documentation publique)
 - Information deja dans MEMORY.md ou CLAUDE.md
@@ -35,4 +82,4 @@ Categories : `decision`, `client`, `business`, `strategie`, `technique`, `equipe
 
 ## Acces a la memoire
 
-Les fichiers de memoire collective sont dans `~/.claude/collective-memory/`. Tu peux les lire avec Read, Grep, Glob pour repondre aux questions sur l'historique de l'equipe.
+Les fichiers sont dans `~/.claude/collective-memory/`. Lisibles avec Read, Grep, Glob.
