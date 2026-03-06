@@ -1,10 +1,14 @@
 #!/bin/bash
 # Auto-format on Edit — dispatches to language-specific formatters
 # PostToolUse hook for Edit|MultiEdit
-# Uses $CLAUDE_TOOL_FILE_PATH set by Claude Code
+# Reads file_path from stdin JSON payload
 
-file="$CLAUDE_TOOL_FILE_PATH"
+INPUT=$(cat /dev/stdin 2>/dev/null || true)
+[ -z "$INPUT" ] && exit 0
+
+file=$(echo "$INPUT" | python -c "import sys,json; d=json.load(sys.stdin); print(d.get('tool_input',{}).get('file_path',''))" 2>/dev/null)
 [ -z "$file" ] && exit 0
+[ ! -f "$file" ] && exit 0
 
 case "$file" in
   *.js|*.ts|*.jsx|*.tsx|*.json|*.css|*.html|*.sol)
