@@ -3,7 +3,7 @@ name: godot-expert
 description: "Godot Expert Agent"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7]
 ---
 
 # Godot Expert Agent

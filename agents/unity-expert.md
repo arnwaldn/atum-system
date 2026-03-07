@@ -3,7 +3,7 @@ name: unity-expert
 description: "Unity Expert Agent"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7]
 ---
 
 # Unity Expert Agent

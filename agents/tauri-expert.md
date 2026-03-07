@@ -3,7 +3,7 @@ name: tauri-expert
 description: "Agent: Tauri Expert"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7]
 ---
 
 # Agent: Tauri Expert

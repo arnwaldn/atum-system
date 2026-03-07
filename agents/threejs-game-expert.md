@@ -3,7 +3,7 @@ name: threejs-game-expert
 description: "Three.js Game Expert Agent"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7]
 ---
 
 # Three.js Game Expert Agent

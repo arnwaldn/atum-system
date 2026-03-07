@@ -3,7 +3,7 @@ name: flutter-dart-expert
 description: "Agent: Flutter / Dart Expert"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7]
 ---
 
 # Agent: Flutter / Dart Expert
