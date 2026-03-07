@@ -3,7 +3,7 @@ name: game-architect
 description: "Game Architect Agent"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7]
 ---
 
 # Game Architect Agent

@@ -3,7 +3,7 @@ name: ml-engineer
 description: "ML Engineer Agent"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7]
 ---
 
 # ML Engineer Agent
