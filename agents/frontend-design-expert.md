@@ -3,7 +3,7 @@ name: frontend-design-expert
 description: "Frontend Design Expert Agent"
 tools: Read, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7, figma]
 ---
 
 # Frontend Design Expert Agent

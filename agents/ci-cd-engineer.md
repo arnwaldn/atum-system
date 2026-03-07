@@ -3,7 +3,7 @@ name: ci-cd-engineer
 description: "Agent: CI/CD Engineer"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [github]
 ---
 
 # Agent: CI/CD Engineer

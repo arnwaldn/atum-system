@@ -3,7 +3,7 @@ name: devops-expert
 description: "DevOps Expert Agent"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [github]
 ---
 
 # DevOps Expert Agent

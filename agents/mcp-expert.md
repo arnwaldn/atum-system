@@ -3,7 +3,7 @@ name: mcp-expert
 description: "MCP Expert Agent"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7]
 ---
 
 # MCP Expert Agent

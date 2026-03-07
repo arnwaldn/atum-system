@@ -3,7 +3,7 @@ name: graphql-expert
 description: "Agent: GraphQL Expert"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7]
 ---
 
 # Agent: GraphQL Expert

@@ -3,7 +3,7 @@ name: expo-expert
 description: "Agent: Expo / React Native Expert"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7]
 ---
 
 # Agent: Expo / React Native Expert

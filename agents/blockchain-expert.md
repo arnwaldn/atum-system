@@ -3,7 +3,7 @@ name: blockchain-expert
 description: "Blockchain Expert Agent"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7]
 ---
 
 # Blockchain Expert Agent
