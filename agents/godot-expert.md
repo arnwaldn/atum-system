@@ -1,3 +1,11 @@
+---
+name: godot-expert
+description: "Godot Expert Agent"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Godot Expert Agent
 
 > Expert en developpement de jeux avec Godot Engine

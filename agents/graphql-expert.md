@@ -1,3 +1,11 @@
+---
+name: graphql-expert
+description: "Agent: GraphQL Expert"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Agent: GraphQL Expert
 
 ## Role

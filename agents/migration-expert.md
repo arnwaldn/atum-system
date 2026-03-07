@@ -1,3 +1,11 @@
+---
+name: migration-expert
+description: "Agent: Migration Expert"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Agent: Migration Expert
 
 ## Role

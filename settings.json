@@ -20,10 +20,9 @@
       "mcp__context7__*",
       "mcp__magic__*",
       "mcp__desktop-commander__*",
-            "mcp__plugin_firebase_firebase__*",
+      "mcp__plugin_firebase_firebase__*",
       "mcp__plugin_playwright_playwright__*",
       "mcp__plugin_context7_context7__*",
-      "mcp__plugin_greptile_greptile__*",
       "mcp__claude_ai_Canva__*",
       "mcp__claude_ai_Cloudflare_Developer_Platform__*",
       "mcp__claude_ai_Figma__*",
@@ -58,12 +57,22 @@
       "mcp__notion__*",
       "mcp__figma__*",
       "mcp__webflow__*",
-      "mcp__plugin_pinecone_pinecone__*"
+      "mcp__plugin_pinecone_pinecone__*",
+      "mcp__whatsapp__*"
     ],
     "defaultMode": "default"
   },
   "hooks": {
     "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$HOME/.claude/hooks/clean-shell-snapshots.py\""
+          }
+        ]
+      },
       {
         "matcher": "Bash",
         "hooks": [
@@ -143,7 +152,17 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.js || \"$CLAUDE_TOOL_FILE_PATH\" == *.ts || \"$CLAUDE_TOOL_FILE_PATH\" == *.jsx || \"$CLAUDE_TOOL_FILE_PATH\" == *.tsx || \"$CLAUDE_TOOL_FILE_PATH\" == *.json || \"$CLAUDE_TOOL_FILE_PATH\" == *.css || \"$CLAUDE_TOOL_FILE_PATH\" == *.html || \"$CLAUDE_TOOL_FILE_PATH\" == *.sol ]]; then npx prettier --write \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.py ]]; then black \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.go ]]; then gofmt -w \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.rs ]]; then rustfmt \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; elif [[ \"$CLAUDE_TOOL_FILE_PATH\" == *.php ]]; then php-cs-fixer fix \"$CLAUDE_TOOL_FILE_PATH\" 2>/dev/null || true; fi"
+            "command": "bash \"$HOME/.claude/hooks/auto-format.sh\""
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/typecheck.sh\"",
+            "timeout": 15000
           }
         ]
       },
@@ -153,24 +172,6 @@
           {
             "type": "command",
             "command": "node \"$HOME/.claude/hooks/post-commit-quality-gate.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "Write|Edit|Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/post-tool-failure-logger.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/config-change-guard.js\""
           }
         ]
       },
@@ -202,6 +203,54 @@
             "command": "node \"$HOME/.claude/hooks/session-memory.js\""
           }
         ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/collective-memory-retain.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/atum-dashboard-sync.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const fs=require('fs'),p=require('path').join(require('os').homedir(),'.claude','shell-snapshots');try{fs.readdirSync(p).filter(f=>f.endsWith('.sh')).forEach(f=>fs.unlinkSync(require('path').join(p,f)))}catch(e){}\""
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/post-tool-failure-logger.js\""
+          }
+        ]
+      }
+    ],
+    "ConfigChange": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/config-change-guard.js\""
+          }
+        ]
       }
     ],
     "Notification": [
@@ -230,7 +279,20 @@
         "hooks": [
           {
             "type": "command",
+            "command": "python \"$HOME/.claude/hooks/clean-shell-snapshots.py\""
+          },
+          {
+            "type": "command",
             "command": "python \"$HOME/.claude/hooks/atum-session-start.py\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/atum-project-scanner.js\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/collective-memory-start.js\"",
+            "timeout": 15000
           }
         ]
       }
@@ -260,7 +322,7 @@
     "github@claude-plugins-official": true,
     "gitlab@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
-    "greptile@claude-plugins-official": true,
+    "greptile@claude-plugins-official": false,
     "hookify@claude-plugins-official": true,
     "huggingface-skills@claude-plugins-official": true,
     "jdtls-lsp@claude-plugins-official": true,

@@ -1,5 +1,12 @@
 # Monorepo Patterns
 
+Conventions et patterns pour travailler dans un monorepo. Applicable quand le projet utilise Turborepo, Nx, pnpm workspaces, ou npm/yarn workspaces.
+
+## Declencheurs
+
+- Detection de `turbo.json`, `nx.json`, ou `pnpm-workspace.yaml` dans le projet
+- "monorepo", "workspace", "turborepo", "nx"
+
 ## Supported Tools
 - **Turborepo**: Task orchestration, caching, remote cache
 - **Nx**: Task graph, affected commands, plugins

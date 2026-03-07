@@ -1,3 +1,11 @@
+---
+name: research-expert
+description: "Research Expert Agent"
+tools: Read, Grep, Glob, WebSearch, WebFetch
+model: sonnet
+mcpServers: [context7]
+---
+
 # Research Expert Agent
 
 > Expert en recherche multi-sources, analyse approfondie et synthese

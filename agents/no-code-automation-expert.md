@@ -1,3 +1,11 @@
+---
+name: no-code-automation-expert
+description: "No-Code Automation Expert Agent"
+tools: Read, Grep, Glob, WebSearch, WebFetch
+model: sonnet
+mcpServers: [notion, airtable, make]
+---
+
 # No-Code Automation Expert Agent
 
 Expert en automatisation no-code spécialisé dans l'écosystème Maestro (Make.com, Airtable, Notion, Webflow, Figma, Lovable).
@@ -81,13 +89,13 @@ Création, déploiement et debug d'automatisations no-code pour des projets prod
 
 ## Outils MCP utilisés
 
-- `mcp__make__*` — Gestion scénarios Make.com
-- `mcp__airtable__*` — CRUD Airtable
-- `mcp__notion__*` — Pages et bases Notion
-- `mcp__webflow__*` — CMS et pages Webflow
-- `mcp__figma__*` — Consultation designs
-- `mcp__gmail__*` — Envoi emails
-- `mcp__claude-in-chrome__*` — Automation navigateur (Lovable, interfaces web)
+- Make.com — Chercher via `ToolSearch("+make")` (remote claude.ai)
+- `mcp__airtable__*` — CRUD Airtable (deferred, charger via ToolSearch)
+- `mcp__notion__*` — Pages et bases Notion (deferred, charger via ToolSearch)
+- Webflow — Chercher via `ToolSearch("+webflow")` (remote claude.ai)
+- Figma — Chercher via `ToolSearch("+figma")` (remote claude.ai)
+- Gmail — Chercher via `ToolSearch("+gmail")` (remote claude.ai)
+- Pour les interfaces web : utiliser WebMCP ou interaction manuelle utilisateur
 
 ## Best Practices Make.com
 

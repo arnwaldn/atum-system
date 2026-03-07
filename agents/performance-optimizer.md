@@ -1,3 +1,11 @@
+---
+name: performance-optimizer
+description: "Agent: Performance Optimizer"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Agent: Performance Optimizer
 
 ## Role

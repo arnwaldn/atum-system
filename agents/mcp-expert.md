@@ -1,3 +1,11 @@
+---
+name: mcp-expert
+description: "MCP Expert Agent"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # MCP Expert Agent
 
 > Expert en creation, testing et deploiement de MCP servers

@@ -1,3 +1,11 @@
+---
+name: devops-expert
+description: "DevOps Expert Agent"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # DevOps Expert Agent
 
 > Expert en infrastructure, CI/CD, conteneurisation et orchestration cloud

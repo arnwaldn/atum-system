@@ -1,3 +1,11 @@
+---
+name: ml-engineer
+description: "ML Engineer Agent"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # ML Engineer Agent
 
 > Expert en Machine Learning, Deep Learning et MLOps

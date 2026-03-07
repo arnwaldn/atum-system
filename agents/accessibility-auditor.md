@@ -1,3 +1,11 @@
+---
+name: accessibility-auditor
+description: "Agent: Accessibility Auditor"
+tools: Read, Grep, Glob, Bash
+model: sonnet
+mcpServers: []
+---
+
 # Agent: Accessibility Auditor
 
 ## Role

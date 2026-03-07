@@ -1,32 +1,12 @@
 #!/usr/bin/env node
 /**
  * config-change-guard.js
- * PostToolUse hook — warns when config files are modified
- * Matcher: Write|Edit
+ * ConfigChange hook — warns when configuration files are modified
+ * Fires on: user_settings, project_settings, local_settings, skills
  * ALWAYS exits 0 (notification only, never blocks)
  */
 
 const fs = require('fs');
-const path = require('path');
-
-// Patterns to watch (normalized to forward slashes for cross-platform matching)
-const CONFIG_PATTERNS = [
-  'settings.json',
-  'settings.local.json',
-  '.claude.json',
-  'CLAUDE.md',
-  '.claude/rules/'
-];
-
-function normalizePath(p) {
-  if (!p) return '';
-  return p.replace(/\\/g, '/');
-}
-
-function isConfigFile(filePath) {
-  const normalized = normalizePath(filePath);
-  return CONFIG_PATTERNS.some(pattern => normalized.includes(pattern));
-}
 
 function main() {
   try {
@@ -36,12 +16,10 @@ function main() {
     }
 
     const data = JSON.parse(raw);
-    const toolInput = data.tool_input || {};
-    const filePath = toolInput.file_path || '';
+    const source = data.source || 'unknown';
+    const filePath = data.file_path || '';
 
-    if (filePath && isConfigFile(filePath)) {
-      process.stderr.write(`\u26a0 Config file modified: ${filePath}\n`);
-    }
+    process.stderr.write(`\u26a0 Config changed [${source}]: ${filePath}\n`);
   } catch {
     // Never fail — silently exit
   }
