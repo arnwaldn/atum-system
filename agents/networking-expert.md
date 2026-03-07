@@ -3,7 +3,7 @@ name: networking-expert
 description: "Networking Expert Agent"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7]
 ---
 
 # Networking Expert Agent

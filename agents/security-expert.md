@@ -1,7 +1,7 @@
 ---
 name: security-expert
 description: "Security Expert Agent"
-tools: Read, Write, Edit, Bash, Grep, Glob
+tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch
 model: sonnet
 mcpServers: []
 ---
