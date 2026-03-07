@@ -25,6 +25,12 @@ Initial request: $ARGUMENTS
    - What are the hard constraints (time, tech, compatibility)?
 4. Summarize understanding and confirm with user
 
+### Checkpoint: Discovery → Architecture
+Present discovery summary via AskUserQuestion:
+- "Discovery complete. Here's what I understand: [summary]. Ready to design the architecture?"
+- Options: "Continue to architecture", "Revise understanding", "Add missing context"
+Do NOT proceed to Phase 2 without explicit approval.
+
 ## Phase 2: Architecture Design
 
 **Goal**: Define the technical approach.
@@ -41,6 +47,12 @@ Initial request: $ARGUMENTS
 4. Identify integration points with existing code
 5. List technical decisions to be made (and propose defaults)
 
+### Checkpoint: Architecture → Specification
+Present architecture summary via AskUserQuestion:
+- "Architecture designed: [layers, components, data flow]. Ready to write the spec?"
+- Options: "Continue to spec", "Revise architecture", "Simplify approach"
+Do NOT proceed to Phase 3 without explicit approval.
+
 ## Phase 3: Specification
 
 **Goal**: Define what "done" looks like.
@@ -55,6 +67,12 @@ Initial request: $ARGUMENTS
 3. Identify security considerations
 4. Define performance requirements (if applicable)
 5. List API contracts (endpoints, request/response shapes)
+
+### Checkpoint: Specification → Output
+Present spec summary via AskUserQuestion:
+- "Spec written: [N] acceptance criteria, [N] edge cases, [N] API contracts. Generate final output?"
+- Options: "Generate output", "Revise spec", "Add edge cases"
+Do NOT proceed to Phase 4 without explicit approval.
 
 ## Phase 4: Output
 

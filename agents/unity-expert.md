@@ -1,3 +1,11 @@
+---
+name: unity-expert
+description: "Unity Expert Agent"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Unity Expert Agent
 
 ## Role Definition

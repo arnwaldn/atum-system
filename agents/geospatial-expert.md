@@ -1,3 +1,11 @@
+---
+name: geospatial-expert
+description: "Agent: Geospatial Expert"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Agent: Geospatial Expert
 
 ## Role

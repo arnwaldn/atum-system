@@ -1,3 +1,11 @@
+---
+name: windows-scripting-expert
+description: "Agent: Windows Scripting Expert"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Agent: Windows Scripting Expert
 
 ## Role

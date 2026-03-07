@@ -81,6 +81,9 @@ function newStats() {
     filesModified: [],
     filesRead: [],
     errors: 0,
+    errorDetails: [],    // [{tool, message, ts}] — max 10
+    bashCommands: [],    // executed commands — max 20
+    commitMessages: [],  // git commit messages — max 5
     contextWarned: false,
   };
 }
@@ -183,10 +186,43 @@ try {
     }
   }
 
-  // Track errors from tool output
+  // Track errors from tool output — capture details for learning
   const outputStr = typeof toolOutput === "string" ? toolOutput : JSON.stringify(toolOutput || "");
   if (outputStr.includes("Error") || outputStr.includes("error:") || outputStr.includes("FAILED")) {
     stats.errors++;
+    if (stats.errorDetails.length < 10) {
+      const errorLines = outputStr.split("\n").filter(function(l) {
+        return /error|fail|exception|cannot|not found|denied|refused/i.test(l);
+      }).slice(0, 2).join(" | ");
+      if (errorLines) {
+        stats.errorDetails.push({
+          tool: toolName,
+          message: errorLines.slice(0, 200),
+          ts: Date.now()
+        });
+      }
+    }
+  }
+
+  // Capture bash commands and git commits for knowledge
+  if (toolName === "Bash" && toolInput) {
+    const cmd = (typeof toolInput === "string" ? toolInput : toolInput.command || "").slice(0, 150);
+    if (cmd && stats.bashCommands.length < 20) {
+      stats.bashCommands.push(cmd);
+    }
+    if (cmd.includes("git commit") && !outputStr.includes("Error")) {
+      const msgMatch = outputStr.match(/\[[\w/.-]+ [a-f0-9]+\] (.+)/);
+      if (msgMatch && stats.commitMessages.length < 5) {
+        stats.commitMessages.push(msgMatch[1]);
+      }
+    }
+  }
+
+  // === Collective memory checkpoint reminder (every 25 calls) ===
+  if (stats.totalCalls > 0 && stats.totalCalls % 25 === 0) {
+    console.error(
+      `[MEMOIRE COLLECTIVE] ${stats.totalCalls} appels — verifie si des decisions/infos ATUM doivent etre sauvegardees dans ~/.claude/collective-memory/explicit/`
+    );
   }
 
   // === Context exhaustion warning (all tools count) ===

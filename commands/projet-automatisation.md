@@ -36,7 +36,7 @@ Créer la base de données :
 **Output** : Base Airtable fonctionnelle avec schéma documenté
 
 ### Étape 3 : Design Interface
-**MCP** : `mcp__figma__*`, `mcp__webflow__*`, `mcp__claude-in-chrome__*`
+**MCP** : Figma (via ToolSearch +figma), Webflow (via ToolSearch +webflow)
 **Skill** : ui-ux-pro-max, refactoring-ui
 
 Créer l'interface utilisateur :
@@ -48,7 +48,7 @@ Créer l'interface utilisateur :
 **Output** : Interface fonctionnelle accessible par URL
 
 ### Étape 4 : Automatisation (Make.com)
-**MCP** : `mcp__make__*`
+**MCP** : Make.com (via ToolSearch +make)
 **Agent** : no-code-automation-expert
 **Skill** : no-code-maestro
 
@@ -114,7 +114,7 @@ Préparer la présentation :
 | Figma | `figma` (HTTP OAuth) | Si design |
 | Webflow | `webflow` (HTTP OAuth) | Si site web |
 | Gmail | `gmail` (déjà installé) | Si notifications |
-| Chrome | `claude-in-chrome` (déjà installé) | Si Lovable |
+| WebMCP | `webmcp` (local) | Si interface web interactive |
 
 ## Agents invoqués
 

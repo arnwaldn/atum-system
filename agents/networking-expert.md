@@ -1,3 +1,11 @@
+---
+name: networking-expert
+description: "Networking Expert Agent"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Networking Expert Agent
 
 > Expert en networking temps-reel pour jeux et applications web

@@ -1,10 +1,14 @@
 # Resilience Engineering
 
-## Auto-Trigger
+Checklist et patterns pour le code backend qui appelle des services externes (APIs, bases de donnees, services tiers).
 
-Apply these checks when code calls external APIs, databases, or third-party services.
+## Declencheurs
 
-## Checklist (before marking backend code complete)
+- Code qui appelle des APIs externes, bases de donnees, ou services tiers
+- "resilience", "circuit breaker", "retry", "timeout", "fallback"
+- Backend work avec appels reseau
+
+## Checklist (avant de marquer du code backend comme termine)
 
 - [ ] **Timeouts** — Every external call has an explicit timeout (no infinite waits)
 - [ ] **Retry + backoff** — Transient failures retry with exponential backoff + jitter

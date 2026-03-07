@@ -1,3 +1,11 @@
+---
+name: game-architect
+description: "Game Architect Agent"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Game Architect Agent
 
 ## Role Definition
@@ -97,8 +105,8 @@ For complex games requiring multi-perspective design:
 | Godot Expert | `godot-expert.md` | Native exports, GDScript |
 | Unity Expert | `unity-expert.md` | Unity 6, VR/AR, console, DOTS |
 | Networking Expert | `networking-expert.md` | Multiplayer, state sync |
-| Audio Expert | `audio-expert.md` | Sound design, spatial audio |
-| Procgen Expert | `procgen-expert.md` | Procedural, dungeons, loot |
+| *(Audio)* | *(non disponible — utiliser Howler.js/Web Audio directement)* | Sound design, spatial audio |
+| *(Procgen)* | *(non disponible — utiliser rot.js/wave-function-collapse directement)* | Procedural, dungeons, loot |
 
 ---
 

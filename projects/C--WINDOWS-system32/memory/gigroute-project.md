@@ -49,6 +49,15 @@ initial → ... → a8b0c2d4e6f8 → b9c1d3e5f7a9 (subscriptions/billing)
 ## Smoke-Tested Pages (2026-03-02, all 200 OK)
 Dashboard, Bands, Venues, Tours, Guestlist, Payments, Calendar, Reports, Invoices, Billing, Documents, Settings
 
+## Pivot Mobile Flutter (2026-03-04)
+- **Decision** : GigRoute passe d'app web a app smartphone Flutter + Dart
+- **Raison** : produit commercial = app mobile, pas web. Premier produit ATUM SAS
+- **Backend** : Flask conserve comme API REST, etendu avec endpoints CRUD + auth JWT
+- **Mobile** : `../gigroute_mobile/` — Clean Architecture, Riverpod, GoRouter, Dio, drift
+- **Offline-first** : SQLite local (drift), sync quand reseau disponible
+- **Roadmap** : 8 sprints / 16 semaines (voir ROADMAP_MOBILE.md)
+- **API gap** : 14 endpoints read-only actuels → besoin CRUD complet + auth endpoints
+
 ## Git History (latest)
 - `d19747a` fix: separate db.create_all() from Alembic to fix PostgreSQL deploy
 - `e2b0c4c` fix: use dialect-agnostic migration helpers and ensure tables in production

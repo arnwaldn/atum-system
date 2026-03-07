@@ -1,3 +1,11 @@
+---
+name: tauri-expert
+description: "Agent: Tauri Expert"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Agent: Tauri Expert
 
 ## Role
