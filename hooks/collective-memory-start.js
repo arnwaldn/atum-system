@@ -30,8 +30,25 @@ const MEMORY_DIR = path.join(HOME, ".claude", "collective-memory");
 const SESSIONS_DIR = path.join(MEMORY_DIR, "sessions");
 const EXPLICIT_DIR = path.join(MEMORY_DIR, "explicit");
 const DISTILLED_DIR = path.join(MEMORY_DIR, "distilled");
+const STRUCTURED_DIR = path.join(MEMORY_DIR, "structured", "facts");
+const PATTERNS_DIR = path.join(MEMORY_DIR, "patterns");
+const INDEX_FILE = path.join(MEMORY_DIR, "INDEX.md");
 const ACCESS_FILE = path.join(MEMORY_DIR, ".access-counts.json");
 const WHO_KNOWS_FILE = path.join(MEMORY_DIR, "who-knows-what.md");
+
+// Topic detection: maps project names to thematic file slugs
+const TOPIC_SLUGS = {
+  "gigroute": "gigroute",
+  "live-tour-manager": "gigroute",
+  "whatsapp": "whatsapp-bridge",
+  "whatsmeow": "whatsapp-bridge",
+  "claude-code-config": "claude-code-infra",
+  "collective-memory": "memoire-collective",
+  "atum-memory": "memoire-collective",
+  "agent-owl": "atum-audit",
+  "atum-audit": "atum-audit",
+  "scheduler": "scheduler",
+};
 
 // --- Git ---
 
@@ -350,6 +367,97 @@ function getWhoKnowsWhat() {
   }
 }
 
+// --- Phase 5: Thematic context + High-confidence patterns ---
+
+function detectTopicSlug(projectContext) {
+  // Match project name to a thematic file slug
+  if (!projectContext.name) return null;
+  var name = projectContext.name.toLowerCase();
+
+  // Direct match
+  if (TOPIC_SLUGS[name]) return TOPIC_SLUGS[name];
+
+  // Partial match
+  for (var key in TOPIC_SLUGS) {
+    if (name.includes(key) || key.includes(name)) {
+      return TOPIC_SLUGS[key];
+    }
+  }
+  return null;
+}
+
+function loadThematicContext(projectContext) {
+  var slug = detectTopicSlug(projectContext);
+  if (!slug) return null;
+
+  var filePath = path.join(STRUCTURED_DIR, slug + ".md");
+  try {
+    var content = fs.readFileSync(filePath, "utf8");
+    // Extract just the entries (facts, decisions, errors) — skip header and tags
+    var lines = content.split("\n");
+    var entries = [];
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+      if (line.startsWith("- [")) {
+        entries.push(line.replace(/^- \[\d{4}-\d{2}-\d{2}, \w+\] /, ""));
+      }
+    }
+    if (entries.length === 0) return null;
+
+    // Return most recent entries (max 8)
+    return {
+      slug: slug,
+      title: (content.match(/^# (.+)/m) || ["", slug])[1],
+      entries: entries.slice(0, 8),
+    };
+  } catch { return null; }
+}
+
+function loadHighConfidencePatterns(minConfidence) {
+  var results = [];
+  try {
+    var files = fs.readdirSync(PATTERNS_DIR)
+      .filter(function(f) { return f.endsWith(".md") && f !== ".gitkeep"; });
+
+    for (var i = 0; i < files.length; i++) {
+      try {
+        var content = fs.readFileSync(path.join(PATTERNS_DIR, files[i]), "utf8");
+        var confMatch = content.match(/Confiance: (\d)\/5/);
+        if (!confMatch) continue;
+
+        var confidence = parseInt(confMatch[1], 10);
+        if (confidence < minConfidence) continue;
+
+        var titleMatch = content.match(/^# Pattern: (.+)/m);
+        if (titleMatch) {
+          results.push({
+            title: titleMatch[1].slice(0, 80),
+            confidence: confidence,
+          });
+        }
+      } catch { continue; }
+    }
+  } catch { /* patterns dir may not exist yet */ }
+
+  // Sort by confidence descending
+  results.sort(function(a, b) { return b.confidence - a.confidence; });
+  return results.slice(0, 5);
+}
+
+function countThematicFiles() {
+  try {
+    return fs.readdirSync(STRUCTURED_DIR)
+      .filter(function(f) { return f.endsWith(".md"); }).length;
+  } catch { return 0; }
+}
+
+function countPatterns() {
+  try {
+    return fs.readdirSync(PATTERNS_DIR)
+      .filter(function(f) { return f.endsWith(".md"); }).length;
+  } catch { return 0; }
+}
+
 // --- Counts ---
 
 function countMemories() {
@@ -379,20 +487,36 @@ function main() {
 
   var parts = [];
 
-  // 1. Sync status
+  var thematicCount = countThematicFiles();
+  var patternCount = countPatterns();
+
+  // 1. Sync status (enriched with v3 stats)
   if (synced) {
     parts.push("[Memoire collective] Synced — " + counts.total + " memoires (" + counts.sessions + " sessions, " + counts.explicit + " explicites, " + counts.distilled + " distillees)");
   } else {
     parts.push("[Memoire collective] Offline (git pull echoue) — " + counts.total + " memoires locales");
   }
 
-  // 2. Recent team activity (48h)
+  // 2. Thematic context (Phase 5 — targeted recall)
+  var thematic = loadThematicContext(projectContext);
+  if (thematic) {
+    parts.push("Connaissances " + thematic.title + ": " + thematic.entries.join(" | "));
+  }
+
+  // 3. High-confidence patterns (Phase 5 — learned reflexes)
+  var patterns = loadHighConfidencePatterns(2);
+  if (patterns.length > 0) {
+    var patternSummaries = patterns.map(function(p) { return "[" + p.confidence + "/5] " + p.title; });
+    parts.push("Patterns acquis: " + patternSummaries.join(" | "));
+  }
+
+  // 4. Recent team activity (48h)
   var team = getRecentTeamActivity(48);
   if (team.length > 0) {
     parts.push("Equipe (48h): " + team.join(" | "));
   }
 
-  // 3. Relevant memories (contextual retrieval — the core innovation)
+  // 5. Relevant memories (contextual retrieval — complements thematic)
   var relevant = getRelevantMemories(projectContext, accessCounts);
   if (relevant.length > 0) {
     var label = projectContext.name
@@ -404,22 +528,22 @@ function main() {
     parts.push(label + ": " + summaries.join(" | "));
   }
 
-  // 4. Strategic decisions (from explicit memories)
+  // 6. Strategic decisions (from explicit memories)
   var decisions = getStrategicDecisions();
   if (decisions.length > 0) {
     parts.push("Decisions/strategie: " + decisions.slice(0, 3).join(" | "));
   }
 
-  // 5. Who knows what (transactive memory)
+  // 7. Who knows what (transactive memory)
   var whoKnows = getWhoKnowsWhat();
   if (whoKnows) {
     parts.push("Expertise equipe: " + whoKnows);
   }
 
-  // 6. Save updated access counts
+  // 8. Save updated access counts
   saveAccessCounts(accessCounts);
 
-  // 7. Reminder
+  // 9. Reminder
   parts.push("Rappel: sauvegarde les insights importants dans ~/.claude/collective-memory/explicit/" + ATUM_USER + "/");
 
   var output = {
