@@ -1,7 +1,7 @@
 ---
 name: documentation-generator
 description: "Agent: Documentation Generator"
-tools: Read, Write, Edit, Grep, Glob
+tools: Read, Write, Edit, Bash, Grep, Glob
 model: haiku
 mcpServers: []
 ---

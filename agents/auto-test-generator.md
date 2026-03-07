@@ -3,7 +3,7 @@ name: auto-test-generator
 description: "Agent: Auto Test Generator v1.0"
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
-mcpServers: []
+mcpServers: [context7]
 ---
 
 # Agent: Auto Test Generator v1.0
