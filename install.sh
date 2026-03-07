@@ -75,19 +75,19 @@ check_prereqs() {
 # ============================================================
 confirm_install() {
     echo -e "${BOLD}This will install:${NC}"
-    echo "  - 18 hooks       (PreToolUse, PostToolUse, Notification, Stop, SessionStart)"
-    echo "  - 27 commands     (/scaffold, /security-audit, /tdd, /website, /webmcp, /schedule, /whatsapp, /happy, etc.)"
+    echo "  - 22 hooks       (PreToolUse, PostToolUse, PostToolUseFailure, ConfigChange, Notification, Stop, SessionStart)"
+    echo "  - 29 commands     (/scaffold, /security-audit, /tdd, /deploy, /website, /webmcp, /schedule, /whatsapp, /happy, /projet, etc.)"
     echo "  - 37 agents       (architect, expo-expert, ml-engineer, geospatial, no-code, happy-expert, etc.)"
-    echo "  - 34 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, agent-browser, terminal-emulator, etc.)"
+    echo "  - 35 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, release-notes, etc.)"
     echo "  - 4 modes         (architect, autonomous, brainstorm, quality)"
     echo "  - 27 rules        (coding-style, security, resilience, decision-principle, whatsapp-persona, etc.)"
     echo "  - 56 plugins      (ECC, code-review, figma, firebase, stripe, linear, etc.)"
-    echo "  - 1 script        (context-monitor.py statusline)"
+    echo "  - 3 scripts       (context-monitor, collective-memory-sync, migrate-hindsight)"
     echo "  - 184 templates   (scaffolds + references from project-templates)"
     echo "  - settings.json   (hooks, plugins, full autonomy permissions)"
-    echo "  - MCP servers     (.claude.json with 21 servers incl. B12, WebMCP, Hindsight)"
-    echo "  - data store      (agence-atum JSON data + schedules)"
-    echo "  - bin wrappers    (Windows: gsudo, jq, stripe, watchman, etc.)"
+    echo "  - MCP servers     (.claude.json with 20 servers incl. B12, WebMCP, WhatsApp)"
+    echo "  - data store      (agence-atum JSON data + schedules + project registry)"
+    echo "  - bin wrappers    (Windows: gsudo, jq, uv, uvx, composer)"
     echo "  - acpx config     (headless ACP sessions)"
     echo ""
     echo -e "  Target: ${CYAN}$CLAUDE_DIR/${NC}"
@@ -169,6 +169,12 @@ copy_files() {
     if [ -d "$SCRIPT_DIR/scheduler" ]; then
         cp -r "$SCRIPT_DIR/scheduler" "$CLAUDE_DIR/"
         ok "scheduler/ (daemon)"
+    fi
+
+    # Project registry (atum-projects.json)
+    if [ -f "$SCRIPT_DIR/atum-projects.json" ]; then
+        cp "$SCRIPT_DIR/atum-projects.json" "$CLAUDE_DIR/atum-projects.json"
+        ok "atum-projects.json (project registry)"
     fi
 
     # Make hooks executable
@@ -315,15 +321,23 @@ with open('$CLAUDE_JSON', 'w') as f:
     echo ""
 
     # Remind about required env vars
-    echo -e "  ${YELLOW}[IMPORTANT]${NC} Add these env vars to your ~/.bashrc (or ~/.zshrc) for MCP servers:"
+    # Detect profile for display
+    local _profile_hint="~/.bashrc"
+    [ "$OS" = "macos" ] && _profile_hint="~/.zshrc"
+    echo -e "  ${YELLOW}[IMPORTANT]${NC} Add these env vars to your ${_profile_hint}:"
+    echo ""
+    echo "    # MCP servers"
     echo "    export GITHUB_PERSONAL_ACCESS_TOKEN=\"\$(gh auth token 2>/dev/null)\""
     echo "    export GOOGLE_OAUTH_CLIENT_SECRET=\"your-google-oauth-client-secret\""
     echo "    export OPENAPI_MCP_HEADERS='{\"Authorization\":\"Bearer your-notion-token\",\"Notion-Version\":\"2022-06-28\"}'"
     echo "    export AIRTABLE_API_KEY=\"your-airtable-pat\""
-    echo "    export HINDSIGHT_API_KEY=\"your-hindsight-api-key\""
-    echo "    export ATUM_USER=\"your-name\""
-    echo "    export GROQ_API_KEY=\"your-groq-key\"  # for Hindsight LLM"
-    echo "    export GEMINI_API_KEY=\"your-gemini-key\"  # for Hindsight LLM"
+    echo ""
+    echo "    # ATUM team"
+    echo "    export ATUM_USER=\"your-name\"  # arnaud, pablo, or wahid"
+    echo ""
+    echo "    # ATUM Dashboard auto-sync"
+    echo "    export ATUM_DASHBOARD_KEY=\"your-dashboard-api-key\""
+    echo "    export ATUM_SUPABASE_SERVICE_KEY=\"your-supabase-service-role-key\""
     echo ""
 }
 
@@ -432,91 +446,187 @@ install_whatsapp_mcp() {
 }
 
 # ============================================================
-# 7d. CONFIGURE HINDSIGHT (shared memory)
+# 7d. AUTO-DETECT ATUM CO-FOUNDER
 # ============================================================
-install_hindsight() {
-    info "Configuring Hindsight shared memory..."
+detect_atum_user() {
+    # Priority 1: env var (set by previous install)
+    if [ -n "${ATUM_USER:-}" ]; then
+        echo "$ATUM_USER"; return
+    fi
+    # Priority 2: git email (substring match)
+    local email
+    email=$(git config --global user.email 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    case "$email" in
+        *arnaud*) echo "arnaud"; return ;;
+        *pablo*)  echo "pablo"; return ;;
+        *wahid*)  echo "wahid"; return ;;
+    esac
+    # Priority 3: git name (substring match)
+    local gname
+    gname=$(git config --global user.name 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    case "$gname" in
+        *arnaud*) echo "arnaud"; return ;;
+        *pablo*)  echo "pablo"; return ;;
+        *wahid*)  echo "wahid"; return ;;
+    esac
+    # Priority 4: OS username
+    local osuser
+    osuser=$(whoami 2>/dev/null | tr '[:upper:]' '[:lower:]')
+    case "$osuser" in
+        *arnau*) echo "arnaud"; return ;;
+        *pablo*) echo "pablo"; return ;;
+        *wahid*) echo "wahid"; return ;;
+    esac
+    # Not detected
+    echo ""
+}
 
-    local HINDSIGHT_URL="https://arnwald84-atum-hindsight.hf.space"
+# ============================================================
+# 7e. INSTALL COLLECTIVE MEMORY (GitHub-synced shared memory)
+# ============================================================
+install_collective_memory() {
+    info "Installing Collective Memory (GitHub-synced)..."
 
     echo ""
-    echo -e "  ${CYAN}Hindsight Shared Memory Setup${NC}"
-    echo "  Hindsight provides persistent shared memory for the ATUM team."
-    echo "  URL: ${HINDSIGHT_URL}"
+    echo -e "  ${CYAN}ATUM Collective Memory Setup${NC}"
+    echo "  Shared memory via private GitHub repo (arnwaldn/atum-memory)."
+    echo "  Zero server, zero cost, real-time sync via git."
     echo ""
-
-    echo "  Which co-founder is this machine?"
-    echo "    1) Arnaud"
-    echo "    2) Pablo"
-    echo "    3) Wahid"
-    echo ""
-    read -rp "  Choice [1-3]: " atum_user_choice
 
     local atum_user
-    case "$atum_user_choice" in
-        1) atum_user="arnaud" ;;
-        2) atum_user="pablo" ;;
-        3) atum_user="wahid" ;;
-        *) warn "Invalid choice — defaulting to arnaud"; atum_user="arnaud" ;;
-    esac
+    atum_user=$(detect_atum_user)
 
-    echo ""
-    read -rp "  Hindsight API key (leave empty to skip): " hindsight_api_key
-
-    echo ""
-    read -rp "  Groq API key (leave empty to skip): " groq_api_key
-
-    # --- Add env vars to ~/.bashrc (if not already present) ---
-    local bashrc="$HOME/.bashrc"
-    touch "$bashrc"
-
-    if ! grep -q '^export HINDSIGHT_URL=' "$bashrc" 2>/dev/null; then
-        echo "export HINDSIGHT_URL=\"${HINDSIGHT_URL}\"" >> "$bashrc"
-        ok "Added HINDSIGHT_URL to ~/.bashrc"
+    if [ -n "$atum_user" ]; then
+        ok "Co-fondateur detecte : ${atum_user}"
     else
-        ok "HINDSIGHT_URL already in ~/.bashrc"
+        echo "  Quel cofondateur utilise cette machine ?"
+        echo "    1) Arnaud"
+        echo "    2) Pablo"
+        echo "    3) Wahid"
+        echo ""
+        read -rp "  Choix [1-3]: " atum_user_choice
+        case "$atum_user_choice" in
+            1) atum_user="arnaud" ;;
+            2) atum_user="pablo" ;;
+            3) atum_user="wahid" ;;
+            *) warn "Choix invalide — arnaud par defaut"; atum_user="arnaud" ;;
+        esac
     fi
 
-    if [ -n "$hindsight_api_key" ]; then
-        if ! grep -q '^export HINDSIGHT_API_KEY=' "$bashrc" 2>/dev/null; then
-            echo "export HINDSIGHT_API_KEY=\"${hindsight_api_key}\"" >> "$bashrc"
-            ok "Added HINDSIGHT_API_KEY to ~/.bashrc"
+    # --- Detect shell profile ---
+    local profile
+    if [ "$OS" = "macos" ]; then
+        profile="$HOME/.zshrc"
+    else
+        profile="$HOME/.bashrc"
+    fi
+    touch "$profile"
+    local profile_name
+    profile_name="$(basename "$profile")"
+
+    _add_env() {
+        local var_name="$1" var_value="$2"
+        if ! grep -q "^export ${var_name}=" "$profile" 2>/dev/null; then
+            echo "export ${var_name}=\"${var_value}\"" >> "$profile"
+            ok "Added ${var_name} to ~/${profile_name}"
         else
-            ok "HINDSIGHT_API_KEY already in ~/.bashrc"
+            ok "${var_name} already in ~/${profile_name}"
+        fi
+    }
+
+    _add_env "ATUM_USER" "${atum_user}"
+
+    # --- Clone collective-memory repo ---
+    local MEMORY_DIR="$HOME/.claude/collective-memory"
+    if [ -d "$MEMORY_DIR/.git" ]; then
+        ok "Collective memory repo already cloned at $MEMORY_DIR"
+        cd "$MEMORY_DIR" && git pull --ff-only 2>/dev/null && cd - >/dev/null || true
+    else
+        info "Cloning collective memory repo..."
+        if git clone https://github.com/arnwaldn/atum-memory.git "$MEMORY_DIR" 2>/dev/null; then
+            ok "Collective memory repo cloned to $MEMORY_DIR"
+        else
+            warn "Clone failed — ensure you have access to arnwaldn/atum-memory"
+            warn "Ask Arnaud to add you as collaborator, then run:"
+            warn "  git clone https://github.com/arnwaldn/atum-memory.git ~/.claude/collective-memory"
+        fi
+    fi
+
+    # --- Configure git user for auto-commits ---
+    if [ -d "$MEMORY_DIR/.git" ]; then
+        cd "$MEMORY_DIR"
+        git config user.name "${atum_user}" 2>/dev/null || true
+        git config user.email "${atum_user}@atum.fr" 2>/dev/null || true
+        cd - >/dev/null
+        ok "Git user configured for collective-memory"
+    fi
+
+    # --- Start PM2 sync process ---
+    if command -v pm2 &>/dev/null; then
+        if pm2 list 2>/dev/null | grep -q "atum-memory-sync"; then
+            ok "PM2 sync process already running"
+        else
+            local SYNC_SCRIPT="$HOME/.claude/scripts/collective-memory-sync.js"
+            if [ -f "$SYNC_SCRIPT" ]; then
+                pm2 start "$SYNC_SCRIPT" --name atum-memory-sync 2>/dev/null
+                pm2 save 2>/dev/null || true
+                ok "PM2 sync started (pull/push every 30s)"
+            else
+                warn "Sync script not found at $SYNC_SCRIPT"
+            fi
+        fi
+
+        # --- Auto-start PM2 on boot ---
+        if [ "$OS" = "windows" ]; then
+            if MSYS_NO_PATHCONV=1 schtasks /query /tn "PM2-Resurrect" &>/dev/null; then
+                ok "PM2 auto-start already configured (schtasks)"
+            else
+                if MSYS_NO_PATHCONV=1 schtasks /create /tn "PM2-Resurrect" /tr "cmd /c pm2 resurrect" /sc onlogon /rl limited /f &>/dev/null; then
+                    ok "PM2 auto-start configured (schtasks: PM2-Resurrect)"
+                else
+                    warn "Could not create scheduled task — run as admin or create manually"
+                    warn "schtasks /create /tn PM2-Resurrect /tr \"cmd /c pm2 resurrect\" /sc onlogon /rl limited /f"
+                fi
+            fi
+        elif [ "$OS" = "macos" ]; then
+            local PLIST_DIR="$HOME/Library/LaunchAgents"
+            local PLIST_FILE="$PLIST_DIR/com.atum.pm2-resurrect.plist"
+            if [ -f "$PLIST_FILE" ]; then
+                ok "PM2 auto-start already configured (launchd)"
+            else
+                mkdir -p "$PLIST_DIR"
+                cat > "$PLIST_FILE" << 'PLIST'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.atum.pm2-resurrect</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-lc</string>
+        <string>pm2 resurrect</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/tmp/pm2-resurrect.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/pm2-resurrect.log</string>
+</dict>
+</plist>
+PLIST
+                launchctl load "$PLIST_FILE" 2>/dev/null || true
+                ok "PM2 auto-start configured (launchd: com.atum.pm2-resurrect)"
+            fi
         fi
     else
-        warn "HINDSIGHT_API_KEY not set — add it later to ~/.bashrc"
+        warn "PM2 not installed — install with: npm install -g pm2"
+        warn "Then start sync: pm2 start ~/.claude/scripts/collective-memory-sync.js --name atum-memory-sync"
     fi
 
-    if ! grep -q '^export ATUM_USER=' "$bashrc" 2>/dev/null; then
-        echo "export ATUM_USER=\"${atum_user}\"" >> "$bashrc"
-        ok "Added ATUM_USER to ~/.bashrc"
-    else
-        ok "ATUM_USER already in ~/.bashrc"
-    fi
-
-    if [ -n "$groq_api_key" ]; then
-        if ! grep -q '^export GROQ_API_KEY=' "$bashrc" 2>/dev/null; then
-            echo "export GROQ_API_KEY=\"${groq_api_key}\"" >> "$bashrc"
-            ok "Added GROQ_API_KEY to ~/.bashrc"
-        else
-            ok "GROQ_API_KEY already in ~/.bashrc"
-        fi
-    else
-        warn "GROQ_API_KEY not set — add it later to ~/.bashrc"
-    fi
-
-    # --- Replace REPLACE_ATUM_USER in .claude.json ---
-    if [ -f "$CLAUDE_JSON" ]; then
-        if [ "$OS" = "macos" ]; then
-            sed -i '' "s|REPLACE_ATUM_USER|${atum_user}|g" "$CLAUDE_JSON"
-        else
-            sed -i "s|REPLACE_ATUM_USER|${atum_user}|g" "$CLAUDE_JSON"
-        fi
-        ok "Replaced REPLACE_ATUM_USER with '${atum_user}' in .claude.json"
-    fi
-
-    ok "Hindsight configured for ${atum_user}"
+    ok "Collective memory configured for ${atum_user}"
     echo ""
 }
 
@@ -767,14 +877,15 @@ summary() {
     echo ""
     echo "  Next steps:"
     echo "  1. Restart Claude Code"
-    echo "  2. Set GitHub PAT if not done: export GITHUB_PERSONAL_ACCESS_TOKEN=..."
-    echo "  3. Configure remote MCP servers in claude.ai:"
+    echo "  2. Set env vars if not done (see output above)"
+    echo "  3. Configure remote MCP servers in claude.ai settings:"
     echo "     Figma, Notion, Supabase, Vercel, Canva, Stripe, etc."
     echo "  4. If plugins failed, re-run: bash install.sh --plugins-only"
+    echo "  5. For ATUM Dashboard: create API key at atum-dashboard.netlify.app/settings"
     echo ""
     echo "  Config locations:"
     echo "    ~/.claude/              hooks, commands, agents, modes, rules, skills, data, schedules"
-    echo "    ~/.claude.json          MCP server configs (22 servers)"
+    echo "    ~/.claude.json          MCP server configs"
     echo "    ~/.claude/settings.json main config (SOURCE OF TRUTH)"
     echo "    ~/.acpx/config.json     acpx headless sessions"
     echo "    ~/bin/                   tool wrappers (Windows only)"
@@ -810,7 +921,7 @@ main() {
     install_webmcp
     install_google_workspace_mcp
     install_whatsapp_mcp
-    install_hindsight
+    install_collective_memory
     install_tools
     install_templates
     install_plugins
