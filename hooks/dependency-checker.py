@@ -36,9 +36,8 @@ if basename == 'requirements.txt':
 
 # Check if tool is available
 tool_bin = cmd[0]
-try:
-    subprocess.run(['which', tool_bin], capture_output=True, timeout=3)
-except Exception:
+import shutil
+if shutil.which(tool_bin) is None:
     print(json.dumps({
         "decision": "approve",
         "reason": f"Dependency file {basename} modified. Consider running: {' '.join(cmd)}\n({tool_bin} not found — install for auto-audit)"

@@ -1,3 +1,11 @@
+---
+name: compliance-expert
+description: "Compliance Expert Agent"
+tools: Read, Grep, Glob, Bash, WebSearch
+model: sonnet
+mcpServers: [atum-audit]
+---
+
 # Compliance Expert Agent
 
 > Expert en conformite reglementaire pour projets commerciaux production-ready

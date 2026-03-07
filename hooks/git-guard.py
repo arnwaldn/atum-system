@@ -76,6 +76,11 @@ BACKUP_REPOS = [
     'claude-code-config',
     'project-templates',
     'webmcp-optimized',
+    'atum-memory',
+    'gigroute-mobile',
+    'gigroute-mobile',
+    'gigroute-mobile',
+    'live-tour-manager',
 ]
 
 if re.search(r'git\s+push\b', command):

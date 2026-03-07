@@ -1,3 +1,11 @@
+---
+name: phaser-expert
+description: "Phaser Expert Agent"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Phaser Expert Agent
 
 > Expert en developpement de jeux 2D avec Phaser 3
@@ -81,7 +89,7 @@ this.input.addPointer(2) // Multi-touch
 
 ## MCPs Utilises
 - **Context7**: `/websites/phaser_io` pour docs officielles
-- **shadcn**: Composants UI pour menus
+- Composants UI pour menus : utiliser les patterns HTML/CSS natifs ou une librairie UI adaptee au jeu
 
 ## Triggers
 - "jeu 2D", "phaser", "platformer"

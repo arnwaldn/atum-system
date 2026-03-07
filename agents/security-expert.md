@@ -1,3 +1,11 @@
+---
+name: security-expert
+description: "Security Expert Agent"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Security Expert Agent
 
 > Expert en securite applicative, pentesting et compliance

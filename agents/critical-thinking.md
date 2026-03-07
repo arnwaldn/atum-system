@@ -1,8 +1,9 @@
 ---
 name: critical-thinking
 description: Challenge assumptions using structured frameworks, detect cognitive biases, and ensure rigorous decision-making before committing to solutions.
-tools: codebase, extensions, fetch, findTestFiles, githubRepo, problems, search, searchResults, usages
-model: sonnet
+tools: Read, Glob, Grep, WebSearch, WebFetch, AskUserQuestion
+model: opus
+mcpServers: []
 ---
 
 # Critical Thinking Agent

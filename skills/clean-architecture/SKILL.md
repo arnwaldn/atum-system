@@ -1,7 +1,7 @@
 ---
 name: clean-architecture
 description: 'Structure software around the Dependency Rule: source code dependencies point inward from frameworks to use cases to entities. Use when the user mentions "architecture layers", "dependency rule", "ports and adapters", "hexagonal architecture", or "use case boundary". Covers component principles, boundaries, and SOLID.'
-version: "1.0.0"
+version: "1.1.0"
 ---
 
 # Clean Architecture Framework
@@ -16,67 +16,22 @@ A disciplined approach to structuring software so that business rules remain ind
 
 **Goal: 10/10.** Rate software architecture 0-10 based on adherence to these principles.
 
-### 1. Dependency Rule and Concentric Circles
+## Concentric Circles (Summary)
 
-Innermost: Entities (enterprise business rules). Next: Use Cases (application rules). Then: Interface Adapters. Outermost: Frameworks and Drivers.
+Innermost → Outermost:
+1. **Entities** — Enterprise business rules (plain objects, no framework dependencies)
+2. **Use Cases** — Application rules (one per operation, orchestrate entities)
+3. **Interface Adapters** — Controllers, gateways, presenters (convert data formats)
+4. **Frameworks & Drivers** — Web, DB, external APIs (outermost glue code)
 
-| Context | Pattern | Example |
-|---------|---------|---------|
-| Layer direction | Inner defines interfaces; outer implements | UserRepository interface in Use Cases; PostgresUserRepository in Adapters |
-| Data crossing | DTOs cross boundaries, not ORM entities | Use Case returns UserResponse DTO |
-| Framework isolation | Wrap framework behind interfaces | EmailSender interface hides SendGrid or SES |
-| Database independence | Repository pattern abstracts persistence | Business logic calls repo.save(user) |
+**Data crossing boundaries**: Always in a form convenient for the inner circle (DTOs, not ORM models).
 
-### 2. Entities and Use Cases
+## Reference Guide
 
-Entities encapsulate enterprise-wide business rules. Use Cases contain application-specific rules that orchestrate Entities.
-
-| Context | Pattern | Example |
-|---------|---------|---------|
-| Entity design | No framework dependencies | Order.calculateTotal() knows nothing about HTTP |
-| Use Case boundary | Input Port and Output Port | CreateOrderInput / CreateOrderOutput |
-| Single responsibility | One Use Case per operation | PlaceOrder, CancelOrder, RefundOrder |
-
-### 3. Interface Adapters and Frameworks
-
-Adapters convert data between Use Case format and external format. Frameworks are glue code in the outermost layer.
-
-| Context | Pattern | Example |
-|---------|---------|---------|
-| Controller | Translates delivery to Use Case input | OrderController.create(req) calls Interactor |
-| Gateway | Implements repository with specific DB | SqlOrderRepository implements OrderRepository |
-| Main as plugin | Composition root assembles system | main() wires concrete implementations |
-
-### 4. Component Principles
-
-- **REP**: Classes releasable together belong together
-- **CCP**: Classes that change for same reason belong together
-- **CRP**: Do not force users to depend on unused things
-- **ADP**: No cycles in dependency graph
-- **SDP**: Depend toward stability
-- **SAP**: Stable components should be abstract
-
-### 5. SOLID Principles
-
-- **SRP**: Module serves one actor
-- **OCP**: Extend by adding, not modifying
-- **LSP**: Subtypes usable through base type
-- **ISP**: No forced dependency on unused methods
-- **DIP**: Depend on abstractions defined by high-level module
-
-### 6. Boundaries and Humble Object Pattern
-
-The Humble Object pattern makes code at boundaries testable by splitting behavior into testable logic and hard-to-test infrastructure.
-
-## Common Mistakes
-
-| Mistake | Fix |
-|---------|-----|
-| ORM leaking into business logic | Separate domain from persistence models |
-| Business rules in controllers | Move logic into Use Case Interactors |
-| Framework-first architecture | Treat framework as outermost plugin |
-| Circular dependencies | Apply DIP or extract shared abstraction |
-| Giant Use Cases | Split into single-operation Use Cases |
+| Topic | Reference | Load When |
+|-------|-----------|-----------|
+| Layers & Boundaries | `references/layers-and-boundaries.md` | Detailed layer patterns, humble object, composition root |
+| Component & SOLID Principles | `references/component-principles.md` | REP, CCP, CRP, ADP, SDP, SAP, SRP, OCP, LSP, ISP, DIP |
 
 ## Quick Diagnostic
 
@@ -87,6 +42,16 @@ The Humble Object pattern makes code at boundaries testable by splitting behavio
 | Can swap database? | Persistence leaking | Repository pattern |
 | Use Cases delivery-independent? | HTTP leaking | Use plain DTOs |
 | Framework in outermost circle? | Framework is architecture | Push to edges |
+
+## Common Mistakes
+
+| Mistake | Fix |
+|---------|-----|
+| ORM leaking into business logic | Separate domain from persistence models |
+| Business rules in controllers | Move logic into Use Case Interactors |
+| Framework-first architecture | Treat framework as outermost plugin |
+| Circular dependencies | Apply DIP or extract shared abstraction |
+| Giant Use Cases | Split into single-operation Use Cases |
 
 ## Further Reading
 

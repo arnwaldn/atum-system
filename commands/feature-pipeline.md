@@ -44,6 +44,12 @@ For each unchecked task, in order:
 4. **Update** the design file: change `- [ ]` to `- [x]` for the completed task
 5. **Report** progress after each task
 
+### Checkpoint: Before Complex Tasks
+If a task touches >3 files or is marked "high complexity" in the design:
+- Present implementation approach via AskUserQuestion
+- Options: "Proceed as planned", "Simplify approach", "Skip for now", "Break into smaller steps"
+Do NOT implement complex tasks without explicit approval.
+
 ### Rules
 - Follow the order specified in the design document
 - If a task is blocked, skip and note the blocker

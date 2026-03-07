@@ -1,3 +1,11 @@
+---
+name: frontend-design-expert
+description: "Frontend Design Expert Agent"
+tools: Read, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Frontend Design Expert Agent
 
 > Expert en design systems, UI/UX et Figma-to-code workflow

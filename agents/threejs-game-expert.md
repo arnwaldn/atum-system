@@ -1,3 +1,11 @@
+---
+name: threejs-game-expert
+description: "Three.js Game Expert Agent"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: []
+---
+
 # Three.js Game Expert Agent
 
 > Expert en jeux 3D web avec Three.js

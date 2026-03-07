@@ -16,18 +16,33 @@ interface SpawnResult {
   timedOut: boolean;
 }
 
+function quoteArg(arg: string): string {
+  // On Windows with shell: true, args are concatenated without quoting.
+  // We must manually quote args that contain spaces or special characters.
+  if (/[\s"&|<>^]/.test(arg)) {
+    return '"' + arg.replace(/"/g, '\\"') + '"';
+  }
+  return arg;
+}
+
 function spawnWithTimeout(command: string, args: string[], timeoutMs: number, cwd: string): Promise<SpawnResult> {
   return new Promise((resolve) => {
     const cleanEnv = { ...process.env };
     delete cleanEnv.CLAUDECODE;
     delete cleanEnv.CLAUDE_CODE_SESSION;
 
-    const proc = spawn(command, args, {
+    // Build full command string with properly quoted args to avoid
+    // DEP0190 issue (shell: true concatenates args without escaping)
+    const quotedArgs = args.map(quoteArg);
+    const fullCommand = command + ' ' + quotedArgs.join(' ');
+
+    const proc = spawn(fullCommand, [], {
       cwd,
       shell: true,
       stdio: ['ignore', 'pipe', 'pipe'],
       timeout: timeoutMs,
       env: cleanEnv,
+      windowsHide: true,
     });
 
     const stdoutChunks: Buffer[] = [];

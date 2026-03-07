@@ -5,13 +5,14 @@
  * Consumes stats accumulated by loop-detector hook.
  *
  * Saves to: ~/.claude/projects/<project>/memory/sessions/YYYY-MM-DD-<id>.md
- * Auto-cleanup: files older than 30 days are removed.
+ * Auto-cleanup: files older than 7 days are removed.
  */
 
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
-const MAX_AGE_DAYS = 7;
+const MAX_AGE_DAYS = 3;
 const TEMP = process.env.TEMP || "/tmp";
 const STATS_FILE = path.join(TEMP, "claude-session-stats.json");
 
@@ -91,14 +92,18 @@ function shortenPath(p) {
 try {
   const input = JSON.parse(readStdin());
   const stopReason = input.stop_reason || "";
-  const sessionId = process.env.CLAUDE_SESSION_ID || "unknown";
 
   // Load accumulated stats from loop-detector
   const stats = loadStats();
 
-  // Only save if meaningful work was done
+  // Generate session ID from startedAt timestamp (CLAUDE_SESSION_ID not available in hooks)
+  const sessionId = stats && stats.startedAt
+    ? stats.startedAt.toString(36).slice(-6)
+    : crypto.randomBytes(3).toString("hex");
+
+  // Only save if meaningful work was done (8+ calls filters out trivial sessions)
   const totalCalls = stats ? stats.totalCalls : 0;
-  if (totalCalls < 3) {
+  if (totalCalls < 8) {
     clearStats();
     process.exit(0);
   }

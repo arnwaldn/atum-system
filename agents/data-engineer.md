@@ -1,3 +1,11 @@
+---
+name: data-engineer
+description: "Data Engineer Agent v27.18"
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: sonnet
+mcpServers: [context7, github]
+---
+
 # Data Engineer Agent v27.18
 
 ## Identite
