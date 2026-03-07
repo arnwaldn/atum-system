@@ -93,8 +93,28 @@ if re.search(r'git\s+push\b', command):
             target_branch = branch
             break
 
-    # Check if command targets a whitelisted backup repo (by path or remote URL in command)
+    # Check if command targets a whitelisted backup repo
     is_backup_repo = any(repo in command for repo in BACKUP_REPOS)
+    if not is_backup_repo:
+        import subprocess
+        # Extract git working dir from cd in command (e.g. "cd ~/.claude && git push")
+        cd_match = re.search(r'cd\s+([^\s&;]+)', command)
+        git_dir = None
+        if cd_match:
+            import os
+            raw = cd_match.group(1).replace('~', os.path.expanduser('~'))
+            if os.path.isdir(raw):
+                git_dir = raw
+        try:
+            cmd = ['git', 'remote', 'get-url', 'origin']
+            if git_dir:
+                cmd = ['git', '-C', git_dir, 'remote', 'get-url', 'origin']
+            remote_url = subprocess.run(
+                cmd, capture_output=True, text=True, timeout=5
+            ).stdout.strip()
+            is_backup_repo = any(repo in remote_url for repo in BACKUP_REPOS)
+        except Exception:
+            pass
 
     if is_force and target_branch:
         print(json.dumps({
