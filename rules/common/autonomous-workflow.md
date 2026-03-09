@@ -112,6 +112,25 @@ Every code change MUST pass these before marking complete:
 4. **Security clean** — no hardcoded secrets, inputs validated
 5. **Patterns match** — follow existing codebase conventions
 
+## Auto-Review (Mandatory)
+
+After ANY implementation that modifies more than ~30 lines of code across all files:
+1. **MUST** use **code-reviewer** agent (or `pr-review-toolkit:code-reviewer`) BEFORE declaring complete
+2. Address CRITICAL and HIGH findings immediately — do not defer
+3. MEDIUM findings: fix if the fix is <5 lines, otherwise note for the user
+4. For security-sensitive code (auth, payments, user input): ALWAYS use **security-reviewer** regardless of change size
+
+Skip auto-review ONLY for: pure documentation, config files, or test-only changes.
+
+## Failure Recovery (Mandatory)
+
+When a tool call fails:
+1. **1st failure**: Read the error, understand the root cause, fix it, retry with corrected approach
+2. **2nd failure on same tool**: Change strategy entirely — different tool, different path, different approach
+3. **3rd failure**: STOP. Explain to the user what failed and why, propose 2-3 alternative approaches, ask which to pursue
+4. NEVER retry the exact same command/parameters after a failure
+5. NEVER blame "pre-existing issues" or "environment problems" — find a way or explain why it's impossible
+
 NEVER wait for user to request an agent. Detect and invoke. ALWAYS parallelize independent agent work.
 
 ## Routing Reference

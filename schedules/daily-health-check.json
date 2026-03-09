@@ -12,6 +12,7 @@
   "maxBudgetUsd": 0.5,
   "timeoutSeconds": 120,
   "worktree": false,
+  "maxTurns": 10,
   "notify": {
     "on": [
       "failure"
@@ -28,8 +29,8 @@
     "daily"
   ],
   "createdAt": "2026-03-01T12:00:00Z",
-  "updatedAt": "2026-03-06T06:37:28.238Z",
-  "lastRunAt": "2026-03-06T06:37:28.236Z",
-  "lastRunStatus": "timeout",
-  "runCount": 7
+  "updatedAt": "2026-03-09T06:30:22.723Z",
+  "lastRunAt": "2026-03-09T06:30:22.712Z",
+  "lastRunStatus": "success",
+  "runCount": 8
 }

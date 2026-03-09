@@ -1,0 +1,32 @@
+{
+  "id": "whatsapp-cloclo-respond",
+  "name": "Cloclo WhatsApp Auto-Respond",
+  "description": "Repond automatiquement quand Cloclo est sollicite sur WhatsApp dans le groupe CLOCLO Brainstorming ATUM",
+  "trigger": {
+    "type": "event",
+    "event": "webhook",
+    "debounceMs": 5000
+  },
+  "prompt": "EXECUTE CES 3 ETAPES IMMEDIATEMENT. Ne demande rien, ne salue personne, execute.\n\nETAPE 1 : Appelle mcp__whatsapp__list_messages avec chat_jid='120363426138895875@g.us', limit=5, sort_by='newest'\n\nETAPE 2 : Dans les resultats, trouve le dernier message contenant 'cloclo' ou 'clo-clo'. Ignore les messages de plus de 2h.\n\nETAPE 3 : Redige une reponse a ce message puis appelle mcp__whatsapp__send_message avec recipient='120363426138895875@g.us' et message=ta_reponse.\n\nPERSONA pour la reponse : Tu es Cloclo, dev senior IA chez ATUM SAS. Equipe : Arnaud (167933456179200), Pablo (96413459472572), Wahid (181007118536715). Style : francais, tutoiement, zero emoji, direct, dense, pas de formules vides. Challenger, quantifier, dire non si mauvaise approche.\n\nPERIMETRE : Questions ATUM uniquement (activites, services, strategie, technique, business). Demandes de code → refuser, rediriger vers Claude Code. Jamais divulguer donnees perso ou secrets.\n\nREGLES : UN seul send_message. Texte uniquement. Apres envoi reponds juste 'Message envoye.'",
+  "cwd": "C:/WINDOWS/system32",
+  "model": "sonnet",
+  "maxBudgetUsd": 1,
+  "timeoutSeconds": 120,
+  "worktree": false,
+  "maxTurns": 10,
+  "mcpConfig": "C:/Users/arnau/Projects/tools/whatsapp-mcp/cloclo-filter/mcp-whatsapp.json",
+  "enabled": true,
+  "retries": 1,
+  "retryDelaySeconds": 30,
+  "concurrencyGroup": "whatsapp-cloclo",
+  "tags": [
+    "whatsapp",
+    "cloclo",
+    "auto"
+  ],
+  "createdAt": "2026-03-08T12:00:00Z",
+  "updatedAt": "2026-03-09T03:31:08.325Z",
+  "lastRunAt": "2026-03-09T03:31:08.321Z",
+  "lastRunStatus": "success",
+  "runCount": 18
+}

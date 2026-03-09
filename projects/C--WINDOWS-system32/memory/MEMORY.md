@@ -10,14 +10,13 @@
 - **Shell**: bash (MINGW64/Git Bash)
 - **Workspace**: `C:\Users\arnau\Projects\` (web, mobile, api, desktop, fullstack, tools, learning)
 
-## Claude Code Setup (v2.1.63, 2026-03-07)
-- 6 configs, 37 agents (all scoped), 30 commands, 4 modes, 25 rules, 40 standalone skills, 150+ plugin skills
-- 28 hooks (24 active + 4 inline), 55 plugins (52 actifs / 3 inactifs)
+## Claude Code Setup (v2.1.63, 2026-03-08 — Senior+ Upgrade)
+- 6 configs, 37 agents (all scoped), 30 commands, 4 modes, 11 rules, 44 standalone skills, 150+ plugin skills
+- 30 hooks (26 active + 4 inline) incl. PreCompact, Anti-Rationalization, Smart Dispatcher
 - 46 MCP servers (20 local + 2 plugin + 23 remote + 1 disabled)
-- Autonomie max: 62 allow entries, 73 NLP triggers FR+EN
-- Tools: jq, mcporter 0.7.3, gsudo 2.6.1, acpx 0.1.8, happy-coder 0.13.0
-- 10 langages, 20+ frameworks, 184 templates + 10 references
-- Portable: `settings.json` + `install.sh` cross-platform
+- Autonomie max: 60 allow entries, 17 deny entries, 73 NLP triggers FR+EN
+- 48 plugins actifs / 10 inactifs (7 LSP disabled)
+- Env: Agent Teams experimental, Tool Search lazy-loading
 - **Detail**: voir `memory/setup-detail.md`
 
 ## Quick References
@@ -43,6 +42,15 @@
 ## Active Projects
 - **GigRoute**: Flask SaaS tour manager — LIVE on Render, beta-ready (details: `memory/gigroute-project.md`)
 - **Maestro No-Code P12**: Formation hackathon 23 mars → jury 6 avril (details: `memory/maestro-formation.md`)
+
+## Compact Instructions
+When compacting, always preserve:
+- Full list of modified files and their paths
+- Test commands and their results (pass/fail)
+- Architectural decisions made during the session
+- Active TODO items and their status
+- Error messages and how they were resolved
+- Current task context and next steps
 
 ## Preferences
 - Output style: Learning mode

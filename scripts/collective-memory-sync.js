@@ -79,6 +79,55 @@ function healRepo() {
   } catch { /* ok */ }
 }
 
+// --- Auto-propagation: install shared hooks after pull ---
+
+var HOOKS_HASH_FILE = path.join(MEMORY_DIR, ".hooks-hash");
+
+function getHooksHash() {
+  // Compute a simple hash of all files in _hooks/ to detect changes
+  var hooksDir = path.join(MEMORY_DIR, "_hooks");
+  if (!fs.existsSync(hooksDir)) return "";
+  try {
+    var files = fs.readdirSync(hooksDir).filter(function(f) { return !f.startsWith("."); }).sort();
+    var parts = [];
+    for (var i = 0; i < files.length; i++) {
+      var stat = fs.statSync(path.join(hooksDir, files[i]));
+      parts.push(files[i] + ":" + stat.size + ":" + stat.mtimeMs);
+    }
+    return parts.join("|");
+  } catch { return ""; }
+}
+
+function autoInstallHooks() {
+  var installScript = path.join(MEMORY_DIR, "_hooks", "install.sh");
+  if (!fs.existsSync(installScript)) return;
+
+  var currentHash = getHooksHash();
+  if (!currentHash) return;
+
+  // Compare with last known hash
+  var lastHash = "";
+  try { lastHash = fs.readFileSync(HOOKS_HASH_FILE, "utf8").trim(); } catch { /* first run */ }
+
+  if (currentHash !== lastHash) {
+    log("HOOKS: _hooks/ changed — running install.sh");
+    try {
+      execFileSync("bash", [installScript], {
+        cwd: MEMORY_DIR,
+        timeout: 15000,
+        encoding: "utf8",
+        windowsHide: true,
+        stdio: "pipe",
+      });
+      // Save new hash
+      fs.writeFileSync(HOOKS_HASH_FILE, currentHash);
+      log("HOOKS: install complete");
+    } catch (e) {
+      log("HOOKS: install failed: " + (e.message || "").slice(0, 80));
+    }
+  }
+}
+
 function sync() {
   if (!fs.existsSync(path.join(MEMORY_DIR, ".git"))) {
     log("ERROR: no git repo at " + MEMORY_DIR);
@@ -102,6 +151,9 @@ function sync() {
       // If pull failed, try to heal again (rebase may have just broken)
       healRepo();
     }
+
+    // Auto-install shared hooks if _hooks/ changed after pull
+    autoInstallHooks();
 
     // Stage all local changes
     git(["add", "-A"]);
@@ -296,13 +348,45 @@ function smartCleanup() {
   } catch { /* ok */ }
 }
 
-// Initial sync + cleanup
+// --- Self-update: if _scripts/collective-memory-sync.js differs, replace ourselves and restart ---
+
+function selfUpdate() {
+  var repoScript = path.join(MEMORY_DIR, "_scripts", "collective-memory-sync.js");
+  var myPath = __filename;
+  if (!fs.existsSync(repoScript)) return;
+
+  try {
+    var repoContent = fs.readFileSync(repoScript, "utf8");
+    var myContent = fs.readFileSync(myPath, "utf8");
+
+    // Adapt paths before comparison (repo version has Arnaud's paths)
+    var adapted = repoContent.replace(/C:\/Users\/arnau/g, HOME).replace(/C:\\Users\\arnau/g, HOME);
+
+    if (adapted !== myContent) {
+      log("SELF-UPDATE: new sync script detected — updating and restarting");
+      fs.writeFileSync(myPath, adapted);
+      // PM2 will auto-restart if configured, otherwise we restart ourselves
+      try {
+        execFileSync("pm2", ["restart", "atum-memory-sync"], {
+          timeout: 10000, encoding: "utf8", windowsHide: true, stdio: "pipe",
+        });
+      } catch {
+        // If PM2 restart fails, just exit — PM2 auto-restart will pick up the new file
+        process.exit(0);
+      }
+    }
+  } catch { /* best effort */ }
+}
+
+// Initial sync + cleanup + self-update check
 log("Collective Memory Sync started (every " + (INTERVAL_MS / 1000) + "s)");
 smartCleanup();
 sync();
+selfUpdate();
 
 // Periodic sync (every 30s) — cleanup check included (no-op if already ran today)
 setInterval(function() {
   smartCleanup();
   sync();
+  selfUpdate();
 }, INTERVAL_MS);

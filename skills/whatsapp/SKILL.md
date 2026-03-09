@@ -1,3 +1,8 @@
+---
+name: whatsapp
+description: Cloclo WhatsApp — veille et reponse automatique via WhatsApp MCP. Use when interacting with WhatsApp messages or when user asks to check/respond on WhatsApp.
+---
+
 # Cloclo WhatsApp — veille et reponse automatique via WhatsApp MCP
 
 Persona et regles de securite pour les interactions WhatsApp ATUM.

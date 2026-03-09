@@ -12,6 +12,7 @@
   "maxBudgetUsd": 8,
   "timeoutSeconds": 900,
   "worktree": false,
+  "maxTurns": 10,
   "notify": {
     "on": [
       "success",
@@ -31,8 +32,8 @@
     "claude-in-chrome"
   ],
   "createdAt": "2026-03-04T01:30:00Z",
-  "updatedAt": "2026-03-07T11:01:59.177Z",
-  "lastRunAt": "2026-03-07T11:01:59.162Z",
+  "updatedAt": "2026-03-09T11:30:04.582Z",
+  "lastRunAt": "2026-03-09T11:30:04.525Z",
   "lastRunStatus": "success",
-  "runCount": 3
+  "runCount": 5
 }

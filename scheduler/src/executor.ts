@@ -1,4 +1,7 @@
 import { spawn } from 'node:child_process';
+import { writeFileSync, unlinkSync } from 'node:fs';
+import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import { config } from './config.js';
 import { type ScheduleTask, type RunRecord, type RunStatusType } from './schema.js';
 import { acquireLock, releaseLock } from './lock.js';
@@ -25,16 +28,25 @@ function quoteArg(arg: string): string {
   return arg;
 }
 
-function spawnWithTimeout(command: string, args: string[], timeoutMs: number, cwd: string): Promise<SpawnResult> {
+/**
+ * Spawn claude with prompt passed via temp file piped to stdin.
+ * Avoids Windows cmd.exe truncating prompts at newlines when using shell: true.
+ */
+function spawnWithTimeout(command: string, args: string[], timeoutMs: number, cwd: string, promptFile?: string): Promise<SpawnResult> {
   return new Promise((resolve) => {
     const cleanEnv = { ...process.env };
     delete cleanEnv.CLAUDECODE;
     delete cleanEnv.CLAUDE_CODE_SESSION;
 
-    // Build full command string with properly quoted args to avoid
-    // DEP0190 issue (shell: true concatenates args without escaping)
-    const quotedArgs = args.map(quoteArg);
-    const fullCommand = command + ' ' + quotedArgs.join(' ');
+    let fullCommand: string;
+    if (promptFile) {
+      // Pipe prompt from file to stdin — avoids shell escaping issues with newlines
+      const quotedArgs = args.map(quoteArg);
+      fullCommand = `type "${promptFile}" | ${command} ${quotedArgs.join(' ')}`;
+    } else {
+      const quotedArgs = args.map(quoteArg);
+      fullCommand = command + ' ' + quotedArgs.join(' ');
+    }
 
     const proc = spawn(fullCommand, [], {
       cwd,
@@ -121,12 +133,15 @@ export async function executeTask(task: ScheduleTask, triggeredBy: string): Prom
         await new Promise(r => setTimeout(r, (task.retryDelaySeconds || 60) * 1000));
       }
 
-      // Build claude command args
+      // Write prompt to temp file to avoid Windows cmd.exe truncating at newlines
+      const promptFile = join(tmpdir(), `claude-prompt-${runId}.txt`);
+      writeFileSync(promptFile, task.prompt, 'utf-8');
+
+      // Build claude command args (NO -p — prompt piped via stdin from file)
       const args: string[] = [
-        '-p', task.prompt,
         '--permission-mode', 'bypassPermissions',
         '--no-session-persistence',
-        '--output-format', 'json',
+        '--output-format', 'text',
         '--strict-mcp-config',
         '--mcp-config', task.mcpConfig || config.emptyMcpConfig,
       ];
@@ -140,10 +155,17 @@ export async function executeTask(task: ScheduleTask, triggeredBy: string): Prom
       if (task.appendSystemPrompt) {
         args.push('--append-system-prompt', task.appendSystemPrompt);
       }
+      if (task.maxTurns) {
+        args.push('--max-turns', String(task.maxTurns));
+      }
 
       const timeoutMs = (task.timeoutSeconds || config.defaultTimeoutSeconds) * 1000;
 
-      result = await spawnWithTimeout('claude', args, timeoutMs, task.cwd);
+      logger.info(COMPONENT, `[${runId}] Args: ${JSON.stringify(args)} promptFile: ${promptFile}`);
+      result = await spawnWithTimeout('claude', args, timeoutMs, task.cwd, promptFile);
+
+      // Cleanup temp file
+      try { unlinkSync(promptFile); } catch { /* ignore */ }
 
       if (result.timedOut) {
         finalStatus = 'timeout';

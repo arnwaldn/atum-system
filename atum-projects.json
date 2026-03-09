@@ -1,15 +1,17 @@
 {
-  "supabase_url": "https://qbyzfaeksqwwoinbayce.supabase.co",
+  "supabase_url": "https://yammfwqtjmrtezoijnnh.supabase.co",
   "supabase_key_env": "ATUM_SUPABASE_SERVICE_KEY",
-  "supabase_key": null,
+  "supabase_key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlhbW1md3F0am1ydGV6b2lqbm5oIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MzAyOTIxMCwiZXhwIjoyMDg4NjA1MjEwfQ.hvzflKyBZTrl5oEE5zB56Tz7occ7LrF-wKfcvjqPYPw",
   "machine": "arnaud-pc",
   "projects": [
     {
       "id": "79bcefc5-327d-49ae-b287-a2ddabbc6e23",
       "name": "GigRoute",
       "path": "~/Documents/projets/tour-manager/tour-manager",
-      "override_progress": 95,
-      "override_status": "production"
+      "extra_paths": ["~/Documents/projets/tour-manager/gigroute_mobile"],
+      "override_progress": 85,
+      "override_status": "production",
+      "notes": "Backend Flask (production) + Mobile Flutter (beta v0.1.0)"
     },
     {
       "id": "8087ae74-8f2a-4902-aec2-daaf0f8214c3",

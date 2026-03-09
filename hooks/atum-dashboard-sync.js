@@ -159,10 +159,28 @@ async function main() {
     });
   }
 
-  // Session end event with summary
+  // Read enriched data from collective memory retain hook (if available)
+  let enrichedData = null;
+  try {
+    const enrichedFile = path.join(TEMP, "claude-session-enriched.json");
+    if (fs.existsSync(enrichedFile)) {
+      enrichedData = JSON.parse(fs.readFileSync(enrichedFile, "utf8"));
+    }
+  } catch {}
+
+  // Session end event with summary + enriched context
+  const sessionEndTitle = enrichedData && enrichedData.resume
+    ? enrichedData.resume.slice(0, 200)
+    : `Session dev terminee (${durationMinutes}min)`;
+
   events.push({
     event_type: "session_end",
-    title: `Session dev terminee (${durationMinutes}min)`,
+    title: sessionEndTitle,
+    description: enrichedData ? [
+      enrichedData.decisions.length > 0 ? "Decisions: " + enrichedData.decisions.join("; ") : "",
+      enrichedData.nextSteps.length > 0 ? "Next: " + enrichedData.nextSteps.join("; ") : "",
+      enrichedData.businessImpact.length > 0 ? "Business: " + enrichedData.businessImpact.join("; ") : "",
+    ].filter(Boolean).join(" | ") : null,
     session_id: sessionId,
     metadata: {
       duration_minutes: durationMinutes,
@@ -174,6 +192,8 @@ async function main() {
       stop_reason: stopReason,
       git_stats: diffStats,
       files_modified: stats ? (stats.filesModified || []).slice(0, 20) : [],
+      enriched_project: enrichedData ? enrichedData.project : null,
+      enriched_category: enrichedData ? enrichedData.category : null,
     },
   });
 
