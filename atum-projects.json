@@ -1,15 +1,17 @@
 {
-  "supabase_url": "https://qbyzfaeksqwwoinbayce.supabase.co",
+  "supabase_url": "https://yammfwqtjmrtezoijnnh.supabase.co",
   "supabase_key_env": "ATUM_SUPABASE_SERVICE_KEY",
-  "supabase_key": null,
-  "machine": "arnaud-pc",
+  "supabase_key": "REDACTED_SUPABASE_SERVICE_KEY",
+  "machine": "$HOSTNAME",
   "projects": [
     {
       "id": "79bcefc5-327d-49ae-b287-a2ddabbc6e23",
       "name": "GigRoute",
       "path": "~/Documents/projets/tour-manager/tour-manager",
-      "override_progress": 95,
-      "override_status": "production"
+      "extra_paths": ["~/Documents/projets/tour-manager/gigroute_mobile"],
+      "override_progress": 85,
+      "override_status": "production",
+      "notes": "Backend Flask (production) + Mobile Flutter (beta v0.1.0)"
     },
     {
       "id": "8087ae74-8f2a-4902-aec2-daaf0f8214c3",
@@ -66,6 +68,54 @@
       "name": "Clarity v4",
       "path": "~/Documents/projets/ClarityV4files",
       "override_status": "planning"
+    },
+    {
+      "id": "714d2f81-fa0e-486b-a464-ba2ce208bf7d",
+      "name": "VTC App",
+      "path": "~/Projects/vtc-app",
+      "notes": "Projet Wahid"
+    },
+    {
+      "id": "c6acc578-3333-4c11-aaae-c475c288b1f3",
+      "name": "VTC Site",
+      "path": "~/Projects/vtc-site",
+      "notes": "Projet Wahid"
+    },
+    {
+      "id": "8d9e2ade-f4f2-44a3-9a6d-724ba0c5616a",
+      "name": "Freelance OS",
+      "path": "~/Projects/freelance-os",
+      "notes": "Projet Wahid"
+    },
+    {
+      "id": "81bfa8db-11e0-4cb3-be89-030cba9478f7",
+      "name": "Meal Mix",
+      "path": "~/Projects/meal-mix",
+      "notes": "Projet Wahid"
+    },
+    {
+      "id": "0caf2740-3d6a-4422-a9d8-99e3339c54ed",
+      "name": "pressstart",
+      "path": "~/Projects/pressstart",
+      "notes": "Projet Wahid"
+    },
+    {
+      "id": "cc85f6ad-9878-452f-a270-f156e6af0c14",
+      "name": "voisin-app (front)",
+      "path": "~/Projects/voisin-app",
+      "notes": "Projet Wahid"
+    },
+    {
+      "id": "ec5f7130-a2be-46bf-91f2-e8e42b5d62a9",
+      "name": "voisin-app (back)",
+      "path": "~/Projects/voisin-app-backend",
+      "notes": "Projet Wahid"
+    },
+    {
+      "id": "da7042b1-a70b-474a-b35f-4f8d09abd226",
+      "name": "coach-app",
+      "path": "~/Projects/coach-app",
+      "notes": "Projet Wahid"
     }
   ]
 }
