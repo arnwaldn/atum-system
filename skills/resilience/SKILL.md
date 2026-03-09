@@ -1,3 +1,9 @@
+---
+name: resilience
+description: Resilience patterns for backend code calling external services. Use when code makes API calls, DB queries, or network requests to external services.
+user-invocable: false
+---
+
 # Resilience Engineering
 
 Checklist et patterns pour le code backend qui appelle des services externes (APIs, bases de donnees, services tiers).

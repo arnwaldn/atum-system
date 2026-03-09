@@ -1,3 +1,8 @@
+---
+name: memoire
+description: Stocker ou rechercher une information dans la memoire collective ATUM. Utiliser quand un cofondateur veut sauvegarder ou retrouver une decision, info client, ou convention.
+---
+
 # /memoire — Memoire partagee ATUM
 
 Stocker une information dans la memoire collective de l'equipe ATUM. Tous les collaborateurs (Arnaud, Pablo, Wahid) y ont acces via le depot partage.

@@ -6,14 +6,17 @@
     "type": "cron",
     "cron": "0 22 * * 0"
   },
-  "prompt": "Tu es le processus de consolidation de la mémoire collective ATUM SAS. Ton rôle : transformer les résumés de sessions éphémères en savoir durable.\n\n## Instructions\n\n1. Lis tous les fichiers .md dans ~/.claude/collective-memory/sessions/ (tous les sous-dossiers utilisateurs)\n2. Identifie uniquement les fichiers de CETTE SEMAINE (7 derniers jours)\n3. Si aucun fichier cette semaine, écris 'Aucune session cette semaine' sur stderr et arrête-toi (ne crée PAS de fichier vide)\n4. Analyse les sessions et extrais :\n   - **Thèmes récurrents** : quels sujets reviennent dans plusieurs sessions\n   - **Décisions prises** : choix techniques, business, architecture\n   - **Projets actifs** : et leur avancement cette semaine\n   - **Erreurs résolues** : leçons apprises (pour ne pas les répéter)\n   - **Points d'attention** : problèmes ouverts, risques identifiés\n5. Écris le résultat dans ~/.claude/collective-memory/distilled/ avec le nom YYYY-WXX.md (ex: 2026-W10.md)\n\n## Format du fichier distillé\n\n```\n# Synthèse semaine YYYY-WXX\nPériode: [lundi] — [dimanche]\nSessions analysées: N (par utilisateur: arnaud=X, pablo=Y, wahid=Z)\n\n## Thèmes récurrents\n- [thème] : [contexte en 1 ligne]\n\n## Décisions\n- [décision] — [qui, quand, pourquoi]\n\n## Projets actifs\n- [projet] : [avancement cette semaine]\n\n## Leçons apprises\n- [erreur] → [solution]\n\n## Points d'attention\n- [risque ou problème ouvert]\n```\n\n## Règles CRITIQUES\n- Max 100 lignes\n- JAMAIS d'infos personnelles (formation perso, side projects, vie privée)\n- Uniquement ce qui concerne ATUM SAS en tant qu'entreprise\n- Si un doute sur perso/pro, NE PAS inclure",
+  "prompt": "Tu es le processus de consolidation hebdomadaire de la memoire collective ATUM SAS (agence dev, 3 cofondateurs: Arnaud, Pablo, Wahid).\n\n## ETAPE 1 — Lire les sessions\n\nUtilise la commande Bash suivante pour lister les sessions de la semaine :\n```\nfind C:/Users/arnau/.claude/collective-memory/sessions/ -name '*.md' -newer C:/Users/arnau/.claude/collective-memory/distilled/.gitkeep -mtime -7 | sort\n```\n\nPuis lis CHAQUE fichier trouve avec l'outil Read. Si aucun fichier n'est trouve, arrete-toi.\n\n## ETAPE 2 — Lire les memoires explicites recentes\n\nLis aussi les fichiers dans :\n- C:/Users/arnau/.claude/collective-memory/explicit/arnaud/\n- C:/Users/arnau/.claude/collective-memory/explicit/wahid/\n- C:/Users/arnau/.claude/collective-memory/explicit/pablo/\n\nCe sont les memoires de haute valeur ecrites manuellement.\n\n## ETAPE 3 — Calculer le numero de semaine\n\nUtilise Bash : `date +%Y-W%V`\n\n## ETAPE 4 — Ecrire la synthese\n\nEcris le fichier avec l'outil Write a ce chemin EXACT :\nC:/Users/arnau/.claude/collective-memory/distilled/[YYYY-WXX].md\n\nFormat OBLIGATOIRE :\n```\n# Synthese semaine YYYY-WXX\nPeriode: [lundi] — [dimanche]\nSessions analysees: N (arnaud=X, pablo=Y, wahid=Z)\n\n## Etat des projets\n- [projet] : [avancement cette semaine, ecrans faits, features livrees, bugs fixes]\n\n## Decisions cles\n- [decision] — [qui, quand, pourquoi ce choix]\n\n## Repartition du travail\n- Arnaud : [resume en 1 ligne]\n- Pablo : [resume ou 'Aucune session']\n- Wahid : [resume en 1 ligne]\n\n## Lecons apprises\n- [erreur] -> [solution]\n\n## Admin / Business\n- [actions admin, client, factures, legal — ou 'Aucun']\n\n## Points d'attention\n- [blocages, risques, taches en retard]\n\n## Prochaines etapes prioritaires\n- [3-5 items concrets pour la semaine suivante]\n```\n\n## Regles\n- Max 120 lignes\n- JAMAIS d'infos personnelles\n- Uniquement ce qui concerne ATUM SAS\n- Sois CONCRET : pas 'travail sur fichiers', mais 'implementation ecran detail arret GigRoute Mobile'",
   "cwd": "C:/Users/arnau",
   "model": "haiku",
   "maxBudgetUsd": 0.5,
   "timeoutSeconds": 180,
   "worktree": false,
+  "maxTurns": 25,
   "notify": {
-    "on": ["failure"],
+    "on": [
+      "failure"
+    ],
     "email": "arnaud.porcel@gmail.com",
     "includeOutput": true
   },
@@ -21,7 +24,14 @@
   "retries": 1,
   "retryDelaySeconds": 60,
   "concurrencyGroup": "memory",
-  "tags": ["memory", "consolidation", "weekly"],
+  "tags": [
+    "memory",
+    "consolidation",
+    "weekly"
+  ],
   "createdAt": "2026-03-06T17:20:00Z",
-  "updatedAt": "2026-03-06T17:20:00Z"
+  "updatedAt": "2026-03-08T21:01:31.317Z",
+  "runCount": 1,
+  "lastRunAt": "2026-03-08T21:01:31.289Z",
+  "lastRunStatus": "success"
 }

@@ -25,8 +25,8 @@ const REPEAT_THRESHOLD = 3;        // Consecutive repeats: warning
 const CRITICAL_THRESHOLD = 5;      // Consecutive repeats: critical
 const PINGPONG_THRESHOLD = 6;      // Alternating pairs: warning (6 = 3 full A→B cycles)
 const PINGPONG_CRITICAL = 10;      // Alternating pairs: critical
-const CONTEXT_WARN_CALLS = 80;     // Total calls proxy for context getting large
-const CONTEXT_CRITICAL_CALLS = 120; // Total calls proxy for context critically large
+const CONTEXT_WARN_CALLS = 60;     // Total calls proxy for context getting large (lowered from 80)
+const CONTEXT_CRITICAL_CALLS = 90;  // Total calls proxy for context critically large (lowered from 120)
 
 const TEMP = process.env.TEMP || "/tmp";
 const STATE_FILE = path.join(TEMP, "claude-loop-detector.json");

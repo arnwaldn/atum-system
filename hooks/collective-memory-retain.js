@@ -255,6 +255,7 @@ function detectTopics(stats) {
     [/collective-memory/i, "Memoire collective"],
     [/atum.audit|agent.owl/i, "ATUM Audit (EU AI Act)"],
     [/scheduler/i, "Scheduler"],
+    [/factur|devis|contrat|client|prospect|kbis|urssaf|tva|impot|tresorerie|comptab|legal|statut.*sas|gouvernance|actionnariat/i, "ATUM Admin"],
   ];
   for (var i = 0; i < projectPatterns.length; i++) {
     if (projectPatterns[i][0].test(allText)) {
@@ -344,12 +345,13 @@ var TOPIC_MAP = {
   "Memoire collective": { slug: "memoire-collective", label: "Memoire collective — Systeme de memoire" },
   "ATUM Audit (EU AI Act)": { slug: "atum-audit", label: "ATUM Audit — EU AI Act compliance" },
   "Scheduler": { slug: "scheduler", label: "Scheduler — Taches planifiees" },
+  "ATUM Admin": { slug: "atum-admin", label: "ATUM Admin — Gouvernance, clients, finances" },
 };
 
 function parseEnrichedSections(enrichedContent) {
-  if (!enrichedContent) return { facts: [], decisions: [], errors: [] };
+  if (!enrichedContent) return { facts: [], decisions: [], errors: [], nextSteps: [], businessImpact: [], resume: "" };
 
-  var sections = { facts: [], decisions: [], errors: [] };
+  var sections = { facts: [], decisions: [], errors: [], nextSteps: [], businessImpact: [], resume: "" };
   var currentSection = null;
 
   var lines = enrichedContent.split("\n");
@@ -359,8 +361,17 @@ function parseEnrichedSections(enrichedContent) {
     if (/^## Faits/i.test(line)) { currentSection = "facts"; continue; }
     if (/^## Decisions/i.test(line)) { currentSection = "decisions"; continue; }
     if (/^## Erreurs/i.test(line)) { currentSection = "errors"; continue; }
-    if (/^## (Resume|Metadonnees|Session|Travail)/i.test(line)) { currentSection = null; continue; }
+    if (/^## Prochaines/i.test(line)) { currentSection = "nextSteps"; continue; }
+    if (/^## Impact/i.test(line)) { currentSection = "businessImpact"; continue; }
+    if (/^## Resume/i.test(line)) { currentSection = "resume"; continue; }
+    if (/^## (Metadonnees|Session|Travail)/i.test(line)) { currentSection = null; continue; }
     if (/^---/.test(line)) { currentSection = null; continue; }
+
+    if (currentSection === "resume" && line.length > 0) {
+      sections.resume = line;
+      currentSection = null;
+      continue;
+    }
 
     if (currentSection && line.startsWith("- ") && !/^- Aucun$/i.test(line)) {
       sections[currentSection].push(line.replace(/^- /, ""));
@@ -769,6 +780,69 @@ function generateIndex(dateStr) {
   } catch { /* best effort */ }
 }
 
+// --- Smart project detection from file paths ---
+
+function detectProjectFromFiles(stats, fallbackDir) {
+  var allFiles = [].concat(stats.filesModified || [], stats.filesRead || []);
+  if (allFiles.length === 0) return fallbackDir ? shortenPath(fallbackDir) : "global";
+
+  // Count occurrences of known project directories
+  var projectHits = {};
+  var PROJECT_DIRS = [
+    [/gigroute[_-]?mobile/i, "GigRoute Mobile (Flutter)"],
+    [/tour[_-]?manager/i, "GigRoute (Flask)"],
+    [/gigroute/i, "GigRoute"],
+    [/whatsapp/i, "WhatsApp Bridge"],
+    [/collective-memory/i, "Memoire Collective"],
+    [/\.claude[\\/](hooks|scripts|schedules|rules)/i, "Infrastructure Claude Code"],
+    [/atum[_-]?audit/i, "ATUM Audit"],
+  ];
+
+  for (var i = 0; i < allFiles.length; i++) {
+    var fp = allFiles[i].replace(/\\/g, "/");
+    for (var j = 0; j < PROJECT_DIRS.length; j++) {
+      if (PROJECT_DIRS[j][0].test(fp)) {
+        var pName = PROJECT_DIRS[j][1];
+        projectHits[pName] = (projectHits[pName] || 0) + 1;
+        break; // first match wins per file
+      }
+    }
+  }
+
+  // Return the project with the most file hits
+  var bestProject = null;
+  var bestCount = 0;
+  for (var p in projectHits) {
+    if (projectHits[p] > bestCount) {
+      bestCount = projectHits[p];
+      bestProject = p;
+    }
+  }
+
+  if (bestProject) return bestProject;
+
+  // Fallback: extract deepest common directory from modified files
+  if (fallbackDir && fallbackDir !== "C:\\WINDOWS\\system32" && fallbackDir !== "C:/WINDOWS/system32") {
+    return shortenPath(fallbackDir);
+  }
+
+  // Last resort: use the most common parent directory from files
+  var dirs = (stats.filesModified || []).map(function(f) {
+    var parts = f.replace(/\\/g, "/").split("/");
+    return parts.length > 3 ? parts.slice(-3, -1).join("/") : parts.slice(0, -1).join("/");
+  });
+  if (dirs.length > 0) {
+    var dirCounts = {};
+    for (var d = 0; d < dirs.length; d++) {
+      dirCounts[dirs[d]] = (dirCounts[dirs[d]] || 0) + 1;
+    }
+    var topDir = Object.entries(dirCounts).sort(function(a, b) { return b[1] - a[1]; })[0];
+    if (topDir) return topDir[0];
+  }
+
+  return "global";
+}
+
 // --- Haiku enrichment: extract structured knowledge from session ---
 
 function callHaiku(prompt) {
@@ -804,10 +878,12 @@ function enrichContent(stats, shortProject) {
   });
 
   var prompt = [
-    "Tu es un assistant de memoire d'equipe pour ATUM SAS (agence dev web/mobile).",
-    "Analyse ces metadonnees de session de travail et extrais les informations importantes.",
-    "Sois factuel et concis. Deduis ce qui a ete fait a partir des noms de fichiers, commits et commandes.",
+    "Tu es la memoire d'equipe d'ATUM SAS (agence dev web/mobile, 3 cofondateurs: Arnaud, Pablo, Wahid).",
+    "Analyse ces metadonnees de session et DEDUIS ce qui s'est passe. Tu dois aller au-dela des noms de fichiers :",
+    "comprends le CONTEXTE, les DECISIONS et le RESULTAT.",
     "",
+    "=== DONNEES DE SESSION ===",
+    "Utilisateur: " + ATUM_USER,
     "Projet: " + (shortProject || "global"),
     "Fichiers modifies: " + (filesModified.join(", ") || "aucun"),
     "Fichiers lus: " + (filesRead.join(", ") || "aucun"),
@@ -815,21 +891,28 @@ function enrichContent(stats, shortProject) {
     "Commandes: " + (cmds.join(" | ") || "aucune"),
     "Erreurs: " + (errors.join(" | ") || "aucune"),
     "",
-    "Reponds UNIQUEMENT avec ce format markdown, rien d'autre.",
-    "Si une section est vide ou que tu ne peux pas deduire d'information, ecris 'Aucun' sur une seule ligne.",
-    "Max 20 lignes au total. Pas de blabla, que des faits.",
-    "",
-    "## Faits appris",
-    "- [fait technique, decouverte ou connaissance acquise]",
-    "",
-    "## Decisions",
-    "- [choix technique ou strategique fait durant la session]",
-    "",
-    "## Erreurs resolues",
-    "- [probleme] -> [solution appliquee]",
+    "=== FORMAT DE REPONSE (OBLIGATOIRE, rien d'autre) ===",
+    "Si une section est vide, ecris '- Aucun'. Max 25 lignes total.",
     "",
     "## Resume",
-    "[Une phrase qui decrit ce qui a ete accompli dans cette session]",
+    "[1-2 phrases : QUOI a ete fait (resultat concret, pas 'travail sur fichiers') et POURQUOI]",
+    "Exemple BON: 'Ajout de l'ecran detail d'un arret de tournee dans l'app mobile GigRoute, avec affichage du lieu et des horaires.'",
+    "Exemple MAUVAIS: 'Travail sur 8 fichiers dart'",
+    "",
+    "## Faits appris",
+    "- [fait technique concret, decouverte ou connaissance nouvelle — pas des evidences]",
+    "",
+    "## Decisions",
+    "- [choix fait + POURQUOI ce choix plutot qu'un autre. Si aucune decision explicite, deduire des fichiers modifies]",
+    "",
+    "## Erreurs resolues",
+    "- [probleme precis] → [solution appliquee]",
+    "",
+    "## Prochaines etapes",
+    "- [ce qui reste a faire logiquement apres cette session, deduit du contexte]",
+    "",
+    "## Impact business",
+    "- [Si applicable : impact client, livraison, admin, facturation, legal. Sinon : 'Aucun']",
   ].join("\n");
 
   var response = callHaiku(prompt);
@@ -868,8 +951,10 @@ function main() {
   var stats = loadStats();
   var totalCalls = stats ? stats.totalCalls : 0;
 
-  // Only retain if meaningful work was done (8+ calls)
-  if (totalCalls < 8) {
+  // Adaptive threshold: lower for business/admin sessions (fewer tool calls but high value)
+  var earlyCategory = stats ? detectSessionCategory(stats) : "technique";
+  var minCalls = (earlyCategory === "business") ? 5 : 8;
+  if (totalCalls < minCalls) {
     process.exit(0);
   }
 
@@ -881,8 +966,9 @@ function main() {
   var timeStr = new Date().toISOString().slice(11, 16);
   var duration = stats && stats.startedAt ? formatDuration(Date.now() - stats.startedAt) : "?";
   var shortId = sessionId.slice(0, 8);
+  // Smart project detection: scan file paths instead of relying on CLAUDE_PROJECT_DIR
   var projectDir = process.env.CLAUDE_PROJECT_DIR || "";
-  var shortProject = projectDir ? shortenPath(projectDir) : "global";
+  var shortProject = detectProjectFromFiles(stats || {}, projectDir);
 
   var result = buildContent(stats || {}, dateStr, timeStr, duration, shortId, shortProject);
 
@@ -892,6 +978,7 @@ function main() {
 
   if (enriched) {
     // Build enriched version: header + Haiku analysis + metadata
+    var enrichedSections = parseEnrichedSections(enriched);
     var parts = [];
     parts.push("## Session " + result.category.toUpperCase() + " — " + dateStr + " " + timeStr);
     parts.push("Utilisateur: " + ATUM_USER + " | Duree: " + duration + " | Categorie: " + result.category + " | Projet: " + (shortProject || "global"));
@@ -919,6 +1006,26 @@ function main() {
     finalContent = parts.join("\n");
   } else {
     finalContent = result.content;
+  }
+
+  // Share enriched data with dashboard sync hook via temp file
+  if (enriched) {
+    try {
+      var enrichedData = {
+        resume: enrichedSections ? enrichedSections.resume : "",
+        decisions: enrichedSections ? enrichedSections.decisions : [],
+        nextSteps: enrichedSections ? enrichedSections.nextSteps : [],
+        businessImpact: enrichedSections ? enrichedSections.businessImpact : [],
+        project: shortProject,
+        category: result.category,
+        user: ATUM_USER,
+        timestamp: new Date().toISOString(),
+      };
+      fs.writeFileSync(
+        path.join(TEMP, "claude-session-enriched.json"),
+        JSON.stringify(enrichedData, null, 2)
+      );
+    } catch { /* best effort */ }
   }
 
   // Write session file

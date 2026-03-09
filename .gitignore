@@ -51,3 +51,9 @@ audit_store/
 
 # Scheduler history (SQLite runtime data)
 schedules/.history/
+
+# Embedded repos & runtime data
+collective-memory/
+hindsight-mirror/
+session-env/
+telemetry/

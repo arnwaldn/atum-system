@@ -1,3 +1,9 @@
+---
+name: monorepo
+description: Conventions et patterns pour monorepos (Turborepo, Nx, pnpm workspaces). Use when project has turbo.json, nx.json, or workspace config.
+user-invocable: false
+---
+
 # Monorepo Patterns
 
 Conventions et patterns pour travailler dans un monorepo. Applicable quand le projet utilise Turborepo, Nx, pnpm workspaces, ou npm/yarn workspaces.

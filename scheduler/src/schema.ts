@@ -45,6 +45,7 @@ export const TaskSchema = z.object({
   timeoutSeconds: z.number().int().min(10).max(3600).default(300),
   worktree: z.boolean().default(false),
   appendSystemPrompt: z.string().max(5000).optional(),
+  maxTurns: z.number().int().min(1).max(50).default(10),
   mcpConfig: z.string().max(500).optional(), // path to MCP config JSON (default: empty = no MCP)
 
   notify: NotifyConfig.optional(),

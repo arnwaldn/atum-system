@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
       "Bash(*)",
@@ -31,8 +32,6 @@
       "mcp__claude_ai_Google_Calendar__*",
       "mcp__claude_ai_Hugging_Face__*",
       "mcp__claude_ai_Invideo__*",
-      "mcp__claude_ai_Learning_Commons_Knowledge_Graph__*",
-      "mcp__claude_ai_Make__*",
       "mcp__claude_ai_Notion__*",
       "mcp__claude_ai_Supabase__*",
       "mcp__claude_ai_Vercel__*",
@@ -46,30 +45,37 @@
       "mcp__claude_ai_Context7__*",
       "mcp__claude_ai_Excalidraw__*",
       "mcp__claude_ai_GraphOS_MCP_Tools__*",
-      "mcp__claude_ai_Jam__*",
       "mcp__claude_ai_Microsoft_Learn__*",
       "mcp__claude_ai_Netlify__*",
       "mcp__claude_ai_Stripe__*",
       "mcp__claude_ai_Webflow__*",
       "mcp__skillsync__*",
-      "mcp__make__*",
       "mcp__airtable__*",
       "mcp__notion__*",
-      "mcp__figma__*",
-      "mcp__webflow__*",
       "mcp__plugin_pinecone_pinecone__*",
-      "mcp__whatsapp__*"
+      "mcp__whatsapp__*",
+      "mcp__atum-audit__*",
+      "mcp__plugin_serena_serena__*"
     ],
     "defaultMode": "default"
   },
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "Read",
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$HOME/.claude/hooks/clean-shell-snapshots.py\""
+            "command": "node \"C:/Users/arnau/.claude/hooks/image-auto-resize.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__claude-in-chrome__browser_take_screenshot|mcp__claude-in-chrome__computer|mcp__claude-in-chrome__upload_image|mcp__claude_ai_Figma__get_screenshot|mcp__claude_ai_Canva__get-design-thumbnail|mcp__claude_ai_Excalidraw__create_view",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/arnau/.claude/hooks/image-guard.js\""
           }
         ]
       },
@@ -78,7 +84,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$HOME/.claude/hooks/secret-scanner.py\""
+            "command": "python \"C:/Users/arnau/.claude/hooks/clean-shell-snapshots.py\""
           }
         ]
       },
@@ -87,7 +93,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$HOME/.claude/hooks/git-guard.py\""
+            "command": "python \"C:/Users/arnau/.claude/hooks/secret-scanner.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/arnau/.claude/hooks/git-guard.py\""
           }
         ]
       },
@@ -96,7 +111,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/lock-file-protector.js\""
+            "command": "node \"C:/Users/arnau/.claude/hooks/lock-file-protector.js\""
           }
         ]
       },
@@ -116,7 +131,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$HOME/.claude/hooks/atum-post-write.py\""
+            "command": "python \"C:/Users/arnau/.claude/hooks/atum-post-write.py\""
           }
         ]
       },
@@ -125,34 +140,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$HOME/.claude/hooks/atum-compliance-check.py\""
-          }
-        ]
-      },
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/auto-test-runner.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$HOME/.claude/hooks/dependency-checker.py\""
-          }
-        ]
-      },
-      {
-        "matcher": "Edit|MultiEdit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"$HOME/.claude/hooks/auto-format.sh\""
+            "command": "python \"C:/Users/arnau/.claude/hooks/atum-compliance-check.py\""
           }
         ]
       },
@@ -161,7 +149,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"$HOME/.claude/hooks/typecheck.sh\"",
+            "command": "node \"C:/Users/arnau/.claude/hooks/post-edit-dispatcher.js\"",
             "timeout": 15000
           }
         ]
@@ -171,7 +159,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/post-commit-quality-gate.js\""
+            "command": "node \"C:/Users/arnau/.claude/hooks/post-commit-quality-gate.js\""
           }
         ]
       },
@@ -180,7 +168,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/worktree-setup.js\""
+            "command": "node \"C:/Users/arnau/.claude/hooks/worktree-setup.js\""
           }
         ]
       },
@@ -189,7 +177,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/loop-detector.js\""
+            "command": "node \"C:/Users/arnau/.claude/hooks/loop-detector.js\""
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/arnau/.claude/hooks/precompact-save.js\""
           }
         ]
       }
@@ -200,7 +199,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/session-memory.js\""
+            "command": "node \"C:/Users/arnau/.claude/hooks/anti-rationalization.js\""
           }
         ]
       },
@@ -209,7 +208,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/collective-memory-retain.js\""
+            "command": "node \"C:/Users/arnau/.claude/hooks/session-memory.js\""
           }
         ]
       },
@@ -218,7 +217,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/atum-dashboard-sync.js\""
+            "command": "node \"C:/Users/arnau/.claude/hooks/collective-memory-retain.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/arnau/.claude/hooks/atum-dashboard-sync.js\""
           }
         ]
       },
@@ -230,6 +238,15 @@
             "command": "node -e \"const fs=require('fs'),p=require('path').join(require('os').homedir(),'.claude','shell-snapshots');try{fs.readdirSync(p).filter(f=>f.endsWith('.sh')).forEach(f=>fs.unlinkSync(require('path').join(p,f)))}catch(e){}\""
           }
         ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/arnau/.claude/hooks/image-guard-reset.js\""
+          }
+        ]
       }
     ],
     "PostToolUseFailure": [
@@ -238,7 +255,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/post-tool-failure-logger.js\""
+            "command": "node \"C:/Users/arnau/.claude/hooks/post-tool-failure-logger.js\""
           }
         ]
       }
@@ -248,7 +265,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/config-change-guard.js\""
+            "command": "node \"C:/Users/arnau/.claude/hooks/config-change-guard.js\""
           }
         ]
       }
@@ -279,19 +296,19 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$HOME/.claude/hooks/clean-shell-snapshots.py\""
+            "command": "python \"C:/Users/arnau/.claude/hooks/clean-shell-snapshots.py\""
           },
           {
             "type": "command",
-            "command": "python \"$HOME/.claude/hooks/atum-session-start.py\""
+            "command": "python \"C:/Users/arnau/.claude/hooks/atum-session-start.py\""
           },
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/atum-project-scanner.js\""
+            "command": "node \"C:/Users/arnau/.claude/hooks/atum-project-scanner.js\""
           },
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/collective-memory-start.js\"",
+            "command": "node \"C:/Users/arnau/.claude/hooks/collective-memory-start.js\"",
             "timeout": 15000
           }
         ]
@@ -304,7 +321,7 @@
     "asana@claude-plugins-official": true,
     "atlassian@claude-plugins-official": true,
     "circleback@claude-plugins-official": false,
-    "clangd-lsp@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": false,
     "claude-code-setup@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
@@ -312,7 +329,7 @@
     "coderabbit@claude-plugins-official": true,
     "commit-commands@claude-plugins-official": true,
     "context7@claude-plugins-official": true,
-    "csharp-lsp@claude-plugins-official": true,
+    "csharp-lsp@claude-plugins-official": false,
     "explanatory-output-style@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "figma@claude-plugins-official": true,
@@ -325,8 +342,8 @@
     "greptile@claude-plugins-official": false,
     "hookify@claude-plugins-official": true,
     "huggingface-skills@claude-plugins-official": true,
-    "jdtls-lsp@claude-plugins-official": true,
-    "kotlin-lsp@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": false,
+    "kotlin-lsp@claude-plugins-official": false,
     "laravel-boost@claude-plugins-official": true,
     "learning-output-style@claude-plugins-official": true,
     "playground@claude-plugins-official": true,
@@ -337,7 +354,7 @@
     "pyright-lsp@claude-plugins-official": true,
     "qodo-skills@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": false,
     "security-guidance@claude-plugins-official": true,
     "semgrep@claude-plugins-official": true,
     "sentry@claude-plugins-official": true,
@@ -348,13 +365,14 @@
     "stripe@claude-plugins-official": true,
     "supabase@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
-    "swift-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": true,
     "vercel@claude-plugins-official": true,
     "ui-ux-pro-max@ui-ux-pro-max-skill": true,
     "linear@claude-plugins-official": true,
     "pinecone@claude-plugins-official": true,
-    "php-lsp@claude-plugins-official": true
+    "php-lsp@claude-plugins-official": false,
+    "project-architect@local": true
   },
   "autoUpdatesChannel": "latest"
 }

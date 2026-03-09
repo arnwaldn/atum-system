@@ -1,5 +1,7 @@
 {
-  "supabase_url": "https://qbyzfaeksqwwoinbayce.supabase.co",
+  "supabase_url": "https://yammfwqtjmrtezoijnnh.supabase.co",
+  "supabase_anon_key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlhbW1md3F0am1ydGV6b2lqbm5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMjkyMTAsImV4cCI6MjA4ODYwNTIxMH0.JX2V9Ho0W6S2peW1EJPtLp2AH_5WI4tUiHlQFSqjSfg",
+  "service_role_key": "REDACTED_SUPABASE_SERVICE_KEY",
   "dashboard_url": "https://atum-dashboard.netlify.app",
   "scan_paths": [
     "$HOME/Documents/projets",
