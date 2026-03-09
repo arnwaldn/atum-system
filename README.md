@@ -16,17 +16,17 @@ bash install.sh
 
 | Category | Count | Description |
 |----------|-------|-------------|
-| Hooks | 22 | Secret scanner, git guard, typecheck, loop detector, auto-formatter, dashboard sync, hindsight retain, etc. |
-| Commands | 29 | `/scaffold`, `/security-audit`, `/tdd`, `/deploy`, `/happy`, `/whatsapp`, `/schedule`, `/dashboard-atum`, `/projet`, etc. |
+| Hooks | 30 | Secret scanner, git guard, typecheck, loop detector, auto-formatter, dashboard sync, hindsight retain, etc. |
+| Commands | 30 | `/scaffold`, `/security-audit`, `/tdd`, `/deploy`, `/happy`, `/whatsapp`, `/schedule`, `/dashboard-atum`, `/projet`, etc. |
 | Agents | 37 | Architect, phaser-expert, ml-engineer, happy-expert, geospatial, compliance, etc. |
-| Skills | 35 | PDF, DOCX, DDD, RAG, Mermaid, agent-browser, terminal-emulator, scheduler, release-notes, etc. |
+| Skills | 43 | PDF, DOCX, DDD, RAG, Mermaid, agent-browser, terminal-emulator, scheduler, release-notes, etc. |
 | Modes | 4 | architect, autonomous, brainstorm, quality |
-| Rules | 28 | Coding style, security, testing, resilience, pedagogie, whatsapp-persona (common + TS/Python/Go) |
-| Scripts | 5 | Context monitor, seed-hindsight, seed-workspace, hindsight-export, hindsight-health-check |
+| Rules | 23 | Coding style, security, testing, decision principle, pedagogie, anti-hallucination (common + TS/Python/Go) |
+| Scripts | 12 | Context monitor, seed-hindsight, seed-workspace, hindsight-export, hindsight-health-check |
 | MCP Servers | 22 | GitHub, Memory, Railway, Cloudflare, B12, WebMCP, WhatsApp, Hindsight, Google Workspace, etc. |
 | Plugins | 56 | ECC, Superpowers, Playwright, Firebase, Figma, Stripe, Linear, Pinecone, etc. |
 | Permissions | 63 | Full autonomy — Write, Edit, Task, Bash, Skill, WebSearch, all MCP auto-approved |
-| Scheduler | 12 tasks | claude-scheduler daemon (PM2) with cron+event scheduled tasks |
+| Scheduler | 13 tasks | claude-scheduler daemon (PM2) with cron+event scheduled tasks |
 | Data | 17 JSON | Agence ATUM data store (societe, actionnariat, facturation, RGPD, etc.) |
 | Tools | 6 | gsudo, jq, uv, uvx, composer, acpx |
 
