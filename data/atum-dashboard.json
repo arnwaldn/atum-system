@@ -4,7 +4,7 @@
   "service_role_key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlhbW1md3F0am1ydGV6b2lqbm5oIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MzAyOTIxMCwiZXhwIjoyMDg4NjA1MjEwfQ.hvzflKyBZTrl5oEE5zB56Tz7occ7LrF-wKfcvjqPYPw",
   "dashboard_url": "https://atum-dashboard.netlify.app",
   "scan_paths": [
-    "$HOME/Documents/projets",
+    "$HOME/Documents",
     "$HOME/Projects",
     "$HOME/Desktop"
   ],

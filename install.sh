@@ -335,9 +335,7 @@ with open('$CLAUDE_JSON', 'w') as f:
     echo "    # ATUM team"
     echo "    export ATUM_USER=\"your-name\"  # arnaud, pablo, or wahid"
     echo ""
-    echo "    # ATUM Dashboard auto-sync"
-    echo "    export ATUM_DASHBOARD_KEY=\"your-dashboard-api-key\""
-    echo "    export ATUM_SUPABASE_SERVICE_KEY=\"your-supabase-service-role-key\""
+    echo "    # ATUM Dashboard (set automatically by install — no action needed)"
     echo ""
 }
 
@@ -535,6 +533,38 @@ install_collective_memory() {
     }
 
     _add_env "ATUM_USER" "${atum_user}"
+
+    # --- Dashboard auto-sync env vars ---
+    info "Configuring ATUM Dashboard auto-sync..."
+    _add_env "ATUM_SUPABASE_URL" "https://yammfwqtjmrtezoijnnh.supabase.co"
+    _add_env "ATUM_SUPABASE_SERVICE_KEY" "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlhbW1md3F0am1ydGV6b2lqbm5oIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MzAyOTIxMCwiZXhwIjoyMDg4NjA1MjEwfQ.hvzflKyBZTrl5oEE5zB56Tz7occ7LrF-wKfcvjqPYPw"
+
+    # Personalize atum-projects.json with real hostname
+    local projects_file="$CLAUDE_DIR/atum-projects.json"
+    if [ -f "$projects_file" ]; then
+        local real_hostname
+        real_hostname="${atum_user}-pc"
+        python3 -c "
+import json, sys
+with open(sys.argv[1]) as f:
+    data = json.load(f)
+data['machine'] = sys.argv[2]
+with open(sys.argv[1], 'w') as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
+    f.write('\n')
+" "$projects_file" "$real_hostname" 2>/dev/null || true
+        ok "atum-projects.json: machine set to ${real_hostname}"
+    fi
+
+    echo ""
+    echo -e "  ${GREEN}ATUM Dashboard credentials:${NC}"
+    case "${atum_user}" in
+        arnaud) echo "    Login: arnaud.porcel@gmail.com / AtumDash2026!" ;;
+        pablo)  echo "    Login: pablo@atum-sas.fr / AtumDash2026!" ;;
+        wahid)  echo "    Login: wahid@atum-sas.fr / AtumDash2026!" ;;
+    esac
+    echo "    URL:   https://atum-dashboard.netlify.app"
+    echo ""
 
     # --- Clone collective-memory repo ---
     local MEMORY_DIR="$HOME/.claude/collective-memory"
