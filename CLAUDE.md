@@ -33,8 +33,8 @@ Le `install.sh` configure automatiquement les variables d'environnement necessai
 
 ### Comptes dashboard
 - arnaud.porcel@gmail.com / AtumDash2026!
-- pablo@atum-sas.fr / AtumDash2026!
-- wahid@atum-sas.fr / AtumDash2026!
+- pablo@tropicaltechproperties.com / AtumDash2026!
+- wahid@atum.dev / AtumDash2026!
 
 ## Structure du depot
 
