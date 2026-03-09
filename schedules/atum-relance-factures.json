@@ -12,8 +12,11 @@
   "maxBudgetUsd": 1,
   "timeoutSeconds": 180,
   "worktree": false,
+  "maxTurns": 10,
   "notify": {
-    "on": ["always"],
+    "on": [
+      "always"
+    ],
     "email": "arnaud.porcel@gmail.com",
     "includeOutput": true
   },
@@ -21,6 +24,14 @@
   "retries": 0,
   "retryDelaySeconds": 0,
   "concurrencyGroup": "default",
-  "tags": ["atum", "facturation", "hebdomadaire"],
-  "createdAt": "2026-03-02T22:00:00Z"
+  "tags": [
+    "atum",
+    "facturation",
+    "hebdomadaire"
+  ],
+  "createdAt": "2026-03-02T22:00:00Z",
+  "runCount": 1,
+  "lastRunAt": "2026-03-09T08:02:41.633Z",
+  "lastRunStatus": "success",
+  "updatedAt": "2026-03-09T08:02:41.644Z"
 }

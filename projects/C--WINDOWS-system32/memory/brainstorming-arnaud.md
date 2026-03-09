@@ -41,5 +41,21 @@
 - Mix terminal (Claude Code) + navigateur pour voir le resultat
 - Donner les URLs ou instructions pour verifier visuellement
 
+## Mode de collaboration (2026-03-08)
+
+### Avant de coder
+- **Expliquer AVANT de coder** : presenter ce qu'on va faire et pourquoi, PUIS coder
+- **Confirmer le scope** : s'assurer qu'on est d'accord sur ce qui va changer avant de toucher au code
+- Ne pas se lancer directement dans le code sans contexte
+
+### Autonomie adaptative
+- **Simple** (typo, petit fix, config) → faire directement, sans demander
+- **Important** (nouvelle feature, refactoring, architecture) → expliquer, valider, puis executer
+- Le niveau d'autonomie depend de la complexite, pas du type de tache
+
+### Irritants a eviter
+- Les erreurs en boucle (si ca echoue 2 fois → changer d'approche)
+- Le bruit dans le terminal (resolu via NTFS lock sur shell-snapshots)
+
 ## Resume en une phrase
 Arnaud est un debutant qui veut construire des vrais produits, avec franchise, pedagogie, validation a chaque etape, et un resultat qui soit a la fois solide et beau.

@@ -1,3 +1,9 @@
+---
+name: compliance-routing
+description: Regulatory compliance detection and routing. Use when code touches authentication, payments, user data, cookies, health data, children's content, AI deployment, or e-commerce.
+user-invocable: false
+---
+
 # Regulatory Compliance Routing
 
 ## Auto-Detection Triggers

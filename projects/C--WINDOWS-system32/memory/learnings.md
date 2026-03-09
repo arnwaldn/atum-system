@@ -25,7 +25,7 @@
 - Loop-detector bug fix: `history.push()` DOIT etre APRES detection, sinon ping-pong jamais declenche
 - Session-memory hook: Stop event, consumes stats from loop-detector, saves to `memory/sessions/`; auto-cleanup >7 days
 - Session-memory fixes (2026-03-06): CLAUDE_SESSION_ID not available → generate ID from `startedAt.toString(36)`; threshold 3→8; cleanup 7→3 days
-- Shell snapshots: corrupt with base64 (git completion on MINGW) → `clean-shell-snapshots.py` registered as BOTH SessionStart AND PreToolUse/Bash
+- Shell snapshots: corrupt with base64 (git completion on MINGW64); FIX: `icacls /deny arnau:(W,AD,WD)` on `~/.claude/shell-snapshots/` — NTFS ACLs block writes at kernel level (POSIX chmod doesn't work on MINGW64); hook `clean-shell-snapshots.py` auto-applies lock + cleanup on SessionStart/PreToolUse
 - secret-scanner.py only scans on `git commit` — matcher changed to `Bash` only
 - WorktreeCreate hook REPLACES default git behavior (NOT post-creation)
 - Collective Memory v2 (2026-03-06): GitHub private repo `arnwaldn/atum-memory` synced via git. Hooks: start.js (SessionStart) + retain.js (Stop). PM2 sync every 30s

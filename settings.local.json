@@ -1,14 +1,31 @@
 {
   "statusLine": {
     "type": "command",
-    "command": "python \"$HOME/.claude/scripts/context-monitor.py\""
+    "command": "python \"C:/Users/arnau/.claude/scripts/context-monitor.py\""
   },
   "permissions": {
     "deny": [
       "Read(./.env)",
       "Read(./.env.*)",
       "Read(./secrets/**)",
-      "Read(./config/credentials.json)"
+      "Read(./config/credentials.json)",
+      "Read(~/.ssh/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.azure/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.git-credentials)",
+      "Read(~/.docker/config.json)",
+      "Read(~/.kube/**)",
+      "Read(~/.npmrc)",
+      "Read(~/.pypirc)",
+      "Edit(~/.bashrc)",
+      "Edit(~/.zshrc)",
+      "Write(~/.bashrc)",
+      "Write(~/.zshrc)",
+      "Bash(sudo *)",
+      "Bash(mkfs *)",
+      "Bash(dd *)"
     ]
   },
   "env": {
@@ -19,6 +36,10 @@
     "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
     "DISABLE_COST_WARNINGS": "1",
     "MCP_TIMEOUT": "30000",
-    "MCP_TOOL_TIMEOUT": "60000"
+    "MCP_TOOL_TIMEOUT": "60000",
+    "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+    "BASH_COMPLETION_VERSINFO": "2 14 0",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "ENABLE_TOOL_SEARCH": "true"
   }
 }

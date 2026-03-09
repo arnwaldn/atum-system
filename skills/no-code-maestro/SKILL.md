@@ -1,3 +1,8 @@
+---
+name: no-code-maestro
+description: Competences no-code alignees sur Maestro No-Code x IA (Make.com, Airtable, Notion). Use for automation, scenarios, blueprints, no-code workflows.
+---
+
 # No-Code Maestro Skill
 
 Compétences no-code complètes alignées sur la formation Maestro No-Code x IA (P12, Maria Schools/LION).
