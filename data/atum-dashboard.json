@@ -4,7 +4,7 @@
   "service_role_key": "REDACTED_SUPABASE_SERVICE_KEY",
   "dashboard_url": "https://atum-dashboard.netlify.app",
   "scan_paths": [
-    "$HOME/Documents/projets",
+    "$HOME/Documents",
     "$HOME/Projects",
     "$HOME/Desktop"
   ],
