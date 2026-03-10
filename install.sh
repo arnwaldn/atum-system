@@ -75,12 +75,12 @@ check_prereqs() {
 # ============================================================
 confirm_install() {
     echo -e "${BOLD}This will install:${NC}"
-    echo "  - 22 hooks       (PreToolUse, PostToolUse, PostToolUseFailure, ConfigChange, Notification, Stop, SessionStart)"
-    echo "  - 29 commands     (/scaffold, /security-audit, /tdd, /deploy, /website, /webmcp, /schedule, /whatsapp, /happy, /projet, etc.)"
-    echo "  - 37 agents       (architect, expo-expert, ml-engineer, geospatial, no-code, happy-expert, etc.)"
-    echo "  - 35 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, release-notes, etc.)"
+    echo "  - 32 hooks       (PreToolUse, PostToolUse, PostToolUseFailure, ConfigChange, Notification, Stop, SessionStart, PreCompact)"
+    echo "  - 30 commands     (/scaffold, /security-audit, /tdd, /deploy, /website, /webmcp, /schedule, /whatsapp, /happy, /projet, etc.)"
+    echo "  - 38 agents       (10 Opus, 26 Sonnet, 2 Haiku — architect, compliance, security, fresh-executor, etc.)"
+    echo "  - 44 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, compliance-routing, fresh-execute, etc.)"
     echo "  - 4 modes         (architect, autonomous, brainstorm, quality)"
-    echo "  - 27 rules        (coding-style, security, resilience, decision-principle, whatsapp-persona, etc.)"
+    echo "  - 23 rules        (coding-style, security, resilience, decision-principle, autonomous-workflow, etc.)"
     echo "  - 56 plugins      (ECC, code-review, figma, firebase, stripe, linear, etc.)"
     echo "  - 3 scripts       (context-monitor, collective-memory-sync, migrate-hindsight)"
     echo "  - 184 templates   (scaffolds + references from project-templates)"
@@ -177,6 +177,18 @@ copy_files() {
         ok "atum-projects.json (project registry)"
     fi
 
+    # atum-audit.config.json
+    if [ -f "$SCRIPT_DIR/atum-audit.config.json" ]; then
+        cp "$SCRIPT_DIR/atum-audit.config.json" "$CLAUDE_DIR/atum-audit.config.json"
+        ok "atum-audit.config.json"
+    fi
+
+    # Create required empty directories
+    mkdir -p "$CLAUDE_DIR/instincts"
+    mkdir -p "$CLAUDE_DIR/graph-queue"
+    mkdir -p "$CLAUDE_DIR/common-ground"
+    ok "Created: instincts/, graph-queue/, common-ground/"
+
     # Make hooks executable
     chmod +x "$CLAUDE_DIR/hooks/"* 2>/dev/null || true
 }
@@ -187,10 +199,27 @@ copy_files() {
 install_settings() {
     info "Installing settings..."
 
-    # settings.json — portable (uses $HOME in hook paths)
+    # settings.json — portable (uses $HOME_PLACEHOLDER in hook paths)
     if [ -f "$SCRIPT_DIR/settings.json" ]; then
         cp "$SCRIPT_DIR/settings.json" "$CLAUDE_DIR/settings.json"
-        ok "settings.json"
+
+        # Replace $HOME_PLACEHOLDER with actual home path (cross-platform)
+        local home_path
+        home_path=$(cd "$HOME" && pwd -W 2>/dev/null || pwd)
+        home_path="${home_path//\\/\/}"  # Normalize backslashes to forward slashes
+
+        python3 -c "
+import sys
+with open(sys.argv[1], encoding='utf-8') as f:
+    content = f.read()
+replaced = content.replace('\$HOME_PLACEHOLDER', sys.argv[2])
+with open(sys.argv[1], 'w', encoding='utf-8') as f:
+    f.write(replaced)
+count = content.count('\$HOME_PLACEHOLDER')
+print(f'  Replaced {count} path placeholders with {sys.argv[2]}')
+" "$CLAUDE_DIR/settings.json" "$home_path"
+
+        ok "settings.json (paths adapted to this machine)"
     fi
 
     # settings.local.json — strip machine-specific env vars

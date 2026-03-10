@@ -1,33 +1,18 @@
----
-name: autonomous-routing
-description: |
-  Agent, skill, and MCP routing reference tables with 70+ NLP triggers (FR+EN).
-  Contains: full agent registry (37 agents with domains and auto-triggers),
-  agent selection by context, skill selection by task type, contextual NLP routing
-  (document processing, architecture, security, compliance, visualization,
-  scheduling, ATUM admin, no-code, external services), and decision authority rules.
-  Consult when routing a user request to the right agent, skill, or MCP server.
-user-invocable: false
----
 
-# Autonomous Routing Reference Tables
-
-## Full Agent Registry (37 agents)
-
-| Agent | Domain | Auto-trigger |
-|-------|--------|-------------|
-| architect-reviewer | System design | Architecture questions, scaling, tech choices |
-| codebase-pattern-finder | Pattern search | Need examples from existing code |
-| critical-thinking | Analysis | Complex decisions, bias detection |
-| database-optimizer | DB performance | Slow queries, schema design |
-| error-detective | Error diagnosis | Cascading failures, root cause |
-| technical-debt-manager | Code health | Refactoring planning, debt audit |
-| research-expert | Research | Technology evaluation, fact-checking |
-| game-architect | Game design | Any game project |
-| phaser-expert | 2D web games | Phaser 3 projects |
-| threejs-game-expert | 3D web games | Three.js projects |
-| unity-expert | Unity games | Unity/C# projects |
-| godot-expert | Godot games | Godot/GDScript projects |
+### Regulatory Compliance & EU AI Act
+- "audit RGPD", "conformite RGPD", "verifier la conformite", "compliance audit", "audit de conformite" -> /compliance skill + compliance-expert agent
+- "donnees personnelles", "privacy policy", "politique de confidentialite", "consentement cookies" -> /compliance gdpr + compliance-expert agent
+- "paiement", "PCI", "PCI-DSS", "securite paiement", "payment compliance" -> /compliance pci + compliance-expert agent
+- "donnees de sante", "HIPAA", "medical data", "health data" -> /compliance hipaa + compliance-expert agent
+- "accessibilite", "EAA", "WCAG", "handicap", "accessibility compliance" -> /compliance accessibility + accessibility-auditor agent
+- "SBOM", "software bill of materials", "NIS2", "CRA", "cyber resilience" -> /compliance sbom + compliance-expert agent
+- "EU AI Act", "systeme IA", "AI system", "intelligence artificielle", "registre IA" -> /atum-audit + compliance-expert agent
+- "integrite fichiers", "file integrity", "hash verification", "audit trail" -> /atum-audit scan
+- "Annex IV", "documentation technique IA", "AI documentation" -> /atum-audit annex-iv + compliance-expert agent
+- "conformite IA", "AI compliance", "risk level IA", "classification risque IA" -> /atum-audit status + compliance-expert agent
+- "retention logs", "conservation donnees", "data retention" -> /atum-audit retention + /compliance gdpr
+- "pre-production", "avant mise en prod", "checklist legal", "legal checklist" -> /compliance audit + /pre-deploy
+GDScript projects |
 | networking-expert | Real-time | WebSocket, multiplayer, state sync |
 | flutter-dart-expert | Mobile | Flutter/Dart projects |
 | expo-expert | React Native | Expo projects |
@@ -53,6 +38,19 @@ user-invocable: false
 | no-code-automation-expert | No-code/Make.com | Automatisations, blueprints, Airtable+Make+Notion integrations |
 | agence-atum-expert | Admin ATUM SAS | Gouvernance, finances, pipeline agence, obligations legales |
 | happy-expert | Mobile dev | Happy Coder remote access |
+| fresh-executor | Context-safe execution | Long sessions, 3+ file features, context degradation risk |
+| codebase-pattern-finder | Code search | Find patterns, examples, templates in codebase |
+| critical-thinking | Decision analysis | Challenge assumptions, detect biases, structured frameworks |
+| database-optimizer | DB optimization | Query plans, indexing, partitioning, cross-platform |
+| threejs-game-expert | Three.js games | 3D browser games, WebGL, shaders |
+| unity-expert | Unity | C#, game dev, shaders, physics |
+| phaser-expert | Phaser | 2D browser games, arcade physics |
+| error-detective | Error diagnosis | Root cause analysis, failure cascades, correlation |
+| technical-debt-manager | Tech debt | Complexity analysis, coupling, test gaps, prioritization |
+| research-expert | Research | Web search, documentation analysis, fact-finding |
+| game-architect | Game design | Architecture, ECS, game loops, asset pipelines |
+| godot-expert | Godot | GDScript, scenes, signals, physics |
+| architect-reviewer | Architecture | System design review, trade-offs, scalability |
 
 ## Agent Selection (Automatic)
 
@@ -77,6 +75,11 @@ user-invocable: false
 | Research/evaluation | research-expert agent |
 | Quick business website | B12 MCP (generate_website tool) |
 | Web app testing / website tools | WebMCP (_webmcp_get-token then register then use tools) |
+| Long session, 3+ file feature | fresh-executor agent (context-safe decomposition) |
+| Technical debt audit | technical-debt-manager agent |
+| ETL, data pipelines | data-engineer agent |
+| Auto-generate test suite | auto-test-generator agent |
+| Happy Coder mobile access | happy-expert agent |
 
 ## Skill Selection (Automatic)
 
@@ -193,6 +196,45 @@ Detect intent from natural language and invoke matching skill automatically:
 - "assurance", "RC Pro", "cyber assurance" -> agence-atum (compliance assurances)
 - "note de frais", "remboursement", "frais deplacement" -> agence-atum (frais)
 - "Syntec", "convention collective", "grille salariale" -> agence-atum (compliance syntec)
+
+### Development Workflow
+- "TDD", "test d'abord", "ecrire les tests avant", "write tests first", "test-driven" -> /tdd skill
+- "revue de code", "review et fix", "review fix", "code review automatique" -> /review-fix skill
+- "generer les tests", "auto generate tests", "test suite pour", "genere les tests" -> auto-test-generator agent
+
+### Project Management
+- "etat du projet", "statut du projet", "quoi de neuf", "project status", "what changed" -> /status skill
+- "sante du systeme", "diagnostic", "health check", "check my environment", "verifier ma config" -> /health skill
+- "ecris un PRD", "cahier des charges", "specs pour cette feature", "product requirements", "write a PRD" -> /prd skill
+- "analyser cette feature", "definir cette idee", "feature analysis", "parlons de cette idee" -> /feature-analyzer skill
+- "execute ce design doc", "implement from spec", "on a le spec go", "implement from design doc" -> /feature-pipeline skill
+- "quelle equipe", "combien ca couterait", "profiler ce projet", "cost estimate", "profile this project" -> /team skill
+
+### Security & Optimization (extended)
+- "audit de securite complet", "full security audit", "vulnerability scan", "verifier les vulnerabilites" -> /security-audit skill
+- "optimise tout", "audit de performance", "performance audit", "optimize everything", "benchmark" -> /optimize skill
+
+### Infrastructure & DevOps (extended)
+- "migrer de", "mise a jour majeure", "upgrade framework", "migrate from", "migrate to" -> /migrate skill
+- "configurer GitHub Actions", "pipeline CI", "setup CI/CD", "ajouter CI", "configurer le CI" -> /setup-cicd skill
+- "backup ma base", "seed la DB", "schema de base", "database management", "gerer la base" -> /db skill
+
+### Deep Analysis & Pre-deploy
+- "pense en profondeur", "analyse approfondie", "deep analysis", "think deeply", "ultra think" -> /ultra-think skill
+- "validation avant prod", "pre-deploy checklist", "production readiness", "pret pour la prod" -> /pre-deploy skill
+
+### Communication & Dashboard
+- "mise a jour dashboard", "forcer le scan", "update dashboard", "scanner les projets" -> /dashboard-atum skill
+- "veille whatsapp", "messages cloclo", "checker whatsapp", "whatsapp check" -> /whatsapp skill
+- "happy coder", "acceder depuis mon mobile", "mobile access", "remote access" -> /happy skill
+
+### Fresh Context & Context Management
+- "contexte frais", "decomposer en sous-taches", "session longue qualite", "fresh context" -> /fresh-execute skill
+- "decompose into subtasks", "avoid context degradation", "sous-taches atomiques" -> /fresh-execute skill
+
+### Technical Debt & Data Engineering
+- "dette technique", "technical debt", "code health", "audit de dette", "code smell" -> technical-debt-manager agent
+- "ETL", "data pipeline", "data processing", "traitement de donnees", "ingestion" -> data-engineer agent
 
 ### External Services (MCP remote)
 - "Stripe", "paiement", "checkout" -> Stripe MCP
