@@ -2,7 +2,7 @@
 name: agence-atum-expert
 description: "Agent Expert — Administration ATUM SAS"
 tools: Read, Write, Edit, Bash, Grep, Glob
-model: sonnet
+model: opus
 mcpServers: [atum-audit, google-workspace]
 ---
 

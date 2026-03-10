@@ -16,19 +16,18 @@ bash install.sh
 
 | Category | Count | Description |
 |----------|-------|-------------|
-| Hooks | 30 | Secret scanner, git guard, typecheck, loop detector, auto-formatter, dashboard sync, hindsight retain, etc. |
-| Commands | 30 | `/scaffold`, `/security-audit`, `/tdd`, `/deploy`, `/happy`, `/whatsapp`, `/schedule`, `/dashboard-atum`, `/projet`, etc. |
-| Agents | 37 | Architect, phaser-expert, ml-engineer, happy-expert, geospatial, compliance, etc. |
-| Skills | 43 | PDF, DOCX, DDD, RAG, Mermaid, agent-browser, terminal-emulator, scheduler, release-notes, etc. |
+| Hooks | 32 | File guard, anti-rationalization, secret scanner, git guard, loop detector, session-to-graph, graph-queue-loader, dashboard sync, etc. |
+| Commands | 30 | `/scaffold`, `/security-audit`, `/tdd`, `/deploy`, `/happy`, `/whatsapp`, `/schedule`, `/dashboard-atum`, `/projet`, `/compliance`, `/atum-audit`, etc. |
+| Agents | 38 | 10 Opus (security, compliance, architecture, migration) + 26 Sonnet (dev, DevOps, ML, game) + 2 Haiku (search, docs) |
+| Skills | 44 | PDF, DOCX, DDD, RAG, Mermaid, scheduler, compliance-routing, fresh-execute, autonomous-routing (108 NLP triggers), etc. |
 | Modes | 4 | architect, autonomous, brainstorm, quality |
-| Rules | 23 | Coding style, security, testing, decision principle, pedagogie, anti-hallucination (common + TS/Python/Go) |
-| Scripts | 12 | Context monitor, seed-hindsight, seed-workspace, hindsight-export, hindsight-health-check |
-| MCP Servers | 22 | GitHub, Memory, Railway, Cloudflare, B12, WebMCP, WhatsApp, Hindsight, Google Workspace, etc. |
+| Rules | 23 | Coding style, security, testing, decision principle, autonomous-workflow (32 auto-detect blocks), anti-hallucination, pedagogie |
+| Scripts | 14 | Context monitor, collective-memory-sync, migrate-hindsight, session-to-graph, etc. |
+| MCP Servers | 20+ | GitHub, Memory, Railway, Cloudflare, B12, WebMCP, WhatsApp, ATUM Audit (EU AI Act), Google Workspace, etc. |
 | Plugins | 56 | ECC, Superpowers, Playwright, Firebase, Figma, Stripe, Linear, Pinecone, etc. |
-| Permissions | 63 | Full autonomy — Write, Edit, Task, Bash, Skill, WebSearch, all MCP auto-approved |
+| Permissions | 60 | Full autonomy — Write, Edit, Task, Bash, Skill, WebSearch, all MCP auto-approved |
 | Scheduler | 13 tasks | claude-scheduler daemon (PM2) with cron+event scheduled tasks |
-| Data | 17 JSON | Agence ATUM data store (societe, actionnariat, facturation, RGPD, etc.) |
-| Tools | 6 | gsudo, jq, uv, uvx, composer, acpx |
+| Data | 30 JSON | Agence ATUM data store (societe, actionnariat, facturation, RGPD, templates, etc.) |
 
 ## Autonomy Model
 
@@ -36,121 +35,78 @@ Claude Code executes any action **without permission prompts** — Write, Edit, 
 
 | Hook | Protection |
 |------|-----------|
-| secret-scanner.py | Blocks hardcoded tokens/keys before git commit (Bash only) |
-| git-guard.py | Blocks push to main, rm -rf, force-push, enforces conventional commits |
+| file-guard.py | Blocks access to 195+ sensitive file patterns (SSH keys, .env, wallets, etc.) |
+| anti-rationalization.js | Detects premature completion, vague language, deferred follow-ups |
+| secret-scanner.py | Blocks hardcoded tokens/keys before git commit |
+| git-guard.py | Blocks push to main, force-push, enforces conventional commits |
 | lock-file-protector.js | Blocks direct modification of lock files |
-| typecheck.sh | TypeScript type-check (tsc/tsgo --noEmit) after editing .ts/.tsx files |
 | loop-detector.js | Detects repeated identical tool calls and ping-pong patterns |
-| post-tool-failure-logger.js | Logs tool failures to structured JSON |
+| session-to-graph.js | Extracts knowledge graph entities from sessions |
+| graph-queue-loader.js | Loads queued knowledge into MCP memory at session start |
 | config-change-guard.js | Warns when config files modified during session |
 | atum-dashboard-sync.js | Syncs dev events to ATUM Dashboard on session end |
-| hindsight-session-retain.js | Saves session summary to Hindsight shared memory |
-| session-memory.js | Writes session summary to local memory files |
-| worktree-setup.js | Auto-setup worktree (.env copy, npm install, deterministic port) |
-| auto-format.sh | Auto-formats files (Prettier, Black, gofmt, rustfmt) on write |
 
-**Philosophy**: Zero execution friction, but Claude still consults the user for important design decisions and before deletions.
+**Philosophy**: Zero execution friction, but Claude still consults the user for important design decisions and before destructive actions.
 
 ## Structure
 
 ```
-hooks/              PreToolUse/PostToolUse/PostToolUseFailure/ConfigChange/Stop/SessionStart hooks (22 files)
-commands/           Slash commands (/scaffold, /tdd, /deploy, /happy, /whatsapp, /dashboard-atum, etc.)
-agents/             Specialized agents (37 domain experts)
-skills/             On-demand skills (35: pdf, docx, DDD, RAG, release-notes, etc.)
-modes/              Custom modes (architect, autonomous, brainstorm, quality)
-rules/              Global rules (28 files: common/, typescript/, python/, golang/)
-scripts/            Helper scripts (context-monitor, seed-hindsight, hindsight-export, etc.)
+hooks/              32 hooks (PreToolUse, PostToolUse, PostToolUseFailure, ConfigChange, Stop, SessionStart, PreCompact, Notification)
+commands/           30 slash commands (/scaffold, /tdd, /deploy, /compliance, /atum-audit, etc.)
+agents/             38 specialized agents (10 Opus, 26 Sonnet, 2 Haiku)
+skills/             44 on-demand skills (zero context cost at rest)
+modes/              4 custom modes (architect, autonomous, brainstorm, quality)
+rules/              23 rules (common/, typescript/, python/, golang/)
+scripts/            14 helper scripts
 bin/                Tool wrappers for Git Bash (gsudo, jq, uv, uvx, composer)
 acpx/               acpx headless session config
-data/               Agence ATUM data store (17 JSON files + 13 templates)
+data/               Agence ATUM data store (30 JSON files)
 scheduler/          claude-scheduler daemon source (TypeScript)
-schedules/          Scheduled tasks (12 JSON: health check, security audit, ATUM obligations)
-projects/           Memory templates
-atum-projects.json  Central project registry (for SessionStart maturity scanner)
-plugins.txt         Plugin registry (56 plugins, 54 active)
-settings.json       Main config — hooks, plugins, permissions (SOURCE OF TRUTH)
-settings.local.json Local overrides — statusline, env vars, deny list
+schedules/          13 scheduled tasks (health check, security audit, ATUM obligations)
+projects/           Memory templates (per-project MEMORY.md)
+atum-projects.json  Central project registry
+plugins.txt         Plugin registry (56 plugins)
+settings.json       Main config — hooks, plugins, permissions (portable with $HOME_PLACEHOLDER)
+settings.local.json Local overrides — statusline, env vars
 claude.json.template  MCP server configs (replace PAT/path placeholders)
+install.sh          Cross-platform installer (Windows/macOS/Linux)
 ```
 
-## Tools
+## NLP Auto-Routing (108 triggers)
 
-### gsudo (Windows only)
+The system auto-detects user intent from natural language and invokes the right tool/agent — **108 triggers** (FR+EN) in `skills/autonomous-routing/SKILL.md`, plus **32 auto-detect blocks** in `rules/common/autonomous-workflow.md`.
 
-[gsudo](https://github.com/gerardog/gsudo) — `sudo` equivalent for Windows. Installed via `winget`, with credential caching (1 hour).
+Examples:
+- "Create a PDF" -> `/pdf`
+- "Audit RGPD" -> compliance-expert agent + ATUM Audit MCP
+- "EU AI Act compliance" -> `mcp__atum-audit__compliance_status`
+- "Fresh context" -> `/fresh-execute` (atomic sub-tasks in clean context)
+- "Quick website" -> B12 MCP
+- "Deploy on Render" -> `/deploy`
+- "TDD write tests first" -> `/tdd`
 
-### acpx
+## Agent Model Strategy
 
-[acpx](https://github.com/openclaw/acpx) — Headless CLI for Agent Client Protocol. Run Claude Code sessions without a terminal.
+| Tier | Count | Purpose | Agents |
+|------|-------|---------|--------|
+| Opus 4.6 | 10 | Critical decisions, deep reasoning | security-expert, compliance-expert, architect-reviewer, critical-thinking, error-detective, database-optimizer, fresh-executor, api-designer, agence-atum-expert, migration-expert |
+| Sonnet 4.6 | 26 | Development, DevOps, specialized domains | All dev agents, game engines, ML, networking, etc. |
+| Haiku 4.5 | 2 | Fast, frequent tasks | codebase-pattern-finder, documentation-generator |
 
-### Bin Wrappers
+## Compliance Integration
 
-Shell wrappers in `~/bin/` for tools installed in non-standard locations (Windows WinGet paths):
-- `gsudo` — Windows admin elevation
-- `jq` — JSON processor
-- `uv`, `uvx` — Python package manager (astral-sh)
-- `composer` — PHP Composer
-
-## Post-Install
-
-1. **Restart Claude Code** to load the new config
-2. **Set env vars** in `~/.bashrc` (or `~/.zshrc` on macOS):
-
-   ```bash
-   # MCP servers
-   export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token 2>/dev/null)"
-   export GOOGLE_OAUTH_CLIENT_SECRET="your-secret"
-   export OPENAPI_MCP_HEADERS='{"Authorization":"Bearer your-notion-token","Notion-Version":"2022-06-28"}'
-   export AIRTABLE_API_KEY="your-airtable-pat"
-
-   # Hindsight shared memory
-   export HINDSIGHT_API_KEY="your-hindsight-api-key"
-   export ATUM_USER="your-name"  # arnaud, pablo, or wahid
-   export GROQ_API_KEY="your-groq-key"
-
-   # ATUM Dashboard auto-sync
-   export ATUM_DASHBOARD_KEY="your-dashboard-api-key"
-   export ATUM_SUPABASE_SERVICE_KEY="your-supabase-service-role-key"
-   ```
-
-3. **Configure remote MCP** in claude.ai settings:
-   Figma, Notion, Supabase, Vercel, Canva, Stripe, Gamma, Make, Zapier, etc.
-4. **Build scheduler**: `cd ~/.claude/scheduler && npm install && npm run build`
-5. **For ATUM Dashboard**: create API key at `atum-dashboard.netlify.app/settings`
-6. **First gsudo use** (Windows) will trigger one UAC prompt, then cached for 1 hour
-
-## Skills (35)
-
-On-demand skills loaded into context only when triggered (zero cost when idle):
-
-| Domain | Skills |
-|--------|--------|
-| Documents | pdf, docx, xlsx, pptx |
-| Architecture | domain-driven-design, clean-architecture, system-design, ddia-systems |
-| Visualization | design-doc-mermaid, claude-d3js-skill, audit-flow |
-| Security | supply-chain-risk-auditor, open-source-license-compliance |
-| ML/AI | rag-architect |
-| DevOps | sre-engineer, chaos-engineer, high-perf-browser |
-| Product | jobs-to-be-done, mom-test |
-| Analysis | spec-miner, the-fool, prompt-architect |
-| UI/A11y | refactoring-ui, claude-a11y-skill |
-| Testing | property-based-testing |
-| Tooling | mcp-builder, powershell-windows, context-engineering-kit |
-| Automation | scheduler, agent-browser, terminal-emulator |
-| Routing | autonomous-routing (NLP trigger reference tables) |
-| Admin | agence-atum, no-code-maestro, release-notes |
-
-## NLP Auto-Routing
-
-The system auto-detects user intent and invokes the right tool — 75+ triggers (FR+EN) defined in `rules/common/autonomous-workflow.md`.
-
-Examples: "Create a PDF" -> `/pdf` | "Bounded context" -> `domain-driven-design` | "Make a diagram" -> `design-doc-mermaid` | "Audit dependencies" -> `supply-chain-risk-auditor` | "Quick website" -> B12 MCP | "Happy doctor" -> `/happy` | "Envoie sur WhatsApp" -> `/whatsapp`
+Built-in EU AI Act and RGPD compliance via ATUM Audit MCP (15 tools):
+- `compliance_register_system` — Register AI systems
+- `compliance_validate` — SHACL validation against EU AI Act
+- `compliance_annex_iv` — Annex IV documentation check
+- `compliance_retention_check` — Art. 12 log retention
+- `compliance_export_report` — Generate compliance reports
+- `audit_full_scan` — File integrity verification
 
 ## Portability
 
-- `settings.json` uses `$HOME` for hook paths — works on any machine
-- Hooks use `$HOME`, `$TEMP`, `$CLAUDE_TOOL_FILE_PATH` — no hardcoded paths
+- `settings.json` uses `$HOME_PLACEHOLDER` — `install.sh` replaces with actual home path on any machine
+- Hooks use portable path patterns — no hardcoded user paths
 - Commands, agents, modes, rules, skills are pure Markdown — fully portable
 - `install.sh` auto-converts `cmd /c npx` wrappers to direct `npx` calls on macOS/Linux
 - The install script backs up any existing config before overwriting
@@ -162,6 +118,20 @@ Examples: "Create a PDF" -> `/pdf` | "Bounded context" -> `domain-driven-design`
 - Windows (Git Bash / MSYS2 / WSL)
 - macOS
 - Linux
+
+## Post-Install
+
+1. **Restart Claude Code** to load the new config
+2. **Set env vars** in `~/.bashrc` (or `~/.zshrc` on macOS):
+
+   ```bash
+   export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token 2>/dev/null)"
+   export ATUM_USER="your-name"  # arnaud, pablo, or wahid
+   ```
+
+3. **Configure remote MCP** in claude.ai settings: Figma, Notion, Supabase, Vercel, Canva, Stripe, Gamma, etc.
+4. **Build scheduler**: `cd ~/.claude/scheduler && npm install && npm run build`
+5. **For ATUM Dashboard**: create API key at `atum-dashboard.netlify.app/settings`
 
 ## Languages & Frameworks Covered
 

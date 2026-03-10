@@ -55,18 +55,61 @@
       "mcp__plugin_pinecone_pinecone__*",
       "mcp__whatsapp__*",
       "mcp__atum-audit__*",
-      "mcp__plugin_serena_serena__*"
+      "mcp__plugin_serena_serena__*",
+      "Bash(wsl --update:*)",
+      "Bash(wsl --status:*)",
+      "Bash(wsl:*)",
+      "Bash(winget install:*)",
+      "Bash(dism.exe:*)",
+      "Bash(MSYS_NO_PATHCONV=1 dism.exe:*)"
     ],
-    "defaultMode": "default"
+    "defaultMode": "dontAsk"
   },
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/clean-shell-snapshots.py\""
+          },
+          {
+            "type": "command",
+            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/atum-session-start.py\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/atum-project-scanner.js\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/collective-memory-start.js\"",
+            "timeout": 15000
+          },
+          {
+            "type": "command",
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/graph-queue-loader.js\""
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
+      {
+        "matcher": "Read|Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/file-guard.py\""
+          }
+        ]
+      },
       {
         "matcher": "Read",
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/image-auto-resize.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/image-auto-resize.js\""
           }
         ]
       },
@@ -75,7 +118,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/image-guard.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/image-guard.js\""
           }
         ]
       },
@@ -84,7 +127,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/clean-shell-snapshots.py\""
+            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/clean-shell-snapshots.py\""
           }
         ]
       },
@@ -93,7 +136,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/secret-scanner.py\""
+            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/secret-scanner.py\""
           }
         ]
       },
@@ -102,7 +145,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/git-guard.py\""
+            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/git-guard.py\""
           }
         ]
       },
@@ -111,7 +154,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/lock-file-protector.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/lock-file-protector.js\""
           }
         ]
       },
@@ -131,7 +174,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/atum-post-write.py\""
+            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/atum-post-write.py\""
           }
         ]
       },
@@ -140,7 +183,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/atum-compliance-check.py\""
+            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/atum-compliance-check.py\""
           }
         ]
       },
@@ -149,7 +192,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/post-edit-dispatcher.js\"",
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/post-edit-dispatcher.js\"",
             "timeout": 15000
           }
         ]
@@ -159,7 +202,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/post-commit-quality-gate.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/post-commit-quality-gate.js\""
           }
         ]
       },
@@ -168,7 +211,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/worktree-setup.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/worktree-setup.js\""
           }
         ]
       },
@@ -177,7 +220,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/loop-detector.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/loop-detector.js\""
           }
         ]
       }
@@ -188,7 +231,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/precompact-save.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/precompact-save.js\""
           }
         ]
       }
@@ -199,7 +242,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/anti-rationalization.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/anti-rationalization.js\""
           }
         ]
       },
@@ -208,7 +251,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/session-memory.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/session-memory.js\""
           }
         ]
       },
@@ -217,7 +260,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/collective-memory-retain.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/collective-memory-retain.js\""
           }
         ]
       },
@@ -226,7 +269,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/atum-dashboard-sync.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/atum-dashboard-sync.js\""
           }
         ]
       },
@@ -244,7 +287,25 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/image-guard-reset.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/plugins/marketplaces/everything-claude-code/scripts/hooks/evaluate-session.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/session-to-graph.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/image-guard-reset.js\""
           }
         ]
       }
@@ -255,7 +316,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/post-tool-failure-logger.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/post-tool-failure-logger.js\""
           }
         ]
       }
@@ -265,7 +326,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/config-change-guard.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/config-change-guard.js\""
           }
         ]
       }
@@ -286,30 +347,6 @@
           {
             "type": "command",
             "command": "powershell -Command \"[Console]::Beep(600,500)\""
-          }
-        ]
-      }
-    ],
-    "SessionStart": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/clean-shell-snapshots.py\""
-          },
-          {
-            "type": "command",
-            "command": "python \"C:/Users/arnau/.claude/hooks/atum-session-start.py\""
-          },
-          {
-            "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/atum-project-scanner.js\""
-          },
-          {
-            "type": "command",
-            "command": "node \"C:/Users/arnau/.claude/hooks/collective-memory-start.js\"",
-            "timeout": 15000
           }
         ]
       }
