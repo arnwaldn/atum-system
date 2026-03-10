@@ -55,5 +55,17 @@ schedules/.history/
 # Embedded repos & runtime data
 collective-memory/
 hindsight-mirror/
+hindsight-export/
+hindsight-pending/
 session-env/
 telemetry/
+
+# Transient runtime data
+instincts/
+memory/
+graph-queue/
+homunculus/
+downloads/
+common-ground/
+ide/
+tmp/

@@ -103,6 +103,144 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 4. Build: verify production build succeeds
 5. Deploy: use appropriate platform tools
 
+### TDD / Testing Intent
+**Detect**: "TDD", "test d'abord", "write tests first", "test-driven", "ecrire les tests avant", "tests en premier"
+**Auto-actions**:
+1. Invoke `/tdd` skill
+2. Follow RED → GREEN → REFACTOR cycle
+3. Verify 80%+ coverage
+
+### Code Review Request
+**Detect**: "revue de code", "review et fix", "review fix", "code review automatique", "corriger automatiquement", "review my code"
+**Auto-actions**:
+1. Invoke `/review-fix` skill
+2. Address CRITICAL and HIGH automatically
+3. Present MEDIUM findings for user decision
+
+### Project Status / Health
+**Detect**: "status", "statut", "etat du projet", "quoi de neuf", "project status", "what changed"
+**Auto-actions**:
+1. Invoke `/status` skill
+2. Present git activity, dependencies, tests, health overview
+
+### System Health Check
+**Detect**: "sante du systeme", "diagnostic", "health check", "check my environment", "verifier ma config"
+**Auto-actions**:
+1. Invoke `/health` skill
+2. Check Claude Code environment, hooks, MCP servers, plugins
+
+### Product Requirements / Feature Definition
+**Detect**: "ecris un PRD", "cahier des charges", "specs pour cette feature", "product requirements", "write a PRD", "j'ai une idee de feature"
+**Auto-actions**:
+1. Invoke `/prd` skill for structured PRD generation
+2. If user wants interactive exploration: use `/feature-analyzer` instead
+
+### Feature Analysis / Ideation
+**Detect**: "analyser cette feature", "definir cette idee", "feature analysis", "parlons de cette idee", "j'ai une idee"
+**Auto-actions**:
+1. Invoke `/feature-analyzer` skill
+2. Interactive dialogue to turn ideas into fully formed specs
+
+### Design Doc Execution
+**Detect**: "execute ce design doc", "implement from spec", "on a le spec go", "implement from design doc"
+**Auto-actions**:
+1. Invoke `/feature-pipeline` skill
+2. Execute implementation from design doc with checkbox tracking
+
+### Security Audit (Full)
+**Detect**: "audit de securite complet", "full security audit", "vulnerability scan", "verifier les vulnerabilites", "pentest"
+**Auto-actions**:
+1. Invoke `/security-audit` skill
+2. OWASP Top 10, secrets scan, dependency audit, hardening check
+
+### Performance Optimization (Full)
+**Detect**: "optimise tout", "audit de performance", "performance audit", "optimize everything", "benchmark"
+**Auto-actions**:
+1. Invoke `/optimize` skill
+2. Multi-dimension profiling: CPU, memory, network, bundle size
+
+### Migration / Upgrade
+**Detect**: "migrer de", "mise a jour majeure", "upgrade framework", "migrate from", "migrate to", "upgrade to"
+**Auto-actions**:
+1. Invoke `/migrate` skill + **migration-expert** agent
+2. Analyze breaking changes, plan migration path, execute incrementally
+
+### CI/CD Setup
+**Detect**: "configurer GitHub Actions", "pipeline CI", "setup CI/CD", "ajouter CI", "configurer le CI"
+**Auto-actions**:
+1. Invoke `/setup-cicd` skill
+2. Detect project type, generate appropriate pipeline config
+
+### Database Management
+**Detect**: "backup ma base", "seed la DB", "schema de base", "database management", "gerer la base"
+**Auto-actions**:
+1. Invoke `/db` skill
+2. Unified management: migrate, schema, types, backup, seed
+
+### Deep Analysis
+**Detect**: "pense en profondeur", "analyse approfondie", "deep analysis", "think deeply", "ultra think", "raisonnement structure"
+**Auto-actions**:
+1. Invoke `/ultra-think` skill
+2. Multi-dimensional analysis with structured output and critique rounds
+
+### Pre-Deploy Validation
+**Detect**: "validation avant prod", "pre-deploy checklist", "production readiness", "pret pour la prod"
+**Auto-actions**:
+1. Invoke `/pre-deploy` skill
+2. Run full pre-flight checklist before deployment
+
+### Project Team / Cost Estimation
+**Detect**: "quelle equipe", "combien ca couterait", "profiler ce projet", "cost estimate", "profile this project"
+**Auto-actions**:
+1. Invoke `/team` skill
+2. Detect project type, recommend team composition, estimate cost
+
+### Fresh Context for Long Sessions
+**Detect**: 3+ distinct file changes in a feature, session >100 tool calls, "contexte frais", "fresh context", "decomposer en sous-taches"
+**Auto-actions**:
+1. Suggest `/fresh-execute` when context degradation risk detected
+2. Decompose feature into atomic sub-tasks, each in a fresh context
+
+### Technical Debt Assessment
+**Detect**: "dette technique", "technical debt", "code health", "audit de dette", "code smell", "refactoring needed"
+**Auto-actions**:
+1. Invoke **technical-debt-manager** agent
+2. Analyze complexity, coupling, test coverage gaps, prioritize cleanup
+
+### Data Pipeline / ETL
+**Detect**: "ETL", "data pipeline", "data processing", "traitement de donnees", "ingestion de donnees"
+**Auto-actions**:
+1. Invoke **data-engineer** agent
+2. Design pipeline architecture, handle transformations, validate data quality
+
+
+### Regulatory Compliance Audit
+**Detect**: "audit RGPD", "conformite", "compliance audit", "verifier la conformite", "audit de conformite", "donnees personnelles", "privacy policy", "PCI-DSS", "HIPAA", "SBOM", "NIS2"
+**Auto-actions**:
+1. Invoke **compliance-expert** agent (Opus) for deep regulatory analysis
+2. Detect sector: e-commerce, SaaS, healthcare, finance, AI/ML, marketplace
+3. Scan code for compliance patterns (cookie consent, DSR API, audit logs)
+4. Report with severity: CRITICAL > HIGH > MEDIUM > LOW
+5. Fix CRITICAL findings immediately, present HIGH for user decision
+
+### EU AI Act / AI Systems
+**Detect**: "EU AI Act", "systeme IA", "AI system", "intelligence artificielle", "registre IA", "Annex IV", "classification risque IA", "conformite IA", "AI compliance", "deployer un modele"
+**Auto-actions**:
+1. Invoke **compliance-expert** agent (has mcpServers: [atum-audit])
+2. Call MCP tools: `mcp__atum-audit__compliance_status` for system overview
+3. Call MCP tools: `mcp__atum-audit__compliance_validate` for SHACL validation
+4. Call MCP tools: `mcp__atum-audit__compliance_annex_iv` for documentation check
+5. Call MCP tools: `mcp__atum-audit__compliance_retention_check` for Art. 12 logs
+6. Generate compliance report: `mcp__atum-audit__compliance_export_report`
+7. If AI system not registered: `mcp__atum-audit__compliance_register_system`
+
+### File Integrity / Audit Trail
+**Detect**: "integrite fichiers", "file integrity", "hash verification", "audit trail", "atum audit", "scan integrite", "verifier les fichiers"
+**Auto-actions**:
+1. Call MCP: `mcp__atum-audit__audit_full_scan` for integrity check
+2. Call MCP: `mcp__atum-audit__audit_violations` to list violations
+3. For specific files: `mcp__atum-audit__audit_verify_file`
+4. For history: `mcp__atum-audit__audit_file_history`
 ## Quality Gates (Automatic — Never Skip)
 
 Every code change MUST pass these before marking complete:
@@ -135,4 +273,4 @@ NEVER wait for user to request an agent. Detect and invoke. ALWAYS parallelize i
 
 ## Routing Reference
 
-For detailed agent registry (37 agents), skill selection, NLP routing tables (70+ FR+EN triggers), and decision authority rules, consult the **autonomous-routing** skill.
+For detailed agent registry (38 agents), skill selection, NLP routing tables (90+ FR+EN triggers), and decision authority rules, consult the **autonomous-routing** skill.

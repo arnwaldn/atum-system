@@ -2,7 +2,7 @@
 name: api-designer
 description: "Agent: API Designer"
 tools: Read, Write, Edit, Bash, Grep, Glob
-model: sonnet
+model: opus
 mcpServers: []
 ---
 

@@ -61,10 +61,36 @@ const PATTERNS = [
     message: "Listing problems without resolving them",
     weight: 2,
   },
+  // ATUM-specific patterns
+  {
+    name: "waiting-passively",
+    regex: /(?:je vais attendre|j'attends (?:ton|votre) retour|en attente de|waiting for (?:your|user) (?:input|response|feedback))/i,
+    message: "Waiting passively instead of continuing work",
+    weight: 3,
+  },
+  {
+    name: "done-without-proof",
+    regex: /(?:c'est fait|(?:tout est|c'est) (?:bon|ok|termine)|done(?:\.|!)|complete(?:d)?(?:\.|!))(?!.*(?:test|verifi|output|result))/i,
+    message: "Claiming completion without showing verification",
+    weight: 2,
+  },
+  {
+    name: "should-work-unverified",
+    regex: /(?:(?:ca|cela) devrait (?:marcher|fonctionner)|should (?:now )?(?:work|be fixed)|(?:probably|likely) (?:work|fixed))(?!.*(?:test|verifi|confirmed))/i,
+    message: "Using 'should work' without actual verification",
+    weight: 2,
+  },
+  {
+    name: "partial-as-complete",
+    regex: /(?:pour le (?:moment|reste)|for (?:now|the rest)|(?:autres?|rest) (?:plus tard|later)|partially (?:done|complete))/i,
+    message: "Presenting partial work as sufficient",
+    weight: 2,
+  },
 ];
 
 // Threshold: combined weight must exceed this to trigger
-const THRESHOLD = 3;
+// Increased from 3 to 2 for more sensitivity (ATUM requirement)
+const THRESHOLD = 2;
 
 try {
   const input = JSON.parse(readStdin());
@@ -98,7 +124,7 @@ try {
   if (totalWeight >= THRESHOLD) {
     const reasons = triggered.map((p) => `- ${p.message}`).join("\n");
     const output = {
-      stopReason: `[ANTI-RATIONALIZATION] Premature completion detected (score: ${totalWeight}/${THRESHOLD}):\n${reasons}\n\nDo NOT stop. Fix the issues listed above before completing.`,
+      stopReason: `[ANTI-RATIONALIZATION | ATUM] Arrêt prématuré détecté (score: ${totalWeight}/${THRESHOLD}):\n${reasons}\n\n⚠️ PRINCIPE ATUM: "Seul le résultat compte. Ne jamais abandonner."\n\nCorrige les problèmes ci-dessus AVANT de terminer. Un dev senior livre des solutions complètes et vérifiées.`,
     };
     process.stdout.write(JSON.stringify(output));
   }
