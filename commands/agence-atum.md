@@ -57,7 +57,21 @@ Afficher une vue d'ensemble de la societe :
 - **prestation [client]** : Generer un contrat de prestation de services. Remplir template `contrat-prestation.md`. Enregistrer dans `contrats/registre.json`
 - **nda [partie]** : Generer un NDA bilateral ou unilateral. Remplir template `nda.md`. Enregistrer dans `contrats/registre.json`
 - **cgv** : Afficher les CGV en vigueur depuis `contrats/cgv.json`. Generer document complet via template `cgv.md`
-- **freelance [nom]** : Generer un contrat de sous-traitance freelance. Remplir template `contrat-freelance.md`. Verifier attestation URSSAF, Kbis, RC Pro
+- **freelance [onboard|offboard|status|nom]** : Gestion complete du cycle de vie freelance :
+  - **onboard [nom]** : Workflow d'onboarding complet en 7 etapes :
+    1. Collecte infos freelance (interactif : nom, prenom, SIRET, statut juridique, email, tel, specialite, competences, TJM)
+    2. Verification attestations (URSSAF vigilance, Kbis < 3 mois, RC Pro). Demander les documents si manquants
+    3. Creer entree dans `equipe.json` section `freelances.actifs[]` avec schema complet (incrementer compteur FL-NNN)
+    4. Generer contrat de sous-traitance via template `contrat-freelance.md`. Pre-remplir avec les donnees collectees
+    5. Enregistrer contrat dans `contrats/registre.json` (type: `freelance`, incrementer compteur CT-YYYY-NNN)
+    6. Allouer au projet si specifie (mettre a jour `projet_actuel` et `allocation.projets_en_cours` dans `equipe.json`)
+    7. Afficher recapitulatif : freelance cree, contrat genere, attestations validees, projet alloue
+  - **offboard [id_freelance]** : Workflow de fin de mission :
+    1. Passer statut a `termine` dans `equipe.json`
+    2. Archiver dans `historique_missions` (calcul jours travailles + montant facture)
+    3. Verifier solde facturation (factures freelance reglee vs impayees)
+    4. Mettre a jour `allocation.projets_en_cours`
+  - **status** : Tableau de bord freelances actifs — nom, projet, TJM, jours ce mois, attestations (avec alertes expiration)
 - **list** : Lister tous les contrats enregistres dans `contrats/registre.json` avec statut, client, dates, montant
 
 ### `equity [actionnariat|participation|simulation]`
@@ -74,14 +88,21 @@ Afficher une vue d'ensemble de la societe :
 
 Regles facturation : voir `references/facturation-regles.md` pour mentions legales, TVA, penalites, delais B2B.
 
-### `team [personnel|freelances|timetrack|capacite|roles|remuneration|bspce]`
+### `team [personnel|freelances|timetrack|capacite|roles|remuneration|bspce|marge-freelance]`
 - **personnel** : Afficher registre unique du personnel depuis `equipe.json`. Table des entrees/sorties, contrats, qualifications Syntec
-- **freelances** : Lister prestataires externes actifs depuis `equipe.json`. Verifier attestations (URSSAF, Kbis, RC Pro)
-- **timetrack [mois] [personne]** : Saisir ou consulter le timetracking. Lire/ecrire `timetracking/YYYY-MM.json`. Si mois non precise, mois courant. Afficher par personne/projet avec totaux jours
-- **capacite** : Afficher capacite equipe — jours disponibles par personne, taux d'occupation, charge previsionnelle. Croiser `equipe.json` + `timetracking/` + `projets/pipeline.json`
+- **freelances** : Lister prestataires externes actifs depuis `equipe.json`. Pour chaque freelance afficher : nom, specialite, TJM, projet actuel, statut attestations (avec alertes si expiration < 30 jours). Verifier attestations (URSSAF, Kbis, RC Pro)
+- **timetrack [mois] [personne]** : Saisir ou consulter le timetracking. Lire/ecrire `timetracking/YYYY-MM.json`. Si mois non precise, mois courant. Afficher par personne/projet avec totaux jours. **Pour les freelances** : croiser avec TJM depuis `equipe.json` pour calculer automatiquement le cout (jours x TJM) et le montant a facturer au freelance
+- **capacite** : Afficher capacite equipe — jours disponibles par personne, taux d'occupation, charge previsionnelle. Croiser `equipe.json` + `timetracking/` + `projets/pipeline.json`. Inclure freelances actifs avec leur charge previsionnelle
 - **roles** : Organigramme et roles des associes/employes avec classification Syntec. Lire `equipe.json` + `actionnariat.json`
 - **remuneration** : Grille de remuneration avec minima Syntec. Lire `references/syntec-grille.md` + `equipe.json`. Calculer cout employeur (brut x 1.50)
 - **bspce** : Simulation BSPCE — pool, vesting, valorisation. Lire `references/syntec-grille.md` section BSPCE
+- **marge-freelance [id_freelance|all] [mois]** : Calculer la marge par freelance sur un projet :
+  1. Lire jours travailles depuis `timetracking/YYYY-MM.json`
+  2. Calculer cout freelance = jours x TJM (depuis `equipe.json`)
+  3. Lire TJM client du projet (depuis `projets/pipeline.json` ou devis)
+  4. Calculer revenu client = jours x TJM client
+  5. Marge = revenu client - cout freelance
+  6. Afficher : table par freelance avec jours, cout, revenu, marge EUR, marge %
 
 ### `compliance [rgpd|assurances|syntec]`
 - **rgpd [registre|droits|audit|dpa]** : Gestion RGPD. `registre` affiche le registre des traitements. `droits` affiche la procedure exercice des droits. `audit` checklist conformite. `dpa` genere un DPA pour un client
@@ -95,7 +116,7 @@ Regles facturation : voir `references/facturation-regles.md` pour mentions legal
 - **rapport [mois]** : Synthese mensuelle par categorie et par personne
 
 ### `docs [generate|list|search]`
-- **generate [type]** : Generer un document (pv-ordinaire, pv-extraordinaire, convocation, rapport-trimestriel, convention-reglementee, fiche-projet). Remplir le template puis invoquer skill `/docx` pour DOCX
+- **generate [type]** : Generer un document (pv-ordinaire, pv-extraordinaire, convocation, rapport-trimestriel, convention-reglementee, fiche-projet, avenant-freelance, cra-freelance, bon-commande-freelance). Remplir le template puis invoquer skill `/docx` pour DOCX
 - **list** : Lister les documents generes (PV, rapports) depuis `decisions/registre.json`
 - **search [terme]** : Rechercher dans les PV et decisions
 
@@ -146,3 +167,10 @@ Utiliser l'agent `agence-atum-expert` (via Agent tool, subagent_type="general-pu
 - Simulations financieres complexes (dilution, valorisation)
 - Rapports trimestriels complets avec variance analysis
 - Synchronisation MCP multi-services
+
+Utiliser l'agent `freelance-manager` (via Agent tool, subagent_type="general-purpose") pour :
+- Onboarding complet d'un freelance (7 etapes)
+- Offboarding et cloture de mission
+- Calcul de marge portefeuille freelance
+- Audit attestations et alertes conformite
+- Generation CRA mensuel avec croisement timetracking

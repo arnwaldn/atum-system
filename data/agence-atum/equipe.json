@@ -54,6 +54,40 @@
   },
   "freelances": {
     "description": "Prestataires externes sous contrat de sous-traitance",
+    "schema": {
+      "id": "FL-NNN",
+      "nom": "Nom de famille",
+      "prenom": "Prenom",
+      "statut_juridique": "auto-entrepreneur|eurl|sasu|sarl|ei",
+      "siret": "NNN NNN NNN NNNNN",
+      "tva_intracommunautaire": "FRXX NNNNNNNNN ou null (franchise TVA)",
+      "adresse": "Adresse complete",
+      "email": "email@example.com",
+      "telephone": "+33 N NN NN NN NN",
+      "specialite": "Developpement|Design|DevOps|Data|Marketing|Autre",
+      "competences": ["competence1", "competence2"],
+      "tjm_ht": 0,
+      "devise": "EUR",
+      "attestations": {
+        "urssaf": { "numero": "", "date_obtention": "YYYY-MM-DD", "date_expiration": "YYYY-MM-DD", "statut": "valide|expire|a_renouveler" },
+        "kbis": { "date_obtention": "YYYY-MM-DD", "date_expiration": "YYYY-MM-DD", "statut": "valide|expire|a_renouveler" },
+        "rc_pro": { "assureur": "", "numero_police": "", "date_expiration": "YYYY-MM-DD", "statut": "valide|expire|non_fourni" }
+      },
+      "contrat_ref": "CT-YYYY-NNN",
+      "projet_actuel": "ref_projet ou null",
+      "date_debut_mission": "YYYY-MM-DD",
+      "date_fin_mission": "YYYY-MM-DD ou null",
+      "statut": "actif|en_pause|termine",
+      "historique_missions": [
+        { "projet": "ref_projet", "date_debut": "YYYY-MM-DD", "date_fin": "YYYY-MM-DD", "jours_travailles": 0, "montant_facture_ht": 0 }
+      ],
+      "notes": ""
+    },
+    "compteur": {
+      "prefixe": "FL",
+      "dernier_numero": 0,
+      "format": "FL-{numero:03d}"
+    },
     "actifs": []
   },
   "stagiaires": {
@@ -78,5 +112,5 @@
     "brochure": 3018,
     "reference_grille": "references/syntec-grille.md"
   },
-  "updated_at": "2026-03-02"
+  "updated_at": "2026-03-15"
 }
