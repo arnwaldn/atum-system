@@ -124,7 +124,8 @@ try {
   if (totalWeight >= THRESHOLD) {
     const reasons = triggered.map((p) => `- ${p.message}`).join("\n");
     const output = {
-      stopReason: `[ANTI-RATIONALIZATION | ATUM] Arrêt prématuré détecté (score: ${totalWeight}/${THRESHOLD}):\n${reasons}\n\n⚠️ PRINCIPE ATUM: "Seul le résultat compte. Ne jamais abandonner."\n\nCorrige les problèmes ci-dessus AVANT de terminer. Un dev senior livre des solutions complètes et vérifiées.`,
+      decision: "block",
+      reason: `[ANTI-RATIONALIZATION | ATUM] Arrêt prématuré détecté (score: ${totalWeight}/${THRESHOLD}):\n${reasons}\n\nCorrige les problèmes ci-dessus AVANT de terminer. Un dev senior livre des solutions complètes et vérifiées.`,
     };
     process.stdout.write(JSON.stringify(output));
   }
