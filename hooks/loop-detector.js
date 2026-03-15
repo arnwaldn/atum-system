@@ -227,13 +227,15 @@ try {
 
   // === Context exhaustion warning (all tools count) ===
   if (stats.totalCalls === CONTEXT_CRITICAL_CALLS) {
-    console.error(
-      `[CONTEXT CRITICAL] ${stats.totalCalls} tool calls this session. Context window likely near limit. Use /compact NOW to free space.`
-    );
+    const msg = `[CONTEXT CRITICAL] ${stats.totalCalls} tool calls this session. Context window likely near limit. Use /compact NOW to free space.`;
+    console.log(JSON.stringify({
+      hookSpecificOutput: { hookEventName: "PostToolUse", additionalContext: msg }
+    }));
   } else if (stats.totalCalls === CONTEXT_WARN_CALLS && !stats.contextWarned) {
-    console.error(
-      `[CONTEXT WARNING] ${stats.totalCalls} tool calls this session. Consider using /compact to prevent context overflow.`
-    );
+    const msg = `[CONTEXT WARNING] ${stats.totalCalls} tool calls this session. Consider using /compact to prevent context overflow.`;
+    console.log(JSON.stringify({
+      hookSpecificOutput: { hookEventName: "PostToolUse", additionalContext: msg }
+    }));
     stats.contextWarned = true;
   }
 
@@ -263,23 +265,25 @@ try {
 
   saveState(state);
 
-  // Emit warnings (most severe first)
+  // Emit warnings via stdout JSON (most severe first)
+  let loopMessage = null;
   if (repeats >= CRITICAL_THRESHOLD) {
-    console.error(
-      `[LOOP CRITICAL] Tool "${toolName}" called ${repeats}x identically. STOP and try a different approach.`
-    );
+    loopMessage = `[LOOP CRITICAL] Tool "${toolName}" called ${repeats}x identically. STOP and try a completely different approach.`;
   } else if (pingpong.count >= PINGPONG_CRITICAL) {
-    console.error(
-      `[PING-PONG CRITICAL] Alternating between 2 tool patterns ${pingpong.count}x with no progress. STOP — you're in a loop. Try a completely different approach.`
-    );
+    loopMessage = `[PING-PONG CRITICAL] Alternating between 2 tool patterns ${pingpong.count}x with no progress. STOP — you're in a loop. Try a completely different approach.`;
   } else if (repeats >= REPEAT_THRESHOLD) {
-    console.error(
-      `[LOOP WARNING] Tool "${toolName}" called ${repeats}x with same params. Consider changing approach.`
-    );
+    loopMessage = `[LOOP WARNING] Tool "${toolName}" called ${repeats}x with same params. Consider changing approach.`;
   } else if (pingpong.count >= PINGPONG_THRESHOLD) {
-    console.error(
-      `[PING-PONG WARNING] Alternating between 2 tool patterns ${pingpong.count}x. This looks like a stuck loop — consider a different strategy.`
-    );
+    loopMessage = `[PING-PONG WARNING] Alternating between 2 tool patterns ${pingpong.count}x. This looks like a stuck loop — consider a different strategy.`;
+  }
+
+  if (loopMessage) {
+    console.log(JSON.stringify({
+      hookSpecificOutput: {
+        hookEventName: "PostToolUse",
+        additionalContext: loopMessage
+      }
+    }));
   }
 } catch {
   // Hook must never block — fail silently
