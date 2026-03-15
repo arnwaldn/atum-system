@@ -189,7 +189,14 @@ Detect intent from natural language and invoke matching skill automatically:
 - "contrat client", "prestation de services", "signer un contrat" -> agence-atum (contracts prestation)
 - "NDA", "confidentialite", "accord de confidentialite" -> agence-atum (contracts nda)
 - "CGV", "conditions generales" -> agence-atum (contracts cgv)
-- "freelance", "sous-traitant", "prestataire externe" -> agence-atum (contracts freelance)
+- "freelance", "sous-traitant", "prestataire externe" -> agence-atum (contracts freelance onboard)
+- "onboarder un freelance", "nouveau freelance", "ajouter un prestataire" -> agence-atum (contracts freelance onboard)
+- "fin de mission freelance", "offboarding freelance", "terminer mission" -> agence-atum (contracts freelance offboard)
+- "attestation URSSAF", "Kbis", "attestations freelance" -> agence-atum (contracts freelance status)
+- "avenant freelance", "prolonger contrat freelance", "modifier TJM" -> agence-atum (contracts freelance) + template avenant-freelance.md
+- "CRA", "compte-rendu activite", "timesheet freelance" -> agence-atum (team timetrack) + template cra-freelance.md
+- "marge freelance", "rentabilite freelance", "cout freelance" -> agence-atum (team marge-freelance)
+- "bon de commande freelance" -> agence-atum (contracts freelance) + template bon-commande-freelance.md
 - "equipe", "embauche", "recrutement", "registre personnel" -> agence-atum (team personnel)
 - "timetracking", "temps passe", "heures", "feuille de temps" -> agence-atum (team timetrack)
 - "RGPD", "donnees personnelles", "registre traitements", "DPA" -> agence-atum (compliance rgpd)
