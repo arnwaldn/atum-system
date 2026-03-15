@@ -223,6 +223,15 @@ Detect intent from natural language and invoke matching skill automatically:
 - "pense en profondeur", "analyse approfondie", "deep analysis", "think deeply", "ultra think" -> /ultra-think skill
 - "validation avant prod", "pre-deploy checklist", "production readiness", "pret pour la prod" -> /pre-deploy skill
 
+### Directeur Technique (Strategic Project Management)
+- "scope", "arbitrage de scope", "scope cut", "minimum viable", "couper du scope" -> /dt scope + directeur-technique agent
+- "portfolio", "tous les projets", "vue d'ensemble", "project overview", "all projects" -> /dt portfolio + directeur-technique agent
+- "livraison", "ship", "preparer la livraison", "shipping checklist", "ready to ship" -> /dt ship + directeur-technique agent
+- "revue de maturite", "maturity review", "project review", "ou en est le projet" -> /dt review + directeur-technique agent
+- "initialiser le suivi", "delivery tracking", "init delivery", "DELIVERY.json" -> /dt init + directeur-technique agent
+- "prioriser", "qu'est-ce qu'on priorise", "prioritization", "focus cette semaine" -> directeur-technique agent
+- "differenciateur", "feature differenciante", "what makes us different" -> directeur-technique agent
+
 ### Communication & Dashboard
 - "mise a jour dashboard", "forcer le scan", "update dashboard", "scanner les projets" -> /dashboard-atum skill
 - "veille whatsapp", "messages cloclo", "checker whatsapp", "whatsapp check" -> /whatsapp skill
