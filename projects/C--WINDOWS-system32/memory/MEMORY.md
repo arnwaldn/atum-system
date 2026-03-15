@@ -10,23 +10,32 @@
 - **Shell**: bash (MINGW64/Git Bash)
 - **Workspace**: `C:\Users\arnau\Projects\` (web, mobile, api, desktop, fullstack, tools, learning)
 
-## Claude Code Setup (v2.1.63, 2026-03-08 — Senior+ Upgrade)
-- 6 configs, 37 agents (all scoped), 30 commands, 4 modes, 11 rules, 44 standalone skills, 150+ plugin skills
-- 30 hooks (26 active + 4 inline) incl. PreCompact, Anti-Rationalization, Smart Dispatcher
+## Claude Code Setup (v2.1.63, 2026-03-10 — Autonomy+ Upgrade)
+- 6 configs | Custom: 37 agents (10 Opus / 25 Sonnet / 2 Haiku), 29 commands, 44 skills | ECC v1.8.0: 16 agents, 40 commands, 65 skills | 4 modes, 23 rules (11 common + 12 lang-specific), 57 plugins
+- 27 hook groups (31 commands) incl. PreCompact, Anti-Rationalization, File Guard, Session-to-Graph, Graph Queue Loader, Evaluate-Session
 - 46 MCP servers (20 local + 2 plugin + 23 remote + 1 disabled)
-- Autonomie max: 60 allow entries, 17 deny entries, 73 NLP triggers FR+EN
-- 48 plugins actifs / 10 inactifs (7 LSP disabled)
-- Env: Agent Teams experimental, Tool Search lazy-loading
+- Autonomie max: 60 allow entries, 17 deny entries, 108 NLP triggers FR+EN, 32 auto-detect blocks
+- 47 plugins actifs / 10 inactifs (7 LSP + 3 autres disabled)
+- Env: Agent Teams experimental, Tool Search lazy-loading, Knowledge Graph MCP (mcp__memory__*)
+- Fresh Context Executor: decompose features into atomic sub-tasks in fresh context subagents
+- Continuous Learning: evaluate-session.js (Stop hook), /learn + /evolve commands, instincts directory
 - **Detail**: voir `memory/setup-detail.md`
+
+## Identite & Posture
+- **Role**: Dev senior de niveau superieur de l'agence ATUM — pas un assistant, un membre de l'equipe qui livre
+- **Directive**: Seul le resultat compte. Ne jamais abandonner. Perfectionnisme methodique. Professionnalisme systematique.
+- **Detail**: voir `memory/dev-senior-identity.md`
 
 ## Quick References
 | Topic | File |
 |-------|------|
+| Identite dev senior ATUM (directive permanente) | `memory/dev-senior-identity.md` |
 | Detailed setup (agents, commands, hooks, MCP, skills) | `memory/setup-detail.md` |
 | Key learnings & gotchas | `memory/learnings.md` |
 | Dev stack (10 langages, frameworks) | `memory/dev-stack.md` |
 | Simulation results (34/34 project types) | `memory/simulations.md` |
 | GigRoute project | `memory/gigroute-project.md` |
+| GigRoute Mobile beta test (contexte actif) | `memory/gigroute-mobile-beta-test.md` |
 | Maestro No-Code formation | `memory/maestro-formation.md` |
 | WhatsApp MCP details | `memory/whatsapp-mcp.md` |
 | ATUM Drive structure | `memory/drive-atum.md` |
@@ -41,6 +50,7 @@
 
 ## Active Projects
 - **GigRoute**: Flask SaaS tour manager — LIVE on Render, beta-ready (details: `memory/gigroute-project.md`)
+- **GigRoute Mobile**: Flutter app beta test EN COURS — Planning tab crash fix applique, a tester (details: `memory/gigroute-mobile-beta-test.md`)
 - **Maestro No-Code P12**: Formation hackathon 23 mars → jury 6 avril (details: `memory/maestro-formation.md`)
 
 ## Compact Instructions
