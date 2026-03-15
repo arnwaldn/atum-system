@@ -141,11 +141,48 @@ tjm_interne = cout_annuel / 218
 | NDA | `nda.md` | `contrats/registre.json` |
 | CGV | `cgv.md` | `contrats/cgv.json` |
 | Sous-traitance freelance | `contrat-freelance.md` | `contrats/registre.json` |
+| Avenant freelance | `avenant-freelance.md` | `contrats/registre.json` |
+| Bon de commande freelance | `bon-commande-freelance.md` | `contrats/registre.json` |
+| CRA freelance | `cra-freelance.md` | — |
 
 ### CGV
 - Obligatoire B2B (loi Hamon 2014, Art. L441-1)
 - Version en vigueur dans `contrats/cgv.json`
 - Annexees a chaque devis et facture
+
+## Cycle de vie freelance
+
+### Workflow onboarding (7 etapes)
+1. Collecte infos (identite, SIRET, statut juridique, TJM, specialite, competences)
+2. Verification attestations (URSSAF vigilance, Kbis < 3 mois, RC Pro)
+3. Creation entree `equipe.json` → `freelances.actifs[]` (compteur FL-NNN)
+4. Generation contrat sous-traitance (`contrat-freelance.md`)
+5. Enregistrement `contrats/registre.json` (type: freelance, compteur CT-YYYY-NNN)
+6. Allocation projet (`projet_actuel` + `allocation.projets_en_cours`)
+7. Recapitulatif complet
+
+### Suivi attestations
+| Attestation | Validite | Alerte |
+|---|---|---|
+| URSSAF vigilance | 6 mois | < 30 jours avant expiration |
+| Kbis / equivalent | 3 mois | < 15 jours avant expiration |
+| RC Pro | Annuelle | < 30 jours avant expiration |
+
+Schedule mensuel : `freelance-attestation-check` (1er du mois, 9h)
+
+### Marge freelance
+```
+cout_freelance = jours_travailles * tjm_freelance
+revenu_client = jours_travailles * tjm_client
+marge_eur = revenu_client - cout_freelance
+marge_pct = marge_eur / revenu_client * 100
+```
+
+### Alerte requalification
+Si un freelance travaille exclusivement pour ATUM > 12 mois consecutifs → risque de requalification en salariat (Art. L8221-6 Code du travail). L'agent `freelance-manager` surveille cette situation.
+
+### Agent dedie
+`freelance-manager` (Sonnet) — orchestre le cycle complet. Utiliser via Agent tool pour les operations complexes (onboarding multi-etapes, calcul marge portefeuille, audit attestations).
 
 ## Convention Syntec (IDCC 1486)
 
@@ -201,13 +238,16 @@ Toutes les donnees sont dans `~/.claude/data/agence-atum/` :
 
 ## Templates documents
 
-6 templates dans `~/.claude/data/agence-atum/templates/` :
+9 templates dans `~/.claude/data/agence-atum/templates/` :
 - `pv-ordinaire.md` — PV assemblee ordinaire
 - `pv-extraordinaire.md` — PV assemblee extraordinaire
 - `convocation.md` — Convocation associes
 - `rapport-trimestriel.md` — Rapport info trimestrielle (Art. 24.2)
 - `convention-reglementee.md` — Fiche convention reglementee
 - `fiche-projet.md` — Fiche projet agence
+- `avenant-freelance.md` — Avenant au contrat de sous-traitance freelance
+- `cra-freelance.md` — Compte-rendu d'activite mensuel freelance
+- `bon-commande-freelance.md` — Bon de commande prestation freelance
 
 Generation DOCX/PDF : utiliser skill `/docx` apres remplissage des placeholders.
 
