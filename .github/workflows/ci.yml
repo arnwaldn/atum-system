@@ -1,0 +1,85 @@
+name: CI — Claude Code Config
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Validate JSON files
+      - name: Lint JSON files
+        run: |
+          echo "=== Validating JSON files ==="
+          FAIL=0
+          for f in $(find . -name '*.json' -not -path './node_modules/*' -not -path './.git/*'); do
+            if ! node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))" 2>/dev/null; then
+              echo "FAIL: $f"
+              FAIL=1
+            fi
+          done
+          if [ "$FAIL" -eq 1 ]; then exit 1; fi
+          echo "All JSON files valid."
+
+      # Validate YAML frontmatter in agents/rules
+      - name: Check agent model fields
+        run: |
+          echo "=== Checking agent model fields ==="
+          FAIL=0
+          for f in agents/*.md; do
+            if ! head -10 "$f" | grep -q "^model:"; then
+              echo "MISSING model: $f"
+              FAIL=1
+            fi
+          done
+          if [ "$FAIL" -eq 1 ]; then exit 1; fi
+          echo "All agents have model field."
+
+      # Syntax check all Node.js hooks
+      - name: Syntax check hooks (Node.js)
+        run: |
+          echo "=== Syntax checking .js hooks ==="
+          for f in hooks/*.js; do
+            node --check "$f" || exit 1
+          done
+          echo "All JS hooks pass syntax check."
+
+      # Syntax check all Python hooks
+      - name: Syntax check hooks (Python)
+        run: |
+          echo "=== Syntax checking .py hooks ==="
+          for f in hooks/*.py; do
+            python3 -m py_compile "$f" || exit 1
+          done
+          echo "All Python hooks pass syntax check."
+
+      # Run hook unit tests
+      - name: Run hook unit tests
+        run: bash scripts/test-hooks.sh hooks/
+
+      # Run hook benchmarks (informational)
+      - name: Run hook benchmarks
+        run: bash scripts/benchmark-hooks.sh hooks/
+
+      # Check for hardcoded secrets
+      - name: Check for hardcoded secrets
+        run: |
+          echo "=== Scanning for hardcoded secrets ==="
+          PATTERNS='(password|passwd|secret|api_key|apikey|token|private_key)[\s]*[:=][\s]*["\x27][^\s"'\'']{8,}'
+          if grep -rPi "$PATTERNS" --include='*.md' --include='*.json' --include='*.js' --include='*.py' \
+            --exclude-dir=.git --exclude-dir=node_modules \
+            --exclude='secret-scanner.*' --exclude='file-guard.*' --exclude='test-hooks.sh' \
+            --exclude='ci.yml' . ; then
+            echo "WARNING: Potential hardcoded secrets found (review above)"
+            exit 1
+          fi
+          echo "No hardcoded secrets detected."
