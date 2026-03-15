@@ -242,6 +242,15 @@
         "hooks": [
           {
             "type": "command",
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/pre-completion-gate.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
             "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/anti-rationalization.js\""
           }
         ]
