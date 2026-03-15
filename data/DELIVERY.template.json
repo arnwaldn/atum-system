@@ -1,0 +1,65 @@
+{
+  "project": {
+    "name": "",
+    "slug": "",
+    "version": "0.1.0",
+    "type": "saas | api | mobile | site | package",
+    "stack": [],
+    "repo": "",
+    "deadline": "",
+    "created_at": "",
+    "updated_at": ""
+  },
+  "business_context": {
+    "product_ref": "slug dans produits.json (si applicable)",
+    "one_liner": "Une phrase qui explique ce que fait le produit",
+    "target_users": "",
+    "differentiator": "Ce qui nous distingue de la concurrence",
+    "competitors": [],
+    "pricing_model": "freemium | subscription | one-time | usage-based",
+    "revenue_target": ""
+  },
+  "features": [
+    {
+      "id": "F1",
+      "name": "",
+      "description": "",
+      "status": "planned | in_progress | shipped | validated",
+      "is_differentiator": false,
+      "priority": "P0 | P1 | P2",
+      "effort_hours": 0,
+      "scope": {
+        "minimum": { "description": "", "effort_hours": 0 },
+        "target": { "description": "", "effort_hours": 0 },
+        "full": { "description": "", "effort_hours": 0 }
+      },
+      "shipped_at": null,
+      "blockers": []
+    }
+  ],
+  "journeys": [
+    {
+      "id": "J1",
+      "name": "Jour 1 — Premiere utilisation",
+      "steps": [
+        { "action": "", "feature_id": "F1", "screen": "" }
+      ],
+      "success_criteria": ""
+    }
+  ],
+  "commercial_checklist": {
+    "landing_page": false,
+    "demo_video": false,
+    "pricing_page": false,
+    "onboarding_flow": false,
+    "analytics_setup": false,
+    "error_monitoring": false,
+    "backup_strategy": false,
+    "legal_mentions": false,
+    "rgpd_compliance": false
+  },
+  "scope_cuts": [],
+  "decisions": [],
+  "blockers": [],
+  "progress_percent": 0
+}
