@@ -70,6 +70,17 @@ try {
 
   if (!filePath) process.exit(0);
 
+  // --- Debounce: skip if same file edited within 300ms ---
+  var DEBOUNCE_FILE = (process.env.TEMP || "/tmp") + "/claude-post-edit-last.json";
+  var DEBOUNCE_MS = 300;
+  try {
+    var lastEdit = JSON.parse(fs.readFileSync(DEBOUNCE_FILE, "utf8"));
+    if (lastEdit.file === filePath && (Date.now() - lastEdit.ts) < DEBOUNCE_MS) {
+      process.exit(0); // Skip — rapid consecutive edit on same file
+    }
+  } catch {}
+  try { fs.writeFileSync(DEBOUNCE_FILE, JSON.stringify({ file: filePath, ts: Date.now() })); } catch {}
+
   var ext = path.extname(filePath).toLowerCase();
   var dir = path.dirname(filePath);
   var results = [];

@@ -2,7 +2,7 @@
 name: critical-thinking
 description: Challenge assumptions using structured frameworks, detect cognitive biases, and ensure rigorous decision-making before committing to solutions.
 tools: Read, Glob, Grep, WebSearch, WebFetch, AskUserQuestion
-model: opus
+model: sonnet
 mcpServers: []
 ---
 
