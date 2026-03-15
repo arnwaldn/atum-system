@@ -257,6 +257,26 @@ async function main() {
       evaluation.status = project.override_status;
     }
 
+    // Enrich with DELIVERY.json if present
+    const deliveryPath = path.join(projectDir, "DELIVERY.json");
+    if (fileExists(deliveryPath)) {
+      try {
+        const delivery = JSON.parse(fs.readFileSync(deliveryPath, "utf8"));
+        evaluation.delivery = {
+          deadline: delivery.project?.deadline || null,
+          features_total: delivery.features?.length || 0,
+          features_shipped: (delivery.features || []).filter(f => f.status === "shipped" || f.status === "validated").length,
+          blockers: (delivery.blockers || []).length,
+          differentiators: (delivery.features || []).filter(f => f.is_differentiator).length,
+          progress_percent: delivery.progress_percent || null,
+        };
+        // Use DELIVERY.json progress if higher than filesystem signals
+        if (delivery.progress_percent != null && delivery.progress_percent > evaluation.progress) {
+          evaluation.progress = delivery.progress_percent;
+        }
+      } catch {}
+    }
+
     try {
       const ok = await syncToSupabase(supabaseUrl, supabaseKey, project.id, evaluation);
       results.push({ name: project.name, progress: evaluation.progress, status: evaluation.status, synced: ok });
