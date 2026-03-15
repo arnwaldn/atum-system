@@ -201,6 +201,16 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 1. Suggest `/fresh-execute` when context degradation risk detected
 2. Decompose feature into atomic sub-tasks, each in a fresh context
 
+### Strategic Project Decisions (Directeur Technique)
+**Detect**: "scope", "arbitrage", "prioriser", "prioritization", "qu'est-ce qu'on priorise", "scope cut", "minimum viable", "livraison", "ship", "preparer la livraison", "portfolio", "tous les projets", "vue d'ensemble", "revue de maturite", "maturity review", "DELIVERY.json", "differenciateur"
+**Auto-actions**:
+1. Invoke **directeur-technique** agent (Opus) for strategic decision
+2. Read DELIVERY.json if present — features, journeys, blockers, scope_cuts
+3. For scope arbitrage: propose 3 levels (minimum, target, full) with effort/impact
+4. For portfolio: read atum-projects.json, aggregate DELIVERY.json from each project
+5. For ship: run pre-flight checklist, verify journey alignment, mark shipped
+6. Record decision in DELIVERY.json.decisions
+
 ### Technical Debt Assessment
 **Detect**: "dette technique", "technical debt", "code health", "audit de dette", "code smell", "refactoring needed"
 **Auto-actions**:

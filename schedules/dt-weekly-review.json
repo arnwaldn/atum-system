@@ -1,0 +1,30 @@
+{
+  "id": "dt-weekly-review",
+  "name": "DT Weekly Project Review",
+  "description": "Revue hebdomadaire automatique de tous les projets ATUM — statuts, blockers, scope cuts, deadlines",
+  "trigger": {
+    "type": "cron",
+    "cron": "0 9 * * 1"
+  },
+  "prompt": "/dt portfolio\n\nPour chaque projet avec un DELIVERY.json, fais aussi /dt review.\nGenere un resume synthetique avec : projets a risque, features en retard, blockers non resolus, recommandations de la semaine.",
+  "cwd": "$HOME_PLACEHOLDER",
+  "model": "haiku",
+  "maxBudgetUsd": 0.50,
+  "timeoutSeconds": 300,
+  "worktree": false,
+  "notify": {
+    "on": ["always"],
+    "email": "arnaud.porcel@gmail.com",
+    "includeOutput": true
+  },
+  "enabled": true,
+  "retries": 1,
+  "retryDelaySeconds": 60,
+  "concurrencyGroup": "light",
+  "tags": ["dt", "weekly", "portfolio"],
+  "createdAt": "2026-03-15T00:00:00Z",
+  "updatedAt": "2026-03-15T00:00:00Z",
+  "lastRunAt": null,
+  "lastRunStatus": null,
+  "runCount": 0
+}
