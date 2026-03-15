@@ -69,3 +69,10 @@ downloads/
 common-ground/
 ide/
 tmp/
+
+# === Schedules perso (non partagés) ===
+schedules/appart-aix-search.json
+schedules/whatsapp-cloclo-respond.json
+
+# === Fichiers backup auto ===
+*.backup.*

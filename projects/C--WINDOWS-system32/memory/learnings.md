@@ -11,6 +11,8 @@
 - settings.json duplicate hooks: JSON ne supporte pas les cles dupliquees — 2e bloc ecrase le 1er silencieusement
 - MEMORY.md must stay <200 lines (truncated after)
 - Sub-agents can't see plugin-provided agents — ALWAYS verify existence before declaring "phantom"; plugin agents: everything-claude-code:*, ui-ux-pro-max:*, pr-review-toolkit:*
+- Plugin update: NEVER delete old cache during active session — `CLAUDE_PLUGIN_ROOT` is resolved at session start and stays fixed; keep old cache as copy until next restart; symlinks need admin on Windows → use shutil.copytree instead
+- ECC v1.4.1→v1.8.0 (2026-03-10): +3 agents (chief-of-staff, harness-optimizer, loop-operator), +22 skills, +9 commands; Harness Performance System; no conflicts with ATUM custom configs (all namespaced)
 - Subagents custom: recoivent SEULEMENT leur system prompt, PAS le full Claude Code system prompt; scoper avec tools/mcpServers/skills dans frontmatter YAML
 - Context optimization (2026-03-07): 4 rules→skills (whatsapp-persona, collective-memory, monorepo, resilience → saves ~3,100 tokens/session); 37 agents scoped with explicit `tools:` in YAML frontmatter (prevents MCP tool schema inheritance); MEMORY.md trimmed 203→52 lines (~3,500 tokens saved); total ~6,600+ tokens reduced from base context
 - Agent Teams (TeammateTool): experimental, feature-flagged, NOT for context reduction — each teammate loads same rules/MEMORY/MCP; designed for multi-agent collaboration not isolation
