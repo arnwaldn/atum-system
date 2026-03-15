@@ -100,7 +100,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/file-guard.py\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/file-guard.js\""
           }
         ]
       },
@@ -136,7 +136,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/secret-scanner.py\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/secret-scanner.js\""
           }
         ]
       },
@@ -145,7 +145,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/git-guard.py\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/git-guard.js\""
           }
         ]
       },
