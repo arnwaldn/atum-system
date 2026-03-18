@@ -16,6 +16,8 @@ const path = require("path");
 const os = require("os");
 
 const HOME = os.homedir();
+const TEMP = process.env.TEMP || os.tmpdir();
+const STATS_FILE = path.join(TEMP, "claude-session-stats.json");
 const COUNTER_DIR = path.join(HOME, ".claude", "tmp");
 const SNAPSHOTS_DIR = path.join(HOME, ".claude", "shell-snapshots");
 
@@ -58,6 +60,8 @@ function main() {
   cleanImageCounters();
   cleanScreenshotTracking();
   cleanShellSnapshots();
+  // Clean up session stats file (moved from collective-memory-retain.js to fix race condition)
+  try { fs.unlinkSync(STATS_FILE); } catch {}
 }
 
 main();
