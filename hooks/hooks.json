@@ -6,24 +6,24 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"hooks/clean-shell-snapshots.py\""
+            "command": "python \"$HOME/.claude/hooks/clean-shell-snapshots.py\""
           },
           {
             "type": "command",
-            "command": "python \"hooks/atum-session-start.py\""
+            "command": "python \"$HOME/.claude/hooks/atum-session-start.py\""
           },
           {
             "type": "command",
-            "command": "node \"hooks/atum-project-scanner.js\""
+            "command": "node \"$HOME/.claude/hooks/atum-project-scanner.js\""
           },
           {
             "type": "command",
-            "command": "node \"hooks/collective-memory-start.js\"",
+            "command": "node \"$HOME/.claude/hooks/collective-memory-start.js\"",
             "timeout": 15000
           },
           {
             "type": "command",
-            "command": "node \"hooks/graph-queue-loader.js\""
+            "command": "node \"$HOME/.claude/hooks/graph-queue-loader.js\""
           }
         ]
       }
@@ -34,7 +34,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/file-guard.js\""
+            "command": "node \"$HOME/.claude/hooks/file-guard.js\""
           }
         ]
       },
@@ -43,7 +43,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/image-auto-resize.js\""
+            "command": "node \"$HOME/.claude/hooks/image-auto-resize.js\""
           }
         ]
       },
@@ -52,7 +52,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/image-guard.js\""
+            "command": "node \"$HOME/.claude/hooks/image-guard.js\""
           }
         ]
       },
@@ -61,7 +61,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"hooks/clean-shell-snapshots.py\"",
+            "command": "python \"$HOME/.claude/hooks/clean-shell-snapshots.py\"",
             "timeout": 5000
           }
         ]
@@ -71,7 +71,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/secret-scanner.js\"",
+            "command": "node \"$HOME/.claude/hooks/secret-scanner.js\"",
             "timeout": 5000
           }
         ]
@@ -81,7 +81,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/git-guard.js\"",
+            "command": "node \"$HOME/.claude/hooks/git-guard.js\"",
             "timeout": 5000
           }
         ]
@@ -91,7 +91,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/lock-file-protector.js\""
+            "command": "node \"$HOME/.claude/hooks/lock-file-protector.js\""
           }
         ]
       },
@@ -111,7 +111,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"hooks/atum-post-write.py\""
+            "command": "python \"$HOME/.claude/hooks/atum-post-write.py\""
           }
         ]
       },
@@ -120,7 +120,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"hooks/atum-compliance-check.py\""
+            "command": "python \"$HOME/.claude/hooks/atum-compliance-check.py\""
           }
         ]
       },
@@ -129,7 +129,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/post-edit-dispatcher.js\"",
+            "command": "node \"$HOME/.claude/hooks/post-edit-dispatcher.js\"",
             "timeout": 15000
           }
         ]
@@ -139,7 +139,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/post-commit-quality-gate.js\""
+            "command": "node \"$HOME/.claude/hooks/post-commit-quality-gate.js\""
           }
         ]
       },
@@ -148,7 +148,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/worktree-setup.js\""
+            "command": "node \"$HOME/.claude/hooks/worktree-setup.js\""
           }
         ]
       },
@@ -157,7 +157,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/loop-detector.js\""
+            "command": "node \"$HOME/.claude/hooks/loop-detector.js\""
           }
         ]
       }
@@ -168,7 +168,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/precompact-save.js\""
+            "command": "node \"$HOME/.claude/hooks/precompact-save.js\""
           }
         ]
       }
@@ -179,7 +179,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/pre-completion-gate.js\""
+            "command": "node \"$HOME/.claude/hooks/pre-completion-gate.js\""
           }
         ]
       },
@@ -188,7 +188,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/anti-rationalization.js\""
+            "command": "node \"$HOME/.claude/hooks/anti-rationalization.js\""
           }
         ]
       },
@@ -197,7 +197,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/collective-memory-retain.js\""
+            "command": "node \"$HOME/.claude/hooks/collective-memory-retain.js\""
           }
         ]
       },
@@ -206,7 +206,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/atum-dashboard-sync.js\""
+            "command": "node \"$HOME/.claude/hooks/atum-dashboard-sync.js\""
           }
         ]
       },
@@ -215,7 +215,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/session-to-graph.js\""
+            "command": "node \"$HOME/.claude/hooks/session-to-graph.js\""
           }
         ]
       },
@@ -224,7 +224,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/session-cleanup.js\""
+            "command": "node \"$HOME/.claude/hooks/session-cleanup.js\""
           }
         ]
       },
@@ -233,7 +233,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/evaluate-session.js\"",
+            "command": "node \"$HOME/.claude/hooks/evaluate-session.js\"",
             "timeout": 10000
           }
         ]
@@ -245,7 +245,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/post-tool-failure-logger.js\""
+            "command": "node \"$HOME/.claude/hooks/post-tool-failure-logger.js\""
           }
         ]
       }
@@ -255,7 +255,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/config-change-guard.js\""
+            "command": "node \"$HOME/.claude/hooks/config-change-guard.js\""
           }
         ]
       }
@@ -266,7 +266,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/notification-beep.js\""
+            "command": "node \"$HOME/.claude/hooks/notification-beep.js\""
           }
         ]
       },
@@ -275,7 +275,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/notification-beep.js\""
+            "command": "node \"$HOME/.claude/hooks/notification-beep.js\""
           }
         ]
       }
