@@ -1,7 +1,15 @@
 ---
 name: fresh-execute
 description: Execute a complex feature with fresh context per sub-task to prevent quality degradation
+version: "1.0.0"
 user_invocable: true
+metadata:
+  domain: workflow
+  triggers: fresh context, decompose feature, sub-tasks, context degradation, long session, atomic tasks, fresh execute
+  role: specialist
+  scope: implementation
+  output-format: code
+  related-skills: context-engineering-kit
 ---
 
 # Fresh Execute — Anti-Context-Rot Feature Implementation

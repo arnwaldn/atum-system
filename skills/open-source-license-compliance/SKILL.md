@@ -2,6 +2,13 @@
 name: open-source-license-compliance
 description: "Detect and audit open-source licenses in project dependencies. Use when reviewing license compatibility, checking for copyleft contamination, generating compliance reports, or evaluating SPDX identifiers. Covers npm, pip, cargo, go modules, and multi-ecosystem license scanning. Warns about GPL/AGPL in proprietary projects."
 version: "1.0.0"
+metadata:
+  domain: compliance
+  triggers: license compliance, open-source licensing, copyleft, GPL, AGPL, SPDX, dependency licenses, license audit
+  role: specialist
+  scope: review
+  output-format: report
+  related-skills: supply-chain-risk-auditor, compliance-routing
 ---
 
 # Open Source License Compliance Auditor

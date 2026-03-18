@@ -1,6 +1,14 @@
 ---
 name: audit-flow
 description: Interactive system flow tracing across CODE, API, AUTH, DATA, NETWORK layers with SQLite persistence and Mermaid export. Use when auditing system architecture, tracing data flows, documenting security boundaries, or mapping component interactions.
+version: "1.0.0"
+metadata:
+  domain: quality
+  triggers: audit flow, system tracing, flow tracing, architecture audit, data flow, security boundaries, component interactions
+  role: specialist
+  scope: analysis
+  output-format: report
+  related-skills: spec-miner, design-doc-mermaid
 ---
 
 # Audit Flow: Interactive System Flow Tracing

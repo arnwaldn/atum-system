@@ -1,7 +1,15 @@
 ---
 name: resilience
 description: Resilience patterns for backend code calling external services. Use when code makes API calls, DB queries, or network requests to external services.
+version: "1.0.0"
 user-invocable: false
+metadata:
+  domain: devops
+  triggers: resilience, circuit breaker, retry, timeout, fallback, rate limiting, bulkhead, external services, API calls
+  role: specialist
+  scope: implementation
+  output-format: code
+  related-skills: sre-engineer, chaos-engineer
 ---
 
 # Resilience Engineering

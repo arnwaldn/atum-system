@@ -2,6 +2,13 @@
 name: high-perf-browser
 description: 'Optimize web performance through network protocols, resource loading, and browser rendering internals. Use when the user mentions "page load speed", "Core Web Vitals", "HTTP/2", "resource hints", "network latency", or "render blocking". Covers TCP/TLS optimization, caching strategies, WebSocket/SSE, and protocol selection.'
 version: "1.0.0"
+metadata:
+  domain: frontend
+  triggers: page load speed, Core Web Vitals, HTTP/2, resource hints, network latency, render blocking, web performance, caching, TCP optimization
+  role: specialist
+  scope: optimization
+  output-format: code
+  related-skills: refactoring-ui, claude-a11y-skill
 ---
 
 # High Performance Browser Networking Framework

@@ -2,6 +2,13 @@
 name: docx
 description: "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx files, inserting or replacing images in documents, performing find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document."
 version: "1.0.0"
+metadata:
+  domain: document
+  triggers: word document, .docx, word doc, tables of contents, headings, page numbers, letterhead, tracked changes
+  role: specialist
+  scope: implementation
+  output-format: document
+  related-skills: pdf, pptx, xlsx
 ---
 
 # DOCX creation, editing, and analysis

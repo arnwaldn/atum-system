@@ -5,6 +5,14 @@ description: |
   Use when starting a new project, onboarding to a codebase, before major architectural decisions,
   or when the user says "hypotheses", "tu pars du principe que", "assumptions", "common ground".
   Invoke with /common-ground [--list] [--check] [--graph].
+version: "1.0.0"
+metadata:
+  domain: workflow
+  triggers: hypotheses, assumptions, common ground, tu pars du principe que, validate assumptions, onboarding, starting project
+  role: specialist
+  scope: analysis
+  output-format: report
+  related-skills: prompt-architect, spec-miner
 ---
 
 # Common Ground

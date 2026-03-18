@@ -62,6 +62,19 @@ The court jester who alone could speak truth to the king. Not naive but strategi
 | Attack This | Red teaming | Adversary profile, attack vectors, defenses |
 | Test the Evidence | Falsificationism + evidence weighting | Claims audited with falsification criteria |
 
+## Reference Guide
+
+Load detailed guidance based on context:
+
+| Topic | Reference | Load When |
+|-------|-----------|-----------|
+| Mode Selection | `references/mode-selection-guide.md` | Choosing which reasoning mode to apply, combining modes |
+| Socratic Questioning | `references/socratic-questioning.md` | Exposing assumptions, probing questions, assumption inventory |
+| Dialectic Synthesis | `references/dialectic-synthesis.md` | Building counter-arguments, steelmanning, thesis-antithesis-synthesis |
+| Pre-Mortem Analysis | `references/pre-mortem-analysis.md` | Failure narratives, early warning signs, mitigation planning |
+| Red Team (Adversarial) | `references/red-team-adversarial.md` | Attack vectors, adversary profiling, defense design |
+| Evidence Audit | `references/evidence-audit.md` | Falsification criteria, evidence grading, competing explanations |
+
 ## Constraints
 
 ### MUST DO

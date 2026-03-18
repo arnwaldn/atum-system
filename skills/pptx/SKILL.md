@@ -2,6 +2,13 @@
 name: pptx
 description: "Use this skill whenever the user wants to create, read, edit, or manipulate PowerPoint presentations (.pptx files). Triggers include: any mention of PowerPoint, presentation, slides, .pptx, or requests to produce slide decks. Also use when extracting content from presentations, adding charts or images to slides, or converting content into presentation format."
 version: "1.0.0"
+metadata:
+  domain: document
+  triggers: PowerPoint, presentation, slides, .pptx, slide deck, charts in slides, slide formatting
+  role: specialist
+  scope: implementation
+  output-format: document
+  related-skills: docx, pdf, xlsx
 ---
 
 # PPTX creation, editing, and analysis

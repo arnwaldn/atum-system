@@ -1,6 +1,14 @@
 ---
 name: no-code-maestro
 description: Competences no-code alignees sur Maestro No-Code x IA (Make.com, Airtable, Notion). Use for automation, scenarios, blueprints, no-code workflows.
+version: "1.0.0"
+metadata:
+  domain: no-code
+  triggers: no-code, make.com, airtable, notion, automation, scenario, blueprint, webhook, workflow automatise, maestro, integromat
+  role: specialist
+  scope: implementation
+  output-format: code
+  related-skills: scheduler
 ---
 
 # No-Code Maestro Skill

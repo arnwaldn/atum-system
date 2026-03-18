@@ -5,7 +5,13 @@ description: |
   Use when: agence, societe, ATUM SAS, associes, actionnariat, PV, convocation, dividendes,
   tresorerie, pipeline agence, work for equity, obligations legales, rapport trimestriel,
   quorum, majorite, capital social, convention reglementee, BSPCE, reserve legale.
+version: "1.0.0"
 metadata:
+  domain: business
+  role: specialist
+  scope: implementation
+  output-format: document
+  related-skills: memoire, compliance-routing, scheduler
   triggers: agence, atum sas, societe, la boite, associes, actionnariat, PV, proces-verbal, convocation, dividendes, tresorerie, pipeline agence, work for equity, obligations, rapport trimestriel, quorum, majorite, capital social, agency, shareholders, quarterly report, convention reglementee, reserve legale, affectation resultat, depot comptes, devis, facture, facturer, relance, impaye, retard paiement, contrat client, prestation services, NDA, confidentialite, CGV, conditions generales, freelance, sous-traitant, equipe, embauche, registre personnel, timetracking, temps passe, feuille de temps, RGPD, donnees personnelles, registre traitements, DPA, assurance, RC Pro, note de frais, Syntec, convention collective, grille salariale
 ---
 

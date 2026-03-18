@@ -2,6 +2,13 @@
 name: powershell-windows
 description: "Windows PowerShell scripting patterns and system administration. Use when working with registry operations, WMI/CIM queries, Windows services, firewall rules, scheduled tasks, Active Directory, or Windows-specific troubleshooting. Covers error handling with -ErrorAction, -WhatIf/-Confirm support, and proper Windows path handling."
 version: "1.0.0"
+metadata:
+  domain: infrastructure
+  triggers: PowerShell, Windows, registry, WMI, CIM, Windows services, firewall rules, scheduled tasks, Active Directory
+  role: specialist
+  scope: implementation
+  output-format: code
+  related-skills: scheduler
 ---
 
 # PowerShell & Windows Scripting Patterns
