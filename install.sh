@@ -586,13 +586,9 @@ with open(sys.argv[1], 'w') as f:
     fi
 
     echo ""
-    echo -e "  ${GREEN}ATUM Dashboard credentials:${NC}"
-    case "${atum_user}" in
-        arnaud) echo "    Login: arnaud.porcel@gmail.com / AtumDash2026!" ;;
-        pablo)  echo "    Login: pablo@atum-sas.fr / AtumDash2026!" ;;
-        wahid)  echo "    Login: wahid@atum-sas.fr / AtumDash2026!" ;;
-    esac
+    echo -e "  ${GREEN}ATUM Dashboard:${NC}"
     echo "    URL:   https://atum-dashboard.netlify.app"
+    echo "    Credentials: check your password manager or ask the team"
     echo ""
 
     # --- Clone collective-memory repo ---

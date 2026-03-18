@@ -14,7 +14,7 @@
   "worktree": false,
   "notify": {
     "on": ["failure"],
-    "email": "arnaud.porcel@gmail.com",
+    "email": "contact@atum.tech",
     "includeOutput": true
   },
   "enabled": true,

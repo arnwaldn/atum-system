@@ -4,6 +4,12 @@
 # === SENSITIVE - NEVER commit ===
 .credentials.json
 *.credentials*
+mcp.json
+
+# === ATUM internal data (sensitive â€” keep in private repo or local only) ===
+data/agence-atum/finances/
+data/agence-atum/rgpd/
+data/agence-atum/decisions/
 
 # === Auto-generated caches ===
 plugins/
@@ -70,7 +76,7 @@ common-ground/
 ide/
 tmp/
 
-# === Schedules perso (non partagés) ===
+# === Schedules perso (non partagï¿½s) ===
 schedules/appart-aix-search.json
 schedules/whatsapp-cloclo-respond.json
 
