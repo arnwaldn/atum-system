@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Session Handoff Ledger",
+  "description": "Structured schema for session handoff data — used by PreCompact hook",
+  "type": "object",
+  "properties": {
+    "session_id": { "type": "string", "description": "Unique session identifier" },
+    "task": { "type": "string", "description": "Main task description" },
+    "task_progress": {
+      "type": "object",
+      "properties": {
+        "current_step": { "type": "integer" },
+        "total_steps": { "type": "integer" },
+        "percentage": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "files_modified": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "action": { "type": "string", "enum": ["created", "modified", "deleted"] }
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "what": { "type": "string" },
+          "why": { "type": "string" },
+          "alternatives": { "type": "array", "items": { "type": "string" } },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": ["what", "why"]
+      }
+    },
+    "tests_run": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "result": { "type": "string", "enum": ["pass", "fail", "skip"] },
+          "details": { "type": "string" }
+        }
+      }
+    },
+    "errors_encountered": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "error": { "type": "string" },
+          "resolution": { "type": "string" }
+        }
+      }
+    },
+    "patterns_learned": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pattern": { "type": "string" },
+          "context": { "type": "string" }
+        }
+      }
+    },
+    "next_steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step": { "type": "string" },
+          "completed": { "type": "boolean", "default": false }
+        }
+      }
+    },
+    "context_usage": {
+      "type": "object",
+      "properties": {
+        "estimated_percentage": { "type": "number" }
+      }
+    }
+  },
+  "required": ["session_id", "task"]
+}

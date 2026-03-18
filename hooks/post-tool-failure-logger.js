@@ -64,6 +64,18 @@ const RECOVERY_STRATEGIES = {
     {
       pattern: /MODULE_NOT_FOUND|Cannot find module/i,
       strategy: 'RECOVERY: Missing Node.js module. Run npm install or check if the import path is correct. For global tools, use npx instead.'
+    },
+    {
+      pattern: /flutter|pub get|dart/i,
+      strategy: 'RECOVERY: Flutter/Dart error. Try: flutter pub get, flutter clean, then flutter pub get again. Check pubspec.yaml for version conflicts.'
+    },
+    {
+      pattern: /pip|venv|virtualenv|ModuleNotFoundError/i,
+      strategy: 'RECOVERY: Python environment error. Activate the virtual environment first, or create one: python -m venv .venv && source .venv/bin/activate (or .venv/Scripts/activate on Windows). Then pip install -r requirements.txt.'
+    },
+    {
+      pattern: /go mod|go build|cannot find package/i,
+      strategy: 'RECOVERY: Go module error. Try: go mod tidy, then go mod download. If the module is missing, check go.mod for the correct import path.'
     }
   ],
   // ── Read failures ──
@@ -93,6 +105,55 @@ const RECOVERY_STRATEGIES = {
     }
   ]
 };
+
+// ── Circular fix detection (Jaccard similarity) ──
+
+const CIRCULAR_FIX_CONFIG = {
+  windowSize: 3,        // Compare last N attempts
+  similarityThreshold: 0.3, // 30% keyword overlap = circular
+  minSimilarCount: 2,   // Need 2 of 3 similar to trigger
+  maxAttemptsPerError: 5
+};
+
+function extractKeywords(text) {
+  if (!text) return new Set();
+  const stopWords = new Set(['the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been',
+    'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',
+    'should', 'may', 'might', 'shall', 'can', 'to', 'of', 'in', 'for', 'on', 'with',
+    'at', 'by', 'from', 'as', 'into', 'through', 'during', 'before', 'after',
+    'and', 'but', 'or', 'nor', 'not', 'no', 'so', 'if', 'then', 'than', 'that', 'this']);
+  const words = text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/);
+  return new Set(words.filter(w => w.length > 2 && !stopWords.has(w)));
+}
+
+function jaccardSimilarity(set1, set2) {
+  if (set1.size === 0 && set2.size === 0) return 1;
+  if (set1.size === 0 || set2.size === 0) return 0;
+  const intersection = new Set([...set1].filter(x => set2.has(x)));
+  const union = new Set([...set1, ...set2]);
+  return intersection.size / union.size;
+}
+
+function detectCircularFix(entries, toolName) {
+  const recentForTool = entries
+    .filter(e => e.tool === toolName)
+    .slice(-CIRCULAR_FIX_CONFIG.windowSize);
+
+  if (recentForTool.length < CIRCULAR_FIX_CONFIG.minSimilarCount) return false;
+
+  const keywordSets = recentForTool.map(e => extractKeywords(e.error));
+  let similarPairs = 0;
+
+  for (let i = 0; i < keywordSets.length; i++) {
+    for (let j = i + 1; j < keywordSets.length; j++) {
+      if (jaccardSimilarity(keywordSets[i], keywordSets[j]) >= CIRCULAR_FIX_CONFIG.similarityThreshold) {
+        similarPairs++;
+      }
+    }
+  }
+
+  return similarPairs >= CIRCULAR_FIX_CONFIG.minSimilarCount;
+}
 
 function findRecoveryStrategy(toolName, errorMsg) {
   // Try exact tool name match first
@@ -166,7 +227,12 @@ function main() {
 
     let context = '';
 
-    if (repeatCount >= 3) {
+    // ── Check for circular fix pattern ──
+    const isCircular = detectCircularFix(entries, toolName);
+
+    if (isCircular) {
+      context = `[CIRCULAR FIX DETECTED] Tool "${toolName}" keeps failing with similar errors. The same approach has been tried ${repeatCount}+ times with 30%+ keyword overlap. STOP retrying. Change strategy entirely — use a DIFFERENT tool, DIFFERENT approach, or ask the user. Do NOT retry the same pattern.`;
+    } else if (repeatCount >= 3) {
       context = `CRITICAL: Tool "${toolName}" has failed ${repeatCount} times consecutively. STOP retrying the same approach. Change strategy entirely — use a different tool, different path, or ask the user for guidance.`;
     } else if (strategy) {
       context = strategy;

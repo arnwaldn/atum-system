@@ -1,30 +1,22 @@
-name: CI — Claude Code Config
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+      # Validate agent registry (cross-check registry.json vs agent files)
+      - name: Validate agent registry
+        run: python3 scripts/generate-routing.py --check
 
-jobs:
-  lint-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: actions/setup-node@v6
-        with:
-          node-version: "20"
-
-      # Validate JSON files (strip BOM before parsing)
-      - name: Lint JSON files
+      # Validate config JSON files
+      - name: Validate config files
         run: |
-          echo "=== Validating JSON files ==="
-          FAIL=0
-          for f in $(find . -name '*.json' -not -path './node_modules/*' -not -path './.git/*'); do
-            if ! node -e "
-              const fs = require('fs');
-              let buf = fs.readFileSync('$f');
+          echo "=== Validating config JSON files ==="
+          for f in config/*.json; do
+            node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))" || exit 1
+            echo "OK: $f"
+          done
+          echo "All config files valid."
+
+      # Syntax check TLDR engine
+      - name: Syntax check TLDR engine
+        run: node --check scripts/engines/tldr-engine.cjs
+Sync('$f');
               if (buf[0]===0xEF && buf[1]===0xBB && buf[2]===0xBF) buf = buf.slice(3);
               JSON.parse(buf.toString('utf8'));
             " 2>/dev/null; then

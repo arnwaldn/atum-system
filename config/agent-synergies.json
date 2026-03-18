@@ -1,0 +1,126 @@
+{
+  "version": "1.0.0",
+  "description": "Agent chain synergies by project type",
+  "synergies": {
+    "saas-web": {
+      "primary": ["planner", "nextjs-expert"],
+      "secondary": ["code-reviewer", "security-expert"],
+      "optional": ["performance-optimizer", "seo-expert"],
+      "executionOrder": "parallel-primary-then-secondary",
+      "mcpsRequired": ["context7", "supabase"],
+      "notes": "Full-stack SaaS with Next.js + Supabase"
+    },
+    "flask-api": {
+      "primary": ["planner", "api-designer"],
+      "secondary": ["code-reviewer", "database-optimizer"],
+      "optional": ["security-expert"],
+      "executionOrder": "parallel-primary-then-secondary",
+      "mcpsRequired": ["context7"],
+      "notes": "Python Flask API backend (GigRoute pattern)"
+    },
+    "mobile-flutter": {
+      "primary": ["planner", "flutter-dart-expert"],
+      "secondary": ["code-reviewer"],
+      "optional": ["performance-optimizer"],
+      "executionOrder": "sequential",
+      "mcpsRequired": ["context7"],
+      "notes": "Cross-platform mobile with Flutter"
+    },
+    "mobile-ios": {
+      "primary": ["planner", "swift-ios-expert"],
+      "secondary": ["code-reviewer"],
+      "optional": ["performance-optimizer"],
+      "executionOrder": "sequential",
+      "mcpsRequired": ["context7"],
+      "notes": "Native iOS with Swift/SwiftUI"
+    },
+    "mobile-android": {
+      "primary": ["planner", "kotlin-android-expert"],
+      "secondary": ["code-reviewer"],
+      "optional": ["performance-optimizer"],
+      "executionOrder": "sequential",
+      "mcpsRequired": ["context7"],
+      "notes": "Native Android with Kotlin/Compose"
+    },
+    "odoo-module": {
+      "primary": ["planner", "odoo-expert"],
+      "secondary": ["code-reviewer", "database-optimizer"],
+      "optional": ["security-expert"],
+      "executionOrder": "sequential",
+      "mcpsRequired": ["context7"],
+      "notes": "Odoo ERP module development"
+    },
+    "payment-integration": {
+      "primary": ["payment-expert", "security-expert"],
+      "secondary": ["code-reviewer"],
+      "optional": ["compliance-expert"],
+      "executionOrder": "sequential",
+      "mcpsRequired": [],
+      "notes": "Stripe/payment integration — security-first"
+    },
+    "api-backend": {
+      "primary": ["planner", "api-designer"],
+      "secondary": ["code-reviewer", "database-optimizer"],
+      "optional": ["security-expert", "performance-optimizer"],
+      "executionOrder": "parallel-primary-then-secondary",
+      "mcpsRequired": ["context7"],
+      "notes": "Generic API backend (any framework)"
+    },
+    "frontend-ui": {
+      "primary": ["planner", "frontend-design-expert"],
+      "secondary": ["code-reviewer", "accessibility-auditor"],
+      "optional": ["seo-expert", "performance-optimizer"],
+      "executionOrder": "parallel-primary-then-secondary",
+      "mcpsRequired": ["context7", "figma"],
+      "notes": "Frontend UI development"
+    },
+    "game-2d": {
+      "primary": ["planner", "phaser-expert"],
+      "secondary": ["code-reviewer"],
+      "optional": ["performance-optimizer"],
+      "executionOrder": "sequential",
+      "mcpsRequired": ["context7"],
+      "notes": "2D browser games with Phaser"
+    },
+    "data-pipeline": {
+      "primary": ["planner", "data-engineer"],
+      "secondary": ["code-reviewer", "database-optimizer"],
+      "optional": ["performance-optimizer"],
+      "executionOrder": "sequential",
+      "mcpsRequired": [],
+      "notes": "ETL and data processing pipelines"
+    },
+    "ml-pipeline": {
+      "primary": ["planner", "ml-engineer"],
+      "secondary": ["code-reviewer"],
+      "optional": ["performance-optimizer", "compliance-expert"],
+      "executionOrder": "sequential",
+      "mcpsRequired": [],
+      "notes": "ML model training and deployment"
+    },
+    "security-audit": {
+      "primary": ["security-expert"],
+      "secondary": ["code-reviewer", "compliance-expert"],
+      "optional": [],
+      "executionOrder": "sequential",
+      "mcpsRequired": ["atum-audit"],
+      "notes": "Security audit and compliance check"
+    },
+    "nocode-automation": {
+      "primary": ["no-code-automation-expert"],
+      "secondary": [],
+      "optional": ["api-designer"],
+      "executionOrder": "sequential",
+      "mcpsRequired": [],
+      "notes": "Make.com, Airtable, Notion automations"
+    },
+    "devops-infra": {
+      "primary": ["planner", "devops-expert", "ci-cd-engineer"],
+      "secondary": ["code-reviewer", "security-expert"],
+      "optional": [],
+      "executionOrder": "parallel-primary-then-secondary",
+      "mcpsRequired": ["cloudflare", "railway"],
+      "notes": "Infrastructure, CI/CD, deployment"
+    }
+  }
+}

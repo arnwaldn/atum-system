@@ -1,0 +1,430 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "description": "Centralized agent registry — source of truth for all agents",
+  "agents": [
+    {
+      "name": "accessibility-auditor",
+      "model": "sonnet",
+      "tools": ["Read", "Grep", "Glob", "Bash"],
+      "mcpServers": [],
+      "domain": "Quality",
+      "triggers": ["accessibilite", "WCAG", "EAA", "a11y", "aria", "contraste", "lecteur ecran"],
+      "chains": ["accessibility-auditor -> code-reviewer"]
+    },
+    {
+      "name": "agence-atum-expert",
+      "model": "opus",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["atum-audit", "google-workspace"],
+      "domain": "Business",
+      "triggers": ["ATUM SAS", "gouvernance", "PV", "AG", "actionnaire", "SAS", "pipeline agence", "facturation agence", "tresorerie", "dividendes"],
+      "chains": ["agence-atum-expert -> directeur-technique"]
+    },
+    {
+      "name": "api-designer",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": [],
+      "domain": "Backend",
+      "triggers": ["API REST", "endpoint", "OpenAPI", "Swagger", "versioning API", "concevoir une API", "design API"],
+      "chains": ["api-designer -> architect-reviewer -> code-reviewer"]
+    },
+    {
+      "name": "architect-reviewer",
+      "model": "opus",
+      "tools": ["Read", "Write", "Edit", "Bash", "Glob", "Grep"],
+      "mcpServers": [],
+      "domain": "Architecture",
+      "triggers": ["architecture", "microservices", "monolith", "design systeme", "scalabilite", "revue architecture", "choix technique", "DDD", "CQRS", "hexagonal"],
+      "chains": ["architect-reviewer -> critical-thinking"]
+    },
+    {
+      "name": "auto-test-generator",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "Testing",
+      "triggers": ["generer des tests", "auto-test", "tests E2E automatiques", "couverture de tests", "test generator"],
+      "chains": ["auto-test-generator -> code-reviewer"]
+    },
+    {
+      "name": "blockchain-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "Blockchain",
+      "triggers": ["blockchain", "smart contract", "Solidity", "Ethereum", "EVM", "Hardhat", "OpenZeppelin", "Web3", "NFT", "DeFi"],
+      "chains": ["blockchain-expert -> security-expert"]
+    },
+    {
+      "name": "ci-cd-engineer",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["github"],
+      "domain": "DevOps",
+      "triggers": ["CI/CD", "GitHub Actions", "pipeline", "integration continue", "deploiement continu", "workflow CI", "setup CI"],
+      "chains": ["ci-cd-engineer -> devops-expert"]
+    },
+    {
+      "name": "codebase-pattern-finder",
+      "model": "haiku",
+      "tools": ["Grep", "Glob", "Read", "Bash"],
+      "mcpServers": [],
+      "domain": "Code Analysis",
+      "triggers": ["trouver un pattern", "exemple similaire", "comment est fait", "pattern existant", "code similaire"],
+      "chains": ["codebase-pattern-finder -> architect-reviewer"]
+    },
+    {
+      "name": "compliance-expert",
+      "model": "opus",
+      "tools": ["Read", "Grep", "Glob", "Bash", "WebSearch"],
+      "mcpServers": ["atum-audit"],
+      "domain": "Compliance",
+      "triggers": ["RGPD", "conformite", "compliance", "GDPR", "EU AI Act", "PCI-DSS", "HIPAA", "NIS2", "audit reglementaire", "donnees personnelles", "privacy"],
+      "chains": ["compliance-expert -> security-expert"]
+    },
+    {
+      "name": "critical-thinking",
+      "model": "sonnet",
+      "tools": ["Read", "Glob", "Grep", "WebSearch", "WebFetch", "AskUserQuestion"],
+      "mcpServers": [],
+      "domain": "Reasoning",
+      "triggers": ["challenger", "biais cognitif", "questionner", "hypotheses", "devil advocate", "raisonnement critique", "valider une decision"],
+      "chains": ["architect-reviewer -> critical-thinking"]
+    },
+    {
+      "name": "data-engineer",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7", "github"],
+      "domain": "Data",
+      "triggers": ["ETL", "data pipeline", "data engineering", "data warehouse", "ingestion de donnees", "traitement de donnees", "Spark", "Airflow", "dbt"],
+      "chains": ["data-engineer -> database-optimizer"]
+    },
+    {
+      "name": "database-optimizer",
+      "model": "opus",
+      "tools": ["Read", "Write", "Edit", "Bash", "Glob", "Grep"],
+      "mcpServers": [],
+      "domain": "Database",
+      "triggers": ["optimiser la base", "requete lente", "index manquant", "execution plan", "PostgreSQL performance", "MySQL performance", "MongoDB performance", "N+1"],
+      "chains": ["database-optimizer -> performance-optimizer"]
+    },
+    {
+      "name": "devops-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["github"],
+      "domain": "DevOps",
+      "triggers": ["Docker", "Kubernetes", "Terraform", "infrastructure", "deploy", "conteneur", "orchestration", "cloud", "Render", "Fly.io", "VPS"],
+      "chains": ["devops-expert -> ci-cd-engineer"]
+    },
+    {
+      "name": "directeur-technique",
+      "model": "opus",
+      "tools": ["Read", "Grep", "Glob", "Bash"],
+      "mcpServers": [],
+      "domain": "Strategy",
+      "triggers": ["prioriser", "scope", "DELIVERY.json", "qu'est-ce qu'on priorise", "scope cut", "livraison", "portfolio projets", "arbitrage", "minimum viable", "maturity review"],
+      "chains": ["directeur-technique -> agence-atum-expert"]
+    },
+    {
+      "name": "documentation-generator",
+      "model": "haiku",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": [],
+      "domain": "Documentation",
+      "triggers": ["generer la doc", "README", "API docs", "JSDoc", "documentation automatique", "guide utilisateur", "docstring"],
+      "chains": ["documentation-generator"]
+    },
+    {
+      "name": "error-detective",
+      "model": "opus",
+      "tools": ["Read", "Write", "Edit", "Bash", "Glob", "Grep"],
+      "mcpServers": [],
+      "domain": "Debugging",
+      "triggers": ["erreur incomprehensible", "bug mysterieux", "cascade d'erreurs", "analyser les logs", "root cause", "post-mortem", "erreur production"],
+      "chains": ["error-detective -> security-expert"]
+    },
+    {
+      "name": "expo-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "Mobile",
+      "triggers": ["Expo", "React Native", "Expo Router", "EAS Build", "mobile cross-platform", "iOS Android React"],
+      "chains": ["expo-expert -> code-reviewer"]
+    },
+    {
+      "name": "flutter-dart-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "Mobile",
+      "triggers": ["Flutter", "Dart", "Flutter Widget", "Riverpod", "Bloc Flutter", "Flutter web", "Flutter desktop"],
+      "chains": ["flutter-dart-expert -> code-reviewer"]
+    },
+    {
+      "name": "freelance-manager",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": [],
+      "domain": "Business",
+      "triggers": ["freelance", "prestataire", "onboarding freelance", "contrat freelance", "attestation", "TJM", "sous-traitant"],
+      "chains": ["freelance-manager -> agence-atum-expert"]
+    },
+    {
+      "name": "fresh-executor",
+      "model": "opus",
+      "tools": ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "TodoWrite"],
+      "mcpServers": [],
+      "domain": "Orchestration",
+      "triggers": ["contexte frais", "fresh context", "decomposer en sous-taches", "trop long", "degradation de contexte"],
+      "chains": ["fresh-executor"]
+    },
+    {
+      "name": "frontend-design-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Grep", "Glob"],
+      "mcpServers": ["context7", "figma"],
+      "domain": "Frontend",
+      "triggers": ["design system", "Figma to code", "Tailwind", "Storybook", "design tokens", "composants UI", "UI/UX", "interface"],
+      "chains": ["frontend-design-expert -> accessibility-auditor -> code-reviewer"]
+    },
+    {
+      "name": "game-architect",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "GameDev",
+      "triggers": ["architecture jeu", "game design", "game loop", "ECS", "game architecture", "orchestrer un jeu"],
+      "chains": ["game-architect -> unity-expert", "game-architect -> godot-expert", "game-architect -> phaser-expert"]
+    },
+    {
+      "name": "geospatial-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "Geospatial",
+      "triggers": ["carte", "cartographie", "MapLibre", "deck.gl", "Leaflet", "GeoJSON", "Mapbox", "geospatial", "GPS", "coordonnees"],
+      "chains": ["geospatial-expert -> code-reviewer"]
+    },
+    {
+      "name": "godot-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "GameDev",
+      "triggers": ["Godot", "GDScript", "Godot 4", "node system Godot", "signals Godot"],
+      "chains": ["game-architect -> godot-expert"]
+    },
+    {
+      "name": "graphql-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "Backend",
+      "triggers": ["GraphQL", "schema GraphQL", "Federation", "Apollo", "subscriptions GraphQL", "resolver", "query GraphQL"],
+      "chains": ["graphql-expert -> api-designer -> code-reviewer"]
+    },
+    {
+      "name": "happy-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": [],
+      "domain": "Tooling",
+      "triggers": ["Happy Coder", "happy CLI", "happy-mcp", "client mobile Claude Code"],
+      "chains": ["happy-expert"]
+    },
+    {
+      "name": "kotlin-android-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "Mobile",
+      "triggers": ["Android", "Kotlin", "Jetpack Compose", "Gradle"],
+      "chains": ["kotlin-android-expert -> code-reviewer"]
+    },
+    {
+      "name": "mcp-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "Tooling",
+      "triggers": ["MCP", "MCP server", "Model Context Protocol", "creer un MCP", "stdio MCP", "SSE MCP", "deployer un MCP"],
+      "chains": ["mcp-expert -> devops-expert"]
+    },
+    {
+      "name": "migration-expert",
+      "model": "opus",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "Migration",
+      "triggers": ["migrer de", "migration framework", "upgrade majeur", "moderniser le codebase", "migrate from", "migrate to", "legacy vers"],
+      "chains": ["migration-expert -> architect-reviewer -> code-reviewer"]
+    },
+    {
+      "name": "ml-engineer",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "AI/ML",
+      "triggers": ["machine learning", "deep learning", "MLOps", "PyTorch", "Hugging Face", "model training", "scikit-learn", "pipeline ML", "inference"],
+      "chains": ["ml-engineer -> data-engineer"]
+    },
+    {
+      "name": "networking-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "Networking",
+      "triggers": ["WebSocket", "WebRTC", "temps-reel", "multiplayer", "Socket.io", "SSE", "gRPC", "networking jeu", "synchronisation d'etat"],
+      "chains": ["networking-expert -> devops-expert"]
+    },
+    {
+      "name": "nextjs-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "Web",
+      "triggers": ["Next.js", "App Router", "RSC", "server actions", "middleware Next"],
+      "chains": ["nextjs-expert -> code-reviewer"]
+    },
+    {
+      "name": "no-code-automation-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Grep", "Glob", "WebSearch", "WebFetch"],
+      "mcpServers": ["notion", "airtable", "make"],
+      "domain": "Automation",
+      "triggers": ["no-code", "Make.com", "Airtable", "Notion automation", "Webflow", "Lovable", "Maestro", "automatisation sans code", "Zapier"],
+      "chains": ["no-code-automation-expert"]
+    },
+    {
+      "name": "odoo-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "ERP",
+      "triggers": ["Odoo", "module Odoo", "ERP", "Odoo SH"],
+      "chains": ["odoo-expert -> code-reviewer"]
+    },
+    {
+      "name": "payment-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": [],
+      "domain": "Payments",
+      "triggers": ["Stripe", "paiement", "checkout", "subscription", "payment"],
+      "chains": ["payment-expert -> security-expert -> compliance-expert"]
+    },
+    {
+      "name": "performance-optimizer",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": [],
+      "domain": "Performance",
+      "triggers": ["performance web", "Core Web Vitals", "Lighthouse", "LCP", "CLS", "FID", "bundle size", "lent", "optimiser les perfs"],
+      "chains": ["performance-optimizer -> database-optimizer"]
+    },
+    {
+      "name": "phaser-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "GameDev",
+      "triggers": ["Phaser", "Phaser 3", "jeu 2D web", "tilemap", "physics Phaser", "scene Phaser"],
+      "chains": ["game-architect -> phaser-expert"]
+    },
+    {
+      "name": "research-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Grep", "Glob", "WebSearch", "WebFetch"],
+      "mcpServers": ["context7"],
+      "domain": "Research",
+      "triggers": ["recherche", "analyse competitive", "veille technologique", "benchmark", "synthese", "investigation", "compare les options"],
+      "chains": ["research-expert -> critical-thinking"]
+    },
+    {
+      "name": "security-expert",
+      "model": "opus",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "WebSearch"],
+      "mcpServers": [],
+      "domain": "Security",
+      "triggers": ["securite", "vulnerabilite", "OWASP", "pentest", "audit securite", "injection SQL", "XSS", "CSRF", "auth", "secrets exposes", "hardening"],
+      "chains": ["security-expert -> compliance-expert"]
+    },
+    {
+      "name": "seo-expert",
+      "model": "haiku",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": [],
+      "domain": "Marketing",
+      "triggers": ["SEO", "meta tags", "schema.org", "sitemap", "robots.txt"],
+      "chains": ["seo-expert -> performance-optimizer"]
+    },
+    {
+      "name": "spec-architect",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": [],
+      "domain": "Documentation",
+      "triggers": ["spec technique", "SDD", "software design doc", "architecture document"],
+      "chains": ["spec-architect -> architect-reviewer -> critical-thinking"]
+    },
+    {
+      "name": "swift-ios-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "Mobile",
+      "triggers": ["iOS", "Swift", "SwiftUI", "Xcode", "UIKit"],
+      "chains": ["swift-ios-expert -> code-reviewer"]
+    },
+    {
+      "name": "tauri-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "Desktop",
+      "triggers": ["Tauri", "Tauri 2", "desktop cross-platform", "application desktop", "Rust frontend", "bundle desktop"],
+      "chains": ["tauri-expert -> code-reviewer"]
+    },
+    {
+      "name": "technical-debt-manager",
+      "model": "sonnet",
+      "tools": ["Read", "Grep", "Bash", "TodoWrite", "WebFetch"],
+      "mcpServers": [],
+      "domain": "Code Quality",
+      "triggers": ["dette technique", "technical debt", "code health", "refactoring", "code smell", "complexite cyclomatique", "audit de dette"],
+      "chains": ["technical-debt-manager -> architect-reviewer"]
+    },
+    {
+      "name": "threejs-game-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "GameDev",
+      "triggers": ["Three.js", "WebGL", "jeu 3D web", "shader", "physique 3D", "VR web", "AR web", "Three.js game"],
+      "chains": ["game-architect -> threejs-game-expert"]
+    },
+    {
+      "name": "unity-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": ["context7"],
+      "domain": "GameDev",
+      "triggers": ["Unity", "Unity 6", "C# Unity", "VR Unity", "AR Unity", "jeu 3D natif", "URP", "HDRP"],
+      "chains": ["game-architect -> unity-expert"]
+    },
+    {
+      "name": "windows-scripting-expert",
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "mcpServers": [],
+      "domain": "Scripting",
+      "triggers": ["PowerShell", "script Windows", "Batch", "Git Bash Windows", "encodage Windows", "chemin Windows", "automatisation Windows"],
+      "chains": ["windows-scripting-expert -> devops-expert"]
+    }
+  ]
+}

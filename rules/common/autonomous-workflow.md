@@ -251,6 +251,56 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 2. Call MCP: `mcp__atum-audit__audit_violations` to list violations
 3. For specific files: `mcp__atum-audit__audit_verify_file`
 4. For history: `mcp__atum-audit__audit_file_history`
+
+### Next.js Development
+**Detect**: "Next.js", "App Router", "RSC", "server actions", "server components", "middleware Next"
+**Auto-actions**:
+1. Invoke **nextjs-expert** agent
+2. Use context7 MCP for latest Next.js docs
+3. Follow App Router conventions
+
+### Odoo ERP Development
+**Detect**: "Odoo", "module Odoo", "ERP", "Odoo SH", "ORM Odoo"
+**Auto-actions**:
+1. Invoke **odoo-expert** agent
+2. Follow OCA coding standards
+3. Use context7 MCP for Odoo docs
+
+### Payment Integration
+**Detect**: "Stripe", "paiement en ligne", "checkout flow", "subscription billing", "payment gateway"
+**Auto-actions**:
+1. Invoke **payment-expert** agent + **security-expert** agent
+2. Security-first: never log card data, validate webhooks
+3. PCI-DSS considerations mandatory
+
+### iOS Development
+**Detect**: "iOS", "Swift", "SwiftUI", "UIKit", "Xcode project", "Apple developer"
+**Auto-actions**:
+1. Invoke **swift-ios-expert** agent
+2. Use context7 MCP for Swift/SwiftUI docs
+3. Follow Apple Human Interface Guidelines
+
+### Android Development
+**Detect**: "Android", "Kotlin", "Jetpack Compose", "Android Studio", "Google Play"
+**Auto-actions**:
+1. Invoke **kotlin-android-expert** agent
+2. Use context7 MCP for Android docs
+3. Follow Material Design 3 guidelines
+
+### SEO Optimization
+**Detect**: "SEO", "meta tags", "schema.org", "sitemap", "robots.txt", "Core Web Vitals", "referencement"
+**Auto-actions**:
+1. Invoke **seo-expert** agent (haiku — lightweight)
+2. Audit meta tags, structured data, sitemap
+3. Provide actionable recommendations with measurable impact
+
+### Technical Specification Writing
+**Detect**: "spec technique", "SDD", "software design doc", "ecrire un spec", "architecture document", "write a spec"
+**Auto-actions**:
+1. Invoke **spec-architect** agent
+2. Read existing codebase for context
+3. Produce structured SDD with Mermaid diagrams
+
 ## Quality Gates (Automatic — Never Skip)
 
 Every code change MUST pass these before marking complete:
@@ -283,4 +333,4 @@ NEVER wait for user to request an agent. Detect and invoke. ALWAYS parallelize i
 
 ## Routing Reference
 
-For detailed agent registry (38 agents), skill selection, NLP routing tables (90+ FR+EN triggers), and decision authority rules, consult the **autonomous-routing** skill.
+For detailed agent registry (47 agents), skill selection, NLP routing tables (115+ FR+EN triggers), and decision authority rules, consult the **autonomous-routing** skill.

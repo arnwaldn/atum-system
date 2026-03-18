@@ -1,0 +1,71 @@
+{
+  "version": "1.0.0",
+  "description": "Task complexity scoring — determines agent count and model selection",
+  "factors": {
+    "task_decomposition": {
+      "weight": 0.25,
+      "description": "Number of distinct steps required",
+      "scale": {
+        "1": "Single step, direct action",
+        "3": "2-3 steps, clear sequence",
+        "5": "4-6 steps, some dependencies",
+        "7": "7-9 steps, complex dependencies",
+        "10": "10+ steps, DAG execution required"
+      }
+    },
+    "domain_count": {
+      "weight": 0.15,
+      "description": "Number of distinct technical domains involved",
+      "scale": {
+        "1": "Single domain (e.g., frontend only)",
+        "4": "2 domains (e.g., frontend + API)",
+        "8": "3+ domains (e.g., frontend + API + database + infra)"
+      }
+    },
+    "mcp_count": {
+      "weight": 0.15,
+      "description": "Number of MCP servers required",
+      "scale": {
+        "1": "0-1 MCPs (standard tools only)",
+        "4": "2-3 MCPs",
+        "8": "4+ MCPs"
+      }
+    },
+    "integration_depth": {
+      "weight": 0.15,
+      "description": "How deeply the task integrates with existing systems",
+      "scale": {
+        "1": "Standalone, no integration",
+        "4": "Modifies existing module",
+        "7": "Cross-module changes",
+        "10": "System-wide architectural change"
+      }
+    },
+    "ambiguity": {
+      "weight": 0.15,
+      "description": "How clearly defined the task is",
+      "scale": {
+        "1": "Explicit spec with examples",
+        "4": "Clear intent, some decisions needed",
+        "7": "Vague requirements, multiple interpretations",
+        "10": "Single word or concept, fully open-ended"
+      }
+    },
+    "risk_level": {
+      "weight": 0.15,
+      "description": "Potential impact of errors",
+      "scale": {
+        "1": "Read-only, no side effects",
+        "4": "Local file changes, reversible",
+        "7": "Database changes, external API calls",
+        "10": "Production deployment, security operations, financial transactions"
+      }
+    }
+  },
+  "tiers": {
+    "simple": { "range": [0, 3], "model": "haiku", "maxAgents": 2 },
+    "moderate": { "range": [3, 5], "model": "sonnet", "maxAgents": 4 },
+    "complex": { "range": [5, 7], "model": "sonnet", "maxAgents": 8 },
+    "expert": { "range": [7, 10], "model": "opus", "maxAgents": 12 }
+  }
+}

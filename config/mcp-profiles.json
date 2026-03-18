@@ -1,0 +1,70 @@
+{
+  "version": "1.0.0",
+  "description": "MCP server profiles — token budgets, lazy loading, and project type mapping",
+  "tokenBudgetTiers": {
+    "tier0_unlimited": {
+      "budget": "unlimited",
+      "servers": ["memory"],
+      "description": "Always loaded, no token limit"
+    },
+    "tier1_essential": {
+      "budget": 5000,
+      "servers": ["context7", "github", "google-workspace"],
+      "description": "Core development tools, loaded on intent"
+    },
+    "tier2_profile": {
+      "budget": 2000,
+      "servers": ["figma", "notion", "railway", "cloudflare-docs", "supabase", "sequential-thinking", "atum-audit"],
+      "description": "Profile-specific tools, loaded by project type"
+    },
+    "tier3_explicit": {
+      "budget": 1000,
+      "servers": ["claude-in-chrome", "desktop-commander", "whatsapp", "b12", "magic", "skillsync", "webmcp"],
+      "description": "Niche tools, loaded only on explicit request"
+    }
+  },
+  "fallbackChains": {
+    "browser": ["claude-in-chrome", "desktop-commander"],
+    "documentation": ["context7", "webfetch"],
+    "deployment": ["railway", "cloudflare-docs"],
+    "design": ["figma", "canva"],
+    "communication": ["whatsapp", "google-workspace"]
+  },
+  "profiles": {
+    "web": {
+      "preload": ["context7", "github"],
+      "onIntent": ["figma", "cloudflare-docs", "railway"],
+      "description": "Web development projects"
+    },
+    "mobile": {
+      "preload": ["context7", "github"],
+      "onIntent": ["figma"],
+      "description": "Mobile app development"
+    },
+    "data": {
+      "preload": ["context7", "github"],
+      "onIntent": ["supabase"],
+      "description": "Data engineering and ML projects"
+    },
+    "game": {
+      "preload": ["context7"],
+      "onIntent": [],
+      "description": "Game development projects"
+    },
+    "automation": {
+      "preload": ["github"],
+      "onIntent": ["notion", "google-workspace"],
+      "description": "No-code and automation projects"
+    },
+    "erp": {
+      "preload": ["context7", "github"],
+      "onIntent": [],
+      "description": "Odoo ERP module development"
+    },
+    "compliance": {
+      "preload": ["atum-audit"],
+      "onIntent": ["github"],
+      "description": "Compliance and audit operations"
+    }
+  }
+}

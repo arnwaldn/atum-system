@@ -260,6 +260,58 @@ function scoreRelevance(memFile, content, projectContext) {
   return score;
 }
 
+function calculateTextSimilarity(text1, text2) {
+  if (!text1 || !text2) return 0;
+  var words1 = text1.toLowerCase().split(/\s+/).filter(function(w) { return w.length > 3; });
+  var words2 = text2.toLowerCase().split(/\s+/).filter(function(w) { return w.length > 3; });
+  var set1 = {};
+  var set2 = {};
+  for (var i = 0; i < words1.length; i++) set1[words1[i]] = true;
+  for (var j = 0; j < words2.length; j++) set2[words2[j]] = true;
+  var intersection = 0;
+  var keys1 = Object.keys(set1);
+  for (var k = 0; k < keys1.length; k++) {
+    if (set2[keys1[k]]) intersection++;
+  }
+  var union = Object.keys(Object.assign({}, set1, set2)).length;
+  return union > 0 ? intersection / union : 0;
+}
+
+function applyMMRRanking(scored, lambda) {
+  if (scored.length <= 1) return scored;
+  lambda = lambda || 0.5;
+  var selected = [scored[0]]; // Always keep the most relevant
+  var remaining = scored.slice(1);
+
+  while (selected.length < 5 && remaining.length > 0) {
+    var bestIdx = -1;
+    var bestMMR = -Infinity;
+
+    for (var i = 0; i < remaining.length; i++) {
+      var relevance = remaining[i].score;
+      var maxSim = 0;
+      for (var j = 0; j < selected.length; j++) {
+        var sim = calculateTextSimilarity(remaining[i].summary, selected[j].summary);
+        if (sim > maxSim) maxSim = sim;
+      }
+      var mmrScore = lambda * relevance - (1 - lambda) * maxSim * 10;
+      if (mmrScore > bestMMR) {
+        bestMMR = mmrScore;
+        bestIdx = i;
+      }
+    }
+
+    if (bestIdx >= 0) {
+      selected.push(remaining[bestIdx]);
+      remaining.splice(bestIdx, 1);
+    } else {
+      break;
+    }
+  }
+
+  return selected;
+}
+
 function getRelevantMemories(projectContext, accessCounts) {
   // Gather ALL memories from sessions, explicit, and distilled
   var allFiles = []
@@ -284,7 +336,8 @@ function getRelevantMemories(projectContext, accessCounts) {
 
   // Sort by score (highest first), take top 5
   scored.sort(function(a, b) { return b.score - a.score; });
-  var top = scored.slice(0, 5);
+  // Apply MMR to diversify results (avoid 5 memories about the same topic)
+  var top = applyMMRRanking(scored, 0.5);
 
   // Increment access counts for injected memories
   for (var j = 0; j < top.length; j++) {

@@ -1,7 +1,7 @@
 ---
 name: autonomous-routing
 description: |
-  NLP routing table mapping 108 FR+EN triggers to skills and agents.
+  NLP routing table mapping 115+ FR+EN triggers to skills and agents.
   Use when detecting user intent to auto-invoke the right workflow.
 version: "1.0.0"
 metadata:
@@ -70,6 +70,13 @@ metadata:
 | game-architect | Game design | Architecture, ECS, game loops, asset pipelines |
 | godot-expert | Godot | GDScript, scenes, signals, physics |
 | architect-reviewer | Architecture | System design review, trade-offs, scalability |
+| nextjs-expert | Web | Next.js App Router, RSC, Server Actions, middleware |
+| odoo-expert | ERP | Odoo module development, ORM, views, security |
+| payment-expert | Payments | Stripe, checkout, subscriptions, PCI-DSS |
+| swift-ios-expert | Mobile | iOS/macOS with Swift, SwiftUI |
+| kotlin-android-expert | Mobile | Android with Kotlin, Jetpack Compose |
+| seo-expert | Marketing | SEO, meta tags, schema.org, Core Web Vitals |
+| spec-architect | Documentation | SDD writer, transforms requirements into specs |
 
 ## Agent Selection (Automatic)
 
@@ -99,6 +106,42 @@ metadata:
 | ETL, data pipelines | data-engineer agent |
 | Auto-generate test suite | auto-test-generator agent |
 | Happy Coder mobile access | happy-expert agent |
+| Next.js project | nextjs-expert agent |
+| Odoo ERP module | odoo-expert agent |
+| Payment integration | payment-expert + security-expert agents |
+| iOS/Swift project | swift-ios-expert agent |
+| Android/Kotlin project | kotlin-android-expert agent |
+| SEO optimization needed | seo-expert agent |
+| Write technical spec / SDD | spec-architect agent |
+
+## Recommended Agent Chains
+
+See `config/agent-synergies.json` for full chain definitions. Key patterns:
+
+| Project Type | Chain |
+|-------------|-------|
+| SaaS Web | planner -> nextjs-expert -> code-reviewer -> security-expert |
+| Flask API | planner -> api-designer -> code-reviewer -> database-optimizer |
+| Mobile Flutter | planner -> flutter-dart-expert -> code-reviewer |
+| Mobile iOS | planner -> swift-ios-expert -> code-reviewer |
+| Mobile Android | planner -> kotlin-android-expert -> code-reviewer |
+| Odoo Module | planner -> odoo-expert -> code-reviewer -> database-optimizer |
+| Payment | payment-expert -> security-expert -> code-reviewer |
+| Security Audit | security-expert -> compliance-expert |
+| DevOps/Infra | planner -> devops-expert -> ci-cd-engineer -> security-expert |
+
+## Complexity Scoring
+
+See `config/complexity-scoring.json` for the full algorithm. Quick reference:
+
+| Score | Tier | Model | Max Agents |
+|-------|------|-------|-----------|
+| 0-3 | Simple | haiku | 2 |
+| 3-5 | Moderate | sonnet | 4 |
+| 5-7 | Complex | sonnet | 8 |
+| 7-10 | Expert | opus | 12 |
+
+Factors: task_decomposition (0.25), domain_count (0.15), mcp_count (0.15), integration_depth (0.15), ambiguity (0.15), risk_level (0.15).
 
 ## Skill Selection (Automatic)
 
