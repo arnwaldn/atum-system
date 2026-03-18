@@ -2,8 +2,8 @@
 set -euo pipefail
 
 # ============================================================
-# Claude Code Config Installer
-# Installs the complete Claude Code environment on any machine
+# Claude Code Config v4 — Plugin Architecture Installer
+# Installs the ATUM plugin-based Claude Code environment
 #
 # Compatible: Windows (Git Bash/MSYS2), macOS, Linux
 # Usage: git clone https://github.com/arnwaldn/claude-code-config.git
@@ -74,21 +74,18 @@ check_prereqs() {
 # 3. CONFIRM
 # ============================================================
 confirm_install() {
-    echo -e "${BOLD}This will install:${NC}"
-    echo "  - 32 hooks       (PreToolUse, PostToolUse, PostToolUseFailure, ConfigChange, Notification, Stop, SessionStart, PreCompact)"
-    echo "  - 30 commands     (/scaffold, /security-audit, /tdd, /deploy, /website, /webmcp, /schedule, /whatsapp, /happy, /projet, etc.)"
-    echo "  - 38 agents       (10 Opus, 26 Sonnet, 2 Haiku — architect, compliance, security, fresh-executor, etc.)"
-    echo "  - 44 skills       (pdf, docx, xlsx, DDD, RAG, Mermaid, scheduler, compliance-routing, fresh-execute, etc.)"
+    echo -e "${BOLD}Claude Code Config v4 — Plugin Architecture${NC}"
+    echo ""
+    echo "  This will install:"
+    echo "  - 13 plugins      (atum-core, atum-compliance, atum-security, etc.)"
+    echo "  - 29 agents       (11 Opus + 15 Sonnet + 3 Haiku)"
+    echo "  - 37 skills       (progressive disclosure, on-demand)"
+    echo "  - 30 commands     (namespaced by plugin)"
+    echo "  - 4 hooks         (fail-closed: file-guard, secret-scanner, git-guard, anti-rationalization)"
+    echo "  - 3 global rules  (anti-hallucination, coding-style, security-baseline)"
     echo "  - 4 modes         (architect, autonomous, brainstorm, quality)"
-    echo "  - 23 rules        (coding-style, security, resilience, decision-principle, autonomous-workflow, etc.)"
-    echo "  - 56 plugins      (ECC, code-review, figma, firebase, stripe, linear, etc.)"
-    echo "  - 3 scripts       (context-monitor, collective-memory-sync, migrate-hindsight)"
-    echo "  - 184 templates   (scaffolds + references from project-templates)"
-    echo "  - settings.json   (hooks, plugins, full autonomy permissions)"
-    echo "  - MCP servers     (.claude.json with 20 servers incl. B12, WebMCP, WhatsApp)"
-    echo "  - data store      (agence-atum JSON data + schedules + project registry)"
-    echo "  - bin wrappers    (Windows: gsudo, jq, uv, uvx, composer)"
-    echo "  - acpx config     (headless ACP sessions)"
+    echo "  - statusline      (context/cost monitoring)"
+    echo "  - marketplace.json (ATUM plugin registry)"
     echo ""
     echo -e "  Target: ${CYAN}$CLAUDE_DIR/${NC}"
     echo ""
@@ -108,7 +105,7 @@ backup_existing() {
         local ts=$(date +%Y%m%d-%H%M%S)
         local backup="$CLAUDE_DIR/.backup-$ts"
         mkdir -p "$backup"
-        for item in hooks commands agents modes rules scripts skills settings.json settings.local.json; do
+        for item in hooks plugins modes rules scripts settings.json; do
             [ -e "$CLAUDE_DIR/$item" ] && cp -r "$CLAUDE_DIR/$item" "$backup/" 2>/dev/null || true
         done
         ok "Backed up existing config to $backup/"
@@ -116,53 +113,53 @@ backup_existing() {
 }
 
 # ============================================================
-# 5. COPY PORTABLE FILES
+# 5. COPY FILES
 # ============================================================
 copy_files() {
     info "Copying files..."
     mkdir -p "$CLAUDE_DIR"
 
-    local dirs=(hooks commands agents modes scripts)
-    for dir in "${dirs[@]}"; do
-        if [ -d "$SCRIPT_DIR/$dir" ]; then
-            mkdir -p "$CLAUDE_DIR/$dir"
-            cp "$SCRIPT_DIR/$dir/"* "$CLAUDE_DIR/$dir/" 2>/dev/null || true
-            local count=$(ls -1 "$SCRIPT_DIR/$dir" 2>/dev/null | wc -l | tr -d ' ')
-            ok "$dir/ ($count files)"
-        fi
-    done
+    # Hooks (4 fail-closed Python hooks)
+    if [ -d "$SCRIPT_DIR/hooks" ]; then
+        mkdir -p "$CLAUDE_DIR/hooks"
+        cp "$SCRIPT_DIR/hooks/"*.py "$CLAUDE_DIR/hooks/" 2>/dev/null || true
+        chmod +x "$CLAUDE_DIR/hooks/"*.py 2>/dev/null || true
+        ok "hooks/ (4 fail-closed hooks)"
+    fi
 
-    # Rules (with subdirectories)
+    # Plugins (13 plugin directories + marketplace.json)
+    if [ -d "$SCRIPT_DIR/plugins" ]; then
+        cp -r "$SCRIPT_DIR/plugins" "$CLAUDE_DIR/"
+        local pcount=$(ls -d "$SCRIPT_DIR/plugins/atum-"*/ 2>/dev/null | wc -l | tr -d ' ')
+        ok "plugins/ ($pcount plugins + marketplace.json)"
+    fi
+
+    # Rules (3 global rules)
     if [ -d "$SCRIPT_DIR/rules" ]; then
         cp -r "$SCRIPT_DIR/rules" "$CLAUDE_DIR/"
-        local rcount=$(find "$SCRIPT_DIR/rules" -name "*.md" | wc -l | tr -d ' ')
-        ok "rules/ ($rcount files)"
+        ok "rules/ (3 global rules)"
     fi
 
-    # Skills (with subdirectories and scripts)
-    if [ -d "$SCRIPT_DIR/skills" ]; then
-        mkdir -p "$CLAUDE_DIR/skills"
-        for skill_dir in "$SCRIPT_DIR/skills"/*/; do
-            [ -d "$skill_dir" ] || continue
-            cp -r "$skill_dir" "$CLAUDE_DIR/skills/"
-        done
-        local scount=$(find "$SCRIPT_DIR/skills" -maxdepth 2 -name "SKILL.md" | wc -l | tr -d ' ')
-        ok "skills/ ($scount skills)"
+    # Modes (4 workflow modes)
+    if [ -d "$SCRIPT_DIR/modes" ]; then
+        mkdir -p "$CLAUDE_DIR/modes"
+        cp "$SCRIPT_DIR/modes/"* "$CLAUDE_DIR/modes/" 2>/dev/null || true
+        ok "modes/ (4 modes)"
     fi
 
-    # Data store (recursive — agence-atum JSON)
-    if [ -d "$SCRIPT_DIR/data" ]; then
-        cp -r "$SCRIPT_DIR/data" "$CLAUDE_DIR/"
-        local dcount=$(find "$SCRIPT_DIR/data" -name "*.json" | wc -l | tr -d ' ')
-        ok "data/ ($dcount JSON files)"
+    # Scripts (statusline + utilities)
+    if [ -d "$SCRIPT_DIR/scripts" ]; then
+        mkdir -p "$CLAUDE_DIR/scripts"
+        cp "$SCRIPT_DIR/scripts/"* "$CLAUDE_DIR/scripts/" 2>/dev/null || true
+        chmod +x "$CLAUDE_DIR/scripts/"*.sh 2>/dev/null || true
+        ok "scripts/"
     fi
 
-    # Schedules (task definitions only, not history)
+    # Schedules
     if [ -d "$SCRIPT_DIR/schedules" ]; then
         mkdir -p "$CLAUDE_DIR/schedules"
         cp "$SCRIPT_DIR/schedules/"*.json "$CLAUDE_DIR/schedules/" 2>/dev/null || true
-        local schcount=$(ls -1 "$SCRIPT_DIR/schedules/"*.json 2>/dev/null | wc -l | tr -d ' ')
-        ok "schedules/ ($schcount task definitions)"
+        ok "schedules/"
     fi
 
     # Scheduler daemon
@@ -171,26 +168,11 @@ copy_files() {
         ok "scheduler/ (daemon)"
     fi
 
-    # Project registry (atum-projects.json)
+    # Project registry
     if [ -f "$SCRIPT_DIR/atum-projects.json" ]; then
-        cp "$SCRIPT_DIR/atum-projects.json" "$CLAUDE_DIR/atum-projects.json"
-        ok "atum-projects.json (project registry)"
+        cp "$SCRIPT_DIR/atum-projects.json" "$CLAUDE_DIR/"
+        ok "atum-projects.json"
     fi
-
-    # atum-audit.config.json
-    if [ -f "$SCRIPT_DIR/atum-audit.config.json" ]; then
-        cp "$SCRIPT_DIR/atum-audit.config.json" "$CLAUDE_DIR/atum-audit.config.json"
-        ok "atum-audit.config.json"
-    fi
-
-    # Create required empty directories
-    mkdir -p "$CLAUDE_DIR/instincts"
-    mkdir -p "$CLAUDE_DIR/graph-queue"
-    mkdir -p "$CLAUDE_DIR/common-ground"
-    ok "Created: instincts/, graph-queue/, common-ground/"
-
-    # Make hooks executable
-    chmod +x "$CLAUDE_DIR/hooks/"* 2>/dev/null || true
 }
 
 # ============================================================
@@ -199,14 +181,13 @@ copy_files() {
 install_settings() {
     info "Installing settings..."
 
-    # settings.json — portable (uses $HOME_PLACEHOLDER in hook paths)
     if [ -f "$SCRIPT_DIR/settings.json" ]; then
         cp "$SCRIPT_DIR/settings.json" "$CLAUDE_DIR/settings.json"
 
-        # Replace $HOME_PLACEHOLDER with actual home path (cross-platform)
+        # Replace $HOME_PLACEHOLDER with actual home path
         local home_path
         home_path=$(cd "$HOME" && pwd -W 2>/dev/null || pwd)
-        home_path="${home_path//\\/\/}"  # Normalize backslashes to forward slashes
+        home_path="${home_path//\\/\/}"
 
         python3 -c "
 import sys
@@ -219,30 +200,12 @@ count = content.count('\$HOME_PLACEHOLDER')
 print(f'  Replaced {count} path placeholders with {sys.argv[2]}')
 " "$CLAUDE_DIR/settings.json" "$home_path"
 
-        ok "settings.json (paths adapted to this machine)"
-    fi
-
-    # settings.local.json — strip machine-specific env vars
-    if [ -f "$SCRIPT_DIR/settings.local.json" ]; then
-        python3 -c "
-import json, sys
-with open(sys.argv[1]) as f:
-    data = json.load(f)
-env = data.get('env', {})
-for key in ['ATUM_PROJECT_DIR']:
-    env.pop(key, None)
-data['env'] = env
-with open(sys.argv[2], 'w') as f:
-    json.dump(data, f, indent=2)
-    f.write('\n')
-" "$SCRIPT_DIR/settings.local.json" "$CLAUDE_DIR/settings.local.json" 2>/dev/null \
-        || cp "$SCRIPT_DIR/settings.local.json" "$CLAUDE_DIR/settings.local.json"
-        ok "settings.local.json"
+        ok "settings.json (minimal, 4 hooks, fail-closed)"
     fi
 }
 
 # ============================================================
-# 7. CONFIGURE MCP SERVERS (.claude.json)
+# 7. CONFIGURE MCP SERVERS
 # ============================================================
 configure_mcp() {
     info "Configuring MCP servers..."
@@ -260,27 +223,15 @@ configure_mcp() {
     echo ""
     echo -e "  ${CYAN}GitHub Personal Access Token${NC} (for GitHub MCP server)"
     echo "  Create at: https://github.com/settings/tokens"
-    echo "  Scopes: repo, read:org, read:user"
     echo "  Leave empty to skip."
     echo ""
     read -rp "  GitHub PAT: " github_pat
 
-    # Resolve HOME path for cross-platform compatibility
     local home_path
     home_path=$(cd "$HOME" && pwd -W 2>/dev/null || pwd)
-    home_path="${home_path//\\/\/}"  # Normalize to forward slashes
+    home_path="${home_path//\\/\/}"
 
-    # Resolve UV path for cross-platform compatibility
-    local uv_path
-    if command -v uv &>/dev/null; then
-        uv_path=$(command -v uv)
-    elif [ "$OS" = "windows" ]; then
-        uv_path="$HOME/bin/uv"
-    else
-        uv_path="uv"
-    fi
-
-    # On macOS/Linux, replace "cmd", "/c" wrapper with direct calls
+    # On macOS/Linux, convert cmd /c wrappers to direct calls
     if [ "$OS" != "windows" ]; then
         python3 -c "
 import json, sys
@@ -288,7 +239,7 @@ with open(sys.argv[1]) as f:
     data = json.load(f)
 for name, srv in data.get('mcpServers', {}).items():
     if srv.get('command') == 'cmd' and srv.get('args', [''])[0] == '/c':
-        args = srv['args'][1:]  # remove /c
+        args = srv['args'][1:]
         if args and args[0] in ('npx', 'npm', 'python', 'python3'):
             srv['command'] = 'python3' if args[0] == 'python' else args[0]
             srv['args'] = args[1:]
@@ -300,20 +251,6 @@ with open(sys.argv[2], 'w') as f:
         cp "$SCRIPT_DIR/claude.json.template" "$CLAUDE_JSON"
     fi
 
-    # Replace \$UV_EXE_PATH and \$HOME placeholders
-    python3 -c "
-import json, sys, os
-with open(sys.argv[1]) as f:
-    raw = f.read()
-raw = raw.replace('\$UV_EXE_PATH', sys.argv[2])
-raw = raw.replace('\$HOME', sys.argv[3])
-data = json.loads(raw)
-with open(sys.argv[1], 'w') as f:
-    json.dump(data, f, indent=2)
-    f.write('\n')
-" "$CLAUDE_JSON" "$uv_path" "$home_path" 2>/dev/null || true
-
-    # Replace all placeholders (BSD sed on macOS needs -i '', GNU sed needs -i)
     if [ "$OS" = "macos" ]; then
         sed -i '' \
             -e "s|REPLACE_WITH_YOUR_GITHUB_PAT|${github_pat}|g" \
@@ -326,607 +263,51 @@ with open(sys.argv[1], 'w') as f:
             "$CLAUDE_JSON"
     fi
 
-    # Remove _comment fields (clean output)
-    python3 -c "
-import json
-with open('$CLAUDE_JSON') as f:
-    data = json.load(f)
-data.pop('_comment', None)
-data.pop('_instructions', None)
-for srv in data.get('mcpServers', {}).values():
-    for k in list(srv.keys()):
-        if k.startswith('_comment'):
-            del srv[k]
-with open('$CLAUDE_JSON', 'w') as f:
-    json.dump(data, f, indent=2)
-    f.write('\n')
-" 2>/dev/null || true
-
-    if [ -n "$github_pat" ]; then
-        ok ".claude.json with GitHub MCP"
-    else
-        ok ".claude.json (GitHub PAT not set — edit later)"
-    fi
-    echo ""
-
-    # Remind about required env vars
-    # Detect profile for display
-    local _profile_hint="~/.bashrc"
-    [ "$OS" = "macos" ] && _profile_hint="~/.zshrc"
-    echo -e "  ${YELLOW}[IMPORTANT]${NC} Add these env vars to your ${_profile_hint}:"
-    echo ""
-    echo "    # MCP servers"
-    echo "    export GITHUB_PERSONAL_ACCESS_TOKEN=\"\$(gh auth token 2>/dev/null)\""
-    echo "    export GOOGLE_OAUTH_CLIENT_SECRET=\"your-google-oauth-client-secret\""
-    echo "    export OPENAPI_MCP_HEADERS='{\"Authorization\":\"Bearer your-notion-token\",\"Notion-Version\":\"2022-06-28\"}'"
-    echo "    export AIRTABLE_API_KEY=\"your-airtable-pat\""
-    echo ""
-    echo "    # ATUM team"
-    echo "    export ATUM_USER=\"your-name\"  # arnaud, pablo, or wahid"
-    echo ""
-    echo "    # ATUM Dashboard (set automatically by install — no action needed)"
+    ok ".claude.json configured"
     echo ""
 }
 
 # ============================================================
-# 7.5. INSTALL B12 MCP (local build from GitHub)
-# ============================================================
-install_b12_mcp() {
-    info "Installing B12 Website Generator MCP..."
-    local B12_DIR="$HOME/Projects/tools/website-generator-mcp-server"
-
-    if [ -d "$B12_DIR/src/server.js" ] || [ -f "$B12_DIR/src/server.js" ]; then
-        ok "B12 MCP already installed at $B12_DIR"
-    else
-        mkdir -p "$HOME/Projects/tools"
-        if git clone https://github.com/b12io/website-generator-mcp-server.git "$B12_DIR" 2>/dev/null; then
-            cd "$B12_DIR" && npm install --silent 2>/dev/null
-            # Fix: add "type": "module" for ESM imports
-            python3 -c "
-import json
-with open('package.json', 'r') as f:
-    data = json.load(f)
-if 'type' not in data:
-    data['type'] = 'module'
-    with open('package.json', 'w') as f:
-        json.dump(data, f, indent=2)
-" 2>/dev/null
-            cd - >/dev/null
-            ok "B12 MCP cloned and installed"
-        else
-            warn "B12 MCP clone failed — install manually: git clone https://github.com/b12io/website-generator-mcp-server.git ~/Projects/tools/website-generator-mcp-server"
-        fi
-    fi
-}
-
-# ============================================================
-# 7b. INSTALL WEBMCP (website→MCP bridge)
-# ============================================================
-install_webmcp() {
-    info "Installing WebMCP (website→MCP bridge)..."
-    local WEBMCP_DIR="$HOME/Projects/tools/webmcp-optimized"
-
-    if [ -d "$WEBMCP_DIR/src/websocket-server.js" ] || [ -f "$WEBMCP_DIR/src/websocket-server.js" ]; then
-        ok "WebMCP already installed at $WEBMCP_DIR"
-    else
-        mkdir -p "$HOME/Projects/tools"
-        if git clone https://github.com/arnwaldn/webmcp-optimized.git "$WEBMCP_DIR" 2>/dev/null; then
-            cd "$WEBMCP_DIR" && npm install --silent 2>/dev/null
-            cd - >/dev/null
-            ok "WebMCP cloned and installed (optimized fork)"
-        else
-            warn "WebMCP clone failed — install manually: git clone https://github.com/arnwaldn/webmcp-optimized.git ~/Projects/tools/webmcp-optimized"
-        fi
-    fi
-}
-
-# ============================================================
-# 7c. INSTALL GOOGLE WORKSPACE MCP
-# ============================================================
-install_google_workspace_mcp() {
-    info "Installing Google Workspace MCP..."
-    local GW_DIR="$HOME/Projects/tools/google_workspace_mcp"
-
-    if [ -f "$GW_DIR/main.py" ]; then
-        ok "Google Workspace MCP already installed at $GW_DIR"
-    else
-        mkdir -p "$HOME/Projects/tools"
-        if git clone https://github.com/taylorwilsdon/google_workspace_mcp.git "$GW_DIR" 2>/dev/null; then
-            cd "$GW_DIR"
-            if command -v uv &>/dev/null; then
-                uv sync 2>/dev/null || true
-            elif command -v pip3 &>/dev/null; then
-                pip3 install -r requirements.txt 2>/dev/null || true
-            fi
-            cd - >/dev/null
-            ok "Google Workspace MCP cloned (requires OAuth setup)"
-        else
-            warn "Google Workspace MCP clone failed — install manually"
-        fi
-    fi
-}
-
-# ============================================================
-# 7d. INSTALL WHATSAPP MCP
-# ============================================================
-install_whatsapp_mcp() {
-    info "Installing WhatsApp MCP..."
-    local WA_DIR="$HOME/Projects/tools/whatsapp-mcp"
-
-    if [ -f "$WA_DIR/whatsapp-mcp-server/main.py" ]; then
-        ok "WhatsApp MCP already installed at $WA_DIR"
-    else
-        mkdir -p "$HOME/Projects/tools"
-        if git clone https://github.com/lharries/whatsapp-mcp.git "$WA_DIR" 2>/dev/null; then
-            cd "$WA_DIR/whatsapp-mcp-server"
-            if command -v uv &>/dev/null; then
-                uv sync 2>/dev/null || true
-            elif command -v pip3 &>/dev/null; then
-                pip3 install -r requirements.txt 2>/dev/null || true
-            fi
-            cd - >/dev/null
-            ok "WhatsApp MCP cloned (requires WhatsApp Web auth)"
-        else
-            warn "WhatsApp MCP clone failed — install manually"
-        fi
-    fi
-}
-
-# ============================================================
-# 7d. AUTO-DETECT ATUM CO-FOUNDER
-# ============================================================
-detect_atum_user() {
-    # Priority 1: env var (set by previous install)
-    if [ -n "${ATUM_USER:-}" ]; then
-        echo "$ATUM_USER"; return
-    fi
-    # Priority 2: git email (substring match)
-    local email
-    email=$(git config --global user.email 2>/dev/null | tr '[:upper:]' '[:lower:]')
-    case "$email" in
-        *arnaud*) echo "arnaud"; return ;;
-        *pablo*)  echo "pablo"; return ;;
-        *wahid*)  echo "wahid"; return ;;
-    esac
-    # Priority 3: git name (substring match)
-    local gname
-    gname=$(git config --global user.name 2>/dev/null | tr '[:upper:]' '[:lower:]')
-    case "$gname" in
-        *arnaud*) echo "arnaud"; return ;;
-        *pablo*)  echo "pablo"; return ;;
-        *wahid*)  echo "wahid"; return ;;
-    esac
-    # Priority 4: OS username
-    local osuser
-    osuser=$(whoami 2>/dev/null | tr '[:upper:]' '[:lower:]')
-    case "$osuser" in
-        *arnau*) echo "arnaud"; return ;;
-        *pablo*) echo "pablo"; return ;;
-        *wahid*) echo "wahid"; return ;;
-    esac
-    # Not detected
-    echo ""
-}
-
-# ============================================================
-# 7e. INSTALL COLLECTIVE MEMORY (GitHub-synced shared memory)
-# ============================================================
-install_collective_memory() {
-    info "Installing Collective Memory (GitHub-synced)..."
-
-    echo ""
-    echo -e "  ${CYAN}ATUM Collective Memory Setup${NC}"
-    echo "  Shared memory via private GitHub repo (arnwaldn/atum-memory)."
-    echo "  Zero server, zero cost, real-time sync via git."
-    echo ""
-
-    local atum_user
-    atum_user=$(detect_atum_user)
-
-    if [ -n "$atum_user" ]; then
-        ok "Co-fondateur detecte : ${atum_user}"
-    else
-        echo "  Quel cofondateur utilise cette machine ?"
-        echo "    1) Arnaud"
-        echo "    2) Pablo"
-        echo "    3) Wahid"
-        echo ""
-        read -rp "  Choix [1-3]: " atum_user_choice
-        case "$atum_user_choice" in
-            1) atum_user="arnaud" ;;
-            2) atum_user="pablo" ;;
-            3) atum_user="wahid" ;;
-            *) warn "Choix invalide — arnaud par defaut"; atum_user="arnaud" ;;
-        esac
-    fi
-
-    # --- Detect shell profile ---
-    local profile
-    if [ "$OS" = "macos" ]; then
-        profile="$HOME/.zshrc"
-    else
-        profile="$HOME/.bashrc"
-    fi
-    touch "$profile"
-    local profile_name
-    profile_name="$(basename "$profile")"
-
-    _add_env() {
-        local var_name="$1" var_value="$2"
-        if ! grep -q "^export ${var_name}=" "$profile" 2>/dev/null; then
-            echo "export ${var_name}=\"${var_value}\"" >> "$profile"
-            ok "Added ${var_name} to ~/${profile_name}"
-        else
-            ok "${var_name} already in ~/${profile_name}"
-        fi
-    }
-
-    _add_env "ATUM_USER" "${atum_user}"
-
-    # --- Dashboard auto-sync env vars ---
-    info "Configuring ATUM Dashboard auto-sync..."
-    _add_env "ATUM_SUPABASE_URL" "https://yammfwqtjmrtezoijnnh.supabase.co"
-    _add_env "ATUM_SUPABASE_SERVICE_KEY" "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlhbW1md3F0am1ydGV6b2lqbm5oIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MzAyOTIxMCwiZXhwIjoyMDg4NjA1MjEwfQ.hvzflKyBZTrl5oEE5zB56Tz7occ7LrF-wKfcvjqPYPw"
-
-    # Personalize atum-projects.json with real hostname
-    local projects_file="$CLAUDE_DIR/atum-projects.json"
-    if [ -f "$projects_file" ]; then
-        local real_hostname
-        real_hostname="${atum_user}-pc"
-        python3 -c "
-import json, sys
-with open(sys.argv[1]) as f:
-    data = json.load(f)
-data['machine'] = sys.argv[2]
-with open(sys.argv[1], 'w') as f:
-    json.dump(data, f, indent=2, ensure_ascii=False)
-    f.write('\n')
-" "$projects_file" "$real_hostname" 2>/dev/null || true
-        ok "atum-projects.json: machine set to ${real_hostname}"
-    fi
-
-    echo ""
-    echo -e "  ${GREEN}ATUM Dashboard credentials:${NC}"
-    case "${atum_user}" in
-        arnaud) echo "    Login: arnaud.porcel@gmail.com / AtumDash2026!" ;;
-        pablo)  echo "    Login: pablo@atum-sas.fr / AtumDash2026!" ;;
-        wahid)  echo "    Login: wahid@atum-sas.fr / AtumDash2026!" ;;
-    esac
-    echo "    URL:   https://atum-dashboard.netlify.app"
-    echo ""
-
-    # --- Clone collective-memory repo ---
-    local MEMORY_DIR="$HOME/.claude/collective-memory"
-    if [ -d "$MEMORY_DIR/.git" ]; then
-        ok "Collective memory repo already cloned at $MEMORY_DIR"
-        cd "$MEMORY_DIR" && git pull --ff-only 2>/dev/null && cd - >/dev/null || true
-    else
-        info "Cloning collective memory repo..."
-        if git clone https://github.com/arnwaldn/atum-memory.git "$MEMORY_DIR" 2>/dev/null; then
-            ok "Collective memory repo cloned to $MEMORY_DIR"
-        else
-            warn "Clone failed — ensure you have access to arnwaldn/atum-memory"
-            warn "Ask Arnaud to add you as collaborator, then run:"
-            warn "  git clone https://github.com/arnwaldn/atum-memory.git ~/.claude/collective-memory"
-        fi
-    fi
-
-    # --- Configure git user for auto-commits ---
-    if [ -d "$MEMORY_DIR/.git" ]; then
-        cd "$MEMORY_DIR"
-        git config user.name "${atum_user}" 2>/dev/null || true
-        git config user.email "${atum_user}@atum.fr" 2>/dev/null || true
-        cd - >/dev/null
-        ok "Git user configured for collective-memory"
-    fi
-
-    # --- Start PM2 sync process ---
-    if command -v pm2 &>/dev/null; then
-        if pm2 list 2>/dev/null | grep -q "atum-memory-sync"; then
-            ok "PM2 sync process already running"
-        else
-            local SYNC_SCRIPT="$HOME/.claude/scripts/collective-memory-sync.js"
-            if [ -f "$SYNC_SCRIPT" ]; then
-                pm2 start "$SYNC_SCRIPT" --name atum-memory-sync 2>/dev/null
-                pm2 save 2>/dev/null || true
-                ok "PM2 sync started (pull/push every 30s)"
-            else
-                warn "Sync script not found at $SYNC_SCRIPT"
-            fi
-        fi
-
-        # --- Auto-start PM2 on boot ---
-        if [ "$OS" = "windows" ]; then
-            if MSYS_NO_PATHCONV=1 schtasks /query /tn "PM2-Resurrect" &>/dev/null; then
-                ok "PM2 auto-start already configured (schtasks)"
-            else
-                if MSYS_NO_PATHCONV=1 schtasks /create /tn "PM2-Resurrect" /tr "cmd /c pm2 resurrect" /sc onlogon /rl limited /f &>/dev/null; then
-                    ok "PM2 auto-start configured (schtasks: PM2-Resurrect)"
-                else
-                    warn "Could not create scheduled task — run as admin or create manually"
-                    warn "schtasks /create /tn PM2-Resurrect /tr \"cmd /c pm2 resurrect\" /sc onlogon /rl limited /f"
-                fi
-            fi
-        elif [ "$OS" = "macos" ]; then
-            local PLIST_DIR="$HOME/Library/LaunchAgents"
-            local PLIST_FILE="$PLIST_DIR/com.atum.pm2-resurrect.plist"
-            if [ -f "$PLIST_FILE" ]; then
-                ok "PM2 auto-start already configured (launchd)"
-            else
-                mkdir -p "$PLIST_DIR"
-                cat > "$PLIST_FILE" << 'PLIST'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-    <string>com.atum.pm2-resurrect</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/bin/bash</string>
-        <string>-lc</string>
-        <string>pm2 resurrect</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>StandardOutPath</key>
-    <string>/tmp/pm2-resurrect.log</string>
-    <key>StandardErrorPath</key>
-    <string>/tmp/pm2-resurrect.log</string>
-</dict>
-</plist>
-PLIST
-                launchctl load "$PLIST_FILE" 2>/dev/null || true
-                ok "PM2 auto-start configured (launchd: com.atum.pm2-resurrect)"
-            fi
-        fi
-    else
-        warn "PM2 not installed — install with: npm install -g pm2"
-        warn "Then start sync: pm2 start ~/.claude/scripts/collective-memory-sync.js --name atum-memory-sync"
-    fi
-
-    ok "Collective memory configured for ${atum_user}"
-    echo ""
-}
-
-# ============================================================
-# 8. INSTALL TOOLS (gsudo, acpx)
-# ============================================================
-install_tools() {
-    info "Installing autonomy tools..."
-
-    # --- bin wrappers (Windows only — contain /c/ paths) ---
-    if [ "$OS" = "windows" ] && [ -d "$SCRIPT_DIR/bin" ]; then
-        mkdir -p "$HOME/bin"
-        cp "$SCRIPT_DIR/bin/"* "$HOME/bin/" 2>/dev/null || true
-        chmod +x "$HOME/bin/"* 2>/dev/null || true
-        local bcount=$(ls -1 "$SCRIPT_DIR/bin" 2>/dev/null | wc -l | tr -d ' ')
-        ok "bin/ wrappers ($bcount files) copied to ~/bin/"
-    elif [ "$OS" != "windows" ]; then
-        info "bin/ wrappers skipped (Windows-specific paths)"
-    fi
-
-    # --- gsudo (Windows only) ---
-    if [ "$OS" = "windows" ]; then
-        if command -v gsudo &>/dev/null || [ -f "/c/Program Files/gsudo/2.6.1/gsudo.exe" ]; then
-            ok "gsudo already installed"
-        else
-            info "Installing gsudo (Windows sudo equivalent)..."
-            if command -v winget &>/dev/null; then
-                winget install gerardog.gsudo --accept-package-agreements --accept-source-agreements 2>/dev/null
-                if [ -f "/c/Program Files/gsudo/2.6.1/gsudo.exe" ]; then
-                    ok "gsudo installed"
-                    # Create wrapper if not already in bin/
-                    if [ ! -f "$HOME/bin/gsudo" ]; then
-                        echo '#!/bin/bash' > "$HOME/bin/gsudo"
-                        echo '"/c/Program Files/gsudo/2.6.1/gsudo.exe" "$@"' >> "$HOME/bin/gsudo"
-                        chmod +x "$HOME/bin/gsudo"
-                    fi
-                    # Configure cache
-                    "$HOME/bin/gsudo" config CacheMode Auto 2>/dev/null || true
-                    "$HOME/bin/gsudo" config CacheDuration "01:00:00" 2>/dev/null || true
-                    ok "gsudo cache configured (Auto, 1h)"
-                else
-                    warn "gsudo install failed — install manually: winget install gerardog.gsudo"
-                fi
-            else
-                warn "winget not available — install gsudo manually"
-            fi
-        fi
-    else
-        info "gsudo: skipped (Windows only)"
-    fi
-
-    # --- acpx ---
-    if command -v acpx &>/dev/null; then
-        ok "acpx already installed"
-    else
-        info "Installing acpx (headless ACP CLI)..."
-        npm install -g acpx@latest 2>/dev/null
-        if command -v acpx &>/dev/null; then
-            ok "acpx installed"
-        else
-            warn "acpx install failed — install manually: npm install -g acpx@latest"
-        fi
-    fi
-
-    # --- acpx config ---
-    if [ -d "$SCRIPT_DIR/acpx" ]; then
-        mkdir -p "$HOME/.acpx"
-        if [ ! -f "$HOME/.acpx/config.json" ]; then
-            cp "$SCRIPT_DIR/acpx/config.json" "$HOME/.acpx/config.json"
-            ok "acpx config installed"
-        else
-            ok "acpx config already exists — skipping"
-        fi
-    fi
-}
-
-# ============================================================
-# 8b. INSTALL PROJECT TEMPLATES
-# ============================================================
-install_templates() {
-    info "Installing project templates..."
-    local TEMPLATES_DIR="$HOME/Projects/tools/project-templates"
-
-    if [ -d "$TEMPLATES_DIR/.git" ]; then
-        # Already cloned — pull latest
-        cd "$TEMPLATES_DIR" && git pull --ff-only 2>/dev/null && cd - >/dev/null
-        ok "Project templates updated at $TEMPLATES_DIR"
-    else
-        mkdir -p "$HOME/Projects/tools"
-        if git clone https://github.com/arnwaldn/project-templates.git "$TEMPLATES_DIR" 2>/dev/null; then
-            ok "Project templates cloned ($(find "$TEMPLATES_DIR" -maxdepth 2 -type d | wc -l | tr -d ' ') dirs)"
-        else
-            warn "Clone failed — install manually: git clone https://github.com/arnwaldn/project-templates.git ~/Projects/tools/project-templates"
-        fi
-    fi
-}
-
-# ============================================================
-# 8c. INSTALL PLUGINS (from plugins.txt)
-# ============================================================
-install_plugins() {
-    info "Installing Claude Code plugins..."
-
-    if ! command -v claude &>/dev/null; then
-        warn "Claude Code CLI not found — skipping plugin install"
-        warn "After installing CLI, run: bash install.sh --plugins-only"
-        return
-    fi
-
-    local PLUGINS_FILE="$SCRIPT_DIR/plugins.txt"
-    if [ ! -f "$PLUGINS_FILE" ]; then
-        warn "plugins.txt not found — skipping"
-        return
-    fi
-
-    # Add community marketplace (idempotent)
-    info "Adding community marketplace..."
-    claude plugin marketplace add everything-claude-code https://github.com/affaan-m/everything-claude-code.git 2>/dev/null || true
-    ok "Marketplace: everything-claude-code"
-
-    # Parse and install each plugin
-    local installed=0
-    local failed=0
-    local skipped=0
-    local total=0
-
-    while IFS= read -r line; do
-        # Skip empty lines and comments
-        [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
-
-        # Parse format: "plugin_id (status)" or "claude plugin install plugin_id"
-        if [[ "$line" =~ ^([^[:space:]]+)[[:space:]]+\(disabled\) ]]; then
-            skipped=$((skipped + 1))
-            continue
-        elif [[ "$line" =~ ^([^[:space:]]+)[[:space:]]+\(enabled\) ]]; then
-            local plugin_id="${BASH_REMATCH[1]}"
-            total=$((total + 1))
-            if claude plugin install "$plugin_id" 2>/dev/null; then
-                installed=$((installed + 1))
-            else
-                failed=$((failed + 1))
-            fi
-        elif [[ "$line" =~ ^claude[[:space:]]+plugin[[:space:]]+install[[:space:]]+(.*) ]]; then
-            # Legacy format: "claude plugin install plugin_id"
-            local plugin="${BASH_REMATCH[1]}"
-            total=$((total + 1))
-            if $line 2>/dev/null; then
-                installed=$((installed + 1))
-            else
-                failed=$((failed + 1))
-            fi
-        fi
-    done < "$PLUGINS_FILE"
-
-    if [ $total -gt 0 ]; then
-        ok "Plugins: $installed/$total installed ($skipped disabled, $failed failed)"
-    else
-        warn "No plugins found in plugins.txt"
-    fi
-}
-
-# ============================================================
-# 9. SETUP MEMORY
-# ============================================================
-setup_memory() {
-    if [ -d "$SCRIPT_DIR/projects" ]; then
-        mkdir -p "$CLAUDE_DIR/projects"
-        cp -r "$SCRIPT_DIR/projects/"* "$CLAUDE_DIR/projects/" 2>/dev/null || true
-        ok "Memory templates copied"
-    fi
-}
-
-# ============================================================
-# 10. GIT CONFIG (if not set)
-# ============================================================
-setup_git() {
-    local name=$(git config --global user.name 2>/dev/null || true)
-    local email=$(git config --global user.email 2>/dev/null || true)
-
-    if [ -z "$name" ]; then
-        read -rp "  Git user.name: " name
-        git config --global user.name "$name"
-    fi
-    if [ -z "$email" ]; then
-        read -rp "  Git user.email: " email
-        git config --global user.email "$email"
-    fi
-    git config --global init.defaultBranch main 2>/dev/null || true
-    ok "Git: $name <$email>"
-}
-
-# ============================================================
-# 11. VERIFY
+# 8. VERIFY
 # ============================================================
 verify() {
     echo ""
     info "Verification..."
-    local total=0
 
-    for dir in hooks commands agents modes rules scripts; do
-        if [ -d "$CLAUDE_DIR/$dir" ]; then
-            local n=$(find "$CLAUDE_DIR/$dir" -maxdepth 1 -type f | wc -l | tr -d ' ')
-            total=$((total + n))
-            ok "$dir: $n files"
-        fi
-    done
+    # Verify hooks
+    local hook_count=$(ls -1 "$CLAUDE_DIR/hooks/"*.py 2>/dev/null | wc -l | tr -d ' ')
+    ok "hooks: $hook_count Python hooks (fail-closed)"
 
-    # Skills
-    if [ -d "$CLAUDE_DIR/skills" ]; then
-        local sn=$(find "$CLAUDE_DIR/skills" -maxdepth 2 -name "SKILL.md" | wc -l | tr -d ' ')
-        total=$((total + sn))
-        ok "skills: $sn installed"
+    # Verify plugins
+    local plugin_count=$(ls -d "$CLAUDE_DIR/plugins/atum-"*/ 2>/dev/null | wc -l | tr -d ' ')
+    ok "plugins: $plugin_count plugin directories"
+
+    # Verify agents
+    local agent_count=$(find "$CLAUDE_DIR/plugins" -path "*/agents/*.md" 2>/dev/null | wc -l | tr -d ' ')
+    ok "agents: $agent_count across plugins"
+
+    # Verify skills
+    local skill_count=$(find "$CLAUDE_DIR/plugins" -name "SKILL.md" 2>/dev/null | wc -l | tr -d ' ')
+    ok "skills: $skill_count across plugins"
+
+    # Verify commands
+    local cmd_count=$(find "$CLAUDE_DIR/plugins" -path "*/commands/*.md" 2>/dev/null | wc -l | tr -d ' ')
+    ok "commands: $cmd_count across plugins"
+
+    # Verify JSON
+    if python3 -c "import json; json.load(open('$CLAUDE_DIR/settings.json'))" 2>/dev/null; then
+        ok "settings.json: valid JSON"
     fi
-
-    # Bin wrappers
-    if [ -d "$HOME/bin" ]; then
-        local bcount=$(ls -1 "$HOME/bin" 2>/dev/null | wc -l | tr -d ' ')
-        ok "~/bin: $bcount wrappers"
-    fi
-
-    # acpx config
-    if [ -f "$HOME/.acpx/config.json" ]; then
-        ok "acpx config: present"
-    fi
-
-    # Validate JSON
-    for f in "$CLAUDE_DIR/settings.json" "$CLAUDE_DIR/settings.local.json"; do
-        if [ -f "$f" ] && python3 -c "import json; json.load(open('$f'))" 2>/dev/null; then
-            ok "$(basename "$f"): valid JSON"
-        fi
-    done
-    if [ -f "$CLAUDE_JSON" ] && python3 -c "import json; json.load(open('$CLAUDE_JSON'))" 2>/dev/null; then
-        ok ".claude.json: valid JSON"
+    if python3 -c "import json; json.load(open('$CLAUDE_DIR/plugins/marketplace.json'))" 2>/dev/null; then
+        ok "marketplace.json: valid JSON"
     fi
 
     echo ""
-    echo -e "${GREEN}${BOLD}  $total files installed successfully${NC}"
+    echo -e "${GREEN}${BOLD}  v4 plugin architecture installed successfully${NC}"
 }
 
 # ============================================================
-# 12. POST-INSTALL SUMMARY
+# 9. SUMMARY
 # ============================================================
 summary() {
     echo ""
@@ -936,19 +317,13 @@ summary() {
     echo ""
     echo "  Next steps:"
     echo "  1. Restart Claude Code"
-    echo "  2. Set env vars if not done (see output above)"
-    echo "  3. Configure remote MCP servers in claude.ai settings:"
-    echo "     Figma, Notion, Supabase, Vercel, Canva, Stripe, etc."
-    echo "  4. If plugins failed, re-run: bash install.sh --plugins-only"
-    echo "  5. For ATUM Dashboard: create API key at atum-dashboard.netlify.app/settings"
+    echo "  2. Set env vars (GITHUB_PERSONAL_ACCESS_TOKEN, ATUM_USER)"
+    echo "  3. Install plugins as needed for your project"
     echo ""
-    echo "  Config locations:"
-    echo "    ~/.claude/              hooks, commands, agents, modes, rules, skills, data, schedules"
-    echo "    ~/.claude.json          MCP server configs"
-    echo "    ~/.claude/settings.json main config (SOURCE OF TRUTH)"
-    echo "    ~/.acpx/config.json     acpx headless sessions"
-    echo "    ~/bin/                   tool wrappers (Windows only)"
-    echo "    ~/Projects/tools/       local MCP servers (B12, WebMCP, Google Workspace, WhatsApp)"
+    echo "  Config:"
+    echo "    ~/.claude/settings.json       Minimal config (4 hooks, statusline)"
+    echo "    ~/.claude/plugins/            13 ATUM plugins"
+    echo "    ~/.claude/plugins/marketplace.json  Plugin registry"
     echo ""
 }
 
@@ -957,17 +332,9 @@ summary() {
 # ============================================================
 main() {
     echo ""
-    echo -e "${BOLD}${CYAN}  Claude Code Config Installer${NC}"
-    echo -e "  ${CYAN}==============================${NC}"
+    echo -e "${BOLD}${CYAN}  Claude Code Config v4 Installer${NC}"
+    echo -e "  ${CYAN}==================================${NC}"
     echo ""
-
-    # Support --plugins-only flag for re-running plugin install
-    if [ "${1:-}" = "--plugins-only" ]; then
-        detect_os
-        install_plugins
-        echo -e "\n${GREEN}${BOLD}  Plugin install complete.${NC}\n"
-        return
-    fi
 
     detect_os
     check_prereqs
@@ -976,16 +343,6 @@ main() {
     copy_files
     install_settings
     configure_mcp
-    install_b12_mcp
-    install_webmcp
-    install_google_workspace_mcp
-    install_whatsapp_mcp
-    install_collective_memory
-    install_tools
-    install_templates
-    install_plugins
-    setup_memory
-    setup_git
     verify
     summary
 }
