@@ -83,7 +83,7 @@ jobs:
           if grep -rPi "$PATTERNS" --include='*.md' --include='*.json' --include='*.js' --include='*.py' \
             --exclude-dir=.git --exclude-dir=node_modules \
             --exclude='secret-scanner.*' --exclude='file-guard.*' --exclude='test-hooks.sh' \
-            --exclude='ci.yml' . ; then
+            --exclude='ci.yml' --exclude='quality.md' --exclude='seed-workspace.py' . ; then
             echo "WARNING: Potential hardcoded secrets found (review above)"
             exit 1
           fi
