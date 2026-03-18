@@ -1,5 +1,9 @@
 # ATUM SYSTEM
 
+[![CI](https://github.com/arnwaldn/atum-system/actions/workflows/ci.yml/badge.svg)](https://github.com/arnwaldn/atum-system/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/arnwaldn/atum-system/releases/tag/v1.0.0)
+
 Complete Claude Code environment with full autonomy — hooks, commands, agents, skills, modes, rules, MCP servers, permissions, scheduler, and tooling.
 
 ## Install as Plugin (Recommended)
