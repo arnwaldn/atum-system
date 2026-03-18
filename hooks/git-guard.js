@@ -21,6 +21,10 @@ const DANGEROUS_PATTERNS = [
   [/DROP\s+TABLE/i, "drop table"],
   [/TRUNCATE\s+TABLE/i, "truncate table"],
   [/DELETE\s+FROM\s+\w+\s*;?\s*$/i, "delete all rows (no WHERE)"],
+  [/git\s+reset\s+--hard\b/, "git reset --hard (destroys uncommitted changes)"],
+  [/docker\s+system\s+prune\b/, "docker system prune (removes all unused data)"],
+  [/docker\s+rm\s+-[a-zA-Z]*f.*\$\(docker\s+ps/, "remove all docker containers"],
+  [/pip\s+install\s+--force-reinstall\s+(?!.*==)/, "force reinstall without pinned version"],
 ];
 
 const VALID_COMMIT_TYPES = ["feat", "fix", "refactor", "docs", "test", "chore", "perf", "ci", "style", "build", "revert"];
