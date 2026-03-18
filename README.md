@@ -9,7 +9,7 @@ Complete Claude Code environment with full autonomy — hooks, commands, agents,
 /plugin marketplace add arnwaldn/atum-system
 
 # Install the plugin
-/plugin install atum-system@Arnwald84-atum-system
+/plugin install atum-system@arnwaldn-atum-system
 
 # Reload
 /reload-plugins
@@ -32,7 +32,7 @@ bash install.sh
 | Feature | Plugin | Full Install |
 |---------|--------|-------------|
 | 40 agents | Yes | Yes |
-| 46 skills | Yes | Yes |
+| 45 skills | Yes | Yes |
 | 31 commands | Yes | Yes |
 | 31 hooks | Yes | Yes |
 | 4 modes | Yes | Yes |
@@ -51,7 +51,7 @@ bash install.sh
 | Hooks | 31 | File guard, anti-rationalization, secret scanner, git guard, loop detector, session-to-graph, graph-queue-loader, dashboard sync, etc. |
 | Commands | 31 | `/scaffold`, `/security-audit`, `/tdd`, `/deploy`, `/happy`, `/whatsapp`, `/schedule`, `/dashboard-atum`, `/projet`, `/compliance`, `/atum-audit`, etc. |
 | Agents | 40 | 10 Opus (security, compliance, architecture, migration) + 26 Sonnet (dev, DevOps, ML, game) + 2 Haiku (search, docs) |
-| Skills | 46 | PDF, DOCX, DDD, RAG, Mermaid, scheduler, compliance-routing, fresh-execute, autonomous-routing (108 NLP triggers), etc. |
+| Skills | 45 | PDF, DOCX, DDD, RAG, Mermaid, scheduler, compliance-routing, fresh-execute, autonomous-routing (108 NLP triggers), etc. |
 | Modes | 4 | architect, autonomous, brainstorm, quality |
 | Rules | 27 | Coding style, security, testing, decision principle, autonomous-workflow (33 auto-detect blocks), anti-hallucination, pedagogie |
 | MCP Servers | 20+ | Memory, Context7, Magic, Desktop Commander, SkillSync + GitHub, Google Workspace, WhatsApp, ATUM Audit, etc. |
