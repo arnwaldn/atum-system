@@ -75,6 +75,18 @@ jobs:
       - name: Run hook benchmarks
         run: bash scripts/benchmark-hooks.sh hooks/
 
+      # Validate skills (frontmatter, required fields, references)
+      - name: Validate skills
+        run: python3 scripts/validate-skills.py --check
+
+      # Validate agents (model field, frontmatter)
+      - name: Validate agents
+        run: python3 scripts/validate-agents.py --check
+
+      # Validate markdown syntax (code blocks, tables, BOM)
+      - name: Validate markdown
+        run: python3 scripts/validate-markdown.py
+
       # Check for hardcoded secrets
       - name: Check for hardcoded secrets
         run: |

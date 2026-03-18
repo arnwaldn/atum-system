@@ -1,3 +1,17 @@
+---
+name: autonomous-routing
+description: |
+  NLP routing table mapping 108 FR+EN triggers to skills and agents.
+  Use when detecting user intent to auto-invoke the right workflow.
+version: "1.0.0"
+metadata:
+  domain: workflow
+  triggers: routing, detection, auto-invoke, NLP, intent
+  role: orchestrator
+  scope: internal
+  output-format: routing-table
+  related-skills: common-ground, compliance-routing
+---
 
 ### Regulatory Compliance & EU AI Act
 - "audit RGPD", "conformite RGPD", "verifier la conformite", "compliance audit", "audit de conformite" -> /compliance skill + compliance-expert agent
