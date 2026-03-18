@@ -1,7 +1,15 @@
 ---
 name: compliance-routing
 description: Regulatory compliance detection and routing. Use when code touches authentication, payments, user data, cookies, health data, children content, AI deployment, or e-commerce.
+version: "1.0.0"
 user-invocable: false
+metadata:
+  domain: compliance
+  triggers: RGPD, GDPR, PCI-DSS, HIPAA, cookies, privacy, user data, authentication, payments, e-commerce, health data, AI compliance
+  role: specialist
+  scope: review
+  output-format: report
+  related-skills: open-source-license-compliance, supply-chain-risk-auditor
 ---
 
 # Regulatory Compliance Routing
@@ -23,7 +31,7 @@ Invoke **compliance-expert** agent (Opus) when detecting ANY of these signals :
 | EU market targeting | EAA (accessibility), NIS2, DSA/DMA | /compliance accessibility + /compliance sbom |
 | Infrastructure, SaaS platform | SOC 2, ISO 27001, NIS2 | /compliance sector:saas |
 
-## AI/ML Deployment — EU AI Act Workflow (OBLIGATOIRE)
+## AI/ML Deployment ï¿½ EU AI Act Workflow (OBLIGATOIRE)
 
 Quand un projet deploie un systeme IA (LLM, ML, computer vision, recommendation), executer ce workflow :
 

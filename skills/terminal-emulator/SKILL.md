@@ -1,7 +1,15 @@
 ---
 name: terminal-emulator
 description: Test interactive CLI/TUI applications using @microsoft/tui-test. Use when you need to test CLI tools with interactive prompts, TUI rendering, arrow key navigation, or any command that requires a TTY. Triggers include "test CLI", "test TUI", "run interactively", "automate terminal input", "simulate user input in terminal".
+version: "1.0.0"
 allowed-tools: Bash(npx tui-test:*), Bash(node:*)
+metadata:
+  domain: tooling
+  triggers: test CLI, test TUI, interactive terminal, simulate input, tui-test, terminal automation, PTY
+  role: specialist
+  scope: testing
+  output-format: code
+  related-skills: agent-browser
 ---
 
 # Testing Interactive CLI / TUI with @microsoft/tui-test

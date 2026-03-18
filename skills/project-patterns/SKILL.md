@@ -1,7 +1,15 @@
 ---
 name: project-patterns
 description: Common project patterns including skeleton projects, B12 website generation, template index, repository pattern, and API response format.
+version: "1.0.0"
 user-invocable: false
+metadata:
+  domain: workflow
+  triggers: skeleton project, B12 website, template, repository pattern, API response, project scaffold
+  role: specialist
+  scope: implementation
+  output-format: code
+  related-skills: system-design, clean-architecture
 ---
 
 # Common Patterns

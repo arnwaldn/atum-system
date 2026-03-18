@@ -2,6 +2,13 @@
 name: domain-driven-design
 description: 'Model software around the business domain using bounded contexts, aggregates, and ubiquitous language. Use when the user mentions "domain modeling", "bounded context", "aggregate root", "ubiquitous language", or "anti-corruption layer". Covers entities vs value objects, domain events, and context mapping strategies.'
 version: "1.1.0"
+metadata:
+  domain: architecture
+  triggers: domain modeling, bounded context, aggregate root, ubiquitous language, anti-corruption layer, entities, value objects, domain events
+  role: architect
+  scope: architecture
+  output-format: architecture
+  related-skills: clean-architecture, system-design
 ---
 
 # Domain-Driven Design Framework

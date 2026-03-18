@@ -2,6 +2,13 @@
 name: ddia-systems
 description: 'Design data systems by understanding storage engines, replication, partitioning, transactions, and consistency models. Use when the user mentions "database choice", "replication lag", "partitioning strategy", "consistency vs availability", or "stream processing". Covers data models, batch/stream processing, and distributed consensus.'
 version: "1.0.0"
+metadata:
+  domain: architecture
+  triggers: data systems, replication, partitioning, consistency, availability, stream processing, storage engines, distributed consensus, database choice
+  role: architect
+  scope: system-design
+  output-format: architecture
+  related-skills: system-design, clean-architecture
 ---
 
 # Designing Data-Intensive Applications Framework

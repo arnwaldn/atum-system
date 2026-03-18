@@ -1,7 +1,15 @@
 ---
 name: image-guard-rules
 description: Image dimension management rules to prevent workflow blocking. Applies to ALL image sources — browser screenshots, ADB captures, Figma/Canva, user-pasted images.
+version: "1.0.0"
 user-invocable: false
+metadata:
+  domain: tooling
+  triggers: image dimensions, screenshot resize, image too large, 2000px limit, image processing, workflow blocking
+  role: specialist
+  scope: infrastructure
+  output-format: code
+  related-skills: agent-browser
 ---
 
 # Image Dimension Management (Prevents Workflow Blocking)

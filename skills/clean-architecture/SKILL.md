@@ -2,6 +2,13 @@
 name: clean-architecture
 description: 'Structure software around the Dependency Rule: source code dependencies point inward from frameworks to use cases to entities. Use when the user mentions "architecture layers", "dependency rule", "ports and adapters", "hexagonal architecture", or "use case boundary". Covers component principles, boundaries, and SOLID.'
 version: "1.1.0"
+metadata:
+  domain: architecture
+  triggers: clean architecture, dependency rule, ports and adapters, hexagonal architecture, use case boundary, SOLID, onion architecture
+  role: architect
+  scope: architecture
+  output-format: architecture
+  related-skills: domain-driven-design, system-design
 ---
 
 # Clean Architecture Framework

@@ -4,6 +4,12 @@ description: 'Audit and fix visual hierarchy, spacing, color, and depth in web U
 license: MIT
 metadata:
   author: wondelai
+  domain: frontend
+  triggers: UI looks off, fix the design, Tailwind styling, color palette, visual hierarchy, spacing, shadows, grayscale-first
+  role: specialist
+  scope: review
+  output-format: code
+  related-skills: claude-a11y-skill, high-perf-browser
   version: "1.1.1"
 ---
 

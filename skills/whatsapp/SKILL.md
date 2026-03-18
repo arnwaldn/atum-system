@@ -1,6 +1,14 @@
 ---
 name: whatsapp
 description: Cloclo WhatsApp — veille et reponse automatique via WhatsApp MCP. Use when interacting with WhatsApp messages or when user asks to check/respond on WhatsApp.
+version: "1.0.0"
+metadata:
+  domain: business
+  triggers: WhatsApp, check WhatsApp, respond WhatsApp, Cloclo, verifie WhatsApp, messages WhatsApp
+  role: specialist
+  scope: implementation
+  output-format: code
+  related-skills: memoire, agence-atum
 ---
 
 # Cloclo WhatsApp — veille et reponse automatique via WhatsApp MCP

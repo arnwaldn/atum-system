@@ -4,6 +4,12 @@ description: 'Talk to customers without leading them using Mom Test rules: discu
 license: MIT
 metadata:
   author: wondelai
+  domain: specialized
+  triggers: customer interviews, validate my idea, leading questions, Mom Test, customer conversations, user research, idea validation
+  role: specialist
+  scope: analysis
+  output-format: report
+  related-skills: jobs-to-be-done, prompt-architect
   version: "1.0.0"
 ---
 

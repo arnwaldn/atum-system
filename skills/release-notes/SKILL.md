@@ -1,7 +1,15 @@
 ---
 name: release-notes
 description: Generate release notes from git commits since the last tag or a given ref. Use when the user asks to generate release notes, changelog, or summarize recent changes for a release.
+version: "1.0.0"
 disable-model-invocation: true
+metadata:
+  domain: workflow
+  triggers: release notes, changelog, summarize changes, version release, what changed
+  role: specialist
+  scope: implementation
+  output-format: document
+  related-skills: project-patterns
 ---
 
 ## Current State

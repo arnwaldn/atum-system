@@ -2,6 +2,13 @@
 name: xlsx
 description: "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or .tsv file; create a new spreadsheet from scratch or from other data sources; or convert between tabular file formats. Trigger especially when the user references a spreadsheet file by name or path. Also trigger for cleaning or restructuring messy tabular data files into proper spreadsheets."
 version: "1.0.0"
+metadata:
+  domain: document
+  triggers: spreadsheet, .xlsx, .csv, Excel, tabular data, pivot table, formula, workbook
+  role: specialist
+  scope: implementation
+  output-format: code
+  related-skills: docx, pdf, pptx
 ---
 
 # XLSX creation, editing, and analysis
