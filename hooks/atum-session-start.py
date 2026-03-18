@@ -14,7 +14,20 @@ import os
 import sys
 
 
+def check_hook_integrity():
+    """Verify critical safety hooks are accessible."""
+    hooks_dir = os.path.join(os.path.expanduser("~"), ".claude", "hooks")
+    critical = ["file-guard.js", "secret-scanner.js", "git-guard.js",
+                "anti-rationalization.js", "pre-completion-gate.js"]
+    missing = [h for h in critical if not os.path.isfile(os.path.join(hooks_dir, h))]
+    if missing:
+        print(f"CRITICAL: Missing safety hooks: {', '.join(missing)}", file=sys.stderr)
+        print(f"ATUM safety compromised. Run install.sh to repair.", file=sys.stderr)
+
+
 def main():
+    check_hook_integrity()
+
     # Add ATUM library to path
     lib_dir = os.environ.get("ATUM_PROJECT_DIR", "")
     if lib_dir and lib_dir not in sys.path:

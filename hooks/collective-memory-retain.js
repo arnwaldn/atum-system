@@ -1056,8 +1056,8 @@ function main() {
   var commitMsg = "session " + ATUM_USER + " " + dateStr + " " + result.category;
   gitSync(commitMsg);
 
-  // Clear stats file (was done by session-memory.js)
-  try { fs.unlinkSync(STATS_FILE); } catch { /* ok */ }
+  // STATS_FILE preserved for downstream Stop hooks (session-to-graph, session-cleanup)
+  // Cleanup moved to session-cleanup.js (last Stop hook in chain)
 }
 
 /**

@@ -108,7 +108,7 @@ backup_existing() {
         local ts=$(date +%Y%m%d-%H%M%S)
         local backup="$CLAUDE_DIR/.backup-$ts"
         mkdir -p "$backup"
-        for item in hooks commands agents modes rules scripts skills settings.json settings.local.json; do
+        for item in hooks commands agents modes rules scripts skills settings.json settings.local.json data schedules atum-projects.json atum-audit.config.json; do
             [ -e "$CLAUDE_DIR/$item" ] && cp -r "$CLAUDE_DIR/$item" "$backup/" 2>/dev/null || true
         done
         ok "Backed up existing config to $backup/"
@@ -218,6 +218,14 @@ with open(sys.argv[1], 'w', encoding='utf-8') as f:
 count = content.count('\$HOME_PLACEHOLDER')
 print(f'  Replaced {count} path placeholders with {sys.argv[2]}')
 " "$CLAUDE_DIR/settings.json" "$home_path"
+
+        # Verify replacement succeeded
+        if grep -q '\$HOME_PLACEHOLDER' "$CLAUDE_DIR/settings.json" 2>/dev/null; then
+            err "settings.json still contains \$HOME_PLACEHOLDER — path replacement failed"
+            err "Check that python3 is working and retry: bash install.sh"
+            exit 1
+        fi
+        ok "All path placeholders replaced successfully"
 
         ok "settings.json (paths adapted to this machine)"
     fi
@@ -566,7 +574,7 @@ install_collective_memory() {
     # --- Dashboard auto-sync env vars ---
     info "Configuring ATUM Dashboard auto-sync..."
     _add_env "ATUM_SUPABASE_URL" "https://yammfwqtjmrtezoijnnh.supabase.co"
-    _add_env "ATUM_SUPABASE_SERVICE_KEY" "REDACTED_SUPABASE_SERVICE_KEY"
+    _add_env "ATUM_SUPABASE_SERVICE_KEY" "${ATUM_SUPABASE_SERVICE_KEY:-REPLACE_WITH_YOUR_SERVICE_KEY}"
 
     # Personalize atum-projects.json with real hostname
     local projects_file="$CLAUDE_DIR/atum-projects.json"
