@@ -1,0 +1,40 @@
+{
+  "periode": "2026-Q1",
+  "statut": "en_cours",
+  "revenus_reels": {
+    "tourflow": 0,
+    "tradingbrain": 0,
+    "quick_summarize": 0,
+    "api_horodatage": 0,
+    "agence_dev": 0,
+    "autres_saas": 0
+  },
+  "charges_reelles": {
+    "salaires_charges": 0,
+    "marketing_acquisition": 0,
+    "infrastructure_cloud_api": 0,
+    "sous_traitance": 0,
+    "frais_generaux": 0
+  },
+  "tresorerie": {
+    "debut": 1000,
+    "fin": 0
+  },
+  "kpis": {
+    "mrr": 0,
+    "clients_tourflow": 0,
+    "clients_tradingbrain": 0,
+    "clients_quick_summarize": 0,
+    "churn_moyen_pct": 0,
+    "cac_moyen": 0,
+    "ltv_moyen": 0
+  },
+  "variance_vs_budget": {
+    "ca_variance": 0,
+    "charges_variance": 0,
+    "commentaire": ""
+  },
+  "evenements_cles": [],
+  "notes": "Premier trimestre — societe en cours d'immatriculation",
+  "updated_at": "2026-03-02"
+}

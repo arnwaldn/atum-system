@@ -1,0 +1,41 @@
+{
+  "actions_total": 1000,
+  "valeur_nominale": 1,
+  "capital_actuel": 1000,
+  "inalienabilite_fin": "2028-12-31",
+  "associes": [
+    {
+      "nom": "Arnaud Porcel",
+      "actions": 400,
+      "pct": 40,
+      "montant_libere": 400,
+      "fonction": "President (CEO/CTO)",
+      "pouvoirs": "Pouvoirs les plus etendus, engage la societe par sa seule signature",
+      "voix_preponderante": true,
+      "email": "arnaud.porcel@gmail.com"
+    },
+    {
+      "nom": "Pablo Macia",
+      "actions": 300,
+      "pct": 30,
+      "montant_libere": 300,
+      "fonction": "Directeur General (CFO/COO/CMO)",
+      "pouvoirs": "Memes pouvoirs que President vis-a-vis tiers, delegation interne",
+      "voix_preponderante": false,
+      "email": ""
+    },
+    {
+      "nom": "Wahid Chebira",
+      "actions": 300,
+      "pct": 30,
+      "montant_libere": 300,
+      "fonction": "Directeur du Contenu (CCO)",
+      "pouvoirs": "Memes pouvoirs que President vis-a-vis tiers, delegation interne",
+      "voix_preponderante": false,
+      "email": ""
+    }
+  ],
+  "remuneration_an1": "Non salarie, sans remuneration fixe (sauf decision collective contraire)",
+  "mouvements": [],
+  "updated_at": "2026-03-02"
+}
