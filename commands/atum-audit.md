@@ -29,7 +29,7 @@ Parse the user's argument to determine which operation to run:
 | `status <system>` | `compliance_status` | Compliance overview for an AI system |
 | `validate <system>` | `compliance_validate` | SHACL validation (ontology constraints) |
 | `annex-iv <system>` | `compliance_annex_iv` | Annex IV documentation completeness |
-| `report <system> [html\|md]` | `compliance_export_report` | Export formatted compliance report |
+| `report <system> [html/md]` | `compliance_export_report` | Export formatted compliance report |
 | `incidents [system]` | `compliance_incidents` | List incidents (Art. 62) |
 | `retention` | `compliance_retention_check` | Check log retention (Art. 12) |
 | `register <name> [risk_level]` | `compliance_register_system` | Register new AI system |
