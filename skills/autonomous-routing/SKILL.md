@@ -208,14 +208,14 @@ Detect intent from natural language and invoke matching skill automatically:
 - "contrat client", "prestation de services", "signer un contrat" -> agence-atum (contracts prestation)
 - "NDA", "confidentialite", "accord de confidentialite" -> agence-atum (contracts nda)
 - "CGV", "conditions generales" -> agence-atum (contracts cgv)
-- "freelance", "sous-traitant", "prestataire externe" -> agence-atum (contracts freelance onboard)
-- "onboarder un freelance", "nouveau freelance", "ajouter un prestataire" -> agence-atum (contracts freelance onboard)
-- "fin de mission freelance", "offboarding freelance", "terminer mission" -> agence-atum (contracts freelance offboard)
-- "attestation URSSAF", "Kbis", "attestations freelance" -> agence-atum (contracts freelance status)
-- "avenant freelance", "prolonger contrat freelance", "modifier TJM" -> agence-atum (contracts freelance) + template avenant-freelance.md
-- "CRA", "compte-rendu activite", "timesheet freelance" -> agence-atum (team timetrack) + template cra-freelance.md
-- "marge freelance", "rentabilite freelance", "cout freelance" -> agence-atum (team marge-freelance)
-- "bon de commande freelance" -> agence-atum (contracts freelance) + template bon-commande-freelance.md
+- "freelance", "sous-traitant", "prestataire externe" -> freelance-manager agent + agence-atum (contracts freelance onboard)
+- "onboarder un freelance", "nouveau freelance", "ajouter un prestataire" -> freelance-manager agent + agence-atum (contracts freelance onboard)
+- "fin de mission freelance", "offboarding freelance", "terminer mission" -> freelance-manager agent + agence-atum (contracts freelance offboard)
+- "attestation URSSAF", "Kbis", "attestations freelance" -> freelance-manager agent + agence-atum (contracts freelance status)
+- "avenant freelance", "prolonger contrat freelance", "modifier TJM" -> freelance-manager agent + agence-atum (contracts freelance) + template avenant-freelance.md
+- "CRA", "compte-rendu activite", "timesheet freelance" -> freelance-manager agent + agence-atum (team timetrack) + template cra-freelance.md
+- "marge freelance", "rentabilite freelance", "cout freelance" -> freelance-manager agent + agence-atum (team marge-freelance)
+- "bon de commande freelance" -> freelance-manager agent + agence-atum (contracts freelance) + template bon-commande-freelance.md
 - "equipe", "embauche", "recrutement", "registre personnel" -> agence-atum (team personnel)
 - "timetracking", "temps passe", "heures", "feuille de temps" -> agence-atum (team timetrack)
 - "RGPD", "donnees personnelles", "registre traitements", "DPA" -> agence-atum (compliance rgpd)
@@ -270,6 +270,14 @@ Detect intent from natural language and invoke matching skill automatically:
 ### Technical Debt & Data Engineering
 - "dette technique", "technical debt", "code health", "audit de dette", "code smell" -> technical-debt-manager agent
 - "ETL", "data pipeline", "data processing", "traitement de donnees", "ingestion" -> data-engineer agent
+
+### Monorepo & Release
+- "monorepo", "workspace", "turborepo", "nx", "pnpm workspaces", "lerna" -> monorepo skill
+- "release notes", "changelog", "what's new", "notes de version" -> release-notes skill
+
+### Resilience & CLI Testing
+- "circuit breaker", "retry pattern", "bulkhead", "resilience pattern", "fallback" -> resilience skill
+- "terminal test", "TUI test", "CLI test", "tester le terminal", "interactive CLI" -> terminal-emulator skill
 
 ### External Services (MCP remote)
 - "Stripe", "paiement", "checkout" -> Stripe MCP

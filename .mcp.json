@@ -1,0 +1,29 @@
+{
+  "_comment": "ATUM SYSTEM — MCP servers (no secrets required). Additional servers needing API keys are configured via install.sh.",
+  "mcpServers": {
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+    "magic": {
+      "command": "npx",
+      "args": ["-y", "@magicuidesign/mcp@latest"]
+    },
+    "desktop-commander": {
+      "command": "npx",
+      "args": ["-y", "@wonderwhy-er/desktop-commander"]
+    },
+    "skillsync": {
+      "command": "npx",
+      "args": ["-y", "@stranzwersweb2/skillsync-mcp@latest"]
+    }
+  }
+}

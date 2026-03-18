@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    {
+      "name": "atum-system",
+      "description": "ATUM SAS — 400+ composants Claude Code (40 agents, 46 skills, 31 commands, 31 hooks, 27 rules, 4 modes). Orchestration autonome full-stack.",
+      "version": "1.0.0",
+      "source": "."
+    }
+  ]
+}

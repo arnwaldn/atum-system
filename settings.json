@@ -260,15 +260,6 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/session-memory.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
             "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/collective-memory-retain.js\""
           }
         ]
@@ -279,15 +270,6 @@
           {
             "type": "command",
             "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/atum-dashboard-sync.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node -e \"const fs=require('fs'),p=require('path').join(require('os').homedir(),'.claude','shell-snapshots');try{fs.readdirSync(p).filter(f=>f.endsWith('.sh')).forEach(f=>fs.unlinkSync(require('path').join(p,f)))}catch(e){}\""
           }
         ]
       },
@@ -314,7 +296,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/image-guard-reset.js\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/session-cleanup.js\""
           }
         ]
       }
@@ -346,7 +328,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -Command \"[Console]::Beep(800,300); [Console]::Beep(1000,200)\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/notification-beep.js\""
           }
         ]
       },
@@ -355,7 +337,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -Command \"[Console]::Beep(600,500)\""
+            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/notification-beep.js\""
           }
         ]
       }
