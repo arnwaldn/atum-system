@@ -2,12 +2,12 @@
 set -euo pipefail
 
 # ============================================================
-# Claude Code Config Installer
+# ATUM System Installer
 # Installs the complete Claude Code environment on any machine
 #
 # Compatible: Windows (Git Bash/MSYS2), macOS, Linux
-# Usage: git clone https://github.com/arnwaldn/claude-code-config.git
-#        cd claude-code-config && bash install.sh
+# Usage: git clone https://github.com/arnwaldn/atum-system.git
+#        cd atum-system && bash install.sh
 # ============================================================
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
