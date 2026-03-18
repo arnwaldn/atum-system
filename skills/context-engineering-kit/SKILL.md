@@ -1,6 +1,14 @@
 ---
 name: context-engineering-kit
 description: Context window management using the MAKER pattern. Use when context is degrading (>80% window used), when spawning sub-agents for complex tasks, or when you need structured context handoff between agents. Prevents hallucination from accumulated context rot.
+version: "1.0.0"
+metadata:
+  domain: tooling
+  triggers: context window, context degradation, sub-agent, context handoff, MAKER pattern, context rot, fresh context
+  role: specialist
+  scope: infrastructure
+  output-format: code
+  related-skills: fresh-execute
 ---
 
 # Context Engineering Kit (MAKER Pattern)

@@ -1,6 +1,14 @@
 ---
 name: prompt-architect
 description: Analyzes and transforms prompts using 7 research-backed frameworks (CO-STAR, RISEN, RISE-IE, RISE-IX, TIDD-EC, RTF, Chain of Thought, Chain of Density). Provides framework recommendations, asks targeted questions, and structures prompts for maximum effectiveness. Use when users need expert prompt engineering guidance.
+version: "1.0.0"
+metadata:
+  domain: workflow
+  triggers: prompt engineering, CO-STAR, RISEN, prompt framework, improve prompt, chain of thought, prompt optimization
+  role: specialist
+  scope: analysis
+  output-format: document
+  related-skills: common-ground
 ---
 
 # Prompt Architect

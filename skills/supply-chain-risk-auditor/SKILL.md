@@ -1,12 +1,20 @@
 ---
 name: supply-chain-risk-auditor
 description: "Identifies dependencies at heightened risk of exploitation or takeover. Use when assessing supply chain attack surface, evaluating dependency health, or scoping security engagements."
+version: "1.0.0"
 allowed-tools:
   - Read
   - Write
   - Bash
   - Glob
   - Grep
+metadata:
+  domain: security
+  triggers: supply chain, dependency risk, takeover, typosquatting, dependency health, package audit, npm audit
+  role: specialist
+  scope: review
+  output-format: report
+  related-skills: open-source-license-compliance, compliance-routing
 ---
 
 # Supply Chain Risk Auditor

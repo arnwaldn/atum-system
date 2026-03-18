@@ -4,6 +4,12 @@ description: 'Discover what customers truly need by analyzing the "job" they hir
 license: MIT
 metadata:
   author: wondelai
+  domain: specialized
+  triggers: customer discovery, why customers churn, what job does this solve, competing against luck, product-market fit, JTBD, customer needs
+  role: specialist
+  scope: analysis
+  output-format: report
+  related-skills: mom-test, prompt-architect
   version: "1.1.1"
 ---
 

@@ -2,6 +2,13 @@
 name: system-design
 description: 'Design scalable distributed systems using structured approaches for load balancing, caching, database scaling, and message queues. Use when the user mentions "system design", "scale this", "high availability", "rate limiter", or "design a URL shortener". Covers common system designs and back-of-the-envelope estimation.'
 version: "1.1.0"
+metadata:
+  domain: architecture
+  triggers: system design, scale this, high availability, rate limiter, load balancing, caching, message queues, distributed systems
+  role: architect
+  scope: system-design
+  output-format: architecture
+  related-skills: clean-architecture, ddia-systems, domain-driven-design
 ---
 
 # System Design Framework
