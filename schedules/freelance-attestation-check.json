@@ -15,7 +15,7 @@
   "maxTurns": 5,
   "notify": {
     "on": ["failure", "always"],
-    "email": "arnaud.porcel@gmail.com",
+    "email": "contact@atum.tech",
     "includeOutput": true
   },
   "enabled": true,
