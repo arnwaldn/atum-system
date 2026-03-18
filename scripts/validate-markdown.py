@@ -41,15 +41,27 @@ def check_code_blocks(content, filepath):
 
 
 def check_tables(content, filepath):
-    """Check table syntax."""
+    """Check table syntax (skips code blocks)."""
     issues = []
     lines = content.split("\n")
     in_table = False
+    in_code = False
     header_cols = 0
     table_start = 0
 
     for i, line in enumerate(lines, 1):
         stripped = line.strip()
+
+        # Track code blocks to skip tables inside them
+        if stripped.startswith("```"):
+            in_code = not in_code
+            if in_table:
+                in_table = False
+                header_cols = 0
+            continue
+
+        if in_code:
+            continue
 
         if stripped.startswith("|") and stripped.endswith("|"):
             if not in_table:
@@ -62,7 +74,7 @@ def check_tables(content, filepath):
                 if not re.match(r"^\|[\s:-]+(\|[\s:-]+)+\|$", stripped):
                     issues.append(f"{filepath}:{i}: Missing or malformed table separator")
 
-            # Check column count
+            # Check column count (ignore escaped pipes in cell content)
             cols = stripped.count("|") - 1
             if cols != header_cols and header_cols > 0:
                 issues.append(f"{filepath}:{i}: Column count mismatch (expected {header_cols}, got {cols})")

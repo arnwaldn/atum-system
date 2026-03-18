@@ -26,7 +26,12 @@ metadata:
 - "conformite IA", "AI compliance", "risk level IA", "classification risque IA" -> /atum-audit status + compliance-expert agent
 - "retention logs", "conservation donnees", "data retention" -> /atum-audit retention + /compliance gdpr
 - "pre-production", "avant mise en prod", "checklist legal", "legal checklist" -> /compliance audit + /pre-deploy
-GDScript projects |
+
+## Specialized Agents Registry
+
+| Agent | Domain | Scope |
+|-------|--------|-------|
+| godot-expert | Godot | GDScript projects |
 | networking-expert | Real-time | WebSocket, multiplayer, state sync |
 | flutter-dart-expert | Mobile | Flutter/Dart projects |
 | expo-expert | React Native | Expo projects |
