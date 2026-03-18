@@ -2,6 +2,13 @@
 name: pdf
 description: Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill.
 version: "1.0.0"
+metadata:
+  domain: document
+  triggers: PDF, .pdf, extract text, merge PDF, split PDF, watermark, fill form, OCR, encrypt PDF, decrypt PDF
+  role: specialist
+  scope: implementation
+  output-format: code
+  related-skills: docx, pptx, xlsx
 ---
 
 # PDF Processing Guide

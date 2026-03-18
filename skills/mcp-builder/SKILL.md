@@ -5,6 +5,11 @@ license: See anthropics/skills LICENSE
 version: "1.0.0"
 metadata:
   author: https://github.com/anthropics
+  domain: tooling
+  role: specialist
+  scope: implementation
+  output-format: code
+  related-skills: context-engineering-kit
   triggers: build MCP server, create MCP server, scaffold MCP, new MCP tool, MCP implementation, MCP development
 ---
 

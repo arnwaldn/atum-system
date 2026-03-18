@@ -1,7 +1,15 @@
 ---
 name: monorepo
 description: Conventions et patterns pour monorepos (Turborepo, Nx, pnpm workspaces). Use when project has turbo.json, nx.json, or workspace config.
+version: "1.0.0"
 user-invocable: false
+metadata:
+  domain: devops
+  triggers: monorepo, turborepo, nx, pnpm workspaces, workspace, multi-package, turbo.json
+  role: specialist
+  scope: infrastructure
+  output-format: code
+  related-skills: scheduler
 ---
 
 # Monorepo Patterns

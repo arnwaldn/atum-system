@@ -1,6 +1,14 @@
 ---
 name: memoire
 description: Stocker ou rechercher une information dans la memoire collective ATUM. Utiliser quand un cofondateur veut sauvegarder ou retrouver une decision, info client, ou convention.
+version: "1.0.0"
+metadata:
+  domain: business
+  triggers: memoire collective, souviens-toi, retiens que, note pour equipe, remember, save for team, decision equipe, collective memory
+  role: specialist
+  scope: implementation
+  output-format: document
+  related-skills: agence-atum
 ---
 
 # /memoire — Memoire partagee ATUM

@@ -1,7 +1,15 @@
 ---
 name: agent-browser
 description: Browser automation CLI for AI agents. Use this when asked to test something in a real browser.
+version: "1.0.0"
 allowed-tools: Bash(npx agent-browser:*), Bash(agent-browser:*)
+metadata:
+  domain: tooling
+  triggers: browser automation, test in browser, puppeteer, playwright, headless, agent-browser, browser test
+  role: specialist
+  scope: implementation
+  output-format: code
+  related-skills: terminal-emulator
 ---
 
 # Browser Automation with agent-browser

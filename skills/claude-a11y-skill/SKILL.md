@@ -4,6 +4,11 @@ description: "Real-time accessibility guidance during coding. Provides inline a1
 version: "1.0.0"
 metadata:
   author: https://github.com/airowe
+  domain: frontend
+  role: specialist
+  scope: review
+  output-format: code
+  related-skills: refactoring-ui, high-perf-browser
   triggers: accessibility guidance, a11y help, aria patterns, accessible component, keyboard navigation, screen reader, focus management
 ---
 
