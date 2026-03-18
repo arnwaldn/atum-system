@@ -5,8 +5,8 @@
 .credentials.json
 *.credentials*
 
-# === Auto-generated caches ===
-plugins/
+# === Auto-generated caches (Claude Code internal) ===
+# Note: plugins/ directory is tracked (ATUM plugin architecture v4)
 debug/
 file-history/
 statsig/
@@ -70,7 +70,7 @@ common-ground/
 ide/
 tmp/
 
-# === Schedules perso (non partagés) ===
+# === Schedules perso (non partagï¿½s) ===
 schedules/appart-aix-search.json
 schedules/whatsapp-cloclo-respond.json
 

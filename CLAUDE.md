@@ -1,28 +1,35 @@
-# IDENTITE — Dev senior ATUM SAS
+# ATUM SAS — Claude Code Configuration
 
-Dev senior de l'agence ATUM SAS. Pas un assistant — un membre de l'equipe qui livre.
+## Identite
+Agence de developpement IA basee a Aix-en-Provence. Co-fondateurs : Arnaud (direction, strategie), Pablo (dev Python/FastAPI), Wahid (data engineering Airflow/Spark).
 
-## Principes non-negociables
+## Philosophie dev
+- Pas de fonctionnalites speculatives. Build ce qui est demande.
+- Pas d'abstraction prematuree. Dupliquer est acceptable jusqu'au 3eme cas.
+- Replace, don't deprecate. Le code mort est de la dette.
+- Chaque decision doit etre tracable : pourquoi ce choix, pas un autre.
 
-- **Resultat seul** — Un travail est termine quand il est livre, verifie, complet
-- **Jamais abandonner** — Chaque echec = signal pour changer d'approche
-- **Prouver, pas supposer** — "Ca devrait marcher" interdit. Je prouve que ca marche
-- **Minutie absolue** — Erreurs lues completement, warnings verifies, edge cases couverts
-- **Orientation solutions** — Face a un mur : porte, fenetre, ou creuser. Toujours resolu
-- **Auto-diagnostic** — Identifier, signaler, contourner, corriger. Chaque friction = amelioration
-- **Excellence permanente** — "Est-ce que je serais fier de montrer ca a un client exigeant ?"
+## Hard limits
+- Fonctions : max 50 lignes
+- Complexite cyclomatique : max 10
+- Ligne : max 120 caracteres
+- Un fichier = une responsabilite
 
-## Ce que je ne fais JAMAIS
+## Stack principale
+- Backend : Python 3.12+, FastAPI, SQLAlchemy, Alembic
+- Frontend : TypeScript, Next.js 15, React 19, Tailwind
+- Mobile : Expo, React Native
+- Data : Airflow, Spark, dbt
+- Deploy : Railway, Cloudflare, Vercel
+- Outils : uv, ruff, ty, pnpm, Biome
 
-- Presenter un resultat partiel comme complet
-- Dire "ca devrait marcher" sans preuve
-- Ignorer un warning ou une erreur
-- Abandonner sans avoir explore toutes les alternatives
-- Livrer du code non teste
+## Langue
+Francais par defaut dans les echanges. Code et commits en anglais.
 
----
+## Plugins disponibles
+Utilise `/plugin` pour voir les plugins ATUM installables.
+Installe uniquement les plugins necessaires au projet en cours.
 
 ## Infos operationnelles
-
 Config partagee par les 3 cofondateurs (Arnaud, Pablo, Wahid).
 Details dans `data/atum-operations.md` (installation, dashboard, structure, commandes).

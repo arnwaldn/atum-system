@@ -1,0 +1,104 @@
+{
+  "name": "atum-agency-workflows",
+  "namespace": "atum",
+  "version": "4.0.0",
+  "description": "ATUM SAS — AI development agency plugins for Claude Code",
+  "author": {
+    "name": "ATUM SAS",
+    "url": "https://github.com/arnwaldn/claude-code-config"
+  },
+  "license": "MIT",
+  "plugins": [
+    {
+      "name": "atum-core",
+      "description": "ATUM agency identity, project management, dashboard sync. Always installed for agency work.",
+      "version": "4.0.0",
+      "source": "./plugins/atum-core",
+      "category": "agency"
+    },
+    {
+      "name": "atum-compliance",
+      "description": "EU AI Act and RGPD compliance with ATUM Audit MCP integration. Use for compliance audits, system registration, Annex IV documentation.",
+      "version": "4.0.0",
+      "source": "./plugins/atum-compliance",
+      "category": "compliance"
+    },
+    {
+      "name": "atum-security",
+      "description": "Security expert agents for code audits, vulnerability detection, and security hardening.",
+      "version": "4.0.0",
+      "source": "./plugins/atum-security",
+      "category": "security"
+    },
+    {
+      "name": "atum-architecture",
+      "description": "Architecture review, API design, database optimization, and critical thinking for system design decisions.",
+      "version": "4.0.0",
+      "source": "./plugins/atum-architecture",
+      "category": "architecture"
+    },
+    {
+      "name": "atum-python",
+      "description": "Python, FastAPI, and Django development with TDD workflow, async patterns, and uv packaging.",
+      "version": "4.0.0",
+      "source": "./plugins/atum-python",
+      "category": "development"
+    },
+    {
+      "name": "atum-typescript",
+      "description": "TypeScript, Next.js, and React Native development with modern tooling and patterns.",
+      "version": "4.0.0",
+      "source": "./plugins/atum-typescript",
+      "category": "development"
+    },
+    {
+      "name": "atum-devops",
+      "description": "DevOps, deployment on Railway/Cloudflare/Vercel, Docker patterns, and infrastructure automation.",
+      "version": "4.0.0",
+      "source": "./plugins/atum-devops",
+      "category": "infrastructure"
+    },
+    {
+      "name": "atum-data-ai",
+      "description": "Data engineering with Airflow/Spark, ML engineering, RAG patterns, and prompt engineering for AI products.",
+      "version": "4.0.0",
+      "source": "./plugins/atum-data-ai",
+      "category": "data-ai"
+    },
+    {
+      "name": "atum-mobile",
+      "description": "Mobile development with Expo/React Native, Stripe integration, and Google Play Store publication.",
+      "version": "4.0.0",
+      "source": "./plugins/atum-mobile",
+      "category": "development"
+    },
+    {
+      "name": "atum-orchestration",
+      "description": "Multi-agent workflows, autonomous routing (108 NLP triggers FR/EN), fresh-execute, and conductor workflow.",
+      "version": "4.0.0",
+      "source": "./plugins/atum-orchestration",
+      "category": "workflows"
+    },
+    {
+      "name": "atum-docs",
+      "description": "Documentation generation, Mermaid diagrams, PDF creation, and codebase pattern analysis.",
+      "version": "4.0.0",
+      "source": "./plugins/atum-docs",
+      "category": "documentation"
+    },
+    {
+      "name": "atum-sales-marketing",
+      "description": "Commercial workflows, WhatsApp integration, and sales tooling for ATUM agency operations.",
+      "version": "4.0.0",
+      "source": "./plugins/atum-sales-marketing",
+      "category": "business"
+    },
+    {
+      "name": "atum-scheduler",
+      "description": "Scheduled task management with cron patterns for health checks, security audits, and ATUM obligations.",
+      "version": "4.0.0",
+      "source": "./plugins/atum-scheduler",
+      "category": "operations"
+    }
+  ]
+}

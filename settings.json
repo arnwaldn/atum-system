@@ -1,425 +1,93 @@
-﻿{
+{
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "DISABLE_TELEMETRY": "1",
+    "DISABLE_ERROR_REPORTING": "1",
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "cleanupPeriodDays": 365,
+  "alwaysThinkingEnabled": true,
+  "enableAllProjectMcpServers": false,
   "permissions": {
     "allow": [
-      "Bash(*)",
-      "Write(*)",
-      "Edit(*)",
-      "NotebookEdit(*)",
-      "Task(*)",
-      "EnterPlanMode",
-      "ExitPlanMode",
-      "EnterWorktree(*)",
-      "WebFetch(*)",
-      "mcp__claude-in-chrome__*",
-      "mcp__github__*",
-      "mcp__memory__*",
-      "mcp__google-workspace__*",
-      "mcp__sequential-thinking__*",
-      "mcp__railway__*",
-      "mcp__cloudflare-docs__*",
-      "mcp__context7__*",
-      "mcp__magic__*",
-      "mcp__desktop-commander__*",
-      "mcp__plugin_firebase_firebase__*",
-      "mcp__plugin_playwright_playwright__*",
-      "mcp__plugin_context7_context7__*",
-      "mcp__claude_ai_Canva__*",
-      "mcp__claude_ai_Cloudflare_Developer_Platform__*",
-      "mcp__claude_ai_Figma__*",
-      "mcp__claude_ai_Gamma__*",
-      "mcp__claude_ai_Gmail__*",
-      "mcp__claude_ai_Google_Calendar__*",
-      "mcp__claude_ai_Hugging_Face__*",
-      "mcp__claude_ai_Invideo__*",
-      "mcp__claude_ai_Notion__*",
-      "mcp__claude_ai_Supabase__*",
-      "mcp__claude_ai_Vercel__*",
-      "mcp__claude_ai_Zapier__*",
+      "Read",
+      "Write",
+      "Edit",
+      "WebSearch",
       "Skill(*)",
-      "WebSearch(*)",
-      "ToolSearch(*)",
-      "mcp__b12__*",
-      "mcp__webmcp__*",
-      "mcp__claude_ai_Cloudinary__*",
-      "mcp__claude_ai_Context7__*",
-      "mcp__claude_ai_Excalidraw__*",
-      "mcp__claude_ai_GraphOS_MCP_Tools__*",
-      "mcp__claude_ai_Microsoft_Learn__*",
-      "mcp__claude_ai_Netlify__*",
-      "mcp__claude_ai_Stripe__*",
-      "mcp__claude_ai_Webflow__*",
-      "mcp__skillsync__*",
-      "mcp__airtable__*",
-      "mcp__notion__*",
-      "mcp__plugin_pinecone_pinecone__*",
-      "mcp__whatsapp__*",
-      "mcp__atum-audit__*",
-      "mcp__plugin_serena_serena__*",
-      "Bash(wsl --update:*)",
-      "Bash(wsl --status:*)",
-      "Bash(wsl:*)",
-      "Bash(winget install:*)",
-      "Bash(dism.exe:*)",
-      "Bash(MSYS_NO_PATHCONV=1 dism.exe:*)"
+      "Bash(git *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(uv *)",
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(node *)",
+      "Bash(rg *)",
+      "Bash(fd *)",
+      "Bash(jq *)",
+      "Bash(curl *)",
+      "Bash(cat *)",
+      "Bash(ls *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)"
     ],
-    "defaultMode": "dontAsk"
+    "deny": [
+      "Read(.env*)",
+      "Read(**/.*credentials*)",
+      "Read(**/*secret*)",
+      "Read(**/.ssh/*)",
+      "Read(**/.aws/*)",
+      "Write(.bashrc)",
+      "Write(.zshrc)",
+      "Write(.profile)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf /*)"
+    ]
   },
   "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/clean-shell-snapshots.py\""
-          },
-          {
-            "type": "command",
-            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/atum-session-start.py\""
-          },
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/atum-project-scanner.js\""
-          },
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/collective-memory-start.js\"",
-            "timeout": 15000
-          },
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/graph-queue-loader.js\""
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
-        "matcher": "Read|Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/file-guard.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "Read",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/image-auto-resize.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "mcp__claude-in-chrome__browser_take_screenshot|mcp__claude-in-chrome__computer|mcp__claude-in-chrome__upload_image|mcp__claude_ai_Figma__get_screenshot|mcp__claude_ai_Canva__get-design-thumbnail|mcp__claude_ai_Excalidraw__create_view",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/image-guard.js\""
-          }
-        ]
-      },
-      {
         "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/clean-shell-snapshots.py\""
+            "command": "python3 $HOME_PLACEHOLDER/.claude/hooks/file-guard.py",
+            "timeout": 5000
+          },
+          {
+            "type": "command",
+            "command": "python3 $HOME_PLACEHOLDER/.claude/hooks/secret-scanner.py",
+            "timeout": 5000
           }
         ]
       },
       {
-        "matcher": "Bash",
+        "matcher": "Bash(git push*)",
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/secret-scanner.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/git-guard.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/lock-file-protector.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [[ -f \"$CLAUDE_TOOL_FILE_PATH\" ]]; then cp \"$CLAUDE_TOOL_FILE_PATH\" \"$CLAUDE_TOOL_FILE_PATH.backup.$(date +%s)\" 2>/dev/null || true; fi"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/atum-post-write.py\""
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$HOME_PLACEHOLDER/.claude/hooks/atum-compliance-check.py\""
-          }
-        ]
-      },
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/post-edit-dispatcher.js\"",
-            "timeout": 15000
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/post-commit-quality-gate.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/worktree-setup.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/loop-detector.js\""
-          }
-        ]
-      }
-    ],
-    "PreCompact": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/precompact-save.js\""
+            "command": "python3 $HOME_PLACEHOLDER/.claude/hooks/git-guard.py",
+            "timeout": 5000
           }
         ]
       }
     ],
     "Stop": [
       {
-        "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/pre-completion-gate.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/anti-rationalization.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/session-memory.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/collective-memory-retain.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/atum-dashboard-sync.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node -e \"const fs=require('fs'),p=require('path').join(require('os').homedir(),'.claude','shell-snapshots');try{fs.readdirSync(p).filter(f=>f.endsWith('.sh')).forEach(f=>fs.unlinkSync(require('path').join(p,f)))}catch(e){}\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/plugins/marketplaces/everything-claude-code/scripts/hooks/evaluate-session.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/session-to-graph.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/image-guard-reset.js\""
-          }
-        ]
-      }
-    ],
-    "PostToolUseFailure": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/post-tool-failure-logger.js\""
-          }
-        ]
-      }
-    ],
-    "ConfigChange": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME_PLACEHOLDER/.claude/hooks/config-change-guard.js\""
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "matcher": "permission_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "powershell -Command \"[Console]::Beep(800,300); [Console]::Beep(1000,200)\""
-          }
-        ]
-      },
-      {
-        "matcher": "idle_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "powershell -Command \"[Console]::Beep(600,500)\""
+            "command": "python3 $HOME_PLACEHOLDER/.claude/hooks/anti-rationalization.py",
+            "timeout": 10000
           }
         ]
       }
     ]
   },
-  "enabledPlugins": {
-    "everything-claude-code@everything-claude-code": true,
-    "agent-sdk-dev@claude-plugins-official": true,
-    "asana@claude-plugins-official": true,
-    "atlassian@claude-plugins-official": true,
-    "circleback@claude-plugins-official": false,
-    "clangd-lsp@claude-plugins-official": false,
-    "claude-code-setup@claude-plugins-official": true,
-    "claude-md-management@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
-    "coderabbit@claude-plugins-official": true,
-    "commit-commands@claude-plugins-official": true,
-    "context7@claude-plugins-official": true,
-    "csharp-lsp@claude-plugins-official": false,
-    "explanatory-output-style@claude-plugins-official": true,
-    "feature-dev@claude-plugins-official": true,
-    "figma@claude-plugins-official": true,
-    "firebase@claude-plugins-official": true,
-    "firecrawl@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true,
-    "github@claude-plugins-official": true,
-    "gitlab@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true,
-    "greptile@claude-plugins-official": false,
-    "hookify@claude-plugins-official": true,
-    "huggingface-skills@claude-plugins-official": true,
-    "jdtls-lsp@claude-plugins-official": false,
-    "kotlin-lsp@claude-plugins-official": false,
-    "laravel-boost@claude-plugins-official": true,
-    "learning-output-style@claude-plugins-official": true,
-    "playground@claude-plugins-official": true,
-    "playwright@claude-plugins-official": true,
-    "plugin-dev@claude-plugins-official": true,
-    "posthog@claude-plugins-official": true,
-    "pr-review-toolkit@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true,
-    "qodo-skills@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": false,
-    "security-guidance@claude-plugins-official": true,
-    "semgrep@claude-plugins-official": true,
-    "sentry@claude-plugins-official": true,
-    "serena@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
-    "slack@claude-plugins-official": false,
-    "sonatype-guide@claude-plugins-official": true,
-    "stripe@claude-plugins-official": true,
-    "supabase@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
-    "swift-lsp@claude-plugins-official": false,
-    "typescript-lsp@claude-plugins-official": true,
-    "vercel@claude-plugins-official": true,
-    "ui-ux-pro-max@ui-ux-pro-max-skill": true,
-    "linear@claude-plugins-official": true,
-    "pinecone@claude-plugins-official": true,
-    "php-lsp@claude-plugins-official": false,
-    "project-architect@local": true
-  },
-  "autoUpdatesChannel": "latest",
-  "effortLevel": "max"
+  "statusLine": {
+    "command": "bash $HOME_PLACEHOLDER/.claude/statusline.sh"
+  }
 }
