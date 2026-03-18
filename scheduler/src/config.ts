@@ -24,7 +24,7 @@ export const config = {
   // Notification
   notificationModel: 'haiku',
   notificationTimeoutMs: 180_000, // 3 min — Gmail MCP needs startup + tool call
-  defaultEmail: 'arnaud.porcel@gmail.com',
+  defaultEmail: 'contact@atum.tech',
 
   // Daemon
   pollIntervalMs: 10_000, // reload check interval

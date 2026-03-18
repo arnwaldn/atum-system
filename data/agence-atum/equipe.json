@@ -10,13 +10,13 @@
         "nationalite": "Francaise",
         "sexe": "M",
         "emploi": "President",
-        "qualification": "IC — Position 3.3 — Coefficient 270",
+        "qualification": "IC — Syntec",
         "type_contrat": "mandat_social",
         "date_entree": "2026-01-01",
         "date_sortie": null,
         "statut": "actif",
         "temps_travail": "temps_plein",
-        "notes": "Associe fondateur 40% — Mandat social non salarie"
+        "notes": "Associe fondateur — Mandat social non salarie"
       },
       {
         "id": 2,
@@ -26,13 +26,13 @@
         "nationalite": "Francaise",
         "sexe": "M",
         "emploi": "Directeur General",
-        "qualification": "IC — Position 3.2 — Coefficient 210",
+        "qualification": "IC — Syntec",
         "type_contrat": "mandat_social",
         "date_entree": "2026-01-01",
         "date_sortie": null,
         "statut": "actif",
         "temps_travail": "temps_plein",
-        "notes": "Associe fondateur 30% — Mandat social non salarie"
+        "notes": "Associe fondateur — Mandat social non salarie"
       },
       {
         "id": 3,
@@ -42,13 +42,13 @@
         "nationalite": "Francaise",
         "sexe": "M",
         "emploi": "Directeur Contenu",
-        "qualification": "IC — Position 3.1 — Coefficient 170",
+        "qualification": "IC — Syntec",
         "type_contrat": "mandat_social",
         "date_entree": "2026-01-01",
         "date_sortie": null,
         "statut": "actif",
         "temps_travail": "temps_plein",
-        "notes": "Associe fondateur 30% — Mandat social non salarie"
+        "notes": "Associe fondateur — Mandat social non salarie"
       }
     ]
   },
