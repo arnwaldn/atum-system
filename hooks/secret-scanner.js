@@ -134,7 +134,13 @@ process.stdin.on("end", () => {
   try {
     const data = JSON.parse(input);
     const command = (data.tool_input || {}).command || "";
-    if (!/git\s+commit/i.test(command)) process.exit(0);
+
+    // Early exit: skip git operations for non-git-mutation commands
+    const GIT_MUTATION_PATTERN = /\bgit\s+(commit|add|push|stash|merge|rebase|cherry-pick|am|apply)\b/;
+    if (!GIT_MUTATION_PATTERN.test(command)) {
+      process.stdout.write(JSON.stringify({ decision: "approve", reason: "Non-git command, skipping secret scan" }));
+      process.exit(0);
+    }
 
     const files = getStagedFiles(command);
     if (!files.length) process.exit(0);

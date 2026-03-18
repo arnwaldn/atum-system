@@ -61,7 +61,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"hooks/clean-shell-snapshots.py\""
+            "command": "python \"hooks/clean-shell-snapshots.py\"",
+            "timeout": 5000
           }
         ]
       },
@@ -70,7 +71,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/secret-scanner.js\""
+            "command": "node \"hooks/secret-scanner.js\"",
+            "timeout": 5000
           }
         ]
       },
@@ -79,7 +81,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"hooks/git-guard.js\""
+            "command": "node \"hooks/git-guard.js\"",
+            "timeout": 5000
           }
         ]
       },
@@ -150,7 +153,7 @@
         ]
       },
       {
-        "matcher": "*",
+        "matcher": "Bash|Write|Edit|Agent",
         "hooks": [
           {
             "type": "command",
@@ -222,6 +225,16 @@
           {
             "type": "command",
             "command": "node \"hooks/session-cleanup.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"hooks/evaluate-session.js\"",
+            "timeout": 10000
           }
         ]
       }
