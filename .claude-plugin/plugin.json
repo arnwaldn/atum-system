@@ -1,6 +1,6 @@
 {
   "name": "atum-system",
-  "description": "ATUM SAS — Config Claude Code complete: 40 agents, 46 skills, 31 commands, 31 hooks, 27 rules, 4 modes. Orchestration autonome, securite, compliance EU AI Act, memoire collective.",
+  "description": "ATUM SAS — Config Claude Code complete: 40 agents, 45 skills, 31 commands, 31 hooks, 27 rules, 4 modes. Orchestration autonome, securite, compliance EU AI Act, memoire collective.",
   "version": "1.0.0",
   "author": {
     "name": "ATUM SAS"
