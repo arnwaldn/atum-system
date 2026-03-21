@@ -15,14 +15,15 @@ import sys
 
 
 def check_hook_integrity():
-    """Verify critical safety hooks are accessible."""
-    hooks_dir = os.path.join(os.path.expanduser("~"), ".claude", "hooks")
-    critical = ["file-guard.js", "secret-scanner.js", "git-guard.js",
+    """Verify critical safety hooks are accessible in the plugin directory."""
+    # Use __file__ to find hooks relative to this script (plugin source unique)
+    hooks_dir = os.path.dirname(os.path.abspath(__file__))
+    critical = ["file-guard.js", "secret-scanner.py", "git-guard.py",
                 "anti-rationalization.js", "pre-completion-gate.js"]
     missing = [h for h in critical if not os.path.isfile(os.path.join(hooks_dir, h))]
     if missing:
-        print(f"CRITICAL: Missing safety hooks: {', '.join(missing)}", file=sys.stderr)
-        print(f"ATUM safety compromised. Run install.sh to repair.", file=sys.stderr)
+        print(f"WARNING: Missing safety hooks in plugin: {', '.join(missing)}", file=sys.stderr)
+        print(f"Plugin dir: {hooks_dir}", file=sys.stderr)
 
 
 def main():

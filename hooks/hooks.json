@@ -1,58 +1,13 @@
 {
+  "_comment": "ATUM System v2.0 — Complete hook orchestration. Source unique: tout est ici.",
   "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$HOME/.claude/hooks/clean-shell-snapshots.py\""
-          },
-          {
-            "type": "command",
-            "command": "python \"$HOME/.claude/hooks/atum-session-start.py\""
-          },
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/atum-project-scanner.js\""
-          },
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/collective-memory-start.js\"",
-            "timeout": 15000
-          },
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/graph-queue-loader.js\""
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
-        "matcher": "Read|Write|Edit",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/file-guard.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "Read",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/image-auto-resize.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "mcp__claude-in-chrome__browser_take_screenshot|mcp__claude-in-chrome__computer|mcp__claude-in-chrome__upload_image|mcp__claude_ai_Figma__get_screenshot|mcp__claude_ai_Canva__get-design-thumbnail|mcp__claude_ai_Excalidraw__create_view",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/image-guard.js\""
+            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/secret-scanner.py\""
           }
         ]
       },
@@ -61,28 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$HOME/.claude/hooks/clean-shell-snapshots.py\"",
-            "timeout": 5000
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/secret-scanner.js\"",
-            "timeout": 5000
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/git-guard.js\"",
-            "timeout": 5000
+            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/git-guard.py\""
           }
         ]
       },
@@ -91,16 +25,43 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/lock-file-protector.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/lock-file-protector.js\""
           }
         ]
       },
       {
-        "matcher": "Edit",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "if [[ -f \"$CLAUDE_TOOL_FILE_PATH\" ]]; then cp \"$CLAUDE_TOOL_FILE_PATH\" \"$CLAUDE_TOOL_FILE_PATH.backup.$(date +%s)\" 2>/dev/null || true; fi"
+            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/clean-shell-snapshots.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Read|Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/file-guard.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/image-auto-resize.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__claude-in-chrome__browser_take_screenshot|mcp__claude-in-chrome__computer|mcp__claude-in-chrome__upload_image|mcp__claude_ai_Figma__get_screenshot|mcp__claude_ai_Canva__get-design-thumbnail|mcp__claude_ai_Excalidraw__create_view",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/image-guard.js\""
           }
         ]
       }
@@ -111,7 +72,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$HOME/.claude/hooks/atum-post-write.py\""
+            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/atum-post-write.py\""
           }
         ]
       },
@@ -120,7 +81,25 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"$HOME/.claude/hooks/atum-compliance-check.py\""
+            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/atum-compliance-check.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/auto-test-runner.js\""
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/auto-format.sh\""
           }
         ]
       },
@@ -129,7 +108,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/post-edit-dispatcher.js\"",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/typecheck.sh\"",
             "timeout": 15000
           }
         ]
@@ -139,7 +118,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/post-commit-quality-gate.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/post-commit-quality-gate.js\""
           }
         ]
       },
@@ -148,27 +127,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/worktree-setup.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/worktree-setup.js\""
           }
         ]
       },
-      {
-        "matcher": "Bash|Write|Edit|Agent",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/loop-detector.js\""
-          }
-        ]
-      }
-    ],
-    "PreCompact": [
       {
         "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/precompact-save.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/loop-detector.js\""
           }
         ]
       }
@@ -179,7 +147,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/pre-completion-gate.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/session-cleanup.js\""
           }
         ]
       },
@@ -188,7 +156,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/anti-rationalization.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/collective-memory-retain.js\""
           }
         ]
       },
@@ -197,7 +165,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/collective-memory-retain.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/atum-dashboard-sync.js\""
           }
         ]
       },
@@ -206,7 +174,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/atum-dashboard-sync.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/pre-completion-gate.js\""
           }
         ]
       },
@@ -215,26 +183,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/session-to-graph.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/session-cleanup.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/evaluate-session.js\"",
-            "timeout": 10000
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/anti-rationalization.js\""
           }
         ]
       }
@@ -245,7 +194,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/post-tool-failure-logger.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/post-tool-failure-logger.js\""
           }
         ]
       }
@@ -255,7 +204,41 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/config-change-guard.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/config-change-guard.js\""
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/atum-session-start.py\""
+          },
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/atum-project-scanner.js\""
+          },
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/collective-memory-start.js\""
+          },
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/clean-shell-snapshots.py\""
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/precompact-save.js\""
           }
         ]
       }
@@ -266,7 +249,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/notification-beep.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/notification-beep.js\""
           }
         ]
       },
@@ -275,7 +258,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/notification-beep.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/notification-beep.js\""
           }
         ]
       }

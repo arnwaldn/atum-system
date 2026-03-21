@@ -1,176 +1,130 @@
-# ATUM SYSTEM
+# ATUM System
 
-[![CI](https://github.com/arnwaldn/atum-system/actions/workflows/ci.yml/badge.svg)](https://github.com/arnwaldn/atum-system/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/arnwaldn/atum-system/releases/tag/v1.0.0)
+[![Version](https://img.shields.io/badge/version-2.0.0-green.svg)](https://github.com/arnwaldn/atum-system/releases)
 
-**Cognitive architecture for Claude Code** — changes how Claude *thinks*, not just what it *does*.
+**The ultimate Claude Code plugin.** One install. Full autonomy. Zero coding required.
 
-Other configs add more skills and commands. ATUM reshapes Claude's reasoning with anti-hallucination rules, metacognition protocols, complexity budgets, and 5-layer runtime safety. 40 agents, 45 skills, 31 hooks, 27 rules — all integrated into a self-reinforcing system.
+ATUM System is a complete Claude Code configuration that turns Claude into an autonomous development partner. It consolidates the best open-source systems (Everything Claude Code, Superpowers, UI/UX Pro Max, and more) into a single, self-contained plugin with perfect orchestration.
 
-## Why ATUM?
+## What's inside
 
-|  | Typical configs | ATUM System |
-|---|---|---|
-| **Approach** | More skills and commands | Cognitive rules that reshape reasoning |
-| **Safety** | Permission prompts | 5-layer runtime hooks (file-guard, git-guard, secret-scanner, anti-rationalization, loop-detector) |
-| **Memory** | Per-session only | Persistent collective memory shared across team members |
-| **Quality** | Trust the output | Anti-rationalization blocks "should work" — demands proof |
-| **Routing** | Manual `/commands` | 108 NLP triggers (FR+EN) auto-detect intent |
-| **Engineering** | "Use best practices" | Complexity budget: no users yet? SQLite, not Kubernetes |
+| Component | Count | Purpose |
+|-----------|-------|---------|
+| **Agents** | 68 | Specialized sub-agents (architecture, review, security, testing, DevOps, compliance...) |
+| **Skills** | 151 | Deep expertise (React, Flask, Spring Boot, SwiftUI, Go, Rust, Django, Docker, K8s...) |
+| **Commands** | 30 | Slash commands (/projet, /deploy, /tdd, /scaffold, /pipeline...) |
+| **Hooks** | 33 | Runtime safety (git-guard, secret-scanner, loop-detector, anti-rationalization...) |
+| **Rules** | 4 dirs | Language-specific standards (TypeScript, Python, Go, Swift + common) |
 
-## Quick Start
+## Key features
+
+- **Full autonomy** -- Claude handles everything from idea to deployment without asking you to run commands manually
+- **Non-coder friendly** -- designed for people who have ideas but don't write code. Plain French or English instructions work
+- **Safety-first** -- 7 PreToolUse guards (secret scanner, git guard, file guard, image guard...), anti-rationalization stop hook, pre-completion test gate
+- **EU AI Act compliance** -- built-in ATUM Audit integration with 15 MCP tools for Article 15 traceability
+- **Universal** -- works on Windows (Git Bash), macOS, Linux. One install script for all platforms
+- **Self-contained** -- no external dependencies beyond Claude Code, Node.js, Python, and Git
+
+## Installation
+
+### One-line install
 
 ```bash
-/plugin marketplace add arnwaldn/atum-system
-/plugin install atum-system@arnwaldn-atum-system
-/reload-plugins
+curl -fsSL https://raw.githubusercontent.com/arnwaldn/atum-system/main/install.sh | bash
 ```
 
-Works on all Claude Code surfaces: Terminal, VS Code, JetBrains, Desktop, Browser.
+### Manual install
 
-> For the full install (permissions, scheduler, MCP secrets), see [Install Details](#install-details) below.
+```bash
+git clone https://github.com/arnwaldn/atum-system ~/.claude/plugins/marketplaces/atum-system
+cd ~/.claude/plugins/marketplaces/atum-system
+bash install.sh
+```
+
+Then **restart Claude Code**.
+
+## Quick start
+
+After installation, open Claude Code and try:
+
+```
+/health          # Check system status
+/projet          # Start a new project (guided)
+/scaffold        # Generate project structure
+/deploy          # Deploy to production
+/tdd             # Test-driven development workflow
+/pipeline        # Full CI/CD pipeline
+```
+
+Or just describe what you want in plain language:
+
+> "Create a SaaS application for managing restaurant reservations with Stripe payments, user auth, and a dashboard"
+
+ATUM handles the rest: architecture, code, tests, deployment.
 
 ## Architecture
 
-```mermaid
-flowchart TD
-    U[User Input] --> R[NLP Routing<br/>108 triggers FR+EN]
-    R --> A[Agent Selection<br/>40 agents: 10 Opus · 26 Sonnet · 2 Haiku]
-    A --> S[Skill Execution<br/>45 skills]
-    S --> H
-
-    subgraph H[Safety Hooks — 5 Layers]
-        direction LR
-        H1[file-guard<br/>195+ patterns] --> H2[git-guard<br/>conventional commits]
-        H2 --> H3[secret-scanner<br/>35+ secret types]
-        H3 --> H4[anti-rationalization<br/>10 patterns scored]
-        H4 --> H5[loop-detector<br/>repeat + ping-pong]
-    end
-
-    H --> RE[Rules Engine — 27 rules]
-
-    subgraph RE2[Cognitive Rules]
-        direction LR
-        R1[anti-hallucination<br/>7 red flags] ~~~ R2[metacognition<br/>3 questions before acting]
-        R2 ~~~ R3[complexity-budget<br/>no users = simple stack]
-        R3 ~~~ R4[pedagogie<br/>tech → plain language]
-    end
-
-    RE --> RE2
-    RE2 --> M[Memory Persistence<br/>collective-memory → knowledge graph]
+```
+atum-system/
+  .claude-plugin/plugin.json    # Plugin manifest
+  agents/                       # 68 specialized sub-agents
+  skills/                       # 151 deep expertise skills
+  commands/                     # 30 slash commands
+  hooks/                        # 33 runtime hooks + hooks.json
+  rules/                        # Language-specific coding standards
+  scripts/                      # Utility scripts (image resize, etc.)
+  settings.json                 # Security permissions + env defaults
+  install.sh                    # Universal installer
 ```
 
-## What Makes It Different
+### Hook orchestration
 
-Five innovations no other Claude Code config has:
+All hooks are declared in `hooks/hooks.json` using `${CLAUDE_PLUGIN_ROOT}` for full portability:
 
-**1. Anti-Rationalization** — A Stop hook scores 10 premature-completion patterns ("should work", "out of scope", "for a follow-up") with severity weights. Score exceeds threshold → Claude is forced to continue. Inspired by Trail of Bits, extended with bilingual patterns and ATUM-specific detections.
+| Event | Hooks | Purpose |
+|-------|-------|---------|
+| **PreToolUse** | 7 | Secret scanning, git safety, file protection, image handling |
+| **PostToolUse** | 8 | ATUM audit, auto-format, typecheck, auto-test, loop detection |
+| **Stop** | 5 | Anti-rationalization, test gate, session memory, cleanup |
+| **SessionStart** | 4 | Project detection, memory sync, snapshot fix |
+| **PreCompact** | 1 | Save session state before compaction |
+| **Notification** | 2 | Cross-platform audio alerts |
+| **Other** | 2 | Config change guard, tool failure logger |
 
-**2. Complexity Budget** — A rule that blocks over-engineering: "No users yet? SQLite. Under 100 users? Monolith. 'Best practice' is not a justification — measured need is." This prevents the classic AI failure of proposing Kubernetes for a prototype.
+### What makes it different
 
-**3. Metacognition** — Before acting, Claude must answer 3 questions: "What do I understand?", "What tools do I have?", "What sequence is optimal?". Escalation: 3 failures → stop and propose alternatives. Prevents the "keep trying the same thing" loop.
+Other configs add tools. ATUM adds **judgment**:
 
-**4. Pedagogie** — Every technical term is explained in plain language on first use. API = "a service counter: you ask, it answers". Cache = "a sticky note so you don't recalculate". Decisions with user impact are presented with concrete trade-offs, not pattern names.
+- **Anti-rationalization hook** -- detects when Claude tries to stop prematurely ("out of scope", "pre-existing issue")
+- **Pre-completion gate** -- runs tests before allowing session end
+- **Loop detector** -- catches repetitive patterns and forces strategy change
+- **Secret scanner** -- blocks commits containing API keys, tokens, passwords
+- **Git guard** -- enforces conventional commits, branch naming, blocks force-push
 
-**5. Collective Memory** — A shared knowledge base across team members with confidentiality rules (professional → shared, personal → local only). Sessions are persisted to a knowledge graph via a queue system that works around the hook/MCP limitation.
+## Consolidated systems
 
-## What's Inside
+ATUM System incorporates the best of:
 
-| Category | Count | Highlights |
-|----------|-------|------------|
-| **Hooks** | 31 | file-guard, anti-rationalization, secret-scanner, git-guard, loop-detector, session-to-graph, precompact-save, image-auto-resize |
-| **Commands** | 31 | `/scaffold`, `/security-audit`, `/tdd`, `/deploy`, `/schedule`, `/compliance`, `/atum-audit`, `/whatsapp` |
-| **Agents** | 40 | 10 Opus (security, compliance, architecture) · 26 Sonnet (dev, DevOps, ML, game) · 2 Haiku (fast tasks) |
-| **Skills** | 45 | PDF, DOCX, DDD, RAG, Mermaid, scheduler, compliance-routing, autonomous-routing (108 NLP triggers) |
-| **Modes** | 4 | architect, autonomous, brainstorm, quality |
-| **Rules** | 27 | anti-hallucination, metacognition, complexity-budget, pedagogie, security, testing, decision-gate |
-| **MCP Servers** | 20+ | Memory, Context7, GitHub, Google Workspace, WhatsApp, ATUM Audit |
+- [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) -- agents, skills, commands
+- [Superpowers](https://github.com/claude-plugins-official/superpowers) -- brainstorming, debugging, TDD workflows
+- [UI/UX Pro Max](https://github.com/zckly/ui-ux-pro-max-skill) -- design system intelligence
+- [Feature Dev](https://github.com/claude-plugins-official/feature-dev) -- architecture exploration
+- [PR Review Toolkit](https://github.com/claude-plugins-official/pr-review-toolkit) -- code review agents
+- [Hookify](https://github.com/claude-plugins-official/hookify) -- rule-based hook system
+- Custom ATUM systems -- compliance, orchestration, French language support
 
-## Safety Model
+## Requirements
 
-Full autonomy (no permission prompts) secured by runtime hooks:
-
-| Hook | What it does |
-|------|-------------|
-| **file-guard** | Blocks access to 195+ sensitive file patterns (SSH keys, .env, wallets, certificates) |
-| **git-guard** | Blocks push to main, force-push; enforces conventional commits and branch naming |
-| **secret-scanner** | Detects 35+ hardcoded secret patterns (AWS, Stripe, GitHub, OpenAI, Anthropic, etc.) before commit |
-| **anti-rationalization** | Detects premature completion (10 patterns with severity weights); blocks vague "should work" claims |
-| **loop-detector** | Detects consecutive repeats, ping-pong alternation (A↔B), and context exhaustion |
-| **image-auto-resize** | Auto-resizes images >1800px before they enter context (prevents API dimension limit errors) |
-| **precompact-save** | Saves critical context (modified files, errors, commits) before compaction |
-| **session-to-graph** | Queues session entities for knowledge graph persistence |
-
-## NLP Auto-Routing
-
-108 triggers (French + English) auto-detect intent and invoke the right workflow:
-
-| You say | ATUM does |
-|---------|-----------|
-| "Create a PDF" | → `/pdf` skill |
-| "Audit RGPD" | → compliance-expert agent + ATUM Audit MCP |
-| "EU AI Act compliance" | → `compliance_status` + `compliance_validate` |
-| "Deploy on Render" | → `/deploy` skill |
-| "Quick website" | → B12 MCP `generate_website` |
-| "Schedule a daily task" | → `/schedule` skill (NL → cron → daemon) |
-
-## For Non-ATUM Users
-
-ATUM System was built for [ATUM SAS](https://github.com/arnwaldn) but is designed to be customized:
-
-1. **Replace `CLAUDE.md`** — Change the identity from "Dev senior ATUM SAS" to your own team description
-2. **Remove `data/agence-atum/`** — This contains ATUM-specific business templates (contracts, invoices). Delete if not needed
-3. **Set `ATUM_USER`** — Change the env var to your username for collective memory
-4. **Keep everything else** — The hooks, rules, agents, skills, and modes are project-agnostic
-
-## Install Details
-
-### Plugin (recommended)
-
-```bash
-/plugin marketplace add arnwaldn/atum-system
-/plugin install atum-system@arnwaldn-atum-system
-/reload-plugins
-```
-
-### Full Install (advanced)
-
-```bash
-git clone https://github.com/arnwaldn/atum-system.git
-cd atum-system && bash install.sh
-```
-
-**Prerequisites**: Node.js, Python 3, Git, [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code)
-
-### Plugin vs Full Install
-
-| Feature | Plugin | Full Install |
-|---------|--------|-------------|
-| 40 agents, 45 skills, 31 commands, 31 hooks, 4 modes | Yes | Yes |
-| 6 MCP servers (no secrets) | Yes | Yes |
-| 27 rules | Via skills | Yes |
-| 14 MCP servers (with secrets) | No | Yes |
-| Permissions (full autonomy) | No | Yes |
-| Scheduler daemon (PM2) | No | Yes |
-| Collective memory sync | No | Yes |
-
-### Post-Install (Full Install only)
-
-1. Restart Claude Code
-2. Set env vars:
-   ```bash
-   export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token 2>/dev/null)"
-   export ATUM_USER="your-name"
-   ```
-3. Configure remote MCP in claude.ai settings: Figma, Notion, Supabase, Vercel, Canva, Stripe, Gamma
-
-## Languages & Frameworks
-
-Rules and agents cover: TypeScript, Python, Go, Rust, Java, .NET, PHP, Ruby, Dart, Solidity.
-
-Frameworks: Next.js, Vue, Svelte, FastAPI, Django, Flask, Express, NestJS, Spring Boot, Laravel, Rails, Flutter, Tauri, Electron, Phaser, Three.js, Godot, Hardhat.
+- **Claude Code** v1.0+ with active subscription
+- **Node.js** 18+
+- **Python** 3.10+
+- **Git** 2.30+
 
 ## License
 
-[MIT](LICENSE)
+MIT -- see [LICENSE](LICENSE).
+
+---
+
+Built by [ATUM SAS](https://github.com/arnwaldn) for non-coders who build commercial products.
