@@ -6,8 +6,8 @@
   "plugins": [
     {
       "name": "atum-system",
-      "description": "ATUM SAS — 400+ composants Claude Code (40 agents, 45 skills, 31 commands, 31 hooks, 27 rules, 4 modes). Orchestration autonome full-stack.",
-      "version": "1.0.0",
+      "description": "Systeme de vibe coding pro complet pour non-codeurs. 39 agents, 45 skills, 30 commands, 25 rules, 34 hooks, 190 triggers NLP FR+EN. Orchestration autonome, EU AI Act, lifecycle idee-to-deploy.",
+      "version": "2.0.0",
       "source": "./"
     }
   ]

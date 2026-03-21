@@ -1,11 +1,26 @@
 {
   "name": "atum-system",
-  "description": "ATUM SAS — Config Claude Code complete: 40 agents, 45 skills, 31 commands, 31 hooks, 27 rules, 4 modes. Orchestration autonome, securite, compliance EU AI Act, memoire collective.",
-  "version": "1.0.0",
+  "description": "ATUM SAS — Systeme de vibe coding professionnel complet pour non-codeurs. 39 agents, 45 skills, 30 commands, 25 rules, 34 hooks, 190 triggers NLP FR+EN. Orchestration autonome, EU AI Act compliance, memoire collective, lifecycle complet idee-to-deploy.",
+  "version": "2.0.0",
   "author": {
     "name": "ATUM SAS"
   },
   "homepage": "https://github.com/arnwaldn/atum-system",
   "repository": "https://github.com/arnwaldn/atum-system",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "vibe-coding",
+    "non-coders",
+    "agents",
+    "skills",
+    "hooks",
+    "rules",
+    "autonomous",
+    "eu-ai-act",
+    "compliance",
+    "orchestration",
+    "french",
+    "full-lifecycle"
+  ]
 }
