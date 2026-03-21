@@ -1,6 +1,7 @@
 ---
 name: error-analyzer
 description: Analyze multiple PostHog errors in parallel to identify patterns, root causes, and prioritize fixes based on user impact.
+model: sonnet
 ---
 
 # PostHog Error Analyzer Agent
