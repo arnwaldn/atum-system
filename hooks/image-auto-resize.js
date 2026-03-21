@@ -22,7 +22,10 @@ const MIN_FILE_SIZE = 100000; // 100KB — below this, image is almost certainly
 const IMAGE_EXTS = new Set(['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp']);
 
 const HOME = process.env.HOME || process.env.USERPROFILE || '';
-const RESIZE_SCRIPT = path.join(HOME, '.claude', 'scripts', 'resize-image.ps1');
+// Look for resize script in plugin first, then fallback to user scripts
+const PLUGIN_SCRIPT = path.join(__dirname, '..', 'scripts', 'resize-image.ps1');
+const USER_SCRIPT = path.join(HOME, '.claude', 'scripts', 'resize-image.ps1');
+const RESIZE_SCRIPT = fs.existsSync(PLUGIN_SCRIPT) ? PLUGIN_SCRIPT : USER_SCRIPT;
 // Append-only format: one path per line (safe for concurrent writes)
 const CLEANUP_FILE = path.join(HOME, '.claude', 'tmp', 'screenshot-cleanup.txt');
 

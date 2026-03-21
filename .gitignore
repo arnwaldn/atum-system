@@ -1,84 +1,72 @@
-# Claude Code Config Backup - .gitignore
-# Only backup essential configuration files
-
-# === SENSITIVE - NEVER commit ===
-.credentials.json
-*.credentials*
-mcp.json
 
 # === ATUM internal data (sensitive — keep in private repo or local only) ===
-data/agence-atum/finances/
-data/agence-atum/rgpd/
-data/agence-atum/decisions/
-
 # === Auto-generated caches ===
-plugins/
-debug/
-file-history/
-statsig/
+# === Auto-generated skills ===
+# === Fichiers backup auto ===
+# === Image & media caches ===
+# === OS files ===
+# === Python cache ===
+# === SENSITIVE - NEVER commit ===
+# === Schedules perso (non partag�s) ===
+# === Session data (exclude logs, keep memory) ===
+# ATUM Audit
+# Claude Code Config Backup - .gitignore
+# Embedded repos & runtime data
+# Exclude UUID session directories (subagents, tool-results)
+# Only backup essential configuration files
+# Scheduler history (SQLite runtime data)
+# Track projects/*/memory/ for MEMORY.md but exclude session transcripts
+# Transient runtime data
+*.backup.*
+*.credentials*
+*.jsonl
+*.pyc
+.DS_Store
+.credentials.json
+Thumbs.db
+__pycache__/
+audit_store/
 backups/
 cache/
 chrome/
+collective-memory/
+common-ground/
+data/agence-atum/decisions/
+data/agence-atum/finances/
+data/agence-atum/rgpd/
+debug/
+desktop.ini
+downloads/
+file-history/
+graph-queue/
+hindsight-export/
+hindsight-mirror/
+hindsight-pending/
+history.jsonl
+homunculus/
+ide/
+image-cache/
+instincts/
+mcp-needs-auth-cache.json
+mcp.json
+memory/
 paste-cache/
 plans/
-sessions/
-shell-snapshots/
-tasks/
-todos/
-mcp-needs-auth-cache.json
-security_warnings_state_*.json
-
-# === Session data (exclude logs, keep memory) ===
-history.jsonl
-*.jsonl
-# Track projects/*/memory/ for MEMORY.md but exclude session transcripts
-projects/**/sessions/
+plugins/
 projects/**/*.jsonl
-# Exclude UUID session directories (subagents, tool-results)
+projects/**/sessions/
 projects/*/[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]-*/
-
-# === Auto-generated skills ===
-skills/learned/
-
-# === Python cache ===
-__pycache__/
-*.pyc
-
-# === OS files ===
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# === Image & media caches ===
-image-cache/
-
-# ATUM Audit
-audit_store/
-
-# Scheduler history (SQLite runtime data)
 schedules/.history/
-
-# Embedded repos & runtime data
-collective-memory/
-hindsight-mirror/
-hindsight-export/
-hindsight-pending/
-session-env/
-telemetry/
-
-# Transient runtime data
-instincts/
-memory/
-graph-queue/
-homunculus/
-downloads/
-common-ground/
-ide/
-tmp/
-
-# === Schedules perso (non partag�s) ===
 schedules/appart-aix-search.json
 schedules/whatsapp-cloclo-respond.json
-
-# === Fichiers backup auto ===
-*.backup.*
+security_warnings_state_*.json
+session-env/
+sessions/
+settings.local.json
+shell-snapshots/
+skills/learned/
+statsig/
+tasks/
+telemetry/
+tmp/
+todos/
