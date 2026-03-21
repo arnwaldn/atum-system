@@ -144,23 +144,23 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 
 ### Design-to-Code (Figma)
 **Detect**: Figma URL (figma.com/...), "implement this design", "from Figma", "implementer le design"
-→ Invoke `figma:implement-design` skill → adapt to project stack → ui-ux-pro-max for polish
+→ Invoke `atum-system:implement-design` skill → adapt to project stack → ui-ux-pro-max for polish
 
 ### UI/UX Design
 **Detect**: "design this", "make it beautiful", "rends ca beau", "UI", "interface", "style this"
-→ Invoke `ui-ux-pro-max:ui-ux-pro-max` skill → frontend-design for production code
+→ Invoke `atum-system:ui-ux-pro-max` skill → frontend-design for production code
 
 ### Payments / Stripe
 **Detect**: "add payments", "ajouter paiement", "Stripe", "checkout", "subscription", "abonnement"
-→ Invoke `stripe:stripe-best-practices` skill → Stripe MCP tools
+→ Invoke `atum-system:stripe-best-practices` skill → Stripe MCP tools
 
 ### Error Monitoring
 **Detect**: "add Sentry", "error tracking", "monitor errors", "surveiller les erreurs", "monitoring"
-→ Invoke `sentry:sentry-setup-tracing` + `sentry:sentry-setup-logging` skills
+→ Invoke `atum-system:sentry-setup-tracing` + `atum-system:sentry-setup-logging` skills
 
 ### Analytics
 **Detect**: "analytics", "track events", "PostHog", "A/B test", "feature flag", "tracker"
-→ Invoke `posthog:posthog-instrumentation` skill
+→ Invoke `atum-system:posthog-instrumentation` skill
 
 ### Backend-as-a-Service
 **Detect**: "Firebase", "Supabase", "setup database", "creer une base", "authentification"
@@ -168,23 +168,23 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 
 ### Design from Figma / Canva
 **Detect**: "Figma", "Canva", figma.com URL, "implement design", "convertir le design"
-→ Invoke figma:implement-design or Canva MCP tools
+→ Invoke atum-system:implement-design or Canva MCP tools
 
 ### Web Research
 **Detect**: "recherche en ligne", "search online", "find docs", "chercher sur le web", "deep research"
-→ Invoke `firecrawl:firecrawl-cli` skill
+→ Invoke `atum-system:firecrawl-cli` skill
 
 ### Project Management (Jira/Linear)
 **Detect**: "create ticket", "creer un ticket", "backlog", "sprint", "issue tracking"
-→ Linear plugin or `atlassian:triage-issue` skill
+→ Linear plugin or `atum-system:triage-issue` skill
 
 ### Brainstorming / Ideation
 **Detect**: "brainstorm", "idees", "explore les options", "let's think", "reflechissons"
-→ Invoke `superpowers:brainstorming` skill
+→ Invoke `atum-system:brainstorming` skill
 
 ### Debugging
 **Detect**: "debug", "pourquoi ca marche pas", "ca plante", "investigate", "ca bug"
-→ Invoke `superpowers:systematic-debugging` skill → error-detective agent
+→ Invoke `atum-system:systematic-debugging` skill → error-detective agent
 
 ### Onboarding / First Time
 **Detect**: "bienvenue", "comment ca marche", "je commence", "premier jour", "getting started", "how does this work"
@@ -192,10 +192,10 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 
 ## Auto-Review (Mandatory)
 
-After ANY implementation modifying >30 lines: use **everything-claude-code:code-reviewer** agent BEFORE declaring complete.
+After ANY implementation modifying >30 lines: use **atum-system:code-reviewer** agent BEFORE declaring complete.
 - CRITICAL/HIGH: fix immediately
 - MEDIUM: fix if <5 lines, otherwise note for user
-- Security-sensitive code (auth, payments, user input): ALWAYS use **everything-claude-code:security-reviewer**
+- Security-sensitive code (auth, payments, user input): ALWAYS use **atum-system:security-reviewer**
 - Skip for: pure docs, config files, test-only changes
 
 NEVER wait for user to request an agent. Detect and invoke. ALWAYS parallelize independent agent work.
@@ -203,17 +203,17 @@ NEVER wait for user to request an agent. Detect and invoke. ALWAYS parallelize i
 ## Auto-Triggered Systems (No user action needed)
 
 These systems activate automatically based on context:
-- **Go code modified** → `everything-claude-code:go-reviewer` agent
-- **Python code modified** → `everything-claude-code:python-reviewer` agent
-- **DB query/schema work** → `everything-claude-code:database-reviewer` agent
-- **Tests needed** → `everything-claude-code:tdd-guide` agent (via /tdd)
-- **Docs need update** → `everything-claude-code:doc-updater` agent
-- **Build fails** → `everything-claude-code:build-error-resolver` agent
-- **E2E tests needed** → `everything-claude-code:e2e-runner` agent
-- **Before claiming done** → `superpowers:verification-before-completion`
-- **Before writing code** → `superpowers:test-driven-development`
-- **Multi-step planning** → `superpowers:writing-plans`
-- **2+ independent tasks** → `superpowers:dispatching-parallel-agents`
+- **Go code modified** → `atum-system:go-reviewer` agent
+- **Python code modified** → `atum-system:python-reviewer` agent
+- **DB query/schema work** → `atum-system:database-reviewer` agent
+- **Tests needed** → `atum-system:tdd-guide` agent (via /tdd)
+- **Docs need update** → `atum-system:doc-updater` agent
+- **Build fails** → `atum-system:build-error-resolver` agent
+- **E2E tests needed** → `atum-system:e2e-runner` agent
+- **Before claiming done** → `atum-system:verification-before-completion`
+- **Before writing code** → `atum-system:test-driven-development`
+- **Multi-step planning** → `atum-system:writing-plans`
+- **2+ independent tasks** → `atum-system:dispatching-parallel-agents`
 
 ## Cross-references
 
