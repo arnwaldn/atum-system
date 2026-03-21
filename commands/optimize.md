@@ -1,3 +1,7 @@
+---
+description: "Analyze and optimize project performance across multiple dimensions."
+---
+
 # Performance Optimization
 
 Analyze and optimize project performance across multiple dimensions.

@@ -1,3 +1,7 @@
+---
+description: "Manage WebMCP connections between websites and Claude Code."
+---
+
 # WebMCP — Website to MCP Bridge
 
 Manage WebMCP connections between websites and Claude Code.

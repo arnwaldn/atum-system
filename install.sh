@@ -61,7 +61,7 @@ REPO_URL="https://github.com/arnwaldn/atum-system.git"
 
 # --- Detect context: running from cloned repo or curl pipe ---
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" 2>/dev/null && pwd || pwd)"
-if [ -f "$SCRIPT_DIR/.claude-plugin/plugin.json" ]; then
+if [ -f "$SCRIPT_DIR/plugin.json" ] || [ -f "$SCRIPT_DIR/.claude-plugin/plugin.json" ]; then
   SOURCE_DIR="$SCRIPT_DIR"
   info "Running from repo at $SOURCE_DIR"
 else
@@ -92,7 +92,14 @@ if [ "$(cd "$SOURCE_DIR" && pwd)" != "$(cd "$MARKETPLACE_DIR" 2>/dev/null && pwd
 fi
 
 # --- Read version ---
-VERSION=$($PYTHON_CMD -c "import json; print(json.load(open('$MARKETPLACE_DIR/.claude-plugin/plugin.json'))['version'])" 2>/dev/null || echo "2.0.0")
+VERSION=$($PYTHON_CMD -c "
+import json, os
+for p in ['$MARKETPLACE_DIR/plugin.json', '$MARKETPLACE_DIR/.claude-plugin/plugin.json']:
+    if os.path.exists(p):
+        print(json.load(open(p))['version']); break
+else:
+    print('3.0.0')
+" 2>/dev/null || echo "3.0.0")
 info "Version: $VERSION"
 
 # --- Populate cache ---

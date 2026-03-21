@@ -6,8 +6,8 @@
   "plugins": [
     {
       "name": "atum-system",
-      "description": "Le plugin ultime Claude Code. 68 agents, 151 skills, 30 commands, 25 rules, 34 hooks. Vibe coding pro autonome pour non-codeurs. Zero dependance externe.",
-      "version": "2.0.0",
+      "description": "The ultimate Claude Code plugin. 70 agents, 167 skills, 81 commands, 37 rules, 34 hooks. /autopilot for non-coders.",
+      "version": "3.0.0",
       "source": "./"
     }
   ]
