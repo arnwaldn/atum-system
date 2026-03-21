@@ -1,6 +1,6 @@
 {
   "name": "atum-system",
-  "description": "ATUM SAS — Systeme de vibe coding professionnel complet et autonome pour non-codeurs. 50 agents, 62 skills, 30 commands, 25 rules, 34 hooks, 190 triggers NLP FR+EN. Zero dependance externe. Orchestration autonome, EU AI Act compliance, memoire collective, lifecycle complet idee-to-deploy.",
+  "description": "ATUM SAS — Le plugin ultime Claude Code. 68 agents, 151 skills, 30 commands, 25 rules, 34 hooks, 190+ triggers NLP FR+EN. Systeme autonome complet pour vibe coding professionnel par non-codeurs. EU AI Act, TDD, code review, UI/UX, deploy, monitoring, compliance, lifecycle idee-to-deploy. Zero dependance externe.",
   "version": "2.0.0",
   "author": {
     "name": "ATUM SAS"

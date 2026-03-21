@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "atum-system",
-      "description": "Systeme de vibe coding pro autonome pour non-codeurs. 50 agents, 62 skills, 30 commands, 25 rules, 34 hooks, 190 triggers NLP FR+EN. Zero dependance externe. EU AI Act, lifecycle idee-to-deploy.",
+      "description": "Le plugin ultime Claude Code. 68 agents, 151 skills, 30 commands, 25 rules, 34 hooks. Vibe coding pro autonome pour non-codeurs. Zero dependance externe.",
       "version": "2.0.0",
       "source": "./"
     }
