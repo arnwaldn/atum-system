@@ -56,7 +56,6 @@ metadata:
 | geospatial-expert | Maps & spatial | deck.gl, MapLibre, Leaflet, GeoJSON, spatial indexing |
 | no-code-automation-expert | No-code/Make.com | Automatisations, blueprints, Airtable+Make+Notion integrations |
 | agence-atum-expert | Admin ATUM SAS | Gouvernance, finances, pipeline agence, obligations legales |
-| happy-expert | Mobile dev | Happy Coder remote access |
 | fresh-executor | Context-safe execution | Long sessions, 3+ file features, context degradation risk |
 | codebase-pattern-finder | Code search | Find patterns, examples, templates in codebase |
 | critical-thinking | Decision analysis | Challenge assumptions, detect biases, structured frameworks |
@@ -95,10 +94,10 @@ metadata:
 | Quick business website | B12 MCP (generate_website tool) |
 | Web app testing / website tools | WebMCP (_webmcp_get-token then register then use tools) |
 | Long session, 3+ file feature | fresh-executor agent (context-safe decomposition) |
+| Auto-generate test suite | auto-test-generator agent |
 | Technical debt audit | technical-debt-manager agent |
 | ETL, data pipelines | data-engineer agent |
 | Auto-generate test suite | auto-test-generator agent |
-| Happy Coder mobile access | happy-expert agent |
 
 ## Skill Selection (Automatic)
 
@@ -223,6 +222,16 @@ Detect intent from natural language and invoke matching skill automatically:
 - "note de frais", "remboursement", "frais deplacement" -> agence-atum (frais)
 - "Syntec", "convention collective", "grille salariale" -> agence-atum (compliance syntec)
 
+### Session History & Analysis
+- "session history", "historique session", "qu'est-ce que j'ai fait", "what did I work on", "past sessions" -> /session-analyzer skill
+- "chercher dans les sessions", "find past work", "search session", "retrouver un travail" -> /session-analyzer skill
+
+### New Project Definition
+- "je veux une app", "je veux un site", "j'ai une idee de projet", "nouveau projet" -> /projet skill (entretien guide 8 phases)
+- "definir un projet", "creer un projet", "start a project", "new project", "define a project" -> /projet skill
+- "j'ai une idee", "j'ai un projet", "monter un projet", "I want to build" -> /projet skill
+- "on fait quoi comme projet", "quel projet", "idee de business" -> /projet skill
+
 ### Development Workflow
 - "TDD", "test d'abord", "ecrire les tests avant", "write tests first", "test-driven" -> /tdd skill
 - "revue de code", "review et fix", "review fix", "code review automatique" -> /review-fix skill
@@ -261,7 +270,6 @@ Detect intent from natural language and invoke matching skill automatically:
 ### Communication & Dashboard
 - "mise a jour dashboard", "forcer le scan", "update dashboard", "scanner les projets" -> /dashboard-atum skill
 - "veille whatsapp", "messages cloclo", "checker whatsapp", "whatsapp check" -> /whatsapp skill
-- "happy coder", "acceder depuis mon mobile", "mobile access", "remote access" -> /happy skill
 
 ### Fresh Context & Context Management
 - "contexte frais", "decomposer en sous-taches", "session longue qualite", "fresh context" -> /fresh-execute skill
@@ -280,12 +288,144 @@ Detect intent from natural language and invoke matching skill automatically:
 - "terminal test", "TUI test", "CLI test", "tester le terminal", "interactive CLI" -> terminal-emulator skill
 
 ### External Services (MCP remote)
-- "Stripe", "paiement", "checkout" -> Stripe MCP
+- "Stripe", "paiement", "checkout", "ajouter paiement", "add payments", "subscribe" -> Stripe MCP + stripe:stripe-best-practices skill
 - "Netlify", "deploy static" -> Netlify MCP
 - "Cloudinary", "upload image", "CDN images" -> Cloudinary MCP
 - "docs Microsoft", "Azure" -> Microsoft Learn MCP
-- "Linear", "issue tracking", "backlog" -> Linear plugin
-- "Pinecone", "vector store" -> Pinecone plugin
+- "Linear", "issue tracking", "backlog", "create issue", "creer un ticket" -> Linear plugin
+- "Pinecone", "vector store", "semantic search" -> Pinecone plugin + rag-architect skill
+
+### Error Tracking & Monitoring (Sentry)
+- "error tracking", "monitor errors", "add Sentry", "tracking d'erreurs", "surveiller les erreurs" -> sentry:sentry-setup-tracing skill
+- "Sentry", "setup Sentry", "configurer Sentry", "error monitoring" -> sentry:sentry-setup-tracing + sentry:sentry-setup-logging skills
+- "AI monitoring", "monitor LLM", "surveiller l'IA", "agent monitoring" -> sentry:sentry-setup-ai-monitoring skill
+- "Sentry metrics", "custom metrics", "metriques" -> sentry:sentry-setup-metrics skill
+
+### Analytics & Feature Flags (PostHog)
+- "analytics", "ajouter analytics", "track events", "tracker les evenements" -> posthog:posthog-instrumentation skill
+- "A/B test", "experiment", "feature flag", "flag feature" -> posthog:flags + posthog:experiments skills
+- "PostHog", "configurer PostHog", "setup analytics" -> posthog:posthog-instrumentation skill
+- "dashboard analytics", "voir les metriques", "insights" -> posthog:insights skill
+
+### Backend-as-a-Service (Firebase / Supabase)
+- "Firebase", "add Firebase", "Firebase auth", "authentification Firebase", "Firestore" -> firebase plugin skills
+- "Firebase hosting", "deploy Firebase", "Firebase functions" -> firebase plugin skills
+- "Supabase", "setup Supabase", "Supabase auth", "Supabase database" -> supabase plugin skills
+- "edge function", "Supabase function", "serverless Supabase" -> supabase:deploy_edge_function
+- "creer une base de donnees", "setup database", "nouvelle base" -> supabase:create_project or /db skill
+
+### Deployment Platforms
+- "deploy on Vercel", "deployer sur Vercel", "Vercel", "deploy frontend" -> vercel:deploy skill
+- "deploy on Railway", "Railway", "deployer sur Railway" -> Railway MCP
+- "deploy on Render", "Render", "deployer sur Render" -> /deploy skill
+
+### Design-to-Code (Figma)
+- "implement this design", "from Figma", "Figma URL", "implementer le design" -> figma:implement-design skill
+- "connect component", "code connect", "connecter composant Figma" -> figma:code-connect-components skill
+- "design system rules", "regles design system" -> figma:create-design-system-rules skill
+- figma.com URL detected -> figma:implement-design skill
+
+### Project Management (Atlassian/Jira)
+- "create Jira ticket", "creer un ticket Jira", "Jira issue" -> atlassian:triage-issue skill
+- "backlog from spec", "spec to backlog", "creer le backlog" -> atlassian:spec-to-backlog skill
+- "meeting notes", "action items from meeting", "taches de la reunion" -> atlassian:capture-tasks-from-meeting-notes skill
+- "status report", "rapport d'avancement", "project report" -> atlassian:generate-status-report skill
+- "search knowledge", "find in docs", "chercher dans les docs internes" -> atlassian:search-company-knowledge skill
+
+### Web Research (Firecrawl)
+- "recherche en ligne", "check the web", "search online", "find documentation", "chercher sur le web" -> firecrawl:firecrawl-cli skill
+- "scrape", "extract from URL", "read this URL", "lire cette page" -> firecrawl:firecrawl-cli skill
+- "deep research", "investigate", "enqueter", "recherche approfondie en ligne" -> firecrawl:firecrawl-cli skill
+
+### Static Analysis & Security Scanning
+- "static analysis", "SAST", "analyse statique", "scan de code", "semgrep" -> semgrep plugin
+- "dependency check", "vulnerable dependency", "CVE check" -> sonatype-guide plugin + supply-chain-risk-auditor skill
+
+### Brainstorming & Debugging (Superpowers)
+- "brainstorm", "brainstorming", "idees", "explore les options", "let's think" -> superpowers:brainstorming skill
+- "debug this", "pourquoi ca marche pas", "ca plante", "investigate this error" -> superpowers:systematic-debugging skill
+- "review my PR", "PR review", "review cette PR" -> pr-review-toolkit:review-pr skill
+- "simplify this code", "simplifier ce code", "nettoyer le code" -> everything-claude-code:refactor-cleaner agent
+
+### AI/ML & HuggingFace
+- "train a model", "fine-tune", "entrainer un modele", "fine-tuner" -> huggingface-skills:hugging-face-model-trainer skill
+- "upload to HuggingFace", "publier un modele", "HuggingFace Hub" -> huggingface-skills:hugging-face-cli skill
+- "dataset HuggingFace", "creer un dataset", "create dataset" -> huggingface-skills:hugging-face-datasets skill
+- "GPU job", "cloud training", "run on HF", "lancer un job" -> huggingface-skills:hugging-face-jobs skill
+
+### Interactive Playground
+- "create a playground", "interactive explorer", "creer un playground", "outil interactif" -> playground:playground skill
+- "demo interactive", "visualiser en HTML", "sandbox" -> playground:playground skill
+
+### Browser Testing (Playwright)
+- "test in browser", "tester dans le navigateur", "E2E test", "test bout en bout" -> playwright plugin or everything-claude-code:e2e skill
+- "screenshot test", "capture d'ecran test", "visual test" -> everything-claude-code:e2e skill
+
+### Documentation Lookup (Context7)
+- "check docs for", "documentation de", "how does X work", "comment fonctionne" -> context7 plugin (resolve-library-id then query-docs)
+- "latest API docs", "docs a jour", "up-to-date docs" -> context7 plugin
+
+### Feature Development
+- "guided feature dev", "develop this feature step by step", "developper cette feature" -> feature-dev:feature-dev skill
+- "explore this codebase", "comprendre ce code", "analyze architecture" -> feature-dev:code-explorer agent
+
+### Git Workflow
+- "commit", "commit and push", "create PR", "creer une PR", "push and PR" -> commit-commands:commit-push-pr skill
+- "clean branches", "nettoyer les branches" -> commit-commands:clean_gone skill
+
+### Task Management (Asana)
+- "Asana", "tache Asana", "Asana task", "Asana project" -> asana plugin
+
+### GitLab
+- "GitLab", "merge request", "GitLab CI", "pipeline GitLab" -> gitlab plugin
+
+### Laravel
+- "Laravel", "artisan", "Eloquent", "blade template" -> laravel-boost plugin
+
+### Autonomous Loops
+- "ralph loop", "boucle autonome", "autonomous loop", "run continuously" -> ralph-loop:ralph-loop skill
+
+### Browser Testing & Automation
+- "test in real browser", "tester dans un vrai navigateur", "browser automation", "automatiser le navigateur" -> agent-browser skill
+- "test E2E", "end to end test", "test bout en bout", "playwright test" -> everything-claude-code:e2e skill + e2e-runner agent
+
+### Onboarding & Memory
+- "bienvenue", "comment ca marche", "je commence", "premier jour", "getting started", "how does this work" -> bienvenue skill
+- "souviens-toi", "memoire collective", "sauvegarder cette info", "remember this", "store this decision" -> memoire skill
+- "retrouver une info", "chercher dans la memoire", "what did we decide about" -> memoire skill
+
+### Project Patterns & Templates
+- "skeleton project", "template projet", "project template", "modele de projet" -> project-patterns skill
+- "B12 website", "generer un site B12" -> project-patterns skill (B12 pattern)
+
+### Image Management
+- "image trop grande", "resize image", "redimensionner", "image bloquante" -> image-guard-rules skill (auto-triggered by hooks)
+
+### ECC Specialized Agents (auto-triggered by context)
+- Go code modified -> everything-claude-code:go-reviewer agent (auto)
+- Python code modified -> everything-claude-code:python-reviewer agent (auto)
+- Database query/schema work -> everything-claude-code:database-reviewer agent (auto)
+- Tests needed -> everything-claude-code:tdd-guide agent (auto, via /tdd command)
+- Documentation update needed -> everything-claude-code:doc-updater agent (auto)
+- Build fails -> everything-claude-code:build-error-resolver agent (auto)
+
+### Superpowers Workflow (auto-triggered)
+- Before claiming work is done -> superpowers:verification-before-completion (auto)
+- Before writing implementation code -> superpowers:test-driven-development (auto)
+- When planning multi-step tasks -> superpowers:writing-plans (auto)
+- When facing 2+ independent tasks -> superpowers:dispatching-parallel-agents (auto)
+
+### Meta Plugins (auto-triggered — no NLP routing needed)
+# These plugins are triggered by specific actions, not user intent:
+# - agent-sdk-dev: triggered when building Claude SDK apps
+# - claude-code-setup: triggered when setting up Claude Code
+# - claude-md-management: triggered when managing CLAUDE.md files
+# - hookify: triggered when creating/managing hooks
+# - plugin-dev: triggered when creating plugins
+# - skill-creator: triggered when creating skills
+# - qodo-skills: auto-loads rules before code tasks
+# - serena: semantic code tools (auto-invoked by MCP)
+# - project-architect: triggered for architecture analysis
 
 ## Decision Authority
 

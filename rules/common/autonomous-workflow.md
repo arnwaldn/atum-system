@@ -6,6 +6,10 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 
 ## Auto-Detection → Auto-Action
 
+### New Project / Define a Project from Scratch
+**Detect**: "je veux une app", "je veux un site", "j'ai une idee de projet", "nouveau projet", "definir un projet", "creer un projet", "on fait quoi comme projet", "I want to build", "new project", "define a project", "start a project", "j'ai un projet", "j'ai une idee", "monter un projet"
+→ Invoke `/projet` skill — entretien guide 8 phases, zero jargon, brief complet → puis `/prd` → `/scaffold` → `/pipeline`
+
 ### New Feature / Functionality
 **Detect**: "add", "create", "implement", "build", new functionality described
 → Check common-ground if first time on project → Analyze codebase patterns → Plan if complex (EnterPlanMode) → TDD (tests first) → code-reviewer → Verify
@@ -138,33 +142,81 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 **Detect**: "integrite fichiers", "file integrity", "hash verification", "audit trail", "atum audit", "scan integrite", "verifier les fichiers"
 → Invoke `/atum-audit` skill — full scan, violations, verify file, history
 
-## Quality Gates (Automatic — Never Skip)
+### Design-to-Code (Figma)
+**Detect**: Figma URL (figma.com/...), "implement this design", "from Figma", "implementer le design"
+→ Invoke `figma:implement-design` skill → adapt to project stack → ui-ux-pro-max for polish
 
-Every code change MUST pass before marking complete:
-1. **Tests exist and pass** — show actual test output
-2. **No lint errors** — run linter on changed files
-3. **Types check** — run type checker if applicable
-4. **Security clean** — no hardcoded secrets, inputs validated
-5. **Patterns match** — follow existing codebase conventions
+### UI/UX Design
+**Detect**: "design this", "make it beautiful", "rends ca beau", "UI", "interface", "style this"
+→ Invoke `ui-ux-pro-max:ui-ux-pro-max` skill → frontend-design for production code
+
+### Payments / Stripe
+**Detect**: "add payments", "ajouter paiement", "Stripe", "checkout", "subscription", "abonnement"
+→ Invoke `stripe:stripe-best-practices` skill → Stripe MCP tools
+
+### Error Monitoring
+**Detect**: "add Sentry", "error tracking", "monitor errors", "surveiller les erreurs", "monitoring"
+→ Invoke `sentry:sentry-setup-tracing` + `sentry:sentry-setup-logging` skills
+
+### Analytics
+**Detect**: "analytics", "track events", "PostHog", "A/B test", "feature flag", "tracker"
+→ Invoke `posthog:posthog-instrumentation` skill
+
+### Backend-as-a-Service
+**Detect**: "Firebase", "Supabase", "setup database", "creer une base", "authentification"
+→ Firebase or Supabase plugin skills depending on context
+
+### Design from Figma / Canva
+**Detect**: "Figma", "Canva", figma.com URL, "implement design", "convertir le design"
+→ Invoke figma:implement-design or Canva MCP tools
+
+### Web Research
+**Detect**: "recherche en ligne", "search online", "find docs", "chercher sur le web", "deep research"
+→ Invoke `firecrawl:firecrawl-cli` skill
+
+### Project Management (Jira/Linear)
+**Detect**: "create ticket", "creer un ticket", "backlog", "sprint", "issue tracking"
+→ Linear plugin or `atlassian:triage-issue` skill
+
+### Brainstorming / Ideation
+**Detect**: "brainstorm", "idees", "explore les options", "let's think", "reflechissons"
+→ Invoke `superpowers:brainstorming` skill
+
+### Debugging
+**Detect**: "debug", "pourquoi ca marche pas", "ca plante", "investigate", "ca bug"
+→ Invoke `superpowers:systematic-debugging` skill → error-detective agent
+
+### Onboarding / First Time
+**Detect**: "bienvenue", "comment ca marche", "je commence", "premier jour", "getting started", "how does this work"
+→ Invoke `bienvenue` skill — guide interactif pour decouvrir Claude Code
 
 ## Auto-Review (Mandatory)
 
-After ANY implementation modifying >30 lines: use **code-reviewer** agent BEFORE declaring complete.
+After ANY implementation modifying >30 lines: use **everything-claude-code:code-reviewer** agent BEFORE declaring complete.
 - CRITICAL/HIGH: fix immediately
 - MEDIUM: fix if <5 lines, otherwise note for user
-- Security-sensitive code (auth, payments, user input): ALWAYS use **security-reviewer**
+- Security-sensitive code (auth, payments, user input): ALWAYS use **everything-claude-code:security-reviewer**
 - Skip for: pure docs, config files, test-only changes
-
-## Failure Recovery (Mandatory)
-
-1. **1st failure**: Read error, understand root cause, fix, retry
-2. **2nd failure**: Change strategy entirely
-3. **3rd failure**: STOP. Explain to user, propose 2-3 alternatives, ask which to pursue
-4. NEVER retry exact same command after failure
-5. NEVER blame "pre-existing issues" — find a way or explain why impossible
 
 NEVER wait for user to request an agent. Detect and invoke. ALWAYS parallelize independent agent work.
 
-## Routing Reference
+## Auto-Triggered Systems (No user action needed)
 
-For detailed agent registry (38 agents), skill selection, NLP routing tables (108+ FR+EN triggers), and decision authority rules, consult the **autonomous-routing** skill.
+These systems activate automatically based on context:
+- **Go code modified** → `everything-claude-code:go-reviewer` agent
+- **Python code modified** → `everything-claude-code:python-reviewer` agent
+- **DB query/schema work** → `everything-claude-code:database-reviewer` agent
+- **Tests needed** → `everything-claude-code:tdd-guide` agent (via /tdd)
+- **Docs need update** → `everything-claude-code:doc-updater` agent
+- **Build fails** → `everything-claude-code:build-error-resolver` agent
+- **E2E tests needed** → `everything-claude-code:e2e-runner` agent
+- **Before claiming done** → `superpowers:verification-before-completion`
+- **Before writing code** → `superpowers:test-driven-development`
+- **Multi-step planning** → `superpowers:writing-plans`
+- **2+ independent tasks** → `superpowers:dispatching-parallel-agents`
+
+## Cross-references
+
+- Quality gates → see `testing.md`
+- Failure recovery & escalade → see `decision-framework.md`
+- Detailed agent registry & NLP routing → see **autonomous-routing** skill
