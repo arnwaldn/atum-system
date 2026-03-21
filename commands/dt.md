@@ -1,3 +1,7 @@
+---
+description: "Commande de pilotage strategique des projets ATUM."
+---
+
 # /dt — Directeur Technique
 
 Commande de pilotage strategique des projets ATUM.
