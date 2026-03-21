@@ -1,3 +1,7 @@
+---
+description: "Comprehensive security audit for any project type."
+---
+
 # Security Audit
 
 Comprehensive security audit for any project type.

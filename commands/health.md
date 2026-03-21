@@ -1,3 +1,7 @@
+---
+description: "Perform a comprehensive health check of the Claude Code environment."
+---
+
 # System Health Check
 
 Perform a comprehensive health check of the Claude Code environment.

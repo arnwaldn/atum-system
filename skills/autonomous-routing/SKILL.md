@@ -226,10 +226,16 @@ Detect intent from natural language and invoke matching skill automatically:
 - "session history", "historique session", "qu'est-ce que j'ai fait", "what did I work on", "past sessions" -> /session-analyzer skill
 - "chercher dans les sessions", "find past work", "search session", "retrouver un travail" -> /session-analyzer skill
 
+### Autopilot (Parcours complet non-codeur)
+- "autopilot", "pilote automatique", "fais tout pour moi", "do everything", "build this for me" -> /autopilot command
+- "de l'idee au produit", "from idea to product", "je veux tout automatique" -> /autopilot command
+- "construis-moi", "build me", "cree-moi une app", "cree-moi un site" -> /autopilot command
+- "reprendre le projet", "resume autopilot", "ou en est mon projet" -> /autopilot --resume
+
 ### New Project Definition
-- "je veux une app", "je veux un site", "j'ai une idee de projet", "nouveau projet" -> /projet skill (entretien guide 8 phases)
+- "je veux une app", "je veux un site", "j'ai une idee de projet", "nouveau projet" -> /autopilot command (si non-codeur) OU /projet skill (si dev)
 - "definir un projet", "creer un projet", "start a project", "new project", "define a project" -> /projet skill
-- "j'ai une idee", "j'ai un projet", "monter un projet", "I want to build" -> /projet skill
+- "j'ai une idee", "j'ai un projet", "monter un projet", "I want to build" -> /autopilot command
 - "on fait quoi comme projet", "quel projet", "idee de business" -> /projet skill
 
 ### Development Workflow
@@ -414,6 +420,33 @@ Detect intent from natural language and invoke matching skill automatically:
 - Before writing implementation code -> atum-system:test-driven-development (auto)
 - When planning multi-step tasks -> atum-system:writing-plans (auto)
 - When facing 2+ independent tasks -> atum-system:dispatching-parallel-agents (auto)
+
+### Build & Quality (consolidated from ECC)
+- "build error", "erreur de build", "corriger le build", "fix build", "compilation error" -> /build-fix command
+- "quality gate", "gate qualite", "check before merge", "verification avant merge" -> /quality-gate command
+- "couverture de tests", "test coverage", "code coverage", "rapport de couverture" -> /test-coverage command
+- "verifier tout", "verify everything", "verification complete", "check everything works" -> /verify command
+- "nettoyer le code mort", "dead code", "unused code", "remove dead code", "refactor clean" -> /refactor-clean command
+- "code review", "review de code", "revoir le code" -> /code-review command
+
+### Orchestration Multi-Agents (consolidated from ECC)
+- "plan d'implementation", "write a plan", "planifier l'implementation" -> /plan command
+- "orchestrer", "multi-agent", "orchestrate agents" -> /orchestrate command
+- "executer en parallele", "parallel execution", "multi execute" -> /multi-execute command
+- "plan multi-composants", "multi plan" -> /multi-plan command
+
+### Git Workflow (consolidated from commit-commands)
+- "commit mes changements", "git commit", "create commit" -> /commit command
+- "push et creer une PR", "commit push PR", "ouvrir une PR" -> /commit-push-pr command
+- "nettoyer les branches mortes", "clean gone branches", "branches obsoletes" -> /clean_gone command
+
+### Plugin Development (consolidated from plugin-dev/hookify)
+- "creer un plugin", "scaffold plugin", "new plugin" -> /create-plugin command
+- "creer un hook depuis la conversation", "hookify this", "generer un hook" -> /hookify command
+
+### Code Review External (consolidated from coderabbit/pr-review-toolkit)
+- "coderabbit review", "review avec coderabbit" -> /coderabbit-review command
+- "review cette PR", "PR review complete", "review PR" -> /review-pr command
 
 ### Meta Plugins (auto-triggered — no NLP routing needed)
 # These plugins are triggered by specific actions, not user intent:
