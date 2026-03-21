@@ -201,7 +201,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/collective-memory-retain.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/collective-memory-retain.js\"",
+            "async": true,
+            "timeout": 5000
           }
         ]
       },
@@ -210,7 +212,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/atum-dashboard-sync.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/atum-dashboard-sync.js\"",
+            "async": true,
+            "timeout": 5000
           }
         ]
       },
@@ -237,7 +241,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/cost-tracker.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/cost-tracker.js\"",
+            "async": true,
+            "timeout": 5000
           }
         ]
       },
@@ -246,7 +252,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/evaluate-session.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/evaluate-session.js\"",
+            "async": true,
+            "timeout": 5000
           }
         ]
       }
@@ -291,6 +299,17 @@
           {
             "type": "command",
             "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/clean-shell-snapshots.py\""
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/autonomous-router-hook.js\""
           }
         ]
       }
