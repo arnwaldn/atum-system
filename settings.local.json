@@ -1,7 +1,7 @@
 {
   "statusLine": {
     "type": "command",
-    "command": "python \"$HOME_PLACEHOLDER/.claude/scripts/context-monitor.py\""
+    "command": "python \"C:/Users/arnau/.claude/scripts/context-monitor.py\""
   },
   "permissions": {
     "deny": [

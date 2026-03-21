@@ -1,3 +1,7 @@
+---
+description: "Unified database management command supporting migrations, schema operations, and type generation."
+---
+
 # Database Management
 
 Unified database management command supporting migrations, schema operations, and type generation.

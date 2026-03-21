@@ -1,3 +1,7 @@
+---
+description: "Crée un projet d'automatisation no-code complet en suivant la méthodologie Maestro (Maria Schools/LION)."
+---
+
 # Projet Automatisation No-Code
 
 Crée un projet d'automatisation no-code complet en suivant la méthodologie Maestro (Maria Schools/LION).
