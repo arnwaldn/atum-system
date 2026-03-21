@@ -102,13 +102,13 @@ metadata:
 ## Skill Selection (Automatic)
 
 Use skills when they match — don't wait for user to invoke:
-- Writing new feature: invoke `/tdd` command or `everything-claude-code:tdd` skill
+- Writing new feature: invoke `/tdd` command or `atum-system:tdd` skill
 - Before any creative work: switch to `brainstorm` mode
-- Complex multi-step task: invoke `everything-claude-code:plan` skill or EnterPlanMode
-- About to claim "done": invoke `everything-claude-code:verification-loop` skill
+- Complex multi-step task: invoke `atum-system:plan` skill or EnterPlanMode
+- About to claim "done": invoke `atum-system:verification-loop` skill
 - Multiple independent tasks: use Agent tool with parallel subagent_type calls
 - Debugging: invoke `error-detective` agent
-- Frontend UI/design work: invoke `ui-ux-pro-max:ui-ux-pro-max` skill (search colors, styles, typography, patterns)
+- Frontend UI/design work: invoke `atum-system:ui-ux-pro-max` skill (search colors, styles, typography, patterns)
 - Landing page / marketing site: query --domain product then --domain landing for data-driven design
 - Quick business website: use B12 MCP generate_website tool (name + description = instant site)
 - Web app interaction needing structured data: suggest WebMCP (_webmcp_get-token tool) instead of browser automation
@@ -288,7 +288,7 @@ Detect intent from natural language and invoke matching skill automatically:
 - "terminal test", "TUI test", "CLI test", "tester le terminal", "interactive CLI" -> terminal-emulator skill
 
 ### External Services (MCP remote)
-- "Stripe", "paiement", "checkout", "ajouter paiement", "add payments", "subscribe" -> Stripe MCP + stripe:stripe-best-practices skill
+- "Stripe", "paiement", "checkout", "ajouter paiement", "add payments", "subscribe" -> Stripe MCP + atum-system:stripe-best-practices skill
 - "Netlify", "deploy static" -> Netlify MCP
 - "Cloudinary", "upload image", "CDN images" -> Cloudinary MCP
 - "docs Microsoft", "Azure" -> Microsoft Learn MCP
@@ -296,16 +296,16 @@ Detect intent from natural language and invoke matching skill automatically:
 - "Pinecone", "vector store", "semantic search" -> Pinecone plugin + rag-architect skill
 
 ### Error Tracking & Monitoring (Sentry)
-- "error tracking", "monitor errors", "add Sentry", "tracking d'erreurs", "surveiller les erreurs" -> sentry:sentry-setup-tracing skill
-- "Sentry", "setup Sentry", "configurer Sentry", "error monitoring" -> sentry:sentry-setup-tracing + sentry:sentry-setup-logging skills
-- "AI monitoring", "monitor LLM", "surveiller l'IA", "agent monitoring" -> sentry:sentry-setup-ai-monitoring skill
-- "Sentry metrics", "custom metrics", "metriques" -> sentry:sentry-setup-metrics skill
+- "error tracking", "monitor errors", "add Sentry", "tracking d'erreurs", "surveiller les erreurs" -> atum-system:sentry-setup-tracing skill
+- "Sentry", "setup Sentry", "configurer Sentry", "error monitoring" -> atum-system:sentry-setup-tracing + atum-system:sentry-setup-logging skills
+- "AI monitoring", "monitor LLM", "surveiller l'IA", "agent monitoring" -> atum-system:sentry-setup-ai-monitoring skill
+- "Sentry metrics", "custom metrics", "metriques" -> atum-system:sentry-setup-metrics skill
 
 ### Analytics & Feature Flags (PostHog)
-- "analytics", "ajouter analytics", "track events", "tracker les evenements" -> posthog:posthog-instrumentation skill
-- "A/B test", "experiment", "feature flag", "flag feature" -> posthog:flags + posthog:experiments skills
-- "PostHog", "configurer PostHog", "setup analytics" -> posthog:posthog-instrumentation skill
-- "dashboard analytics", "voir les metriques", "insights" -> posthog:insights skill
+- "analytics", "ajouter analytics", "track events", "tracker les evenements" -> atum-system:posthog-instrumentation skill
+- "A/B test", "experiment", "feature flag", "flag feature" -> atum-system:flags + atum-system:experiments skills
+- "PostHog", "configurer PostHog", "setup analytics" -> atum-system:posthog-instrumentation skill
+- "dashboard analytics", "voir les metriques", "insights" -> atum-system:insights skill
 
 ### Backend-as-a-Service (Firebase / Supabase)
 - "Firebase", "add Firebase", "Firebase auth", "authentification Firebase", "Firestore" -> firebase plugin skills
@@ -315,63 +315,63 @@ Detect intent from natural language and invoke matching skill automatically:
 - "creer une base de donnees", "setup database", "nouvelle base" -> supabase:create_project or /db skill
 
 ### Deployment Platforms
-- "deploy on Vercel", "deployer sur Vercel", "Vercel", "deploy frontend" -> vercel:deploy skill
+- "deploy on Vercel", "deployer sur Vercel", "Vercel", "deploy frontend" -> atum-system:deploy skill
 - "deploy on Railway", "Railway", "deployer sur Railway" -> Railway MCP
 - "deploy on Render", "Render", "deployer sur Render" -> /deploy skill
 
 ### Design-to-Code (Figma)
-- "implement this design", "from Figma", "Figma URL", "implementer le design" -> figma:implement-design skill
-- "connect component", "code connect", "connecter composant Figma" -> figma:code-connect-components skill
-- "design system rules", "regles design system" -> figma:create-design-system-rules skill
-- figma.com URL detected -> figma:implement-design skill
+- "implement this design", "from Figma", "Figma URL", "implementer le design" -> atum-system:implement-design skill
+- "connect component", "code connect", "connecter composant Figma" -> atum-system:code-connect-components skill
+- "design system rules", "regles design system" -> atum-system:create-design-system-rules skill
+- figma.com URL detected -> atum-system:implement-design skill
 
 ### Project Management (Atlassian/Jira)
-- "create Jira ticket", "creer un ticket Jira", "Jira issue" -> atlassian:triage-issue skill
-- "backlog from spec", "spec to backlog", "creer le backlog" -> atlassian:spec-to-backlog skill
-- "meeting notes", "action items from meeting", "taches de la reunion" -> atlassian:capture-tasks-from-meeting-notes skill
-- "status report", "rapport d'avancement", "project report" -> atlassian:generate-status-report skill
-- "search knowledge", "find in docs", "chercher dans les docs internes" -> atlassian:search-company-knowledge skill
+- "create Jira ticket", "creer un ticket Jira", "Jira issue" -> atum-system:triage-issue skill
+- "backlog from spec", "spec to backlog", "creer le backlog" -> atum-system:spec-to-backlog skill
+- "meeting notes", "action items from meeting", "taches de la reunion" -> atum-system:capture-tasks-from-meeting-notes skill
+- "status report", "rapport d'avancement", "project report" -> atum-system:generate-status-report skill
+- "search knowledge", "find in docs", "chercher dans les docs internes" -> atum-system:search-company-knowledge skill
 
 ### Web Research (Firecrawl)
-- "recherche en ligne", "check the web", "search online", "find documentation", "chercher sur le web" -> firecrawl:firecrawl-cli skill
-- "scrape", "extract from URL", "read this URL", "lire cette page" -> firecrawl:firecrawl-cli skill
-- "deep research", "investigate", "enqueter", "recherche approfondie en ligne" -> firecrawl:firecrawl-cli skill
+- "recherche en ligne", "check the web", "search online", "find documentation", "chercher sur le web" -> atum-system:firecrawl-cli skill
+- "scrape", "extract from URL", "read this URL", "lire cette page" -> atum-system:firecrawl-cli skill
+- "deep research", "investigate", "enqueter", "recherche approfondie en ligne" -> atum-system:firecrawl-cli skill
 
 ### Static Analysis & Security Scanning
 - "static analysis", "SAST", "analyse statique", "scan de code", "semgrep" -> semgrep plugin
 - "dependency check", "vulnerable dependency", "CVE check" -> sonatype-guide plugin + supply-chain-risk-auditor skill
 
 ### Brainstorming & Debugging (Superpowers)
-- "brainstorm", "brainstorming", "idees", "explore les options", "let's think" -> superpowers:brainstorming skill
-- "debug this", "pourquoi ca marche pas", "ca plante", "investigate this error" -> superpowers:systematic-debugging skill
-- "review my PR", "PR review", "review cette PR" -> pr-review-toolkit:review-pr skill
-- "simplify this code", "simplifier ce code", "nettoyer le code" -> everything-claude-code:refactor-cleaner agent
+- "brainstorm", "brainstorming", "idees", "explore les options", "let's think" -> atum-system:brainstorming skill
+- "debug this", "pourquoi ca marche pas", "ca plante", "investigate this error" -> atum-system:systematic-debugging skill
+- "review my PR", "PR review", "review cette PR" -> atum-system:review-pr skill
+- "simplify this code", "simplifier ce code", "nettoyer le code" -> atum-system:refactor-cleaner agent
 
 ### AI/ML & HuggingFace
-- "train a model", "fine-tune", "entrainer un modele", "fine-tuner" -> huggingface-skills:hugging-face-model-trainer skill
-- "upload to HuggingFace", "publier un modele", "HuggingFace Hub" -> huggingface-skills:hugging-face-cli skill
-- "dataset HuggingFace", "creer un dataset", "create dataset" -> huggingface-skills:hugging-face-datasets skill
-- "GPU job", "cloud training", "run on HF", "lancer un job" -> huggingface-skills:hugging-face-jobs skill
+- "train a model", "fine-tune", "entrainer un modele", "fine-tuner" -> atum-system:hugging-face-model-trainer skill
+- "upload to HuggingFace", "publier un modele", "HuggingFace Hub" -> atum-system:hugging-face-cli skill
+- "dataset HuggingFace", "creer un dataset", "create dataset" -> atum-system:hugging-face-datasets skill
+- "GPU job", "cloud training", "run on HF", "lancer un job" -> atum-system:hugging-face-jobs skill
 
 ### Interactive Playground
-- "create a playground", "interactive explorer", "creer un playground", "outil interactif" -> playground:playground skill
-- "demo interactive", "visualiser en HTML", "sandbox" -> playground:playground skill
+- "create a playground", "interactive explorer", "creer un playground", "outil interactif" -> atum-system:playground skill
+- "demo interactive", "visualiser en HTML", "sandbox" -> atum-system:playground skill
 
 ### Browser Testing (Playwright)
-- "test in browser", "tester dans le navigateur", "E2E test", "test bout en bout" -> playwright plugin or everything-claude-code:e2e skill
-- "screenshot test", "capture d'ecran test", "visual test" -> everything-claude-code:e2e skill
+- "test in browser", "tester dans le navigateur", "E2E test", "test bout en bout" -> playwright plugin or atum-system:e2e skill
+- "screenshot test", "capture d'ecran test", "visual test" -> atum-system:e2e skill
 
 ### Documentation Lookup (Context7)
 - "check docs for", "documentation de", "how does X work", "comment fonctionne" -> context7 plugin (resolve-library-id then query-docs)
 - "latest API docs", "docs a jour", "up-to-date docs" -> context7 plugin
 
 ### Feature Development
-- "guided feature dev", "develop this feature step by step", "developper cette feature" -> feature-dev:feature-dev skill
-- "explore this codebase", "comprendre ce code", "analyze architecture" -> feature-dev:code-explorer agent
+- "guided feature dev", "develop this feature step by step", "developper cette feature" -> atum-system:feature-dev skill
+- "explore this codebase", "comprendre ce code", "analyze architecture" -> atum-system:code-explorer agent
 
 ### Git Workflow
-- "commit", "commit and push", "create PR", "creer une PR", "push and PR" -> commit-commands:commit-push-pr skill
-- "clean branches", "nettoyer les branches" -> commit-commands:clean_gone skill
+- "commit", "commit and push", "create PR", "creer une PR", "push and PR" -> atum-system:commit-push-pr skill
+- "clean branches", "nettoyer les branches" -> atum-system:clean_gone skill
 
 ### Task Management (Asana)
 - "Asana", "tache Asana", "Asana task", "Asana project" -> asana plugin
@@ -383,11 +383,11 @@ Detect intent from natural language and invoke matching skill automatically:
 - "Laravel", "artisan", "Eloquent", "blade template" -> laravel-boost plugin
 
 ### Autonomous Loops
-- "ralph loop", "boucle autonome", "autonomous loop", "run continuously" -> ralph-loop:ralph-loop skill
+- "ralph loop", "boucle autonome", "autonomous loop", "run continuously" -> atum-system:ralph-loop skill
 
 ### Browser Testing & Automation
 - "test in real browser", "tester dans un vrai navigateur", "browser automation", "automatiser le navigateur" -> agent-browser skill
-- "test E2E", "end to end test", "test bout en bout", "playwright test" -> everything-claude-code:e2e skill + e2e-runner agent
+- "test E2E", "end to end test", "test bout en bout", "playwright test" -> atum-system:e2e skill + e2e-runner agent
 
 ### Onboarding & Memory
 - "bienvenue", "comment ca marche", "je commence", "premier jour", "getting started", "how does this work" -> bienvenue skill
@@ -402,18 +402,18 @@ Detect intent from natural language and invoke matching skill automatically:
 - "image trop grande", "resize image", "redimensionner", "image bloquante" -> image-guard-rules skill (auto-triggered by hooks)
 
 ### ECC Specialized Agents (auto-triggered by context)
-- Go code modified -> everything-claude-code:go-reviewer agent (auto)
-- Python code modified -> everything-claude-code:python-reviewer agent (auto)
-- Database query/schema work -> everything-claude-code:database-reviewer agent (auto)
-- Tests needed -> everything-claude-code:tdd-guide agent (auto, via /tdd command)
-- Documentation update needed -> everything-claude-code:doc-updater agent (auto)
-- Build fails -> everything-claude-code:build-error-resolver agent (auto)
+- Go code modified -> atum-system:go-reviewer agent (auto)
+- Python code modified -> atum-system:python-reviewer agent (auto)
+- Database query/schema work -> atum-system:database-reviewer agent (auto)
+- Tests needed -> atum-system:tdd-guide agent (auto, via /tdd command)
+- Documentation update needed -> atum-system:doc-updater agent (auto)
+- Build fails -> atum-system:build-error-resolver agent (auto)
 
 ### Superpowers Workflow (auto-triggered)
-- Before claiming work is done -> superpowers:verification-before-completion (auto)
-- Before writing implementation code -> superpowers:test-driven-development (auto)
-- When planning multi-step tasks -> superpowers:writing-plans (auto)
-- When facing 2+ independent tasks -> superpowers:dispatching-parallel-agents (auto)
+- Before claiming work is done -> atum-system:verification-before-completion (auto)
+- Before writing implementation code -> atum-system:test-driven-development (auto)
+- When planning multi-step tasks -> atum-system:writing-plans (auto)
+- When facing 2+ independent tasks -> atum-system:dispatching-parallel-agents (auto)
 
 ### Meta Plugins (auto-triggered — no NLP routing needed)
 # These plugins are triggered by specific actions, not user intent:
