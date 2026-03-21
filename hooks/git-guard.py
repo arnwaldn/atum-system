@@ -11,7 +11,12 @@ import sys
 import json
 import re
 
-input_data = json.loads(sys.stdin.read())
+try:
+    input_data = json.loads(sys.stdin.read())
+except (json.JSONDecodeError, ValueError):
+    # Fail-open: if stdin is invalid, approve to avoid blocking all Bash commands
+    print(json.dumps({"decision": "approve", "reason": "Could not parse hook input"}))
+    sys.exit(0)
 
 if input_data.get('tool_name') != 'Bash':
     print(json.dumps({"decision": "approve", "reason": "Not a Bash command"}))
