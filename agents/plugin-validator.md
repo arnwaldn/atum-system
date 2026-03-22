@@ -1,5 +1,6 @@
 ---
 name: plugin-validator
+model: sonnet
 description: |
   Use this agent when the user asks to "validate my plugin", "check plugin structure", "verify plugin is correct", "validate plugin.json", "check plugin files", or mentions plugin validation. Also trigger proactively after user creates or modifies plugin components. Examples:
 

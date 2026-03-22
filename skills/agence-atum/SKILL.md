@@ -37,11 +37,11 @@ metadata:
 
 | Associe | Actions | % | Fonction |
 |---|---|---|---|
-| Arnaud Porcel | 400 | 40% | President (CEO/CTO) |
-| Pablo Macia | 300 | 30% | DG (CFO/COO/CMO) |
-| Wahid Chebira | 300 | 30% | Directeur Contenu (CCO) |
+| Associe 1 | — | Majoritaire | President (CEO/CTO) |
+| Associe 2 | — | Minoritaire | DG (CFO/COO/CMO) |
+| Associe 3 | — | Minoritaire | Directeur Contenu (CCO) |
 
-**Clause d'inalienabilite** : Jusqu'au 31/12/2028 (3 ans). Aucune cession, nantissement ou apport des actions pendant cette periode.
+> Details dans `references/` (fichier local, non versionne).
 
 ## Regles de gouvernance
 

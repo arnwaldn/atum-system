@@ -43,27 +43,43 @@ const STOP_WORDS = new Set([
 ]);
 
 // Domain category mappings inferred from skill name patterns
+// Domain inference patterns — ordered by specificity (most specific first).
+// Uses word boundaries (\b) to prevent false matches (e.g. "doc" in "docker").
 const DOMAIN_PATTERNS = [
-  { pattern: /python|flask|django|pip|pytest/, domain: 'python' },
-  { pattern: /typescript|react|next|node|npm|javascript|jsx|tsx/, domain: 'frontend' },
-  { pattern: /golang|go-/, domain: 'golang' },
-  { pattern: /swift|ios|swiftui/, domain: 'swift' },
-  { pattern: /docker|kubernetes|k8s|terraform|deploy|infra/, domain: 'infrastructure' },
-  { pattern: /api|rest|graphql|grpc/, domain: 'api' },
-  { pattern: /test|tdd|coverage|quality|review|lint/, domain: 'quality' },
-  { pattern: /security|auth|oauth|jwt|encryption/, domain: 'security' },
-  { pattern: /database|sql|mongo|redis|postgres/, domain: 'data' },
-  { pattern: /ci|cd|pipeline|github-action/, domain: 'devops' },
-  { pattern: /design|ui|ux|css|tailwind|accessibility/, domain: 'design' },
-  { pattern: /ml|ai|model|hugging|embedding|llm/, domain: 'ai' },
-  { pattern: /agent|mcp|plugin|skill|hook|command/, domain: 'tooling' },
-  { pattern: /doc|write|article|readme/, domain: 'documentation' },
-  { pattern: /architect|system|clean|domain-driven/, domain: 'architecture' },
-  { pattern: /compliance|audit|legal|gdpr|rgpd/, domain: 'compliance' },
-  { pattern: /git|version|branch|merge/, domain: 'vcs' },
-  { pattern: /monitor|log|observ|metric|sentry/, domain: 'monitoring' },
-  { pattern: /schedule|cron|automat/, domain: 'automation' },
-  { pattern: /brainstorm|ideation|creative/, domain: 'workflow' },
+  // Specific frameworks/tools first (before generic language patterns)
+  { pattern: /\bhugging[-_]?face\b|\bhf-/, domain: 'ai' },
+  { pattern: /\binvestor\b|\bmarket[-_]?research\b|\bpitch\b|\bfundraising\b/, domain: 'business' },
+  { pattern: /\bagence\b|\bbusiness[-_]?plan\b/, domain: 'business' },
+  { pattern: /\bflask\b|\bdjango\b|\bpytest\b|\bpyproject\b/, domain: 'python' },
+  { pattern: /\bspringboot\b|\bspring[-_]?boot\b|\bjpa\b/, domain: 'java' },
+  { pattern: /\breact\b|\bnextjs\b|\btailwind\b|\bsvelte\b|\bvue\b/, domain: 'frontend' },
+  { pattern: /\bgolang\b|\bgo[-_]build\b|\bgo[-_]test\b|\bgo[-_]review\b/, domain: 'golang' },
+  { pattern: /\bswiftui\b|\bswift[-_]/, domain: 'swift' },
+  { pattern: /\bflutter\b|\bdart\b|\bexpo\b/, domain: 'mobile' },
+  { pattern: /\bdocker\b|\bkubernetes\b|\bk8s\b|\bterraform\b/, domain: 'infrastructure' },
+  { pattern: /\bsentry\b|\bposthog\b|\bobserv/, domain: 'monitoring' },
+  { pattern: /\bcompliance\b|\baudit\b|\blegal\b|\bgdpr\b|\brgpd\b/, domain: 'compliance' },
+  // Agent/plugin tooling (before generic patterns)
+  { pattern: /\bagent\b|\bplugin\b|\bskill[-_]|\bhook[-_]|\bmcp\b|\bcommand[-_]/, domain: 'tooling' },
+  // Generic language patterns
+  { pattern: /\bpython\b|\bpip\b/, domain: 'python' },
+  { pattern: /\btypescript\b|\bjavascript\b|\bnode\b|\bnpm\b/, domain: 'frontend' },
+  { pattern: /\bjava\b(?!script)/, domain: 'java' },
+  { pattern: /\bswift\b|\bios\b/, domain: 'swift' },
+  // Generic domain patterns (least specific)
+  { pattern: /\bapi[-_]design\b|\brest[-_]|\bgraphql\b|\bgrpc\b/, domain: 'api' },
+  { pattern: /\btdd\b|\btest[-_]driven\b|\be2e[-_]test/, domain: 'quality' },
+  { pattern: /\bsecurity[-_]\b|\boauth\b|\bjwt\b|\bencryption\b/, domain: 'security' },
+  { pattern: /\bdatabase\b|\bsql\b|\bmongo\b|\bredis\b|\bpostgres\b|\bclickhouse\b/, domain: 'data' },
+  { pattern: /\bci[-_]cd\b|\bgithub[-_]action/, domain: 'devops' },
+  { pattern: /\bdeploy\b|\binfra\b|\bdevops\b/, domain: 'infrastructure' },
+  { pattern: /\bui[-_]ux\b|\bdesign[-_]|\bcss\b|\baccessibility\b|\brefactoring[-_]ui\b/, domain: 'design' },
+  { pattern: /\bml\b|\bai[-_]\b|\bllm\b|\bembedding\b|\brag\b/, domain: 'ai' },
+  { pattern: /\barticle\b|\bwriting\b|\bdocx?\b|\bpdf\b|\bpptx?\b|\bxlsx?\b/, domain: 'documentation' },
+  { pattern: /\barchitect\b|\bclean[-_]arch|\bdomain[-_]driven\b|\bsystem[-_]design\b/, domain: 'architecture' },
+  { pattern: /\bgit[-_]\b|\bworktree\b|\bbranch\b/, domain: 'vcs' },
+  { pattern: /\bschedul\b|\bcron\b|\bautomat/, domain: 'automation' },
+  { pattern: /\bbrainstorm\b|\bideation\b/, domain: 'workflow' },
 ];
 
 // File extension to skill mapping for onFileType

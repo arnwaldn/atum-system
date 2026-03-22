@@ -7,7 +7,7 @@
     "cron": "0 9 * * 1"
   },
   "prompt": "/dt portfolio\n\nPour chaque projet avec un DELIVERY.json, fais aussi /dt review.\nGenere un resume synthetique avec : projets a risque, features en retard, blockers non resolus, recommandations de la semaine.",
-  "cwd": "$HOME_PLACEHOLDER",
+  "cwd": "~",
   "model": "haiku",
   "maxBudgetUsd": 0.50,
   "timeoutSeconds": 300,

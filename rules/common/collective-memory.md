@@ -2,7 +2,7 @@
 
 ## REGLE DE CONFIDENTIALITE (PRIMORDIALE — AVANT TOUTE ECRITURE)
 
-La memoire collective est un depot **partage entre les 3 cofondateurs** (Arnaud, Pablo, Wahid).
+La memoire collective est un depot **partage entre les 3 cofondateurs** (les 3 cofondateurs).
 Chaque fichier ecrit dans `~/.claude/collective-memory/` est **visible par tous**.
 Cette regle de tri est **OBLIGATOIRE** et s'applique a **TOUS les cofondateurs** sans exception.
 
@@ -22,7 +22,7 @@ Avant d'ecrire quoi que ce soit dans la memoire collective, se poser cette quest
 |-----------|-------------------|
 | Projets ATUM | GigRoute (statut, stack, decisions), produits en cours |
 | Clients & prospects | Echeances, feedback, demandes, livraisons |
-| Infrastructure partagee | Google Drive ATUM, WhatsApp Cloclo, MCP servers communs |
+| Infrastructure partagee | Google Drive ATUM, MCP servers communs |
 | Business | Tarifs, devis, factures, contrats, pipeline commercial |
 | Gouvernance | PV d'AG, decisions actionnariat, obligations legales |
 | Conventions techniques | Patterns de code communs, choix de stack pour les projets ATUM |

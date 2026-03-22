@@ -59,7 +59,9 @@ projects/**/sessions/
 projects/*/[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]-*/
 schedules/.history/
 schedules/appart-aix-search.json
-schedules/whatsapp-cloclo-respond.json
+
+# === Agence-atum sensitive references ===
+skills/agence-atum/references/
 security_warnings_state_*.json
 session-env/
 sessions/

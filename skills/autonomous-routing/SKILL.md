@@ -275,7 +275,7 @@ Detect intent from natural language and invoke matching skill automatically:
 
 ### Communication & Dashboard
 - "mise a jour dashboard", "forcer le scan", "update dashboard", "scanner les projets" -> /dashboard-atum skill
-- "veille whatsapp", "messages cloclo", "checker whatsapp", "whatsapp check" -> /whatsapp skill
+
 
 ### Fresh Context & Context Management
 - "contexte frais", "decomposer en sous-taches", "session longue qualite", "fresh context" -> /fresh-execute skill

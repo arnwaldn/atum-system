@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "generated": "2026-03-22T01:18:04.671Z",
-  "count": 167,
+  "generated": "2026-03-22T02:13:52.065Z",
+  "count": 166,
   "skills": {
     "agence-atum": {
       "activation": {
@@ -33,7 +33,7 @@
         "onProjectType": []
       },
       "category": "business",
-      "token_cost": 2740,
+      "token_cost": 2724,
       "priority": "normal",
       "dependencies": [
         "memoire",
@@ -103,7 +103,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "tooling",
       "token_cost": 2594,
       "priority": "normal",
       "dependencies": [],
@@ -134,7 +134,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "monitoring",
       "token_cost": 500,
       "priority": "normal",
       "dependencies": [],
@@ -161,7 +161,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "ai",
+      "category": "general",
       "token_cost": 433,
       "priority": "normal",
       "dependencies": [],
@@ -275,7 +275,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "devops",
+      "category": "documentation",
       "token_cost": 786,
       "priority": "normal",
       "dependencies": [],
@@ -310,7 +310,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "security",
+      "category": "automation",
       "token_cost": 4602,
       "priority": "normal",
       "dependencies": [],
@@ -386,7 +386,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "python",
+      "category": "tooling",
       "token_cost": 5772,
       "priority": "normal",
       "dependencies": [],
@@ -408,7 +408,7 @@
         "onProjectType": []
       },
       "category": "workflow",
-      "token_cost": 7738,
+      "token_cost": 7714,
       "priority": "normal",
       "dependencies": [
         "common-ground",
@@ -498,7 +498,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "general",
       "token_cost": 1169,
       "priority": "normal",
       "dependencies": [],
@@ -717,7 +717,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "compliance",
       "token_cost": 1507,
       "priority": "normal",
       "dependencies": [],
@@ -825,7 +825,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "tooling",
       "token_cost": 4067,
       "priority": "normal",
       "dependencies": [],
@@ -896,7 +896,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "tooling",
       "token_cost": 4766,
       "priority": "normal",
       "dependencies": [],
@@ -1002,7 +1002,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "general",
       "token_cost": 3379,
       "priority": "normal",
       "dependencies": [],
@@ -1043,7 +1043,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "devops",
+      "category": "general",
       "token_cost": 643,
       "priority": "normal",
       "dependencies": [],
@@ -1144,7 +1144,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "tooling",
       "token_cost": 280,
       "priority": "normal",
       "dependencies": [],
@@ -1179,7 +1179,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "tooling",
+      "category": "automation",
       "token_cost": 910,
       "priority": "normal",
       "dependencies": [],
@@ -1222,7 +1222,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "tooling",
+      "category": "monitoring",
       "token_cost": 3112,
       "priority": "normal",
       "dependencies": [],
@@ -1262,7 +1262,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "python",
+      "category": "ai",
       "token_cost": 1427,
       "priority": "normal",
       "dependencies": [],
@@ -1303,7 +1303,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "documentation",
       "token_cost": 5570,
       "priority": "normal",
       "dependencies": [],
@@ -1343,7 +1343,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "documentation",
       "token_cost": 2286,
       "priority": "normal",
       "dependencies": [],
@@ -1378,7 +1378,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "devops",
+      "category": "tooling",
       "token_cost": 4565,
       "priority": "normal",
       "dependencies": [],
@@ -1520,7 +1520,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "python",
+      "category": "infrastructure",
       "token_cost": 2740,
       "priority": "normal",
       "dependencies": [],
@@ -1593,7 +1593,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "devops",
+      "category": "general",
       "token_cost": 1521,
       "priority": "normal",
       "dependencies": [],
@@ -1916,7 +1916,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "security",
+      "category": "monitoring",
       "token_cost": 301,
       "priority": "normal",
       "dependencies": [],
@@ -1953,7 +1953,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "devops",
+      "category": "general",
       "token_cost": 1624,
       "priority": "normal",
       "dependencies": [],
@@ -1979,7 +1979,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "general",
       "token_cost": 638,
       "priority": "normal",
       "dependencies": [],
@@ -2012,7 +2012,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "vcs",
       "token_cost": 1058,
       "priority": "normal",
       "dependencies": [],
@@ -2142,7 +2142,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "general",
       "token_cost": 1069,
       "priority": "normal",
       "dependencies": [],
@@ -2214,7 +2214,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "business",
       "token_cost": 1637,
       "priority": "normal",
       "dependencies": [],
@@ -2249,7 +2249,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "ai",
+      "category": "general",
       "token_cost": 2825,
       "priority": "normal",
       "dependencies": [],
@@ -2397,7 +2397,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "api",
+      "category": "tooling",
       "token_cost": 4055,
       "priority": "normal",
       "dependencies": [],
@@ -2432,7 +2432,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "infrastructure",
+      "category": "ai",
       "token_cost": 1857,
       "priority": "normal",
       "dependencies": [],
@@ -2467,7 +2467,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "data",
+      "category": "ai",
       "token_cost": 4094,
       "priority": "normal",
       "dependencies": [],
@@ -2502,7 +2502,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "api",
+      "category": "ai",
       "token_cost": 5645,
       "priority": "normal",
       "dependencies": [],
@@ -2537,7 +2537,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "python",
+      "category": "ai",
       "token_cost": 7683,
       "priority": "normal",
       "dependencies": [],
@@ -2572,7 +2572,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "infrastructure",
+      "category": "ai",
       "token_cost": 6956,
       "priority": "normal",
       "dependencies": [],
@@ -2607,7 +2607,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "security",
+      "category": "ai",
       "token_cost": 4168,
       "priority": "normal",
       "dependencies": [],
@@ -2642,7 +2642,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "api",
+      "category": "ai",
       "token_cost": 1326,
       "priority": "normal",
       "dependencies": [],
@@ -2677,7 +2677,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "python",
+      "category": "ai",
       "token_cost": 562,
       "priority": "normal",
       "dependencies": [],
@@ -2749,7 +2749,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "tooling",
       "token_cost": 2742,
       "priority": "normal",
       "dependencies": [],
@@ -2790,7 +2790,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "devops",
+      "category": "business",
       "token_cost": 681,
       "priority": "normal",
       "dependencies": [],
@@ -2831,7 +2831,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "devops",
+      "category": "business",
       "token_cost": 535,
       "priority": "normal",
       "dependencies": [],
@@ -2863,7 +2863,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "tooling",
+      "category": "general",
       "token_cost": 1554,
       "priority": "normal",
       "dependencies": [],
@@ -2901,7 +2901,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "general",
+      "category": "java",
       "token_cost": 958,
       "priority": "normal",
       "dependencies": [],
@@ -2976,7 +2976,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "java",
       "token_cost": 1137,
       "priority": "normal",
       "dependencies": [],
@@ -3044,7 +3044,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "infrastructure",
+      "category": "general",
       "token_cost": 119,
       "priority": "normal",
       "dependencies": [],
@@ -3085,7 +3085,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "devops",
+      "category": "business",
       "token_cost": 557,
       "priority": "normal",
       "dependencies": [],
@@ -3157,7 +3157,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "tooling",
       "token_cost": 3119,
       "priority": "normal",
       "dependencies": [],
@@ -3193,7 +3193,7 @@
         "onProjectType": []
       },
       "category": "business",
-      "token_cost": 1232,
+      "token_cost": 1228,
       "priority": "normal",
       "dependencies": [
         "agence-atum"
@@ -3290,7 +3290,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "general",
       "token_cost": 214,
       "priority": "normal",
       "dependencies": [],
@@ -3370,7 +3370,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "api",
+      "category": "documentation",
       "token_cost": 1448,
       "priority": "normal",
       "dependencies": [],
@@ -3482,7 +3482,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "general",
       "token_cost": 1974,
       "priority": "normal",
       "dependencies": [],
@@ -3517,7 +3517,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "general",
       "token_cost": 949,
       "priority": "normal",
       "dependencies": [],
@@ -3552,7 +3552,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "devops",
+      "category": "tooling",
       "token_cost": 3019,
       "priority": "normal",
       "dependencies": [],
@@ -3587,7 +3587,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "tooling",
       "token_cost": 3361,
       "priority": "normal",
       "dependencies": [],
@@ -3624,7 +3624,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "security",
+      "category": "data",
       "token_cost": 952,
       "priority": "normal",
       "dependencies": [],
@@ -3663,7 +3663,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "automation",
+      "category": "monitoring",
       "token_cost": 420,
       "priority": "normal",
       "dependencies": [],
@@ -3771,7 +3771,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "devops",
+      "category": "general",
       "token_cost": 2208,
       "priority": "normal",
       "dependencies": [],
@@ -4029,7 +4029,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "python",
+      "category": "tooling",
       "token_cost": 381,
       "priority": "normal",
       "dependencies": [],
@@ -4064,7 +4064,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "general",
       "token_cost": 1569,
       "priority": "normal",
       "dependencies": [],
@@ -4137,7 +4137,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "devops",
+      "category": "ai",
       "token_cost": 1596,
       "priority": "normal",
       "dependencies": [],
@@ -4204,7 +4204,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "general",
       "token_cost": 675,
       "priority": "normal",
       "dependencies": [],
@@ -4278,7 +4278,7 @@
         "onProjectType": []
       },
       "category": "devops",
-      "token_cost": 2418,
+      "token_cost": 2415,
       "priority": "normal",
       "dependencies": [
         "sre-engineer",
@@ -4315,7 +4315,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "infrastructure",
+      "category": "general",
       "token_cost": 4256,
       "priority": "normal",
       "dependencies": [],
@@ -4382,7 +4382,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "api",
+      "category": "security",
       "token_cost": 3049,
       "priority": "normal",
       "dependencies": [],
@@ -4423,7 +4423,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "security",
+      "category": "tooling",
       "token_cost": 1114,
       "priority": "normal",
       "dependencies": [],
@@ -4458,7 +4458,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "monitoring",
       "token_cost": 1465,
       "priority": "normal",
       "dependencies": [],
@@ -4528,7 +4528,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "ai",
+      "category": "monitoring",
       "token_cost": 5266,
       "priority": "normal",
       "dependencies": [],
@@ -4563,7 +4563,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "python",
+      "category": "frontend",
       "token_cost": 3475,
       "priority": "normal",
       "dependencies": [],
@@ -4598,7 +4598,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "python",
+      "category": "frontend",
       "token_cost": 4465,
       "priority": "normal",
       "dependencies": [],
@@ -4633,7 +4633,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "python",
+      "category": "frontend",
       "token_cost": 4164,
       "priority": "normal",
       "dependencies": [],
@@ -4697,7 +4697,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "tooling",
       "token_cost": 8048,
       "priority": "normal",
       "dependencies": [],
@@ -4732,7 +4732,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "tooling",
       "token_cost": 5634,
       "priority": "normal",
       "dependencies": [],
@@ -4766,7 +4766,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "tooling",
       "token_cost": 1873,
       "priority": "normal",
       "dependencies": [],
@@ -4840,7 +4840,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "devops",
+      "category": "automation",
       "token_cost": 4338,
       "priority": "normal",
       "dependencies": [],
@@ -4882,7 +4882,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "api",
+      "category": "java",
       "token_cost": 2478,
       "priority": "normal",
       "dependencies": [],
@@ -4920,7 +4920,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "security",
+      "category": "java",
       "token_cost": 2004,
       "priority": "normal",
       "dependencies": [],
@@ -4957,7 +4957,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "java",
       "token_cost": 944,
       "priority": "normal",
       "dependencies": [],
@@ -4997,7 +4997,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "java",
       "token_cost": 1453,
       "priority": "normal",
       "dependencies": [],
@@ -5073,7 +5073,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "monitoring",
+      "category": "general",
       "token_cost": 1000,
       "priority": "normal",
       "dependencies": [],
@@ -5108,7 +5108,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "api",
+      "category": "general",
       "token_cost": 1376,
       "priority": "normal",
       "dependencies": [],
@@ -5138,7 +5138,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "tooling",
+      "category": "general",
       "token_cost": 2492,
       "priority": "normal",
       "dependencies": [],
@@ -5411,7 +5411,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "quality",
+      "category": "general",
       "token_cost": 2465,
       "priority": "normal",
       "dependencies": [],
@@ -5694,7 +5694,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "general",
       "token_cost": 1050,
       "priority": "normal",
       "dependencies": [],
@@ -5729,7 +5729,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "general",
       "token_cost": 1038,
       "priority": "normal",
       "dependencies": [],
@@ -5757,7 +5757,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "architecture",
+      "category": "general",
       "token_cost": 623,
       "priority": "normal",
       "dependencies": [],
@@ -5791,40 +5791,6 @@
       "dependencies": [],
       "path": "skills/visa-doc-translate/SKILL.md"
     },
-    "whatsapp": {
-      "activation": {
-        "onKeyword": [
-          "whatsapp",
-          "check",
-          "respond",
-          "cloclo",
-          "verifie",
-          "messages",
-          "veille",
-          "reponse",
-          "automatique",
-          "via",
-          "mcp",
-          "interacting",
-          "user",
-          "asks",
-          "cloclo whatsapp",
-          "automatique via whatsapp"
-        ],
-        "onIntent": [],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "business",
-      "token_cost": 1053,
-      "priority": "normal",
-      "dependencies": [
-        "memoire",
-        "agence-atum"
-      ],
-      "path": "skills/whatsapp/SKILL.md"
-    },
     "writing-plans": {
       "activation": {
         "onKeyword": [
@@ -5842,7 +5808,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "documentation",
       "token_cost": 817,
       "priority": "normal",
       "dependencies": [],
@@ -5874,7 +5840,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "design",
+      "category": "documentation",
       "token_cost": 2104,
       "priority": "normal",
       "dependencies": [],
@@ -5900,7 +5866,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "infrastructure",
+      "category": "documentation",
       "token_cost": 5595,
       "priority": "normal",
       "dependencies": [],

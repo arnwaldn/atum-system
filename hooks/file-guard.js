@@ -76,7 +76,8 @@ process.stdin.on("end", () => {
       process.exit(1);
     }
     process.exit(0);
-  } catch {
-    process.exit(0); // fail-open
+  } catch (err) {
+    process.stderr.write(`[FILE GUARD] Hook error — blocking for safety: ${err}\n`);
+    process.exit(2); // fail-closed: crash = block
   }
 });

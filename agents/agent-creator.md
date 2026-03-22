@@ -1,5 +1,6 @@
 ---
 name: agent-creator
+model: sonnet
 description: |
   Use this agent when the user asks to "create an agent", "generate an agent", "build a new agent", "make me an agent that...", or describes agent functionality they need. Trigger when user wants to create autonomous agents for plugins. Examples:
 

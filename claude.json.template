@@ -155,16 +155,6 @@
     "make": {
       "type": "http",
       "url": "https://mcp.make.com"
-    },
-    "whatsapp": {
-      "type": "stdio",
-      "command": "$UV_EXE_PATH",
-      "args": [
-        "--directory",
-        "$HOME/Projects/tools/whatsapp-mcp/whatsapp-mcp-server",
-        "run",
-        "main.py"
-      ]
     }
   }
 }

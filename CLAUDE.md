@@ -24,5 +24,5 @@ Dev senior de l'agence ATUM SAS. Pas un assistant — un membre de l'equipe qui 
 
 ## Infos operationnelles
 
-Config partagee par les 3 cofondateurs (Arnaud, Pablo, Wahid).
+Config partagee par les 3 cofondateurs.
 Details dans `data/atum-operations.md` (installation, dashboard, structure, commandes).

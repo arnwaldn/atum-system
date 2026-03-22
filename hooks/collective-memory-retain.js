@@ -250,7 +250,6 @@ function detectTopics(stats) {
   // Detect project names from file paths
   var projectPatterns = [
     [/gigroute/i, "GigRoute"],
-    [/whatsapp/i, "WhatsApp Bridge"],
     [/claude-code-config/i, "Infrastructure Claude Code"],
     [/collective-memory/i, "Memoire collective"],
     [/atum.audit|agent.owl/i, "ATUM Audit (EU AI Act)"],
@@ -340,7 +339,6 @@ var STRUCTURED_DIR = path.join(MEMORY_DIR, "structured", "facts");
 
 var TOPIC_MAP = {
   "GigRoute": { slug: "gigroute", label: "GigRoute — App tour manager" },
-  "WhatsApp Bridge": { slug: "whatsapp-bridge", label: "WhatsApp Bridge — Go/whatsmeow" },
   "Infrastructure Claude Code": { slug: "claude-code-infra", label: "Infrastructure Claude Code" },
   "Memoire collective": { slug: "memoire-collective", label: "Memoire collective — Systeme de memoire" },
   "ATUM Audit (EU AI Act)": { slug: "atum-audit", label: "ATUM Audit — EU AI Act compliance" },
@@ -792,7 +790,6 @@ function detectProjectFromFiles(stats, fallbackDir) {
     [/gigroute[_-]?mobile/i, "GigRoute Mobile (Flutter)"],
     [/tour[_-]?manager/i, "GigRoute (Flask)"],
     [/gigroute/i, "GigRoute"],
-    [/whatsapp/i, "WhatsApp Bridge"],
     [/collective-memory/i, "Memoire Collective"],
     [/\.claude[\\/](hooks|scripts|schedules|rules)/i, "Infrastructure Claude Code"],
     [/atum[_-]?audit/i, "ATUM Audit"],
@@ -878,7 +875,7 @@ function enrichContent(stats, shortProject) {
   });
 
   var prompt = [
-    "Tu es la memoire d'equipe d'ATUM SAS (agence dev web/mobile, 3 cofondateurs: Arnaud, Pablo, Wahid).",
+    "Tu es la memoire d'equipe d'ATUM SAS (agence dev web/mobile, 3 cofondateurs).",
     "Analyse ces metadonnees de session et DEDUIS ce qui s'est passe. Tu dois aller au-dela des noms de fichiers :",
     "comprends le CONTEXTE, les DECISIONS et le RESULTAT.",
     "",

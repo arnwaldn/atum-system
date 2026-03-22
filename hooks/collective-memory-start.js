@@ -40,8 +40,6 @@ const WHO_KNOWS_FILE = path.join(MEMORY_DIR, "who-knows-what.md");
 const TOPIC_SLUGS = {
   "gigroute": "gigroute",
   "live-tour-manager": "gigroute",
-  "whatsapp": "whatsapp-bridge",
-  "whatsmeow": "whatsapp-bridge",
   "claude-code-config": "claude-code-infra",
   "collective-memory": "memoire-collective",
   "atum-memory": "memoire-collective",

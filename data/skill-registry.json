@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "generated": "2026-03-22T01:18:04.668Z",
-  "count": 167,
+  "generated": "2026-03-22T02:13:52.063Z",
+  "count": 166,
   "skills": [
     {
       "id": "agence-atum",
@@ -36,7 +36,7 @@
     {
       "id": "agent-development",
       "description": "This skill should be used when the user asks to \"create an agent\", \"add an agent\", \"write a subagent\", \"agent frontmatter\", \"when to use description\", \"agent examples\", \"agent tools\", \"agent colors\", ",
-      "category": "design",
+      "category": "tooling",
       "keywords": [
         "agent",
         "development",
@@ -51,7 +51,7 @@
     {
       "id": "agent-harness-construction",
       "description": "Design and optimize AI agent action spaces, tool definitions, and observation formatting for higher completion rates.",
-      "category": "design",
+      "category": "monitoring",
       "keywords": [
         "agent",
         "harness",
@@ -66,7 +66,7 @@
     {
       "id": "agentic-engineering",
       "description": "Operate as an agentic engineer using eval-first execution, decomposition, and cost-aware model routing.",
-      "category": "ai",
+      "category": "general",
       "keywords": [
         "agentic",
         "engineering",
@@ -111,7 +111,7 @@
     {
       "id": "article-writing",
       "description": "Write articles, guides, blog posts, tutorials, newsletter issues, and other long-form content in a distinctive voice derived from supplied examples or brand guidance. Use when the user wants polished ",
-      "category": "devops",
+      "category": "documentation",
       "keywords": [
         "article",
         "writing",
@@ -126,7 +126,7 @@
     {
       "id": "assistant",
       "description": "Main skill for all Pinecone Assistant operations. Read this first! Create, manage, and chat with Pinecone Assistants for document Q&A. Automatically recognizes natural language requests like \"create a",
-      "category": "security",
+      "category": "automation",
       "keywords": [
         "assistant",
         "main",
@@ -156,7 +156,7 @@
     {
       "id": "autonomous-loops",
       "description": "Patterns and architectures for autonomous Claude Code loops — from simple sequential pipelines to RFC-driven multi-agent DAG systems.",
-      "category": "python",
+      "category": "tooling",
       "keywords": [
         "autonomous",
         "loops",
@@ -207,7 +207,7 @@
     {
       "id": "brainstorming",
       "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
-      "category": "design",
+      "category": "general",
       "keywords": [
         "brainstorming",
         "creative",
@@ -297,7 +297,7 @@
     {
       "id": "claude-md-improver",
       "description": "Audit and improve CLAUDE.md files in repositories. Use when user asks to check, audit, update, improve, or fix CLAUDE.md files. Scans for all CLAUDE.md files, evaluates quality against templates, outp",
-      "category": "quality",
+      "category": "compliance",
       "keywords": [
         "claude",
         "improver",
@@ -342,7 +342,7 @@
     {
       "id": "code-connect-components",
       "description": "Connects Figma design components to code components using Code Connect. Use when user says \"code connect\", \"connect this component to code\", \"connect Figma to code\", \"map this component\", \"link compon",
-      "category": "design",
+      "category": "tooling",
       "keywords": [
         "code",
         "connect",
@@ -372,7 +372,7 @@
     {
       "id": "command-development",
       "description": "This skill should be used when the user asks to \"create a slash command\", \"add a command\", \"write a custom command\", \"define command arguments\", \"use command frontmatter\", \"organize commands\", \"create",
-      "category": "design",
+      "category": "tooling",
       "keywords": [
         "command",
         "development",
@@ -417,7 +417,7 @@
     {
       "id": "configure-atum",
       "description": "Interactive installer for Everything Claude Code — guides users through selecting and installing skills and rules to user-level or project-level directories, verifies paths, and optionally optimizes i",
-      "category": "design",
+      "category": "general",
       "keywords": [
         "configure",
         "atum",
@@ -432,7 +432,7 @@
     {
       "id": "content-engine",
       "description": "Create platform-native content systems for X, LinkedIn, TikTok, YouTube, newsletters, and repurposed multi-platform campaigns. Use when the user wants social posts, threads, scripts, content calendars",
-      "category": "devops",
+      "category": "general",
       "keywords": [
         "content",
         "engine",
@@ -477,7 +477,7 @@
     {
       "id": "continuous-agent-loop",
       "description": "Patterns for continuous autonomous agent loops with quality gates, evals, and recovery controls.",
-      "category": "quality",
+      "category": "tooling",
       "keywords": [
         "continuous",
         "agent",
@@ -492,7 +492,7 @@
     {
       "id": "continuous-learning",
       "description": "Automatically extract reusable patterns from Claude Code sessions and save them as learned skills for future use.",
-      "category": "tooling",
+      "category": "automation",
       "keywords": [
         "continuous",
         "learning",
@@ -507,7 +507,7 @@
     {
       "id": "continuous-learning-v2",
       "description": "Instinct-based learning system that observes sessions via hooks, creates atomic instincts with confidence scoring, and evolves them into skills/commands/agents. v2.1 adds project-scoped instincts to p",
-      "category": "tooling",
+      "category": "monitoring",
       "keywords": [
         "continuous",
         "learning",
@@ -522,7 +522,7 @@
     {
       "id": "cost-aware-llm-pipeline",
       "description": "Cost optimization patterns for LLM API usage — model routing by task complexity, budget tracking, retry logic, and prompt caching.",
-      "category": "python",
+      "category": "ai",
       "keywords": [
         "cost",
         "aware",
@@ -537,7 +537,7 @@
     {
       "id": "cpp-coding-standards",
       "description": "C++ coding standards based on the C++ Core Guidelines (isocpp.github.io). Use when writing, reviewing, or refactoring C++ code to enforce modern, safe, and idiomatic practices.",
-      "category": "quality",
+      "category": "documentation",
       "keywords": [
         "cpp",
         "coding",
@@ -552,7 +552,7 @@
     {
       "id": "cpp-testing",
       "description": "Use only when writing/updating/fixing C++ tests, configuring GoogleTest/CTest, diagnosing failing or flaky tests, or adding coverage/sanitizers.",
-      "category": "quality",
+      "category": "documentation",
       "keywords": [
         "cpp",
         "testing",
@@ -567,7 +567,7 @@
     {
       "id": "create-design-system-rules",
       "description": "Generates custom design system rules for the user's codebase. Use when user says \"create design system rules\", \"generate rules for my project\", \"set up design rules\", \"customize design system guidelin",
-      "category": "devops",
+      "category": "tooling",
       "keywords": [
         "create",
         "design",
@@ -627,7 +627,7 @@
     {
       "id": "deployment-patterns",
       "description": "Deployment workflows, CI/CD pipeline patterns, Docker containerization, health checks, rollback strategies, and production readiness checklists for web applications.",
-      "category": "python",
+      "category": "infrastructure",
       "keywords": [
         "deployment",
         "patterns",
@@ -657,7 +657,7 @@
     {
       "id": "dispatching-parallel-agents",
       "description": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
-      "category": "devops",
+      "category": "general",
       "keywords": [
         "dispatching",
         "parallel",
@@ -792,7 +792,7 @@
     {
       "id": "enterprise-agent-ops",
       "description": "Operate long-lived agent workloads with observability, security boundaries, and lifecycle management.",
-      "category": "security",
+      "category": "monitoring",
       "keywords": [
         "enterprise",
         "agent",
@@ -807,7 +807,7 @@
     {
       "id": "eval-harness",
       "description": "Formal evaluation framework for Claude Code sessions implementing eval-driven development (EDD) principles",
-      "category": "devops",
+      "category": "general",
       "keywords": [
         "eval",
         "harness",
@@ -822,7 +822,7 @@
     {
       "id": "executing-plans",
       "description": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
-      "category": "quality",
+      "category": "general",
       "keywords": [
         "executing",
         "plans",
@@ -837,7 +837,7 @@
     {
       "id": "finishing-a-development-branch",
       "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
-      "category": "quality",
+      "category": "vcs",
       "keywords": [
         "finishing",
         "development",
@@ -891,7 +891,7 @@
     {
       "id": "frontend-design",
       "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, or applications. Generates creative, polished code ",
-      "category": "quality",
+      "category": "general",
       "keywords": [
         "frontend",
         "design",
@@ -921,7 +921,7 @@
     {
       "id": "frontend-slides",
       "description": "Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a ta",
-      "category": "design",
+      "category": "business",
       "keywords": [
         "frontend",
         "slides",
@@ -936,7 +936,7 @@
     {
       "id": "generate-status-report",
       "description": "Generate project status reports from Jira issues and publish to Confluence. When Claude needs to: (1) Create a status report for a project, (2) Summarize project progress or updates, (3) Generate week",
-      "category": "ai",
+      "category": "general",
       "keywords": [
         "generate",
         "status",
@@ -996,7 +996,7 @@
     {
       "id": "hook-development",
       "description": "This skill should be used when the user asks to \"create a hook\", \"add a PreToolUse/PostToolUse/Stop hook\", \"validate tool use\", \"implement prompt-based hooks\", \"use ${CLAUDE_PLUGIN_ROOT}\", \"set up eve",
-      "category": "api",
+      "category": "tooling",
       "keywords": [
         "hook",
         "development",
@@ -1011,7 +1011,7 @@
     {
       "id": "hugging-face-cli",
       "description": "Execute Hugging Face Hub operations using the `hf` CLI. Use when the user needs to download models/datasets/spaces, upload files to Hub repositories, create repos, manage local cache, or run compute j",
-      "category": "infrastructure",
+      "category": "ai",
       "keywords": [
         "hugging",
         "face",
@@ -1026,7 +1026,7 @@
     {
       "id": "hugging-face-datasets",
       "description": "Create and manage datasets on Hugging Face Hub. Supports initializing repos, defining configs/system prompts, streaming row updates, and SQL-based dataset querying/transformation. Designed to work alo",
-      "category": "data",
+      "category": "ai",
       "keywords": [
         "hugging",
         "face",
@@ -1041,7 +1041,7 @@
     {
       "id": "hugging-face-evaluation",
       "description": "Add and manage evaluation results in Hugging Face model cards. Supports extracting eval tables from README content, importing scores from Artificial Analysis API, and running custom model evaluations ",
-      "category": "api",
+      "category": "ai",
       "keywords": [
         "hugging",
         "face",
@@ -1056,7 +1056,7 @@
     {
       "id": "hugging-face-jobs",
       "description": "This skill should be used when users want to run any workload on Hugging Face Jobs infrastructure. Covers UV scripts, Docker-based jobs, hardware selection, cost estimation, authentication with tokens",
-      "category": "python",
+      "category": "ai",
       "keywords": [
         "hugging",
         "face",
@@ -1071,7 +1071,7 @@
     {
       "id": "hugging-face-model-trainer",
       "description": "This skill should be used when users want to train or fine-tune language models using TRL (Transformer Reinforcement Learning) on Hugging Face Jobs infrastructure. Covers SFT, DPO, GRPO and reward mod",
-      "category": "infrastructure",
+      "category": "ai",
       "keywords": [
         "hugging",
         "face",
@@ -1086,7 +1086,7 @@
     {
       "id": "hugging-face-paper-publisher",
       "description": "Publish and manage research papers on Hugging Face Hub. Supports creating paper pages, linking papers to models/datasets, claiming authorship, and generating professional markdown-based research artic",
-      "category": "security",
+      "category": "ai",
       "keywords": [
         "hugging",
         "face",
@@ -1101,7 +1101,7 @@
     {
       "id": "hugging-face-tool-builder",
       "description": "Use this skill when the user wants to build tool/scripts or achieve a task where using data from the Hugging Face API would help. This is especially useful when chaining or combining API calls or the ",
-      "category": "api",
+      "category": "ai",
       "keywords": [
         "hugging",
         "face",
@@ -1116,7 +1116,7 @@
     {
       "id": "hugging-face-trackio",
       "description": "Track and visualize ML training experiments with Trackio. Use when logging metrics during training (Python API) or retrieving/analyzing logged metrics (CLI). Supports real-time dashboard visualization",
-      "category": "python",
+      "category": "ai",
       "keywords": [
         "hugging",
         "face",
@@ -1146,7 +1146,7 @@
     {
       "id": "implement-design",
       "description": "Translates Figma designs into production-ready code with 1:1 visual fidelity. Use when implementing UI from Figma files, when user mentions \"implement design\", \"generate code\", \"implement component\", ",
-      "category": "design",
+      "category": "tooling",
       "keywords": [
         "implement",
         "design",
@@ -1161,7 +1161,7 @@
     {
       "id": "investor-materials",
       "description": "Create and update pitch decks, one-pagers, investor memos, accelerator applications, financial models, and fundraising materials. Use when the user needs investor-facing documents, projections, use-of",
-      "category": "devops",
+      "category": "business",
       "keywords": [
         "investor",
         "materials",
@@ -1176,7 +1176,7 @@
     {
       "id": "investor-outreach",
       "description": "Draft cold emails, warm intro blurbs, follow-ups, update emails, and investor communications for fundraising. Use when the user wants outreach to angels, VCs, strategic investors, or accelerators and ",
-      "category": "devops",
+      "category": "business",
       "keywords": [
         "investor",
         "outreach",
@@ -1191,7 +1191,7 @@
     {
       "id": "iterative-retrieval",
       "description": "Pattern for progressively refining context retrieval to solve the subagent context problem",
-      "category": "tooling",
+      "category": "general",
       "keywords": [
         "iterative",
         "retrieval",
@@ -1206,7 +1206,7 @@
     {
       "id": "java-coding-standards",
       "description": "Java coding standards for Spring Boot services: naming, immutability, Optional usage, streams, exceptions, generics, and project layout.",
-      "category": "general",
+      "category": "java",
       "keywords": [
         "java",
         "coding",
@@ -1236,7 +1236,7 @@
     {
       "id": "jpa-patterns",
       "description": "JPA/Hibernate patterns for entity design, relationships, query optimization, transactions, auditing, indexing, pagination, and pooling in Spring Boot.",
-      "category": "design",
+      "category": "java",
       "keywords": [
         "jpa",
         "patterns",
@@ -1266,7 +1266,7 @@
     {
       "id": "logs",
       "description": "View Vercel deployment logs. Use when the user says \"show logs\", \"check logs\", \"vercel logs\", or \"what went wrong with the deployment\".",
-      "category": "infrastructure",
+      "category": "general",
       "keywords": [
         "logs",
         "view",
@@ -1281,7 +1281,7 @@
     {
       "id": "market-research",
       "description": "Conduct market research, competitive analysis, investor due diligence, and industry intelligence with source attribution and decision-oriented summaries. Use when the user wants market sizing, competi",
-      "category": "devops",
+      "category": "business",
       "keywords": [
         "market",
         "research",
@@ -1311,7 +1311,7 @@
     {
       "id": "mcp-integration",
       "description": "This skill should be used when the user asks to \"add MCP server\", \"integrate MCP\", \"configure MCP in plugin\", \"use .mcp.json\", \"set up Model Context Protocol\", \"connect external service\", mentions \"${",
-      "category": "design",
+      "category": "tooling",
       "keywords": [
         "mcp",
         "integration",
@@ -1371,7 +1371,7 @@
     {
       "id": "nanoclaw-repl",
       "description": "Operate and extend NanoClaw v2, ECC's zero-dependency session-aware REPL built on claude -p.",
-      "category": "design",
+      "category": "general",
       "keywords": [
         "nanoclaw",
         "repl",
@@ -1401,7 +1401,7 @@
     {
       "id": "nutrient-document-processing",
       "description": "Process, convert, OCR, extract, redact, sign, and fill documents using the Nutrient DWS API. Works with PDFs, DOCX, XLSX, PPTX, HTML, and images.",
-      "category": "api",
+      "category": "documentation",
       "keywords": [
         "nutrient",
         "document",
@@ -1446,7 +1446,7 @@
     {
       "id": "plankton-code-quality",
       "description": "Write-time code quality enforcement using Plankton — auto-formatting, linting, and Claude-powered fixes on every file edit via hooks.",
-      "category": "quality",
+      "category": "general",
       "keywords": [
         "plankton",
         "code",
@@ -1461,7 +1461,7 @@
     {
       "id": "playground",
       "description": "Creates interactive HTML playgrounds — self-contained single-file explorers that let users configure something visually through controls, see a live preview, and copy out a prompt. Use when the user a",
-      "category": "quality",
+      "category": "general",
       "keywords": [
         "playground",
         "creates",
@@ -1476,7 +1476,7 @@
     {
       "id": "plugin-settings",
       "description": "This skill should be used when the user asks about \"plugin settings\", \"store plugin configuration\", \"user-configurable plugin\", \".local.md files\", \"plugin state files\", \"read YAML frontmatter\", \"per-p",
-      "category": "devops",
+      "category": "tooling",
       "keywords": [
         "plugin",
         "settings",
@@ -1491,7 +1491,7 @@
     {
       "id": "plugin-structure",
       "description": "This skill should be used when the user asks to \"create a plugin\", \"scaffold a plugin\", \"understand plugin structure\", \"organize plugin components\", \"set up plugin.json\", \"use ${CLAUDE_PLUGIN_ROOT}\", ",
-      "category": "design",
+      "category": "tooling",
       "keywords": [
         "plugin",
         "structure",
@@ -1506,7 +1506,7 @@
     {
       "id": "postgres-patterns",
       "description": "PostgreSQL database patterns for query optimization, schema design, indexing, and security. Based on Supabase best practices.",
-      "category": "security",
+      "category": "data",
       "keywords": [
         "postgres",
         "patterns",
@@ -1521,7 +1521,7 @@
     {
       "id": "posthog-instrumentation",
       "description": "Automatically add PostHog analytics instrumentation to code. Triggers when user asks to add tracking, instrument events, add analytics, or implement feature flags in their codebase.",
-      "category": "automation",
+      "category": "monitoring",
       "keywords": [
         "posthog",
         "instrumentation",
@@ -1566,7 +1566,7 @@
     {
       "id": "project-guidelines-example",
       "description": "Example project-specific skill template based on a real production application.",
-      "category": "devops",
+      "category": "general",
       "keywords": [
         "project",
         "guidelines",
@@ -1671,7 +1671,7 @@
     {
       "id": "ralphinho-rfc-pipeline",
       "description": "RFC-driven multi-agent DAG execution pattern with quality gates, merge queues, and work unit orchestration.",
-      "category": "python",
+      "category": "tooling",
       "keywords": [
         "ralphinho",
         "rfc",
@@ -1686,7 +1686,7 @@
     {
       "id": "receiving-code-review",
       "description": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative",
-      "category": "quality",
+      "category": "general",
       "keywords": [
         "receiving",
         "code",
@@ -1716,7 +1716,7 @@
     {
       "id": "regex-vs-llm-structured-text",
       "description": "Decision framework for choosing between regex and LLM when parsing structured text — start with regex, add LLM only for low-confidence edge cases.",
-      "category": "devops",
+      "category": "ai",
       "keywords": [
         "regex",
         "llm",
@@ -1746,7 +1746,7 @@
     {
       "id": "requesting-code-review",
       "description": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
-      "category": "quality",
+      "category": "general",
       "keywords": [
         "requesting",
         "code",
@@ -1791,7 +1791,7 @@
     {
       "id": "search-company-knowledge",
       "description": "Search across company knowledge bases (Confluence, Jira, internal docs) to find and explain internal concepts, processes, and technical details. When Claude needs to: (1) Find or search for informatio",
-      "category": "infrastructure",
+      "category": "general",
       "keywords": [
         "search",
         "company",
@@ -1821,7 +1821,7 @@
     {
       "id": "security-review",
       "description": "Use this skill when adding authentication, handling user input, working with secrets, creating API endpoints, or implementing payment/sensitive features. Provides comprehensive security checklist and ",
-      "category": "api",
+      "category": "security",
       "keywords": [
         "security",
         "review",
@@ -1836,7 +1836,7 @@
     {
       "id": "security-scan",
       "description": "Scan your Claude Code configuration (.claude/ directory) for security vulnerabilities, misconfigurations, and injection risks using AgentShield. Checks CLAUDE.md, settings.json, MCP servers, hooks, an",
-      "category": "security",
+      "category": "tooling",
       "keywords": [
         "security",
         "scan",
@@ -1851,7 +1851,7 @@
     {
       "id": "sentry-code-review",
       "description": "Analyze and resolve Sentry comments on GitHub Pull Requests. Use this when asked to review or fix issues identified by Sentry in PR comments. Can review specific PRs by number or automatically find re",
-      "category": "quality",
+      "category": "monitoring",
       "keywords": [
         "sentry",
         "code",
@@ -1881,7 +1881,7 @@
     {
       "id": "sentry-setup-ai-monitoring",
       "description": "Setup Sentry AI Agent Monitoring in any project. Use this when asked to add AI monitoring, track LLM calls, monitor AI agents, or instrument OpenAI/Anthropic/Vercel AI/LangChain/Google GenAI. Automati",
-      "category": "ai",
+      "category": "monitoring",
       "keywords": [
         "sentry",
         "setup",
@@ -1896,7 +1896,7 @@
     {
       "id": "sentry-setup-logging",
       "description": "Setup Sentry Logging in any project. Use this when asked to add Sentry logs, enable structured logging, setup console log capture, or integrate logging with Sentry. Supports JavaScript, TypeScript, Py",
-      "category": "python",
+      "category": "frontend",
       "keywords": [
         "sentry",
         "setup",
@@ -1911,7 +1911,7 @@
     {
       "id": "sentry-setup-metrics",
       "description": "Setup Sentry Metrics in any project. Use this when asked to add Sentry metrics, track custom metrics, setup counters/gauges/distributions, or instrument application performance metrics. Supports JavaS",
-      "category": "python",
+      "category": "frontend",
       "keywords": [
         "sentry",
         "setup",
@@ -1926,7 +1926,7 @@
     {
       "id": "sentry-setup-tracing",
       "description": "Setup Sentry Tracing (Performance Monitoring) in any project. Use this when asked to add performance monitoring, enable tracing, track transactions/spans, or instrument application performance. Suppor",
-      "category": "python",
+      "category": "frontend",
       "keywords": [
         "sentry",
         "setup",
@@ -1956,7 +1956,7 @@
     {
       "id": "skill-creator",
       "description": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, update or optimize an existing skill, run evals to test a skil",
-      "category": "quality",
+      "category": "tooling",
       "keywords": [
         "skill",
         "creator",
@@ -1971,7 +1971,7 @@
     {
       "id": "skill-development",
       "description": "This skill should be used when the user wants to \"create a skill\", \"add a skill to plugin\", \"write a new skill\", \"improve skill description\", \"organize skill content\", or needs guidance on skill struc",
-      "category": "design",
+      "category": "tooling",
       "keywords": [
         "skill",
         "development",
@@ -1986,7 +1986,7 @@
     {
       "id": "skill-stocktake",
       "description": "Use when auditing Claude skills and commands for quality. Supports Quick Scan (changed skills only) and Full Stocktake modes with sequential subagent batch evaluation.",
-      "category": "quality",
+      "category": "tooling",
       "keywords": [
         "skill",
         "stocktake",
@@ -2016,7 +2016,7 @@
     {
       "id": "spec-to-backlog",
       "description": "Automatically convert Confluence specification documents into structured Jira backlogs with Epics and implementation tickets. When Claude needs to: (1) Create Jira tickets from a Confluence page, (2) ",
-      "category": "devops",
+      "category": "automation",
       "keywords": [
         "spec",
         "backlog",
@@ -2031,7 +2031,7 @@
     {
       "id": "springboot-patterns",
       "description": "Spring Boot architecture patterns, REST API design, layered services, data access, caching, async processing, and logging. Use for Java Spring Boot backend work.",
-      "category": "api",
+      "category": "java",
       "keywords": [
         "springboot",
         "patterns",
@@ -2046,7 +2046,7 @@
     {
       "id": "springboot-security",
       "description": "Spring Security best practices for authn/authz, validation, CSRF, secrets, headers, rate limiting, and dependency security in Java Spring Boot services.",
-      "category": "security",
+      "category": "java",
       "keywords": [
         "springboot",
         "security",
@@ -2061,7 +2061,7 @@
     {
       "id": "springboot-tdd",
       "description": "Test-driven development for Spring Boot using JUnit 5, Mockito, MockMvc, Testcontainers, and JaCoCo. Use when adding features, fixing bugs, or refactoring.",
-      "category": "quality",
+      "category": "java",
       "keywords": [
         "springboot",
         "tdd",
@@ -2076,7 +2076,7 @@
     {
       "id": "springboot-verification",
       "description": "Verification loop for Spring Boot projects: build, static analysis, tests with coverage, security scans, and diff review before release or PR.",
-      "category": "quality",
+      "category": "java",
       "keywords": [
         "springboot",
         "verification",
@@ -2106,7 +2106,7 @@
     {
       "id": "strategic-compact",
       "description": "Suggests manual context compaction at logical intervals to preserve context through task phases rather than arbitrary auto-compaction.",
-      "category": "monitoring",
+      "category": "general",
       "keywords": [
         "strategic",
         "compact",
@@ -2121,7 +2121,7 @@
     {
       "id": "stripe-best-practices",
       "description": "Best practices for building Stripe integrations. Use when implementing payment processing, checkout flows, subscriptions, webhooks, Connect platforms, or any Stripe API integration.",
-      "category": "api",
+      "category": "general",
       "keywords": [
         "stripe",
         "best",
@@ -2136,7 +2136,7 @@
     {
       "id": "subagent-driven-development",
       "description": "Use when executing implementation plans with independent tasks in the current session",
-      "category": "tooling",
+      "category": "general",
       "keywords": [
         "subagent",
         "driven",
@@ -2241,7 +2241,7 @@
     {
       "id": "systematic-debugging",
       "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
-      "category": "quality",
+      "category": "general",
       "keywords": [
         "systematic",
         "debugging",
@@ -2361,7 +2361,7 @@
     {
       "id": "using-superpowers",
       "description": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
-      "category": "design",
+      "category": "general",
       "keywords": [
         "superpowers",
         "starting",
@@ -2376,7 +2376,7 @@
     {
       "id": "verification-before-completion",
       "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence",
-      "category": "design",
+      "category": "general",
       "keywords": [
         "verification",
         "completion",
@@ -2391,7 +2391,7 @@
     {
       "id": "verification-loop",
       "description": "A comprehensive verification system for Claude Code sessions.",
-      "category": "architecture",
+      "category": "general",
       "keywords": [
         "verification",
         "loop",
@@ -2419,24 +2419,9 @@
       ]
     },
     {
-      "id": "whatsapp",
-      "description": "Cloclo WhatsApp — veille et reponse automatique via WhatsApp MCP. Use when interacting with WhatsApp messages or when user asks to check/respond on WhatsApp.",
-      "category": "business",
-      "keywords": [
-        "whatsapp",
-        "check",
-        "respond",
-        "cloclo",
-        "verifie",
-        "messages",
-        "veille",
-        "reponse"
-      ]
-    },
-    {
       "id": "writing-plans",
       "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
-      "category": "design",
+      "category": "documentation",
       "keywords": [
         "writing",
         "plans",
@@ -2451,7 +2436,7 @@
     {
       "id": "writing-rules",
       "description": "This skill should be used when the user asks to \"create a hookify rule\", \"write a hook rule\", \"configure hookify\", \"add a hookify rule\", or needs guidance on hookify rule syntax and patterns.",
-      "category": "design",
+      "category": "documentation",
       "keywords": [
         "writing",
         "rules",
@@ -2466,7 +2451,7 @@
     {
       "id": "writing-skills",
       "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
-      "category": "infrastructure",
+      "category": "documentation",
       "keywords": [
         "writing",
         "skills",
