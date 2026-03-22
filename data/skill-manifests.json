@@ -1,0 +1,6130 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-03-22T00:11:38.837Z",
+  "count": 167,
+  "skills": {
+    "agence-atum": {
+      "activation": {
+        "onKeyword": [
+          "agence",
+          "atum",
+          "sas",
+          "societe",
+          "boite",
+          "associes",
+          "actionnariat",
+          "proces-verbal",
+          "convocation",
+          "dividendes",
+          "tresorerie",
+          "pipeline",
+          "work",
+          "equity",
+          "obligations",
+          "rapport",
+          "trimestriel",
+          "quorum",
+          "majorite",
+          "capital"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "business",
+      "token_cost": 2740,
+      "priority": "normal",
+      "dependencies": [
+        "memoire",
+        "compliance-routing",
+        "scheduler"
+      ],
+      "path": "skills/agence-atum/SKILL.md"
+    },
+    "agent-browser": {
+      "activation": {
+        "onKeyword": [
+          "browser",
+          "automation",
+          "test",
+          "puppeteer",
+          "playwright",
+          "headless",
+          "agent-browser",
+          "cli",
+          "agents",
+          "asked",
+          "something",
+          "real",
+          "agent",
+          "browser automation cli",
+          "for ai agents",
+          "use this when",
+          "asked to test",
+          "something in a",
+          "real browser"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 1812,
+      "priority": "normal",
+      "dependencies": [
+        "terminal-emulator"
+      ],
+      "path": "skills/agent-browser/SKILL.md"
+    },
+    "agent-development": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "user",
+          "asks",
+          "create",
+          "agent",
+          "add",
+          "write",
+          "subagent",
+          "frontmatter",
+          "description",
+          "examples",
+          "tools",
+          "colors",
+          "autonomous",
+          "needs",
+          "guidance",
+          "structure",
+          "system",
+          "prompts",
+          "triggering"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 2594,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/agent-development/SKILL.md"
+    },
+    "agent-harness-construction": {
+      "activation": {
+        "onKeyword": [
+          "design",
+          "optimize",
+          "agent",
+          "action",
+          "spaces",
+          "tool",
+          "definitions",
+          "observation",
+          "formatting",
+          "higher",
+          "completion",
+          "rates",
+          "harness",
+          "construction",
+          "design and optimize",
+          "ai agent action",
+          "tool definitions",
+          "and observation formatting",
+          "for higher completion"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 500,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/agent-harness-construction/SKILL.md"
+    },
+    "agentic-engineering": {
+      "activation": {
+        "onKeyword": [
+          "operate",
+          "agentic",
+          "engineer",
+          "eval-first",
+          "execution",
+          "decomposition",
+          "cost-aware",
+          "model",
+          "routing",
+          "engineering",
+          "operate as an",
+          "agentic engineer using",
+          "eval-first execution",
+          "and cost-aware",
+          "model routing"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "ai",
+      "token_cost": 433,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/agentic-engineering/SKILL.md"
+    },
+    "ai-first-engineering": {
+      "activation": {
+        "onKeyword": [
+          "engineering",
+          "operating",
+          "model",
+          "teams",
+          "agents",
+          "generate",
+          "large",
+          "share",
+          "implementation",
+          "output",
+          "first",
+          "engineering operating model",
+          "for teams where",
+          "ai agents generate",
+          "a large share",
+          "of implementation output"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "ai",
+      "token_cost": 334,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/ai-first-engineering/SKILL.md"
+    },
+    "api-design": {
+      "activation": {
+        "onKeyword": [
+          "rest",
+          "api",
+          "design",
+          "patterns",
+          "resource",
+          "naming",
+          "status",
+          "codes",
+          "pagination",
+          "filtering",
+          "error",
+          "responses",
+          "versioning",
+          "rate",
+          "limiting",
+          "production",
+          "apis",
+          "rest api design",
+          "patterns including resource",
+          "status codes"
+        ],
+        "onIntent": [
+          "designing new api endpoints",
+          "reviewing existing api contracts",
+          "adding pagination, filtering, or sorting",
+          "implementing error handling for apis",
+          "planning api versioning strategy",
+          "building public or partner-facing apis"
+        ],
+        "onFileType": [
+          "openapi",
+          "swagger",
+          "api"
+        ],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "api",
+      "token_cost": 3271,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/api-design/SKILL.md"
+    },
+    "article-writing": {
+      "activation": {
+        "onKeyword": [
+          "write",
+          "articles",
+          "guides",
+          "blog",
+          "posts",
+          "tutorials",
+          "newsletter",
+          "issues",
+          "long-form",
+          "content",
+          "distinctive",
+          "voice",
+          "derived",
+          "supplied",
+          "examples",
+          "brand",
+          "guidance",
+          "user",
+          "wants",
+          "polished"
+        ],
+        "onIntent": [
+          "drafting blog posts, essays, launch posts, guides, tutorials, or newsletter issues",
+          "turning notes, transcripts, or research into polished articles",
+          "matching an existing founder, operator, or brand voice from examples",
+          "tightening structure, pacing, and evidence in already-written long-form copy"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 786,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/article-writing/SKILL.md"
+    },
+    "assistant": {
+      "activation": {
+        "onKeyword": [
+          "main",
+          "skill",
+          "pinecone",
+          "assistant",
+          "operations",
+          "read",
+          "first",
+          "create",
+          "manage",
+          "chat",
+          "assistants",
+          "document",
+          "automatically",
+          "recognizes",
+          "natural",
+          "language",
+          "requests",
+          "docs",
+          "ask",
+          "authentication"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "security",
+      "token_cost": 4602,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/assistant/SKILL.md"
+    },
+    "audit-flow": {
+      "activation": {
+        "onKeyword": [
+          "audit",
+          "flow",
+          "system",
+          "tracing",
+          "architecture",
+          "data",
+          "security",
+          "boundaries",
+          "component",
+          "interactions",
+          "interactive",
+          "across",
+          "code",
+          "api",
+          "auth",
+          "network",
+          "layers",
+          "sqlite",
+          "persistence",
+          "mermaid"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 1021,
+      "priority": "normal",
+      "dependencies": [
+        "spec-miner",
+        "design-doc-mermaid"
+      ],
+      "path": "skills/audit-flow/SKILL.md"
+    },
+    "autonomous-loops": {
+      "activation": {
+        "onKeyword": [
+          "patterns",
+          "architectures",
+          "autonomous",
+          "claude",
+          "code",
+          "loops",
+          "simple",
+          "sequential",
+          "pipelines",
+          "rfc-driven",
+          "multi-agent",
+          "dag",
+          "systems",
+          "patterns and architectures",
+          "for autonomous claude",
+          "code loops",
+          "from simple sequential",
+          "pipelines to rfc",
+          "driven multi-agent",
+          "dag systems"
+        ],
+        "onIntent": [
+          "setting up autonomous development workflows that run without human intervention",
+          "choosing the right loop architecture for your problem (simple vs complex)",
+          "building ci/cd-style continuous development pipelines",
+          "running parallel agents with merge coordination",
+          "implementing context persistence across loop iterations",
+          "adding quality gates and cleanup passes to autonomous workflows"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 5772,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/autonomous-loops/SKILL.md"
+    },
+    "autonomous-routing": {
+      "activation": {
+        "onKeyword": [
+          "routing",
+          "detection",
+          "auto-invoke",
+          "nlp",
+          "intent",
+          "autonomous"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "workflow",
+      "token_cost": 7738,
+      "priority": "normal",
+      "dependencies": [
+        "common-ground",
+        "compliance-routing"
+      ],
+      "path": "skills/autonomous-routing/SKILL.md"
+    },
+    "backend-patterns": {
+      "activation": {
+        "onKeyword": [
+          "backend",
+          "architecture",
+          "patterns",
+          "api",
+          "design",
+          "database",
+          "optimization",
+          "server-side",
+          "best",
+          "practices",
+          "node",
+          "express",
+          "next",
+          "routes",
+          "backend architecture patterns",
+          "api design",
+          "database optimization",
+          "and server-side",
+          "best practices for",
+          "and next"
+        ],
+        "onIntent": [
+          "designing rest or graphql api endpoints",
+          "implementing repository, service, or controller layers",
+          "optimi"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "frontend",
+      "token_cost": 3454,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/backend-patterns/SKILL.md"
+    },
+    "bienvenue": {
+      "activation": {
+        "onKeyword": [
+          "bienvenue"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 851,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/bienvenue/SKILL.md"
+    },
+    "brainstorming": {
+      "activation": {
+        "onKeyword": [
+          "creative",
+          "work",
+          "creating",
+          "features",
+          "building",
+          "components",
+          "adding",
+          "functionality",
+          "modifying",
+          "behavior",
+          "explores",
+          "user",
+          "intent",
+          "requirements",
+          "design",
+          "implementation",
+          "brainstorming",
+          "you must use",
+          "this before any",
+          "creative work"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 1169,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/brainstorming/SKILL.md"
+    },
+    "capture-tasks-from-meeting-notes": {
+      "activation": {
+        "onKeyword": [
+          "analyze",
+          "meeting",
+          "notes",
+          "find",
+          "action",
+          "items",
+          "create",
+          "jira",
+          "tasks",
+          "assigned",
+          "work",
+          "claude",
+          "needs",
+          "tickets",
+          "extract",
+          "confluence",
+          "pages",
+          "parse",
+          "generate",
+          "team"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 3737,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/capture-tasks-from-meeting-notes/SKILL.md"
+    },
+    "chaos-engineer": {
+      "activation": {
+        "onKeyword": [
+          "chaos",
+          "engineering",
+          "resilience",
+          "testing",
+          "failure",
+          "injection",
+          "game",
+          "day",
+          "blast",
+          "radius",
+          "experiment",
+          "fault",
+          "antifragile",
+          "design",
+          "execute",
+          "experiments",
+          "exercises",
+          "staging",
+          "dev",
+          "environments"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 651,
+      "priority": "normal",
+      "dependencies": [
+        "sre-engineer",
+        "devops-engineer",
+        "kubernetes-specialist"
+      ],
+      "path": "skills/chaos-engineer/SKILL.md"
+    },
+    "claude-a11y-skill": {
+      "activation": {
+        "onKeyword": [
+          "accessibility",
+          "guidance",
+          "a11y",
+          "help",
+          "aria",
+          "patterns",
+          "accessible",
+          "component",
+          "keyboard",
+          "navigation",
+          "screen",
+          "reader",
+          "focus",
+          "management",
+          "real-time",
+          "coding",
+          "provides",
+          "inline",
+          "best",
+          "practices"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "frontend",
+      "token_cost": 1539,
+      "priority": "normal",
+      "dependencies": [
+        "refactoring-ui",
+        "high-perf-browser"
+      ],
+      "path": "skills/claude-a11y-skill/SKILL.md"
+    },
+    "claude-automation-recommender": {
+      "activation": {
+        "onKeyword": [
+          "analyze",
+          "codebase",
+          "recommend",
+          "claude",
+          "code",
+          "automations",
+          "hooks",
+          "subagents",
+          "skills",
+          "plugins",
+          "mcp",
+          "servers",
+          "user",
+          "asks",
+          "automation",
+          "recommendations",
+          "wants",
+          "optimize",
+          "setup",
+          "mentions"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 2710,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/claude-automation-recommender/SKILL.md"
+    },
+    "claude-d3js-skill": {
+      "activation": {
+        "onKeyword": [
+          "data",
+          "visualization",
+          "chart",
+          "graph",
+          "svg",
+          "interactive",
+          "network",
+          "diagram",
+          "geographic",
+          "creating",
+          "visualisations",
+          "skill",
+          "custom",
+          "charts",
+          "graphs",
+          "diagrams",
+          "complex",
+          "svg-based",
+          "visualisation",
+          "requires"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "frontend",
+      "token_cost": 5509,
+      "priority": "normal",
+      "dependencies": [
+        "refactoring-ui"
+      ],
+      "path": "skills/claude-d3js-skill/SKILL.md"
+    },
+    "claude-md-improver": {
+      "activation": {
+        "onKeyword": [
+          "audit",
+          "improve",
+          "claude",
+          "files",
+          "repositories",
+          "user",
+          "asks",
+          "check",
+          "update",
+          "fix",
+          "scans",
+          "evaluates",
+          "quality",
+          "against",
+          "templates",
+          "outputs",
+          "report",
+          "makes",
+          "targeted",
+          "updates"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 1507,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/claude-md-improver/SKILL.md"
+    },
+    "clean-architecture": {
+      "activation": {
+        "onKeyword": [
+          "clean",
+          "architecture",
+          "dependency",
+          "rule",
+          "ports",
+          "adapters",
+          "hexagonal",
+          "case",
+          "boundary",
+          "solid",
+          "onion",
+          "structure",
+          "software",
+          "around",
+          "source",
+          "code",
+          "dependencies",
+          "point",
+          "inward",
+          "frameworks"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "architecture",
+      "token_cost": 724,
+      "priority": "normal",
+      "dependencies": [
+        "domain-driven-design",
+        "system-design"
+      ],
+      "path": "skills/clean-architecture/SKILL.md"
+    },
+    "clickhouse-io": {
+      "activation": {
+        "onKeyword": [
+          "clickhouse",
+          "database",
+          "patterns",
+          "query",
+          "optimization",
+          "analytics",
+          "data",
+          "engineering",
+          "best",
+          "practices",
+          "high-performance",
+          "analytical",
+          "workloads",
+          "clickhouse database patterns",
+          "query optimization",
+          "and data engineering",
+          "best practices for",
+          "high-performance analytical"
+        ],
+        "onIntent": [
+          "designing clickhouse table schemas (mergetree engine selection)",
+          "writing analytical queries (aggregations, window functions, joins)",
+          "optimi"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "data",
+      "token_cost": 2602,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/clickhouse-io/SKILL.md"
+    },
+    "code-connect-components": {
+      "activation": {
+        "onKeyword": [
+          "connects",
+          "figma",
+          "design",
+          "components",
+          "code",
+          "connect",
+          "user",
+          "says",
+          "component",
+          "map",
+          "link",
+          "create",
+          "mapping",
+          "add",
+          "wants",
+          "establish",
+          "mappings",
+          "designs",
+          "implementations",
+          "requires"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 4067,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/code-connect-components/SKILL.md"
+    },
+    "coding-standards": {
+      "activation": {
+        "onKeyword": [
+          "universal",
+          "coding",
+          "standards",
+          "best",
+          "practices",
+          "patterns",
+          "typescript",
+          "javascript",
+          "react",
+          "node",
+          "development",
+          "universal coding standards",
+          "best practices",
+          "and patterns for",
+          "and node",
+          "js development"
+        ],
+        "onIntent": [
+          "starting a new project or module",
+          "reviewing code for quality and maintainability",
+          "refactoring existing code to follow conventions",
+          "enforcing naming, formatting, or structural consistency",
+          "setting up linting, formatting, or type-checking rules",
+          "onboarding new contributors to coding conventions"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "frontend",
+      "token_cost": 2889,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/coding-standards/SKILL.md"
+    },
+    "command-development": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "user",
+          "asks",
+          "create",
+          "slash",
+          "command",
+          "add",
+          "write",
+          "custom",
+          "define",
+          "arguments",
+          "frontmatter",
+          "organize",
+          "commands",
+          "file",
+          "references",
+          "interactive",
+          "askuserquestion",
+          "needs",
+          "guidance"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 4766,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/command-development/SKILL.md"
+    },
+    "common-ground": {
+      "activation": {
+        "onKeyword": [
+          "hypotheses",
+          "assumptions",
+          "common",
+          "ground",
+          "pars",
+          "principe",
+          "validate",
+          "onboarding",
+          "starting",
+          "project"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "workflow",
+      "token_cost": 1060,
+      "priority": "normal",
+      "dependencies": [
+        "prompt-architect",
+        "spec-miner"
+      ],
+      "path": "skills/common-ground/SKILL.md"
+    },
+    "compliance-routing": {
+      "activation": {
+        "onKeyword": [
+          "rgpd",
+          "gdpr",
+          "pci-dss",
+          "hipaa",
+          "cookies",
+          "privacy",
+          "user",
+          "data",
+          "authentication",
+          "payments",
+          "e-commerce",
+          "health",
+          "compliance",
+          "regulatory",
+          "detection",
+          "routing",
+          "code",
+          "touches",
+          "children",
+          "content"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "compliance",
+      "token_cost": 1110,
+      "priority": "normal",
+      "dependencies": [
+        "open-source-license-compliance",
+        "supply-chain-risk-auditor"
+      ],
+      "path": "skills/compliance-routing/SKILL.md"
+    },
+    "configure-atum": {
+      "activation": {
+        "onKeyword": [
+          "interactive",
+          "installer",
+          "everything",
+          "claude",
+          "code",
+          "guides",
+          "users",
+          "selecting",
+          "installing",
+          "skills",
+          "rules",
+          "user-level",
+          "project-level",
+          "directories",
+          "verifies",
+          "paths",
+          "optionally",
+          "optimizes",
+          "installed",
+          "files"
+        ],
+        "onIntent": [
+          "user says \"configure ecc\", \"install ecc\", \"setup everything claude code\", or similar",
+          "user wants to selectively install skills or rules from this project",
+          "user wants to verify or fix an existing ecc installation",
+          "user wants to optimi"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 3379,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/configure-atum/SKILL.md"
+    },
+    "content-engine": {
+      "activation": {
+        "onKeyword": [
+          "create",
+          "platform-native",
+          "content",
+          "systems",
+          "linkedin",
+          "tiktok",
+          "youtube",
+          "newsletters",
+          "repurposed",
+          "multi-platform",
+          "campaigns",
+          "user",
+          "wants",
+          "social",
+          "posts",
+          "threads",
+          "scripts",
+          "calendars",
+          "one",
+          "source"
+        ],
+        "onIntent": [
+          "writing x posts or threads",
+          "drafting linkedin posts or launch updates",
+          "scripting short-form video or youtube explainers",
+          "repurposing articles, podcasts, demos, or docs into social content",
+          "building a lightweight content plan around a launch, milestone, or theme"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 643,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/content-engine/SKILL.md"
+    },
+    "content-hash-cache-pattern": {
+      "activation": {
+        "onKeyword": [
+          "cache",
+          "expensive",
+          "file",
+          "processing",
+          "results",
+          "sha-256",
+          "content",
+          "hashes",
+          "path-independent",
+          "auto-invalidating",
+          "service",
+          "layer",
+          "separation",
+          "hash",
+          "pattern",
+          "cache expensive file",
+          "processing results using",
+          "sha-256 content",
+          "with service layer"
+        ],
+        "onIntent": [
+          "building file processing pipelines (pdf, images, text extraction)",
+          "processing cost is high and same files are processed repeatedly",
+          "need a `--cache/--no-cache` cli option",
+          "want to add caching to existing pure functions without modifying them"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 1398,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/content-hash-cache-pattern/SKILL.md"
+    },
+    "context-engineering-kit": {
+      "activation": {
+        "onKeyword": [
+          "context",
+          "window",
+          "degradation",
+          "sub-agent",
+          "handoff",
+          "maker",
+          "pattern",
+          "rot",
+          "fresh",
+          "management",
+          "degrading",
+          "spawning",
+          "sub-agents",
+          "complex",
+          "tasks",
+          "structured",
+          "agents",
+          "prevents",
+          "hallucination",
+          "accumulated"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 2108,
+      "priority": "normal",
+      "dependencies": [
+        "fresh-execute"
+      ],
+      "path": "skills/context-engineering-kit/SKILL.md"
+    },
+    "continuous-agent-loop": {
+      "activation": {
+        "onKeyword": [
+          "patterns",
+          "continuous",
+          "autonomous",
+          "agent",
+          "loops",
+          "quality",
+          "gates",
+          "evals",
+          "recovery",
+          "controls",
+          "loop",
+          "patterns for continuous",
+          "autonomous agent loops",
+          "with quality gates",
+          "and recovery controls"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 280,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/continuous-agent-loop/SKILL.md"
+    },
+    "continuous-learning": {
+      "activation": {
+        "onKeyword": [
+          "automatically",
+          "extract",
+          "reusable",
+          "patterns",
+          "claude",
+          "code",
+          "sessions",
+          "save",
+          "learned",
+          "skills",
+          "future",
+          "continuous",
+          "learning",
+          "automatically extract reusable",
+          "patterns from claude",
+          "code sessions and",
+          "save them as",
+          "learned skills for",
+          "future use"
+        ],
+        "onIntent": [
+          "setting up automatic pattern extraction from claude code sessions",
+          "configuring the stop hook for session evaluation",
+          "reviewing or curating learned skills in `~/.claude/skills/learned/`",
+          "adjusting extraction thresholds or pattern categories",
+          "comparing v1 (this) vs v2 (instinct-based) approaches"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 910,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/continuous-learning/SKILL.md"
+    },
+    "continuous-learning-v2": {
+      "activation": {
+        "onKeyword": [
+          "instinct-based",
+          "learning",
+          "system",
+          "observes",
+          "sessions",
+          "via",
+          "hooks",
+          "creates",
+          "atomic",
+          "instincts",
+          "confidence",
+          "scoring",
+          "evolves",
+          "skills",
+          "commands",
+          "agents",
+          "adds",
+          "project-scoped",
+          "prevent",
+          "cross-project"
+        ],
+        "onIntent": [
+          "setting up automatic learning from claude code sessions",
+          "configuring instinct-based behavior extraction via hooks",
+          "tuning confidence thresholds for learned behaviors",
+          "reviewing, exporting, or importing instinct libraries",
+          "evolving instincts into full skills, commands, or agents",
+          "managing project-scoped vs global instincts",
+          "promoting instincts from project to global scope"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 3112,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/continuous-learning-v2/SKILL.md"
+    },
+    "cost-aware-llm-pipeline": {
+      "activation": {
+        "onKeyword": [
+          "cost",
+          "optimization",
+          "patterns",
+          "llm",
+          "api",
+          "usage",
+          "model",
+          "routing",
+          "task",
+          "complexity",
+          "budget",
+          "tracking",
+          "retry",
+          "logic",
+          "prompt",
+          "caching",
+          "aware",
+          "pipeline",
+          "cost optimization patterns",
+          "for llm api"
+        ],
+        "onIntent": [
+          "building applications that call llm apis (claude, gpt, etc.)",
+          "processing batches of items with varying complexity",
+          "need to stay within a budget for api spend",
+          "optimi"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 1427,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/cost-aware-llm-pipeline/SKILL.md"
+    },
+    "cpp-coding-standards": {
+      "activation": {
+        "onKeyword": [
+          "coding",
+          "standards",
+          "core",
+          "guidelines",
+          "isocpp",
+          "github",
+          "writing",
+          "reviewing",
+          "refactoring",
+          "code",
+          "enforce",
+          "modern",
+          "safe",
+          "idiomatic",
+          "practices",
+          "cpp",
+          "coding standards based",
+          "on the c",
+          "core guidelines",
+          "use when writing"
+        ],
+        "onIntent": [
+          "writing new c++ code (classes, functions, templates)",
+          "reviewing or refactoring existing c++ code",
+          "making architectural decisions in c++ projects",
+          "enforcing consistent style across a c++ codebase",
+          "choosing between language features (e.g., `enum` vs `enum class`, raw pointer vs smart pointer)",
+          "non-c++ projects",
+          "legacy c codebases that cannot adopt modern c++ features",
+          "embedded/bare-metal contexts where specific guidelines conflict with hardware constraints (adapt selectively)"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 5570,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/cpp-coding-standards/SKILL.md"
+    },
+    "cpp-testing": {
+      "activation": {
+        "onKeyword": [
+          "writing",
+          "updating",
+          "fixing",
+          "tests",
+          "configuring",
+          "googletest",
+          "ctest",
+          "diagnosing",
+          "failing",
+          "flaky",
+          "adding",
+          "coverage",
+          "sanitizers",
+          "cpp",
+          "testing",
+          "use only when",
+          "fixing c",
+          "configuring googletest",
+          "diagnosing failing or",
+          "flaky tests"
+        ],
+        "onIntent": [
+          "writing new c++ tests or fixing existing tests",
+          "designing unit/integration test coverage for c++ components",
+          "adding test coverage, ci gating, or regression protection",
+          "configuring cmake/ctest workflows for consistent execution",
+          "investigating test failures or flaky behavior",
+          "enabling saniti"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 2286,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/cpp-testing/SKILL.md"
+    },
+    "create-design-system-rules": {
+      "activation": {
+        "onKeyword": [
+          "generates",
+          "custom",
+          "design",
+          "system",
+          "rules",
+          "user",
+          "codebase",
+          "says",
+          "create",
+          "generate",
+          "project",
+          "set",
+          "customize",
+          "guidelines",
+          "wants",
+          "establish",
+          "project-specific",
+          "conventions",
+          "figma-to-code",
+          "workflows"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 4565,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/create-design-system-rules/SKILL.md"
+    },
+    "database-migrations": {
+      "activation": {
+        "onKeyword": [
+          "database",
+          "migration",
+          "best",
+          "practices",
+          "schema",
+          "changes",
+          "data",
+          "migrations",
+          "rollbacks",
+          "zero-downtime",
+          "deployments",
+          "across",
+          "postgresql",
+          "mysql",
+          "common",
+          "orms",
+          "prisma",
+          "drizzle",
+          "django",
+          "typeorm"
+        ],
+        "onIntent": [
+          "creating or altering database tables",
+          "adding/removing columns or indexes",
+          "running data migrations (backfill, transform)",
+          "planning"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 2367,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/database-migrations/SKILL.md"
+    },
+    "ddia-systems": {
+      "activation": {
+        "onKeyword": [
+          "data",
+          "systems",
+          "replication",
+          "partitioning",
+          "consistency",
+          "availability",
+          "stream",
+          "processing",
+          "storage",
+          "engines",
+          "distributed",
+          "consensus",
+          "database",
+          "choice",
+          "design",
+          "understanding",
+          "transactions",
+          "models",
+          "user",
+          "mentions"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "architecture",
+      "token_cost": 958,
+      "priority": "normal",
+      "dependencies": [
+        "system-design",
+        "clean-architecture"
+      ],
+      "path": "skills/ddia-systems/SKILL.md"
+    },
+    "deploy": {
+      "activation": {
+        "onKeyword": [
+          "deploy",
+          "applications",
+          "vercel",
+          "user",
+          "says",
+          "push",
+          "production",
+          "app",
+          "live",
+          "deploy applications to",
+          "use when the",
+          "user says",
+          "deploy to vercel",
+          "push to production",
+          "deploy my app",
+          "go live"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "infrastructure",
+      "token_cost": 138,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/deploy/SKILL.md"
+    },
+    "deployment-patterns": {
+      "activation": {
+        "onKeyword": [
+          "deployment",
+          "workflows",
+          "pipeline",
+          "patterns",
+          "docker",
+          "containerization",
+          "health",
+          "checks",
+          "rollback",
+          "strategies",
+          "production",
+          "readiness",
+          "checklists",
+          "web",
+          "applications",
+          "deployment workflows",
+          "cd pipeline patterns",
+          "docker containerization",
+          "health checks",
+          "rollback strategies"
+        ],
+        "onIntent": [
+          "setting up ci/cd pipelines",
+          "dockeri"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 2740,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/deployment-patterns/SKILL.md"
+    },
+    "design-doc-mermaid": {
+      "activation": {
+        "onKeyword": [
+          "mermaid",
+          "diagram",
+          "architecture",
+          "sequence",
+          "activity",
+          "deployment",
+          "code",
+          "design",
+          "doc",
+          "create",
+          "diagrams",
+          "text",
+          "descriptions",
+          "source",
+          "asked",
+          "generate",
+          "document",
+          "convert",
+          "supports",
+          "hierarchical"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 1257,
+      "priority": "normal",
+      "dependencies": [
+        "system-design",
+        "audit-flow"
+      ],
+      "path": "skills/design-doc-mermaid/SKILL.md"
+    },
+    "dispatching-parallel-agents": {
+      "activation": {
+        "onKeyword": [
+          "facing",
+          "independent",
+          "tasks",
+          "worked",
+          "without",
+          "shared",
+          "state",
+          "sequential",
+          "dependencies",
+          "dispatching",
+          "parallel",
+          "agents",
+          "use when facing",
+          "independent tasks that",
+          "can be worked",
+          "on without shared",
+          "state or sequential"
+        ],
+        "onIntent": [
+          "3+ test files failing with different root causes",
+          "multiple subsystems broken independently",
+          "each problem can be understood without context from others",
+          "no shared state between investigations",
+          "failures are related (fix one might fix others)",
+          "need to understand full system state",
+          "agents would interfere with each other"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 1521,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/dispatching-parallel-agents/SKILL.md"
+    },
+    "django-patterns": {
+      "activation": {
+        "onKeyword": [
+          "django",
+          "architecture",
+          "patterns",
+          "rest",
+          "api",
+          "design",
+          "drf",
+          "orm",
+          "best",
+          "practices",
+          "caching",
+          "signals",
+          "middleware",
+          "production-grade",
+          "apps",
+          "django architecture patterns",
+          "rest api design",
+          "with drf",
+          "orm best practices",
+          "and production-grade"
+        ],
+        "onIntent": [
+          "building django web applications",
+          "designing django rest framework apis",
+          "working with django orm and models",
+          "setting up django project structure",
+          "implementing caching, signals, middleware"
+        ],
+        "onFileType": [
+          "py"
+        ],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 5206,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/django-patterns/SKILL.md"
+    },
+    "django-security": {
+      "activation": {
+        "onKeyword": [
+          "django",
+          "security",
+          "best",
+          "practices",
+          "authentication",
+          "authorization",
+          "csrf",
+          "protection",
+          "sql",
+          "injection",
+          "prevention",
+          "xss",
+          "secure",
+          "deployment",
+          "configurations",
+          "django security best",
+          "csrf protection",
+          "sql injection prevention",
+          "xss prevention",
+          "and secure deployment"
+        ],
+        "onIntent": [
+          "setting up django authentication and authori"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 3952,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/django-security/SKILL.md"
+    },
+    "django-tdd": {
+      "activation": {
+        "onKeyword": [
+          "django",
+          "testing",
+          "strategies",
+          "pytest-django",
+          "tdd",
+          "methodology",
+          "factory",
+          "boy",
+          "mocking",
+          "coverage",
+          "rest",
+          "framework",
+          "apis",
+          "django testing strategies",
+          "with pytest-django",
+          "tdd methodology",
+          "and testing django",
+          "rest framework apis"
+        ],
+        "onIntent": [
+          "writing new django applications",
+          "implementing django rest framework apis",
+          "testing django models, views, and seriali"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 5231,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/django-tdd/SKILL.md"
+    },
+    "django-verification": {
+      "activation": {
+        "onKeyword": [
+          "verification",
+          "loop",
+          "django",
+          "projects",
+          "migrations",
+          "linting",
+          "tests",
+          "coverage",
+          "security",
+          "scans",
+          "deployment",
+          "readiness",
+          "checks",
+          "release",
+          "verification loop for",
+          "django projects",
+          "tests with coverage",
+          "security scans",
+          "and deployment readiness",
+          "checks before release"
+        ],
+        "onIntent": [
+          "before opening a pull request for a django project",
+          "after major model changes, migration updates, or dependency upgrades",
+          "pre-deployment verification for staging or production",
+          "running full environment → lint → test → security → deploy readiness pipeline",
+          "validating migration safety and test coverage"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 2846,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/django-verification/SKILL.md"
+    },
+    "docker-patterns": {
+      "activation": {
+        "onKeyword": [
+          "docker",
+          "compose",
+          "patterns",
+          "local",
+          "development",
+          "container",
+          "security",
+          "networking",
+          "volume",
+          "strategies",
+          "multi-service",
+          "orchestration",
+          "docker and docker",
+          "compose patterns for",
+          "local development",
+          "container security",
+          "volume strategies",
+          "and multi-service"
+        ],
+        "onIntent": [
+          "setting up docker compose for local development",
+          "designing multi-container architectures",
+          "troubleshooting container networking or volume issues",
+          "reviewing dockerfiles for security and si"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "infrastructure",
+      "token_cost": 2063,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/docker-patterns/SKILL.md"
+    },
+    "docx": {
+      "activation": {
+        "onKeyword": [
+          "word",
+          "document",
+          "docx",
+          "doc",
+          "tables",
+          "contents",
+          "headings",
+          "page",
+          "numbers",
+          "letterhead",
+          "tracked",
+          "changes",
+          "skill",
+          "whenever",
+          "user",
+          "wants",
+          "create",
+          "read",
+          "edit",
+          "manipulate"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "document",
+      "token_cost": 1859,
+      "priority": "normal",
+      "dependencies": [
+        "pdf",
+        "pptx",
+        "xlsx"
+      ],
+      "path": "skills/docx/SKILL.md"
+    },
+    "domain-driven-design": {
+      "activation": {
+        "onKeyword": [
+          "domain",
+          "modeling",
+          "bounded",
+          "context",
+          "aggregate",
+          "root",
+          "ubiquitous",
+          "language",
+          "anti-corruption",
+          "layer",
+          "entities",
+          "value",
+          "objects",
+          "events",
+          "model",
+          "software",
+          "around",
+          "business",
+          "contexts",
+          "aggregates"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "architecture",
+      "token_cost": 710,
+      "priority": "normal",
+      "dependencies": [
+        "clean-architecture",
+        "system-design"
+      ],
+      "path": "skills/domain-driven-design/SKILL.md"
+    },
+    "e2e-testing": {
+      "activation": {
+        "onKeyword": [
+          "playwright",
+          "e2e",
+          "testing",
+          "patterns",
+          "page",
+          "object",
+          "model",
+          "configuration",
+          "integration",
+          "artifact",
+          "management",
+          "flaky",
+          "test",
+          "strategies",
+          "playwright e2e testing",
+          "page object model",
+          "cd integration",
+          "artifact management",
+          "and flaky test"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 1985,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/e2e-testing/SKILL.md"
+    },
+    "enterprise-agent-ops": {
+      "activation": {
+        "onKeyword": [
+          "operate",
+          "long-lived",
+          "agent",
+          "workloads",
+          "observability",
+          "security",
+          "boundaries",
+          "lifecycle",
+          "management",
+          "enterprise",
+          "ops",
+          "operate long-lived",
+          "agent workloads with",
+          "security boundaries",
+          "and lifecycle management"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "security",
+      "token_cost": 301,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/enterprise-agent-ops/SKILL.md"
+    },
+    "eval-harness": {
+      "activation": {
+        "onKeyword": [
+          "formal",
+          "evaluation",
+          "framework",
+          "claude",
+          "code",
+          "sessions",
+          "implementing",
+          "eval-driven",
+          "development",
+          "edd",
+          "principles",
+          "eval",
+          "harness",
+          "formal evaluation framework",
+          "for claude code",
+          "sessions implementing eval",
+          "driven development"
+        ],
+        "onIntent": [
+          "setting up eval-driven development (edd) for ai-assisted workflows",
+          "defining pass/fail criteria for claude code task completion",
+          "measuring agent reliability with pass@k metrics",
+          "creating regression test suites for prompt or agent changes",
+          "benchmarking agent performance across model versions"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 1624,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/eval-harness/SKILL.md"
+    },
+    "executing-plans": {
+      "activation": {
+        "onKeyword": [
+          "written",
+          "implementation",
+          "plan",
+          "execute",
+          "separate",
+          "session",
+          "review",
+          "checkpoints",
+          "executing",
+          "plans",
+          "use when you",
+          "have a written",
+          "implementation plan to",
+          "execute in a",
+          "separate session with",
+          "review checkpoints"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 638,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/executing-plans/SKILL.md"
+    },
+    "finishing-a-development-branch": {
+      "activation": {
+        "onKeyword": [
+          "implementation",
+          "complete",
+          "tests",
+          "pass",
+          "decide",
+          "integrate",
+          "work",
+          "guides",
+          "completion",
+          "development",
+          "presenting",
+          "structured",
+          "options",
+          "merge",
+          "cleanup",
+          "finishing",
+          "branch",
+          "use when implementation",
+          "is complete",
+          "all tests pass"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 1058,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/finishing-a-development-branch/SKILL.md"
+    },
+    "firecrawl-cli": {
+      "activation": {
+        "onKeyword": [
+          "firecrawl",
+          "cli"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 5188,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/firecrawl-cli/SKILL.md"
+    },
+    "foundation-models-on-device": {
+      "activation": {
+        "onKeyword": [
+          "apple",
+          "foundationmodels",
+          "framework",
+          "on-device",
+          "llm",
+          "text",
+          "generation",
+          "guided",
+          "generable",
+          "tool",
+          "calling",
+          "snapshot",
+          "streaming",
+          "ios",
+          "foundation",
+          "models",
+          "device",
+          "apple foundationmodels framework",
+          "for on-device",
+          "text generation"
+        ],
+        "onIntent": [
+          "building ai-powered features using apple intelligence on-device",
+          "generating or summari"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "swift",
+      "token_cost": 2034,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/foundation-models-on-device/SKILL.md"
+    },
+    "fresh-execute": {
+      "activation": {
+        "onKeyword": [
+          "fresh",
+          "context",
+          "decompose",
+          "feature",
+          "sub-tasks",
+          "degradation",
+          "long",
+          "session",
+          "atomic",
+          "tasks",
+          "execute",
+          "complex",
+          "per",
+          "sub-task",
+          "prevent",
+          "quality",
+          "execute a complex",
+          "feature with fresh",
+          "context per sub",
+          "task to prevent"
+        ],
+        "onIntent": [
+          "feature requires 3+ distinct changes across multiple files",
+          "session is already long (50+ tool calls) and quality might degrade",
+          "large refactoring touching many files",
+          "any task where consistent quality across all changes is critical"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "workflow",
+      "token_cost": 433,
+      "priority": "normal",
+      "dependencies": [
+        "context-engineering-kit"
+      ],
+      "path": "skills/fresh-execute/SKILL.md"
+    },
+    "frontend-design": {
+      "activation": {
+        "onKeyword": [
+          "create",
+          "distinctive",
+          "production-grade",
+          "frontend",
+          "interfaces",
+          "high",
+          "design",
+          "quality",
+          "skill",
+          "user",
+          "asks",
+          "build",
+          "web",
+          "components",
+          "pages",
+          "applications",
+          "generates",
+          "creative",
+          "polished",
+          "code"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 1069,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/frontend-design/SKILL.md"
+    },
+    "frontend-patterns": {
+      "activation": {
+        "onKeyword": [
+          "frontend",
+          "development",
+          "patterns",
+          "react",
+          "next",
+          "state",
+          "management",
+          "performance",
+          "optimization",
+          "best",
+          "practices",
+          "frontend development patterns",
+          "for react",
+          "state management",
+          "performance optimization",
+          "and ui best"
+        ],
+        "onIntent": [
+          "building react components (composition, props, rendering)",
+          "managing state (usestate, usereducer,"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "frontend",
+      "token_cost": 3687,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/frontend-patterns/SKILL.md"
+    },
+    "frontend-slides": {
+      "activation": {
+        "onKeyword": [
+          "create",
+          "stunning",
+          "animation-rich",
+          "html",
+          "presentations",
+          "scratch",
+          "converting",
+          "powerpoint",
+          "files",
+          "user",
+          "wants",
+          "build",
+          "presentation",
+          "convert",
+          "ppt",
+          "pptx",
+          "web",
+          "slides",
+          "talk",
+          "pitch"
+        ],
+        "onIntent": [
+          "creating a talk deck, pitch deck, workshop deck, or internal presentation",
+          "converting `.ppt` or `.pptx` slides into an html presentation",
+          "improving an existing html presentation's layout, motion, or typography",
+          "exploring presentation styles with a user who does not know their design preference yet"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 1637,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/frontend-slides/SKILL.md"
+    },
+    "generate-status-report": {
+      "activation": {
+        "onKeyword": [
+          "generate",
+          "project",
+          "status",
+          "reports",
+          "jira",
+          "issues",
+          "publish",
+          "confluence",
+          "claude",
+          "needs",
+          "create",
+          "report",
+          "summarize",
+          "progress",
+          "updates",
+          "weekly",
+          "daily",
+          "summaries",
+          "analyze",
+          "blockers"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "ai",
+      "token_cost": 2825,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/generate-status-report/SKILL.md"
+    },
+    "golang-patterns": {
+      "activation": {
+        "onKeyword": [
+          "idiomatic",
+          "patterns",
+          "best",
+          "practices",
+          "conventions",
+          "building",
+          "robust",
+          "efficient",
+          "maintainable",
+          "applications",
+          "golang",
+          "idiomatic go patterns",
+          "best practices",
+          "and conventions for",
+          "building robust",
+          "and maintainable go"
+        ],
+        "onIntent": [
+          "writing new go code",
+          "reviewing go code",
+          "refactoring existing go code",
+          "designing go packages/modules"
+        ],
+        "onFileType": [
+          "go"
+        ],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "golang",
+      "token_cost": 3480,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/golang-patterns/SKILL.md"
+    },
+    "golang-testing": {
+      "activation": {
+        "onKeyword": [
+          "testing",
+          "patterns",
+          "table-driven",
+          "tests",
+          "subtests",
+          "benchmarks",
+          "fuzzing",
+          "test",
+          "coverage",
+          "follows",
+          "tdd",
+          "methodology",
+          "idiomatic",
+          "practices",
+          "golang",
+          "go testing patterns",
+          "including table-driven",
+          "and test coverage",
+          "follows tdd methodology",
+          "with idiomatic go"
+        ],
+        "onIntent": [
+          "writing new go functions or methods",
+          "adding test coverage to existing code",
+          "creating benchmarks for performance-critical code",
+          "implementing fu"
+        ],
+        "onFileType": [
+          "go"
+        ],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "golang",
+      "token_cost": 4158,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/golang-testing/SKILL.md"
+    },
+    "high-perf-browser": {
+      "activation": {
+        "onKeyword": [
+          "page",
+          "load",
+          "speed",
+          "core",
+          "web",
+          "vitals",
+          "http",
+          "resource",
+          "hints",
+          "network",
+          "latency",
+          "render",
+          "blocking",
+          "performance",
+          "caching",
+          "tcp",
+          "optimization",
+          "optimize",
+          "protocols",
+          "loading"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "frontend",
+      "token_cost": 1061,
+      "priority": "normal",
+      "dependencies": [
+        "refactoring-ui",
+        "claude-a11y-skill"
+      ],
+      "path": "skills/high-perf-browser/SKILL.md"
+    },
+    "hook-development": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "user",
+          "asks",
+          "create",
+          "hook",
+          "add",
+          "pretooluse",
+          "posttooluse",
+          "stop",
+          "validate",
+          "tool",
+          "implement",
+          "prompt-based",
+          "hooks",
+          "claude",
+          "plugin",
+          "root",
+          "set",
+          "event-driven",
+          "automation"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "api",
+      "token_cost": 4055,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/hook-development/SKILL.md"
+    },
+    "hugging-face-cli": {
+      "activation": {
+        "onKeyword": [
+          "execute",
+          "hugging",
+          "face",
+          "hub",
+          "operations",
+          "cli",
+          "user",
+          "needs",
+          "download",
+          "models",
+          "datasets",
+          "spaces",
+          "upload",
+          "files",
+          "repositories",
+          "create",
+          "repos",
+          "manage",
+          "local",
+          "cache"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "infrastructure",
+      "token_cost": 1857,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/hugging-face-cli/SKILL.md"
+    },
+    "hugging-face-datasets": {
+      "activation": {
+        "onKeyword": [
+          "create",
+          "manage",
+          "datasets",
+          "hugging",
+          "face",
+          "hub",
+          "supports",
+          "initializing",
+          "repos",
+          "defining",
+          "configs",
+          "system",
+          "prompts",
+          "streaming",
+          "row",
+          "updates",
+          "sql-based",
+          "dataset",
+          "querying",
+          "transformation"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "data",
+      "token_cost": 4094,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/hugging-face-datasets/SKILL.md"
+    },
+    "hugging-face-evaluation": {
+      "activation": {
+        "onKeyword": [
+          "add",
+          "manage",
+          "evaluation",
+          "results",
+          "hugging",
+          "face",
+          "model",
+          "cards",
+          "supports",
+          "extracting",
+          "eval",
+          "tables",
+          "readme",
+          "content",
+          "importing",
+          "scores",
+          "artificial",
+          "analysis",
+          "api",
+          "running"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "api",
+      "token_cost": 5645,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/hugging-face-evaluation/SKILL.md"
+    },
+    "hugging-face-jobs": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "users",
+          "want",
+          "run",
+          "workload",
+          "hugging",
+          "face",
+          "jobs",
+          "infrastructure",
+          "covers",
+          "scripts",
+          "docker-based",
+          "hardware",
+          "selection",
+          "cost",
+          "estimation",
+          "authentication",
+          "tokens",
+          "secrets",
+          "management"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 7683,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/hugging-face-jobs/SKILL.md"
+    },
+    "hugging-face-model-trainer": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "users",
+          "want",
+          "train",
+          "fine-tune",
+          "language",
+          "models",
+          "trl",
+          "transformer",
+          "reinforcement",
+          "learning",
+          "hugging",
+          "face",
+          "jobs",
+          "infrastructure",
+          "covers",
+          "sft",
+          "dpo",
+          "grpo",
+          "reward"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "infrastructure",
+      "token_cost": 6956,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/hugging-face-model-trainer/SKILL.md"
+    },
+    "hugging-face-paper-publisher": {
+      "activation": {
+        "onKeyword": [
+          "publish",
+          "manage",
+          "research",
+          "papers",
+          "hugging",
+          "face",
+          "hub",
+          "supports",
+          "creating",
+          "paper",
+          "pages",
+          "linking",
+          "models",
+          "datasets",
+          "claiming",
+          "authorship",
+          "generating",
+          "professional",
+          "markdown-based",
+          "articles"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "security",
+      "token_cost": 4168,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/hugging-face-paper-publisher/SKILL.md"
+    },
+    "hugging-face-tool-builder": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "user",
+          "wants",
+          "build",
+          "tool",
+          "scripts",
+          "achieve",
+          "task",
+          "data",
+          "hugging",
+          "face",
+          "api",
+          "help",
+          "especially",
+          "useful",
+          "chaining",
+          "combining",
+          "calls",
+          "repeated",
+          "automated"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "api",
+      "token_cost": 1326,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/hugging-face-tool-builder/SKILL.md"
+    },
+    "hugging-face-trackio": {
+      "activation": {
+        "onKeyword": [
+          "track",
+          "visualize",
+          "training",
+          "experiments",
+          "trackio",
+          "logging",
+          "metrics",
+          "python",
+          "api",
+          "retrieving",
+          "analyzing",
+          "logged",
+          "cli",
+          "supports",
+          "real-time",
+          "dashboard",
+          "visualization",
+          "space",
+          "syncing",
+          "json"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 562,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/hugging-face-trackio/SKILL.md"
+    },
+    "image-guard-rules": {
+      "activation": {
+        "onKeyword": [
+          "image",
+          "dimensions",
+          "screenshot",
+          "resize",
+          "large",
+          "2000px",
+          "limit",
+          "processing",
+          "workflow",
+          "blocking",
+          "dimension",
+          "management",
+          "rules",
+          "prevent",
+          "applies",
+          "sources",
+          "browser",
+          "screenshots",
+          "adb",
+          "captures"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 879,
+      "priority": "normal",
+      "dependencies": [
+        "agent-browser"
+      ],
+      "path": "skills/image-guard-rules/SKILL.md"
+    },
+    "implement-design": {
+      "activation": {
+        "onKeyword": [
+          "translates",
+          "figma",
+          "designs",
+          "production-ready",
+          "code",
+          "visual",
+          "fidelity",
+          "implementing",
+          "files",
+          "user",
+          "mentions",
+          "implement",
+          "design",
+          "generate",
+          "component",
+          "build",
+          "provides",
+          "urls",
+          "asks",
+          "components"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 2742,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/implement-design/SKILL.md"
+    },
+    "investor-materials": {
+      "activation": {
+        "onKeyword": [
+          "create",
+          "update",
+          "pitch",
+          "decks",
+          "one-pagers",
+          "investor",
+          "memos",
+          "accelerator",
+          "applications",
+          "financial",
+          "models",
+          "fundraising",
+          "materials",
+          "user",
+          "needs",
+          "investor-facing",
+          "documents",
+          "projections",
+          "use-of-funds",
+          "tables"
+        ],
+        "onIntent": [
+          "creating or revising a pitch deck",
+          "writing an investor memo or one-pager",
+          "building a financial model, milestone plan, or use-of-funds table",
+          "answering accelerator or incubator application questions",
+          "aligning multiple fundraising docs around one source of truth"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 681,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/investor-materials/SKILL.md"
+    },
+    "investor-outreach": {
+      "activation": {
+        "onKeyword": [
+          "draft",
+          "cold",
+          "emails",
+          "warm",
+          "intro",
+          "blurbs",
+          "follow-ups",
+          "update",
+          "investor",
+          "communications",
+          "fundraising",
+          "user",
+          "wants",
+          "outreach",
+          "angels",
+          "vcs",
+          "strategic",
+          "investors",
+          "accelerators",
+          "needs"
+        ],
+        "onIntent": [
+          "writing a cold email to an investor",
+          "drafting a warm intro request",
+          "sending follow-ups after a meeting or no response",
+          "writing investor updates during a process",
+          "tailoring outreach based on fund thesis or partner fit"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 535,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/investor-outreach/SKILL.md"
+    },
+    "iterative-retrieval": {
+      "activation": {
+        "onKeyword": [
+          "pattern",
+          "progressively",
+          "refining",
+          "context",
+          "retrieval",
+          "solve",
+          "subagent",
+          "problem",
+          "iterative",
+          "pattern for progressively",
+          "refining context retrieval",
+          "to solve the",
+          "subagent context problem"
+        ],
+        "onIntent": [
+          "spawning subagents that need codebase context they cannot predict upfront",
+          "building multi-agent workflows where context is progressively refined",
+          "encountering \"context too large\" or \"missing context\" failures in agent tasks",
+          "designing rag-like retrieval pipelines for code exploration",
+          "optimi"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 1554,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/iterative-retrieval/SKILL.md"
+    },
+    "java-coding-standards": {
+      "activation": {
+        "onKeyword": [
+          "java",
+          "coding",
+          "standards",
+          "spring",
+          "boot",
+          "services",
+          "naming",
+          "immutability",
+          "optional",
+          "usage",
+          "streams",
+          "exceptions",
+          "generics",
+          "project",
+          "layout",
+          "java coding standards",
+          "for spring boot",
+          "optional usage",
+          "and project layout"
+        ],
+        "onIntent": [
+          "writing or reviewing java code in spring boot projects",
+          "enforcing naming, immutability, or exception handling conventions",
+          "working with records, sealed classes, or pattern matching (java 17+)",
+          "reviewing use of optional, streams, or generics",
+          "structuring packages and project layout"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 958,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/java-coding-standards/SKILL.md"
+    },
+    "jobs-to-be-done": {
+      "activation": {
+        "onKeyword": [
+          "customer",
+          "discovery",
+          "why",
+          "customers",
+          "churn",
+          "job",
+          "solve",
+          "competing",
+          "against",
+          "luck",
+          "product-market",
+          "fit",
+          "jtbd",
+          "needs",
+          "discover",
+          "truly",
+          "analyzing",
+          "hire",
+          "product",
+          "user"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "specialized",
+      "token_cost": 5140,
+      "priority": "normal",
+      "dependencies": [
+        "mom-test",
+        "prompt-architect"
+      ],
+      "path": "skills/jobs-to-be-done/SKILL.md"
+    },
+    "jpa-patterns": {
+      "activation": {
+        "onKeyword": [
+          "jpa",
+          "hibernate",
+          "patterns",
+          "entity",
+          "design",
+          "relationships",
+          "query",
+          "optimization",
+          "transactions",
+          "auditing",
+          "indexing",
+          "pagination",
+          "pooling",
+          "spring",
+          "boot",
+          "hibernate patterns for",
+          "entity design",
+          "query optimization",
+          "and pooling in",
+          "spring boot"
+        ],
+        "onIntent": [
+          "designing jpa entities and table mappings",
+          "defining relationships (@onetomany, @manytoone, @manytomany)",
+          "optimi"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 1137,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/jpa-patterns/SKILL.md"
+    },
+    "liquid-glass-design": {
+      "activation": {
+        "onKeyword": [
+          "ios",
+          "liquid",
+          "glass",
+          "design",
+          "system",
+          "dynamic",
+          "material",
+          "blur",
+          "reflection",
+          "interactive",
+          "morphing",
+          "swiftui",
+          "uikit",
+          "widgetkit",
+          "ios 26 liquid",
+          "glass design system",
+          "dynamic glass material",
+          "with blur",
+          "and interactive morphing",
+          "for swiftui"
+        ],
+        "onIntent": [
+          "building or updating apps for ios 26+ with the new design language",
+          "implementing glass-style buttons, cards, toolbars, or containers",
+          "creating morphing transitions between glass elements",
+          "applying liquid glass effects to widgets",
+          "migrating existing blur/material effects to the new liquid glass api"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "swift",
+      "token_cost": 2252,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/liquid-glass-design/SKILL.md"
+    },
+    "logs": {
+      "activation": {
+        "onKeyword": [
+          "view",
+          "vercel",
+          "deployment",
+          "logs",
+          "user",
+          "says",
+          "show",
+          "check",
+          "went",
+          "wrong",
+          "view vercel deployment",
+          "use when the",
+          "user says",
+          "show logs",
+          "check logs",
+          "vercel logs",
+          "what went wrong",
+          "with the deployment"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "infrastructure",
+      "token_cost": 119,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/logs/SKILL.md"
+    },
+    "market-research": {
+      "activation": {
+        "onKeyword": [
+          "conduct",
+          "market",
+          "research",
+          "competitive",
+          "analysis",
+          "investor",
+          "due",
+          "diligence",
+          "industry",
+          "intelligence",
+          "source",
+          "attribution",
+          "decision-oriented",
+          "summaries",
+          "user",
+          "wants",
+          "sizing",
+          "competitor",
+          "comparisons",
+          "fund"
+        ],
+        "onIntent": [
+          "researching a market, category, company, investor, or technology trend",
+          "building tam/sam/som estimates",
+          "comparing competitors or adjacent products",
+          "preparing investor dossiers before outreach",
+          "pressure-testing a thesis before building, funding, or entering a market"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 557,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/market-research/SKILL.md"
+    },
+    "mcp-builder": {
+      "activation": {
+        "onKeyword": [
+          "build",
+          "mcp",
+          "server",
+          "create",
+          "scaffold",
+          "new",
+          "tool",
+          "implementation",
+          "development",
+          "step-by-step",
+          "scaffolding",
+          "workflow",
+          "research",
+          "plan",
+          "implement",
+          "test",
+          "evaluate",
+          "scope",
+          "guided",
+          "creation"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 1563,
+      "priority": "normal",
+      "dependencies": [
+        "context-engineering-kit"
+      ],
+      "path": "skills/mcp-builder/SKILL.md"
+    },
+    "mcp-integration": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "user",
+          "asks",
+          "add",
+          "mcp",
+          "server",
+          "integrate",
+          "configure",
+          "plugin",
+          "json",
+          "set",
+          "model",
+          "context",
+          "protocol",
+          "connect",
+          "external",
+          "service",
+          "mentions",
+          "claude",
+          "root"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 3119,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/mcp-integration/SKILL.md"
+    },
+    "memoire": {
+      "activation": {
+        "onKeyword": [
+          "memoire",
+          "collective",
+          "souviens-toi",
+          "retiens",
+          "note",
+          "equipe",
+          "remember",
+          "save",
+          "team",
+          "decision",
+          "memory",
+          "stocker",
+          "rechercher",
+          "information",
+          "atum",
+          "utiliser",
+          "quand",
+          "cofondateur",
+          "veut",
+          "sauvegarder"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "business",
+      "token_cost": 1232,
+      "priority": "normal",
+      "dependencies": [
+        "agence-atum"
+      ],
+      "path": "skills/memoire/SKILL.md"
+    },
+    "mom-test": {
+      "activation": {
+        "onKeyword": [
+          "customer",
+          "interviews",
+          "validate",
+          "idea",
+          "leading",
+          "questions",
+          "mom",
+          "test",
+          "conversations",
+          "user",
+          "research",
+          "validation",
+          "talk",
+          "customers",
+          "without",
+          "rules",
+          "discuss",
+          "life",
+          "ask",
+          "specifics"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "specialized",
+      "token_cost": 5400,
+      "priority": "normal",
+      "dependencies": [
+        "jobs-to-be-done",
+        "prompt-architect"
+      ],
+      "path": "skills/mom-test/SKILL.md"
+    },
+    "monorepo": {
+      "activation": {
+        "onKeyword": [
+          "monorepo",
+          "turborepo",
+          "pnpm",
+          "workspaces",
+          "workspace",
+          "multi-package",
+          "turbo",
+          "json",
+          "conventions",
+          "patterns",
+          "monorepos",
+          "project",
+          "config",
+          "conventions et patterns",
+          "pour monorepos",
+          "pnpm workspaces",
+          "use when project",
+          "has turbo",
+          "or workspace config"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 566,
+      "priority": "normal",
+      "dependencies": [
+        "scheduler"
+      ],
+      "path": "skills/monorepo/SKILL.md"
+    },
+    "nanoclaw-repl": {
+      "activation": {
+        "onKeyword": [
+          "operate",
+          "extend",
+          "nanoclaw",
+          "ecc",
+          "zero-dependency",
+          "session-aware",
+          "repl",
+          "built",
+          "claude",
+          "operate and extend",
+          "nanoclaw v2",
+          "s zero-dependency",
+          "session-aware repl",
+          "built on claude"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 214,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/nanoclaw-repl/SKILL.md"
+    },
+    "no-code-maestro": {
+      "activation": {
+        "onKeyword": [
+          "no-code",
+          "com",
+          "airtable",
+          "notion",
+          "automation",
+          "scenario",
+          "blueprint",
+          "webhook",
+          "workflow",
+          "automatise",
+          "maestro",
+          "integromat",
+          "competences",
+          "alignees",
+          "scenarios",
+          "blueprints",
+          "workflows",
+          "code",
+          "competences no-code",
+          "alignees sur maestro"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "no-code",
+      "token_cost": 1597,
+      "priority": "normal",
+      "dependencies": [
+        "scheduler"
+      ],
+      "path": "skills/no-code-maestro/SKILL.md"
+    },
+    "nutrient-document-processing": {
+      "activation": {
+        "onKeyword": [
+          "process",
+          "convert",
+          "ocr",
+          "extract",
+          "redact",
+          "sign",
+          "fill",
+          "documents",
+          "nutrient",
+          "dws",
+          "api",
+          "works",
+          "pdfs",
+          "docx",
+          "xlsx",
+          "pptx",
+          "html",
+          "images",
+          "document",
+          "processing"
+        ],
+        "onIntent": [
+          "converting documents between formats (pdf, docx, xlsx, pptx, html, images)",
+          "extracting text, tables, or key-value pairs from pdfs",
+          "ocr on scanned documents or images",
+          "redacting pii before sharing documents",
+          "adding watermarks to drafts or confidential documents",
+          "digitally signing contracts or agreements",
+          "filling pdf forms programmatically"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "api",
+      "token_cost": 1448,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/nutrient-document-processing/SKILL.md"
+    },
+    "open-source-license-compliance": {
+      "activation": {
+        "onKeyword": [
+          "license",
+          "compliance",
+          "open-source",
+          "licensing",
+          "copyleft",
+          "gpl",
+          "agpl",
+          "spdx",
+          "dependency",
+          "licenses",
+          "audit",
+          "detect",
+          "project",
+          "dependencies",
+          "reviewing",
+          "compatibility",
+          "checking",
+          "contamination",
+          "generating",
+          "reports"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "compliance",
+      "token_cost": 1967,
+      "priority": "normal",
+      "dependencies": [
+        "supply-chain-risk-auditor",
+        "compliance-routing"
+      ],
+      "path": "skills/open-source-license-compliance/SKILL.md"
+    },
+    "pdf": {
+      "activation": {
+        "onKeyword": [
+          "pdf",
+          "extract",
+          "text",
+          "merge",
+          "split",
+          "watermark",
+          "fill",
+          "form",
+          "ocr",
+          "encrypt",
+          "decrypt",
+          "skill",
+          "whenever",
+          "user",
+          "wants",
+          "anything",
+          "files",
+          "includes",
+          "reading",
+          "extracting"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "document",
+      "token_cost": 1677,
+      "priority": "normal",
+      "dependencies": [
+        "docx",
+        "pptx",
+        "xlsx"
+      ],
+      "path": "skills/pdf/SKILL.md"
+    },
+    "plankton-code-quality": {
+      "activation": {
+        "onKeyword": [
+          "write-time",
+          "code",
+          "quality",
+          "enforcement",
+          "plankton",
+          "auto-formatting",
+          "linting",
+          "claude-powered",
+          "fixes",
+          "file",
+          "edit",
+          "via",
+          "hooks",
+          "write-time code",
+          "quality enforcement using",
+          "and claude-powered",
+          "fixes on every",
+          "file edit via"
+        ],
+        "onIntent": [
+          "you want automatic formatting and linting on every file edit (not just at commit time)",
+          "you need defense against agents modifying linter configs to pass instead of fixing code",
+          "you want tiered model routing for fixes (haiku for simple style, sonnet for logic, opus for types)",
+          "you work with multiple languages (python, typescript, shell, yaml, json, toml, markdown, dockerfile)"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 1974,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/plankton-code-quality/SKILL.md"
+    },
+    "playground": {
+      "activation": {
+        "onKeyword": [
+          "creates",
+          "interactive",
+          "html",
+          "playgrounds",
+          "self-contained",
+          "single-file",
+          "explorers",
+          "let",
+          "users",
+          "configure",
+          "something",
+          "visually",
+          "controls",
+          "see",
+          "live",
+          "preview",
+          "copy",
+          "prompt",
+          "user",
+          "asks"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 949,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/playground/SKILL.md"
+    },
+    "plugin-settings": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "user",
+          "asks",
+          "plugin",
+          "settings",
+          "store",
+          "configuration",
+          "user-configurable",
+          "local",
+          "files",
+          "state",
+          "read",
+          "yaml",
+          "frontmatter",
+          "per-project",
+          "wants",
+          "behavior",
+          "configurable",
+          "documents",
+          "claude"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 3019,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/plugin-settings/SKILL.md"
+    },
+    "plugin-structure": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "user",
+          "asks",
+          "create",
+          "plugin",
+          "scaffold",
+          "understand",
+          "structure",
+          "organize",
+          "components",
+          "set",
+          "json",
+          "claude",
+          "root",
+          "add",
+          "commands",
+          "agents",
+          "skills",
+          "hooks",
+          "configure"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 3361,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/plugin-structure/SKILL.md"
+    },
+    "postgres-patterns": {
+      "activation": {
+        "onKeyword": [
+          "postgresql",
+          "database",
+          "patterns",
+          "query",
+          "optimization",
+          "schema",
+          "design",
+          "indexing",
+          "security",
+          "supabase",
+          "best",
+          "practices",
+          "postgres",
+          "postgresql database patterns",
+          "for query optimization",
+          "schema design",
+          "and security",
+          "based on supabase",
+          "best practices"
+        ],
+        "onIntent": [
+          "writing sql queries or migrations",
+          "designing database schemas",
+          "troubleshooting slow queries",
+          "implementing row level security",
+          "setting up connection pooling"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "security",
+      "token_cost": 952,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/postgres-patterns/SKILL.md"
+    },
+    "posthog-instrumentation": {
+      "activation": {
+        "onKeyword": [
+          "automatically",
+          "add",
+          "posthog",
+          "analytics",
+          "instrumentation",
+          "code",
+          "triggers",
+          "user",
+          "asks",
+          "tracking",
+          "instrument",
+          "events",
+          "implement",
+          "feature",
+          "flags",
+          "codebase",
+          "automatically add posthog",
+          "analytics instrumentation to",
+          "triggers when user",
+          "asks to add"
+        ],
+        "onIntent": [
+          "user asks to \"add posthog\" or \"add analytics\"",
+          "user wants to track events or user actions",
+          "user needs to implement feature flags",
+          "user asks about instrumenting their code"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "automation",
+      "token_cost": 420,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/posthog-instrumentation/SKILL.md"
+    },
+    "powershell-windows": {
+      "activation": {
+        "onKeyword": [
+          "powershell",
+          "windows",
+          "registry",
+          "wmi",
+          "cim",
+          "services",
+          "firewall",
+          "rules",
+          "scheduled",
+          "tasks",
+          "active",
+          "directory",
+          "scripting",
+          "patterns",
+          "system",
+          "administration",
+          "working",
+          "operations",
+          "queries",
+          "windows-specific"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "infrastructure",
+      "token_cost": 3042,
+      "priority": "normal",
+      "dependencies": [
+        "scheduler"
+      ],
+      "path": "skills/powershell-windows/SKILL.md"
+    },
+    "pptx": {
+      "activation": {
+        "onKeyword": [
+          "powerpoint",
+          "presentation",
+          "slides",
+          "pptx",
+          "slide",
+          "deck",
+          "charts",
+          "formatting",
+          "skill",
+          "whenever",
+          "user",
+          "wants",
+          "create",
+          "read",
+          "edit",
+          "manipulate",
+          "presentations",
+          "files",
+          "triggers",
+          "include"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "document",
+      "token_cost": 1555,
+      "priority": "normal",
+      "dependencies": [
+        "docx",
+        "pdf",
+        "xlsx"
+      ],
+      "path": "skills/pptx/SKILL.md"
+    },
+    "project-guidelines-example": {
+      "activation": {
+        "onKeyword": [
+          "example",
+          "project-specific",
+          "skill",
+          "template",
+          "real",
+          "production",
+          "application",
+          "project",
+          "guidelines",
+          "example project-specific",
+          "skill template based",
+          "on a real",
+          "production application"
+        ],
+        "onIntent": [
+          "architecture overview",
+          "file structure",
+          "code patterns",
+          "testing requirements",
+          "deployment workflow"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 2208,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/project-guidelines-example/SKILL.md"
+    },
+    "project-patterns": {
+      "activation": {
+        "onKeyword": [
+          "skeleton",
+          "project",
+          "b12",
+          "website",
+          "template",
+          "repository",
+          "pattern",
+          "api",
+          "response",
+          "scaffold",
+          "common",
+          "patterns",
+          "projects",
+          "generation",
+          "index",
+          "format",
+          "common project patterns",
+          "including skeleton projects",
+          "b12 website generation",
+          "template index"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "workflow",
+      "token_cost": 407,
+      "priority": "normal",
+      "dependencies": [
+        "system-design",
+        "clean-architecture"
+      ],
+      "path": "skills/project-patterns/SKILL.md"
+    },
+    "prompt-architect": {
+      "activation": {
+        "onKeyword": [
+          "prompt",
+          "engineering",
+          "co-star",
+          "risen",
+          "framework",
+          "improve",
+          "chain",
+          "thought",
+          "optimization",
+          "analyzes",
+          "transforms",
+          "prompts",
+          "research-backed",
+          "frameworks",
+          "rise-ie",
+          "rise-ix",
+          "tidd-ec",
+          "rtf",
+          "density",
+          "provides"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "workflow",
+      "token_cost": 2131,
+      "priority": "normal",
+      "dependencies": [
+        "common-ground"
+      ],
+      "path": "skills/prompt-architect/SKILL.md"
+    },
+    "property-based-testing": {
+      "activation": {
+        "onKeyword": [
+          "property-based",
+          "testing",
+          "hypothesis",
+          "quickcheck",
+          "fuzzing",
+          "serialization",
+          "roundtrip",
+          "invariant",
+          "generative",
+          "provides",
+          "guidance",
+          "across",
+          "multiple",
+          "languages",
+          "smart",
+          "contracts",
+          "writing",
+          "tests",
+          "reviewing",
+          "code"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 1582,
+      "priority": "normal",
+      "dependencies": [
+        "audit-flow"
+      ],
+      "path": "skills/property-based-testing/SKILL.md"
+    },
+    "python-patterns": {
+      "activation": {
+        "onKeyword": [
+          "pythonic",
+          "idioms",
+          "pep",
+          "standards",
+          "type",
+          "hints",
+          "best",
+          "practices",
+          "building",
+          "robust",
+          "efficient",
+          "maintainable",
+          "python",
+          "applications",
+          "patterns",
+          "pythonic idioms",
+          "pep 8 standards",
+          "type hints",
+          "and best practices",
+          "for building robust"
+        ],
+        "onIntent": [
+          "writing new python code",
+          "reviewing python code",
+          "refactoring existing python code",
+          "designing python packages/modules"
+        ],
+        "onFileType": [
+          "py"
+        ],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 4146,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/python-patterns/SKILL.md"
+    },
+    "python-testing": {
+      "activation": {
+        "onKeyword": [
+          "python",
+          "testing",
+          "strategies",
+          "pytest",
+          "tdd",
+          "methodology",
+          "fixtures",
+          "mocking",
+          "parametrization",
+          "coverage",
+          "requirements",
+          "python testing strategies",
+          "using pytest",
+          "tdd methodology",
+          "and coverage requirements"
+        ],
+        "onIntent": [
+          "writing new python code (follow tdd: red, green, refactor)",
+          "designing test suites for python projects",
+          "reviewing python test coverage",
+          "setting up testing infrastructure"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 4691,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/python-testing/SKILL.md"
+    },
+    "rag-architect": {
+      "activation": {
+        "onKeyword": [
+          "rag",
+          "retrieval-augmented",
+          "generation",
+          "vector",
+          "search",
+          "embeddings",
+          "semantic",
+          "database",
+          "document",
+          "retrieval",
+          "knowledge",
+          "base",
+          "context",
+          "similarity",
+          "building",
+          "systems",
+          "databases",
+          "knowledge-grounded",
+          "applications",
+          "requiring"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "data-ml",
+      "token_cost": 1113,
+      "priority": "normal",
+      "dependencies": [
+        "python-pro",
+        "database-optimizer",
+        "monitoring-expert",
+        "api-designer"
+      ],
+      "path": "skills/rag-architect/SKILL.md"
+    },
+    "ralphinho-rfc-pipeline": {
+      "activation": {
+        "onKeyword": [
+          "rfc-driven",
+          "multi-agent",
+          "dag",
+          "execution",
+          "pattern",
+          "quality",
+          "gates",
+          "merge",
+          "queues",
+          "work",
+          "unit",
+          "orchestration",
+          "ralphinho",
+          "rfc",
+          "pipeline",
+          "rfc-driven multi",
+          "agent dag execution",
+          "pattern with quality",
+          "merge queues",
+          "and work unit"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 381,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/ralphinho-rfc-pipeline/SKILL.md"
+    },
+    "receiving-code-review": {
+      "activation": {
+        "onKeyword": [
+          "receiving",
+          "code",
+          "review",
+          "feedback",
+          "implementing",
+          "suggestions",
+          "especially",
+          "seems",
+          "unclear",
+          "technically",
+          "questionable",
+          "requires",
+          "technical",
+          "rigor",
+          "verification",
+          "performative",
+          "agreement",
+          "blind",
+          "implementation",
+          "use when receiving"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 1569,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/receiving-code-review/SKILL.md"
+    },
+    "refactoring-ui": {
+      "activation": {
+        "onKeyword": [
+          "looks",
+          "off",
+          "fix",
+          "design",
+          "tailwind",
+          "styling",
+          "color",
+          "palette",
+          "visual",
+          "hierarchy",
+          "spacing",
+          "shadows",
+          "grayscale-first",
+          "audit",
+          "depth",
+          "web",
+          "uis",
+          "user",
+          "mentions",
+          "covers"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "frontend",
+      "token_cost": 4907,
+      "priority": "normal",
+      "dependencies": [
+        "claude-a11y-skill",
+        "high-perf-browser"
+      ],
+      "path": "skills/refactoring-ui/SKILL.md"
+    },
+    "regex-vs-llm-structured-text": {
+      "activation": {
+        "onKeyword": [
+          "decision",
+          "framework",
+          "choosing",
+          "regex",
+          "llm",
+          "parsing",
+          "structured",
+          "text",
+          "start",
+          "add",
+          "low-confidence",
+          "edge",
+          "cases",
+          "decision framework for",
+          "choosing between regex",
+          "and llm when",
+          "parsing structured text",
+          "start with regex",
+          "add llm only",
+          "for low-confidence"
+        ],
+        "onIntent": [
+          "parsing structured text with repeating patterns (questions, forms, tables)",
+          "deciding between regex and llm for text extraction",
+          "building hybrid pipelines that combine both approaches",
+          "optimi"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 1596,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/regex-vs-llm-structured-text/SKILL.md"
+    },
+    "release-notes": {
+      "activation": {
+        "onKeyword": [
+          "release",
+          "notes",
+          "changelog",
+          "summarize",
+          "changes",
+          "version",
+          "changed",
+          "generate",
+          "git",
+          "commits",
+          "since",
+          "last",
+          "tag",
+          "given",
+          "ref",
+          "user",
+          "asks",
+          "recent",
+          "generate release notes",
+          "from git commits"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "workflow",
+      "token_cost": 601,
+      "priority": "normal",
+      "dependencies": [
+        "project-patterns"
+      ],
+      "path": "skills/release-notes/SKILL.md"
+    },
+    "requesting-code-review": {
+      "activation": {
+        "onKeyword": [
+          "completing",
+          "tasks",
+          "implementing",
+          "major",
+          "features",
+          "merging",
+          "verify",
+          "work",
+          "meets",
+          "requirements",
+          "requesting",
+          "code",
+          "review",
+          "use when completing",
+          "implementing major features",
+          "or before merging",
+          "to verify work",
+          "meets requirements"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 675,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/requesting-code-review/SKILL.md"
+    },
+    "resilience": {
+      "activation": {
+        "onKeyword": [
+          "resilience",
+          "circuit",
+          "breaker",
+          "retry",
+          "timeout",
+          "fallback",
+          "rate",
+          "limiting",
+          "bulkhead",
+          "external",
+          "services",
+          "api",
+          "calls",
+          "patterns",
+          "backend",
+          "code",
+          "calling",
+          "makes",
+          "queries",
+          "network"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 549,
+      "priority": "normal",
+      "dependencies": [
+        "sre-engineer",
+        "chaos-engineer"
+      ],
+      "path": "skills/resilience/SKILL.md"
+    },
+    "scheduler": {
+      "activation": {
+        "onKeyword": [
+          "day",
+          "week",
+          "jours",
+          "chaque",
+          "lundi",
+          "morning",
+          "midnight",
+          "quand",
+          "push",
+          "files",
+          "change",
+          "automatise",
+          "schedule",
+          "cron",
+          "che",
+          "planifi",
+          "programm",
+          "current",
+          "riodique",
+          "surveille"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 2418,
+      "priority": "normal",
+      "dependencies": [
+        "sre-engineer",
+        "devops-engineer"
+      ],
+      "path": "skills/scheduler/SKILL.md"
+    },
+    "search-company-knowledge": {
+      "activation": {
+        "onKeyword": [
+          "search",
+          "across",
+          "company",
+          "knowledge",
+          "bases",
+          "confluence",
+          "jira",
+          "internal",
+          "docs",
+          "find",
+          "explain",
+          "concepts",
+          "processes",
+          "technical",
+          "details",
+          "claude",
+          "needs",
+          "information",
+          "systems",
+          "terminology"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "infrastructure",
+      "token_cost": 4256,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/search-company-knowledge/SKILL.md"
+    },
+    "search-first": {
+      "activation": {
+        "onKeyword": [
+          "research-before-coding",
+          "workflow",
+          "search",
+          "existing",
+          "tools",
+          "libraries",
+          "patterns",
+          "writing",
+          "custom",
+          "code",
+          "invokes",
+          "researcher",
+          "agent",
+          "first",
+          "search for existing",
+          "and patterns before",
+          "writing custom code",
+          "invokes the researcher"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 1417,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/search-first/SKILL.md"
+    },
+    "security-review": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "adding",
+          "authentication",
+          "handling",
+          "user",
+          "input",
+          "working",
+          "secrets",
+          "creating",
+          "api",
+          "endpoints",
+          "implementing",
+          "payment",
+          "sensitive",
+          "features",
+          "provides",
+          "comprehensive",
+          "security",
+          "checklist",
+          "patterns"
+        ],
+        "onIntent": [
+          "implementing authentication or authori"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "api",
+      "token_cost": 3049,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/security-review/SKILL.md"
+    },
+    "security-scan": {
+      "activation": {
+        "onKeyword": [
+          "scan",
+          "claude",
+          "code",
+          "configuration",
+          "directory",
+          "security",
+          "vulnerabilities",
+          "misconfigurations",
+          "injection",
+          "risks",
+          "agentshield",
+          "checks",
+          "settings",
+          "json",
+          "mcp",
+          "servers",
+          "hooks",
+          "agent",
+          "definitions",
+          "scan your claude"
+        ],
+        "onIntent": [
+          "setting up a new claude code project",
+          "after modifying `.claude/settings.json`, `claude.md`, or mcp configs",
+          "before committing configuration changes",
+          "when onboarding to a new repository with existing claude code configs",
+          "periodic security hygiene checks"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "security",
+      "token_cost": 1114,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/security-scan/SKILL.md"
+    },
+    "sentry-code-review": {
+      "activation": {
+        "onKeyword": [
+          "analyze",
+          "resolve",
+          "sentry",
+          "comments",
+          "github",
+          "pull",
+          "requests",
+          "asked",
+          "review",
+          "fix",
+          "issues",
+          "identified",
+          "specific",
+          "prs",
+          "number",
+          "automatically",
+          "find",
+          "recent",
+          "feedback",
+          "code"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 1465,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/sentry-code-review/SKILL.md"
+    },
+    "sentry-ios-swift-setup": {
+      "activation": {
+        "onKeyword": [
+          "setup",
+          "sentry",
+          "ios",
+          "swift",
+          "apps",
+          "asked",
+          "add",
+          "install",
+          "sentry-cocoa",
+          "sdk",
+          "configure",
+          "error",
+          "monitoring",
+          "tracing",
+          "session",
+          "replay",
+          "logging",
+          "profiling",
+          "applications",
+          "swiftui"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "swift",
+      "token_cost": 2413,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/sentry-ios-swift-setup/SKILL.md"
+    },
+    "sentry-setup-ai-monitoring": {
+      "activation": {
+        "onKeyword": [
+          "setup",
+          "sentry",
+          "agent",
+          "monitoring",
+          "project",
+          "asked",
+          "add",
+          "track",
+          "llm",
+          "calls",
+          "monitor",
+          "agents",
+          "instrument",
+          "openai",
+          "anthropic",
+          "vercel",
+          "langchain",
+          "google",
+          "genai",
+          "automatically"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "ai",
+      "token_cost": 5266,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/sentry-setup-ai-monitoring/SKILL.md"
+    },
+    "sentry-setup-logging": {
+      "activation": {
+        "onKeyword": [
+          "setup",
+          "sentry",
+          "logging",
+          "project",
+          "asked",
+          "add",
+          "logs",
+          "enable",
+          "structured",
+          "console",
+          "log",
+          "capture",
+          "integrate",
+          "supports",
+          "javascript",
+          "typescript",
+          "python",
+          "ruby",
+          "react",
+          "next"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 3475,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/sentry-setup-logging/SKILL.md"
+    },
+    "sentry-setup-metrics": {
+      "activation": {
+        "onKeyword": [
+          "setup",
+          "sentry",
+          "metrics",
+          "project",
+          "asked",
+          "add",
+          "track",
+          "custom",
+          "counters",
+          "gauges",
+          "distributions",
+          "instrument",
+          "application",
+          "performance",
+          "supports",
+          "javascript",
+          "typescript",
+          "python",
+          "react",
+          "next"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 4465,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/sentry-setup-metrics/SKILL.md"
+    },
+    "sentry-setup-tracing": {
+      "activation": {
+        "onKeyword": [
+          "setup",
+          "sentry",
+          "tracing",
+          "performance",
+          "monitoring",
+          "project",
+          "asked",
+          "add",
+          "enable",
+          "track",
+          "transactions",
+          "spans",
+          "instrument",
+          "application",
+          "supports",
+          "javascript",
+          "typescript",
+          "python",
+          "ruby",
+          "react"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "python",
+      "token_cost": 4164,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/sentry-setup-tracing/SKILL.md"
+    },
+    "setup": {
+      "activation": {
+        "onKeyword": [
+          "set",
+          "vercel",
+          "cli",
+          "project",
+          "configuration",
+          "user",
+          "says",
+          "configure",
+          "link",
+          "init",
+          "setup",
+          "set up vercel",
+          "cli and project",
+          "use when the",
+          "user says",
+          "configure vercel",
+          "link to vercel",
+          "vercel init"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 118,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/setup/SKILL.md"
+    },
+    "skill-creator": {
+      "activation": {
+        "onKeyword": [
+          "create",
+          "new",
+          "skills",
+          "modify",
+          "improve",
+          "existing",
+          "measure",
+          "skill",
+          "performance",
+          "users",
+          "want",
+          "scratch",
+          "update",
+          "optimize",
+          "run",
+          "evals",
+          "test",
+          "benchmark",
+          "variance",
+          "analysis"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 8048,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/skill-creator/SKILL.md"
+    },
+    "skill-development": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "user",
+          "wants",
+          "create",
+          "add",
+          "plugin",
+          "write",
+          "new",
+          "improve",
+          "description",
+          "organize",
+          "content",
+          "needs",
+          "guidance",
+          "structure",
+          "progressive",
+          "disclosure",
+          "development",
+          "best",
+          "practices"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 5634,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/skill-development/SKILL.md"
+    },
+    "skill-stocktake": {
+      "activation": {
+        "onKeyword": [
+          "auditing",
+          "claude",
+          "skills",
+          "commands",
+          "quality",
+          "supports",
+          "quick",
+          "scan",
+          "changed",
+          "full",
+          "stocktake",
+          "modes",
+          "sequential",
+          "subagent",
+          "batch",
+          "evaluation",
+          "skill",
+          "use when auditing",
+          "claude skills and",
+          "commands for quality"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 1873,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/skill-stocktake/SKILL.md"
+    },
+    "spec-miner": {
+      "activation": {
+        "onKeyword": [
+          "reverse",
+          "engineer",
+          "legacy",
+          "code",
+          "analysis",
+          "undocumented",
+          "understand",
+          "codebase",
+          "existing",
+          "system",
+          "understanding",
+          "systems",
+          "creating",
+          "documentation",
+          "extracting",
+          "specifications",
+          "implementations",
+          "invoke",
+          "archaeology",
+          "features"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "workflow",
+      "token_cost": 732,
+      "priority": "normal",
+      "dependencies": [
+        "feature-forge",
+        "fullstack-guardian",
+        "architecture-designer"
+      ],
+      "path": "skills/spec-miner/SKILL.md"
+    },
+    "spec-to-backlog": {
+      "activation": {
+        "onKeyword": [
+          "automatically",
+          "convert",
+          "confluence",
+          "specification",
+          "documents",
+          "structured",
+          "jira",
+          "backlogs",
+          "epics",
+          "implementation",
+          "tickets",
+          "claude",
+          "needs",
+          "create",
+          "page",
+          "generate",
+          "backlog",
+          "break",
+          "down",
+          "spec"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 4338,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/spec-to-backlog/SKILL.md"
+    },
+    "springboot-patterns": {
+      "activation": {
+        "onKeyword": [
+          "spring",
+          "boot",
+          "architecture",
+          "patterns",
+          "rest",
+          "api",
+          "design",
+          "layered",
+          "services",
+          "data",
+          "access",
+          "caching",
+          "async",
+          "processing",
+          "logging",
+          "java",
+          "backend",
+          "work",
+          "springboot",
+          "spring boot architecture"
+        ],
+        "onIntent": [
+          "building rest apis with spring mvc or webflux",
+          "structuring controller → service → repository layers",
+          "configuring spring data jpa, caching, or async processing",
+          "adding validation, exception handling, or pagination",
+          "setting up profiles for dev/staging/production environments",
+          "implementing event-driven patterns with spring events or kafka"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "api",
+      "token_cost": 2478,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/springboot-patterns/SKILL.md"
+    },
+    "springboot-security": {
+      "activation": {
+        "onKeyword": [
+          "spring",
+          "security",
+          "best",
+          "practices",
+          "authn",
+          "authz",
+          "validation",
+          "csrf",
+          "secrets",
+          "headers",
+          "rate",
+          "limiting",
+          "dependency",
+          "java",
+          "boot",
+          "services",
+          "springboot",
+          "spring security best",
+          "practices for authn",
+          "rate limiting"
+        ],
+        "onIntent": [
+          "adding authentication (jwt, oauth2, session-based)",
+          "implementing authori"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "security",
+      "token_cost": 2004,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/springboot-security/SKILL.md"
+    },
+    "springboot-tdd": {
+      "activation": {
+        "onKeyword": [
+          "test-driven",
+          "development",
+          "spring",
+          "boot",
+          "junit",
+          "mockito",
+          "mockmvc",
+          "testcontainers",
+          "jacoco",
+          "adding",
+          "features",
+          "fixing",
+          "bugs",
+          "refactoring",
+          "springboot",
+          "tdd",
+          "test-driven development",
+          "for spring boot",
+          "using junit 5",
+          "and jacoco"
+        ],
+        "onIntent": [
+          "new features or endpoints",
+          "bug fixes or refactors",
+          "adding data access logic or security rules"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 944,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/springboot-tdd/SKILL.md"
+    },
+    "springboot-verification": {
+      "activation": {
+        "onKeyword": [
+          "verification",
+          "loop",
+          "spring",
+          "boot",
+          "projects",
+          "build",
+          "static",
+          "analysis",
+          "tests",
+          "coverage",
+          "security",
+          "scans",
+          "diff",
+          "review",
+          "release",
+          "springboot",
+          "verification loop for",
+          "spring boot projects",
+          "static analysis",
+          "tests with coverage"
+        ],
+        "onIntent": [
+          "before opening a pull request for a spring boot service",
+          "after major refactoring or dependency upgrades",
+          "pre-deployment verification for staging or production",
+          "running full build → lint → test → security scan pipeline",
+          "validating test coverage meets thresholds"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 1453,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/springboot-verification/SKILL.md"
+    },
+    "sre-engineer": {
+      "activation": {
+        "onKeyword": [
+          "sre",
+          "site",
+          "reliability",
+          "slo",
+          "sli",
+          "error",
+          "budget",
+          "incident",
+          "management",
+          "toil",
+          "reduction",
+          "on-call",
+          "mttr",
+          "postmortem",
+          "blameless",
+          "capacity",
+          "planning",
+          "philosophy",
+          "definition",
+          "postmortems"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "devops",
+      "token_cost": 766,
+      "priority": "normal",
+      "dependencies": [
+        "devops-engineer",
+        "cloud-architect",
+        "kubernetes-specialist"
+      ],
+      "path": "skills/sre-engineer/SKILL.md"
+    },
+    "strategic-compact": {
+      "activation": {
+        "onKeyword": [
+          "suggests",
+          "manual",
+          "context",
+          "compaction",
+          "logical",
+          "intervals",
+          "preserve",
+          "task",
+          "phases",
+          "rather",
+          "arbitrary",
+          "auto-compaction",
+          "strategic",
+          "compact",
+          "suggests manual context",
+          "compaction at logical",
+          "intervals to preserve",
+          "context through task",
+          "phases rather than",
+          "arbitrary auto-compaction"
+        ],
+        "onIntent": [
+          "running long sessions that approach context limits (200k+ tokens)",
+          "working on multi-phase tasks (research → plan → implement → test)",
+          "switching between unrelated tasks within the same session",
+          "after completing a major milestone and starting new work",
+          "when responses slow down or become less coherent (context pressure)"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "monitoring",
+      "token_cost": 1000,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/strategic-compact/SKILL.md"
+    },
+    "stripe-best-practices": {
+      "activation": {
+        "onKeyword": [
+          "best",
+          "practices",
+          "building",
+          "stripe",
+          "integrations",
+          "implementing",
+          "payment",
+          "processing",
+          "checkout",
+          "flows",
+          "subscriptions",
+          "webhooks",
+          "connect",
+          "platforms",
+          "api",
+          "integration",
+          "best practices for",
+          "building stripe integrations",
+          "use when implementing",
+          "payment processing"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "api",
+      "token_cost": 1376,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/stripe-best-practices/SKILL.md"
+    },
+    "subagent-driven-development": {
+      "activation": {
+        "onKeyword": [
+          "executing",
+          "implementation",
+          "plans",
+          "independent",
+          "tasks",
+          "current",
+          "session",
+          "subagent",
+          "driven",
+          "development",
+          "use when executing",
+          "implementation plans with",
+          "independent tasks in",
+          "the current session"
+        ],
+        "onIntent": [
+          "same session (no context switch)",
+          "fresh subagent per task (no context pollution)",
+          "two-stage review after each task: spec compliance first, then code quality",
+          "faster iteration (no human-in-loop between tasks)"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 2492,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/subagent-driven-development/SKILL.md"
+    },
+    "supply-chain-risk-auditor": {
+      "activation": {
+        "onKeyword": [
+          "supply",
+          "chain",
+          "dependency",
+          "risk",
+          "takeover",
+          "typosquatting",
+          "health",
+          "package",
+          "audit",
+          "npm",
+          "identifies",
+          "dependencies",
+          "heightened",
+          "exploitation",
+          "assessing",
+          "attack",
+          "surface",
+          "evaluating",
+          "scoping",
+          "security"
+        ],
+        "onIntent": [
+          "assessing dependency risk before a security audit",
+          "evaluating supply chain attack surface of a project",
+          "identifying unmaintained or risky dependencies",
+          "pre-engagement scoping for supply chain concerns"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "security",
+      "token_cost": 1518,
+      "priority": "normal",
+      "dependencies": [
+        "open-source-license-compliance",
+        "compliance-routing"
+      ],
+      "path": "skills/supply-chain-risk-auditor/SKILL.md"
+    },
+    "swift-actor-persistence": {
+      "activation": {
+        "onKeyword": [
+          "thread-safe",
+          "data",
+          "persistence",
+          "swift",
+          "actors",
+          "in-memory",
+          "cache",
+          "file-backed",
+          "storage",
+          "eliminating",
+          "races",
+          "design",
+          "actor",
+          "thread-safe data",
+          "persistence in swift",
+          "using actors",
+          "in-memory cache",
+          "with file-backed",
+          "eliminating data races",
+          "by design"
+        ],
+        "onIntent": [
+          "building a data persistence layer in swift 5.5+",
+          "need thread-safe access to shared mutable state",
+          "want to eliminate manual synchroni"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "swift",
+      "token_cost": 1196,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/swift-actor-persistence/SKILL.md"
+    },
+    "swift-concurrency-6-2": {
+      "activation": {
+        "onKeyword": [
+          "swift",
+          "approachable",
+          "concurrency",
+          "single-threaded",
+          "default",
+          "concurrent",
+          "explicit",
+          "background",
+          "offloading",
+          "isolated",
+          "conformances",
+          "main",
+          "actor",
+          "types",
+          "swift 6",
+          "2 approachable concurrency",
+          "single-threaded by",
+          "concurrent for explicit",
+          "background offloading",
+          "isolated conformances for"
+        ],
+        "onIntent": [
+          "migrating swift 5.x or 6.0/6.1 projects to swift 6.2",
+          "resolving data-race safety compiler errors",
+          "designing mainactor-based app architecture",
+          "offloading cpu-intensive work to background threads",
+          "implementing protocol conformances on mainactor-isolated types",
+          "enabling approachable concurrency build settings in xcode 26"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "swift",
+      "token_cost": 1993,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/swift-concurrency-6-2/SKILL.md"
+    },
+    "swift-protocol-di-testing": {
+      "activation": {
+        "onKeyword": [
+          "protocol-based",
+          "dependency",
+          "injection",
+          "testable",
+          "swift",
+          "code",
+          "mock",
+          "file",
+          "system",
+          "network",
+          "external",
+          "apis",
+          "focused",
+          "protocols",
+          "testing",
+          "protocol",
+          "protocol-based dependency",
+          "injection for testable",
+          "swift code",
+          "mock file system"
+        ],
+        "onIntent": [
+          "writing swift code that accesses file system, network, or external apis",
+          "need to test error handling paths without triggering real failures",
+          "building modules that work across environments (app, test, swiftui preview)",
+          "designing testable architecture with swift concurrency (actors, sendable)"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "swift",
+      "token_cost": 1501,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/swift-protocol-di-testing/SKILL.md"
+    },
+    "swiftui-patterns": {
+      "activation": {
+        "onKeyword": [
+          "swiftui",
+          "architecture",
+          "patterns",
+          "state",
+          "management",
+          "observable",
+          "view",
+          "composition",
+          "navigation",
+          "performance",
+          "optimization",
+          "modern",
+          "ios",
+          "macos",
+          "best",
+          "practices",
+          "swiftui architecture patterns",
+          "state management with",
+          "view composition",
+          "performance optimization"
+        ],
+        "onIntent": [
+          "building swiftui views and managing state (`@state`, `@observable`, `@binding`)",
+          "designing navigation flows with `navigationstack`",
+          "structuring view models and data flow",
+          "optimi"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "swift",
+      "token_cost": 1731,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/swiftui-patterns/SKILL.md"
+    },
+    "system-design": {
+      "activation": {
+        "onKeyword": [
+          "system",
+          "design",
+          "scale",
+          "high",
+          "availability",
+          "rate",
+          "limiter",
+          "load",
+          "balancing",
+          "caching",
+          "message",
+          "queues",
+          "distributed",
+          "systems",
+          "scalable",
+          "structured",
+          "approaches",
+          "database",
+          "scaling",
+          "user"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "architecture",
+      "token_cost": 648,
+      "priority": "normal",
+      "dependencies": [
+        "clean-architecture",
+        "ddia-systems",
+        "domain-driven-design"
+      ],
+      "path": "skills/system-design/SKILL.md"
+    },
+    "systematic-debugging": {
+      "activation": {
+        "onKeyword": [
+          "encountering",
+          "bug",
+          "test",
+          "failure",
+          "unexpected",
+          "behavior",
+          "proposing",
+          "fixes",
+          "systematic",
+          "debugging",
+          "use when encountering",
+          "any bug",
+          "test failure",
+          "or unexpected behavior",
+          "before proposing fixes"
+        ],
+        "onIntent": [
+          "test failures",
+          "bugs in production",
+          "unexpected behavior",
+          "performance problems",
+          "build failures",
+          "integration issues",
+          "under time pressure (emergencies make guessing tempting)",
+          "\"just one quick fix\" seems obvious",
+          "you've already tried multiple fixes",
+          "previous fix didn't work"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 2465,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/systematic-debugging/SKILL.md"
+    },
+    "tdd-workflow": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "writing",
+          "new",
+          "features",
+          "fixing",
+          "bugs",
+          "refactoring",
+          "code",
+          "enforces",
+          "test-driven",
+          "development",
+          "coverage",
+          "unit",
+          "integration",
+          "e2e",
+          "tests",
+          "tdd",
+          "workflow",
+          "use this skill",
+          "when writing new"
+        ],
+        "onIntent": [
+          "writing new features or functionality",
+          "fixing bugs or issues",
+          "refactoring existing code",
+          "adding api endpoints",
+          "creating new components"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 2409,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/tdd-workflow/SKILL.md"
+    },
+    "terminal-emulator": {
+      "activation": {
+        "onKeyword": [
+          "test",
+          "cli",
+          "tui",
+          "interactive",
+          "terminal",
+          "simulate",
+          "input",
+          "tui-test",
+          "automation",
+          "pty",
+          "applications",
+          "microsoft",
+          "tools",
+          "prompts",
+          "rendering",
+          "arrow",
+          "key",
+          "navigation",
+          "command",
+          "requires"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 663,
+      "priority": "normal",
+      "dependencies": [
+        "agent-browser"
+      ],
+      "path": "skills/terminal-emulator/SKILL.md"
+    },
+    "test-driven-development": {
+      "activation": {
+        "onKeyword": [
+          "implementing",
+          "feature",
+          "bugfix",
+          "writing",
+          "implementation",
+          "code",
+          "test",
+          "driven",
+          "development",
+          "use when implementing",
+          "any feature or",
+          "before writing implementation"
+        ],
+        "onIntent": [
+          "new features",
+          "bug fixes",
+          "refactoring",
+          "behavior changes",
+          "throwaway prototypes",
+          "generated code",
+          "configuration files"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 2465,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/test-driven-development/SKILL.md"
+    },
+    "the-fool": {
+      "activation": {
+        "onKeyword": [
+          "play",
+          "fool",
+          "devil",
+          "advocate",
+          "challenge",
+          "stress",
+          "test",
+          "poke",
+          "holes",
+          "wrong",
+          "red",
+          "team",
+          "pre-mortem",
+          "assumptions",
+          "challenging",
+          "ideas",
+          "plans",
+          "decisions",
+          "proposals",
+          "structured"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "workflow",
+      "token_cost": 1467,
+      "priority": "normal",
+      "dependencies": [
+        "architecture-designer",
+        "code-reviewer",
+        "feature-forge"
+      ],
+      "path": "skills/the-fool/SKILL.md"
+    },
+    "triage-issue": {
+      "activation": {
+        "onKeyword": [
+          "intelligently",
+          "triage",
+          "bug",
+          "reports",
+          "error",
+          "messages",
+          "searching",
+          "duplicates",
+          "jira",
+          "offering",
+          "create",
+          "new",
+          "issues",
+          "add",
+          "comments",
+          "existing",
+          "ones",
+          "claude",
+          "needs",
+          "report"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 4818,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/triage-issue/SKILL.md"
+    },
+    "ui-ux-pro-max": {
+      "activation": {
+        "onKeyword": [
+          "design",
+          "intelligence",
+          "styles",
+          "palettes",
+          "font",
+          "pairings",
+          "charts",
+          "stacks",
+          "react",
+          "next",
+          "vue",
+          "svelte",
+          "swiftui",
+          "native",
+          "flutter",
+          "tailwind",
+          "shadcn",
+          "actions",
+          "plan",
+          "build"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "frontend",
+      "token_cost": 3594,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/ui-ux-pro-max/SKILL.md"
+    },
+    "using-git-worktrees": {
+      "activation": {
+        "onKeyword": [
+          "starting",
+          "feature",
+          "work",
+          "needs",
+          "isolation",
+          "current",
+          "workspace",
+          "executing",
+          "implementation",
+          "plans",
+          "creates",
+          "isolated",
+          "git",
+          "worktrees",
+          "smart",
+          "directory",
+          "selection",
+          "safety",
+          "verification",
+          "use when starting"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "vcs",
+      "token_cost": 1409,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/using-git-worktrees/SKILL.md"
+    },
+    "using-superpowers": {
+      "activation": {
+        "onKeyword": [
+          "starting",
+          "conversation",
+          "establishes",
+          "find",
+          "skills",
+          "requiring",
+          "skill",
+          "tool",
+          "invocation",
+          "response",
+          "clarifying",
+          "questions",
+          "superpowers",
+          "use when starting",
+          "any conversation",
+          "establishes how to",
+          "find and use",
+          "requiring skill tool",
+          "invocation before any",
+          "response including clarifying"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 1050,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/using-superpowers/SKILL.md"
+    },
+    "verification-before-completion": {
+      "activation": {
+        "onKeyword": [
+          "claim",
+          "work",
+          "complete",
+          "fixed",
+          "passing",
+          "committing",
+          "creating",
+          "prs",
+          "requires",
+          "running",
+          "verification",
+          "commands",
+          "confirming",
+          "output",
+          "making",
+          "success",
+          "claims",
+          "evidence",
+          "assertions",
+          "always"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 1038,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/verification-before-completion/SKILL.md"
+    },
+    "verification-loop": {
+      "activation": {
+        "onKeyword": [
+          "comprehensive",
+          "verification",
+          "system",
+          "claude",
+          "code",
+          "sessions",
+          "loop",
+          "a comprehensive verification",
+          "system for claude",
+          "code sessions"
+        ],
+        "onIntent": [
+          "after completing a feature or significant code change",
+          "before creating a pr",
+          "when you want to ensure quality gates pass",
+          "after refactoring"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "architecture",
+      "token_cost": 623,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/verification-loop/SKILL.md"
+    },
+    "visa-doc-translate": {
+      "activation": {
+        "onKeyword": [
+          "translate",
+          "visa",
+          "application",
+          "documents",
+          "images",
+          "english",
+          "create",
+          "bilingual",
+          "pdf",
+          "original",
+          "translation",
+          "doc",
+          "translate visa application",
+          "to english and",
+          "create a bilingual",
+          "pdf with original",
+          "and translation"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "documentation",
+      "token_cost": 953,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/visa-doc-translate/SKILL.md"
+    },
+    "whatsapp": {
+      "activation": {
+        "onKeyword": [
+          "whatsapp",
+          "check",
+          "respond",
+          "cloclo",
+          "verifie",
+          "messages",
+          "veille",
+          "reponse",
+          "automatique",
+          "via",
+          "mcp",
+          "interacting",
+          "user",
+          "asks",
+          "cloclo whatsapp",
+          "veille et reponse",
+          "automatique via whatsapp",
+          "use when interacting",
+          "with whatsapp messages",
+          "or when user"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "business",
+      "token_cost": 1053,
+      "priority": "normal",
+      "dependencies": [
+        "memoire",
+        "agence-atum"
+      ],
+      "path": "skills/whatsapp/SKILL.md"
+    },
+    "writing-plans": {
+      "activation": {
+        "onKeyword": [
+          "spec",
+          "requirements",
+          "multi-step",
+          "task",
+          "touching",
+          "code",
+          "writing",
+          "plans",
+          "use when you",
+          "have a spec",
+          "or requirements for",
+          "a multi-step",
+          "before touching code"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 817,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/writing-plans/SKILL.md"
+    },
+    "writing-rules": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "user",
+          "asks",
+          "create",
+          "hookify",
+          "rule",
+          "write",
+          "hook",
+          "configure",
+          "add",
+          "needs",
+          "guidance",
+          "syntax",
+          "patterns",
+          "writing",
+          "rules",
+          "this skill should",
+          "be used when",
+          "the user asks",
+          "create a hookify"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 2104,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/writing-rules/SKILL.md"
+    },
+    "writing-skills": {
+      "activation": {
+        "onKeyword": [
+          "creating",
+          "new",
+          "skills",
+          "editing",
+          "existing",
+          "verifying",
+          "work",
+          "deployment",
+          "writing",
+          "use when creating",
+          "new skills",
+          "editing existing skills",
+          "or verifying skills",
+          "work before deployment"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "infrastructure",
+      "token_cost": 5595,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/writing-skills/SKILL.md"
+    },
+    "xlsx": {
+      "activation": {
+        "onKeyword": [
+          "spreadsheet",
+          "xlsx",
+          "csv",
+          "excel",
+          "tabular",
+          "data",
+          "pivot",
+          "table",
+          "formula",
+          "workbook",
+          "skill",
+          "time",
+          "file",
+          "primary",
+          "input",
+          "output",
+          "means",
+          "task",
+          "user",
+          "wants"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "document",
+      "token_cost": 1111,
+      "priority": "normal",
+      "dependencies": [
+        "docx",
+        "pdf",
+        "pptx"
+      ],
+      "path": "skills/xlsx/SKILL.md"
+    }
+  }
+}
