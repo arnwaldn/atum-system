@@ -100,6 +100,15 @@
             "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/suggest-compact.js\""
           }
         ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/pretool-context-hook.js\""
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -309,6 +318,10 @@
           {
             "type": "command",
             "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/clean-shell-snapshots.py\""
+          },
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start-orchestrator.js\""
           }
         ]
       }
@@ -319,7 +332,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/autonomous-router-hook.js\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/skill-orchestrator-hook.js\""
           }
         ]
       }

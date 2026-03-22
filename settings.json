@@ -33,6 +33,6 @@
     "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
     "MCP_TIMEOUT": "30000",
     "MCP_TOOL_TIMEOUT": "60000",
-    "ENABLE_TOOL_SEARCH": "true"
+    "ENABLE_TOOL_SEARCH": "auto:5"
   }
 }
