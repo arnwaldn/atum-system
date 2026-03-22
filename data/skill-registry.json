@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated": "2026-03-22T00:11:38.836Z",
+  "generated": "2026-03-22T01:18:04.668Z",
   "count": 167,
   "skills": [
     {
@@ -23,14 +23,14 @@
       "description": "Browser automation CLI for AI agents. Use this when asked to test something in a real browser.",
       "category": "tooling",
       "keywords": [
+        "agent",
         "browser",
         "automation",
         "test",
         "puppeteer",
         "playwright",
         "headless",
-        "agent-browser",
-        "cli"
+        "agent-browser"
       ]
     },
     {
@@ -38,14 +38,14 @@
       "description": "This skill should be used when the user asks to \"create an agent\", \"add an agent\", \"write a subagent\", \"agent frontmatter\", \"when to use description\", \"agent examples\", \"agent tools\", \"agent colors\", ",
       "category": "design",
       "keywords": [
+        "agent",
+        "development",
         "skill",
         "user",
         "asks",
         "create",
-        "agent",
         "add",
-        "write",
-        "subagent"
+        "write"
       ]
     },
     {
@@ -53,14 +53,14 @@
       "description": "Design and optimize AI agent action spaces, tool definitions, and observation formatting for higher completion rates.",
       "category": "design",
       "keywords": [
+        "agent",
+        "harness",
+        "construction",
         "design",
         "optimize",
-        "agent",
         "action",
         "spaces",
-        "tool",
-        "definitions",
-        "observation"
+        "tool"
       ]
     },
     {
@@ -68,14 +68,14 @@
       "description": "Operate as an agentic engineer using eval-first execution, decomposition, and cost-aware model routing.",
       "category": "ai",
       "keywords": [
-        "operate",
         "agentic",
+        "engineering",
+        "operate",
         "engineer",
         "eval-first",
         "execution",
         "decomposition",
-        "cost-aware",
-        "model"
+        "cost-aware"
       ]
     },
     {
@@ -83,14 +83,14 @@
       "description": "Engineering operating model for teams where AI agents generate a large share of implementation output.",
       "category": "ai",
       "keywords": [
+        "first",
         "engineering",
         "operating",
         "model",
         "teams",
         "agents",
         "generate",
-        "large",
-        "share"
+        "large"
       ]
     },
     {
@@ -98,9 +98,9 @@
       "description": "REST API design patterns including resource naming, status codes, pagination, filtering, error responses, versioning, and rate limiting for production APIs.",
       "category": "api",
       "keywords": [
-        "rest",
         "api",
         "design",
+        "rest",
         "patterns",
         "resource",
         "naming",
@@ -113,14 +113,14 @@
       "description": "Write articles, guides, blog posts, tutorials, newsletter issues, and other long-form content in a distinctive voice derived from supplied examples or brand guidance. Use when the user wants polished ",
       "category": "devops",
       "keywords": [
+        "article",
+        "writing",
         "write",
         "articles",
         "guides",
         "blog",
         "posts",
-        "tutorials",
-        "newsletter",
-        "issues"
+        "tutorials"
       ]
     },
     {
@@ -128,10 +128,10 @@
       "description": "Main skill for all Pinecone Assistant operations. Read this first! Create, manage, and chat with Pinecone Assistants for document Q&A. Automatically recognizes natural language requests like \"create a",
       "category": "security",
       "keywords": [
+        "assistant",
         "main",
         "skill",
         "pinecone",
-        "assistant",
         "operations",
         "read",
         "first",
@@ -158,12 +158,12 @@
       "description": "Patterns and architectures for autonomous Claude Code loops — from simple sequential pipelines to RFC-driven multi-agent DAG systems.",
       "category": "python",
       "keywords": [
+        "autonomous",
+        "loops",
         "patterns",
         "architectures",
-        "autonomous",
         "claude",
         "code",
-        "loops",
         "simple",
         "sequential"
       ]
@@ -173,12 +173,12 @@
       "description": "|",
       "category": "workflow",
       "keywords": [
+        "autonomous",
         "routing",
         "detection",
         "auto-invoke",
         "nlp",
-        "intent",
-        "autonomous"
+        "intent"
       ]
     },
     {
@@ -187,8 +187,8 @@
       "category": "frontend",
       "keywords": [
         "backend",
-        "architecture",
         "patterns",
+        "architecture",
         "api",
         "design",
         "database",
@@ -209,14 +209,14 @@
       "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
       "category": "design",
       "keywords": [
+        "brainstorming",
         "creative",
         "work",
         "creating",
         "features",
         "building",
         "components",
-        "adding",
-        "functionality"
+        "adding"
       ]
     },
     {
@@ -224,14 +224,14 @@
       "description": "Analyze meeting notes to find action items and create Jira tasks for assigned work. When Claude needs to: (1) Create Jira tasks or tickets from meeting notes, (2) Extract or find action items from not",
       "category": "general",
       "keywords": [
-        "analyze",
+        "capture",
+        "tasks",
         "meeting",
         "notes",
+        "analyze",
         "find",
         "action",
-        "items",
-        "create",
-        "jira"
+        "items"
       ]
     },
     {
@@ -240,13 +240,13 @@
       "category": "devops",
       "keywords": [
         "chaos",
+        "engineer",
         "engineering",
         "resilience",
         "testing",
         "failure",
         "injection",
-        "game",
-        "day"
+        "game"
       ]
     },
     {
@@ -254,14 +254,14 @@
       "description": "Real-time accessibility guidance during coding. Provides inline a11y best practices, ARIA patterns, and fix suggestions as you write UI code. Scope: proactive a11y guidance while coding ONLY. For full",
       "category": "frontend",
       "keywords": [
+        "claude",
+        "a11y",
+        "skill",
         "accessibility",
         "guidance",
-        "a11y",
         "help",
         "aria",
-        "patterns",
-        "accessible",
-        "component"
+        "patterns"
       ]
     },
     {
@@ -269,14 +269,14 @@
       "description": "Analyze a codebase and recommend Claude Code automations (hooks, subagents, skills, plugins, MCP servers). Use when user asks for automation recommendations, wants to optimize their Claude Code setup,",
       "category": "tooling",
       "keywords": [
+        "claude",
+        "automation",
+        "recommender",
         "analyze",
         "codebase",
         "recommend",
-        "claude",
         "code",
-        "automations",
-        "hooks",
-        "subagents"
+        "automations"
       ]
     },
     {
@@ -284,14 +284,14 @@
       "description": "Creating interactive data visualisations using d3.js. This skill should be used when creating custom charts, graphs, network diagrams, geographic visualisations, or any complex SVG-based data visualis",
       "category": "frontend",
       "keywords": [
+        "claude",
+        "d3js",
+        "skill",
         "data",
         "visualization",
         "chart",
         "graph",
-        "svg",
-        "interactive",
-        "network",
-        "diagram"
+        "svg"
       ]
     },
     {
@@ -299,14 +299,14 @@
       "description": "Audit and improve CLAUDE.md files in repositories. Use when user asks to check, audit, update, improve, or fix CLAUDE.md files. Scans for all CLAUDE.md files, evaluates quality against templates, outp",
       "category": "quality",
       "keywords": [
+        "claude",
+        "improver",
         "audit",
         "improve",
-        "claude",
         "files",
         "repositories",
         "user",
-        "asks",
-        "check"
+        "asks"
       ]
     },
     {
@@ -344,12 +344,12 @@
       "description": "Connects Figma design components to code components using Code Connect. Use when user says \"code connect\", \"connect this component to code\", \"connect Figma to code\", \"map this component\", \"link compon",
       "category": "design",
       "keywords": [
+        "code",
+        "connect",
+        "components",
         "connects",
         "figma",
         "design",
-        "components",
-        "code",
-        "connect",
         "user",
         "says"
       ]
@@ -359,9 +359,9 @@
       "description": "Universal coding standards, best practices, and patterns for TypeScript, JavaScript, React, and Node.js development.",
       "category": "frontend",
       "keywords": [
-        "universal",
         "coding",
         "standards",
+        "universal",
         "best",
         "practices",
         "patterns",
@@ -374,14 +374,14 @@
       "description": "This skill should be used when the user asks to \"create a slash command\", \"add a command\", \"write a custom command\", \"define command arguments\", \"use command frontmatter\", \"organize commands\", \"create",
       "category": "design",
       "keywords": [
+        "command",
+        "development",
         "skill",
         "user",
         "asks",
         "create",
         "slash",
-        "command",
-        "add",
-        "write"
+        "add"
       ]
     },
     {
@@ -389,10 +389,10 @@
       "description": "|",
       "category": "workflow",
       "keywords": [
-        "hypotheses",
-        "assumptions",
         "common",
         "ground",
+        "hypotheses",
+        "assumptions",
         "pars",
         "principe",
         "validate",
@@ -404,14 +404,14 @@
       "description": "Regulatory compliance detection and routing. Use when code touches authentication, payments, user data, cookies, health data, children content, AI deployment, or e-commerce.",
       "category": "compliance",
       "keywords": [
+        "compliance",
+        "routing",
         "rgpd",
         "gdpr",
         "pci-dss",
         "hipaa",
         "cookies",
-        "privacy",
-        "user",
-        "data"
+        "privacy"
       ]
     },
     {
@@ -419,14 +419,14 @@
       "description": "Interactive installer for Everything Claude Code — guides users through selecting and installing skills and rules to user-level or project-level directories, verifies paths, and optionally optimizes i",
       "category": "design",
       "keywords": [
+        "configure",
+        "atum",
         "interactive",
         "installer",
         "everything",
         "claude",
         "code",
-        "guides",
-        "users",
-        "selecting"
+        "guides"
       ]
     },
     {
@@ -434,14 +434,14 @@
       "description": "Create platform-native content systems for X, LinkedIn, TikTok, YouTube, newsletters, and repurposed multi-platform campaigns. Use when the user wants social posts, threads, scripts, content calendars",
       "category": "devops",
       "keywords": [
+        "content",
+        "engine",
         "create",
         "platform-native",
-        "content",
         "systems",
         "linkedin",
         "tiktok",
-        "youtube",
-        "newsletters"
+        "youtube"
       ]
     },
     {
@@ -449,14 +449,14 @@
       "description": "Cache expensive file processing results using SHA-256 content hashes — path-independent, auto-invalidating, with service layer separation.",
       "category": "general",
       "keywords": [
+        "content",
+        "hash",
         "cache",
+        "pattern",
         "expensive",
         "file",
         "processing",
-        "results",
-        "sha-256",
-        "content",
-        "hashes"
+        "results"
       ]
     },
     {
@@ -465,13 +465,13 @@
       "category": "tooling",
       "keywords": [
         "context",
+        "engineering",
+        "kit",
         "window",
         "degradation",
         "sub-agent",
         "handoff",
-        "maker",
-        "pattern",
-        "rot"
+        "maker"
       ]
     },
     {
@@ -479,14 +479,14 @@
       "description": "Patterns for continuous autonomous agent loops with quality gates, evals, and recovery controls.",
       "category": "quality",
       "keywords": [
-        "patterns",
         "continuous",
-        "autonomous",
         "agent",
+        "loop",
+        "patterns",
+        "autonomous",
         "loops",
         "quality",
-        "gates",
-        "evals"
+        "gates"
       ]
     },
     {
@@ -494,14 +494,14 @@
       "description": "Automatically extract reusable patterns from Claude Code sessions and save them as learned skills for future use.",
       "category": "tooling",
       "keywords": [
+        "continuous",
+        "learning",
         "automatically",
         "extract",
         "reusable",
         "patterns",
         "claude",
-        "code",
-        "sessions",
-        "save"
+        "code"
       ]
     },
     {
@@ -509,14 +509,14 @@
       "description": "Instinct-based learning system that observes sessions via hooks, creates atomic instincts with confidence scoring, and evolves them into skills/commands/agents. v2.1 adds project-scoped instincts to p",
       "category": "tooling",
       "keywords": [
-        "instinct-based",
+        "continuous",
         "learning",
+        "instinct-based",
         "system",
         "observes",
         "sessions",
         "via",
-        "hooks",
-        "creates"
+        "hooks"
       ]
     },
     {
@@ -525,13 +525,13 @@
       "category": "python",
       "keywords": [
         "cost",
+        "aware",
+        "llm",
+        "pipeline",
         "optimization",
         "patterns",
-        "llm",
         "api",
-        "usage",
-        "model",
-        "routing"
+        "usage"
       ]
     },
     {
@@ -539,14 +539,14 @@
       "description": "C++ coding standards based on the C++ Core Guidelines (isocpp.github.io). Use when writing, reviewing, or refactoring C++ code to enforce modern, safe, and idiomatic practices.",
       "category": "quality",
       "keywords": [
+        "cpp",
         "coding",
         "standards",
         "core",
         "guidelines",
         "isocpp",
         "github",
-        "writing",
-        "reviewing"
+        "writing"
       ]
     },
     {
@@ -554,14 +554,14 @@
       "description": "Use only when writing/updating/fixing C++ tests, configuring GoogleTest/CTest, diagnosing failing or flaky tests, or adding coverage/sanitizers.",
       "category": "quality",
       "keywords": [
+        "cpp",
+        "testing",
         "writing",
         "updating",
         "fixing",
         "tests",
         "configuring",
-        "googletest",
-        "ctest",
-        "diagnosing"
+        "googletest"
       ]
     },
     {
@@ -569,14 +569,14 @@
       "description": "Generates custom design system rules for the user's codebase. Use when user says \"create design system rules\", \"generate rules for my project\", \"set up design rules\", \"customize design system guidelin",
       "category": "devops",
       "keywords": [
-        "generates",
-        "custom",
+        "create",
         "design",
         "system",
         "rules",
+        "generates",
+        "custom",
         "user",
-        "codebase",
-        "says"
+        "codebase"
       ]
     },
     {
@@ -585,13 +585,13 @@
       "category": "python",
       "keywords": [
         "database",
+        "migrations",
         "migration",
         "best",
         "practices",
         "schema",
         "changes",
-        "data",
-        "migrations"
+        "data"
       ]
     },
     {
@@ -599,14 +599,14 @@
       "description": "Design data systems by understanding storage engines, replication, partitioning, transactions, and consistency models. Use when the user mentions \"database choice\", \"replication lag\", \"partitioning st",
       "category": "architecture",
       "keywords": [
-        "data",
+        "ddia",
         "systems",
+        "data",
         "replication",
         "partitioning",
         "consistency",
         "availability",
-        "stream",
-        "processing"
+        "stream"
       ]
     },
     {
@@ -630,9 +630,9 @@
       "category": "python",
       "keywords": [
         "deployment",
+        "patterns",
         "workflows",
         "pipeline",
-        "patterns",
         "docker",
         "containerization",
         "health",
@@ -644,14 +644,14 @@
       "description": "Create Mermaid diagrams (activity, deployment, sequence, architecture) from text descriptions or source code. Use when asked to \"create a diagram\", \"generate mermaid\", \"document architecture\", \"code t",
       "category": "tooling",
       "keywords": [
+        "design",
+        "doc",
         "mermaid",
         "diagram",
         "architecture",
         "sequence",
         "activity",
-        "deployment",
-        "code",
-        "design"
+        "deployment"
       ]
     },
     {
@@ -659,14 +659,14 @@
       "description": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
       "category": "devops",
       "keywords": [
+        "dispatching",
+        "parallel",
+        "agents",
         "facing",
         "independent",
         "tasks",
         "worked",
-        "without",
-        "shared",
-        "state",
-        "sequential"
+        "without"
       ]
     },
     {
@@ -675,8 +675,8 @@
       "category": "python",
       "keywords": [
         "django",
-        "architecture",
         "patterns",
+        "architecture",
         "rest",
         "api",
         "design",
@@ -705,10 +705,10 @@
       "category": "python",
       "keywords": [
         "django",
+        "tdd",
         "testing",
         "strategies",
         "pytest-django",
-        "tdd",
         "methodology",
         "factory",
         "boy"
@@ -719,9 +719,9 @@
       "description": "Verification loop for Django projects: migrations, linting, tests with coverage, security scans, and deployment readiness checks before release or PR.",
       "category": "python",
       "keywords": [
+        "django",
         "verification",
         "loop",
-        "django",
         "projects",
         "migrations",
         "linting",
@@ -735,8 +735,8 @@
       "category": "infrastructure",
       "keywords": [
         "docker",
-        "compose",
         "patterns",
+        "compose",
         "local",
         "development",
         "container",
@@ -749,9 +749,9 @@
       "description": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or requests to produce ",
       "category": "document",
       "keywords": [
+        "docx",
         "word",
         "document",
-        "docx",
         "doc",
         "tables",
         "contents",
@@ -765,13 +765,13 @@
       "category": "architecture",
       "keywords": [
         "domain",
+        "driven",
+        "design",
         "modeling",
         "bounded",
         "context",
         "aggregate",
-        "root",
-        "ubiquitous",
-        "language"
+        "root"
       ]
     },
     {
@@ -779,9 +779,9 @@
       "description": "Playwright E2E testing patterns, Page Object Model, configuration, CI/CD integration, artifact management, and flaky test strategies.",
       "category": "quality",
       "keywords": [
-        "playwright",
         "e2e",
         "testing",
+        "playwright",
         "patterns",
         "page",
         "object",
@@ -794,14 +794,14 @@
       "description": "Operate long-lived agent workloads with observability, security boundaries, and lifecycle management.",
       "category": "security",
       "keywords": [
+        "enterprise",
+        "agent",
+        "ops",
         "operate",
         "long-lived",
-        "agent",
         "workloads",
         "observability",
-        "security",
-        "boundaries",
-        "lifecycle"
+        "security"
       ]
     },
     {
@@ -809,14 +809,14 @@
       "description": "Formal evaluation framework for Claude Code sessions implementing eval-driven development (EDD) principles",
       "category": "devops",
       "keywords": [
+        "eval",
+        "harness",
         "formal",
         "evaluation",
         "framework",
         "claude",
         "code",
-        "sessions",
-        "implementing",
-        "eval-driven"
+        "sessions"
       ]
     },
     {
@@ -824,14 +824,14 @@
       "description": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
       "category": "quality",
       "keywords": [
+        "executing",
+        "plans",
         "written",
         "implementation",
         "plan",
         "execute",
         "separate",
-        "session",
-        "review",
-        "checkpoints"
+        "session"
       ]
     },
     {
@@ -839,14 +839,14 @@
       "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
       "category": "quality",
       "keywords": [
+        "finishing",
+        "development",
+        "branch",
         "implementation",
         "complete",
         "tests",
         "pass",
-        "decide",
-        "integrate",
-        "work",
-        "guides"
+        "decide"
       ]
     },
     {
@@ -863,14 +863,14 @@
       "description": "Apple FoundationModels framework for on-device LLM — text generation, guided generation with @Generable, tool calling, and snapshot streaming in iOS 26+.",
       "category": "swift",
       "keywords": [
+        "foundation",
+        "models",
+        "device",
         "apple",
         "foundationmodels",
         "framework",
         "on-device",
-        "llm",
-        "text",
-        "generation",
-        "guided"
+        "llm"
       ]
     },
     {
@@ -879,13 +879,13 @@
       "category": "workflow",
       "keywords": [
         "fresh",
+        "execute",
         "context",
         "decompose",
         "feature",
         "sub-tasks",
         "degradation",
-        "long",
-        "session"
+        "long"
       ]
     },
     {
@@ -893,13 +893,13 @@
       "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, or applications. Generates creative, polished code ",
       "category": "quality",
       "keywords": [
+        "frontend",
+        "design",
         "create",
         "distinctive",
         "production-grade",
-        "frontend",
         "interfaces",
         "high",
-        "design",
         "quality"
       ]
     },
@@ -909,8 +909,8 @@
       "category": "frontend",
       "keywords": [
         "frontend",
-        "development",
         "patterns",
+        "development",
         "react",
         "next",
         "state",
@@ -923,14 +923,14 @@
       "description": "Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a ta",
       "category": "design",
       "keywords": [
+        "frontend",
+        "slides",
         "create",
         "stunning",
         "animation-rich",
         "html",
         "presentations",
-        "scratch",
-        "converting",
-        "powerpoint"
+        "scratch"
       ]
     },
     {
@@ -939,13 +939,13 @@
       "category": "ai",
       "keywords": [
         "generate",
-        "project",
         "status",
+        "report",
+        "project",
         "reports",
         "jira",
         "issues",
-        "publish",
-        "confluence"
+        "publish"
       ]
     },
     {
@@ -953,14 +953,14 @@
       "description": "Idiomatic Go patterns, best practices, and conventions for building robust, efficient, and maintainable Go applications.",
       "category": "golang",
       "keywords": [
-        "idiomatic",
+        "golang",
         "patterns",
+        "idiomatic",
         "best",
         "practices",
         "conventions",
         "building",
-        "robust",
-        "efficient"
+        "robust"
       ]
     },
     {
@@ -968,14 +968,14 @@
       "description": "Go testing patterns including table-driven tests, subtests, benchmarks, fuzzing, and test coverage. Follows TDD methodology with idiomatic Go practices.",
       "category": "golang",
       "keywords": [
+        "golang",
         "testing",
         "patterns",
         "table-driven",
         "tests",
         "subtests",
         "benchmarks",
-        "fuzzing",
-        "test"
+        "fuzzing"
       ]
     },
     {
@@ -983,14 +983,14 @@
       "description": "Optimize web performance through network protocols, resource loading, and browser rendering internals. Use when the user mentions \"page load speed\", \"Core Web Vitals\", \"HTTP/2\", \"resource hints\", \"net",
       "category": "frontend",
       "keywords": [
+        "high",
+        "perf",
+        "browser",
         "page",
         "load",
         "speed",
         "core",
-        "web",
-        "vitals",
-        "http",
-        "resource"
+        "web"
       ]
     },
     {
@@ -998,14 +998,14 @@
       "description": "This skill should be used when the user asks to \"create a hook\", \"add a PreToolUse/PostToolUse/Stop hook\", \"validate tool use\", \"implement prompt-based hooks\", \"use ${CLAUDE_PLUGIN_ROOT}\", \"set up eve",
       "category": "api",
       "keywords": [
+        "hook",
+        "development",
         "skill",
         "user",
         "asks",
         "create",
-        "hook",
         "add",
-        "pretooluse",
-        "posttooluse"
+        "pretooluse"
       ]
     },
     {
@@ -1013,12 +1013,12 @@
       "description": "Execute Hugging Face Hub operations using the `hf` CLI. Use when the user needs to download models/datasets/spaces, upload files to Hub repositories, create repos, manage local cache, or run compute j",
       "category": "infrastructure",
       "keywords": [
-        "execute",
         "hugging",
         "face",
+        "cli",
+        "execute",
         "hub",
         "operations",
-        "cli",
         "user",
         "needs"
       ]
@@ -1028,11 +1028,11 @@
       "description": "Create and manage datasets on Hugging Face Hub. Supports initializing repos, defining configs/system prompts, streaming row updates, and SQL-based dataset querying/transformation. Designed to work alo",
       "category": "data",
       "keywords": [
-        "create",
-        "manage",
-        "datasets",
         "hugging",
         "face",
+        "datasets",
+        "create",
+        "manage",
         "hub",
         "supports",
         "initializing"
@@ -1043,12 +1043,12 @@
       "description": "Add and manage evaluation results in Hugging Face model cards. Supports extracting eval tables from README content, importing scores from Artificial Analysis API, and running custom model evaluations ",
       "category": "api",
       "keywords": [
-        "add",
-        "manage",
-        "evaluation",
-        "results",
         "hugging",
         "face",
+        "evaluation",
+        "add",
+        "manage",
+        "results",
         "model",
         "cards"
       ]
@@ -1058,14 +1058,14 @@
       "description": "This skill should be used when users want to run any workload on Hugging Face Jobs infrastructure. Covers UV scripts, Docker-based jobs, hardware selection, cost estimation, authentication with tokens",
       "category": "python",
       "keywords": [
+        "hugging",
+        "face",
+        "jobs",
         "skill",
         "users",
         "want",
         "run",
-        "workload",
-        "hugging",
-        "face",
-        "jobs"
+        "workload"
       ]
     },
     {
@@ -1073,14 +1073,14 @@
       "description": "This skill should be used when users want to train or fine-tune language models using TRL (Transformer Reinforcement Learning) on Hugging Face Jobs infrastructure. Covers SFT, DPO, GRPO and reward mod",
       "category": "infrastructure",
       "keywords": [
+        "hugging",
+        "face",
+        "model",
+        "trainer",
         "skill",
         "users",
         "want",
-        "train",
-        "fine-tune",
-        "language",
-        "models",
-        "trl"
+        "train"
       ]
     },
     {
@@ -1088,14 +1088,14 @@
       "description": "Publish and manage research papers on Hugging Face Hub. Supports creating paper pages, linking papers to models/datasets, claiming authorship, and generating professional markdown-based research artic",
       "category": "security",
       "keywords": [
+        "hugging",
+        "face",
+        "paper",
+        "publisher",
         "publish",
         "manage",
         "research",
-        "papers",
-        "hugging",
-        "face",
-        "hub",
-        "supports"
+        "papers"
       ]
     },
     {
@@ -1103,14 +1103,14 @@
       "description": "Use this skill when the user wants to build tool/scripts or achieve a task where using data from the Hugging Face API would help. This is especially useful when chaining or combining API calls or the ",
       "category": "api",
       "keywords": [
+        "hugging",
+        "face",
+        "tool",
+        "builder",
         "skill",
         "user",
         "wants",
-        "build",
-        "tool",
-        "scripts",
-        "achieve",
-        "task"
+        "build"
       ]
     },
     {
@@ -1118,14 +1118,14 @@
       "description": "Track and visualize ML training experiments with Trackio. Use when logging metrics during training (Python API) or retrieving/analyzing logged metrics (CLI). Supports real-time dashboard visualization",
       "category": "python",
       "keywords": [
+        "hugging",
+        "face",
+        "trackio",
         "track",
         "visualize",
         "training",
         "experiments",
-        "trackio",
-        "logging",
-        "metrics",
-        "python"
+        "logging"
       ]
     },
     {
@@ -1134,13 +1134,13 @@
       "category": "tooling",
       "keywords": [
         "image",
+        "guard",
+        "rules",
         "dimensions",
         "screenshot",
         "resize",
         "large",
-        "2000px",
-        "limit",
-        "processing"
+        "2000px"
       ]
     },
     {
@@ -1148,14 +1148,14 @@
       "description": "Translates Figma designs into production-ready code with 1:1 visual fidelity. Use when implementing UI from Figma files, when user mentions \"implement design\", \"generate code\", \"implement component\", ",
       "category": "design",
       "keywords": [
+        "implement",
+        "design",
         "translates",
         "figma",
         "designs",
         "production-ready",
         "code",
-        "visual",
-        "fidelity",
-        "implementing"
+        "visual"
       ]
     },
     {
@@ -1163,14 +1163,14 @@
       "description": "Create and update pitch decks, one-pagers, investor memos, accelerator applications, financial models, and fundraising materials. Use when the user needs investor-facing documents, projections, use-of",
       "category": "devops",
       "keywords": [
+        "investor",
+        "materials",
         "create",
         "update",
         "pitch",
         "decks",
         "one-pagers",
-        "investor",
-        "memos",
-        "accelerator"
+        "memos"
       ]
     },
     {
@@ -1178,14 +1178,14 @@
       "description": "Draft cold emails, warm intro blurbs, follow-ups, update emails, and investor communications for fundraising. Use when the user wants outreach to angels, VCs, strategic investors, or accelerators and ",
       "category": "devops",
       "keywords": [
+        "investor",
+        "outreach",
         "draft",
         "cold",
         "emails",
         "warm",
         "intro",
-        "blurbs",
-        "follow-ups",
-        "update"
+        "blurbs"
       ]
     },
     {
@@ -1193,14 +1193,14 @@
       "description": "Pattern for progressively refining context retrieval to solve the subagent context problem",
       "category": "tooling",
       "keywords": [
+        "iterative",
+        "retrieval",
         "pattern",
         "progressively",
         "refining",
         "context",
-        "retrieval",
         "solve",
-        "subagent",
-        "problem"
+        "subagent"
       ]
     },
     {
@@ -1223,14 +1223,14 @@
       "description": "Discover what customers truly need by analyzing the \"job\" they hire your product to do. Use when the user mentions \"customer discovery\", \"why customers churn\", \"what job does this solve\", \"competing a",
       "category": "specialized",
       "keywords": [
+        "jobs",
+        "done",
         "customer",
         "discovery",
         "why",
         "customers",
         "churn",
-        "job",
-        "solve",
-        "competing"
+        "job"
       ]
     },
     {
@@ -1239,8 +1239,8 @@
       "category": "design",
       "keywords": [
         "jpa",
-        "hibernate",
         "patterns",
+        "hibernate",
         "entity",
         "design",
         "relationships",
@@ -1253,10 +1253,10 @@
       "description": "iOS 26 Liquid Glass design system — dynamic glass material with blur, reflection, and interactive morphing for SwiftUI, UIKit, and WidgetKit.",
       "category": "swift",
       "keywords": [
-        "ios",
         "liquid",
         "glass",
         "design",
+        "ios",
         "system",
         "dynamic",
         "material",
@@ -1268,10 +1268,10 @@
       "description": "View Vercel deployment logs. Use when the user says \"show logs\", \"check logs\", \"vercel logs\", or \"what went wrong with the deployment\".",
       "category": "infrastructure",
       "keywords": [
+        "logs",
         "view",
         "vercel",
         "deployment",
-        "logs",
         "user",
         "says",
         "show",
@@ -1283,9 +1283,9 @@
       "description": "Conduct market research, competitive analysis, investor due diligence, and industry intelligence with source attribution and decision-oriented summaries. Use when the user wants market sizing, competi",
       "category": "devops",
       "keywords": [
-        "conduct",
         "market",
         "research",
+        "conduct",
         "competitive",
         "analysis",
         "investor",
@@ -1298,14 +1298,14 @@
       "description": "Step-by-step MCP server scaffolding workflow: research, plan, implement, test, evaluate. Scope: guided MCP server creation process ONLY. For general MCP expertise, debugging, or advanced patterns, use",
       "category": "tooling",
       "keywords": [
-        "build",
         "mcp",
+        "builder",
+        "build",
         "server",
         "create",
         "scaffold",
         "new",
-        "tool",
-        "implementation"
+        "tool"
       ]
     },
     {
@@ -1313,14 +1313,14 @@
       "description": "This skill should be used when the user asks to \"add MCP server\", \"integrate MCP\", \"configure MCP in plugin\", \"use .mcp.json\", \"set up Model Context Protocol\", \"connect external service\", mentions \"${",
       "category": "design",
       "keywords": [
+        "mcp",
+        "integration",
         "skill",
         "user",
         "asks",
         "add",
-        "mcp",
         "server",
-        "integrate",
-        "configure"
+        "integrate"
       ]
     },
     {
@@ -1343,14 +1343,14 @@
       "description": "Talk to customers without leading them using Mom Test rules: discuss their life not your idea, ask about specifics in the past, and talk less. Use when the user mentions \"customer interviews\", \"valida",
       "category": "specialized",
       "keywords": [
+        "mom",
+        "test",
         "customer",
         "interviews",
         "validate",
         "idea",
         "leading",
-        "questions",
-        "mom",
-        "test"
+        "questions"
       ]
     },
     {
@@ -1373,13 +1373,13 @@
       "description": "Operate and extend NanoClaw v2, ECC's zero-dependency session-aware REPL built on claude -p.",
       "category": "design",
       "keywords": [
+        "nanoclaw",
+        "repl",
         "operate",
         "extend",
-        "nanoclaw",
         "ecc",
         "zero-dependency",
         "session-aware",
-        "repl",
         "built"
       ]
     },
@@ -1388,14 +1388,14 @@
       "description": "Competences no-code alignees sur Maestro No-Code x IA (Make.com, Airtable, Notion). Use for automation, scenarios, blueprints, no-code workflows.",
       "category": "no-code",
       "keywords": [
+        "code",
+        "maestro",
         "no-code",
         "com",
         "airtable",
         "notion",
         "automation",
-        "scenario",
-        "blueprint",
-        "webhook"
+        "scenario"
       ]
     },
     {
@@ -1403,14 +1403,14 @@
       "description": "Process, convert, OCR, extract, redact, sign, and fill documents using the Nutrient DWS API. Works with PDFs, DOCX, XLSX, PPTX, HTML, and images.",
       "category": "api",
       "keywords": [
+        "nutrient",
+        "document",
+        "processing",
         "process",
         "convert",
         "ocr",
         "extract",
-        "redact",
-        "sign",
-        "fill",
-        "documents"
+        "redact"
       ]
     },
     {
@@ -1418,14 +1418,14 @@
       "description": "Detect and audit open-source licenses in project dependencies. Use when reviewing license compatibility, checking for copyleft contamination, generating compliance reports, or evaluating SPDX identifi",
       "category": "compliance",
       "keywords": [
+        "open",
+        "source",
         "license",
         "compliance",
         "open-source",
         "licensing",
         "copyleft",
-        "gpl",
-        "agpl",
-        "spdx"
+        "gpl"
       ]
     },
     {
@@ -1448,11 +1448,11 @@
       "description": "Write-time code quality enforcement using Plankton — auto-formatting, linting, and Claude-powered fixes on every file edit via hooks.",
       "category": "quality",
       "keywords": [
-        "write-time",
+        "plankton",
         "code",
         "quality",
+        "write-time",
         "enforcement",
-        "plankton",
         "auto-formatting",
         "linting",
         "claude-powered"
@@ -1463,14 +1463,14 @@
       "description": "Creates interactive HTML playgrounds — self-contained single-file explorers that let users configure something visually through controls, see a live preview, and copy out a prompt. Use when the user a",
       "category": "quality",
       "keywords": [
+        "playground",
         "creates",
         "interactive",
         "html",
         "playgrounds",
         "self-contained",
         "single-file",
-        "explorers",
-        "let"
+        "explorers"
       ]
     },
     {
@@ -1478,11 +1478,11 @@
       "description": "This skill should be used when the user asks about \"plugin settings\", \"store plugin configuration\", \"user-configurable plugin\", \".local.md files\", \"plugin state files\", \"read YAML frontmatter\", \"per-p",
       "category": "devops",
       "keywords": [
+        "plugin",
+        "settings",
         "skill",
         "user",
         "asks",
-        "plugin",
-        "settings",
         "store",
         "configuration",
         "user-configurable"
@@ -1493,14 +1493,14 @@
       "description": "This skill should be used when the user asks to \"create a plugin\", \"scaffold a plugin\", \"understand plugin structure\", \"organize plugin components\", \"set up plugin.json\", \"use ${CLAUDE_PLUGIN_ROOT}\", ",
       "category": "design",
       "keywords": [
+        "plugin",
+        "structure",
         "skill",
         "user",
         "asks",
         "create",
-        "plugin",
         "scaffold",
-        "understand",
-        "structure"
+        "understand"
       ]
     },
     {
@@ -1508,14 +1508,14 @@
       "description": "PostgreSQL database patterns for query optimization, schema design, indexing, and security. Based on Supabase best practices.",
       "category": "security",
       "keywords": [
+        "postgres",
+        "patterns",
         "postgresql",
         "database",
-        "patterns",
         "query",
         "optimization",
         "schema",
-        "design",
-        "indexing"
+        "design"
       ]
     },
     {
@@ -1523,11 +1523,11 @@
       "description": "Automatically add PostHog analytics instrumentation to code. Triggers when user asks to add tracking, instrument events, add analytics, or implement feature flags in their codebase.",
       "category": "automation",
       "keywords": [
+        "posthog",
+        "instrumentation",
         "automatically",
         "add",
-        "posthog",
         "analytics",
-        "instrumentation",
         "code",
         "triggers",
         "user"
@@ -1553,10 +1553,10 @@
       "description": "Use this skill whenever the user wants to create, read, edit, or manipulate PowerPoint presentations (.pptx files). Triggers include: any mention of PowerPoint, presentation, slides, .pptx, or request",
       "category": "document",
       "keywords": [
+        "pptx",
         "powerpoint",
         "presentation",
         "slides",
-        "pptx",
         "slide",
         "deck",
         "charts",
@@ -1568,14 +1568,14 @@
       "description": "Example project-specific skill template based on a real production application.",
       "category": "devops",
       "keywords": [
+        "project",
+        "guidelines",
         "example",
         "project-specific",
         "skill",
         "template",
         "real",
-        "production",
-        "application",
-        "project"
+        "production"
       ]
     },
     {
@@ -1583,14 +1583,14 @@
       "description": "Common project patterns including skeleton projects, B12 website generation, template index, repository pattern, and API response format.",
       "category": "workflow",
       "keywords": [
-        "skeleton",
         "project",
+        "patterns",
+        "skeleton",
         "b12",
         "website",
         "template",
         "repository",
-        "pattern",
-        "api"
+        "pattern"
       ]
     },
     {
@@ -1599,13 +1599,13 @@
       "category": "workflow",
       "keywords": [
         "prompt",
+        "architect",
         "engineering",
         "co-star",
         "risen",
         "framework",
         "improve",
-        "chain",
-        "thought"
+        "chain"
       ]
     },
     {
@@ -1613,14 +1613,14 @@
       "description": "Provides guidance for property-based testing across multiple languages and smart contracts. Use when writing tests, reviewing code with serialization/validation/parsing patterns, designing features, o",
       "category": "quality",
       "keywords": [
-        "property-based",
+        "property",
         "testing",
+        "property-based",
         "hypothesis",
         "quickcheck",
         "fuzzing",
         "serialization",
-        "roundtrip",
-        "invariant"
+        "roundtrip"
       ]
     },
     {
@@ -1628,14 +1628,14 @@
       "description": "Pythonic idioms, PEP 8 standards, type hints, and best practices for building robust, efficient, and maintainable Python applications.",
       "category": "python",
       "keywords": [
+        "python",
+        "patterns",
         "pythonic",
         "idioms",
         "pep",
         "standards",
         "type",
-        "hints",
-        "best",
-        "practices"
+        "hints"
       ]
     },
     {
@@ -1659,13 +1659,13 @@
       "category": "data-ml",
       "keywords": [
         "rag",
+        "architect",
         "retrieval-augmented",
         "generation",
         "vector",
         "search",
         "embeddings",
-        "semantic",
-        "database"
+        "semantic"
       ]
     },
     {
@@ -1673,14 +1673,14 @@
       "description": "RFC-driven multi-agent DAG execution pattern with quality gates, merge queues, and work unit orchestration.",
       "category": "python",
       "keywords": [
+        "ralphinho",
+        "rfc",
+        "pipeline",
         "rfc-driven",
         "multi-agent",
         "dag",
         "execution",
-        "pattern",
-        "quality",
-        "gates",
-        "merge"
+        "pattern"
       ]
     },
     {
@@ -1703,14 +1703,14 @@
       "description": "Audit and fix visual hierarchy, spacing, color, and depth in web UIs. Use when the user mentions \"my UI looks off\", \"fix the design\", \"Tailwind styling\", \"color palette\", or \"visual hierarchy\". Covers",
       "category": "frontend",
       "keywords": [
+        "refactoring",
         "looks",
         "off",
         "fix",
         "design",
         "tailwind",
         "styling",
-        "color",
-        "palette"
+        "color"
       ]
     },
     {
@@ -1718,14 +1718,14 @@
       "description": "Decision framework for choosing between regex and LLM when parsing structured text — start with regex, add LLM only for low-confidence edge cases.",
       "category": "devops",
       "keywords": [
+        "regex",
+        "llm",
+        "structured",
+        "text",
         "decision",
         "framework",
         "choosing",
-        "regex",
-        "llm",
-        "parsing",
-        "structured",
-        "text"
+        "parsing"
       ]
     },
     {
@@ -1748,14 +1748,14 @@
       "description": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
       "category": "quality",
       "keywords": [
+        "requesting",
+        "code",
+        "review",
         "completing",
         "tasks",
         "implementing",
         "major",
-        "features",
-        "merging",
-        "verify",
-        "work"
+        "features"
       ]
     },
     {
@@ -1778,14 +1778,14 @@
       "description": "Autonomous task scheduling from natural language. When the user describes ANY recurring, scheduled, periodic, or event-triggered task in natural language — in French or English — parse their intent an",
       "category": "devops",
       "keywords": [
+        "scheduler",
         "day",
         "week",
         "jours",
         "chaque",
         "lundi",
         "morning",
-        "midnight",
-        "quand"
+        "midnight"
       ]
     },
     {
@@ -1794,9 +1794,9 @@
       "category": "infrastructure",
       "keywords": [
         "search",
-        "across",
         "company",
         "knowledge",
+        "across",
         "bases",
         "confluence",
         "jira",
@@ -1808,14 +1808,14 @@
       "description": "Research-before-coding workflow. Search for existing tools, libraries, and patterns before writing custom code. Invokes the researcher agent.",
       "category": "tooling",
       "keywords": [
+        "search",
+        "first",
         "research-before-coding",
         "workflow",
-        "search",
         "existing",
         "tools",
         "libraries",
-        "patterns",
-        "writing"
+        "patterns"
       ]
     },
     {
@@ -1823,14 +1823,14 @@
       "description": "Use this skill when adding authentication, handling user input, working with secrets, creating API endpoints, or implementing payment/sensitive features. Provides comprehensive security checklist and ",
       "category": "api",
       "keywords": [
+        "security",
+        "review",
         "skill",
         "adding",
         "authentication",
         "handling",
         "user",
-        "input",
-        "working",
-        "secrets"
+        "input"
       ]
     },
     {
@@ -1838,12 +1838,12 @@
       "description": "Scan your Claude Code configuration (.claude/ directory) for security vulnerabilities, misconfigurations, and injection risks using AgentShield. Checks CLAUDE.md, settings.json, MCP servers, hooks, an",
       "category": "security",
       "keywords": [
+        "security",
         "scan",
         "claude",
         "code",
         "configuration",
         "directory",
-        "security",
         "vulnerabilities",
         "misconfigurations"
       ]
@@ -1853,14 +1853,14 @@
       "description": "Analyze and resolve Sentry comments on GitHub Pull Requests. Use this when asked to review or fix issues identified by Sentry in PR comments. Can review specific PRs by number or automatically find re",
       "category": "quality",
       "keywords": [
+        "sentry",
+        "code",
+        "review",
         "analyze",
         "resolve",
-        "sentry",
         "comments",
         "github",
-        "pull",
-        "requests",
-        "asked"
+        "pull"
       ]
     },
     {
@@ -1868,10 +1868,10 @@
       "description": "Setup Sentry in iOS/Swift apps. Use when asked to add Sentry to iOS, install sentry-cocoa SDK, or configure error monitoring, tracing, session replay, logging, or profiling for iOS applications using ",
       "category": "swift",
       "keywords": [
-        "setup",
         "sentry",
         "ios",
         "swift",
+        "setup",
         "apps",
         "asked",
         "add",
@@ -1883,10 +1883,10 @@
       "description": "Setup Sentry AI Agent Monitoring in any project. Use this when asked to add AI monitoring, track LLM calls, monitor AI agents, or instrument OpenAI/Anthropic/Vercel AI/LangChain/Google GenAI. Automati",
       "category": "ai",
       "keywords": [
-        "setup",
         "sentry",
-        "agent",
+        "setup",
         "monitoring",
+        "agent",
         "project",
         "asked",
         "add",
@@ -1898,8 +1898,8 @@
       "description": "Setup Sentry Logging in any project. Use this when asked to add Sentry logs, enable structured logging, setup console log capture, or integrate logging with Sentry. Supports JavaScript, TypeScript, Py",
       "category": "python",
       "keywords": [
-        "setup",
         "sentry",
+        "setup",
         "logging",
         "project",
         "asked",
@@ -1913,8 +1913,8 @@
       "description": "Setup Sentry Metrics in any project. Use this when asked to add Sentry metrics, track custom metrics, setup counters/gauges/distributions, or instrument application performance metrics. Supports JavaS",
       "category": "python",
       "keywords": [
-        "setup",
         "sentry",
+        "setup",
         "metrics",
         "project",
         "asked",
@@ -1928,8 +1928,8 @@
       "description": "Setup Sentry Tracing (Performance Monitoring) in any project. Use this when asked to add performance monitoring, enable tracing, track transactions/spans, or instrument application performance. Suppor",
       "category": "python",
       "keywords": [
-        "setup",
         "sentry",
+        "setup",
         "tracing",
         "performance",
         "monitoring",
@@ -1943,14 +1943,14 @@
       "description": "Set up Vercel CLI and project configuration. Use when the user says \"set up Vercel\", \"configure Vercel\", \"link to Vercel\", or \"vercel init\".",
       "category": "general",
       "keywords": [
+        "setup",
         "set",
         "vercel",
         "cli",
         "project",
         "configuration",
         "user",
-        "says",
-        "configure"
+        "says"
       ]
     },
     {
@@ -1958,14 +1958,14 @@
       "description": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, update or optimize an existing skill, run evals to test a skil",
       "category": "quality",
       "keywords": [
+        "skill",
+        "creator",
         "create",
         "new",
         "skills",
         "modify",
         "improve",
-        "existing",
-        "measure",
-        "skill"
+        "existing"
       ]
     },
     {
@@ -1974,13 +1974,13 @@
       "category": "design",
       "keywords": [
         "skill",
+        "development",
         "user",
         "wants",
         "create",
         "add",
         "plugin",
-        "write",
-        "new"
+        "write"
       ]
     },
     {
@@ -1988,14 +1988,14 @@
       "description": "Use when auditing Claude skills and commands for quality. Supports Quick Scan (changed skills only) and Full Stocktake modes with sequential subagent batch evaluation.",
       "category": "quality",
       "keywords": [
+        "skill",
+        "stocktake",
         "auditing",
         "claude",
         "skills",
         "commands",
         "quality",
-        "supports",
-        "quick",
-        "scan"
+        "supports"
       ]
     },
     {
@@ -2003,14 +2003,14 @@
       "description": "Use when understanding legacy or undocumented systems, creating documentation for existing code, or extracting specifications from implementations. Invoke for legacy analysis, code archaeology, undocu",
       "category": "workflow",
       "keywords": [
+        "spec",
+        "miner",
         "reverse",
         "engineer",
         "legacy",
         "code",
         "analysis",
-        "undocumented",
-        "understand",
-        "codebase"
+        "undocumented"
       ]
     },
     {
@@ -2018,14 +2018,14 @@
       "description": "Automatically convert Confluence specification documents into structured Jira backlogs with Epics and implementation tickets. When Claude needs to: (1) Create Jira tickets from a Confluence page, (2) ",
       "category": "devops",
       "keywords": [
+        "spec",
+        "backlog",
         "automatically",
         "convert",
         "confluence",
         "specification",
         "documents",
-        "structured",
-        "jira",
-        "backlogs"
+        "structured"
       ]
     },
     {
@@ -2033,14 +2033,14 @@
       "description": "Spring Boot architecture patterns, REST API design, layered services, data access, caching, async processing, and logging. Use for Java Spring Boot backend work.",
       "category": "api",
       "keywords": [
+        "springboot",
+        "patterns",
         "spring",
         "boot",
         "architecture",
-        "patterns",
         "rest",
         "api",
-        "design",
-        "layered"
+        "design"
       ]
     },
     {
@@ -2048,14 +2048,14 @@
       "description": "Spring Security best practices for authn/authz, validation, CSRF, secrets, headers, rate limiting, and dependency security in Java Spring Boot services.",
       "category": "security",
       "keywords": [
-        "spring",
+        "springboot",
         "security",
+        "spring",
         "best",
         "practices",
         "authn",
         "authz",
-        "validation",
-        "csrf"
+        "validation"
       ]
     },
     {
@@ -2063,14 +2063,14 @@
       "description": "Test-driven development for Spring Boot using JUnit 5, Mockito, MockMvc, Testcontainers, and JaCoCo. Use when adding features, fixing bugs, or refactoring.",
       "category": "quality",
       "keywords": [
+        "springboot",
+        "tdd",
         "test-driven",
         "development",
         "spring",
         "boot",
         "junit",
-        "mockito",
-        "mockmvc",
-        "testcontainers"
+        "mockito"
       ]
     },
     {
@@ -2078,14 +2078,14 @@
       "description": "Verification loop for Spring Boot projects: build, static analysis, tests with coverage, security scans, and diff review before release or PR.",
       "category": "quality",
       "keywords": [
+        "springboot",
         "verification",
         "loop",
         "spring",
         "boot",
         "projects",
         "build",
-        "static",
-        "analysis"
+        "static"
       ]
     },
     {
@@ -2094,13 +2094,13 @@
       "category": "devops",
       "keywords": [
         "sre",
+        "engineer",
         "site",
         "reliability",
         "slo",
         "sli",
         "error",
-        "budget",
-        "incident"
+        "budget"
       ]
     },
     {
@@ -2108,14 +2108,14 @@
       "description": "Suggests manual context compaction at logical intervals to preserve context through task phases rather than arbitrary auto-compaction.",
       "category": "monitoring",
       "keywords": [
+        "strategic",
+        "compact",
         "suggests",
         "manual",
         "context",
         "compaction",
         "logical",
-        "intervals",
-        "preserve",
-        "task"
+        "intervals"
       ]
     },
     {
@@ -2123,10 +2123,10 @@
       "description": "Best practices for building Stripe integrations. Use when implementing payment processing, checkout flows, subscriptions, webhooks, Connect platforms, or any Stripe API integration.",
       "category": "api",
       "keywords": [
+        "stripe",
         "best",
         "practices",
         "building",
-        "stripe",
         "integrations",
         "implementing",
         "payment",
@@ -2138,14 +2138,14 @@
       "description": "Use when executing implementation plans with independent tasks in the current session",
       "category": "tooling",
       "keywords": [
+        "subagent",
+        "driven",
+        "development",
         "executing",
         "implementation",
         "plans",
         "independent",
-        "tasks",
-        "current",
-        "session",
-        "subagent"
+        "tasks"
       ]
     },
     {
@@ -2155,12 +2155,12 @@
       "keywords": [
         "supply",
         "chain",
-        "dependency",
         "risk",
+        "auditor",
+        "dependency",
         "takeover",
         "typosquatting",
-        "health",
-        "package"
+        "health"
       ]
     },
     {
@@ -2168,14 +2168,14 @@
       "description": "Thread-safe data persistence in Swift using actors — in-memory cache with file-backed storage, eliminating data races by design.",
       "category": "swift",
       "keywords": [
+        "swift",
+        "actor",
+        "persistence",
         "thread-safe",
         "data",
-        "persistence",
-        "swift",
         "actors",
         "in-memory",
-        "cache",
-        "file-backed"
+        "cache"
       ]
     },
     {
@@ -2184,8 +2184,8 @@
       "category": "swift",
       "keywords": [
         "swift",
-        "approachable",
         "concurrency",
+        "approachable",
         "single-threaded",
         "default",
         "concurrent",
@@ -2198,14 +2198,14 @@
       "description": "Protocol-based dependency injection for testable Swift code — mock file system, network, and external APIs using focused protocols and Swift Testing.",
       "category": "swift",
       "keywords": [
+        "swift",
+        "protocol",
+        "testing",
         "protocol-based",
         "dependency",
         "injection",
         "testable",
-        "swift",
-        "code",
-        "mock",
-        "file"
+        "code"
       ]
     },
     {
@@ -2214,8 +2214,8 @@
       "category": "swift",
       "keywords": [
         "swiftui",
-        "architecture",
         "patterns",
+        "architecture",
         "state",
         "management",
         "observable",
@@ -2243,14 +2243,14 @@
       "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
       "category": "quality",
       "keywords": [
+        "systematic",
+        "debugging",
         "encountering",
         "bug",
         "test",
         "failure",
         "unexpected",
-        "behavior",
-        "proposing",
-        "fixes"
+        "behavior"
       ]
     },
     {
@@ -2258,14 +2258,14 @@
       "description": "Use this skill when writing new features, fixing bugs, or refactoring code. Enforces test-driven development with 80%+ coverage including unit, integration, and E2E tests.",
       "category": "quality",
       "keywords": [
+        "tdd",
+        "workflow",
         "skill",
         "writing",
         "new",
         "features",
         "fixing",
-        "bugs",
-        "refactoring",
-        "code"
+        "bugs"
       ]
     },
     {
@@ -2273,14 +2273,14 @@
       "description": "Test interactive CLI/TUI applications using @microsoft/tui-test. Use when you need to test CLI tools with interactive prompts, TUI rendering, arrow key navigation, or any command that requires a TTY. ",
       "category": "tooling",
       "keywords": [
+        "terminal",
+        "emulator",
         "test",
         "cli",
         "tui",
         "interactive",
-        "terminal",
         "simulate",
-        "input",
-        "tui-test"
+        "input"
       ]
     },
     {
@@ -2288,14 +2288,14 @@
       "description": "Use when implementing any feature or bugfix, before writing implementation code",
       "category": "quality",
       "keywords": [
+        "test",
+        "driven",
+        "development",
         "implementing",
         "feature",
         "bugfix",
         "writing",
-        "implementation",
-        "code",
-        "test",
-        "driven"
+        "implementation"
       ]
     },
     {
@@ -2303,8 +2303,8 @@
       "description": "Use when challenging ideas, plans, decisions, or proposals using structured critical reasoning. Invoke to play devil's advocate, run a pre-mortem, red team, or audit evidence and assumptions.",
       "category": "workflow",
       "keywords": [
-        "play",
         "fool",
+        "play",
         "devil",
         "advocate",
         "challenge",
@@ -2318,14 +2318,14 @@
       "description": "Intelligently triage bug reports and error messages by searching for duplicates in Jira and offering to create new issues or add comments to existing ones. When Claude needs to: (1) Triage a bug repor",
       "category": "general",
       "keywords": [
-        "intelligently",
         "triage",
+        "issue",
+        "intelligently",
         "bug",
         "reports",
         "error",
         "messages",
-        "searching",
-        "duplicates"
+        "searching"
       ]
     },
     {
@@ -2333,14 +2333,14 @@
       "description": "UI/UX design intelligence. 50 styles, 21 palettes, 50 font pairings, 20 charts, 9 stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui). Actions: plan, build, creat",
       "category": "frontend",
       "keywords": [
+        "pro",
+        "max",
         "design",
         "intelligence",
         "styles",
         "palettes",
         "font",
-        "pairings",
-        "charts",
-        "stacks"
+        "pairings"
       ]
     },
     {
@@ -2348,14 +2348,14 @@
       "description": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - creates isolated git worktrees with smart directory selection and safety verificat",
       "category": "vcs",
       "keywords": [
+        "git",
+        "worktrees",
         "starting",
         "feature",
         "work",
         "needs",
         "isolation",
-        "current",
-        "workspace",
-        "executing"
+        "current"
       ]
     },
     {
@@ -2363,14 +2363,14 @@
       "description": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
       "category": "design",
       "keywords": [
+        "superpowers",
         "starting",
         "conversation",
         "establishes",
         "find",
         "skills",
         "requiring",
-        "skill",
-        "tool"
+        "skill"
       ]
     },
     {
@@ -2378,14 +2378,14 @@
       "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence",
       "category": "design",
       "keywords": [
+        "verification",
+        "completion",
         "claim",
         "work",
         "complete",
         "fixed",
         "passing",
-        "committing",
-        "creating",
-        "prs"
+        "committing"
       ]
     },
     {
@@ -2393,14 +2393,14 @@
       "description": "A comprehensive verification system for Claude Code sessions.",
       "category": "architecture",
       "keywords": [
-        "comprehensive",
         "verification",
+        "loop",
+        "comprehensive",
         "system",
         "claude",
         "code",
         "sessions",
-        "loop",
-        "a comprehensive verification"
+        "code sessions"
       ]
     },
     {
@@ -2408,14 +2408,14 @@
       "description": "Translate visa application documents (images) to English and create a bilingual PDF with original and translation",
       "category": "documentation",
       "keywords": [
-        "translate",
         "visa",
+        "doc",
+        "translate",
         "application",
         "documents",
         "images",
         "english",
-        "create",
-        "bilingual"
+        "create"
       ]
     },
     {
@@ -2438,14 +2438,14 @@
       "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
       "category": "design",
       "keywords": [
+        "writing",
+        "plans",
         "spec",
         "requirements",
         "multi-step",
         "task",
         "touching",
-        "code",
-        "writing",
-        "plans"
+        "code"
       ]
     },
     {
@@ -2453,14 +2453,14 @@
       "description": "This skill should be used when the user asks to \"create a hookify rule\", \"write a hook rule\", \"configure hookify\", \"add a hookify rule\", or needs guidance on hookify rule syntax and patterns.",
       "category": "design",
       "keywords": [
+        "writing",
+        "rules",
         "skill",
         "user",
         "asks",
         "create",
         "hookify",
-        "rule",
-        "write",
-        "hook"
+        "rule"
       ]
     },
     {
@@ -2468,14 +2468,14 @@
       "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
       "category": "infrastructure",
       "keywords": [
+        "writing",
+        "skills",
         "creating",
         "new",
-        "skills",
         "editing",
         "existing",
         "verifying",
-        "work",
-        "deployment"
+        "work"
       ]
     },
     {
@@ -2483,8 +2483,8 @@
       "description": "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or .tsv file; create a ",
       "category": "document",
       "keywords": [
-        "spreadsheet",
         "xlsx",
+        "spreadsheet",
         "csv",
         "excel",
         "tabular",

@@ -83,8 +83,6 @@ BACKUP_REPOS = [
     'webmcp-optimized',
     'atum-memory',
     'gigroute-mobile',
-    'gigroute-mobile',
-    'gigroute-mobile',
     'live-tour-manager',
 ]
 

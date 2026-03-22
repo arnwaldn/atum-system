@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated": "2026-03-22T00:11:38.837Z",
+  "generated": "2026-03-22T01:18:04.671Z",
   "count": 167,
   "skills": {
     "agence-atum": {
@@ -45,6 +45,7 @@
     "agent-browser": {
       "activation": {
         "onKeyword": [
+          "agent",
           "browser",
           "automation",
           "test",
@@ -57,12 +58,7 @@
           "asked",
           "something",
           "real",
-          "agent",
           "browser automation cli",
-          "for ai agents",
-          "use this when",
-          "asked to test",
-          "something in a",
           "real browser"
         ],
         "onIntent": [],
@@ -81,11 +77,12 @@
     "agent-development": {
       "activation": {
         "onKeyword": [
+          "agent",
+          "development",
           "skill",
           "user",
           "asks",
           "create",
-          "agent",
           "add",
           "write",
           "subagent",
@@ -99,8 +96,7 @@
           "guidance",
           "structure",
           "system",
-          "prompts",
-          "triggering"
+          "prompts"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -116,9 +112,11 @@
     "agent-harness-construction": {
       "activation": {
         "onKeyword": [
+          "agent",
+          "harness",
+          "construction",
           "design",
           "optimize",
-          "agent",
           "action",
           "spaces",
           "tool",
@@ -128,13 +126,8 @@
           "higher",
           "completion",
           "rates",
-          "harness",
-          "construction",
-          "design and optimize",
           "ai agent action",
-          "tool definitions",
-          "and observation formatting",
-          "for higher completion"
+          "tool definitions"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -150,8 +143,9 @@
     "agentic-engineering": {
       "activation": {
         "onKeyword": [
-          "operate",
           "agentic",
+          "engineering",
+          "operate",
           "engineer",
           "eval-first",
           "execution",
@@ -159,11 +153,7 @@
           "cost-aware",
           "model",
           "routing",
-          "engineering",
-          "operate as an",
-          "agentic engineer using",
           "eval-first execution",
-          "and cost-aware",
           "model routing"
         ],
         "onIntent": [],
@@ -180,6 +170,7 @@
     "ai-first-engineering": {
       "activation": {
         "onKeyword": [
+          "first",
           "engineering",
           "operating",
           "model",
@@ -190,12 +181,8 @@
           "share",
           "implementation",
           "output",
-          "first",
           "engineering operating model",
-          "for teams where",
-          "ai agents generate",
-          "a large share",
-          "of implementation output"
+          "ai agents generate"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -211,9 +198,9 @@
     "api-design": {
       "activation": {
         "onKeyword": [
-          "rest",
           "api",
           "design",
+          "rest",
           "patterns",
           "resource",
           "naming",
@@ -229,8 +216,8 @@
           "production",
           "apis",
           "rest api design",
-          "patterns including resource",
-          "status codes"
+          "status codes",
+          "error responses"
         ],
         "onIntent": [
           "designing new api endpoints",
@@ -257,6 +244,8 @@
     "article-writing": {
       "activation": {
         "onKeyword": [
+          "article",
+          "writing",
           "write",
           "articles",
           "guides",
@@ -274,9 +263,7 @@
           "examples",
           "brand",
           "guidance",
-          "user",
-          "wants",
-          "polished"
+          "user"
         ],
         "onIntent": [
           "drafting blog posts, essays, launch posts, guides, tutorials, or newsletter issues",
@@ -297,10 +284,10 @@
     "assistant": {
       "activation": {
         "onKeyword": [
+          "assistant",
           "main",
           "skill",
           "pinecone",
-          "assistant",
           "operations",
           "read",
           "first",
@@ -370,12 +357,12 @@
     "autonomous-loops": {
       "activation": {
         "onKeyword": [
+          "autonomous",
+          "loops",
           "patterns",
           "architectures",
-          "autonomous",
           "claude",
           "code",
-          "loops",
           "simple",
           "sequential",
           "pipelines",
@@ -383,11 +370,7 @@
           "multi-agent",
           "dag",
           "systems",
-          "patterns and architectures",
-          "for autonomous claude",
           "code loops",
-          "from simple sequential",
-          "pipelines to rfc",
           "driven multi-agent",
           "dag systems"
         ],
@@ -412,12 +395,12 @@
     "autonomous-routing": {
       "activation": {
         "onKeyword": [
+          "autonomous",
           "routing",
           "detection",
           "auto-invoke",
           "nlp",
-          "intent",
-          "autonomous"
+          "intent"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -437,8 +420,8 @@
       "activation": {
         "onKeyword": [
           "backend",
-          "architecture",
           "patterns",
+          "architecture",
           "api",
           "design",
           "database",
@@ -453,9 +436,7 @@
           "backend architecture patterns",
           "api design",
           "database optimization",
-          "and server-side",
-          "best practices for",
-          "and next"
+          "js api routes"
         ],
         "onIntent": [
           "designing rest or graphql api endpoints",
@@ -491,6 +472,7 @@
     "brainstorming": {
       "activation": {
         "onKeyword": [
+          "brainstorming",
           "creative",
           "work",
           "creating",
@@ -507,10 +489,9 @@
           "requirements",
           "design",
           "implementation",
-          "brainstorming",
-          "you must use",
-          "this before any",
-          "creative work"
+          "creative work",
+          "creating features",
+          "building components"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -526,15 +507,16 @@
     "capture-tasks-from-meeting-notes": {
       "activation": {
         "onKeyword": [
-          "analyze",
+          "capture",
+          "tasks",
           "meeting",
           "notes",
+          "analyze",
           "find",
           "action",
           "items",
           "create",
           "jira",
-          "tasks",
           "assigned",
           "work",
           "claude",
@@ -544,8 +526,7 @@
           "confluence",
           "pages",
           "parse",
-          "generate",
-          "team"
+          "generate"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -562,6 +543,7 @@
       "activation": {
         "onKeyword": [
           "chaos",
+          "engineer",
           "engineering",
           "resilience",
           "testing",
@@ -579,8 +561,7 @@
           "experiments",
           "exercises",
           "staging",
-          "dev",
-          "environments"
+          "dev"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -600,9 +581,11 @@
     "claude-a11y-skill": {
       "activation": {
         "onKeyword": [
+          "claude",
+          "a11y",
+          "skill",
           "accessibility",
           "guidance",
-          "a11y",
           "help",
           "aria",
           "patterns",
@@ -617,9 +600,7 @@
           "real-time",
           "coding",
           "provides",
-          "inline",
-          "best",
-          "practices"
+          "inline"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -638,10 +619,12 @@
     "claude-automation-recommender": {
       "activation": {
         "onKeyword": [
+          "claude",
+          "automation",
+          "recommender",
           "analyze",
           "codebase",
           "recommend",
-          "claude",
           "code",
           "automations",
           "hooks",
@@ -652,12 +635,10 @@
           "servers",
           "user",
           "asks",
-          "automation",
           "recommendations",
           "wants",
           "optimize",
-          "setup",
-          "mentions"
+          "setup"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -673,6 +654,9 @@
     "claude-d3js-skill": {
       "activation": {
         "onKeyword": [
+          "claude",
+          "d3js",
+          "skill",
           "data",
           "visualization",
           "chart",
@@ -684,15 +668,12 @@
           "geographic",
           "creating",
           "visualisations",
-          "skill",
           "custom",
           "charts",
           "graphs",
           "diagrams",
           "complex",
-          "svg-based",
-          "visualisation",
-          "requires"
+          "svg-based"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -710,9 +691,10 @@
     "claude-md-improver": {
       "activation": {
         "onKeyword": [
+          "claude",
+          "improver",
           "audit",
           "improve",
-          "claude",
           "files",
           "repositories",
           "user",
@@ -728,8 +710,7 @@
           "outputs",
           "report",
           "makes",
-          "targeted",
-          "updates"
+          "targeted"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -798,8 +779,6 @@
           "workloads",
           "clickhouse database patterns",
           "query optimization",
-          "and data engineering",
-          "best practices for",
           "high-performance analytical"
         ],
         "onIntent": [
@@ -820,12 +799,12 @@
     "code-connect-components": {
       "activation": {
         "onKeyword": [
+          "code",
+          "connect",
+          "components",
           "connects",
           "figma",
           "design",
-          "components",
-          "code",
-          "connect",
           "user",
           "says",
           "component",
@@ -855,9 +834,9 @@
     "coding-standards": {
       "activation": {
         "onKeyword": [
-          "universal",
           "coding",
           "standards",
+          "universal",
           "best",
           "practices",
           "patterns",
@@ -868,8 +847,6 @@
           "development",
           "universal coding standards",
           "best practices",
-          "and patterns for",
-          "and node",
           "js development"
         ],
         "onIntent": [
@@ -893,12 +870,13 @@
     "command-development": {
       "activation": {
         "onKeyword": [
+          "command",
+          "development",
           "skill",
           "user",
           "asks",
           "create",
           "slash",
-          "command",
           "add",
           "write",
           "custom",
@@ -911,8 +889,7 @@
           "references",
           "interactive",
           "askuserquestion",
-          "needs",
-          "guidance"
+          "needs"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -928,10 +905,10 @@
     "common-ground": {
       "activation": {
         "onKeyword": [
-          "hypotheses",
-          "assumptions",
           "common",
           "ground",
+          "hypotheses",
+          "assumptions",
           "pars",
           "principe",
           "validate",
@@ -956,6 +933,8 @@
     "compliance-routing": {
       "activation": {
         "onKeyword": [
+          "compliance",
+          "routing",
           "rgpd",
           "gdpr",
           "pci-dss",
@@ -968,10 +947,8 @@
           "payments",
           "e-commerce",
           "health",
-          "compliance",
           "regulatory",
           "detection",
-          "routing",
           "code",
           "touches",
           "children",
@@ -994,6 +971,8 @@
     "configure-atum": {
       "activation": {
         "onKeyword": [
+          "configure",
+          "atum",
           "interactive",
           "installer",
           "everything",
@@ -1011,9 +990,7 @@
           "verifies",
           "paths",
           "optionally",
-          "optimizes",
-          "installed",
-          "files"
+          "optimizes"
         ],
         "onIntent": [
           "user says \"configure ecc\", \"install ecc\", \"setup everything claude code\", or similar",
@@ -1034,9 +1011,10 @@
     "content-engine": {
       "activation": {
         "onKeyword": [
+          "content",
+          "engine",
           "create",
           "platform-native",
-          "content",
           "systems",
           "linkedin",
           "tiktok",
@@ -1052,8 +1030,7 @@
           "threads",
           "scripts",
           "calendars",
-          "one",
-          "source"
+          "one"
         ],
         "onIntent": [
           "writing x posts or threads",
@@ -1075,25 +1052,23 @@
     "content-hash-cache-pattern": {
       "activation": {
         "onKeyword": [
+          "content",
+          "hash",
           "cache",
+          "pattern",
           "expensive",
           "file",
           "processing",
           "results",
           "sha-256",
-          "content",
           "hashes",
           "path-independent",
           "auto-invalidating",
           "service",
           "layer",
           "separation",
-          "hash",
-          "pattern",
           "cache expensive file",
-          "processing results using",
-          "sha-256 content",
-          "with service layer"
+          "sha-256 content"
         ],
         "onIntent": [
           "building file processing pipelines (pdf, images, text extraction)",
@@ -1115,6 +1090,8 @@
       "activation": {
         "onKeyword": [
           "context",
+          "engineering",
+          "kit",
           "window",
           "degradation",
           "sub-agent",
@@ -1131,9 +1108,7 @@
           "tasks",
           "structured",
           "agents",
-          "prevents",
-          "hallucination",
-          "accumulated"
+          "prevents"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -1151,21 +1126,18 @@
     "continuous-agent-loop": {
       "activation": {
         "onKeyword": [
-          "patterns",
           "continuous",
-          "autonomous",
           "agent",
+          "loop",
+          "patterns",
+          "autonomous",
           "loops",
           "quality",
           "gates",
           "evals",
           "recovery",
           "controls",
-          "loop",
-          "patterns for continuous",
-          "autonomous agent loops",
-          "with quality gates",
-          "and recovery controls"
+          "autonomous agent loops"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -1181,6 +1153,8 @@
     "continuous-learning": {
       "activation": {
         "onKeyword": [
+          "continuous",
+          "learning",
           "automatically",
           "extract",
           "reusable",
@@ -1192,14 +1166,7 @@
           "learned",
           "skills",
           "future",
-          "continuous",
-          "learning",
-          "automatically extract reusable",
-          "patterns from claude",
-          "code sessions and",
-          "save them as",
-          "learned skills for",
-          "future use"
+          "automatically extract reusable"
         ],
         "onIntent": [
           "setting up automatic pattern extraction from claude code sessions",
@@ -1221,8 +1188,9 @@
     "continuous-learning-v2": {
       "activation": {
         "onKeyword": [
-          "instinct-based",
+          "continuous",
           "learning",
+          "instinct-based",
           "system",
           "observes",
           "sessions",
@@ -1239,8 +1207,7 @@
           "agents",
           "adds",
           "project-scoped",
-          "prevent",
-          "cross-project"
+          "prevent"
         ],
         "onIntent": [
           "setting up automatic learning from claude code sessions",
@@ -1265,9 +1232,11 @@
       "activation": {
         "onKeyword": [
           "cost",
+          "aware",
+          "llm",
+          "pipeline",
           "optimization",
           "patterns",
-          "llm",
           "api",
           "usage",
           "model",
@@ -1280,10 +1249,8 @@
           "logic",
           "prompt",
           "caching",
-          "aware",
-          "pipeline",
           "cost optimization patterns",
-          "for llm api"
+          "task complexity"
         ],
         "onIntent": [
           "building applications that call llm apis (claude, gpt, etc.)",
@@ -1304,6 +1271,7 @@
     "cpp-coding-standards": {
       "activation": {
         "onKeyword": [
+          "cpp",
           "coding",
           "standards",
           "core",
@@ -1319,11 +1287,7 @@
           "safe",
           "idiomatic",
           "practices",
-          "cpp",
-          "coding standards based",
-          "on the c",
-          "core guidelines",
-          "use when writing"
+          "core guidelines"
         ],
         "onIntent": [
           "writing new c++ code (classes, functions, templates)",
@@ -1348,6 +1312,8 @@
     "cpp-testing": {
       "activation": {
         "onKeyword": [
+          "cpp",
+          "testing",
           "writing",
           "updating",
           "fixing",
@@ -1361,12 +1327,8 @@
           "adding",
           "coverage",
           "sanitizers",
-          "cpp",
-          "testing",
-          "use only when",
           "fixing c",
           "configuring googletest",
-          "diagnosing failing or",
           "flaky tests"
         ],
         "onIntent": [
@@ -1390,15 +1352,15 @@
     "create-design-system-rules": {
       "activation": {
         "onKeyword": [
-          "generates",
-          "custom",
+          "create",
           "design",
           "system",
           "rules",
+          "generates",
+          "custom",
           "user",
           "codebase",
           "says",
-          "create",
           "generate",
           "project",
           "set",
@@ -1426,13 +1388,13 @@
       "activation": {
         "onKeyword": [
           "database",
+          "migrations",
           "migration",
           "best",
           "practices",
           "schema",
           "changes",
           "data",
-          "migrations",
           "rollbacks",
           "zero-downtime",
           "deployments",
@@ -1465,8 +1427,9 @@
     "ddia-systems": {
       "activation": {
         "onKeyword": [
-          "data",
+          "ddia",
           "systems",
+          "data",
           "replication",
           "partitioning",
           "consistency",
@@ -1483,8 +1446,7 @@
           "understanding",
           "transactions",
           "models",
-          "user",
-          "mentions"
+          "user"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -1512,12 +1474,7 @@
           "production",
           "app",
           "live",
-          "deploy applications to",
-          "use when the",
           "user says",
-          "deploy to vercel",
-          "push to production",
-          "deploy my app",
           "go live"
         ],
         "onIntent": [],
@@ -1535,9 +1492,9 @@
       "activation": {
         "onKeyword": [
           "deployment",
+          "patterns",
           "workflows",
           "pipeline",
-          "patterns",
           "docker",
           "containerization",
           "health",
@@ -1572,6 +1529,8 @@
     "design-doc-mermaid": {
       "activation": {
         "onKeyword": [
+          "design",
+          "doc",
           "mermaid",
           "diagram",
           "architecture",
@@ -1579,8 +1538,6 @@
           "activity",
           "deployment",
           "code",
-          "design",
-          "doc",
           "create",
           "diagrams",
           "text",
@@ -1610,6 +1567,9 @@
     "dispatching-parallel-agents": {
       "activation": {
         "onKeyword": [
+          "dispatching",
+          "parallel",
+          "agents",
           "facing",
           "independent",
           "tasks",
@@ -1618,15 +1578,7 @@
           "shared",
           "state",
           "sequential",
-          "dependencies",
-          "dispatching",
-          "parallel",
-          "agents",
-          "use when facing",
-          "independent tasks that",
-          "can be worked",
-          "on without shared",
-          "state or sequential"
+          "dependencies"
         ],
         "onIntent": [
           "3+ test files failing with different root causes",
@@ -1651,8 +1603,8 @@
       "activation": {
         "onKeyword": [
           "django",
-          "architecture",
           "patterns",
+          "architecture",
           "rest",
           "api",
           "design",
@@ -1667,9 +1619,8 @@
           "apps",
           "django architecture patterns",
           "rest api design",
-          "with drf",
           "orm best practices",
-          "and production-grade"
+          "django apps"
         ],
         "onIntent": [
           "building django web applications",
@@ -1711,8 +1662,7 @@
           "django security best",
           "csrf protection",
           "sql injection prevention",
-          "xss prevention",
-          "and secure deployment"
+          "xss prevention"
         ],
         "onIntent": [
           "setting up django authentication and authori"
@@ -1731,10 +1681,10 @@
       "activation": {
         "onKeyword": [
           "django",
+          "tdd",
           "testing",
           "strategies",
           "pytest-django",
-          "tdd",
           "methodology",
           "factory",
           "boy",
@@ -1744,9 +1694,7 @@
           "framework",
           "apis",
           "django testing strategies",
-          "with pytest-django",
           "tdd methodology",
-          "and testing django",
           "rest framework apis"
         ],
         "onIntent": [
@@ -1767,9 +1715,9 @@
     "django-verification": {
       "activation": {
         "onKeyword": [
+          "django",
           "verification",
           "loop",
-          "django",
           "projects",
           "migrations",
           "linting",
@@ -1781,12 +1729,8 @@
           "readiness",
           "checks",
           "release",
-          "verification loop for",
           "django projects",
-          "tests with coverage",
-          "security scans",
-          "and deployment readiness",
-          "checks before release"
+          "security scans"
         ],
         "onIntent": [
           "before opening a pull request for a django project",
@@ -1809,8 +1753,8 @@
       "activation": {
         "onKeyword": [
           "docker",
-          "compose",
           "patterns",
+          "compose",
           "local",
           "development",
           "container",
@@ -1820,12 +1764,9 @@
           "strategies",
           "multi-service",
           "orchestration",
-          "docker and docker",
-          "compose patterns for",
           "local development",
           "container security",
-          "volume strategies",
-          "and multi-service"
+          "volume strategies"
         ],
         "onIntent": [
           "setting up docker compose for local development",
@@ -1846,9 +1787,9 @@
     "docx": {
       "activation": {
         "onKeyword": [
+          "docx",
           "word",
           "document",
-          "docx",
           "doc",
           "tables",
           "contents",
@@ -1886,6 +1827,8 @@
       "activation": {
         "onKeyword": [
           "domain",
+          "driven",
+          "design",
           "modeling",
           "bounded",
           "context",
@@ -1902,9 +1845,7 @@
           "model",
           "software",
           "around",
-          "business",
-          "contexts",
-          "aggregates"
+          "business"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -1923,9 +1864,9 @@
     "e2e-testing": {
       "activation": {
         "onKeyword": [
-          "playwright",
           "e2e",
           "testing",
+          "playwright",
           "patterns",
           "page",
           "object",
@@ -1940,8 +1881,7 @@
           "playwright e2e testing",
           "page object model",
           "cd integration",
-          "artifact management",
-          "and flaky test"
+          "artifact management"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -1957,21 +1897,19 @@
     "enterprise-agent-ops": {
       "activation": {
         "onKeyword": [
+          "enterprise",
+          "agent",
+          "ops",
           "operate",
           "long-lived",
-          "agent",
           "workloads",
           "observability",
           "security",
           "boundaries",
           "lifecycle",
           "management",
-          "enterprise",
-          "ops",
           "operate long-lived",
-          "agent workloads with",
-          "security boundaries",
-          "and lifecycle management"
+          "security boundaries"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -1987,6 +1925,8 @@
     "eval-harness": {
       "activation": {
         "onKeyword": [
+          "eval",
+          "harness",
           "formal",
           "evaluation",
           "framework",
@@ -1998,10 +1938,7 @@
           "development",
           "edd",
           "principles",
-          "eval",
-          "harness",
           "formal evaluation framework",
-          "for claude code",
           "sessions implementing eval",
           "driven development"
         ],
@@ -2025,6 +1962,8 @@
     "executing-plans": {
       "activation": {
         "onKeyword": [
+          "executing",
+          "plans",
           "written",
           "implementation",
           "plan",
@@ -2033,13 +1972,6 @@
           "session",
           "review",
           "checkpoints",
-          "executing",
-          "plans",
-          "use when you",
-          "have a written",
-          "implementation plan to",
-          "execute in a",
-          "separate session with",
           "review checkpoints"
         ],
         "onIntent": [],
@@ -2056,6 +1988,9 @@
     "finishing-a-development-branch": {
       "activation": {
         "onKeyword": [
+          "finishing",
+          "development",
+          "branch",
           "implementation",
           "complete",
           "tests",
@@ -2065,17 +2000,12 @@
           "work",
           "guides",
           "completion",
-          "development",
           "presenting",
           "structured",
           "options",
           "merge",
           "cleanup",
-          "finishing",
-          "branch",
-          "use when implementation",
-          "is complete",
-          "all tests pass"
+          "presenting structured options"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2108,6 +2038,9 @@
     "foundation-models-on-device": {
       "activation": {
         "onKeyword": [
+          "foundation",
+          "models",
+          "device",
           "apple",
           "foundationmodels",
           "framework",
@@ -2122,12 +2055,9 @@
           "snapshot",
           "streaming",
           "ios",
-          "foundation",
-          "models",
-          "device",
           "apple foundationmodels framework",
-          "for on-device",
-          "text generation"
+          "text generation",
+          "tool calling"
         ],
         "onIntent": [
           "building ai-powered features using apple intelligence on-device",
@@ -2147,6 +2077,7 @@
       "activation": {
         "onKeyword": [
           "fresh",
+          "execute",
           "context",
           "decompose",
           "feature",
@@ -2156,16 +2087,13 @@
           "session",
           "atomic",
           "tasks",
-          "execute",
           "complex",
           "per",
           "sub-task",
           "prevent",
           "quality",
-          "execute a complex",
-          "feature with fresh",
           "context per sub",
-          "task to prevent"
+          "quality degradation"
         ],
         "onIntent": [
           "feature requires 3+ distinct changes across multiple files",
@@ -2188,13 +2116,13 @@
     "frontend-design": {
       "activation": {
         "onKeyword": [
+          "frontend",
+          "design",
           "create",
           "distinctive",
           "production-grade",
-          "frontend",
           "interfaces",
           "high",
-          "design",
           "quality",
           "skill",
           "user",
@@ -2224,8 +2152,8 @@
       "activation": {
         "onKeyword": [
           "frontend",
-          "development",
           "patterns",
+          "development",
           "react",
           "next",
           "state",
@@ -2235,10 +2163,8 @@
           "best",
           "practices",
           "frontend development patterns",
-          "for react",
           "state management",
-          "performance optimization",
-          "and ui best"
+          "performance optimization"
         ],
         "onIntent": [
           "building react components (composition, props, rendering)",
@@ -2257,6 +2183,8 @@
     "frontend-slides": {
       "activation": {
         "onKeyword": [
+          "frontend",
+          "slides",
           "create",
           "stunning",
           "animation-rich",
@@ -2274,9 +2202,7 @@
           "ppt",
           "pptx",
           "web",
-          "slides",
-          "talk",
-          "pitch"
+          "talk"
         ],
         "onIntent": [
           "creating a talk deck, pitch deck, workshop deck, or internal presentation",
@@ -2298,8 +2224,9 @@
       "activation": {
         "onKeyword": [
           "generate",
-          "project",
           "status",
+          "report",
+          "project",
           "reports",
           "jira",
           "issues",
@@ -2308,7 +2235,6 @@
           "claude",
           "needs",
           "create",
-          "report",
           "summarize",
           "progress",
           "updates",
@@ -2332,8 +2258,9 @@
     "golang-patterns": {
       "activation": {
         "onKeyword": [
-          "idiomatic",
+          "golang",
           "patterns",
+          "idiomatic",
           "best",
           "practices",
           "conventions",
@@ -2342,12 +2269,9 @@
           "efficient",
           "maintainable",
           "applications",
-          "golang",
           "idiomatic go patterns",
           "best practices",
-          "and conventions for",
-          "building robust",
-          "and maintainable go"
+          "building robust"
         ],
         "onIntent": [
           "writing new go code",
@@ -2370,6 +2294,7 @@
     "golang-testing": {
       "activation": {
         "onKeyword": [
+          "golang",
           "testing",
           "patterns",
           "table-driven",
@@ -2384,12 +2309,8 @@
           "methodology",
           "idiomatic",
           "practices",
-          "golang",
           "go testing patterns",
-          "including table-driven",
-          "and test coverage",
-          "follows tdd methodology",
-          "with idiomatic go"
+          "follows tdd methodology"
         ],
         "onIntent": [
           "writing new go functions or methods",
@@ -2412,6 +2333,9 @@
     "high-perf-browser": {
       "activation": {
         "onKeyword": [
+          "high",
+          "perf",
+          "browser",
           "page",
           "load",
           "speed",
@@ -2428,10 +2352,7 @@
           "performance",
           "caching",
           "tcp",
-          "optimization",
-          "optimize",
-          "protocols",
-          "loading"
+          "optimization"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2450,11 +2371,12 @@
     "hook-development": {
       "activation": {
         "onKeyword": [
+          "hook",
+          "development",
           "skill",
           "user",
           "asks",
           "create",
-          "hook",
           "add",
           "pretooluse",
           "posttooluse",
@@ -2468,8 +2390,7 @@
           "plugin",
           "root",
           "set",
-          "event-driven",
-          "automation"
+          "event-driven"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2485,12 +2406,12 @@
     "hugging-face-cli": {
       "activation": {
         "onKeyword": [
-          "execute",
           "hugging",
           "face",
+          "cli",
+          "execute",
           "hub",
           "operations",
-          "cli",
           "user",
           "needs",
           "download",
@@ -2520,11 +2441,11 @@
     "hugging-face-datasets": {
       "activation": {
         "onKeyword": [
-          "create",
-          "manage",
-          "datasets",
           "hugging",
           "face",
+          "datasets",
+          "create",
+          "manage",
           "hub",
           "supports",
           "initializing",
@@ -2555,12 +2476,12 @@
     "hugging-face-evaluation": {
       "activation": {
         "onKeyword": [
-          "add",
-          "manage",
-          "evaluation",
-          "results",
           "hugging",
           "face",
+          "evaluation",
+          "add",
+          "manage",
+          "results",
           "model",
           "cards",
           "supports",
@@ -2590,14 +2511,14 @@
     "hugging-face-jobs": {
       "activation": {
         "onKeyword": [
+          "hugging",
+          "face",
+          "jobs",
           "skill",
           "users",
           "want",
           "run",
           "workload",
-          "hugging",
-          "face",
-          "jobs",
           "infrastructure",
           "covers",
           "scripts",
@@ -2625,6 +2546,10 @@
     "hugging-face-model-trainer": {
       "activation": {
         "onKeyword": [
+          "hugging",
+          "face",
+          "model",
+          "trainer",
           "skill",
           "users",
           "want",
@@ -2636,15 +2561,11 @@
           "transformer",
           "reinforcement",
           "learning",
-          "hugging",
-          "face",
           "jobs",
           "infrastructure",
           "covers",
           "sft",
-          "dpo",
-          "grpo",
-          "reward"
+          "dpo"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2660,16 +2581,17 @@
     "hugging-face-paper-publisher": {
       "activation": {
         "onKeyword": [
+          "hugging",
+          "face",
+          "paper",
+          "publisher",
           "publish",
           "manage",
           "research",
           "papers",
-          "hugging",
-          "face",
           "hub",
           "supports",
           "creating",
-          "paper",
           "pages",
           "linking",
           "models",
@@ -2678,8 +2600,7 @@
           "authorship",
           "generating",
           "professional",
-          "markdown-based",
-          "articles"
+          "markdown-based"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2695,17 +2616,18 @@
     "hugging-face-tool-builder": {
       "activation": {
         "onKeyword": [
+          "hugging",
+          "face",
+          "tool",
+          "builder",
           "skill",
           "user",
           "wants",
           "build",
-          "tool",
           "scripts",
           "achieve",
           "task",
           "data",
-          "hugging",
-          "face",
           "api",
           "help",
           "especially",
@@ -2713,8 +2635,7 @@
           "chaining",
           "combining",
           "calls",
-          "repeated",
-          "automated"
+          "repeated"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2730,11 +2651,13 @@
     "hugging-face-trackio": {
       "activation": {
         "onKeyword": [
+          "hugging",
+          "face",
+          "trackio",
           "track",
           "visualize",
           "training",
           "experiments",
-          "trackio",
           "logging",
           "metrics",
           "python",
@@ -2747,9 +2670,7 @@
           "real-time",
           "dashboard",
           "visualization",
-          "space",
-          "syncing",
-          "json"
+          "space"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2766,6 +2687,8 @@
       "activation": {
         "onKeyword": [
           "image",
+          "guard",
+          "rules",
           "dimensions",
           "screenshot",
           "resize",
@@ -2777,14 +2700,12 @@
           "blocking",
           "dimension",
           "management",
-          "rules",
           "prevent",
           "applies",
           "sources",
           "browser",
           "screenshots",
-          "adb",
-          "captures"
+          "adb"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2802,6 +2723,8 @@
     "implement-design": {
       "activation": {
         "onKeyword": [
+          "implement",
+          "design",
           "translates",
           "figma",
           "designs",
@@ -2813,8 +2736,6 @@
           "files",
           "user",
           "mentions",
-          "implement",
-          "design",
           "generate",
           "component",
           "build",
@@ -2837,19 +2758,19 @@
     "investor-materials": {
       "activation": {
         "onKeyword": [
+          "investor",
+          "materials",
           "create",
           "update",
           "pitch",
           "decks",
           "one-pagers",
-          "investor",
           "memos",
           "accelerator",
           "applications",
           "financial",
           "models",
           "fundraising",
-          "materials",
           "user",
           "needs",
           "investor-facing",
@@ -2878,6 +2799,8 @@
     "investor-outreach": {
       "activation": {
         "onKeyword": [
+          "investor",
+          "outreach",
           "draft",
           "cold",
           "emails",
@@ -2886,12 +2809,10 @@
           "blurbs",
           "follow-ups",
           "update",
-          "investor",
           "communications",
           "fundraising",
           "user",
           "wants",
-          "outreach",
           "angels",
           "vcs",
           "strategic",
@@ -2919,18 +2840,16 @@
     "iterative-retrieval": {
       "activation": {
         "onKeyword": [
+          "iterative",
+          "retrieval",
           "pattern",
           "progressively",
           "refining",
           "context",
-          "retrieval",
           "solve",
           "subagent",
           "problem",
-          "iterative",
-          "pattern for progressively",
           "refining context retrieval",
-          "to solve the",
           "subagent context problem"
         ],
         "onIntent": [
@@ -2969,9 +2888,7 @@
           "project",
           "layout",
           "java coding standards",
-          "for spring boot",
-          "optional usage",
-          "and project layout"
+          "optional usage"
         ],
         "onIntent": [
           "writing or reviewing java code in spring boot projects",
@@ -2993,6 +2910,8 @@
     "jobs-to-be-done": {
       "activation": {
         "onKeyword": [
+          "jobs",
+          "done",
           "customer",
           "discovery",
           "why",
@@ -3010,9 +2929,7 @@
           "discover",
           "truly",
           "analyzing",
-          "hire",
-          "product",
-          "user"
+          "hire"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3032,8 +2949,8 @@
       "activation": {
         "onKeyword": [
           "jpa",
-          "hibernate",
           "patterns",
+          "hibernate",
           "entity",
           "design",
           "relationships",
@@ -3046,10 +2963,8 @@
           "pooling",
           "spring",
           "boot",
-          "hibernate patterns for",
           "entity design",
           "query optimization",
-          "and pooling in",
           "spring boot"
         ],
         "onIntent": [
@@ -3070,10 +2985,10 @@
     "liquid-glass-design": {
       "activation": {
         "onKeyword": [
-          "ios",
           "liquid",
           "glass",
           "design",
+          "ios",
           "system",
           "dynamic",
           "material",
@@ -3086,10 +3001,7 @@
           "widgetkit",
           "ios 26 liquid",
           "glass design system",
-          "dynamic glass material",
-          "with blur",
-          "and interactive morphing",
-          "for swiftui"
+          "dynamic glass material"
         ],
         "onIntent": [
           "building or updating apps for ios 26+ with the new design language",
@@ -3111,10 +3023,10 @@
     "logs": {
       "activation": {
         "onKeyword": [
+          "logs",
           "view",
           "vercel",
           "deployment",
-          "logs",
           "user",
           "says",
           "show",
@@ -3122,13 +3034,10 @@
           "went",
           "wrong",
           "view vercel deployment",
-          "use when the",
           "user says",
           "show logs",
           "check logs",
-          "vercel logs",
-          "what went wrong",
-          "with the deployment"
+          "vercel logs"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3144,9 +3053,9 @@
     "market-research": {
       "activation": {
         "onKeyword": [
-          "conduct",
           "market",
           "research",
+          "conduct",
           "competitive",
           "analysis",
           "investor",
@@ -3185,8 +3094,9 @@
     "mcp-builder": {
       "activation": {
         "onKeyword": [
-          "build",
           "mcp",
+          "builder",
+          "build",
           "server",
           "create",
           "scaffold",
@@ -3203,8 +3113,7 @@
           "test",
           "evaluate",
           "scope",
-          "guided",
-          "creation"
+          "guided"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3222,11 +3131,12 @@
     "mcp-integration": {
       "activation": {
         "onKeyword": [
+          "mcp",
+          "integration",
           "skill",
           "user",
           "asks",
           "add",
-          "mcp",
           "server",
           "integrate",
           "configure",
@@ -3240,8 +3150,7 @@
           "external",
           "service",
           "mentions",
-          "claude",
-          "root"
+          "claude"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3294,14 +3203,14 @@
     "mom-test": {
       "activation": {
         "onKeyword": [
+          "mom",
+          "test",
           "customer",
           "interviews",
           "validate",
           "idea",
           "leading",
           "questions",
-          "mom",
-          "test",
           "conversations",
           "user",
           "research",
@@ -3345,12 +3254,7 @@
           "monorepos",
           "project",
           "config",
-          "conventions et patterns",
-          "pour monorepos",
-          "pnpm workspaces",
-          "use when project",
-          "has turbo",
-          "or workspace config"
+          "pnpm workspaces"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3368,20 +3272,18 @@
     "nanoclaw-repl": {
       "activation": {
         "onKeyword": [
+          "nanoclaw",
+          "repl",
           "operate",
           "extend",
-          "nanoclaw",
           "ecc",
           "zero-dependency",
           "session-aware",
-          "repl",
           "built",
           "claude",
-          "operate and extend",
           "nanoclaw v2",
           "s zero-dependency",
-          "session-aware repl",
-          "built on claude"
+          "session-aware repl"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3397,6 +3299,8 @@
     "no-code-maestro": {
       "activation": {
         "onKeyword": [
+          "code",
+          "maestro",
           "no-code",
           "com",
           "airtable",
@@ -3407,16 +3311,14 @@
           "webhook",
           "workflow",
           "automatise",
-          "maestro",
           "integromat",
           "competences",
           "alignees",
           "scenarios",
           "blueprints",
           "workflows",
-          "code",
           "competences no-code",
-          "alignees sur maestro"
+          "no-code x"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3434,6 +3336,9 @@
     "nutrient-document-processing": {
       "activation": {
         "onKeyword": [
+          "nutrient",
+          "document",
+          "processing",
           "process",
           "convert",
           "ocr",
@@ -3442,7 +3347,6 @@
           "sign",
           "fill",
           "documents",
-          "nutrient",
           "dws",
           "api",
           "works",
@@ -3451,9 +3355,7 @@
           "xlsx",
           "pptx",
           "html",
-          "images",
-          "document",
-          "processing"
+          "images"
         ],
         "onIntent": [
           "converting documents between formats (pdf, docx, xlsx, pptx, html, images)",
@@ -3477,6 +3379,8 @@
     "open-source-license-compliance": {
       "activation": {
         "onKeyword": [
+          "open",
+          "source",
           "license",
           "compliance",
           "open-source",
@@ -3494,9 +3398,7 @@
           "reviewing",
           "compatibility",
           "checking",
-          "contamination",
-          "generating",
-          "reports"
+          "contamination"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3554,11 +3456,11 @@
     "plankton-code-quality": {
       "activation": {
         "onKeyword": [
-          "write-time",
+          "plankton",
           "code",
           "quality",
+          "write-time",
           "enforcement",
-          "plankton",
           "auto-formatting",
           "linting",
           "claude-powered",
@@ -3568,9 +3470,6 @@
           "via",
           "hooks",
           "write-time code",
-          "quality enforcement using",
-          "and claude-powered",
-          "fixes on every",
           "file edit via"
         ],
         "onIntent": [
@@ -3592,6 +3491,7 @@
     "playground": {
       "activation": {
         "onKeyword": [
+          "playground",
           "creates",
           "interactive",
           "html",
@@ -3610,8 +3510,7 @@
           "preview",
           "copy",
           "prompt",
-          "user",
-          "asks"
+          "user"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3627,11 +3526,11 @@
     "plugin-settings": {
       "activation": {
         "onKeyword": [
+          "plugin",
+          "settings",
           "skill",
           "user",
           "asks",
-          "plugin",
-          "settings",
           "store",
           "configuration",
           "user-configurable",
@@ -3662,14 +3561,14 @@
     "plugin-structure": {
       "activation": {
         "onKeyword": [
+          "plugin",
+          "structure",
           "skill",
           "user",
           "asks",
           "create",
-          "plugin",
           "scaffold",
           "understand",
-          "structure",
           "organize",
           "components",
           "set",
@@ -3697,9 +3596,10 @@
     "postgres-patterns": {
       "activation": {
         "onKeyword": [
+          "postgres",
+          "patterns",
           "postgresql",
           "database",
-          "patterns",
           "query",
           "optimization",
           "schema",
@@ -3709,12 +3609,8 @@
           "supabase",
           "best",
           "practices",
-          "postgres",
           "postgresql database patterns",
-          "for query optimization",
           "schema design",
-          "and security",
-          "based on supabase",
           "best practices"
         ],
         "onIntent": [
@@ -3737,11 +3633,11 @@
     "posthog-instrumentation": {
       "activation": {
         "onKeyword": [
+          "posthog",
+          "instrumentation",
           "automatically",
           "add",
-          "posthog",
           "analytics",
-          "instrumentation",
           "code",
           "triggers",
           "user",
@@ -3754,9 +3650,8 @@
           "flags",
           "codebase",
           "automatically add posthog",
-          "analytics instrumentation to",
-          "triggers when user",
-          "asks to add"
+          "instrument events",
+          "add analytics"
         ],
         "onIntent": [
           "user asks to \"add posthog\" or \"add analytics\"",
@@ -3814,10 +3709,10 @@
     "pptx": {
       "activation": {
         "onKeyword": [
+          "pptx",
           "powerpoint",
           "presentation",
           "slides",
-          "pptx",
           "slide",
           "deck",
           "charts",
@@ -3853,6 +3748,8 @@
     "project-guidelines-example": {
       "activation": {
         "onKeyword": [
+          "project",
+          "guidelines",
           "example",
           "project-specific",
           "skill",
@@ -3860,11 +3757,7 @@
           "real",
           "production",
           "application",
-          "project",
-          "guidelines",
           "example project-specific",
-          "skill template based",
-          "on a real",
           "production application"
         ],
         "onIntent": [
@@ -3887,8 +3780,9 @@
     "project-patterns": {
       "activation": {
         "onKeyword": [
-          "skeleton",
           "project",
+          "patterns",
+          "skeleton",
           "b12",
           "website",
           "template",
@@ -3898,15 +3792,14 @@
           "response",
           "scaffold",
           "common",
-          "patterns",
           "projects",
           "generation",
           "index",
           "format",
           "common project patterns",
-          "including skeleton projects",
           "b12 website generation",
-          "template index"
+          "template index",
+          "repository pattern"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3926,6 +3819,7 @@
       "activation": {
         "onKeyword": [
           "prompt",
+          "architect",
           "engineering",
           "co-star",
           "risen",
@@ -3943,8 +3837,7 @@
           "rise-ix",
           "tidd-ec",
           "rtf",
-          "density",
-          "provides"
+          "density"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3962,8 +3855,9 @@
     "property-based-testing": {
       "activation": {
         "onKeyword": [
-          "property-based",
+          "property",
           "testing",
+          "property-based",
           "hypothesis",
           "quickcheck",
           "fuzzing",
@@ -3980,8 +3874,7 @@
           "contracts",
           "writing",
           "tests",
-          "reviewing",
-          "code"
+          "reviewing"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3999,6 +3892,8 @@
     "python-patterns": {
       "activation": {
         "onKeyword": [
+          "python",
+          "patterns",
           "pythonic",
           "idioms",
           "pep",
@@ -4011,14 +3906,10 @@
           "robust",
           "efficient",
           "maintainable",
-          "python",
           "applications",
-          "patterns",
           "pythonic idioms",
           "pep 8 standards",
-          "type hints",
-          "and best practices",
-          "for building robust"
+          "type hints"
         ],
         "onIntent": [
           "writing new python code",
@@ -4053,9 +3944,7 @@
           "coverage",
           "requirements",
           "python testing strategies",
-          "using pytest",
-          "tdd methodology",
-          "and coverage requirements"
+          "tdd methodology"
         ],
         "onIntent": [
           "writing new python code (follow tdd: red, green, refactor)",
@@ -4077,6 +3966,7 @@
       "activation": {
         "onKeyword": [
           "rag",
+          "architect",
           "retrieval-augmented",
           "generation",
           "vector",
@@ -4094,8 +3984,7 @@
           "systems",
           "databases",
           "knowledge-grounded",
-          "applications",
-          "requiring"
+          "applications"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4116,6 +4005,9 @@
     "ralphinho-rfc-pipeline": {
       "activation": {
         "onKeyword": [
+          "ralphinho",
+          "rfc",
+          "pipeline",
           "rfc-driven",
           "multi-agent",
           "dag",
@@ -4128,14 +4020,9 @@
           "work",
           "unit",
           "orchestration",
-          "ralphinho",
-          "rfc",
-          "pipeline",
           "rfc-driven multi",
           "agent dag execution",
-          "pattern with quality",
-          "merge queues",
-          "and work unit"
+          "merge queues"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4170,7 +4057,7 @@
           "agreement",
           "blind",
           "implementation",
-          "use when receiving"
+          "code review feedback"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4186,6 +4073,7 @@
     "refactoring-ui": {
       "activation": {
         "onKeyword": [
+          "refactoring",
           "looks",
           "off",
           "fix",
@@ -4204,8 +4092,7 @@
           "web",
           "uis",
           "user",
-          "mentions",
-          "covers"
+          "mentions"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4224,26 +4111,21 @@
     "regex-vs-llm-structured-text": {
       "activation": {
         "onKeyword": [
+          "regex",
+          "llm",
+          "structured",
+          "text",
           "decision",
           "framework",
           "choosing",
-          "regex",
-          "llm",
           "parsing",
-          "structured",
-          "text",
           "start",
           "add",
           "low-confidence",
           "edge",
           "cases",
-          "decision framework for",
-          "choosing between regex",
-          "and llm when",
           "parsing structured text",
-          "start with regex",
-          "add llm only",
-          "for low-confidence"
+          "edge cases"
         ],
         "onIntent": [
           "parsing structured text with repeating patterns (questions, forms, tables)",
@@ -4283,7 +4165,7 @@
           "asks",
           "recent",
           "generate release notes",
-          "from git commits"
+          "given ref"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4301,6 +4183,9 @@
     "requesting-code-review": {
       "activation": {
         "onKeyword": [
+          "requesting",
+          "code",
+          "review",
           "completing",
           "tasks",
           "implementing",
@@ -4311,13 +4196,7 @@
           "work",
           "meets",
           "requirements",
-          "requesting",
-          "code",
-          "review",
-          "use when completing",
           "implementing major features",
-          "or before merging",
-          "to verify work",
           "meets requirements"
         ],
         "onIntent": [],
@@ -4372,6 +4251,7 @@
     "scheduler": {
       "activation": {
         "onKeyword": [
+          "scheduler",
           "day",
           "week",
           "jours",
@@ -4390,8 +4270,7 @@
           "planifi",
           "programm",
           "current",
-          "riodique",
-          "surveille"
+          "riodique"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4411,9 +4290,9 @@
       "activation": {
         "onKeyword": [
           "search",
-          "across",
           "company",
           "knowledge",
+          "across",
           "bases",
           "confluence",
           "jira",
@@ -4445,9 +4324,10 @@
     "search-first": {
       "activation": {
         "onKeyword": [
+          "search",
+          "first",
           "research-before-coding",
           "workflow",
-          "search",
           "existing",
           "tools",
           "libraries",
@@ -4458,11 +4338,7 @@
           "invokes",
           "researcher",
           "agent",
-          "first",
-          "search for existing",
-          "and patterns before",
-          "writing custom code",
-          "invokes the researcher"
+          "writing custom code"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4478,6 +4354,8 @@
     "security-review": {
       "activation": {
         "onKeyword": [
+          "security",
+          "review",
           "skill",
           "adding",
           "authentication",
@@ -4495,9 +4373,7 @@
           "features",
           "provides",
           "comprehensive",
-          "security",
-          "checklist",
-          "patterns"
+          "checklist"
         ],
         "onIntent": [
           "implementing authentication or authori"
@@ -4515,12 +4391,12 @@
     "security-scan": {
       "activation": {
         "onKeyword": [
+          "security",
           "scan",
           "claude",
           "code",
           "configuration",
           "directory",
-          "security",
           "vulnerabilities",
           "misconfigurations",
           "injection",
@@ -4534,7 +4410,7 @@
           "hooks",
           "agent",
           "definitions",
-          "scan your claude"
+          "code configuration"
         ],
         "onIntent": [
           "setting up a new claude code project",
@@ -4556,15 +4432,16 @@
     "sentry-code-review": {
       "activation": {
         "onKeyword": [
+          "sentry",
+          "code",
+          "review",
           "analyze",
           "resolve",
-          "sentry",
           "comments",
           "github",
           "pull",
           "requests",
           "asked",
-          "review",
           "fix",
           "issues",
           "identified",
@@ -4574,8 +4451,7 @@
           "automatically",
           "find",
           "recent",
-          "feedback",
-          "code"
+          "feedback"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4591,10 +4467,10 @@
     "sentry-ios-swift-setup": {
       "activation": {
         "onKeyword": [
-          "setup",
           "sentry",
           "ios",
           "swift",
+          "setup",
           "apps",
           "asked",
           "add",
@@ -4626,10 +4502,10 @@
     "sentry-setup-ai-monitoring": {
       "activation": {
         "onKeyword": [
-          "setup",
           "sentry",
-          "agent",
+          "setup",
           "monitoring",
+          "agent",
           "project",
           "asked",
           "add",
@@ -4661,8 +4537,8 @@
     "sentry-setup-logging": {
       "activation": {
         "onKeyword": [
-          "setup",
           "sentry",
+          "setup",
           "logging",
           "project",
           "asked",
@@ -4696,8 +4572,8 @@
     "sentry-setup-metrics": {
       "activation": {
         "onKeyword": [
-          "setup",
           "sentry",
+          "setup",
           "metrics",
           "project",
           "asked",
@@ -4731,8 +4607,8 @@
     "sentry-setup-tracing": {
       "activation": {
         "onKeyword": [
-          "setup",
           "sentry",
+          "setup",
           "tracing",
           "performance",
           "monitoring",
@@ -4766,6 +4642,7 @@
     "setup": {
       "activation": {
         "onKeyword": [
+          "setup",
           "set",
           "vercel",
           "cli",
@@ -4776,13 +4653,8 @@
           "configure",
           "link",
           "init",
-          "setup",
-          "set up vercel",
-          "cli and project",
-          "use when the",
           "user says",
           "configure vercel",
-          "link to vercel",
           "vercel init"
         ],
         "onIntent": [],
@@ -4799,6 +4671,8 @@
     "skill-creator": {
       "activation": {
         "onKeyword": [
+          "skill",
+          "creator",
           "create",
           "new",
           "skills",
@@ -4806,7 +4680,6 @@
           "improve",
           "existing",
           "measure",
-          "skill",
           "performance",
           "users",
           "want",
@@ -4817,8 +4690,7 @@
           "evals",
           "test",
           "benchmark",
-          "variance",
-          "analysis"
+          "variance"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4835,6 +4707,7 @@
       "activation": {
         "onKeyword": [
           "skill",
+          "development",
           "user",
           "wants",
           "create",
@@ -4851,7 +4724,6 @@
           "structure",
           "progressive",
           "disclosure",
-          "development",
           "best",
           "practices"
         ],
@@ -4869,6 +4741,8 @@
     "skill-stocktake": {
       "activation": {
         "onKeyword": [
+          "skill",
+          "stocktake",
           "auditing",
           "claude",
           "skills",
@@ -4879,16 +4753,13 @@
           "scan",
           "changed",
           "full",
-          "stocktake",
           "modes",
           "sequential",
           "subagent",
           "batch",
           "evaluation",
-          "skill",
-          "use when auditing",
-          "claude skills and",
-          "commands for quality"
+          "supports quick scan",
+          "subagent batch evaluation"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4904,6 +4775,8 @@
     "spec-miner": {
       "activation": {
         "onKeyword": [
+          "spec",
+          "miner",
           "reverse",
           "engineer",
           "legacy",
@@ -4921,9 +4794,7 @@
           "extracting",
           "specifications",
           "implementations",
-          "invoke",
-          "archaeology",
-          "features"
+          "invoke"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4943,6 +4814,8 @@
     "spec-to-backlog": {
       "activation": {
         "onKeyword": [
+          "spec",
+          "backlog",
           "automatically",
           "convert",
           "confluence",
@@ -4959,10 +4832,8 @@
           "create",
           "page",
           "generate",
-          "backlog",
           "break",
-          "down",
-          "spec"
+          "down"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4978,10 +4849,11 @@
     "springboot-patterns": {
       "activation": {
         "onKeyword": [
+          "springboot",
+          "patterns",
           "spring",
           "boot",
           "architecture",
-          "patterns",
           "rest",
           "api",
           "design",
@@ -4996,7 +4868,6 @@
           "java",
           "backend",
           "work",
-          "springboot",
           "spring boot architecture"
         ],
         "onIntent": [
@@ -5020,8 +4891,9 @@
     "springboot-security": {
       "activation": {
         "onKeyword": [
-          "spring",
+          "springboot",
           "security",
+          "spring",
           "best",
           "practices",
           "authn",
@@ -5036,10 +4908,9 @@
           "java",
           "boot",
           "services",
-          "springboot",
           "spring security best",
-          "practices for authn",
-          "rate limiting"
+          "rate limiting",
+          "boot services"
         ],
         "onIntent": [
           "adding authentication (jwt, oauth2, session-based)",
@@ -5058,6 +4929,8 @@
     "springboot-tdd": {
       "activation": {
         "onKeyword": [
+          "springboot",
+          "tdd",
           "test-driven",
           "development",
           "spring",
@@ -5072,12 +4945,8 @@
           "fixing",
           "bugs",
           "refactoring",
-          "springboot",
-          "tdd",
           "test-driven development",
-          "for spring boot",
-          "using junit 5",
-          "and jacoco"
+          "fixing bugs"
         ],
         "onIntent": [
           "new features or endpoints",
@@ -5097,6 +4966,7 @@
     "springboot-verification": {
       "activation": {
         "onKeyword": [
+          "springboot",
           "verification",
           "loop",
           "spring",
@@ -5112,11 +4982,9 @@
           "diff",
           "review",
           "release",
-          "springboot",
-          "verification loop for",
           "spring boot projects",
           "static analysis",
-          "tests with coverage"
+          "security scans"
         ],
         "onIntent": [
           "before opening a pull request for a spring boot service",
@@ -5139,6 +5007,7 @@
       "activation": {
         "onKeyword": [
           "sre",
+          "engineer",
           "site",
           "reliability",
           "slo",
@@ -5156,8 +5025,7 @@
           "capacity",
           "planning",
           "philosophy",
-          "definition",
-          "postmortems"
+          "definition"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5177,6 +5045,8 @@
     "strategic-compact": {
       "activation": {
         "onKeyword": [
+          "strategic",
+          "compact",
           "suggests",
           "manual",
           "context",
@@ -5189,13 +5059,7 @@
           "rather",
           "arbitrary",
           "auto-compaction",
-          "strategic",
-          "compact",
           "suggests manual context",
-          "compaction at logical",
-          "intervals to preserve",
-          "context through task",
-          "phases rather than",
           "arbitrary auto-compaction"
         ],
         "onIntent": [
@@ -5218,10 +5082,10 @@
     "stripe-best-practices": {
       "activation": {
         "onKeyword": [
+          "stripe",
           "best",
           "practices",
           "building",
-          "stripe",
           "integrations",
           "implementing",
           "payment",
@@ -5234,10 +5098,10 @@
           "platforms",
           "api",
           "integration",
-          "best practices for",
           "building stripe integrations",
-          "use when implementing",
-          "payment processing"
+          "payment processing",
+          "checkout flows",
+          "connect platforms"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5253,20 +5117,16 @@
     "subagent-driven-development": {
       "activation": {
         "onKeyword": [
+          "subagent",
+          "driven",
+          "development",
           "executing",
           "implementation",
           "plans",
           "independent",
           "tasks",
           "current",
-          "session",
-          "subagent",
-          "driven",
-          "development",
-          "use when executing",
-          "implementation plans with",
-          "independent tasks in",
-          "the current session"
+          "session"
         ],
         "onIntent": [
           "same session (no context switch)",
@@ -5289,8 +5149,9 @@
         "onKeyword": [
           "supply",
           "chain",
-          "dependency",
           "risk",
+          "auditor",
+          "dependency",
           "takeover",
           "typosquatting",
           "health",
@@ -5305,8 +5166,7 @@
           "attack",
           "surface",
           "evaluating",
-          "scoping",
-          "security"
+          "scoping"
         ],
         "onIntent": [
           "assessing dependency risk before a security audit",
@@ -5330,10 +5190,11 @@
     "swift-actor-persistence": {
       "activation": {
         "onKeyword": [
+          "swift",
+          "actor",
+          "persistence",
           "thread-safe",
           "data",
-          "persistence",
-          "swift",
           "actors",
           "in-memory",
           "cache",
@@ -5342,14 +5203,9 @@
           "eliminating",
           "races",
           "design",
-          "actor",
           "thread-safe data",
-          "persistence in swift",
-          "using actors",
           "in-memory cache",
-          "with file-backed",
-          "eliminating data races",
-          "by design"
+          "eliminating data races"
         ],
         "onIntent": [
           "building a data persistence layer in swift 5.5+",
@@ -5370,8 +5226,8 @@
       "activation": {
         "onKeyword": [
           "swift",
-          "approachable",
           "concurrency",
+          "approachable",
           "single-threaded",
           "default",
           "concurrent",
@@ -5385,10 +5241,8 @@
           "types",
           "swift 6",
           "2 approachable concurrency",
-          "single-threaded by",
-          "concurrent for explicit",
           "background offloading",
-          "isolated conformances for"
+          "main actor types"
         ],
         "onIntent": [
           "migrating swift 5.x or 6.0/6.1 projects to swift 6.2",
@@ -5411,11 +5265,13 @@
     "swift-protocol-di-testing": {
       "activation": {
         "onKeyword": [
+          "swift",
+          "protocol",
+          "testing",
           "protocol-based",
           "dependency",
           "injection",
           "testable",
-          "swift",
           "code",
           "mock",
           "file",
@@ -5425,10 +5281,7 @@
           "apis",
           "focused",
           "protocols",
-          "testing",
-          "protocol",
           "protocol-based dependency",
-          "injection for testable",
           "swift code",
           "mock file system"
         ],
@@ -5452,8 +5305,8 @@
       "activation": {
         "onKeyword": [
           "swiftui",
-          "architecture",
           "patterns",
+          "architecture",
           "state",
           "management",
           "observable",
@@ -5468,9 +5321,9 @@
           "best",
           "practices",
           "swiftui architecture patterns",
-          "state management with",
           "view composition",
-          "performance optimization"
+          "performance optimization",
+          "macos ui best"
         ],
         "onIntent": [
           "building swiftui views and managing state (`@state`, `@observable`, `@binding`)",
@@ -5530,6 +5383,8 @@
     "systematic-debugging": {
       "activation": {
         "onKeyword": [
+          "systematic",
+          "debugging",
           "encountering",
           "bug",
           "test",
@@ -5538,13 +5393,7 @@
           "behavior",
           "proposing",
           "fixes",
-          "systematic",
-          "debugging",
-          "use when encountering",
-          "any bug",
-          "test failure",
-          "or unexpected behavior",
-          "before proposing fixes"
+          "test failure"
         ],
         "onIntent": [
           "test failures",
@@ -5571,6 +5420,8 @@
     "tdd-workflow": {
       "activation": {
         "onKeyword": [
+          "tdd",
+          "workflow",
           "skill",
           "writing",
           "new",
@@ -5587,10 +5438,8 @@
           "integration",
           "e2e",
           "tests",
-          "tdd",
-          "workflow",
-          "use this skill",
-          "when writing new"
+          "fixing bugs",
+          "enforces test-driven"
         ],
         "onIntent": [
           "writing new features or functionality",
@@ -5612,11 +5461,12 @@
     "terminal-emulator": {
       "activation": {
         "onKeyword": [
+          "terminal",
+          "emulator",
           "test",
           "cli",
           "tui",
           "interactive",
-          "terminal",
           "simulate",
           "input",
           "tui-test",
@@ -5630,8 +5480,7 @@
           "arrow",
           "key",
           "navigation",
-          "command",
-          "requires"
+          "command"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5649,18 +5498,15 @@
     "test-driven-development": {
       "activation": {
         "onKeyword": [
+          "test",
+          "driven",
+          "development",
           "implementing",
           "feature",
           "bugfix",
           "writing",
           "implementation",
-          "code",
-          "test",
-          "driven",
-          "development",
-          "use when implementing",
-          "any feature or",
-          "before writing implementation"
+          "code"
         ],
         "onIntent": [
           "new features",
@@ -5684,8 +5530,8 @@
     "the-fool": {
       "activation": {
         "onKeyword": [
-          "play",
           "fool",
+          "play",
           "devil",
           "advocate",
           "challenge",
@@ -5723,8 +5569,9 @@
     "triage-issue": {
       "activation": {
         "onKeyword": [
-          "intelligently",
           "triage",
+          "issue",
+          "intelligently",
           "bug",
           "reports",
           "error",
@@ -5741,8 +5588,7 @@
           "existing",
           "ones",
           "claude",
-          "needs",
-          "report"
+          "needs"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5758,6 +5604,8 @@
     "ui-ux-pro-max": {
       "activation": {
         "onKeyword": [
+          "pro",
+          "max",
           "design",
           "intelligence",
           "styles",
@@ -5775,9 +5623,7 @@
           "flutter",
           "tailwind",
           "shadcn",
-          "actions",
-          "plan",
-          "build"
+          "actions"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5793,6 +5639,8 @@
     "using-git-worktrees": {
       "activation": {
         "onKeyword": [
+          "git",
+          "worktrees",
           "starting",
           "feature",
           "work",
@@ -5805,14 +5653,12 @@
           "plans",
           "creates",
           "isolated",
-          "git",
-          "worktrees",
           "smart",
           "directory",
           "selection",
           "safety",
           "verification",
-          "use when starting"
+          "creates isolated git"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5828,6 +5674,7 @@
     "using-superpowers": {
       "activation": {
         "onKeyword": [
+          "superpowers",
           "starting",
           "conversation",
           "establishes",
@@ -5840,14 +5687,7 @@
           "response",
           "clarifying",
           "questions",
-          "superpowers",
-          "use when starting",
-          "any conversation",
-          "establishes how to",
-          "find and use",
-          "requiring skill tool",
-          "invocation before any",
-          "response including clarifying"
+          "requiring skill tool"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5863,6 +5703,8 @@
     "verification-before-completion": {
       "activation": {
         "onKeyword": [
+          "verification",
+          "completion",
           "claim",
           "work",
           "complete",
@@ -5873,7 +5715,6 @@
           "prs",
           "requires",
           "running",
-          "verification",
           "commands",
           "confirming",
           "output",
@@ -5881,8 +5722,7 @@
           "success",
           "claims",
           "evidence",
-          "assertions",
-          "always"
+          "assertions"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5898,15 +5738,13 @@
     "verification-loop": {
       "activation": {
         "onKeyword": [
-          "comprehensive",
           "verification",
+          "loop",
+          "comprehensive",
           "system",
           "claude",
           "code",
           "sessions",
-          "loop",
-          "a comprehensive verification",
-          "system for claude",
           "code sessions"
         ],
         "onIntent": [
@@ -5928,8 +5766,9 @@
     "visa-doc-translate": {
       "activation": {
         "onKeyword": [
-          "translate",
           "visa",
+          "doc",
+          "translate",
           "application",
           "documents",
           "images",
@@ -5939,12 +5778,7 @@
           "pdf",
           "original",
           "translation",
-          "doc",
-          "translate visa application",
-          "to english and",
-          "create a bilingual",
-          "pdf with original",
-          "and translation"
+          "translate visa application"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5975,11 +5809,7 @@
           "user",
           "asks",
           "cloclo whatsapp",
-          "veille et reponse",
-          "automatique via whatsapp",
-          "use when interacting",
-          "with whatsapp messages",
-          "or when user"
+          "automatique via whatsapp"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5998,19 +5828,14 @@
     "writing-plans": {
       "activation": {
         "onKeyword": [
+          "writing",
+          "plans",
           "spec",
           "requirements",
           "multi-step",
           "task",
           "touching",
-          "code",
-          "writing",
-          "plans",
-          "use when you",
-          "have a spec",
-          "or requirements for",
-          "a multi-step",
-          "before touching code"
+          "code"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -6026,6 +5851,8 @@
     "writing-rules": {
       "activation": {
         "onKeyword": [
+          "writing",
+          "rules",
           "skill",
           "user",
           "asks",
@@ -6040,12 +5867,7 @@
           "guidance",
           "syntax",
           "patterns",
-          "writing",
-          "rules",
-          "this skill should",
-          "be used when",
-          "the user asks",
-          "create a hookify"
+          "configure hookify"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -6061,20 +5883,17 @@
     "writing-skills": {
       "activation": {
         "onKeyword": [
+          "writing",
+          "skills",
           "creating",
           "new",
-          "skills",
           "editing",
           "existing",
           "verifying",
           "work",
           "deployment",
-          "writing",
-          "use when creating",
           "new skills",
-          "editing existing skills",
-          "or verifying skills",
-          "work before deployment"
+          "editing existing skills"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -6090,8 +5909,8 @@
     "xlsx": {
       "activation": {
         "onKeyword": [
-          "spreadsheet",
           "xlsx",
+          "spreadsheet",
           "csv",
           "excel",
           "tabular",

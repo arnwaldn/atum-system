@@ -124,6 +124,33 @@ function matchCommandRoute(prompt) {
 }
 
 // ─── Phase B: Skill matching ───
+
+// Words too generic to be useful for skill name matching
+const LOW_SIGNAL = new Set([
+  'test', 'testing', 'app', 'code', 'project', 'build', 'run',
+  'fix', 'error', 'create', 'add', 'update', 'check', 'setup',
+  'config', 'make', 'deploy', 'use', 'implement', 'write', 'read',
+  'patterns', 'design', 'expert', 'guide', 'workflow', 'verification',
+  'standards', 'best', 'practices', 'common', 'general',
+  'the', 'and', 'for', 'with', 'from', 'into', 'that', 'this',
+]);
+
+// Domain detection: identify technologies explicitly mentioned in prompt
+const DOMAIN_DETECTORS = [
+  { pattern: /\bdjango\b/i, domains: ['python'], antiDomains: ['golang', 'frontend', 'swift', 'java'] },
+  { pattern: /\bflask\b/i, domains: ['python'], antiDomains: ['golang', 'frontend', 'swift', 'java'] },
+  { pattern: /\bpython\b|\bpytest\b|\bpip\b|\bpyproject\b/i, domains: ['python'], antiDomains: ['golang', 'swift', 'java'] },
+  { pattern: /\breact\b|\bnext\.?js\b|\btailwind\b|\bvue\b|\bsvelte\b/i, domains: ['frontend'], antiDomains: ['python', 'golang', 'swift', 'java'] },
+  { pattern: /\bgo\b|\bgolang\b/i, domains: ['golang'], antiDomains: ['python', 'frontend', 'swift', 'java'] },
+  { pattern: /\bswift\b|\bswiftui\b|\bios\b/i, domains: ['swift'], antiDomains: ['python', 'golang', 'frontend', 'java'] },
+  { pattern: /\bspring\b|\bjava\b(?!script)/i, domains: ['java'], antiDomains: ['python', 'golang', 'frontend', 'swift'] },
+  { pattern: /\bflutter\b|\bdart\b/i, domains: ['mobile'], antiDomains: ['python', 'golang', 'java'] },
+  { pattern: /\bexpress\b|\bnode\b|\bnpm\b|\btypescript\b/i, domains: ['frontend'], antiDomains: ['python', 'golang', 'swift', 'java'] },
+  { pattern: /\bsql\b|\bpostgres\b|\bmongo\b|\bdatabase\b|\bredis\b/i, domains: ['data'], antiDomains: [] },
+  { pattern: /\bdocker\b|\bk8s\b|\brender\b|\bvercel\b|\brailway\b/i, domains: ['infrastructure'], antiDomains: [] },
+  { pattern: /\bsecurity\b|\bauth\b|\bvuln\b|\bsecurit/i, domains: ['security'], antiDomains: [] },
+];
+
 function tokenizePrompt(prompt) {
   return prompt.toLowerCase()
     .replace(/[^a-z0-9\s-]/g, ' ')
@@ -131,34 +158,48 @@ function tokenizePrompt(prompt) {
     .filter(w => w.length >= 2);
 }
 
-function scoreSkill(promptWords, promptLower, manifest) {
+function detectDomains(promptLower) {
+  const detected = { domains: new Set(), antiDomains: new Set() };
+  for (const d of DOMAIN_DETECTORS) {
+    if (d.pattern.test(promptLower)) {
+      for (const dom of d.domains) detected.domains.add(dom);
+      for (const anti of d.antiDomains) detected.antiDomains.add(anti);
+    }
+  }
+  return detected;
+}
+
+function scoreSkill(promptWords, promptLower, manifest, skillId, domainCtx) {
   let score = 0;
   const activation = manifest.activation;
 
-  // Keyword matching (weight 3)
-  for (const kw of activation.onKeyword) {
-    const kwLower = kw.toLowerCase();
-    // Exact word match
-    if (promptWords.includes(kwLower)) {
-      score += 3;
-    }
-    // Substring match for compound keywords
-    else if (kwLower.includes(' ') && promptLower.includes(kwLower)) {
-      score += 4;
-    }
-    // Partial match (keyword is substring of a prompt word)
-    else if (kwLower.length >= 4 && promptWords.some(w => w.includes(kwLower) || kwLower.includes(w))) {
-      score += 1;
+  // 1. Skill name matching (weight 8) — strongest signal
+  const nameParts = skillId.split('-').filter(w => w.length >= 3 && !LOW_SIGNAL.has(w));
+  for (const part of nameParts) {
+    if (promptWords.includes(part)) {
+      score += 8;
+      break; // Count once only
     }
   }
 
-  // Intent matching (weight 5)
+  // 2. Keyword matching — exact only (weight 3)
+  for (const kw of activation.onKeyword) {
+    const kwLower = kw.toLowerCase();
+    if (promptWords.includes(kwLower)) {
+      score += 3;
+    }
+    // Compound keyword match (multi-word exact substring)
+    else if (kwLower.includes(' ') && promptLower.includes(kwLower)) {
+      score += 4;
+    }
+    // NO partial matching — it generates 97% noise (583 false positives per prompt)
+  }
+
+  // 3. Intent matching (weight 5)
   for (const intent of activation.onIntent) {
     if (promptLower.includes(intent)) {
       score += 5;
-    }
-    // Partial intent match (check if most words of intent appear in prompt)
-    else {
+    } else {
       const intentWords = intent.split(/\s+/).filter(w => w.length >= 3);
       const matchCount = intentWords.filter(w => promptLower.includes(w)).length;
       if (intentWords.length > 0 && matchCount / intentWords.length >= 0.6) {
@@ -167,10 +208,20 @@ function scoreSkill(promptWords, promptLower, manifest) {
     }
   }
 
-  // File type detection from prompt (weight 4)
+  // 4. File type detection from prompt (weight 4)
   for (const ft of activation.onFileType) {
     if (promptLower.includes(`.${ft}`) || promptLower.includes(ft)) {
       score += 4;
+    }
+  }
+
+  // 5. Domain boost/penalty — only when prompt explicitly mentions a technology
+  if (domainCtx.domains.size > 0) {
+    const skillDomain = manifest.category;
+    if (domainCtx.domains.has(skillDomain)) {
+      score += 6; // Boost: skill matches detected technology domain
+    } else if (domainCtx.antiDomains.has(skillDomain)) {
+      score -= 5; // Penalty: skill is from a competing technology domain
     }
   }
 
@@ -183,11 +234,12 @@ function scoreAllSkills(prompt) {
 
   const promptWords = tokenizePrompt(prompt);
   const promptLower = prompt.toLowerCase();
+  const domainCtx = detectDomains(promptLower);
 
   const scored = [];
   for (const [skillId, manifest] of Object.entries(data.skills)) {
-    const score = scoreSkill(promptWords, promptLower, manifest);
-    if (score > 0) {
+    const score = scoreSkill(promptWords, promptLower, manifest, skillId, domainCtx);
+    if (score >= 4) {
       scored.push({ id: skillId, score, tokenCost: manifest.token_cost, path: manifest.path });
     }
   }
@@ -318,8 +370,8 @@ process.stdin.on('end', () => {
       };
       process.stdout.write(JSON.stringify(output));
     } else {
-      // No match — pass through unchanged
-      process.stdout.write(data);
+      // No match — return empty object (not raw stdin)
+      process.stdout.write('{}');
     }
   } catch (err) {
     console.error(`[skill-orchestrator] Error: ${err.message}`);

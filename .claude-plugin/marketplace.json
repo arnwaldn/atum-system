@@ -7,7 +7,7 @@
     {
       "name": "atum-system",
       "description": "The ultimate Claude Code plugin. 70 agents, 167 skills, 81 commands, 37 rules, 34 hooks. /autopilot for non-coders.",
-      "version": "3.0.0",
+      "version": "4.0.0",
       "source": "./"
     }
   ]

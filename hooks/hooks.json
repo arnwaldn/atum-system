@@ -1,5 +1,5 @@
 {
-  "_comment": "ATUM System v3.0 — Consolidated hook orchestration. Source unique absolue.",
+  "_comment": "ATUM System v4.0 — Consolidated hook orchestration. Source unique absolue.",
   "hooks": {
     "PreToolUse": [
       {

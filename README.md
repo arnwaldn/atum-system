@@ -1,7 +1,7 @@
 # ATUM System
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.0.0-green.svg)](https://github.com/arnwaldn/atum-system/releases)
+[![Version](https://img.shields.io/badge/version-4.0.0-green.svg)](https://github.com/arnwaldn/atum-system/releases)
 
 **The ultimate Claude Code plugin.** One install. Full autonomy. Zero coding required.
 

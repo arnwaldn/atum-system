@@ -154,7 +154,11 @@ function extractCompoundTerms(text) {
     while ((m = p.exec(lower)) !== null) {
       const term = m[1].trim();
       if (term.length >= 5 && !STOP_WORDS.has(term)) {
-        terms.push(term);
+        // Skip compounds containing stop words (e.g. "use this when", "asked to test")
+        const hasStopWord = term.split(/\s+/).some(w => STOP_WORDS.has(w));
+        if (!hasStopWord) {
+          terms.push(term);
+        }
       }
     }
   }
@@ -192,11 +196,12 @@ function processSkill(skillDir) {
   const domain = metadata.domain || inferDomain(skillId, description);
   const explicitTriggers = metadata.triggers || '';
 
-  // Build keywords from multiple sources
+  // Build keywords from multiple sources (skill name parts first for priority)
+  const skillNameParts = skillId.split('-').filter(w => w.length >= 3 && !STOP_WORDS.has(w));
   const keywordSources = [
+    ...skillNameParts,
     ...extractKeywords(explicitTriggers),
     ...extractKeywords(description),
-    ...extractKeywords(skillId.replace(/-/g, ' ')),
   ];
 
   // Extract intent phrases from activation section
