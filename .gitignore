@@ -71,3 +71,4 @@ telemetry/
 tmp/
 todos/
 .serena/
+firebase-debug.log
