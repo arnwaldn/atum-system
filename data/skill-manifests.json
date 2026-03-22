@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated": "2026-03-22T02:13:52.065Z",
+  "generated": "2026-03-22T02:30:25.897Z",
   "count": 166,
   "skills": {
     "agence-atum": {
@@ -447,7 +447,7 @@
         "onTool": [],
         "onProjectType": []
       },
-      "category": "frontend",
+      "category": "backend",
       "token_cost": 3454,
       "priority": "normal",
       "dependencies": [],
@@ -3193,7 +3193,7 @@
         "onProjectType": []
       },
       "category": "business",
-      "token_cost": 1228,
+      "token_cost": 1227,
       "priority": "normal",
       "dependencies": [
         "agence-atum"

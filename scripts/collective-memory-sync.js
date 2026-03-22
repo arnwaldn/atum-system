@@ -359,8 +359,8 @@ function selfUpdate() {
     var repoContent = fs.readFileSync(repoScript, "utf8");
     var myContent = fs.readFileSync(myPath, "utf8");
 
-    // Adapt paths before comparison (repo version has Arnaud's paths)
-    var adapted = repoContent.replace(/C:\/Users\/arnau/g, HOME).replace(/C:\\Users\\arnau/g, HOME);
+    // Adapt paths before comparison (repo version may have local paths)
+    var adapted = repoContent.replace(/C:\/Users\/\w+/g, HOME).replace(/C:\\Users\\\w+/g, HOME);
 
     if (adapted !== myContent) {
       log("SELF-UPDATE: new sync script detected — updating and restarting");

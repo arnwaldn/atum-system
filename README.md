@@ -11,9 +11,9 @@ ATUM System is a complete Claude Code configuration that turns Claude into an au
 
 | Component | Count | Purpose |
 |-----------|-------|---------|
-| **Agents** | 70 | Specialized sub-agents (architecture, review, security, testing, DevOps, compliance...) |
+| **Agents** | 69 | Specialized sub-agents (architecture, review, security, testing, DevOps, compliance...) |
 | **Skills** | 166 | Deep expertise (React, Flask, Spring Boot, SwiftUI, Go, Django, Docker, K8s, EU AI Act...) |
-| **Commands** | 81 | Slash commands (/autopilot, /projet, /deploy, /tdd, /scaffold, /pipeline, /verify...) |
+| **Commands** | 80 | Slash commands (/autopilot, /projet, /deploy, /tdd, /scaffold, /pipeline, /verify...) |
 | **Hooks** | 40 | Runtime safety across 9 events (git-guard, secret-scanner, loop-detector, anti-rationalization, cost-tracker...) |
 | **Rules** | 5 dirs | Language-specific standards (TypeScript, Python, Go, Swift, common) |
 
@@ -79,9 +79,9 @@ ATUM handles the rest: architecture, code, tests, deployment.
 atum-system/
   plugin.json                     # Plugin manifest (v4.0.0)
   .claude-plugin/plugin.json      # Marketplace manifest
-  agents/                         # 70 specialized sub-agents
+  agents/                         # 69 specialized sub-agents
   skills/                         # 167 deep expertise skills (3-layer runtime orchestrator)
-  commands/                       # 81 slash commands
+  commands/                       # 80 slash commands
   hooks/                          # 40 runtime hooks across 9 events + hooks.json
   rules/                          # Language-specific coding standards (5 dirs, 37 files)
   scripts/                        # Utility scripts + skill registry generator

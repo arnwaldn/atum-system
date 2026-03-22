@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated": "2026-03-22T02:13:52.063Z",
+  "generated": "2026-03-22T02:30:25.894Z",
   "count": 166,
   "skills": [
     {
@@ -184,7 +184,7 @@
     {
       "id": "backend-patterns",
       "description": "Backend architecture patterns, API design, database optimization, and server-side best practices for Node.js, Express, and Next.js API routes.",
-      "category": "frontend",
+      "category": "backend",
       "keywords": [
         "backend",
         "patterns",

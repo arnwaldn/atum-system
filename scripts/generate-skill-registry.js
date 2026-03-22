@@ -47,6 +47,7 @@ const STOP_WORDS = new Set([
 // Uses word boundaries (\b) to prevent false matches (e.g. "doc" in "docker").
 const DOMAIN_PATTERNS = [
   // Specific frameworks/tools first (before generic language patterns)
+  { pattern: /\bbackend[-_]pattern/, domain: 'backend' },
   { pattern: /\bhugging[-_]?face\b|\bhf-/, domain: 'ai' },
   { pattern: /\binvestor\b|\bmarket[-_]?research\b|\bpitch\b|\bfundraising\b/, domain: 'business' },
   { pattern: /\bagence\b|\bbusiness[-_]?plan\b/, domain: 'business' },
