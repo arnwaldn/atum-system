@@ -7,7 +7,7 @@
     "cron": "0 9 1 12 *"
   },
   "prompt": "RAPPEL FISCAL ATUM SAS : La CFE (Cotisation Fonciere des Entreprises) est a payer avant le 15 decembre. Actions : 1) Verifier l'avis d'imposition CFE sur impots.gouv.fr 2) Verifier si exoneration applicable (1ere annee, zone franche) 3) Proceder au telepaiement avant la date limite. Montant estime : variable selon valeur locative.",
-  "cwd": "C:/Users/arnau",
+  "cwd": "~",
   "model": "haiku",
   "maxBudgetUsd": 0.5,
   "timeoutSeconds": 120,

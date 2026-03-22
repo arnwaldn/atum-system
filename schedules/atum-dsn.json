@@ -7,7 +7,7 @@
     "cron": "0 9 10 * *"
   },
   "prompt": "RAPPEL SOCIAL ATUM SAS : La DSN (Declaration Sociale Nominative) est a transmettre avant le 5 ou 15 du mois (selon effectif). Actions : 1) Verifier si ATUM a des salaries (lire equipe.json) 2) Si oui, verifier que la DSN du mois precedent a ete transmise 3) Si non, ignorer ce rappel. La DSN remplace toutes les anciennes declarations (DADS, attestation employeur, etc.).",
-  "cwd": "C:/Users/arnau",
+  "cwd": "~",
   "model": "haiku",
   "maxBudgetUsd": 0.5,
   "timeoutSeconds": 120,

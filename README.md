@@ -14,7 +14,7 @@ ATUM System is a complete Claude Code configuration that turns Claude into an au
 | **Agents** | 70 | Specialized sub-agents (architecture, review, security, testing, DevOps, compliance...) |
 | **Skills** | 167 | Deep expertise (React, Flask, Spring Boot, SwiftUI, Go, Django, Docker, K8s, EU AI Act...) |
 | **Commands** | 81 | Slash commands (/autopilot, /projet, /deploy, /tdd, /scaffold, /pipeline, /verify...) |
-| **Hooks** | 34 | Runtime safety (git-guard, secret-scanner, loop-detector, anti-rationalization, cost-tracker...) |
+| **Hooks** | 40 | Runtime safety across 9 events (git-guard, secret-scanner, loop-detector, anti-rationalization, cost-tracker...) |
 | **Rules** | 5 dirs | Language-specific standards (TypeScript, Python, Go, Swift, common) |
 
 ## Key features
@@ -22,7 +22,7 @@ ATUM System is a complete Claude Code configuration that turns Claude into an au
 - **`/autopilot`** -- describe your project in plain language, get a deployed product. 6 automatic phases: definition, structure, construction, verification, deployment, monitoring
 - **Full autonomy** -- Claude handles everything from idea to deployment without asking you to run commands manually
 - **Non-coder friendly** -- designed for people who have ideas but don't write code. Plain French or English instructions work
-- **Safety-first** -- 10 PreToolUse guards, anti-rationalization stop hook, pre-completion test gate, cost tracking
+- **Safety-first** -- 12 PreToolUse guards, anti-rationalization stop hook, pre-completion test gate, cost tracking
 - **EU AI Act compliance** -- built-in ATUM Audit integration with 15 MCP tools for Article 15 traceability
 - **140+ NLP triggers** -- say what you want in French or English, the system routes to the right workflow automatically
 - **Universal** -- works on Windows (Git Bash), macOS, Linux. One install script for all platforms
@@ -77,14 +77,14 @@ ATUM handles the rest: architecture, code, tests, deployment.
 
 ```
 atum-system/
-  plugin.json                     # Plugin manifest (v3.0.0)
+  plugin.json                     # Plugin manifest (v4.0.0)
   .claude-plugin/plugin.json      # Marketplace manifest
   agents/                         # 70 specialized sub-agents
-  skills/                         # 167 deep expertise skills
+  skills/                         # 167 deep expertise skills (3-layer runtime orchestrator)
   commands/                       # 81 slash commands
-  hooks/                          # 34 runtime hooks + hooks.json
-  rules/                          # Language-specific coding standards (5 dirs)
-  scripts/                        # Utility scripts + session libs
+  hooks/                          # 40 runtime hooks across 9 events + hooks.json
+  rules/                          # Language-specific coding standards (5 dirs, 37 files)
+  scripts/                        # Utility scripts + skill registry generator
   settings.json                   # Security permissions + env defaults
   install.sh                      # Universal installer
 ```
@@ -95,10 +95,11 @@ All hooks are declared in `hooks/hooks.json` using `${CLAUDE_PLUGIN_ROOT}` for f
 
 | Event | Hooks | Purpose |
 |-------|-------|---------|
-| **PreToolUse** | 10 | Secret scanning, git safety, file protection, image handling, push reminder, doc warning, compact suggestion |
+| **PreToolUse** | 12 | Secret scanning, git safety, file protection, image handling, push reminder, doc warning, compact suggestion, context injection |
 | **PostToolUse** | 10 | ATUM audit, auto-format, typecheck, auto-test, loop detection, PR logging, console.log warning |
 | **Stop** | 7 | Anti-rationalization, test gate, session memory, cleanup, cost tracking, pattern extraction |
-| **SessionStart** | 1 | Project detection, memory sync, snapshot cleanup |
+| **SessionStart** | 5 | Project detection, memory sync, snapshot cleanup, skill index injection |
+| **UserPromptSubmit** | 1 | Skill orchestrator — deterministic routing + SKILL.md injection |
 | **PreCompact** | 1 | Save session state before compaction |
 | **Notification** | 2 | Cross-platform audio alerts |
 | **Other** | 2 | Config change guard, tool failure logger |
@@ -114,11 +115,11 @@ Other configs add tools. ATUM adds **judgment**:
 - **Cost tracker** -- logs token usage and estimated costs per session
 - **Secret scanner** -- blocks commits containing API keys, tokens, passwords
 - **Git guard** -- enforces safe git operations, blocks force-push
-- **Autonomous routing** -- 140+ FR+EN triggers auto-invoke the right workflow
+- **Skill orchestrator** -- 3-layer runtime registry with deterministic routing via UserPromptSubmit hook (80%+ accuracy)
 
 ## Consolidated systems
 
-ATUM System v3.0 incorporates and supersedes:
+ATUM System v4.0 incorporates and supersedes:
 
 - [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) -- agents, skills, commands, hooks
 - [Superpowers](https://github.com/obra/superpowers) -- brainstorming, debugging, TDD workflows

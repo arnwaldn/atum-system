@@ -31,9 +31,10 @@ cache/
 chrome/
 collective-memory/
 common-ground/
-data/agence-atum/decisions/
-data/agence-atum/finances/
-data/agence-atum/rgpd/
+data/agence-atum/
+
+# === Project-specific memory (personal, not distributable) ===
+projects/
 debug/
 desktop.ini
 downloads/
@@ -71,4 +72,7 @@ telemetry/
 tmp/
 todos/
 .serena/
+
+# === Personal binary shims (not distributable) ===
+bin/
 firebase-debug.log

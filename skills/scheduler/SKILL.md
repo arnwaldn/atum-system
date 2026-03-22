@@ -100,7 +100,7 @@ When not specified by the user, apply these defaults:
 | `notify.includeOutput` | `true` |
 | `retries` | 1 for quick tasks, 0 for heavy tasks |
 | `concurrencyGroup` | `"default"` for light tasks, `"heavy"` for audits/reviews |
-| `cwd` | Current project if in a project, `C:/Users/arnau` otherwise |
+| `cwd` | Current project if in a project, `~` otherwise |
 | `worktree` | `false` by default |
 
 ## Prompt Mapping: User Intent → Claude Command

@@ -7,7 +7,7 @@
     "cron": "0 9 1 5 *"
   },
   "prompt": "RAPPEL FISCAL ATUM SAS : La declaration d'IS et la liasse fiscale doivent etre deposees avant le 15 mai. Il reste 15 jours. Actions requises : 1) Finaliser la comptabilite de l'exercice 2) Etablir la liasse fiscale 3) Calculer l'IS 4) Preparer le paiement. Verifier avec /agence-atum finance budget le resultat de l'exercice.",
-  "cwd": "C:/Users/arnau",
+  "cwd": "~",
   "model": "haiku",
   "maxBudgetUsd": 1,
   "timeoutSeconds": 180,

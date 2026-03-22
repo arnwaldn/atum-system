@@ -7,7 +7,7 @@
     "cron": "0 9 15 1,4,7,10 *"
   },
   "prompt": "RAPPEL OBLIGATION ATUM SAS : L'information trimestrielle des associes est due (Art. 24.2 statuts). Delai : 15 jours apres fin de trimestre. Contenu obligatoire : comptes de gestion, tresorerie, KPIs, roadmap produit, risques et opportunites. Utiliser /agence-atum docs generate rapport-trimestriel pour generer le rapport.",
-  "cwd": "C:/Users/arnau",
+  "cwd": "~",
   "model": "haiku",
   "maxBudgetUsd": 1,
   "timeoutSeconds": 180,

@@ -7,7 +7,7 @@
     "cron": "0 9 1 6 *"
   },
   "prompt": "RAPPEL OBLIGATION LEGALE ATUM SAS : L'AG annuelle d'approbation des comptes doit se tenir avant le 30 juin. Il reste 30 jours. Actions requises : 1) Etablir les comptes annuels (bilan, CR, annexe) 2) Rediger le rapport de gestion 3) Preparer les resolutions (approbation comptes + affectation resultat) 4) Convoquer les associes (delai 15 jours). Utiliser /agence-atum legal convocation ordinaire pour generer la convocation.",
-  "cwd": "C:/Users/arnau",
+  "cwd": "~",
   "model": "haiku",
   "maxBudgetUsd": 1,
   "timeoutSeconds": 180,

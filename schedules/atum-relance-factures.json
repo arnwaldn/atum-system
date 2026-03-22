@@ -7,7 +7,7 @@
     "cron": "0 9 * * 1"
   },
   "prompt": "RELANCE FACTURATION ATUM SAS : Scanner toutes les factures dans ~/.claude/data/agence-atum/facturation/factures/. Pour chaque facture dont la date_echeance est depassee et le statut n'est pas 'payee', determiner le niveau de relance (amiable si <15j, ferme si 15-30j, mise en demeure si >30j). Lister les factures en retard avec montant, client, jours de retard. Utiliser /agence-atum billing relance pour les details.",
-  "cwd": "C:/Users/arnau",
+  "cwd": "~",
   "model": "haiku",
   "maxBudgetUsd": 1,
   "timeoutSeconds": 180,
