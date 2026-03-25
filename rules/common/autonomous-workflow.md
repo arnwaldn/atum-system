@@ -174,10 +174,6 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 **Detect**: "debug", "pourquoi ca marche pas", "ca plante", "investigate", "ca bug"
 → Invoke `atum-system:systematic-debugging` skill → error-detective agent
 
-### Onboarding / First Time
-**Detect**: "bienvenue", "comment ca marche", "je commence", "premier jour", "getting started", "how does this work"
-→ Invoke `bienvenue` skill — guide interactif pour decouvrir Claude Code
-
 ## Auto-Review (Mandatory)
 
 After ANY implementation modifying >30 lines: use **atum-system:code-reviewer** agent BEFORE declaring complete.

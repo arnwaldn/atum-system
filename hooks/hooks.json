@@ -1,5 +1,5 @@
 {
-  "_comment": "ATUM System v4.1 — Consolidated hook orchestration + claude-mem integration. Source unique absolue.",
+  "_comment": "ATUM System v4.2 — Consolidated hook orchestration + claude-mem integration. Source unique absolue.",
   "_cmem_root_note": "CMEM_ROOT resolves to claude-mem plugin install path",
   "hooks": {
     "PreToolUse": [
@@ -27,15 +27,6 @@
           {
             "type": "command",
             "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/lock-file-protector.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/clean-shell-snapshots.py\""
           }
         ]
       },
