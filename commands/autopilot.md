@@ -87,7 +87,7 @@ Selon le type de projet :
 2. Structure de base + navigation
 
 **No-Code** :
-1. Invoquer `/projet-automatisation`
+1. Invoquer le skill `no-code-maestro`
 2. Creer les bases Airtable, scenarios Make.com
 
 **Checkpoint 2** :

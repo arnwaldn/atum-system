@@ -60,7 +60,7 @@ function main() {
   cleanImageCounters();
   cleanScreenshotTracking();
   cleanShellSnapshots();
-  // Clean up session stats file (moved from collective-memory-retain.js to fix race condition)
+  // Clean up session stats file
   try { fs.unlinkSync(STATS_FILE); } catch {}
 }
 

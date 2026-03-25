@@ -11,14 +11,6 @@ import sys
 
 # Domain and metadata mapping for each skill
 SKILL_META = {
-    "agence-atum": {
-        "domain": "business",
-        "version": "1.0.0",
-        "role": "specialist",
-        "scope": "implementation",
-        "output-format": "document",
-        "related-skills": "memoire, compliance-routing, scheduler",
-    },
     "agent-browser": {
         "domain": "tooling",
         "version": "1.0.0",
@@ -172,15 +164,6 @@ SKILL_META = {
         "scope": "implementation",
         "output-format": "code",
         "related-skills": "context-engineering-kit",
-    },
-    "memoire": {
-        "domain": "business",
-        "version": "1.0.0",
-        "triggers": "memoire collective, souviens-toi, retiens que, note pour equipe, remember, save for team, decision equipe, collective memory",
-        "role": "specialist",
-        "scope": "implementation",
-        "output-format": "document",
-        "related-skills": "agence-atum",
     },
     "mom-test": {
         "domain": "specialized",
@@ -341,7 +324,7 @@ SKILL_META = {
         "role": "specialist",
         "scope": "implementation",
         "output-format": "code",
-        "related-skills": "memoire, agence-atum",
+        "related-skills": "",
     },
     "xlsx": {
         "domain": "document",

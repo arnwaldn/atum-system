@@ -213,7 +213,6 @@ Detect intent from natural language and invoke matching skill automatically:
 - "ecris un PRD", "cahier des charges", "specs pour cette feature", "product requirements", "write a PRD" -> /prd skill
 - "analyser cette feature", "definir cette idee", "feature analysis", "parlons de cette idee" -> /feature-analyzer skill
 - "execute ce design doc", "implement from spec", "on a le spec go", "implement from design doc" -> /feature-pipeline skill
-- "quelle equipe", "combien ca couterait", "profiler ce projet", "cost estimate", "profile this project" -> /team skill
 
 ### Security & Optimization (extended)
 - "audit de securite complet", "full security audit", "vulnerability scan", "verifier les vulnerabilites" -> /security-audit skill
