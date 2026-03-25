@@ -55,7 +55,6 @@ metadata:
 | compliance-expert | Regulatory compliance | User data, payments, health data, e-commerce, AI deployment |
 | geospatial-expert | Maps & spatial | deck.gl, MapLibre, Leaflet, GeoJSON, spatial indexing |
 | no-code-automation-expert | No-code/Make.com | Automatisations, blueprints, Airtable+Make+Notion integrations |
-| agence-atum-expert | Admin ATUM SAS | Gouvernance, finances, pipeline agence, obligations legales |
 | fresh-executor | Context-safe execution | Long sessions, 3+ file features, context degradation risk |
 | codebase-pattern-finder | Code search | Find patterns, examples, templates in codebase |
 | critical-thinking | Decision analysis | Challenge assumptions, detect biases, structured frameworks |
@@ -184,43 +183,8 @@ Detect intent from natural language and invoke matching skill automatically:
 - "automatisation", "scenario make", "make.com", "blueprint", "workflow automatise" -> no-code-maestro skill + no-code-automation-expert agent
 - "airtable", "base de donnees no-code", "creer une base", "table airtable" -> no-code-maestro skill + Airtable MCP
 - "notion page", "documenter", "creer page notion" -> Notion MCP
-- "projet automatisation", "hackathon", "connecter les outils" -> /projet-automatisation command
 - "webhook", "trigger", "router", "iterator", "aggregator" -> no-code-automation-expert agent
 - "no-code", "no code", "sans code", "low code" -> no-code-maestro skill
-
-### Gestion ATUM SAS
-- "agence atum", "atum sas", "societe", "la boite" -> agence-atum skill
-- "PV", "proces-verbal", "assemblee generale", "AG" -> agence-atum (legal)
-- "convocation", "convoquer les associes" -> agence-atum (legal convocation)
-- "dividendes", "distribution benefices", "affectation resultat" -> agence-atum (finance dividendes)
-- "actionnariat", "capital social", "actions", "parts" -> agence-atum (equity)
-- "tresorerie", "budget", "ARR", "MRR", "CA" -> agence-atum (finance)
-- "pipeline agence", "nouveau projet client", "devis client" -> agence-atum (clients)
-- "work for equity", "participation", "incubation" -> agence-atum (equity participation)
-- "obligations legales", "depot comptes", "declaration IS" -> agence-atum (legal obligations)
-- "rapport trimestriel", "info trim", "reporting associes" -> agence-atum (docs generate rapport)
-- "convention reglementee", "contrat dirigeant" -> agence-atum (legal convention)
-- "quorum", "majorite", "vote associes" -> agence-atum (legal quorum)
-- "devis", "proposition commerciale", "chiffrer un projet" -> agence-atum (billing devis)
-- "facture", "facturer", "envoyer la facture" -> agence-atum (billing facture)
-- "relance", "impaye", "retard de paiement" -> agence-atum (billing relance)
-- "contrat client", "prestation de services", "signer un contrat" -> agence-atum (contracts prestation)
-- "NDA", "confidentialite", "accord de confidentialite" -> agence-atum (contracts nda)
-- "CGV", "conditions generales" -> agence-atum (contracts cgv)
-- "freelance", "sous-traitant", "prestataire externe" -> freelance-manager agent + agence-atum (contracts freelance onboard)
-- "onboarder un freelance", "nouveau freelance", "ajouter un prestataire" -> freelance-manager agent + agence-atum (contracts freelance onboard)
-- "fin de mission freelance", "offboarding freelance", "terminer mission" -> freelance-manager agent + agence-atum (contracts freelance offboard)
-- "attestation URSSAF", "Kbis", "attestations freelance" -> freelance-manager agent + agence-atum (contracts freelance status)
-- "avenant freelance", "prolonger contrat freelance", "modifier TJM" -> freelance-manager agent + agence-atum (contracts freelance) + template avenant-freelance.md
-- "CRA", "compte-rendu activite", "timesheet freelance" -> freelance-manager agent + agence-atum (team timetrack) + template cra-freelance.md
-- "marge freelance", "rentabilite freelance", "cout freelance" -> freelance-manager agent + agence-atum (team marge-freelance)
-- "bon de commande freelance" -> freelance-manager agent + agence-atum (contracts freelance) + template bon-commande-freelance.md
-- "equipe", "embauche", "recrutement", "registre personnel" -> agence-atum (team personnel)
-- "timetracking", "temps passe", "heures", "feuille de temps" -> agence-atum (team timetrack)
-- "RGPD", "donnees personnelles", "registre traitements", "DPA" -> agence-atum (compliance rgpd)
-- "assurance", "RC Pro", "cyber assurance" -> agence-atum (compliance assurances)
-- "note de frais", "remboursement", "frais deplacement" -> agence-atum (frais)
-- "Syntec", "convention collective", "grille salariale" -> agence-atum (compliance syntec)
 
 ### Session History & Analysis
 - "session history", "historique session", "qu'est-ce que j'ai fait", "what did I work on", "past sessions" -> /session-analyzer skill
@@ -264,17 +228,6 @@ Detect intent from natural language and invoke matching skill automatically:
 - "pense en profondeur", "analyse approfondie", "deep analysis", "think deeply", "ultra think" -> /ultra-think skill
 - "validation avant prod", "pre-deploy checklist", "production readiness", "pret pour la prod" -> /pre-deploy skill
 
-### Directeur Technique (Strategic Project Management)
-- "scope", "arbitrage de scope", "scope cut", "minimum viable", "couper du scope" -> /dt scope + directeur-technique agent
-- "portfolio", "tous les projets", "vue d'ensemble", "project overview", "all projects" -> /dt portfolio + directeur-technique agent
-- "livraison", "ship", "preparer la livraison", "shipping checklist", "ready to ship" -> /dt ship + directeur-technique agent
-- "revue de maturite", "maturity review", "project review", "ou en est le projet" -> /dt review + directeur-technique agent
-- "initialiser le suivi", "delivery tracking", "init delivery", "DELIVERY.json" -> /dt init + directeur-technique agent
-- "prioriser", "qu'est-ce qu'on priorise", "prioritization", "focus cette semaine" -> directeur-technique agent
-- "differenciateur", "feature differenciante", "what makes us different" -> directeur-technique agent
-
-### Communication & Dashboard
-- "mise a jour dashboard", "forcer le scan", "update dashboard", "scanner les projets" -> /dashboard-atum skill
 
 
 ### Fresh Context & Context Management

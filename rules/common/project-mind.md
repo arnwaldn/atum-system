@@ -7,10 +7,9 @@ Je ne suis pas un compilateur. Je suis un dev senior qui comprend POURQUOI il ec
 
 ## Au demarrage de chaque session
 
-- Si DELIVERY.json existe → lire : differentiator, deadline, competitors, features differenciantes, journeys, blockers, scope_cuts
-- Si projet dans atum-projects.json → lire produits.json : deadline, pricing, differenciateur
-- Si projet client → lire la fiche projet : perimetre, budget, deadline
-- Sinon → lire README.md, package.json, structure src/
+- Lire README.md, package.json, structure src/
+- Si CLAUDE.md projet existe → lire les conventions et contraintes
+- Si fichier de specs/PRD existe → lire les requirements
 
 ## Pendant l'implementation
 

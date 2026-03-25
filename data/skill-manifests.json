@@ -1,47 +1,8 @@
 {
   "version": "1.0.0",
-  "generated": "2026-03-22T02:30:25.897Z",
-  "count": 166,
+  "generated": "2026-03-25T13:07:07.176Z",
+  "count": 152,
   "skills": {
-    "agence-atum": {
-      "activation": {
-        "onKeyword": [
-          "agence",
-          "atum",
-          "sas",
-          "societe",
-          "boite",
-          "associes",
-          "actionnariat",
-          "proces-verbal",
-          "convocation",
-          "dividendes",
-          "tresorerie",
-          "pipeline",
-          "work",
-          "equity",
-          "obligations",
-          "rapport",
-          "trimestriel",
-          "quorum",
-          "majorite",
-          "capital"
-        ],
-        "onIntent": [],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "business",
-      "token_cost": 2724,
-      "priority": "normal",
-      "dependencies": [
-        "memoire",
-        "compliance-routing",
-        "scheduler"
-      ],
-      "path": "skills/agence-atum/SKILL.md"
-    },
     "agent-browser": {
       "activation": {
         "onKeyword": [
@@ -408,7 +369,7 @@
         "onProjectType": []
       },
       "category": "workflow",
-      "token_cost": 7714,
+      "token_cost": 6876,
       "priority": "normal",
       "dependencies": [
         "common-ground",
@@ -453,22 +414,6 @@
       "dependencies": [],
       "path": "skills/backend-patterns/SKILL.md"
     },
-    "bienvenue": {
-      "activation": {
-        "onKeyword": [
-          "bienvenue"
-        ],
-        "onIntent": [],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "general",
-      "token_cost": 851,
-      "priority": "normal",
-      "dependencies": [],
-      "path": "skills/bienvenue/SKILL.md"
-    },
     "brainstorming": {
       "activation": {
         "onKeyword": [
@@ -503,41 +448,6 @@
       "priority": "normal",
       "dependencies": [],
       "path": "skills/brainstorming/SKILL.md"
-    },
-    "capture-tasks-from-meeting-notes": {
-      "activation": {
-        "onKeyword": [
-          "capture",
-          "tasks",
-          "meeting",
-          "notes",
-          "analyze",
-          "find",
-          "action",
-          "items",
-          "create",
-          "jira",
-          "assigned",
-          "work",
-          "claude",
-          "needs",
-          "tickets",
-          "extract",
-          "confluence",
-          "pages",
-          "parse",
-          "generate"
-        ],
-        "onIntent": [],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "general",
-      "token_cost": 3737,
-      "priority": "normal",
-      "dependencies": [],
-      "path": "skills/capture-tasks-from-meeting-notes/SKILL.md"
     },
     "chaos-engineer": {
       "activation": {
@@ -1007,47 +917,6 @@
       "priority": "normal",
       "dependencies": [],
       "path": "skills/configure-atum/SKILL.md"
-    },
-    "content-engine": {
-      "activation": {
-        "onKeyword": [
-          "content",
-          "engine",
-          "create",
-          "platform-native",
-          "systems",
-          "linkedin",
-          "tiktok",
-          "youtube",
-          "newsletters",
-          "repurposed",
-          "multi-platform",
-          "campaigns",
-          "user",
-          "wants",
-          "social",
-          "posts",
-          "threads",
-          "scripts",
-          "calendars",
-          "one"
-        ],
-        "onIntent": [
-          "writing x posts or threads",
-          "drafting linkedin posts or launch updates",
-          "scripting short-form video or youtube explainers",
-          "repurposing articles, podcasts, demos, or docs into social content",
-          "building a lightweight content plan around a launch, milestone, or theme"
-        ],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "general",
-      "token_cost": 643,
-      "priority": "normal",
-      "dependencies": [],
-      "path": "skills/content-engine/SKILL.md"
     },
     "content-hash-cache-pattern": {
       "activation": {
@@ -2220,41 +2089,6 @@
       "dependencies": [],
       "path": "skills/frontend-slides/SKILL.md"
     },
-    "generate-status-report": {
-      "activation": {
-        "onKeyword": [
-          "generate",
-          "status",
-          "report",
-          "project",
-          "reports",
-          "jira",
-          "issues",
-          "publish",
-          "confluence",
-          "claude",
-          "needs",
-          "create",
-          "summarize",
-          "progress",
-          "updates",
-          "weekly",
-          "daily",
-          "summaries",
-          "analyze",
-          "blockers"
-        ],
-        "onIntent": [],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "general",
-      "token_cost": 2825,
-      "priority": "normal",
-      "dependencies": [],
-      "path": "skills/generate-status-report/SKILL.md"
-    },
     "golang-patterns": {
       "activation": {
         "onKeyword": [
@@ -2755,88 +2589,6 @@
       "dependencies": [],
       "path": "skills/implement-design/SKILL.md"
     },
-    "investor-materials": {
-      "activation": {
-        "onKeyword": [
-          "investor",
-          "materials",
-          "create",
-          "update",
-          "pitch",
-          "decks",
-          "one-pagers",
-          "memos",
-          "accelerator",
-          "applications",
-          "financial",
-          "models",
-          "fundraising",
-          "user",
-          "needs",
-          "investor-facing",
-          "documents",
-          "projections",
-          "use-of-funds",
-          "tables"
-        ],
-        "onIntent": [
-          "creating or revising a pitch deck",
-          "writing an investor memo or one-pager",
-          "building a financial model, milestone plan, or use-of-funds table",
-          "answering accelerator or incubator application questions",
-          "aligning multiple fundraising docs around one source of truth"
-        ],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "business",
-      "token_cost": 681,
-      "priority": "normal",
-      "dependencies": [],
-      "path": "skills/investor-materials/SKILL.md"
-    },
-    "investor-outreach": {
-      "activation": {
-        "onKeyword": [
-          "investor",
-          "outreach",
-          "draft",
-          "cold",
-          "emails",
-          "warm",
-          "intro",
-          "blurbs",
-          "follow-ups",
-          "update",
-          "communications",
-          "fundraising",
-          "user",
-          "wants",
-          "angels",
-          "vcs",
-          "strategic",
-          "investors",
-          "accelerators",
-          "needs"
-        ],
-        "onIntent": [
-          "writing a cold email to an investor",
-          "drafting a warm intro request",
-          "sending follow-ups after a meeting or no response",
-          "writing investor updates during a process",
-          "tailoring outreach based on fund thesis or partner fit"
-        ],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "business",
-      "token_cost": 535,
-      "priority": "normal",
-      "dependencies": [],
-      "path": "skills/investor-outreach/SKILL.md"
-    },
     "iterative-retrieval": {
       "activation": {
         "onKeyword": [
@@ -2906,44 +2658,6 @@
       "priority": "normal",
       "dependencies": [],
       "path": "skills/java-coding-standards/SKILL.md"
-    },
-    "jobs-to-be-done": {
-      "activation": {
-        "onKeyword": [
-          "jobs",
-          "done",
-          "customer",
-          "discovery",
-          "why",
-          "customers",
-          "churn",
-          "job",
-          "solve",
-          "competing",
-          "against",
-          "luck",
-          "product-market",
-          "fit",
-          "jtbd",
-          "needs",
-          "discover",
-          "truly",
-          "analyzing",
-          "hire"
-        ],
-        "onIntent": [],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "specialized",
-      "token_cost": 5140,
-      "priority": "normal",
-      "dependencies": [
-        "mom-test",
-        "prompt-architect"
-      ],
-      "path": "skills/jobs-to-be-done/SKILL.md"
     },
     "jpa-patterns": {
       "activation": {
@@ -3050,47 +2764,6 @@
       "dependencies": [],
       "path": "skills/logs/SKILL.md"
     },
-    "market-research": {
-      "activation": {
-        "onKeyword": [
-          "market",
-          "research",
-          "conduct",
-          "competitive",
-          "analysis",
-          "investor",
-          "due",
-          "diligence",
-          "industry",
-          "intelligence",
-          "source",
-          "attribution",
-          "decision-oriented",
-          "summaries",
-          "user",
-          "wants",
-          "sizing",
-          "competitor",
-          "comparisons",
-          "fund"
-        ],
-        "onIntent": [
-          "researching a market, category, company, investor, or technology trend",
-          "building tam/sam/som estimates",
-          "comparing competitors or adjacent products",
-          "preparing investor dossiers before outreach",
-          "pressure-testing a thesis before building, funding, or entering a market"
-        ],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "business",
-      "token_cost": 557,
-      "priority": "normal",
-      "dependencies": [],
-      "path": "skills/market-research/SKILL.md"
-    },
     "mcp-builder": {
       "activation": {
         "onKeyword": [
@@ -3162,81 +2835,6 @@
       "priority": "normal",
       "dependencies": [],
       "path": "skills/mcp-integration/SKILL.md"
-    },
-    "memoire": {
-      "activation": {
-        "onKeyword": [
-          "memoire",
-          "collective",
-          "souviens-toi",
-          "retiens",
-          "note",
-          "equipe",
-          "remember",
-          "save",
-          "team",
-          "decision",
-          "memory",
-          "stocker",
-          "rechercher",
-          "information",
-          "atum",
-          "utiliser",
-          "quand",
-          "cofondateur",
-          "veut",
-          "sauvegarder"
-        ],
-        "onIntent": [],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "business",
-      "token_cost": 1227,
-      "priority": "normal",
-      "dependencies": [
-        "agence-atum"
-      ],
-      "path": "skills/memoire/SKILL.md"
-    },
-    "mom-test": {
-      "activation": {
-        "onKeyword": [
-          "mom",
-          "test",
-          "customer",
-          "interviews",
-          "validate",
-          "idea",
-          "leading",
-          "questions",
-          "conversations",
-          "user",
-          "research",
-          "validation",
-          "talk",
-          "customers",
-          "without",
-          "rules",
-          "discuss",
-          "life",
-          "ask",
-          "specifics"
-        ],
-        "onIntent": [],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "specialized",
-      "token_cost": 5400,
-      "priority": "normal",
-      "dependencies": [
-        "jobs-to-be-done",
-        "prompt-architect"
-      ],
-      "path": "skills/mom-test/SKILL.md"
     },
     "monorepo": {
       "activation": {
@@ -4247,79 +3845,6 @@
         "chaos-engineer"
       ],
       "path": "skills/resilience/SKILL.md"
-    },
-    "scheduler": {
-      "activation": {
-        "onKeyword": [
-          "scheduler",
-          "day",
-          "week",
-          "jours",
-          "chaque",
-          "lundi",
-          "morning",
-          "midnight",
-          "quand",
-          "push",
-          "files",
-          "change",
-          "automatise",
-          "schedule",
-          "cron",
-          "che",
-          "planifi",
-          "programm",
-          "current",
-          "riodique"
-        ],
-        "onIntent": [],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "devops",
-      "token_cost": 2415,
-      "priority": "normal",
-      "dependencies": [
-        "sre-engineer",
-        "devops-engineer"
-      ],
-      "path": "skills/scheduler/SKILL.md"
-    },
-    "search-company-knowledge": {
-      "activation": {
-        "onKeyword": [
-          "search",
-          "company",
-          "knowledge",
-          "across",
-          "bases",
-          "confluence",
-          "jira",
-          "internal",
-          "docs",
-          "find",
-          "explain",
-          "concepts",
-          "processes",
-          "technical",
-          "details",
-          "claude",
-          "needs",
-          "information",
-          "systems",
-          "terminology"
-        ],
-        "onIntent": [],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "general",
-      "token_cost": 4256,
-      "priority": "normal",
-      "dependencies": [],
-      "path": "skills/search-company-knowledge/SKILL.md"
     },
     "search-first": {
       "activation": {
@@ -5762,34 +5287,6 @@
       "priority": "normal",
       "dependencies": [],
       "path": "skills/verification-loop/SKILL.md"
-    },
-    "visa-doc-translate": {
-      "activation": {
-        "onKeyword": [
-          "visa",
-          "doc",
-          "translate",
-          "application",
-          "documents",
-          "images",
-          "english",
-          "create",
-          "bilingual",
-          "pdf",
-          "original",
-          "translation",
-          "translate visa application"
-        ],
-        "onIntent": [],
-        "onFileType": [],
-        "onTool": [],
-        "onProjectType": []
-      },
-      "category": "documentation",
-      "token_cost": 953,
-      "priority": "normal",
-      "dependencies": [],
-      "path": "skills/visa-doc-translate/SKILL.md"
     },
     "writing-plans": {
       "activation": {

@@ -46,10 +46,6 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 **Detect**: "test my web app", "connect this website", "expose tools from", "webmcp", "make my site programmable", "register web tools"
 → Invoke `/webmcp` skill — generate token → connect → use registered tools
 
-### Scheduled Task / Automation
-**Detect**: "tous les jours", "chaque lundi", "tous les matins", "chaque semaine", "quand je push", "quand un fichier change", "automatise", "tache planifiee", "lance regulierement", "verifie chaque", "surveille", "demain a", "dans 2 heures", "programme", "planifie", "every day", "every morning", "each Monday", "weekly", "daily", "hourly", "when I push", "on file change", "schedule", "automate", "cron", "recurring", "monitor", "run every", "check daily", "tomorrow at", "in 2 hours"
-→ Invoke `/scheduler` skill — parse NL to task, smart defaults, write JSON, reload daemon. NEVER ask for cron syntax.
-
 ### Deploy / Ship
 **Detect**: "deploy", "ship", "release", "push to prod"
 → Invoke `/deploy` skill — pre-flight (lint, types, tests) → security → compliance → build → deploy
@@ -110,17 +106,9 @@ You are an autonomous senior developer. You detect context and orchestrate the r
 **Detect**: "validation avant prod", "pre-deploy checklist", "production readiness", "pret pour la prod"
 → Invoke `/pre-deploy` skill
 
-### Project Team / Cost Estimation
-**Detect**: "quelle equipe", "combien ca couterait", "profiler ce projet", "cost estimate", "profile this project"
-→ Invoke `/team` skill
-
 ### Fresh Context for Long Sessions
 **Detect**: 3+ distinct file changes in a feature, session >100 tool calls, "contexte frais", "fresh context", "decomposer en sous-taches"
 → Invoke `/fresh-execute` skill
-
-### Strategic Project Decisions (Directeur Technique)
-**Detect**: "scope", "arbitrage", "prioriser", "prioritization", "qu'est-ce qu'on priorise", "scope cut", "minimum viable", "livraison", "preparer la livraison", "portfolio", "tous les projets", "vue d'ensemble", "revue de maturite", "DELIVERY.json", "differenciateur"
-→ Invoke **directeur-technique** agent (Opus) — reads DELIVERY.json, proposes scope levels, records decisions
 
 ### Technical Debt Assessment
 **Detect**: "dette technique", "technical debt", "code health", "audit de dette", "code smell", "refactoring needed"

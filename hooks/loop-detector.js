@@ -218,12 +218,6 @@ try {
     }
   }
 
-  // === Collective memory checkpoint reminder (every 25 calls) ===
-  if (stats.totalCalls > 0 && stats.totalCalls % 25 === 0) {
-    console.error(
-      `[MEMOIRE COLLECTIVE] ${stats.totalCalls} appels — verifie si des decisions/infos ATUM doivent etre sauvegardees dans ~/.claude/collective-memory/explicit/`
-    );
-  }
 
   // === Context exhaustion warning (all tools count) ===
   if (stats.totalCalls === CONTEXT_CRITICAL_CALLS) {

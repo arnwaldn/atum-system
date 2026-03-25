@@ -1,8 +1,8 @@
 {
   "name": "atum-system",
   "displayName": "ATUM System",
-  "description": "The ultimate Claude Code plugin. 69 agents, 166 skills, 80 commands, 37 rules, 40 hooks, 34 MCP servers. One plugin, zero dependencies. Full autonomy from idea to deployed product. Non-coder friendly. EU AI Act compliant. /autopilot for zero-code project creation.",
-  "version": "4.0.0",
+  "description": "The ultimate Claude Code plugin. 66 agents, 152 skills, 74 commands, 35 rules, 36 hooks, 34 MCP servers. One plugin, zero dependencies. Full autonomy from idea to deployed product. EU AI Act compliant.",
+  "version": "4.1.0",
   "author": {
     "name": "ATUM SAS",
     "url": "https://github.com/arnwaldn"
@@ -13,15 +13,12 @@
   "keywords": [
     "claude-code",
     "autonomous",
-    "non-coder",
     "agents",
     "skills",
     "hooks",
     "rules",
     "eu-ai-act",
     "compliance",
-    "full-lifecycle",
-    "autopilot",
-    "vibe-coding"
+    "full-lifecycle"
   ]
 }

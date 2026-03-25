@@ -1,23 +1,8 @@
 {
   "version": "1.0.0",
-  "generated": "2026-03-22T02:30:25.894Z",
-  "count": 166,
+  "generated": "2026-03-25T13:07:07.167Z",
+  "count": 152,
   "skills": [
-    {
-      "id": "agence-atum",
-      "description": "|",
-      "category": "business",
-      "keywords": [
-        "agence",
-        "atum",
-        "sas",
-        "societe",
-        "boite",
-        "associes",
-        "actionnariat",
-        "proces-verbal"
-      ]
-    },
     {
       "id": "agent-browser",
       "description": "Browser automation CLI for AI agents. Use this when asked to test something in a real browser.",
@@ -197,14 +182,6 @@
       ]
     },
     {
-      "id": "bienvenue",
-      "description": "|",
-      "category": "general",
-      "keywords": [
-        "bienvenue"
-      ]
-    },
-    {
       "id": "brainstorming",
       "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
       "category": "general",
@@ -217,21 +194,6 @@
         "building",
         "components",
         "adding"
-      ]
-    },
-    {
-      "id": "capture-tasks-from-meeting-notes",
-      "description": "Analyze meeting notes to find action items and create Jira tasks for assigned work. When Claude needs to: (1) Create Jira tasks or tickets from meeting notes, (2) Extract or find action items from not",
-      "category": "general",
-      "keywords": [
-        "capture",
-        "tasks",
-        "meeting",
-        "notes",
-        "analyze",
-        "find",
-        "action",
-        "items"
       ]
     },
     {
@@ -427,21 +389,6 @@
         "claude",
         "code",
         "guides"
-      ]
-    },
-    {
-      "id": "content-engine",
-      "description": "Create platform-native content systems for X, LinkedIn, TikTok, YouTube, newsletters, and repurposed multi-platform campaigns. Use when the user wants social posts, threads, scripts, content calendars",
-      "category": "general",
-      "keywords": [
-        "content",
-        "engine",
-        "create",
-        "platform-native",
-        "systems",
-        "linkedin",
-        "tiktok",
-        "youtube"
       ]
     },
     {
@@ -934,21 +881,6 @@
       ]
     },
     {
-      "id": "generate-status-report",
-      "description": "Generate project status reports from Jira issues and publish to Confluence. When Claude needs to: (1) Create a status report for a project, (2) Summarize project progress or updates, (3) Generate week",
-      "category": "general",
-      "keywords": [
-        "generate",
-        "status",
-        "report",
-        "project",
-        "reports",
-        "jira",
-        "issues",
-        "publish"
-      ]
-    },
-    {
       "id": "golang-patterns",
       "description": "Idiomatic Go patterns, best practices, and conventions for building robust, efficient, and maintainable Go applications.",
       "category": "golang",
@@ -1159,36 +1091,6 @@
       ]
     },
     {
-      "id": "investor-materials",
-      "description": "Create and update pitch decks, one-pagers, investor memos, accelerator applications, financial models, and fundraising materials. Use when the user needs investor-facing documents, projections, use-of",
-      "category": "business",
-      "keywords": [
-        "investor",
-        "materials",
-        "create",
-        "update",
-        "pitch",
-        "decks",
-        "one-pagers",
-        "memos"
-      ]
-    },
-    {
-      "id": "investor-outreach",
-      "description": "Draft cold emails, warm intro blurbs, follow-ups, update emails, and investor communications for fundraising. Use when the user wants outreach to angels, VCs, strategic investors, or accelerators and ",
-      "category": "business",
-      "keywords": [
-        "investor",
-        "outreach",
-        "draft",
-        "cold",
-        "emails",
-        "warm",
-        "intro",
-        "blurbs"
-      ]
-    },
-    {
       "id": "iterative-retrieval",
       "description": "Pattern for progressively refining context retrieval to solve the subagent context problem",
       "category": "general",
@@ -1216,21 +1118,6 @@
         "services",
         "naming",
         "immutability"
-      ]
-    },
-    {
-      "id": "jobs-to-be-done",
-      "description": "Discover what customers truly need by analyzing the \"job\" they hire your product to do. Use when the user mentions \"customer discovery\", \"why customers churn\", \"what job does this solve\", \"competing a",
-      "category": "specialized",
-      "keywords": [
-        "jobs",
-        "done",
-        "customer",
-        "discovery",
-        "why",
-        "customers",
-        "churn",
-        "job"
       ]
     },
     {
@@ -1279,21 +1166,6 @@
       ]
     },
     {
-      "id": "market-research",
-      "description": "Conduct market research, competitive analysis, investor due diligence, and industry intelligence with source attribution and decision-oriented summaries. Use when the user wants market sizing, competi",
-      "category": "business",
-      "keywords": [
-        "market",
-        "research",
-        "conduct",
-        "competitive",
-        "analysis",
-        "investor",
-        "due",
-        "diligence"
-      ]
-    },
-    {
       "id": "mcp-builder",
       "description": "Step-by-step MCP server scaffolding workflow: research, plan, implement, test, evaluate. Scope: guided MCP server creation process ONLY. For general MCP expertise, debugging, or advanced patterns, use",
       "category": "tooling",
@@ -1321,36 +1193,6 @@
         "add",
         "server",
         "integrate"
-      ]
-    },
-    {
-      "id": "memoire",
-      "description": "Stocker ou rechercher une information dans la memoire collective ATUM. Utiliser quand un cofondateur veut sauvegarder ou retrouver une decision, info client, ou convention.",
-      "category": "business",
-      "keywords": [
-        "memoire",
-        "collective",
-        "souviens-toi",
-        "retiens",
-        "note",
-        "equipe",
-        "remember",
-        "save"
-      ]
-    },
-    {
-      "id": "mom-test",
-      "description": "Talk to customers without leading them using Mom Test rules: discuss their life not your idea, ask about specifics in the past, and talk less. Use when the user mentions \"customer interviews\", \"valida",
-      "category": "specialized",
-      "keywords": [
-        "mom",
-        "test",
-        "customer",
-        "interviews",
-        "validate",
-        "idea",
-        "leading",
-        "questions"
       ]
     },
     {
@@ -1771,36 +1613,6 @@
         "fallback",
         "rate",
         "limiting"
-      ]
-    },
-    {
-      "id": "scheduler",
-      "description": "Autonomous task scheduling from natural language. When the user describes ANY recurring, scheduled, periodic, or event-triggered task in natural language — in French or English — parse their intent an",
-      "category": "devops",
-      "keywords": [
-        "scheduler",
-        "day",
-        "week",
-        "jours",
-        "chaque",
-        "lundi",
-        "morning",
-        "midnight"
-      ]
-    },
-    {
-      "id": "search-company-knowledge",
-      "description": "Search across company knowledge bases (Confluence, Jira, internal docs) to find and explain internal concepts, processes, and technical details. When Claude needs to: (1) Find or search for informatio",
-      "category": "general",
-      "keywords": [
-        "search",
-        "company",
-        "knowledge",
-        "across",
-        "bases",
-        "confluence",
-        "jira",
-        "internal"
       ]
     },
     {
@@ -2401,21 +2213,6 @@
         "code",
         "sessions",
         "code sessions"
-      ]
-    },
-    {
-      "id": "visa-doc-translate",
-      "description": "Translate visa application documents (images) to English and create a bilingual PDF with original and translation",
-      "category": "documentation",
-      "keywords": [
-        "visa",
-        "doc",
-        "translate",
-        "application",
-        "documents",
-        "images",
-        "english",
-        "create"
       ]
     },
     {

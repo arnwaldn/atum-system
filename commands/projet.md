@@ -305,28 +305,18 @@ Apres toutes les questions, generer le fichier :
 
 Analyser le profil du projet et recommander les etapes suivantes :
 
-**Si no-code + pas de dev + delai court** :
-> 1. Lancer `/projet-automatisation` pour designer les automatisations
-> 2. Generer un site vitrine avec `/website`
-> 3. Enregistrer le projet : `/dashboard-atum --add-new`
-
-**Si web app + developpeur disponible** :
+**Si web app** :
 > 1. Transformer ce brief en cahier des charges technique : `/prd`
 > 2. Generer la structure du projet : `/scaffold`
 > 3. Detailler les fonctionnalites : `/feature-analyzer`
-> 4. Enregistrer le projet : `/dashboard-atum --add-new`
 
 **Si IA / projet complexe** :
 > 1. Analyse approfondie : `/ultra-think`
 > 2. Architecture systeme : invoquer le skill `system-design`
 > 3. Cahier des charges : `/prd`
-> 4. Enregistrer le projet : `/dashboard-atum --add-new`
 
 **Si conformite detectee** :
 > - Ajouter : Audit de conformite avec `/compliance`
-
-**Toujours** :
-> - Enregistrer dans le suivi ATUM : `/dashboard-atum --add-new`
 
 ---
 

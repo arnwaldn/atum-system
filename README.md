@@ -1,9 +1,9 @@
 # ATUM System
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-4.0.0-green.svg)](https://github.com/arnwaldn/atum-system/releases)
+[![Version](https://img.shields.io/badge/version-4.1.0-green.svg)](https://github.com/arnwaldn/atum-system/releases)
 
-**The ultimate Claude Code plugin.** One install. Full autonomy. Zero coding required.
+**The ultimate Claude Code plugin.** One install. Full autonomy. Dev-focused.
 
 ATUM System is a complete Claude Code configuration that turns Claude into an autonomous development partner. It consolidates the best open-source systems (Everything Claude Code, Superpowers, UI/UX Pro Max, and more) into a single, self-contained plugin with perfect orchestration.
 
@@ -11,20 +11,19 @@ ATUM System is a complete Claude Code configuration that turns Claude into an au
 
 | Component | Count | Purpose |
 |-----------|-------|---------|
-| **Agents** | 69 | Specialized sub-agents (architecture, review, security, testing, DevOps, compliance...) |
-| **Skills** | 166 | Deep expertise (React, Flask, Spring Boot, SwiftUI, Go, Django, Docker, K8s, EU AI Act...) |
-| **Commands** | 80 | Slash commands (/autopilot, /projet, /deploy, /tdd, /scaffold, /pipeline, /verify...) |
-| **Hooks** | 40 | Runtime safety across 9 events (git-guard, secret-scanner, loop-detector, anti-rationalization, cost-tracker...) |
+| **Agents** | 66 | Specialized sub-agents (architecture, review, security, testing, DevOps, compliance...) |
+| **Skills** | 152 | Deep expertise (React, Flask, Spring Boot, SwiftUI, Go, Django, Docker, K8s, EU AI Act...) |
+| **Commands** | 74 | Slash commands (/autopilot, /projet, /deploy, /tdd, /scaffold, /pipeline, /verify...) |
+| **Hooks** | 36 | Runtime safety across 9 events (git-guard, secret-scanner, loop-detector, anti-rationalization, cost-tracker...) |
 | **Rules** | 5 dirs | Language-specific standards (TypeScript, Python, Go, Swift, common) |
 
 ## Key features
 
 - **`/autopilot`** -- describe your project in plain language, get a deployed product. 6 automatic phases: definition, structure, construction, verification, deployment, monitoring
 - **Full autonomy** -- Claude handles everything from idea to deployment without asking you to run commands manually
-- **Non-coder friendly** -- designed for people who have ideas but don't write code. Plain French or English instructions work
 - **Safety-first** -- 12 PreToolUse guards, anti-rationalization stop hook, pre-completion test gate, cost tracking
 - **EU AI Act compliance** -- built-in ATUM Audit integration with 15 MCP tools for Article 15 traceability
-- **140+ NLP triggers** -- say what you want in French or English, the system routes to the right workflow automatically
+- **NLP triggers** -- say what you want in French or English, the system routes to the right workflow automatically
 - **Universal** -- works on Windows (Git Bash), macOS, Linux. One install script for all platforms
 - **Self-contained** -- no external dependencies beyond Claude Code, Node.js, Python, and Git
 
@@ -57,7 +56,7 @@ Then **restart Claude Code**.
 After installation, open Claude Code and try:
 
 ```
-/autopilot       # Full auto: idea to deployed product (non-coders)
+/autopilot       # Full auto: idea to deployed product
 /projet          # Start a new project (guided interview)
 /scaffold        # Generate project structure
 /deploy          # Deploy to production
@@ -77,13 +76,13 @@ ATUM handles the rest: architecture, code, tests, deployment.
 
 ```
 atum-system/
-  plugin.json                     # Plugin manifest (v4.0.0)
+  plugin.json                     # Plugin manifest (v4.1.0)
   .claude-plugin/plugin.json      # Marketplace manifest
-  agents/                         # 69 specialized sub-agents
-  skills/                         # 167 deep expertise skills (3-layer runtime orchestrator)
-  commands/                       # 80 slash commands
-  hooks/                          # 40 runtime hooks across 9 events + hooks.json
-  rules/                          # Language-specific coding standards (5 dirs, 37 files)
+  agents/                         # 66 specialized sub-agents
+  skills/                         # 152 deep expertise skills (3-layer runtime orchestrator)
+  commands/                       # 74 slash commands
+  hooks/                          # 36 runtime hooks across 9 events + hooks.json
+  rules/                          # Language-specific coding standards (5 dirs, 35 files)
   scripts/                        # Utility scripts + skill registry generator
   settings.json                   # Security permissions + env defaults
   install.sh                      # Universal installer
@@ -108,7 +107,6 @@ All hooks are declared in `hooks/hooks.json` using `${CLAUDE_PLUGIN_ROOT}` for f
 
 Other configs add tools. ATUM adds **judgment**:
 
-- **`/autopilot`** -- full pipeline from idea to deployed product for non-coders
 - **Anti-rationalization hook** -- detects when Claude tries to stop prematurely
 - **Pre-completion gate** -- runs tests before allowing session end
 - **Loop detector** -- catches repetitive patterns and forces strategy change
@@ -144,4 +142,4 @@ MIT -- see [LICENSE](LICENSE).
 
 ---
 
-Built by [ATUM SAS](https://github.com/arnwaldn) for non-coders who build commercial products.
+Built by [ATUM SAS](https://github.com/arnwaldn).

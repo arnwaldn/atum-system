@@ -16,7 +16,7 @@ Si la reponse n'est pas evidente → activer le protocole ci-dessous.
 2. **Contraintes** — lister les contraintes reelles (code, deadline, users)
 3. **Options** — minimum 2 viables, avec effort/complexite/dette/reversibilite
 4. **Choisir** — "Parce que..." (pas "c'est la best practice")
-5. **Enregistrer** — structurant → DELIVERY.json ou collective-memory
+5. **Enregistrer** — structurant → documenter dans le projet (CLAUDE.md, ADR, ou commentaire de commit)
 
 ## Sequences de resolution
 

@@ -83,7 +83,7 @@ echo ""
 
 # Stop hooks
 echo "--- Stop hooks (target: < 5s total) ---"
-for hook in anti-rationalization.js session-memory.js collective-memory-retain.js atum-dashboard-sync.js session-to-graph.js; do
+for hook in anti-rationalization.js session-memory.js session-to-graph.js; do
   [ -f "$HOOKS_DIR/$hook" ] && benchmark_hook "$HOOKS_DIR/$hook" "$STOP_INPUT"
 done
 echo ""

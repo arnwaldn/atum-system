@@ -98,18 +98,6 @@ function matchCommandRoute(prompt) {
     // No-code
     { patterns: [/\b(no[- ]?code|make\.com|automatisation|scenario make)\b/i], command: 'atum-system:no-code-maestro' },
 
-    // ATUM SAS admin
-    { patterns: [/\b(agence atum|atum sas|soci..t..?|la bo..te)\b/i], command: '/agence-atum' },
-    { patterns: [/\b(facture|devis|facturer)\b/i], command: '/agence-atum' },
-
-    // Scheduling
-    { patterns: [/\b(tous les jours|chaque lundi|every day|every morning|schedule|cron|planifi)\b/i], command: 'atum-system:scheduler' },
-
-    // Memory
-    { patterns: [/\b(souviens[- ]?toi|remember|m..moire collective|sauvegarder.*info)\b/i], command: 'atum-system:memoire' },
-
-    // Onboarding
-    { patterns: [/\b(bienvenue|comment ca marche|je commence|getting started|premier jour)\b/i], command: 'atum-system:bienvenue' },
   ];
 
   for (const route of routes) {
