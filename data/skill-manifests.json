@@ -1,24 +1,20 @@
 {
   "version": "1.0.0",
-  "generated": "2026-03-25T13:56:26.135Z",
+  "generated": "2026-03-25T15:53:31.965Z",
   "count": 181,
   "skills": {
     "agent-browser": {
       "activation": {
         "onKeyword": [
+          "agent-browser",
           "agent",
           "browser",
           "automation",
-          "test",
           "puppeteer",
           "playwright",
           "headless",
-          "agent-browser",
           "cli",
           "agents",
-          "asked",
-          "something",
-          "real",
           "browser automation cli",
           "real browser"
         ],
@@ -33,18 +29,14 @@
       "dependencies": [
         "terminal-emulator"
       ],
+      "successors": [],
       "path": "skills/agent-browser/SKILL.md"
     },
     "agent-development": {
       "activation": {
         "onKeyword": [
+          "agent-development",
           "agent",
-          "development",
-          "skill",
-          "user",
-          "asks",
-          "create",
-          "add",
           "write",
           "subagent",
           "frontmatter",
@@ -53,13 +45,24 @@
           "tools",
           "colors",
           "autonomous",
-          "needs",
-          "guidance",
-          "structure",
-          "system",
-          "prompts"
+          "prompts",
+          "triggering",
+          "conditions",
+          "plugins",
+          "agent frontmatter",
+          "agent examples",
+          "agent tools",
+          "agent colors",
+          "autonomous agent",
+          "system prompts"
         ],
-        "onIntent": [],
+        "onIntent": [
+          "agents are for autonomous work, commands are for user-initiated actions",
+          "markdown file format with yaml frontmatter",
+          "triggering via description field with examples",
+          "system prompt defines agent behavior",
+          "model and color customi"
+        ],
         "onFileType": [],
         "onTool": [],
         "onProjectType": []
@@ -68,19 +71,19 @@
       "token_cost": 2594,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/agent-development/SKILL.md"
     },
     "agent-harness-construction": {
       "activation": {
         "onKeyword": [
+          "agent-harness-construction",
           "agent",
           "harness",
           "construction",
-          "design",
           "optimize",
           "action",
           "spaces",
-          "tool",
           "definitions",
           "observation",
           "formatting",
@@ -99,11 +102,13 @@
       "token_cost": 500,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/agent-harness-construction/SKILL.md"
     },
     "agentic-engineering": {
       "activation": {
         "onKeyword": [
+          "agentic-engineering",
           "agentic",
           "engineering",
           "operate",
@@ -112,7 +117,6 @@
           "execution",
           "decomposition",
           "cost-aware",
-          "model",
           "routing",
           "eval-first execution",
           "model routing"
@@ -126,22 +130,21 @@
       "token_cost": 433,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/agentic-engineering/SKILL.md"
     },
     "ai-first-engineering": {
       "activation": {
         "onKeyword": [
+          "ai-first-engineering",
           "first",
           "engineering",
           "operating",
-          "model",
           "teams",
           "agents",
           "generate",
           "large",
           "share",
-          "implementation",
-          "output",
           "engineering operating model",
           "ai agents generate"
         ],
@@ -154,31 +157,32 @@
       "token_cost": 334,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/ai-first-engineering/SKILL.md"
     },
     "ai-regression-testing": {
       "activation": {
         "onKeyword": [
+          "ai-regression-testing",
           "regression",
-          "testing",
           "strategies",
           "ai-assisted",
-          "development",
           "sandbox-mode",
-          "api",
           "without",
           "database",
           "dependencies",
           "automated",
           "bug-check",
           "workflows",
-          "patterns",
           "catch",
           "blind",
           "spots",
-          "model",
           "writes",
-          "reviews"
+          "reviews",
+          "regression testing strategies",
+          "sandbox-mode api",
+          "testing without database",
+          "automated bug-check"
         ],
         "onIntent": [
           "ai agent (claude code, cursor, codex) has modified api routes or backend logic",
@@ -195,15 +199,16 @@
       "token_cost": 2840,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/ai-regression-testing/SKILL.md"
     },
     "api-design": {
       "activation": {
         "onKeyword": [
-          "api",
-          "design",
+          "api-design",
           "rest",
-          "patterns",
           "resource",
           "naming",
           "status",
@@ -241,22 +246,23 @@
       "token_cost": 3271,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "e2e-testing",
+        "security-review"
+      ],
       "path": "skills/api-design/SKILL.md"
     },
     "architecture-decision-records": {
       "activation": {
         "onKeyword": [
-          "architecture",
+          "architecture-decision-records",
           "decision",
           "records",
           "capture",
           "architectural",
           "decisions",
           "made",
-          "claude",
-          "code",
           "sessions",
-          "structured",
           "adrs",
           "auto-detects",
           "moments",
@@ -265,7 +271,10 @@
           "considered",
           "rationale",
           "maintains",
-          "adr"
+          "adr",
+          "log",
+          "future",
+          "developers"
         ],
         "onIntent": [
           "user explicitly says \"let's record this decision\" or \"adr this\"",
@@ -282,13 +291,14 @@
       "token_cost": 1759,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/architecture-decision-records/SKILL.md"
     },
     "article-writing": {
       "activation": {
         "onKeyword": [
+          "article-writing",
           "article",
-          "writing",
           "write",
           "articles",
           "guides",
@@ -305,8 +315,8 @@
           "supplied",
           "examples",
           "brand",
-          "guidance",
-          "user"
+          "polished",
+          "written"
         ],
         "onIntent": [
           "drafting blog posts, essays, launch posts, guides, tutorials, or newsletter issues",
@@ -322,6 +332,7 @@
       "token_cost": 786,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/article-writing/SKILL.md"
     },
     "assistant": {
@@ -329,12 +340,10 @@
         "onKeyword": [
           "assistant",
           "main",
-          "skill",
           "pinecone",
           "operations",
           "read",
           "first",
-          "create",
           "manage",
           "chat",
           "assistants",
@@ -346,7 +355,9 @@
           "requests",
           "docs",
           "ask",
-          "authentication"
+          "authentication",
+          "without",
+          "requiring"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -357,31 +368,32 @@
       "token_cost": 4602,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/assistant/SKILL.md"
     },
     "audit-flow": {
       "activation": {
         "onKeyword": [
+          "audit-flow",
           "audit",
           "flow",
-          "system",
           "tracing",
-          "architecture",
-          "data",
-          "security",
           "boundaries",
           "component",
           "interactions",
           "interactive",
           "across",
-          "code",
-          "api",
           "auth",
           "network",
           "layers",
           "sqlite",
           "persistence",
-          "mermaid"
+          "mermaid",
+          "export",
+          "auditing",
+          "flows",
+          "documenting",
+          "mapping"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -395,17 +407,16 @@
         "spec-miner",
         "design-doc-mermaid"
       ],
+      "successors": [],
       "path": "skills/audit-flow/SKILL.md"
     },
     "autonomous-loops": {
       "activation": {
         "onKeyword": [
+          "autonomous-loops",
           "autonomous",
           "loops",
-          "patterns",
           "architectures",
-          "claude",
-          "code",
           "simple",
           "sequential",
           "pipelines",
@@ -433,11 +444,13 @@
       "token_cost": 5772,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/autonomous-loops/SKILL.md"
     },
     "autonomous-routing": {
       "activation": {
         "onKeyword": [
+          "autonomous-routing",
           "autonomous",
           "routing",
           "detection",
@@ -457,21 +470,17 @@
         "common-ground",
         "compliance-routing"
       ],
+      "successors": [],
       "path": "skills/autonomous-routing/SKILL.md"
     },
     "backend-patterns": {
       "activation": {
         "onKeyword": [
+          "backend-patterns",
           "backend",
-          "patterns",
-          "architecture",
-          "api",
-          "design",
           "database",
           "optimization",
           "server-side",
-          "best",
-          "practices",
           "node",
           "express",
           "next",
@@ -494,6 +503,7 @@
       "token_cost": 3454,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/backend-patterns/SKILL.md"
     },
     "benchmark": {
@@ -516,6 +526,7 @@
       "token_cost": 534,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/benchmark/SKILL.md"
     },
     "brainstorming": {
@@ -526,21 +537,19 @@
           "work",
           "creating",
           "features",
-          "building",
           "components",
           "adding",
           "functionality",
           "modifying",
           "behavior",
           "explores",
-          "user",
           "intent",
           "requirements",
-          "design",
-          "implementation",
           "creative work",
           "creating features",
-          "building components"
+          "building components",
+          "adding functionality",
+          "explores user intent"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -551,16 +560,17 @@
       "token_cost": 1169,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/brainstorming/SKILL.md"
     },
     "chaos-engineer": {
       "activation": {
         "onKeyword": [
+          "chaos-engineer",
           "chaos",
           "engineer",
           "engineering",
           "resilience",
-          "testing",
           "failure",
           "injection",
           "game",
@@ -570,12 +580,12 @@
           "experiment",
           "fault",
           "antifragile",
-          "design",
           "execute",
           "experiments",
           "exercises",
           "staging",
-          "dev"
+          "dev",
+          "environments"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -590,19 +600,16 @@
         "devops-engineer",
         "kubernetes-specialist"
       ],
+      "successors": [],
       "path": "skills/chaos-engineer/SKILL.md"
     },
     "claude-a11y-skill": {
       "activation": {
         "onKeyword": [
-          "claude",
+          "claude-a11y-skill",
           "a11y",
-          "skill",
           "accessibility",
-          "guidance",
-          "help",
           "aria",
-          "patterns",
           "accessible",
           "component",
           "keyboard",
@@ -614,7 +621,11 @@
           "real-time",
           "coding",
           "provides",
-          "inline"
+          "inline",
+          "fix",
+          "suggestions",
+          "write",
+          "scope"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -628,21 +639,19 @@
         "refactoring-ui",
         "high-perf-browser"
       ],
+      "successors": [],
       "path": "skills/claude-a11y-skill/SKILL.md"
     },
     "claude-api": {
       "activation": {
         "onKeyword": [
-          "claude",
-          "api",
+          "claude-api",
           "anthropic",
-          "patterns",
           "python",
           "typescript",
           "covers",
           "messages",
           "streaming",
-          "tool",
           "vision",
           "extended",
           "thinking",
@@ -651,8 +660,11 @@
           "caching",
           "agent",
           "sdk",
-          "building",
-          "applications"
+          "sdks",
+          "anthropic claude api",
+          "covers messages api",
+          "extended thinking",
+          "prompt caching"
         ],
         "onIntent": [
           "building applications that call the claude api",
@@ -669,31 +681,32 @@
       "token_cost": 2136,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/claude-api/SKILL.md"
     },
     "claude-automation-recommender": {
       "activation": {
         "onKeyword": [
-          "claude",
+          "claude-automation-recommender",
           "automation",
           "recommender",
           "analyze",
           "codebase",
           "recommend",
-          "code",
           "automations",
           "hooks",
           "subagents",
-          "skills",
           "plugins",
           "mcp",
           "servers",
-          "user",
-          "asks",
           "recommendations",
-          "wants",
           "optimize",
-          "setup"
+          "mentions",
+          "improving",
+          "workflows",
+          "first",
+          "set",
+          "know"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -704,15 +717,14 @@
       "token_cost": 2710,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/claude-automation-recommender/SKILL.md"
     },
     "claude-d3js-skill": {
       "activation": {
         "onKeyword": [
-          "claude",
+          "claude-d3js-skill",
           "d3js",
-          "skill",
-          "data",
           "visualization",
           "chart",
           "graph",
@@ -728,7 +740,9 @@
           "graphs",
           "diagrams",
           "complex",
-          "svg-based"
+          "svg-based",
+          "visualisation",
+          "requires"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -741,19 +755,17 @@
       "dependencies": [
         "refactoring-ui"
       ],
+      "successors": [],
       "path": "skills/claude-d3js-skill/SKILL.md"
     },
     "claude-md-improver": {
       "activation": {
         "onKeyword": [
-          "claude",
+          "claude-md-improver",
           "improver",
           "audit",
           "improve",
-          "files",
           "repositories",
-          "user",
-          "asks",
           "check",
           "update",
           "fix",
@@ -765,7 +777,10 @@
           "outputs",
           "report",
           "makes",
-          "targeted"
+          "targeted",
+          "updates",
+          "mentions",
+          "maintenance"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -776,13 +791,14 @@
       "token_cost": 1507,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/claude-md-improver/SKILL.md"
     },
     "clean-architecture": {
       "activation": {
         "onKeyword": [
+          "clean-architecture",
           "clean",
-          "architecture",
           "dependency",
           "rule",
           "ports",
@@ -792,15 +808,15 @@
           "boundary",
           "solid",
           "onion",
-          "structure",
           "software",
           "around",
           "source",
-          "code",
           "dependencies",
           "point",
           "inward",
-          "frameworks"
+          "frameworks",
+          "cases",
+          "entities"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -814,21 +830,21 @@
         "domain-driven-design",
         "system-design"
       ],
+      "successors": [
+        "api-design"
+      ],
       "path": "skills/clean-architecture/SKILL.md"
     },
     "clickhouse-io": {
       "activation": {
         "onKeyword": [
+          "clickhouse-io",
           "clickhouse",
           "database",
-          "patterns",
           "query",
           "optimization",
           "analytics",
-          "data",
           "engineering",
-          "best",
-          "practices",
           "high-performance",
           "analytical",
           "workloads",
@@ -849,31 +865,32 @@
       "token_cost": 2602,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/clickhouse-io/SKILL.md"
     },
     "code-connect-components": {
       "activation": {
         "onKeyword": [
-          "code",
+          "code-connect-components",
           "connect",
           "components",
           "connects",
           "figma",
-          "design",
-          "user",
           "says",
           "component",
           "map",
           "link",
-          "create",
           "mapping",
-          "add",
-          "wants",
           "establish",
           "mappings",
           "designs",
           "implementations",
-          "requires"
+          "requires",
+          "mcp",
+          "server",
+          "connection",
+          "connects figma design",
+          "code connect"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -884,31 +901,31 @@
       "token_cost": 4067,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/code-connect-components/SKILL.md"
     },
     "codebase-onboarding": {
       "activation": {
         "onKeyword": [
+          "codebase-onboarding",
           "codebase",
           "onboarding",
           "analyze",
           "unfamiliar",
           "generate",
-          "structured",
           "guide",
-          "architecture",
           "map",
           "key",
           "entry",
           "points",
           "conventions",
           "starter",
-          "claude",
           "joining",
-          "new",
-          "project",
           "setting",
-          "code"
+          "first",
+          "time",
+          "repo",
+          "key entry points"
         ],
         "onIntent": [
           "first time opening a project with claude code",
@@ -925,22 +942,20 @@
       "token_cost": 2039,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/codebase-onboarding/SKILL.md"
     },
     "coding-standards": {
       "activation": {
         "onKeyword": [
+          "coding-standards",
           "coding",
           "standards",
           "universal",
-          "best",
-          "practices",
-          "patterns",
           "typescript",
           "javascript",
           "react",
           "node",
-          "development",
           "universal coding standards",
           "best practices",
           "js development"
@@ -961,19 +976,14 @@
       "token_cost": 2889,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/coding-standards/SKILL.md"
     },
     "command-development": {
       "activation": {
         "onKeyword": [
-          "command",
-          "development",
-          "skill",
-          "user",
-          "asks",
-          "create",
+          "command-development",
           "slash",
-          "add",
           "write",
           "custom",
           "define",
@@ -981,13 +991,25 @@
           "frontmatter",
           "organize",
           "commands",
-          "file",
           "references",
           "interactive",
           "askuserquestion",
-          "needs"
+          "yaml",
+          "fields",
+          "dynamic",
+          "bash",
+          "execution",
+          "interaction",
+          "define command arguments",
+          "organize commands"
         ],
-        "onIntent": [],
+        "onIntent": [
+          "markdown file format for commands",
+          "yaml frontmatter for configuration",
+          "dynamic arguments and file references",
+          "bash execution for context",
+          "command organi"
+        ],
         "onFileType": [],
         "onTool": [],
         "onProjectType": []
@@ -996,11 +1018,13 @@
       "token_cost": 4766,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/command-development/SKILL.md"
     },
     "common-ground": {
       "activation": {
         "onKeyword": [
+          "common-ground",
           "common",
           "ground",
           "hypotheses",
@@ -1009,8 +1033,7 @@
           "principe",
           "validate",
           "onboarding",
-          "starting",
-          "project"
+          "starting"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -1024,11 +1047,13 @@
         "prompt-architect",
         "spec-miner"
       ],
+      "successors": [],
       "path": "skills/common-ground/SKILL.md"
     },
     "compliance-routing": {
       "activation": {
         "onKeyword": [
+          "compliance-routing",
           "compliance",
           "routing",
           "rgpd",
@@ -1037,18 +1062,17 @@
           "hipaa",
           "cookies",
           "privacy",
-          "user",
-          "data",
           "authentication",
           "payments",
           "e-commerce",
           "health",
           "regulatory",
           "detection",
-          "code",
           "touches",
           "children",
-          "content"
+          "content",
+          "deployment",
+          "regulatory compliance detection"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -1062,23 +1086,22 @@
         "open-source-license-compliance",
         "supply-chain-risk-auditor"
       ],
+      "successors": [],
       "path": "skills/compliance-routing/SKILL.md"
     },
     "configure-atum": {
       "activation": {
         "onKeyword": [
+          "configure-atum",
           "configure",
           "atum",
           "interactive",
           "installer",
           "everything",
-          "claude",
-          "code",
           "guides",
           "users",
           "selecting",
           "installing",
-          "skills",
           "rules",
           "user-level",
           "project-level",
@@ -1086,7 +1109,9 @@
           "verifies",
           "paths",
           "optionally",
-          "optimizes"
+          "optimizes",
+          "installed",
+          "everything claude code"
         ],
         "onIntent": [
           "user says \"configure ecc\", \"install ecc\", \"setup everything claude code\", or similar",
@@ -1102,17 +1127,18 @@
       "token_cost": 3379,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/configure-atum/SKILL.md"
     },
     "content-hash-cache-pattern": {
       "activation": {
         "onKeyword": [
+          "content-hash-cache-pattern",
           "content",
           "hash",
           "cache",
           "pattern",
           "expensive",
-          "file",
           "processing",
           "results",
           "sha-256",
@@ -1139,21 +1165,20 @@
       "token_cost": 1398,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/content-hash-cache-pattern/SKILL.md"
     },
     "context-budget": {
       "activation": {
         "onKeyword": [
+          "context-budget",
           "context",
           "budget",
           "audits",
-          "claude",
-          "code",
           "window",
           "consumption",
           "across",
           "agents",
-          "skills",
           "mcp",
           "servers",
           "rules",
@@ -1163,7 +1188,9 @@
           "components",
           "produces",
           "prioritized",
-          "token-savings"
+          "token-savings",
+          "recommendations",
+          "audits claude code"
         ],
         "onIntent": [
           "session performance feels sluggish or output quality is degrading",
@@ -1180,11 +1207,13 @@
       "token_cost": 1324,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/context-budget/SKILL.md"
     },
     "context-engineering-kit": {
       "activation": {
         "onKeyword": [
+          "context-engineering-kit",
           "context",
           "engineering",
           "kit",
@@ -1202,7 +1231,6 @@
           "sub-agents",
           "complex",
           "tasks",
-          "structured",
           "agents",
           "prevents"
         ],
@@ -1217,15 +1245,16 @@
       "dependencies": [
         "fresh-execute"
       ],
+      "successors": [],
       "path": "skills/context-engineering-kit/SKILL.md"
     },
     "continuous-agent-loop": {
       "activation": {
         "onKeyword": [
+          "continuous-agent-loop",
           "continuous",
           "agent",
           "loop",
-          "patterns",
           "autonomous",
           "loops",
           "quality",
@@ -1244,23 +1273,21 @@
       "token_cost": 280,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/continuous-agent-loop/SKILL.md"
     },
     "continuous-learning": {
       "activation": {
         "onKeyword": [
+          "continuous-learning",
           "continuous",
           "learning",
           "automatically",
           "extract",
           "reusable",
-          "patterns",
-          "claude",
-          "code",
           "sessions",
           "save",
           "learned",
-          "skills",
           "future",
           "automatically extract reusable"
         ],
@@ -1279,15 +1306,16 @@
       "token_cost": 910,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/continuous-learning/SKILL.md"
     },
     "continuous-learning-v2": {
       "activation": {
         "onKeyword": [
+          "continuous-learning-v2",
           "continuous",
           "learning",
           "instinct-based",
-          "system",
           "observes",
           "sessions",
           "via",
@@ -1298,12 +1326,12 @@
           "confidence",
           "scoring",
           "evolves",
-          "skills",
           "commands",
           "agents",
           "adds",
           "project-scoped",
-          "prevent"
+          "prevent",
+          "cross-project"
         ],
         "onIntent": [
           "setting up automatic learning from claude code sessions",
@@ -1322,20 +1350,19 @@
       "token_cost": 3112,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/continuous-learning-v2/SKILL.md"
     },
     "cost-aware-llm-pipeline": {
       "activation": {
         "onKeyword": [
+          "cost-aware-llm-pipeline",
           "cost",
           "aware",
           "llm",
           "pipeline",
           "optimization",
-          "patterns",
-          "api",
           "usage",
-          "model",
           "routing",
           "task",
           "complexity",
@@ -1346,7 +1373,9 @@
           "prompt",
           "caching",
           "cost optimization patterns",
-          "task complexity"
+          "task complexity",
+          "budget tracking",
+          "retry logic"
         ],
         "onIntent": [
           "building applications that call llm apis (claude, gpt, etc.)",
@@ -1362,11 +1391,13 @@
       "token_cost": 1427,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/cost-aware-llm-pipeline/SKILL.md"
     },
     "cpp-coding-standards": {
       "activation": {
         "onKeyword": [
+          "cpp-coding-standards",
           "cpp",
           "coding",
           "standards",
@@ -1374,15 +1405,12 @@
           "guidelines",
           "isocpp",
           "github",
-          "writing",
           "reviewing",
           "refactoring",
-          "code",
           "enforce",
           "modern",
           "safe",
           "idiomatic",
-          "practices",
           "core guidelines"
         ],
         "onIntent": [
@@ -1403,14 +1431,14 @@
       "token_cost": 5570,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/cpp-coding-standards/SKILL.md"
     },
     "cpp-testing": {
       "activation": {
         "onKeyword": [
+          "cpp-testing",
           "cpp",
-          "testing",
-          "writing",
           "updating",
           "fixing",
           "tests",
@@ -1421,7 +1449,6 @@
           "failing",
           "flaky",
           "adding",
-          "coverage",
           "sanitizers",
           "fixing c",
           "configuring googletest",
@@ -1443,31 +1470,34 @@
       "token_cost": 2286,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/cpp-testing/SKILL.md"
     },
     "create-design-system-rules": {
       "activation": {
         "onKeyword": [
-          "create",
-          "design",
-          "system",
+          "create-design-system-rules",
           "rules",
           "generates",
           "custom",
-          "user",
           "codebase",
           "says",
           "generate",
-          "project",
           "set",
           "customize",
           "guidelines",
-          "wants",
           "establish",
           "project-specific",
           "conventions",
           "figma-to-code",
-          "workflows"
+          "workflows",
+          "requires",
+          "figma",
+          "mcp",
+          "server",
+          "connection"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -1478,19 +1508,18 @@
       "token_cost": 4565,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/create-design-system-rules/SKILL.md"
     },
     "database-migrations": {
       "activation": {
         "onKeyword": [
+          "database-migrations",
           "database",
           "migrations",
           "migration",
-          "best",
-          "practices",
           "schema",
           "changes",
-          "data",
           "rollbacks",
           "zero-downtime",
           "deployments",
@@ -1502,7 +1531,9 @@
           "prisma",
           "drizzle",
           "django",
-          "typeorm"
+          "typeorm",
+          "golang-migrate",
+          "database migration best"
         ],
         "onIntent": [
           "creating or altering database tables",
@@ -1518,14 +1549,15 @@
       "token_cost": 2367,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/database-migrations/SKILL.md"
     },
     "ddia-systems": {
       "activation": {
         "onKeyword": [
+          "ddia-systems",
           "ddia",
           "systems",
-          "data",
           "replication",
           "partitioning",
           "consistency",
@@ -1538,11 +1570,11 @@
           "consensus",
           "database",
           "choice",
-          "design",
           "understanding",
           "transactions",
           "models",
-          "user"
+          "mentions",
+          "lag"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -1556,11 +1588,13 @@
         "system-design",
         "clean-architecture"
       ],
+      "successors": [],
       "path": "skills/ddia-systems/SKILL.md"
     },
     "deep-research": {
       "activation": {
         "onKeyword": [
+          "deep-research",
           "deep",
           "research",
           "multi-source",
@@ -1576,11 +1610,10 @@
           "reports",
           "source",
           "attribution",
-          "user",
-          "wants",
           "thorough",
           "topic",
-          "evidence"
+          "evidence",
+          "citations"
         ],
         "onIntent": [
           "user asks to research any topic in depth",
@@ -1594,15 +1627,14 @@
       "token_cost": 1143,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/deep-research/SKILL.md"
     },
     "deploy": {
       "activation": {
         "onKeyword": [
           "deploy",
-          "applications",
           "vercel",
-          "user",
           "says",
           "push",
           "production",
@@ -1620,13 +1652,14 @@
       "token_cost": 138,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/deploy/SKILL.md"
     },
     "deployment-patterns": {
       "activation": {
         "onKeyword": [
+          "deployment-patterns",
           "deployment",
-          "patterns",
           "workflows",
           "pipeline",
           "docker",
@@ -1639,7 +1672,6 @@
           "readiness",
           "checklists",
           "web",
-          "applications",
           "deployment workflows",
           "cd pipeline patterns",
           "docker containerization",
@@ -1658,31 +1690,32 @@
       "token_cost": 2740,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/deployment-patterns/SKILL.md"
     },
     "design-doc-mermaid": {
       "activation": {
         "onKeyword": [
-          "design",
+          "design-doc-mermaid",
           "doc",
           "mermaid",
           "diagram",
-          "architecture",
           "sequence",
           "activity",
           "deployment",
-          "code",
-          "create",
           "diagrams",
           "text",
           "descriptions",
           "source",
-          "asked",
           "generate",
           "document",
           "convert",
           "supports",
-          "hierarchical"
+          "hierarchical",
+          "on-demand",
+          "guide",
+          "loading",
+          "unicode"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -1696,13 +1729,13 @@
         "system-design",
         "audit-flow"
       ],
+      "successors": [],
       "path": "skills/design-doc-mermaid/SKILL.md"
     },
     "design-system": {
       "activation": {
         "onKeyword": [
-          "design",
-          "system"
+          "design-system"
         ],
         "onIntent": [
           "starting a new project that needs a design system",
@@ -1719,11 +1752,13 @@
       "token_cost": 573,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/design-system/SKILL.md"
     },
     "dispatching-parallel-agents": {
       "activation": {
         "onKeyword": [
+          "dispatching-parallel-agents",
           "dispatching",
           "parallel",
           "agents",
@@ -1754,21 +1789,17 @@
       "token_cost": 1521,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/dispatching-parallel-agents/SKILL.md"
     },
     "django-patterns": {
       "activation": {
         "onKeyword": [
+          "django-patterns",
           "django",
-          "patterns",
-          "architecture",
           "rest",
-          "api",
-          "design",
           "drf",
           "orm",
-          "best",
-          "practices",
           "caching",
           "signals",
           "middleware",
@@ -1796,15 +1827,17 @@
       "token_cost": 5206,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "django-tdd",
+        "django-verification"
+      ],
       "path": "skills/django-patterns/SKILL.md"
     },
     "django-security": {
       "activation": {
         "onKeyword": [
+          "django-security",
           "django",
-          "security",
-          "best",
-          "practices",
           "authentication",
           "authorization",
           "csrf",
@@ -1832,21 +1865,21 @@
       "token_cost": 3952,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/django-security/SKILL.md"
     },
     "django-tdd": {
       "activation": {
         "onKeyword": [
+          "django-tdd",
           "django",
           "tdd",
-          "testing",
           "strategies",
           "pytest-django",
           "methodology",
           "factory",
           "boy",
           "mocking",
-          "coverage",
           "rest",
           "framework",
           "apis",
@@ -1867,11 +1900,15 @@
       "token_cost": 5231,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/django-tdd/SKILL.md"
     },
     "django-verification": {
       "activation": {
         "onKeyword": [
+          "django-verification",
           "django",
           "verification",
           "loop",
@@ -1879,8 +1916,6 @@
           "migrations",
           "linting",
           "tests",
-          "coverage",
-          "security",
           "scans",
           "deployment",
           "readiness",
@@ -1904,18 +1939,19 @@
       "token_cost": 2846,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/django-verification/SKILL.md"
     },
     "docker-patterns": {
       "activation": {
         "onKeyword": [
+          "docker-patterns",
           "docker",
-          "patterns",
           "compose",
           "local",
-          "development",
           "container",
-          "security",
           "networking",
           "volume",
           "strategies",
@@ -1939,6 +1975,7 @@
       "token_cost": 2063,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/docker-patterns/SKILL.md"
     },
     "docx": {
@@ -1956,14 +1993,14 @@
           "letterhead",
           "tracked",
           "changes",
-          "skill",
           "whenever",
-          "user",
-          "wants",
-          "create",
           "read",
           "edit",
-          "manipulate"
+          "manipulate",
+          "documents",
+          "triggers",
+          "include",
+          "mention"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -1978,14 +2015,15 @@
         "pptx",
         "xlsx"
       ],
+      "successors": [],
       "path": "skills/docx/SKILL.md"
     },
     "domain-driven-design": {
       "activation": {
         "onKeyword": [
+          "domain-driven-design",
           "domain",
           "driven",
-          "design",
           "modeling",
           "bounded",
           "context",
@@ -1999,10 +2037,10 @@
           "value",
           "objects",
           "events",
-          "model",
           "software",
           "around",
-          "business"
+          "business",
+          "contexts"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2016,24 +2054,24 @@
         "clean-architecture",
         "system-design"
       ],
+      "successors": [
+        "api-design"
+      ],
       "path": "skills/domain-driven-design/SKILL.md"
     },
     "e2e-testing": {
       "activation": {
         "onKeyword": [
+          "e2e-testing",
           "e2e",
-          "testing",
           "playwright",
-          "patterns",
           "page",
           "object",
-          "model",
           "configuration",
           "integration",
           "artifact",
           "management",
           "flaky",
-          "test",
           "strategies",
           "playwright e2e testing",
           "page object model",
@@ -2049,11 +2087,15 @@
       "token_cost": 1985,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/e2e-testing/SKILL.md"
     },
     "enterprise-agent-ops": {
       "activation": {
         "onKeyword": [
+          "enterprise-agent-ops",
           "enterprise",
           "agent",
           "ops",
@@ -2061,7 +2103,6 @@
           "long-lived",
           "workloads",
           "observability",
-          "security",
           "boundaries",
           "lifecycle",
           "management",
@@ -2077,22 +2118,21 @@
       "token_cost": 301,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/enterprise-agent-ops/SKILL.md"
     },
     "eval-harness": {
       "activation": {
         "onKeyword": [
+          "eval-harness",
           "eval",
           "harness",
           "formal",
           "evaluation",
           "framework",
-          "claude",
-          "code",
           "sessions",
           "implementing",
           "eval-driven",
-          "development",
           "edd",
           "principles",
           "formal evaluation framework",
@@ -2114,22 +2154,21 @@
       "token_cost": 1624,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/eval-harness/SKILL.md"
     },
     "exa-search": {
       "activation": {
         "onKeyword": [
+          "exa-search",
           "exa",
           "search",
           "neural",
           "via",
           "mcp",
           "web",
-          "code",
           "company",
           "research",
-          "user",
-          "needs",
           "examples",
           "intel",
           "people",
@@ -2138,7 +2177,9 @@
           "deep",
           "engine",
           "neural search via",
-          "user needs web"
+          "user needs web",
+          "code examples",
+          "company intel"
         ],
         "onIntent": [
           "user needs current web information or news",
@@ -2156,20 +2197,20 @@
       "token_cost": 846,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/exa-search/SKILL.md"
     },
     "executing-plans": {
       "activation": {
         "onKeyword": [
+          "executing-plans",
           "executing",
           "plans",
           "written",
-          "implementation",
           "plan",
           "execute",
           "separate",
           "session",
-          "review",
           "checkpoints",
           "review checkpoints"
         ],
@@ -2182,15 +2223,15 @@
       "token_cost": 638,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/executing-plans/SKILL.md"
     },
     "finishing-a-development-branch": {
       "activation": {
         "onKeyword": [
+          "finishing-a-development-branch",
           "finishing",
-          "development",
           "branch",
-          "implementation",
           "complete",
           "tests",
           "pass",
@@ -2200,7 +2241,6 @@
           "guides",
           "completion",
           "presenting",
-          "structured",
           "options",
           "merge",
           "cleanup",
@@ -2215,11 +2255,13 @@
       "token_cost": 1058,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/finishing-a-development-branch/SKILL.md"
     },
     "firecrawl-cli": {
       "activation": {
         "onKeyword": [
+          "firecrawl-cli",
           "firecrawl",
           "cli"
         ],
@@ -2232,11 +2274,13 @@
       "token_cost": 5188,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/firecrawl-cli/SKILL.md"
     },
     "foundation-models-on-device": {
       "activation": {
         "onKeyword": [
+          "foundation-models-on-device",
           "foundation",
           "models",
           "device",
@@ -2249,7 +2293,6 @@
           "generation",
           "guided",
           "generable",
-          "tool",
           "calling",
           "snapshot",
           "streaming",
@@ -2270,11 +2313,13 @@
       "token_cost": 2034,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/foundation-models-on-device/SKILL.md"
     },
     "fresh-execute": {
       "activation": {
         "onKeyword": [
+          "fresh-execute",
           "fresh",
           "execute",
           "context",
@@ -2310,31 +2355,32 @@
       "dependencies": [
         "context-engineering-kit"
       ],
+      "successors": [],
       "path": "skills/fresh-execute/SKILL.md"
     },
     "frontend-design": {
       "activation": {
         "onKeyword": [
+          "frontend-design",
           "frontend",
-          "design",
-          "create",
           "distinctive",
           "production-grade",
           "interfaces",
           "high",
           "quality",
-          "skill",
-          "user",
-          "asks",
           "build",
           "web",
           "components",
           "pages",
-          "applications",
           "generates",
           "creative",
           "polished",
-          "code"
+          "avoids",
+          "generic",
+          "aesthetics",
+          "create distinctive",
+          "production-grade frontend",
+          "design quality"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2345,22 +2391,20 @@
       "token_cost": 1069,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/frontend-design/SKILL.md"
     },
     "frontend-patterns": {
       "activation": {
         "onKeyword": [
+          "frontend-patterns",
           "frontend",
-          "patterns",
-          "development",
           "react",
           "next",
           "state",
           "management",
           "performance",
           "optimization",
-          "best",
-          "practices",
           "frontend development patterns",
           "state management",
           "performance optimization"
@@ -2377,14 +2421,15 @@
       "token_cost": 3687,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/frontend-patterns/SKILL.md"
     },
     "frontend-slides": {
       "activation": {
         "onKeyword": [
+          "frontend-slides",
           "frontend",
           "slides",
-          "create",
           "stunning",
           "animation-rich",
           "html",
@@ -2392,16 +2437,16 @@
           "scratch",
           "converting",
           "powerpoint",
-          "files",
-          "user",
-          "wants",
           "build",
           "presentation",
           "convert",
           "ppt",
           "pptx",
           "web",
-          "talk"
+          "talk",
+          "pitch",
+          "helps",
+          "non-designers"
         ],
         "onIntent": [
           "creating a talk deck, pitch deck, workshop deck, or internal presentation",
@@ -2417,22 +2462,19 @@
       "token_cost": 1637,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/frontend-slides/SKILL.md"
     },
     "golang-patterns": {
       "activation": {
         "onKeyword": [
+          "golang-patterns",
           "golang",
-          "patterns",
           "idiomatic",
-          "best",
-          "practices",
           "conventions",
-          "building",
           "robust",
           "efficient",
           "maintainable",
-          "applications",
           "idiomatic go patterns",
           "best practices",
           "building robust"
@@ -2453,26 +2495,25 @@
       "token_cost": 3480,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "golang-testing"
+      ],
       "path": "skills/golang-patterns/SKILL.md"
     },
     "golang-testing": {
       "activation": {
         "onKeyword": [
+          "golang-testing",
           "golang",
-          "testing",
-          "patterns",
           "table-driven",
           "tests",
           "subtests",
           "benchmarks",
           "fuzzing",
-          "test",
-          "coverage",
           "follows",
           "tdd",
           "methodology",
           "idiomatic",
-          "practices",
           "go testing patterns",
           "follows tdd methodology"
         ],
@@ -2492,11 +2533,15 @@
       "token_cost": 4158,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/golang-testing/SKILL.md"
     },
     "high-perf-browser": {
       "activation": {
         "onKeyword": [
+          "high-perf-browser",
           "high",
           "perf",
           "browser",
@@ -2515,8 +2560,7 @@
           "blocking",
           "performance",
           "caching",
-          "tcp",
-          "optimization"
+          "tcp"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2530,33 +2574,40 @@
         "refactoring-ui",
         "claude-a11y-skill"
       ],
+      "successors": [],
       "path": "skills/high-perf-browser/SKILL.md"
     },
     "hook-development": {
       "activation": {
         "onKeyword": [
+          "hook-development",
           "hook",
-          "development",
-          "skill",
-          "user",
-          "asks",
-          "create",
-          "add",
           "pretooluse",
           "posttooluse",
           "stop",
           "validate",
-          "tool",
           "implement",
           "prompt-based",
           "hooks",
-          "claude",
           "plugin",
           "root",
           "set",
-          "event-driven"
+          "event-driven",
+          "automation",
+          "block",
+          "dangerous",
+          "commands",
+          "mentions",
+          "events",
+          "subagentstop"
         ],
-        "onIntent": [],
+        "onIntent": [
+          "validate tool calls before execution (pretooluse)",
+          "react to tool results (posttooluse)",
+          "enforce completion standards (stop, subagentstop)",
+          "load project context (sessionstart)",
+          "automate workflows across the development lifecycle"
+        ],
         "onFileType": [],
         "onTool": [],
         "onProjectType": []
@@ -2565,31 +2616,32 @@
       "token_cost": 4055,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/hook-development/SKILL.md"
     },
     "hugging-face-cli": {
       "activation": {
         "onKeyword": [
+          "hugging-face-cli",
           "hugging",
           "face",
           "cli",
           "execute",
           "hub",
           "operations",
-          "user",
-          "needs",
           "download",
           "models",
           "datasets",
           "spaces",
           "upload",
-          "files",
           "repositories",
-          "create",
           "repos",
           "manage",
           "local",
-          "cache"
+          "cache",
+          "compute",
+          "jobs",
+          "infrastructure"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2600,15 +2652,16 @@
       "token_cost": 1857,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/hugging-face-cli/SKILL.md"
     },
     "hugging-face-datasets": {
       "activation": {
         "onKeyword": [
+          "hugging-face-datasets",
           "hugging",
           "face",
           "datasets",
-          "create",
           "manage",
           "hub",
           "supports",
@@ -2616,7 +2669,6 @@
           "repos",
           "defining",
           "configs",
-          "system",
           "prompts",
           "streaming",
           "row",
@@ -2624,7 +2676,8 @@
           "sql-based",
           "dataset",
           "querying",
-          "transformation"
+          "transformation",
+          "designed"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2635,18 +2688,18 @@
       "token_cost": 4094,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/hugging-face-datasets/SKILL.md"
     },
     "hugging-face-evaluation": {
       "activation": {
         "onKeyword": [
+          "hugging-face-evaluation",
           "hugging",
           "face",
           "evaluation",
-          "add",
           "manage",
           "results",
-          "model",
           "cards",
           "supports",
           "extracting",
@@ -2658,8 +2711,9 @@
           "scores",
           "artificial",
           "analysis",
-          "api",
-          "running"
+          "running",
+          "custom",
+          "evaluations"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2670,18 +2724,18 @@
       "token_cost": 5645,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/hugging-face-evaluation/SKILL.md"
     },
     "hugging-face-jobs": {
       "activation": {
         "onKeyword": [
+          "hugging-face-jobs",
           "hugging",
           "face",
           "jobs",
-          "skill",
           "users",
           "want",
-          "run",
           "workload",
           "infrastructure",
           "covers",
@@ -2694,9 +2748,12 @@
           "authentication",
           "tokens",
           "secrets",
-          "management"
+          "management",
+          "timeout"
         ],
-        "onIntent": [],
+        "onIntent": [
+          "**data processing** - transform, filter, or analy"
+        ],
         "onFileType": [],
         "onTool": [],
         "onProjectType": []
@@ -2705,16 +2762,16 @@
       "token_cost": 7683,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/hugging-face-jobs/SKILL.md"
     },
     "hugging-face-model-trainer": {
       "activation": {
         "onKeyword": [
+          "hugging-face-model-trainer",
           "hugging",
           "face",
-          "model",
           "trainer",
-          "skill",
           "users",
           "want",
           "train",
@@ -2729,9 +2786,14 @@
           "infrastructure",
           "covers",
           "sft",
-          "dpo"
+          "dpo",
+          "grpo"
         ],
-        "onIntent": [],
+        "onIntent": [
+          "**`✓ ready`** - dataset is compatible, use directly",
+          "**`✗ needs mapping`** - compatible but needs preprocessing (mapping code provided)",
+          "**`✗ incompatible`** - cannot be used for this method"
+        ],
         "onFileType": [],
         "onTool": [],
         "onProjectType": []
@@ -2740,11 +2802,13 @@
       "token_cost": 6956,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/hugging-face-model-trainer/SKILL.md"
     },
     "hugging-face-paper-publisher": {
       "activation": {
         "onKeyword": [
+          "hugging-face-paper-publisher",
           "hugging",
           "face",
           "paper",
@@ -2763,8 +2827,7 @@
           "claiming",
           "authorship",
           "generating",
-          "professional",
-          "markdown-based"
+          "professional"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2775,31 +2838,32 @@
       "token_cost": 4168,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/hugging-face-paper-publisher/SKILL.md"
     },
     "hugging-face-tool-builder": {
       "activation": {
         "onKeyword": [
+          "hugging-face-tool-builder",
           "hugging",
           "face",
-          "tool",
           "builder",
-          "skill",
-          "user",
-          "wants",
           "build",
           "scripts",
           "achieve",
           "task",
-          "data",
-          "api",
-          "help",
           "especially",
           "useful",
           "chaining",
           "combining",
           "calls",
-          "repeated"
+          "repeated",
+          "automated",
+          "creates",
+          "reusable",
+          "script",
+          "fetch",
+          "enrich"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2810,11 +2874,13 @@
       "token_cost": 1326,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/hugging-face-tool-builder/SKILL.md"
     },
     "hugging-face-trackio": {
       "activation": {
         "onKeyword": [
+          "hugging-face-trackio",
           "hugging",
           "face",
           "trackio",
@@ -2825,7 +2891,6 @@
           "logging",
           "metrics",
           "python",
-          "api",
           "retrieving",
           "analyzing",
           "logged",
@@ -2845,11 +2910,13 @@
       "token_cost": 562,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/hugging-face-trackio/SKILL.md"
     },
     "image-guard-rules": {
       "activation": {
         "onKeyword": [
+          "image-guard-rules",
           "image",
           "guard",
           "rules",
@@ -2868,8 +2935,7 @@
           "applies",
           "sources",
           "browser",
-          "screenshots",
-          "adb"
+          "screenshots"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2882,31 +2948,32 @@
       "dependencies": [
         "agent-browser"
       ],
+      "successors": [],
       "path": "skills/image-guard-rules/SKILL.md"
     },
     "implement-design": {
       "activation": {
         "onKeyword": [
+          "implement-design",
           "implement",
-          "design",
           "translates",
           "figma",
           "designs",
           "production-ready",
-          "code",
           "visual",
           "fidelity",
           "implementing",
-          "files",
-          "user",
           "mentions",
           "generate",
           "component",
           "build",
           "provides",
           "urls",
-          "asks",
-          "components"
+          "components",
+          "matching",
+          "specs",
+          "requires",
+          "mcp"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -2917,11 +2984,13 @@
       "token_cost": 2742,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/implement-design/SKILL.md"
     },
     "iterative-retrieval": {
       "activation": {
         "onKeyword": [
+          "iterative-retrieval",
           "iterative",
           "retrieval",
           "pattern",
@@ -2949,11 +3018,13 @@
       "token_cost": 1554,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/iterative-retrieval/SKILL.md"
     },
     "java-coding-standards": {
       "activation": {
         "onKeyword": [
+          "java-coding-standards",
           "java",
           "coding",
           "standards",
@@ -2967,7 +3038,6 @@
           "streams",
           "exceptions",
           "generics",
-          "project",
           "layout",
           "java coding standards",
           "optional usage"
@@ -2987,16 +3057,16 @@
       "token_cost": 958,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/java-coding-standards/SKILL.md"
     },
     "jpa-patterns": {
       "activation": {
         "onKeyword": [
+          "jpa-patterns",
           "jpa",
-          "patterns",
           "hibernate",
           "entity",
-          "design",
           "relationships",
           "query",
           "optimization",
@@ -3024,25 +3094,24 @@
       "token_cost": 1137,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/jpa-patterns/SKILL.md"
     },
     "kotlin-coroutines-flows": {
       "activation": {
         "onKeyword": [
+          "kotlin-coroutines-flows",
           "kotlin",
           "coroutines",
           "flows",
           "flow",
-          "patterns",
           "android",
           "kmp",
-          "structured",
           "concurrency",
           "operators",
           "stateflow",
           "error",
           "handling",
-          "testing",
           "structured concurrency",
           "flow operators",
           "error handling"
@@ -3062,22 +3131,19 @@
       "token_cost": 1926,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/kotlin-coroutines-flows/SKILL.md"
     },
     "kotlin-patterns": {
       "activation": {
         "onKeyword": [
+          "kotlin-patterns",
           "kotlin",
-          "patterns",
           "idiomatic",
-          "best",
-          "practices",
           "conventions",
-          "building",
           "robust",
           "efficient",
           "maintainable",
-          "applications",
           "coroutines",
           "null",
           "safety",
@@ -3103,25 +3169,25 @@
       "token_cost": 4711,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "kotlin-testing"
+      ],
       "path": "skills/kotlin-patterns/SKILL.md"
     },
     "kotlin-testing": {
       "activation": {
         "onKeyword": [
+          "kotlin-testing",
           "kotlin",
-          "testing",
-          "patterns",
           "kotest",
           "mockk",
           "coroutine",
           "property-based",
           "kover",
-          "coverage",
           "follows",
           "tdd",
           "methodology",
           "idiomatic",
-          "practices",
           "kotlin testing patterns",
           "coroutine testing",
           "property-based testing",
@@ -3142,14 +3208,16 @@
       "token_cost": 5167,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/kotlin-testing/SKILL.md"
     },
     "laravel-patterns": {
       "activation": {
         "onKeyword": [
+          "laravel-patterns",
           "laravel",
-          "patterns",
-          "architecture",
           "routing",
           "controllers",
           "eloquent",
@@ -3159,7 +3227,6 @@
           "queues",
           "events",
           "caching",
-          "api",
           "resources",
           "production",
           "apps",
@@ -3182,22 +3249,20 @@
       "token_cost": 2599,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/laravel-patterns/SKILL.md"
     },
     "laravel-security": {
       "activation": {
         "onKeyword": [
+          "laravel-security",
           "laravel",
-          "security",
-          "best",
-          "practices",
           "authn",
           "authz",
           "validation",
           "csrf",
           "mass",
           "assignment",
-          "file",
           "uploads",
           "secrets",
           "rate",
@@ -3206,7 +3271,8 @@
           "deployment",
           "laravel security best",
           "mass assignment",
-          "file uploads"
+          "file uploads",
+          "rate limiting"
         ],
         "onIntent": [
           "adding authentication or authori"
@@ -3219,22 +3285,21 @@
       "token_cost": 1861,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/laravel-security/SKILL.md"
     },
     "laravel-tdd": {
       "activation": {
         "onKeyword": [
+          "laravel-tdd",
           "laravel",
           "tdd",
           "test-driven",
-          "development",
           "phpunit",
           "pest",
           "factories",
           "database",
-          "testing",
           "fakes",
-          "coverage",
           "targets",
           "test-driven development",
           "database testing"
@@ -3253,11 +3318,15 @@
       "token_cost": 1859,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/laravel-tdd/SKILL.md"
     },
     "laravel-verification": {
       "activation": {
         "onKeyword": [
+          "laravel-verification",
           "laravel",
           "verification",
           "loop",
@@ -3268,8 +3337,6 @@
           "static",
           "analysis",
           "tests",
-          "coverage",
-          "security",
           "scans",
           "deployment",
           "readiness",
@@ -3292,16 +3359,18 @@
       "token_cost": 1062,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/laravel-verification/SKILL.md"
     },
     "liquid-glass-design": {
       "activation": {
         "onKeyword": [
+          "liquid-glass-design",
           "liquid",
           "glass",
-          "design",
           "ios",
-          "system",
           "dynamic",
           "material",
           "blur",
@@ -3330,6 +3399,7 @@
       "token_cost": 2252,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/liquid-glass-design/SKILL.md"
     },
     "logs": {
@@ -3339,7 +3409,6 @@
           "view",
           "vercel",
           "deployment",
-          "user",
           "says",
           "show",
           "check",
@@ -3360,31 +3429,32 @@
       "token_cost": 119,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/logs/SKILL.md"
     },
     "mcp-builder": {
       "activation": {
         "onKeyword": [
+          "mcp-builder",
           "mcp",
           "builder",
           "build",
           "server",
-          "create",
           "scaffold",
-          "new",
-          "tool",
-          "implementation",
-          "development",
           "step-by-step",
           "scaffolding",
           "workflow",
           "research",
           "plan",
           "implement",
-          "test",
           "evaluate",
           "scope",
-          "guided"
+          "guided",
+          "creation",
+          "process",
+          "general",
+          "expertise",
+          "debugging"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3397,33 +3467,39 @@
       "dependencies": [
         "context-engineering-kit"
       ],
+      "successors": [],
       "path": "skills/mcp-builder/SKILL.md"
     },
     "mcp-integration": {
       "activation": {
         "onKeyword": [
+          "mcp-integration",
           "mcp",
           "integration",
-          "skill",
-          "user",
-          "asks",
-          "add",
           "server",
           "integrate",
           "configure",
           "plugin",
           "json",
           "set",
-          "model",
           "context",
           "protocol",
           "connect",
           "external",
           "service",
           "mentions",
-          "claude"
+          "root",
+          "discusses",
+          "types",
+          "sse",
+          "stdio"
         ],
-        "onIntent": [],
+        "onIntent": [
+          "connect to external services (databases, apis, file systems)",
+          "provide 10+ related tools from a single service",
+          "handle oauth and complex authentication flows",
+          "bundle mcp servers with plugins for automatic setup"
+        ],
         "onFileType": [],
         "onTool": [],
         "onProjectType": []
@@ -3432,14 +3508,15 @@
       "token_cost": 3119,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/mcp-integration/SKILL.md"
     },
     "mcp-server-patterns": {
       "activation": {
         "onKeyword": [
+          "mcp-server-patterns",
           "mcp",
           "server",
-          "patterns",
           "build",
           "servers",
           "node",
@@ -3467,6 +3544,7 @@
       "token_cost": 965,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/mcp-server-patterns/SKILL.md"
     },
     "monorepo": {
@@ -3481,9 +3559,7 @@
           "turbo",
           "json",
           "conventions",
-          "patterns",
           "monorepos",
-          "project",
           "config",
           "pnpm workspaces"
         ],
@@ -3498,11 +3574,13 @@
       "dependencies": [
         "scheduler"
       ],
+      "successors": [],
       "path": "skills/monorepo/SKILL.md"
     },
     "nanoclaw-repl": {
       "activation": {
         "onKeyword": [
+          "nanoclaw-repl",
           "nanoclaw",
           "repl",
           "operate",
@@ -3511,7 +3589,6 @@
           "zero-dependency",
           "session-aware",
           "built",
-          "claude",
           "nanoclaw v2",
           "s zero-dependency",
           "session-aware repl"
@@ -3525,11 +3602,13 @@
       "token_cost": 214,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/nanoclaw-repl/SKILL.md"
     },
     "nextjs-turbopack": {
       "activation": {
         "onKeyword": [
+          "nextjs-turbopack",
           "nextjs",
           "turbopack",
           "next",
@@ -3557,12 +3636,13 @@
       "token_cost": 540,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/nextjs-turbopack/SKILL.md"
     },
     "no-code-maestro": {
       "activation": {
         "onKeyword": [
-          "code",
+          "no-code-maestro",
           "maestro",
           "no-code",
           "com",
@@ -3594,11 +3674,13 @@
       "dependencies": [
         "scheduler"
       ],
+      "successors": [],
       "path": "skills/no-code-maestro/SKILL.md"
     },
     "nutrient-document-processing": {
       "activation": {
         "onKeyword": [
+          "nutrient-document-processing",
           "nutrient",
           "document",
           "processing",
@@ -3611,7 +3693,6 @@
           "fill",
           "documents",
           "dws",
-          "api",
           "works",
           "pdfs",
           "docx",
@@ -3637,13 +3718,14 @@
       "token_cost": 1448,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/nutrient-document-processing/SKILL.md"
     },
     "nuxt4-patterns": {
       "activation": {
         "onKeyword": [
+          "nuxt4-patterns",
           "nuxt4",
-          "patterns",
           "nuxt",
           "app",
           "hydration",
@@ -3654,7 +3736,6 @@
           "lazy",
           "loading",
           "ssr-safe",
-          "data",
           "fetching",
           "usefetch",
           "useasyncdata",
@@ -3675,11 +3756,13 @@
       "token_cost": 1161,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/nuxt4-patterns/SKILL.md"
     },
     "open-source-license-compliance": {
       "activation": {
         "onKeyword": [
+          "open-source-license-compliance",
           "open",
           "source",
           "license",
@@ -3694,7 +3777,6 @@
           "licenses",
           "audit",
           "detect",
-          "project",
           "dependencies",
           "reviewing",
           "compatibility",
@@ -3713,6 +3795,7 @@
         "supply-chain-risk-auditor",
         "compliance-routing"
       ],
+      "successors": [],
       "path": "skills/open-source-license-compliance/SKILL.md"
     },
     "pdf": {
@@ -3729,15 +3812,15 @@
           "ocr",
           "encrypt",
           "decrypt",
-          "skill",
           "whenever",
-          "user",
-          "wants",
           "anything",
-          "files",
           "includes",
           "reading",
-          "extracting"
+          "extracting",
+          "tables",
+          "pdfs",
+          "combining",
+          "merging"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3752,22 +3835,19 @@
         "pptx",
         "xlsx"
       ],
+      "successors": [],
       "path": "skills/pdf/SKILL.md"
     },
     "perl-patterns": {
       "activation": {
         "onKeyword": [
+          "perl-patterns",
           "perl",
-          "patterns",
           "modern",
           "idioms",
-          "best",
-          "practices",
           "conventions",
-          "building",
           "robust",
           "maintainable",
-          "applications",
           "modern perl 5",
           "best practices",
           "building robust",
@@ -3788,13 +3868,14 @@
       "token_cost": 2853,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/perl-patterns/SKILL.md"
     },
     "perl-security": {
       "activation": {
         "onKeyword": [
+          "perl-security",
           "perl",
-          "security",
           "comprehensive",
           "covering",
           "taint",
@@ -3830,20 +3911,18 @@
       "token_cost": 3432,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/perl-security/SKILL.md"
     },
     "perl-testing": {
       "activation": {
         "onKeyword": [
+          "perl-testing",
           "perl",
-          "testing",
-          "patterns",
           "test2",
-          "test",
           "prove",
           "runner",
           "mocking",
-          "coverage",
           "devel",
           "cover",
           "tdd",
@@ -3867,13 +3946,16 @@
       "token_cost": 2768,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/perl-testing/SKILL.md"
     },
     "plankton-code-quality": {
       "activation": {
         "onKeyword": [
+          "plankton-code-quality",
           "plankton",
-          "code",
           "quality",
           "write-time",
           "enforcement",
@@ -3881,7 +3963,6 @@
           "linting",
           "claude-powered",
           "fixes",
-          "file",
           "edit",
           "via",
           "hooks",
@@ -3902,6 +3983,7 @@
       "token_cost": 1974,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/plankton-code-quality/SKILL.md"
     },
     "playground": {
@@ -3918,7 +4000,6 @@
           "let",
           "users",
           "configure",
-          "something",
           "visually",
           "controls",
           "see",
@@ -3926,7 +4007,8 @@
           "preview",
           "copy",
           "prompt",
-          "user"
+          "explorer",
+          "topic"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -3937,33 +4019,40 @@
       "token_cost": 949,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/playground/SKILL.md"
     },
     "plugin-settings": {
       "activation": {
         "onKeyword": [
+          "plugin-settings",
           "plugin",
           "settings",
-          "skill",
-          "user",
-          "asks",
           "store",
           "configuration",
           "user-configurable",
           "local",
-          "files",
           "state",
           "read",
           "yaml",
           "frontmatter",
           "per-project",
-          "wants",
           "behavior",
           "configurable",
           "documents",
-          "claude"
+          "plugin-name",
+          "pattern",
+          "storing",
+          "plugin-specific",
+          "markdown"
         ],
-        "onIntent": [],
+        "onIntent": [
+          "file location: `.claude/plugin-name.local.md` in project root",
+          "structure: yaml frontmatter + markdown body",
+          "purpose: per-project plugin configuration and state",
+          "usage: read from hooks, commands, and agents",
+          "lifecycle: user-managed (not in git, should be in `.gitignore`)"
+        ],
         "onFileType": [],
         "onTool": [],
         "onProjectType": []
@@ -3972,31 +4061,32 @@
       "token_cost": 3019,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/plugin-settings/SKILL.md"
     },
     "plugin-structure": {
       "activation": {
         "onKeyword": [
+          "plugin-structure",
           "plugin",
-          "structure",
-          "skill",
-          "user",
-          "asks",
-          "create",
           "scaffold",
           "understand",
           "organize",
           "components",
           "set",
           "json",
-          "claude",
           "root",
-          "add",
           "commands",
           "agents",
-          "skills",
           "hooks",
-          "configure"
+          "configure",
+          "auto-discovery",
+          "directory",
+          "layout",
+          "manifest",
+          "configuration",
+          "component",
+          "organization"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4007,24 +4097,21 @@
       "token_cost": 3361,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/plugin-structure/SKILL.md"
     },
     "postgres-patterns": {
       "activation": {
         "onKeyword": [
+          "postgres-patterns",
           "postgres",
-          "patterns",
           "postgresql",
           "database",
           "query",
           "optimization",
           "schema",
-          "design",
           "indexing",
-          "security",
           "supabase",
-          "best",
-          "practices",
           "postgresql database patterns",
           "schema design",
           "best practices"
@@ -4044,20 +4131,18 @@
       "token_cost": 952,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/postgres-patterns/SKILL.md"
     },
     "posthog-instrumentation": {
       "activation": {
         "onKeyword": [
+          "posthog-instrumentation",
           "posthog",
           "instrumentation",
           "automatically",
-          "add",
           "analytics",
-          "code",
           "triggers",
-          "user",
-          "asks",
           "tracking",
           "instrument",
           "events",
@@ -4083,11 +4168,13 @@
       "token_cost": 420,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/posthog-instrumentation/SKILL.md"
     },
     "powershell-windows": {
       "activation": {
         "onKeyword": [
+          "powershell-windows",
           "powershell",
           "windows",
           "registry",
@@ -4101,13 +4188,12 @@
           "active",
           "directory",
           "scripting",
-          "patterns",
-          "system",
           "administration",
           "working",
           "operations",
           "queries",
-          "windows-specific"
+          "windows-specific",
+          "troubleshooting"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4120,6 +4206,7 @@
       "dependencies": [
         "scheduler"
       ],
+      "successors": [],
       "path": "skills/powershell-windows/SKILL.md"
     },
     "pptx": {
@@ -4133,18 +4220,18 @@
           "deck",
           "charts",
           "formatting",
-          "skill",
           "whenever",
-          "user",
-          "wants",
-          "create",
           "read",
           "edit",
           "manipulate",
           "presentations",
-          "files",
           "triggers",
-          "include"
+          "include",
+          "mention",
+          "requests",
+          "produce",
+          "decks",
+          "extracting"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4159,18 +4246,17 @@
         "pdf",
         "xlsx"
       ],
+      "successors": [],
       "path": "skills/pptx/SKILL.md"
     },
     "project-guidelines-example": {
       "activation": {
         "onKeyword": [
-          "project",
+          "project-guidelines-example",
           "guidelines",
           "example",
           "project-specific",
-          "skill",
           "template",
-          "real",
           "production",
           "application",
           "example project-specific",
@@ -4191,20 +4277,19 @@
       "token_cost": 2208,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/project-guidelines-example/SKILL.md"
     },
     "project-patterns": {
       "activation": {
         "onKeyword": [
-          "project",
-          "patterns",
+          "project-patterns",
           "skeleton",
           "b12",
           "website",
           "template",
           "repository",
           "pattern",
-          "api",
           "response",
           "scaffold",
           "common",
@@ -4229,11 +4314,13 @@
         "system-design",
         "clean-architecture"
       ],
+      "successors": [],
       "path": "skills/project-patterns/SKILL.md"
     },
     "prompt-architect": {
       "activation": {
         "onKeyword": [
+          "prompt-architect",
           "prompt",
           "architect",
           "engineering",
@@ -4252,8 +4339,7 @@
           "rise-ie",
           "rise-ix",
           "tidd-ec",
-          "rtf",
-          "density"
+          "rtf"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4266,11 +4352,13 @@
       "dependencies": [
         "common-ground"
       ],
+      "successors": [],
       "path": "skills/prompt-architect/SKILL.md"
     },
     "prompt-optimizer": {
       "activation": {
         "onKeyword": [
+          "prompt-optimizer",
           "prompt",
           "optimizer"
         ],
@@ -4285,13 +4373,14 @@
       "token_cost": 3829,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/prompt-optimizer/SKILL.md"
     },
     "property-based-testing": {
       "activation": {
         "onKeyword": [
+          "property-based-testing",
           "property",
-          "testing",
           "property-based",
           "hypothesis",
           "quickcheck",
@@ -4301,15 +4390,15 @@
           "invariant",
           "generative",
           "provides",
-          "guidance",
           "across",
           "multiple",
           "languages",
           "smart",
           "contracts",
-          "writing",
           "tests",
-          "reviewing"
+          "reviewing",
+          "validation",
+          "parsing"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4322,26 +4411,25 @@
       "dependencies": [
         "audit-flow"
       ],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/property-based-testing/SKILL.md"
     },
     "python-patterns": {
       "activation": {
         "onKeyword": [
+          "python-patterns",
           "python",
-          "patterns",
           "pythonic",
           "idioms",
           "pep",
           "standards",
           "type",
           "hints",
-          "best",
-          "practices",
-          "building",
           "robust",
           "efficient",
           "maintainable",
-          "applications",
           "pythonic idioms",
           "pep 8 standards",
           "type hints"
@@ -4362,13 +4450,14 @@
       "token_cost": 4146,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/python-patterns/SKILL.md"
     },
     "python-testing": {
       "activation": {
         "onKeyword": [
+          "python-testing",
           "python",
-          "testing",
           "strategies",
           "pytest",
           "tdd",
@@ -4376,7 +4465,6 @@
           "fixtures",
           "mocking",
           "parametrization",
-          "coverage",
           "requirements",
           "python testing strategies",
           "tdd methodology"
@@ -4395,26 +4483,24 @@
       "token_cost": 4691,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/python-testing/SKILL.md"
     },
     "pytorch-patterns": {
       "activation": {
         "onKeyword": [
+          "pytorch-patterns",
           "pytorch",
-          "patterns",
           "deep",
           "learning",
-          "best",
-          "practices",
-          "building",
           "robust",
           "efficient",
           "reproducible",
           "training",
           "pipelines",
-          "model",
           "architectures",
-          "data",
           "loading",
           "pytorch deep learning",
           "model architectures"
@@ -4433,11 +4519,13 @@
       "token_cost": 2914,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/pytorch-patterns/SKILL.md"
     },
     "rag-architect": {
       "activation": {
         "onKeyword": [
+          "rag-architect",
           "rag",
           "architect",
           "retrieval-augmented",
@@ -4453,11 +4541,10 @@
           "base",
           "context",
           "similarity",
-          "building",
           "systems",
           "databases",
           "knowledge-grounded",
-          "applications"
+          "requiring"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4473,11 +4560,13 @@
         "monitoring-expert",
         "api-designer"
       ],
+      "successors": [],
       "path": "skills/rag-architect/SKILL.md"
     },
     "ralphinho-rfc-pipeline": {
       "activation": {
         "onKeyword": [
+          "ralphinho-rfc-pipeline",
           "ralphinho",
           "rfc",
           "pipeline",
@@ -4506,14 +4595,14 @@
       "token_cost": 381,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/ralphinho-rfc-pipeline/SKILL.md"
     },
     "receiving-code-review": {
       "activation": {
         "onKeyword": [
+          "receiving-code-review",
           "receiving",
-          "code",
-          "review",
           "feedback",
           "implementing",
           "suggestions",
@@ -4529,8 +4618,9 @@
           "performative",
           "agreement",
           "blind",
-          "implementation",
-          "code review feedback"
+          "code review feedback",
+          "technically questionable",
+          "requires technical rigor"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4541,16 +4631,17 @@
       "token_cost": 1569,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/receiving-code-review/SKILL.md"
     },
     "refactoring-ui": {
       "activation": {
         "onKeyword": [
+          "refactoring-ui",
           "refactoring",
           "looks",
           "off",
           "fix",
-          "design",
           "tailwind",
           "styling",
           "color",
@@ -4564,8 +4655,8 @@
           "depth",
           "web",
           "uis",
-          "user",
-          "mentions"
+          "mentions",
+          "covers"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4579,21 +4670,21 @@
         "claude-a11y-skill",
         "high-perf-browser"
       ],
+      "successors": [],
       "path": "skills/refactoring-ui/SKILL.md"
     },
     "regex-vs-llm-structured-text": {
       "activation": {
         "onKeyword": [
+          "regex-vs-llm-structured-text",
           "regex",
           "llm",
-          "structured",
           "text",
           "decision",
           "framework",
           "choosing",
           "parsing",
           "start",
-          "add",
           "low-confidence",
           "edge",
           "cases",
@@ -4614,11 +4705,13 @@
       "token_cost": 1596,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/regex-vs-llm-structured-text/SKILL.md"
     },
     "release-notes": {
       "activation": {
         "onKeyword": [
+          "release-notes",
           "release",
           "notes",
           "changelog",
@@ -4634,8 +4727,6 @@
           "tag",
           "given",
           "ref",
-          "user",
-          "asks",
           "recent",
           "generate release notes",
           "given ref"
@@ -4651,14 +4742,14 @@
       "dependencies": [
         "project-patterns"
       ],
+      "successors": [],
       "path": "skills/release-notes/SKILL.md"
     },
     "requesting-code-review": {
       "activation": {
         "onKeyword": [
+          "requesting-code-review",
           "requesting",
-          "code",
-          "review",
           "completing",
           "tasks",
           "implementing",
@@ -4681,6 +4772,7 @@
       "token_cost": 675,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/requesting-code-review/SKILL.md"
     },
     "resilience": {
@@ -4697,15 +4789,15 @@
           "bulkhead",
           "external",
           "services",
-          "api",
           "calls",
-          "patterns",
           "backend",
-          "code",
           "calling",
           "makes",
           "queries",
-          "network"
+          "network",
+          "requests",
+          "backend code calling",
+          "external services"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4719,24 +4811,22 @@
         "sre-engineer",
         "chaos-engineer"
       ],
+      "successors": [],
       "path": "skills/resilience/SKILL.md"
     },
     "rules-distill": {
       "activation": {
         "onKeyword": [
+          "rules-distill",
           "rules",
           "distill",
           "scan",
-          "skills",
           "extract",
           "cross-cutting",
           "principles",
           "append",
           "revise",
-          "create",
-          "new",
           "rule",
-          "files",
           "extract cross-cutting",
           "rule files"
         ],
@@ -4753,25 +4843,22 @@
       "token_cost": 2320,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/rules-distill/SKILL.md"
     },
     "rust-patterns": {
       "activation": {
         "onKeyword": [
+          "rust-patterns",
           "rust",
-          "patterns",
           "idiomatic",
           "ownership",
           "error",
           "handling",
           "traits",
           "concurrency",
-          "best",
-          "practices",
-          "building",
           "safe",
           "performant",
-          "applications",
           "idiomatic rust patterns",
           "error handling",
           "performant applications"
@@ -4790,21 +4877,20 @@
       "token_cost": 3307,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/rust-patterns/SKILL.md"
     },
     "rust-testing": {
       "activation": {
         "onKeyword": [
+          "rust-testing",
           "rust",
-          "testing",
-          "patterns",
           "unit",
           "tests",
           "integration",
           "async",
           "property-based",
           "mocking",
-          "coverage",
           "follows",
           "tdd",
           "methodology",
@@ -4829,11 +4915,15 @@
       "token_cost": 2904,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/rust-testing/SKILL.md"
     },
     "safety-guard": {
       "activation": {
         "onKeyword": [
+          "safety-guard",
           "safety",
           "guard"
         ],
@@ -4851,11 +4941,13 @@
       "token_cost": 441,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/safety-guard/SKILL.md"
     },
     "search-first": {
       "activation": {
         "onKeyword": [
+          "search-first",
           "search",
           "first",
           "research-before-coding",
@@ -4863,10 +4955,7 @@
           "existing",
           "tools",
           "libraries",
-          "patterns",
-          "writing",
           "custom",
-          "code",
           "invokes",
           "researcher",
           "agent",
@@ -4881,23 +4970,20 @@
       "token_cost": 1417,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/search-first/SKILL.md"
     },
     "security-review": {
       "activation": {
         "onKeyword": [
-          "security",
-          "review",
-          "skill",
+          "security-review",
           "adding",
           "authentication",
           "handling",
-          "user",
           "input",
           "working",
           "secrets",
           "creating",
-          "api",
           "endpoints",
           "implementing",
           "payment",
@@ -4905,7 +4991,11 @@
           "features",
           "provides",
           "comprehensive",
-          "checklist"
+          "checklist",
+          "handling user input",
+          "creating api endpoints",
+          "sensitive features",
+          "provides comprehensive security"
         ],
         "onIntent": [
           "implementing authentication or authori"
@@ -4918,15 +5008,16 @@
       "token_cost": 3049,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "deploy"
+      ],
       "path": "skills/security-review/SKILL.md"
     },
     "security-scan": {
       "activation": {
         "onKeyword": [
-          "security",
+          "security-scan",
           "scan",
-          "claude",
-          "code",
           "configuration",
           "directory",
           "vulnerabilities",
@@ -4942,7 +5033,9 @@
           "hooks",
           "agent",
           "definitions",
-          "code configuration"
+          "code configuration",
+          "checks claude",
+          "mcp servers"
         ],
         "onIntent": [
           "setting up a new claude code project",
@@ -4959,21 +5052,22 @@
       "token_cost": 1114,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "deploy"
+      ],
       "path": "skills/security-scan/SKILL.md"
     },
     "sentry-code-review": {
       "activation": {
         "onKeyword": [
+          "sentry-code-review",
           "sentry",
-          "code",
-          "review",
           "analyze",
           "resolve",
           "comments",
           "github",
           "pull",
           "requests",
-          "asked",
           "fix",
           "issues",
           "identified",
@@ -4983,7 +5077,9 @@
           "automatically",
           "find",
           "recent",
-          "feedback"
+          "feedback",
+          "github pull requests",
+          "sentry feedback"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -4994,18 +5090,17 @@
       "token_cost": 1465,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/sentry-code-review/SKILL.md"
     },
     "sentry-ios-swift-setup": {
       "activation": {
         "onKeyword": [
+          "sentry-ios-swift-setup",
           "sentry",
           "ios",
           "swift",
-          "setup",
           "apps",
-          "asked",
-          "add",
           "install",
           "sentry-cocoa",
           "sdk",
@@ -5017,8 +5112,10 @@
           "replay",
           "logging",
           "profiling",
-          "applications",
-          "swiftui"
+          "swiftui",
+          "swift apps",
+          "install sentry-cocoa",
+          "session replay"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5029,18 +5126,16 @@
       "token_cost": 2413,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/sentry-ios-swift-setup/SKILL.md"
     },
     "sentry-setup-ai-monitoring": {
       "activation": {
         "onKeyword": [
+          "sentry-setup-ai-monitoring",
           "sentry",
-          "setup",
           "monitoring",
           "agent",
-          "project",
-          "asked",
-          "add",
           "track",
           "llm",
           "calls",
@@ -5053,7 +5148,10 @@
           "langchain",
           "google",
           "genai",
-          "automatically"
+          "automatically",
+          "detects",
+          "installed",
+          "sdks"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5064,20 +5162,17 @@
       "token_cost": 5266,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/sentry-setup-ai-monitoring/SKILL.md"
     },
     "sentry-setup-logging": {
       "activation": {
         "onKeyword": [
+          "sentry-setup-logging",
           "sentry",
-          "setup",
           "logging",
-          "project",
-          "asked",
-          "add",
           "logs",
           "enable",
-          "structured",
           "console",
           "log",
           "capture",
@@ -5088,7 +5183,11 @@
           "python",
           "ruby",
           "react",
-          "next"
+          "next",
+          "frameworks",
+          "setup sentry logging",
+          "sentry logs",
+          "enable structured logging"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5099,17 +5198,15 @@
       "token_cost": 3475,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/sentry-setup-logging/SKILL.md"
     },
     "sentry-setup-metrics": {
       "activation": {
         "onKeyword": [
+          "sentry-setup-metrics",
           "sentry",
-          "setup",
           "metrics",
-          "project",
-          "asked",
-          "add",
           "track",
           "custom",
           "counters",
@@ -5123,7 +5220,10 @@
           "typescript",
           "python",
           "react",
-          "next"
+          "next",
+          "node",
+          "setup sentry metrics",
+          "sentry metrics"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5134,19 +5234,17 @@
       "token_cost": 4465,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/sentry-setup-metrics/SKILL.md"
     },
     "sentry-setup-tracing": {
       "activation": {
         "onKeyword": [
+          "sentry-setup-tracing",
           "sentry",
-          "setup",
           "tracing",
           "performance",
           "monitoring",
-          "project",
-          "asked",
-          "add",
           "enable",
           "track",
           "transactions",
@@ -5158,7 +5256,10 @@
           "typescript",
           "python",
           "ruby",
-          "react"
+          "react",
+          "next",
+          "node",
+          "setup sentry tracing"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5169,18 +5270,16 @@
       "token_cost": 4164,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/sentry-setup-tracing/SKILL.md"
     },
     "setup": {
       "activation": {
         "onKeyword": [
-          "setup",
           "set",
           "vercel",
           "cli",
-          "project",
           "configuration",
-          "user",
           "says",
           "configure",
           "link",
@@ -5198,16 +5297,16 @@
       "token_cost": 118,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/setup/SKILL.md"
     },
     "skill-comply": {
       "activation": {
         "onKeyword": [
-          "skill",
+          "skill-comply",
           "comply",
           "visualize",
           "whether",
-          "skills",
           "rules",
           "agent",
           "definitions",
@@ -5222,7 +5321,8 @@
           "agents",
           "classifies",
           "behavioral",
-          "sequences"
+          "sequences",
+          "reports"
         ],
         "onIntent": [
           "user runs `/skill-comply <path>`",
@@ -5238,16 +5338,14 @@
       "token_cost": 587,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/skill-comply/SKILL.md"
     },
     "skill-creator": {
       "activation": {
         "onKeyword": [
-          "skill",
+          "skill-creator",
           "creator",
-          "create",
-          "new",
-          "skills",
           "modify",
           "improve",
           "existing",
@@ -5258,11 +5356,14 @@
           "scratch",
           "update",
           "optimize",
-          "run",
           "evals",
-          "test",
           "benchmark",
-          "variance"
+          "variance",
+          "analysis",
+          "description",
+          "better",
+          "triggering",
+          "accuracy"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5273,33 +5374,30 @@
       "token_cost": 8048,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/skill-creator/SKILL.md"
     },
     "skill-development": {
       "activation": {
         "onKeyword": [
-          "skill",
-          "development",
-          "user",
-          "wants",
-          "create",
-          "add",
+          "skill-development",
           "plugin",
           "write",
-          "new",
           "improve",
           "description",
           "organize",
           "content",
-          "needs",
-          "guidance",
-          "structure",
           "progressive",
           "disclosure",
-          "best",
-          "practices"
+          "plugins",
+          "improve skill description",
+          "organize skill content",
+          "progressive disclosure",
+          "claude code plugins"
         ],
-        "onIntent": [],
+        "onIntent": [
+          "**`examples/script.sh`** - working example"
+        ],
         "onFileType": [],
         "onTool": [],
         "onProjectType": []
@@ -5308,16 +5406,15 @@
       "token_cost": 5634,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/skill-development/SKILL.md"
     },
     "skill-stocktake": {
       "activation": {
         "onKeyword": [
-          "skill",
+          "skill-stocktake",
           "stocktake",
           "auditing",
-          "claude",
-          "skills",
           "commands",
           "quality",
           "supports",
@@ -5342,23 +5439,23 @@
       "token_cost": 1873,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/skill-stocktake/SKILL.md"
     },
     "spec-miner": {
       "activation": {
         "onKeyword": [
+          "spec-miner",
           "spec",
           "miner",
           "reverse",
           "engineer",
           "legacy",
-          "code",
           "analysis",
           "undocumented",
           "understand",
           "codebase",
           "existing",
-          "system",
           "understanding",
           "systems",
           "creating",
@@ -5366,7 +5463,8 @@
           "extracting",
           "specifications",
           "implementations",
-          "invoke"
+          "invoke",
+          "archaeology"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5381,11 +5479,13 @@
         "fullstack-guardian",
         "architecture-designer"
       ],
+      "successors": [],
       "path": "skills/spec-miner/SKILL.md"
     },
     "spec-to-backlog": {
       "activation": {
         "onKeyword": [
+          "spec-to-backlog",
           "spec",
           "backlog",
           "automatically",
@@ -5393,19 +5493,18 @@
           "confluence",
           "specification",
           "documents",
-          "structured",
           "jira",
           "backlogs",
           "epics",
-          "implementation",
           "tickets",
-          "claude",
-          "needs",
-          "create",
           "page",
           "generate",
           "break",
-          "down"
+          "down",
+          "tasks",
+          "requirements",
+          "issues",
+          "handles"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5416,22 +5515,19 @@
       "token_cost": 4338,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/spec-to-backlog/SKILL.md"
     },
     "springboot-patterns": {
       "activation": {
         "onKeyword": [
+          "springboot-patterns",
           "springboot",
-          "patterns",
           "spring",
           "boot",
-          "architecture",
           "rest",
-          "api",
-          "design",
           "layered",
           "services",
-          "data",
           "access",
           "caching",
           "async",
@@ -5440,7 +5536,11 @@
           "java",
           "backend",
           "work",
-          "spring boot architecture"
+          "spring boot architecture",
+          "rest api design",
+          "layered services",
+          "data access",
+          "async processing"
         ],
         "onIntent": [
           "building rest apis with spring mvc or webflux",
@@ -5458,16 +5558,15 @@
       "token_cost": 2478,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/springboot-patterns/SKILL.md"
     },
     "springboot-security": {
       "activation": {
         "onKeyword": [
+          "springboot-security",
           "springboot",
-          "security",
           "spring",
-          "best",
-          "practices",
           "authn",
           "authz",
           "validation",
@@ -5496,15 +5595,16 @@
       "token_cost": 2004,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/springboot-security/SKILL.md"
     },
     "springboot-tdd": {
       "activation": {
         "onKeyword": [
+          "springboot-tdd",
           "springboot",
           "tdd",
           "test-driven",
-          "development",
           "spring",
           "boot",
           "junit",
@@ -5533,11 +5633,15 @@
       "token_cost": 944,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/springboot-tdd/SKILL.md"
     },
     "springboot-verification": {
       "activation": {
         "onKeyword": [
+          "springboot-verification",
           "springboot",
           "verification",
           "loop",
@@ -5548,11 +5652,8 @@
           "static",
           "analysis",
           "tests",
-          "coverage",
-          "security",
           "scans",
           "diff",
-          "review",
           "release",
           "spring boot projects",
           "static analysis",
@@ -5573,11 +5674,15 @@
       "token_cost": 1453,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/springboot-verification/SKILL.md"
     },
     "sre-engineer": {
       "activation": {
         "onKeyword": [
+          "sre-engineer",
           "sre",
           "engineer",
           "site",
@@ -5596,8 +5701,7 @@
           "blameless",
           "capacity",
           "planning",
-          "philosophy",
-          "definition"
+          "philosophy"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5612,11 +5716,13 @@
         "cloud-architect",
         "kubernetes-specialist"
       ],
+      "successors": [],
       "path": "skills/sre-engineer/SKILL.md"
     },
     "strategic-compact": {
       "activation": {
         "onKeyword": [
+          "strategic-compact",
           "strategic",
           "compact",
           "suggests",
@@ -5649,15 +5755,14 @@
       "token_cost": 1000,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/strategic-compact/SKILL.md"
     },
     "stripe-best-practices": {
       "activation": {
         "onKeyword": [
+          "stripe-best-practices",
           "stripe",
-          "best",
-          "practices",
-          "building",
           "integrations",
           "implementing",
           "payment",
@@ -5668,12 +5773,12 @@
           "webhooks",
           "connect",
           "platforms",
-          "api",
           "integration",
           "building stripe integrations",
           "payment processing",
           "checkout flows",
-          "connect platforms"
+          "connect platforms",
+          "api integration"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5684,16 +5789,16 @@
       "token_cost": 1376,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/stripe-best-practices/SKILL.md"
     },
     "subagent-driven-development": {
       "activation": {
         "onKeyword": [
+          "subagent-driven-development",
           "subagent",
           "driven",
-          "development",
           "executing",
-          "implementation",
           "plans",
           "independent",
           "tasks",
@@ -5714,11 +5819,13 @@
       "token_cost": 2492,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/subagent-driven-development/SKILL.md"
     },
     "supply-chain-risk-auditor": {
       "activation": {
         "onKeyword": [
+          "supply-chain-risk-auditor",
           "supply",
           "chain",
           "risk",
@@ -5737,8 +5844,7 @@
           "assessing",
           "attack",
           "surface",
-          "evaluating",
-          "scoping"
+          "evaluating"
         ],
         "onIntent": [
           "assessing dependency risk before a security audit",
@@ -5757,16 +5863,17 @@
         "open-source-license-compliance",
         "compliance-routing"
       ],
+      "successors": [],
       "path": "skills/supply-chain-risk-auditor/SKILL.md"
     },
     "swift-actor-persistence": {
       "activation": {
         "onKeyword": [
+          "swift-actor-persistence",
           "swift",
           "actor",
           "persistence",
           "thread-safe",
-          "data",
           "actors",
           "in-memory",
           "cache",
@@ -5774,7 +5881,6 @@
           "storage",
           "eliminating",
           "races",
-          "design",
           "thread-safe data",
           "in-memory cache",
           "eliminating data races"
@@ -5792,11 +5898,13 @@
       "token_cost": 1196,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/swift-actor-persistence/SKILL.md"
     },
     "swift-concurrency-6-2": {
       "activation": {
         "onKeyword": [
+          "swift-concurrency-6-2",
           "swift",
           "concurrency",
           "approachable",
@@ -5832,22 +5940,20 @@
       "token_cost": 1993,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/swift-concurrency-6-2/SKILL.md"
     },
     "swift-protocol-di-testing": {
       "activation": {
         "onKeyword": [
+          "swift-protocol-di-testing",
           "swift",
           "protocol",
-          "testing",
           "protocol-based",
           "dependency",
           "injection",
           "testable",
-          "code",
           "mock",
-          "file",
-          "system",
           "network",
           "external",
           "apis",
@@ -5871,14 +5977,16 @@
       "token_cost": 1501,
       "priority": "normal",
       "dependencies": [],
+      "successors": [
+        "security-review"
+      ],
       "path": "skills/swift-protocol-di-testing/SKILL.md"
     },
     "swiftui-patterns": {
       "activation": {
         "onKeyword": [
+          "swiftui-patterns",
           "swiftui",
-          "patterns",
-          "architecture",
           "state",
           "management",
           "observable",
@@ -5890,8 +5998,6 @@
           "modern",
           "ios",
           "macos",
-          "best",
-          "practices",
           "swiftui architecture patterns",
           "view composition",
           "performance optimization",
@@ -5911,13 +6017,13 @@
       "token_cost": 1731,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/swiftui-patterns/SKILL.md"
     },
     "system-design": {
       "activation": {
         "onKeyword": [
-          "system",
-          "design",
+          "system-design",
           "scale",
           "high",
           "availability",
@@ -5931,11 +6037,12 @@
           "distributed",
           "systems",
           "scalable",
-          "structured",
           "approaches",
           "database",
           "scaling",
-          "user"
+          "mentions",
+          "url",
+          "shortener"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -5950,16 +6057,19 @@
         "ddia-systems",
         "domain-driven-design"
       ],
+      "successors": [
+        "api-design"
+      ],
       "path": "skills/system-design/SKILL.md"
     },
     "systematic-debugging": {
       "activation": {
         "onKeyword": [
+          "systematic-debugging",
           "systematic",
           "debugging",
           "encountering",
           "bug",
-          "test",
           "failure",
           "unexpected",
           "behavior",
@@ -5987,25 +6097,21 @@
       "token_cost": 2465,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/systematic-debugging/SKILL.md"
     },
     "tdd-workflow": {
       "activation": {
         "onKeyword": [
+          "tdd-workflow",
           "tdd",
           "workflow",
-          "skill",
-          "writing",
-          "new",
           "features",
           "fixing",
           "bugs",
           "refactoring",
-          "code",
           "enforces",
           "test-driven",
-          "development",
-          "coverage",
           "unit",
           "integration",
           "e2e",
@@ -6028,14 +6134,15 @@
       "token_cost": 2409,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/tdd-workflow/SKILL.md"
     },
     "terminal-emulator": {
       "activation": {
         "onKeyword": [
+          "terminal-emulator",
           "terminal",
           "emulator",
-          "test",
           "cli",
           "tui",
           "interactive",
@@ -6044,7 +6151,6 @@
           "tui-test",
           "automation",
           "pty",
-          "applications",
           "microsoft",
           "tools",
           "prompts",
@@ -6052,7 +6158,8 @@
           "arrow",
           "key",
           "navigation",
-          "command"
+          "requires",
+          "tty"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -6065,20 +6172,17 @@
       "dependencies": [
         "agent-browser"
       ],
+      "successors": [],
       "path": "skills/terminal-emulator/SKILL.md"
     },
     "test-driven-development": {
       "activation": {
         "onKeyword": [
-          "test",
+          "test-driven-development",
           "driven",
-          "development",
           "implementing",
           "feature",
-          "bugfix",
-          "writing",
-          "implementation",
-          "code"
+          "bugfix"
         ],
         "onIntent": [
           "new features",
@@ -6097,18 +6201,19 @@
       "token_cost": 2465,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/test-driven-development/SKILL.md"
     },
     "the-fool": {
       "activation": {
         "onKeyword": [
+          "the-fool",
           "fool",
           "play",
           "devil",
           "advocate",
           "challenge",
           "stress",
-          "test",
           "poke",
           "holes",
           "wrong",
@@ -6121,7 +6226,7 @@
           "plans",
           "decisions",
           "proposals",
-          "structured"
+          "critical"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -6136,11 +6241,13 @@
         "code-reviewer",
         "feature-forge"
       ],
+      "successors": [],
       "path": "skills/the-fool/SKILL.md"
     },
     "triage-issue": {
       "activation": {
         "onKeyword": [
+          "triage-issue",
           "triage",
           "issue",
           "intelligently",
@@ -6152,15 +6259,14 @@
           "duplicates",
           "jira",
           "offering",
-          "create",
-          "new",
           "issues",
-          "add",
           "comments",
           "existing",
           "ones",
-          "claude",
-          "needs"
+          "report",
+          "message",
+          "check",
+          "duplicate"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -6171,14 +6277,15 @@
       "token_cost": 4818,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/triage-issue/SKILL.md"
     },
     "ui-ux-pro-max": {
       "activation": {
         "onKeyword": [
+          "ui-ux-pro-max",
           "pro",
           "max",
-          "design",
           "intelligence",
           "styles",
           "palettes",
@@ -6206,22 +6313,22 @@
       "token_cost": 3594,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/ui-ux-pro-max/SKILL.md"
     },
     "using-git-worktrees": {
       "activation": {
         "onKeyword": [
+          "using-git-worktrees",
           "git",
           "worktrees",
           "starting",
           "feature",
           "work",
-          "needs",
           "isolation",
           "current",
           "workspace",
           "executing",
-          "implementation",
           "plans",
           "creates",
           "isolated",
@@ -6230,7 +6337,8 @@
           "selection",
           "safety",
           "verification",
-          "creates isolated git"
+          "creates isolated git",
+          "safety verification"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -6241,20 +6349,19 @@
       "token_cost": 1409,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/using-git-worktrees/SKILL.md"
     },
     "using-superpowers": {
       "activation": {
         "onKeyword": [
+          "using-superpowers",
           "superpowers",
           "starting",
           "conversation",
           "establishes",
           "find",
-          "skills",
           "requiring",
-          "skill",
-          "tool",
           "invocation",
           "response",
           "clarifying",
@@ -6270,11 +6377,13 @@
       "token_cost": 1050,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/using-superpowers/SKILL.md"
     },
     "verification-before-completion": {
       "activation": {
         "onKeyword": [
+          "verification-before-completion",
           "verification",
           "completion",
           "claim",
@@ -6289,7 +6398,6 @@
           "running",
           "commands",
           "confirming",
-          "output",
           "making",
           "success",
           "claims",
@@ -6305,17 +6413,16 @@
       "token_cost": 1038,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/verification-before-completion/SKILL.md"
     },
     "verification-loop": {
       "activation": {
         "onKeyword": [
+          "verification-loop",
           "verification",
           "loop",
           "comprehensive",
-          "system",
-          "claude",
-          "code",
           "sessions",
           "code sessions"
         ],
@@ -6333,19 +6440,19 @@
       "token_cost": 623,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/verification-loop/SKILL.md"
     },
     "writing-plans": {
       "activation": {
         "onKeyword": [
-          "writing",
+          "writing-plans",
           "plans",
           "spec",
           "requirements",
           "multi-step",
           "task",
-          "touching",
-          "code"
+          "touching"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -6356,30 +6463,27 @@
       "token_cost": 817,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/writing-plans/SKILL.md"
     },
     "writing-rules": {
       "activation": {
         "onKeyword": [
-          "writing",
+          "writing-rules",
           "rules",
-          "skill",
-          "user",
-          "asks",
-          "create",
           "hookify",
           "rule",
           "write",
           "hook",
           "configure",
-          "add",
-          "needs",
-          "guidance",
           "syntax",
-          "patterns",
           "configure hookify"
         ],
-        "onIntent": [],
+        "onIntent": [
+          "`dangerous-rm.local.md` - block dangerous rm commands",
+          "`console-log-warning.local.md` - warn about console.log",
+          "`sensitive-files-warning.local.md` - warn about editing .env files"
+        ],
         "onFileType": [],
         "onTool": [],
         "onProjectType": []
@@ -6388,15 +6492,14 @@
       "token_cost": 2104,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/writing-rules/SKILL.md"
     },
     "writing-skills": {
       "activation": {
         "onKeyword": [
-          "writing",
-          "skills",
+          "writing-skills",
           "creating",
-          "new",
           "editing",
           "existing",
           "verifying",
@@ -6414,6 +6517,7 @@
       "token_cost": 5595,
       "priority": "normal",
       "dependencies": [],
+      "successors": [],
       "path": "skills/writing-skills/SKILL.md"
     },
     "xlsx": {
@@ -6424,21 +6528,21 @@
           "csv",
           "excel",
           "tabular",
-          "data",
           "pivot",
           "table",
           "formula",
           "workbook",
-          "skill",
           "time",
-          "file",
           "primary",
           "input",
-          "output",
           "means",
           "task",
-          "user",
-          "wants"
+          "open",
+          "read",
+          "edit",
+          "fix",
+          "existing",
+          "xlsm"
         ],
         "onIntent": [],
         "onFileType": [],
@@ -6453,6 +6557,7 @@
         "pdf",
         "pptx"
       ],
+      "successors": [],
       "path": "skills/xlsx/SKILL.md"
     }
   }

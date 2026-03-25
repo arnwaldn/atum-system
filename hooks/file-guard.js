@@ -22,8 +22,32 @@ const SENSITIVE_PATTERNS = {
 
 const WARNING_PATTERNS = [/package\.json$/, /requirements\.txt$/, /Dockerfile$/, /docker-compose\.yml$/];
 
+// ─── Pre-built extension-based fast-path index ───
+// For files with known dangerous extensions, skip the full 195-pattern scan.
+const BLOCKED_EXTENSIONS = new Set([
+  '.pem', '.key', '.ppk', '.p12', '.pfx', '.cer', '.crt', '.csr',
+  '.der', '.p7b', '.p7r', '.spc', '.kdbx', '.kdb', '.wallet',
+  '.keystore', '.s3cfg', '.boto', '.pypirc', '.netrc',
+  '.ftpconfig', '.tugboat', '.esmtprc', '.dockercfg',
+]);
+const SAFE_EXTENSIONS = new Set([
+  '.ts', '.tsx', '.js', '.jsx', '.py', '.go', '.rs', '.java', '.kt',
+  '.swift', '.cpp', '.c', '.h', '.css', '.scss', '.html', '.md',
+  '.mdx', '.txt', '.yaml', '.toml', '.xml', '.svg', '.sh',
+]);
+
 function checkFile(filepath) {
-  const normalized = filepath.replace(/\\/g, "/");
+  const normalized = filepath.replace(/\\/g, '/');
+
+  // Fast-path: known-safe source file extensions skip the full scan
+  const lastDot = normalized.lastIndexOf('.');
+  if (lastDot !== -1) {
+    const ext = normalized.slice(lastDot).toLowerCase();
+    if (SAFE_EXTENSIONS.has(ext)) return { safe: true };
+    if (BLOCKED_EXTENSIONS.has(ext)) return { block: true, category: 'EXTENSION', pattern: ext };
+  }
+
+  // Full pattern scan for everything else
   for (const [category, patterns] of Object.entries(SENSITIVE_PATTERNS)) {
     for (const pat of patterns) {
       if (pat.test(normalized)) return { block: true, category, pattern: pat.source };

@@ -59,9 +59,33 @@ function formatIndex(registry) {
   return result;
 }
 
+// ─── Cache: store formatted index to skip re-parsing on resume ───
+const CACHE_PATH = path.join(
+  process.env.TEMP || process.env.TMPDIR || '/tmp',
+  'atum-skill-index-cache.json'
+);
+
+function getCachedIndex() {
+  try {
+    const registryStat = fs.statSync(REGISTRY_PATH);
+    if (!fs.existsSync(CACHE_PATH)) return null;
+    const cache = JSON.parse(fs.readFileSync(CACHE_PATH, 'utf8'));
+    // Validate cache is fresh (registry unchanged since last cache)
+    if (cache.registryMtime === registryStat.mtimeMs && cache.index) {
+      return cache.index;
+    }
+  } catch { /* cache miss */ }
+  return null;
+}
+
+function setCachedIndex(index, registryMtime) {
+  try {
+    fs.writeFileSync(CACHE_PATH, JSON.stringify({ registryMtime, index }));
+  } catch { /* non-critical */ }
+}
+
 try {
   const stdinData = readStdin();
-  // Parse input (not strictly needed, but good practice)
   let input = {};
   try { input = JSON.parse(stdinData); } catch { /* ignore */ }
 
@@ -72,8 +96,16 @@ try {
     process.exit(0);
   }
 
-  const registry = JSON.parse(fs.readFileSync(REGISTRY_PATH, 'utf8'));
-  const index = formatIndex(registry);
+  // Try cache first (fast path for resume sessions)
+  let index = getCachedIndex();
+  let cacheHit = !!index;
+
+  if (!index) {
+    const registry = JSON.parse(fs.readFileSync(REGISTRY_PATH, 'utf8'));
+    index = formatIndex(registry);
+    const registryMtime = fs.statSync(REGISTRY_PATH).mtimeMs;
+    setCachedIndex(index, registryMtime);
+  }
 
   const output = JSON.stringify({
     hookSpecificOutput: {
@@ -83,7 +115,7 @@ try {
   });
 
   process.stdout.write(output);
-  console.error(`[session-start-orchestrator] Injected skill index: ${registry.count} skills, ${index.length} chars`);
+  console.error(`[session-start-orchestrator] Injected skill index (${cacheHit ? 'cached' : 'fresh'}): ${index.length} chars`);
 } catch (err) {
   console.error(`[session-start-orchestrator] Error: ${err.message}`);
   process.stdout.write('{}');

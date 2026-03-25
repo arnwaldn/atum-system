@@ -92,11 +92,56 @@ function saveStats(stats) {
   fs.writeFileSync(STATS_FILE, JSON.stringify(stats));
 }
 
+// --- Parameter normalization ---
+// Reduces false negatives: editing line 42 then line 43 of the same file is the same pattern.
+
+function normalizeParams(toolName, params) {
+  if (!params || typeof params !== 'object') return params;
+
+  const normalized = {};
+
+  // Normalize file paths to forward-slash canonical form
+  if (params.file_path) {
+    normalized.file_path = params.file_path.replace(/\\/g, '/');
+  }
+
+  // Quantize line numbers by ±5 (nearby edits = same pattern)
+  if (params.offset !== undefined) {
+    normalized.offset_q = Math.floor(params.offset / 5) * 5;
+  }
+
+  // For Edit: hash old_string content, not the exact text (length-based grouping)
+  if (toolName === 'Edit') {
+    normalized.file_path = (params.file_path || '').replace(/\\/g, '/');
+    normalized.old_len = params.old_string ? Math.floor(params.old_string.length / 50) * 50 : 0;
+    normalized.new_len = params.new_string ? Math.floor(params.new_string.length / 50) * 50 : 0;
+    return normalized;
+  }
+
+  // For Bash: extract command pattern (strip arguments that vary)
+  if (toolName === 'Bash') {
+    const cmd = params.command || '';
+    // Keep the command verb and first argument, normalize the rest
+    normalized.cmd_pattern = cmd.split(/\s+/).slice(0, 3).join(' ');
+    return normalized;
+  }
+
+  // For Read: just the file path
+  if (toolName === 'Read') {
+    normalized.file_path = (params.file_path || '').replace(/\\/g, '/');
+    return normalized;
+  }
+
+  // Default: use tool name + first 200 chars of stringified params
+  return { tool: toolName, sig: JSON.stringify(params).slice(0, 200) };
+}
+
 // --- Hashing ---
 
 function hashCall(toolName, params) {
-  const key = JSON.stringify({ tool: toolName, params }).slice(0, 500);
-  return crypto.createHash("md5").update(key).digest("hex").slice(0, 12);
+  const normalized = normalizeParams(toolName, params);
+  const key = JSON.stringify({ tool: toolName, params: normalized });
+  return crypto.createHash("sha256").update(key).digest("hex").slice(0, 16);
 }
 
 // --- Detection: Consecutive Repeats ---
@@ -126,14 +171,11 @@ function detectPingPong(history, currentHash) {
   if (currentHash !== secondToLast) return { count: 0 };
 
   // Count the alternating tail length
-  // History ends with: ...A, B, A, B  and current = A
-  // So we walk backwards checking the alternation pattern
   const hashA = currentHash;
   const hashB = lastHash;
   let alternatingCount = 1; // current counts as 1
 
   for (let i = history.length - 1; i >= 0; i--) {
-    // Expect alternating: position from end 0=B, 1=A, 2=B, 3=A...
     const distFromEnd = history.length - 1 - i;
     const expected = distFromEnd % 2 === 0 ? hashB : hashA;
     if (history[i] === expected) {
@@ -144,6 +186,37 @@ function detectPingPong(history, currentHash) {
   }
 
   return { count: alternatingCount, hashA, hashB };
+}
+
+// --- Detection: Multi-cycle loops (A→B→C→A→B→C...) ---
+// Detects repeating patterns of length 3-5 using sliding window.
+
+function detectMultiCycle(history, currentHash) {
+  const full = [...history, currentHash];
+  if (full.length < 6) return { count: 0, patternLen: 0 };
+
+  // Try pattern lengths 3, 4, 5
+  for (let patternLen = 3; patternLen <= 5; patternLen++) {
+    if (full.length < patternLen * 2) continue;
+
+    const pattern = full.slice(-patternLen);
+    let repeats = 1;
+
+    // Walk backwards checking if the pattern repeats
+    for (let offset = patternLen * 2; offset <= full.length; offset += patternLen) {
+      const segment = full.slice(-offset, -offset + patternLen);
+      if (segment.length !== patternLen) break;
+      const matches = segment.every((h, i) => h === pattern[i]);
+      if (matches) repeats++;
+      else break;
+    }
+
+    if (repeats >= 2) {
+      return { count: repeats, patternLen };
+    }
+  }
+
+  return { count: 0, patternLen: 0 };
 }
 
 // --- File path extraction ---
@@ -235,9 +308,11 @@ try {
 
   saveStats(stats);
 
-  // === Loop detection (skip read-only tools) ===
-  const READ_ONLY_TOOLS = ["Read", "Grep", "Glob", "WebFetch", "WebSearch", "TaskList", "TaskGet", "TaskCreate", "ToolSearch"];
-  if (READ_ONLY_TOOLS.includes(toolName)) {
+  // === Loop detection ===
+  // Include Read in detection: Read→Edit→Read→Edit is a common loop pattern.
+  // Skip only purely informational tools that never indicate a loop.
+  const SKIP_LOOP_DETECTION = ["TaskList", "TaskGet", "TaskCreate", "TaskUpdate", "ToolSearch"];
+  if (SKIP_LOOP_DETECTION.includes(toolName)) {
     process.exit(0);
   }
 
@@ -250,6 +325,9 @@ try {
 
   // --- Detector 2: Ping-pong alternation ---
   const pingpong = detectPingPong(state.history, callHash);
+
+  // --- Detector 3: Multi-cycle loops (A→B→C→A→B→C...) ---
+  const multiCycle = detectMultiCycle(state.history, callHash);
 
   // --- Push AFTER detection ---
   state.history.push(callHash);
@@ -265,10 +343,14 @@ try {
     loopMessage = `[LOOP CRITICAL] Tool "${toolName}" called ${repeats}x identically. STOP and try a completely different approach.`;
   } else if (pingpong.count >= PINGPONG_CRITICAL) {
     loopMessage = `[PING-PONG CRITICAL] Alternating between 2 tool patterns ${pingpong.count}x with no progress. STOP — you're in a loop. Try a completely different approach.`;
+  } else if (multiCycle.count >= 3) {
+    loopMessage = `[MULTI-CYCLE CRITICAL] Repeating a ${multiCycle.patternLen}-step pattern ${multiCycle.count}x. STOP — you're in a loop. Try a completely different approach.`;
   } else if (repeats >= REPEAT_THRESHOLD) {
     loopMessage = `[LOOP WARNING] Tool "${toolName}" called ${repeats}x with same params. Consider changing approach.`;
   } else if (pingpong.count >= PINGPONG_THRESHOLD) {
     loopMessage = `[PING-PONG WARNING] Alternating between 2 tool patterns ${pingpong.count}x. This looks like a stuck loop — consider a different strategy.`;
+  } else if (multiCycle.count >= 2) {
+    loopMessage = `[MULTI-CYCLE WARNING] Repeating a ${multiCycle.patternLen}-step pattern ${multiCycle.count}x. This may be a loop — consider a different strategy.`;
   }
 
   if (loopMessage) {

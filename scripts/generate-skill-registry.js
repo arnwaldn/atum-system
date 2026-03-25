@@ -42,6 +42,21 @@ const STOP_WORDS = new Set([
   'aussi', 'encore', 'deja', 'tres', 'trop', 'peu', 'si', 'car', 'donc',
 ]);
 
+// LOW-SIGNAL keywords that match too many skills and pollute routing.
+// These are filtered from onKeyword but kept in compound terms.
+const LOW_SIGNAL_KEYWORDS = new Set([
+  'patterns', 'user', 'code', 'skill', 'design', 'claude',
+  'practices', 'create', 'best', 'add', 'development', 'asks',
+  'project', 'system', 'applications', 'skills', 'wants',
+  'coverage', 'test', 'model', 'implementation', 'structured',
+  'writing', 'building', 'review', 'run', 'setup', 'help',
+  'file', 'files', 'new', 'command', 'output', 'tool',
+  'something', 'asked', 'real', 'needs', 'guidance', 'structure',
+  // Cross-domain terms that match too broadly on their own.
+  // They remain useful in compounds (e.g. "api-design", "security-review").
+  'api', 'testing', 'security', 'data', 'architecture',
+]);
+
 // Domain category mappings inferred from skill name patterns
 // Domain inference patterns — ordered by specificity (most specific first).
 // Uses word boundaries (\b) to prevent false matches (e.g. "doc" in "docker").
@@ -141,11 +156,63 @@ function extractActivationSection(content) {
   // Look for "When to Activate", "When to Use", "Activation" sections
   const pattern = /##\s+(?:When to (?:Activate|Use)|Activation|Use Cases|Quand utiliser)\s*\n([\s\S]*?)(?=\n##\s|\n---|\z)/i;
   const match = content.match(pattern);
-  if (!match) return [];
+  if (match) {
+    const bullets = match[1].match(/^[-*]\s+(.+)$/gm) || [];
+    if (bullets.length > 0) {
+      return bullets.map(b => b.replace(/^[-*]\s+/, '').trim().toLowerCase());
+    }
+  }
 
-  // Extract bullet points
-  const bullets = match[1].match(/^[-*]\s+(.+)$/gm) || [];
-  return bullets.map(b => b.replace(/^[-*]\s+/, '').trim().toLowerCase());
+  // FALLBACK: Extract intents from other common sections when "When to Activate" is missing.
+  // Try "Examples", "Usage", "Overview" sections for bullet points with action verbs.
+  const fallbackSections = [
+    /##\s+(?:Examples?|Usage|Exemples?)\s*\n([\s\S]*?)(?=\n##\s|\n---|\z)/i,
+    /##\s+(?:Overview|Aper[cç]u|Description)\s*\n([\s\S]*?)(?=\n##\s|\n---|\z)/i,
+  ];
+
+  for (const fp of fallbackSections) {
+    const fm = content.match(fp);
+    if (!fm) continue;
+    const bullets = fm[1].match(/^[-*]\s+(.+)$/gm) || [];
+    if (bullets.length > 0) {
+      return bullets
+        .map(b => b.replace(/^[-*]\s+/, '').trim().toLowerCase())
+        .filter(b => b.length >= 10 && b.length <= 150)
+        .slice(0, 5);
+    }
+  }
+
+  // LAST RESORT: Synthesize intents from frontmatter description
+  // by splitting on common delimiters (commas, semicolons, "or")
+  return [];
+}
+
+/**
+ * Truncate description at a sentence boundary, not mid-word.
+ * Prefers to end at a period, closing paren, or exclamation mark.
+ */
+function truncateDescription(description, maxLen) {
+  if (!description || description.length <= maxLen) return description;
+
+  // Find the last sentence boundary before maxLen
+  const truncated = description.slice(0, maxLen);
+  const lastPeriod = truncated.lastIndexOf('.');
+  const lastExcl = truncated.lastIndexOf('!');
+  const lastParen = truncated.lastIndexOf(')');
+  const bestCut = Math.max(lastPeriod, lastExcl, lastParen);
+
+  if (bestCut > maxLen * 0.5) {
+    // Good sentence boundary found in the second half
+    return description.slice(0, bestCut + 1);
+  }
+
+  // No good boundary: cut at last space to avoid mid-word truncation
+  const lastSpace = truncated.lastIndexOf(' ');
+  if (lastSpace > maxLen * 0.6) {
+    return description.slice(0, lastSpace) + '...';
+  }
+
+  return truncated + '...';
 }
 
 function extractKeywords(text) {
@@ -194,6 +261,35 @@ function inferFileTypes(skillId) {
   return FILE_TYPE_SKILLS[skillId] || [];
 }
 
+// Infer what skill should logically follow this one in a workflow.
+// Based on common development sequences: code → test → review → deploy.
+const WORKFLOW_SUCCESSOR_RULES = [
+  // Language patterns → language-specific testing
+  { match: /django-patterns/, successors: ['django-tdd', 'django-verification'] },
+  { match: /flask-patterns/, successors: ['python-testing'] },
+  { match: /react-patterns/, successors: ['e2e-testing'] },
+  { match: /golang-patterns/, successors: ['golang-testing'] },
+  { match: /kotlin-patterns/, successors: ['kotlin-testing'] },
+  // Testing → security review
+  { match: /-tdd$|-testing$|-verification$/, successors: ['security-review'] },
+  // Security → deploy
+  { match: /security-review|security-scan/, successors: ['deploy'] },
+  // API design → testing
+  { match: /api-design/, successors: ['e2e-testing', 'security-review'] },
+  // Architecture → implementation patterns
+  { match: /clean-architecture|domain-driven-design|system-design/, successors: ['api-design'] },
+];
+
+function inferWorkflowSuccessors(skillId, domain) {
+  const successors = [];
+  for (const rule of WORKFLOW_SUCCESSOR_RULES) {
+    if (rule.match.test(skillId)) {
+      successors.push(...rule.successors);
+    }
+  }
+  return successors;
+}
+
 function processSkill(skillDir) {
   const skillId = path.basename(skillDir);
   const skillFile = path.join(skillDir, 'SKILL.md');
@@ -213,18 +309,32 @@ function processSkill(skillDir) {
   const domain = metadata.domain || inferDomain(skillId, description);
   const explicitTriggers = metadata.triggers || '';
 
-  // Build keywords from multiple sources (skill name parts first for priority)
-  const skillNameParts = skillId.split('-').filter(w => w.length >= 3 && !STOP_WORDS.has(w));
+  // Build keywords from multiple sources (skill name parts first for priority).
+  // Skill name parts define identity but generic ones still cause collisions.
+  // Keep the full skill ID as a compound keyword and filter generic name parts.
+  const skillNameParts = skillId.split('-')
+    .filter(w => w.length >= 3 && !STOP_WORDS.has(w) && !LOW_SIGNAL_KEYWORDS.has(w));
+  // Always include the full skill ID as a compound term (e.g. "react-patterns")
+  // — this is specific enough to not collide.
+  if (skillId.includes('-')) {
+    skillNameParts.unshift(skillId);
+  }
+  const triggerKeywords = extractKeywords(explicitTriggers)
+    .filter(w => !LOW_SIGNAL_KEYWORDS.has(w));
+  const descKeywords = extractKeywords(description)
+    .filter(w => !LOW_SIGNAL_KEYWORDS.has(w));
+
   const keywordSources = [
     ...skillNameParts,
-    ...extractKeywords(explicitTriggers),
-    ...extractKeywords(description),
+    ...triggerKeywords,
+    ...descKeywords,
   ];
 
-  // Extract intent phrases from activation section
-  const intents = activationBullets.slice(0, 10); // Cap at 10
+  // Extract intent phrases from activation section (with fallback)
+  const intents = activationBullets.slice(0, 10);
 
-  // Add compound terms from description
+  // Add compound terms from description (compounds survive low-signal filter
+  // because multi-word terms like "react-patterns" are specific enough)
   const compounds = extractCompoundTerms(description);
 
   // Deduplicate and limit keywords
@@ -236,15 +346,25 @@ function processSkill(skillDir) {
   // File types this skill is relevant for
   const fileTypes = inferFileTypes(skillId);
 
+  // Workflow successors: what skill should run after this one?
+  // Declared via metadata.successors in SKILL.md frontmatter,
+  // or inferred from common workflows.
+  const declaredSuccessors = metadata.successors
+    ? metadata.successors.split(',').map(s => s.trim())
+    : [];
+  const inferredSuccessors = inferWorkflowSuccessors(skillId, domain);
+  const successors = [...new Set([...declaredSuccessors, ...inferredSuccessors])];
+
   return {
     id: skillId,
     name,
-    description: description.slice(0, 200), // Cap description length
+    description: truncateDescription(description, 300),
     domain,
     keywords: allKeywords,
     intents,
     fileTypes,
     tokenCost,
+    successors,
     relatedSkills: metadata['related-skills']
       ? metadata['related-skills'].split(',').map(s => s.trim())
       : [],
@@ -321,6 +441,7 @@ function main() {
       token_cost: s.tokenCost,
       priority: 'normal',
       dependencies: s.relatedSkills,
+      successors: s.successors || [],
       path: s.path,
     };
   }
@@ -333,15 +454,45 @@ function main() {
   const withTriggers = skills.filter(s => s.keywords.length > 3).length;
   const withIntents = skills.filter(s => s.intents.length > 0).length;
   const totalTokens = skills.reduce((sum, s) => sum + s.tokenCost, 0);
+  const truncatedDescs = skills.filter(s => s.description.endsWith('...'));
 
   console.error(`\n[generate-skill-registry] Summary:`);
   console.error(`  Total skills: ${skills.length}`);
   console.error(`  Skipped: ${skipped}`);
   console.error(`  With rich keywords (>3): ${withTriggers}`);
   console.error(`  With activation intents: ${withIntents}`);
+  console.error(`  WITHOUT activation intents: ${skills.length - withIntents}`);
+  console.error(`  Truncated descriptions: ${truncatedDescs.length}`);
   console.error(`  Total SKILL.md tokens: ~${totalTokens}`);
   console.error(`  Registry size: ${Math.ceil(JSON.stringify(registry).length / 4)} tokens`);
   console.error(`  Manifests size: ${Math.ceil(JSON.stringify(manifests).length / 4)} tokens`);
+
+  // --- Keyword collision report ---
+  const kwCount = {};
+  for (const s of skills) {
+    for (const kw of s.keywords) {
+      kwCount[kw] = (kwCount[kw] || 0) + 1;
+    }
+  }
+  const hotKeywords = Object.entries(kwCount)
+    .filter(([, count]) => count >= 10)
+    .sort((a, b) => b[1] - a[1]);
+  if (hotKeywords.length > 0) {
+    console.error(`\n  [WARN] Hot keywords (>=10 skills):`);
+    hotKeywords.forEach(([kw, count]) => {
+      console.error(`    ${kw.padEnd(25)} ${count} skills`);
+    });
+  }
+
+  // --- Quality warnings ---
+  if (skills.length - withIntents > 20) {
+    console.error(`\n  [WARN] ${skills.length - withIntents} skills have NO activation intents.`);
+    console.error(`         Add a "## When to Activate" section to their SKILL.md files.`);
+  }
+  if (truncatedDescs.length > 10) {
+    console.error(`  [WARN] ${truncatedDescs.length} skills have truncated descriptions.`);
+    console.error(`         Consider shorter frontmatter descriptions (<300 chars).`);
+  }
 }
 
 main();

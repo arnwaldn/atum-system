@@ -8,7 +8,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/secret-scanner.py\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/secret-scanner.js\""
           }
         ]
       },
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/git-guard.py\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/git-guard.js\""
           }
         ]
       },
@@ -44,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/security-reminder.py\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/security-reminder.js\""
           }
         ]
       },
@@ -109,7 +109,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/atum-post-write.py\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/atum-post-write.js\""
           }
         ]
       },
@@ -118,7 +118,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/atum-compliance-check.py\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/atum-compliance-check.js\""
           }
         ]
       },
@@ -307,11 +307,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/atum-session-start.py\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/atum-session-start.js\""
           },
           {
             "type": "command",
-            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/clean-shell-snapshots.py\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/clean-shell-snapshots.js\""
           },
           {
             "type": "command",

@@ -118,6 +118,9 @@ try {
     if (pattern.regex.test(tail)) {
       totalWeight += pattern.weight;
       triggered.push(pattern);
+      // Early exit: once we've clearly exceeded threshold, stop scanning.
+      // We already have enough evidence to block.
+      if (totalWeight >= THRESHOLD + 3) break;
     }
   }
 

@@ -19,9 +19,12 @@
 const fs = require('fs');
 const path = require('path');
 
+const os = require('os');
+
 const PLUGIN_ROOT = process.env.CLAUDE_PLUGIN_ROOT || path.resolve(__dirname, '..');
 const MANIFESTS_PATH = path.join(PLUGIN_ROOT, 'data', 'skill-manifests.json');
 const SKILLS_DIR = path.join(PLUGIN_ROOT, 'skills');
+const REPUTATION_PATH = path.join(os.homedir(), '.claude', 'skill-reputation.json');
 
 const MAX_STDIN = 1024 * 1024;
 const MAX_SKILLS = 5;
@@ -31,7 +34,149 @@ const MAX_SKILL_CHARS = 4800; // ~1200 tokens per skill
 
 // ─── Skill content cache ───
 const skillCache = new Map();
-const CACHE_MAX = 20;
+const CACHE_MAX = 50;
+
+// ─── Skill reputation system ───
+// Tracks how useful each skill is across sessions.
+// loaded_count: how many times the skill was injected
+// Each injection without explicit user rejection = neutral (no penalty).
+// Skills are penalized by external feedback or by auto-deprecation logic.
+let reputationData = null;
+
+function loadReputation() {
+  if (reputationData) return reputationData;
+  try {
+    reputationData = JSON.parse(fs.readFileSync(REPUTATION_PATH, 'utf8'));
+  } catch {
+    reputationData = {};
+  }
+  return reputationData;
+}
+
+function saveReputation() {
+  if (!reputationData) return;
+  try {
+    const dir = path.dirname(REPUTATION_PATH);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(REPUTATION_PATH, JSON.stringify(reputationData, null, 2));
+  } catch {}
+}
+
+function getReputationScore(skillId) {
+  const rep = loadReputation();
+  if (!rep[skillId]) return 0; // No data = neutral
+  const r = rep[skillId];
+  // Score = (positive - negative) / total, scaled to [-3, +3]
+  const total = (r.positive || 0) + (r.negative || 0) + (r.neutral || 0);
+  if (total === 0) return 0;
+  const ratio = ((r.positive || 0) - (r.negative || 0)) / total;
+  return Math.round(ratio * 3 * 10) / 10; // -3 to +3, 1 decimal
+}
+
+function recordSkillInjection(skillId) {
+  const rep = loadReputation();
+  if (!rep[skillId]) rep[skillId] = { positive: 0, negative: 0, neutral: 0, lastInjected: null };
+  rep[skillId].neutral = (rep[skillId].neutral || 0) + 1;
+  rep[skillId].lastInjected = new Date().toISOString();
+}
+
+// ─── Multi-turn skill memory ───
+// Tracks which skills were injected in recent turns for momentum scoring.
+// Skills used in the last 3 turns get a boost (decaying: +2, +1.5, +1).
+// Also defines workflow successors: after code-gen → pre-warm test skill, etc.
+const SESSION_ID = process.env.CLAUDE_SESSION_ID || 'default';
+const SKILL_MEMORY_PATH = path.join(
+  process.env.TEMP || process.env.TMPDIR || '/tmp',
+  `atum-skill-memory-${SESSION_ID}.json`
+);
+
+// Workflow successors: loaded from manifest data (populated by generate-skill-registry.js).
+// Fallback to hardcoded map if manifest doesn't have successors field yet.
+let workflowSuccessorsCache = null;
+
+function getWorkflowSuccessors() {
+  if (workflowSuccessorsCache) return workflowSuccessorsCache;
+
+  const data = loadManifests();
+  workflowSuccessorsCache = {};
+
+  if (data && data.skills) {
+    for (const [skillId, manifest] of Object.entries(data.skills)) {
+      if (manifest.successors && manifest.successors.length > 0) {
+        workflowSuccessorsCache[skillId] = manifest.successors;
+      }
+    }
+  }
+
+  // Fallback for skills without declared successors
+  const fallbacks = {
+    'django-patterns': ['django-tdd', 'django-verification'],
+    'react-patterns': ['e2e-testing'],
+    'flask-patterns': ['python-testing'],
+    'api-design': ['e2e-testing', 'security-review'],
+    'security-review': ['deploy'],
+    'security-scan': ['deploy'],
+  };
+  for (const [k, v] of Object.entries(fallbacks)) {
+    if (!workflowSuccessorsCache[k]) workflowSuccessorsCache[k] = v;
+  }
+
+  return workflowSuccessorsCache;
+}
+
+function loadSkillMemory() {
+  try {
+    const data = JSON.parse(fs.readFileSync(SKILL_MEMORY_PATH, 'utf8'));
+    // Discard if stale (>2 hours)
+    if (Date.now() - (data.lastUpdate || 0) > 7200000) return { turns: [] };
+    return data;
+  } catch {
+    return { turns: [] };
+  }
+}
+
+function saveSkillMemory(memory) {
+  memory.lastUpdate = Date.now();
+  try { fs.writeFileSync(SKILL_MEMORY_PATH, JSON.stringify(memory)); } catch {}
+}
+
+/**
+ * Calculate momentum boost for a skill based on recent turn history.
+ * Returns 0 to +2 points.
+ */
+function getMomentumBoost(skillId, memory) {
+  const turns = memory.turns || [];
+  if (turns.length === 0) return 0;
+
+  // Check last 3 turns with decaying boost
+  const boosts = [2.0, 1.5, 1.0]; // most recent → oldest
+  let totalBoost = 0;
+
+  for (let i = 0; i < Math.min(3, turns.length); i++) {
+    const turn = turns[turns.length - 1 - i];
+    if (turn && turn.includes(skillId)) {
+      totalBoost += boosts[i];
+      break; // Count once, from most recent appearance
+    }
+  }
+
+  // Check workflow successors: if a predecessor was used recently,
+  // boost the successor skill
+  for (const [predecessor, successors] of Object.entries(getWorkflowSuccessors())) {
+    if (successors.includes(skillId)) {
+      // Check if predecessor was used in the last 2 turns
+      for (let i = 0; i < Math.min(2, turns.length); i++) {
+        const turn = turns[turns.length - 1 - i];
+        if (turn && turn.includes(predecessor)) {
+          totalBoost += 1.5; // Workflow successor boost
+          break;
+        }
+      }
+    }
+  }
+
+  return Math.min(totalBoost, 3.0); // Cap at +3
+}
 
 // ─── Load manifests (cached on first call) ───
 let manifests = null;
@@ -45,6 +190,51 @@ function loadManifests() {
     return null;
   }
 }
+
+// ─── Diacritics normalization for fuzzy matching ───
+// "crée-moi" → "cree-moi", "déployer" → "deployer"
+function removeDiacritics(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+/**
+ * Simple Levenshtein distance for short strings (used for typo tolerance).
+ * Only used for keyword matching, not full prompt comparison.
+ */
+function levenshtein(a, b) {
+  if (a.length === 0) return b.length;
+  if (b.length === 0) return a.length;
+  const matrix = [];
+  for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+  for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,
+        matrix[i][j - 1] + 1,
+        matrix[i - 1][j - 1] + (b[i - 1] === a[j - 1] ? 0 : 1)
+      );
+    }
+  }
+  return matrix[b.length][a.length];
+}
+
+// ─── Fuzzy keyword matching for commands ───
+// Maps common misspellings/variants to canonical forms.
+const KEYWORD_ALIASES = {
+  // French accent variants
+  'deployer': 'déployer', 'deploiement': 'déploiement', 'deploie': 'déploie',
+  'creemoi': 'crée-moi', 'cree-moi': 'crée-moi', 'creemoi': 'crée-moi',
+  'faismoi': 'fais-moi', 'fais-moi': 'fais-moi',
+  'construismoi': 'construis-moi', 'construis-moi': 'construis-moi',
+  'securite': 'sécurité', 'securité': 'sécurité',
+  'verifier': 'vérifier', 'verifie': 'vérifie',
+  // English typos
+  'deply': 'deploy', 'depoy': 'deploy', 'deploiy': 'deploy',
+  'commti': 'commit', 'comit': 'commit',
+  'scafflod': 'scaffold', 'scafold': 'scaffold',
+  'reviw': 'review', 'reveiw': 'review',
+};
 
 // ─── Phase A: Command routing (migrated from autonomous-router-hook.js) ───
 function matchCommandRoute(prompt) {
@@ -100,9 +290,23 @@ function matchCommandRoute(prompt) {
 
   ];
 
+  // Normalize prompt: remove diacritics for broader matching.
+  // "crée-moi un site" → "cree-moi un site" — matches regex "cree[- ]?moi"
+  const normalizedPrompt = removeDiacritics(prompt);
+
+  // Apply keyword aliases for common typos
+  let correctedPrompt = normalizedPrompt;
+  for (const [typo, canonical] of Object.entries(KEYWORD_ALIASES)) {
+    if (correctedPrompt.includes(typo)) {
+      correctedPrompt = correctedPrompt.replace(new RegExp(typo, 'gi'), removeDiacritics(canonical));
+    }
+  }
+
+  // Try matching on both original and corrected prompts
   for (const route of routes) {
     for (const pattern of route.patterns) {
-      const match = prompt.match(pattern);
+      // Try original first (preserves accented regex matches)
+      const match = prompt.match(pattern) || normalizedPrompt.match(pattern) || correctedPrompt.match(pattern);
       if (match) {
         return { command: route.command, trigger: match[0] };
       }
@@ -157,14 +361,14 @@ function detectDomains(promptLower) {
   return detected;
 }
 
-function scoreSkill(promptWords, promptLower, manifest, skillId, domainCtx) {
+function scoreSkill(promptWordSet, promptLower, manifest, skillId, domainCtx) {
   let score = 0;
   const activation = manifest.activation;
 
   // 1. Skill name matching (weight 8) — strongest signal
   const nameParts = skillId.split('-').filter(w => w.length >= 3 && !LOW_SIGNAL.has(w));
   for (const part of nameParts) {
-    if (promptWords.includes(part)) {
+    if (promptWordSet.has(part)) {
       score += 8;
       break; // Count once only
     }
@@ -173,7 +377,7 @@ function scoreSkill(promptWords, promptLower, manifest, skillId, domainCtx) {
   // 2. Keyword matching — exact only (weight 3)
   for (const kw of activation.onKeyword) {
     const kwLower = kw.toLowerCase();
-    if (promptWords.includes(kwLower)) {
+    if (promptWordSet.has(kwLower)) {
       score += 3;
     }
     // Compound keyword match (multi-word exact substring)
@@ -213,6 +417,11 @@ function scoreSkill(promptWords, promptLower, manifest, skillId, domainCtx) {
     }
   }
 
+  // 6. Reputation adjustment — skills that proved useful get boosted,
+  //    skills that were consistently ignored get penalized.
+  //    Range: -3 to +3 points.
+  score += getReputationScore(skillId);
+
   return score;
 }
 
@@ -224,11 +433,26 @@ function scoreAllSkills(prompt) {
   const promptLower = prompt.toLowerCase();
   const domainCtx = detectDomains(promptLower);
 
+  // Pre-compute a Set of prompt words for O(1) lookups in scoreSkill
+  const promptWordSet = new Set(promptWords);
+
+  // Load multi-turn memory for momentum scoring
+  const memory = loadSkillMemory();
+
   const scored = [];
+  let highScoreCount = 0;
+
   for (const [skillId, manifest] of Object.entries(data.skills)) {
-    const score = scoreSkill(promptWords, promptLower, manifest, skillId, domainCtx);
+    let score = scoreSkill(promptWordSet, promptLower, manifest, skillId, domainCtx);
+
+    // 7. Multi-turn momentum: boost skills used in recent turns
+    //    and workflow successors of recently used skills.
+    score += getMomentumBoost(skillId, memory);
+
     if (score >= 4) {
       scored.push({ id: skillId, score, tokenCost: manifest.token_cost, path: manifest.path });
+      if (score >= 10) highScoreCount++;
+      if (highScoreCount >= MAX_SKILLS * 2) break;
     }
   }
 
@@ -345,6 +569,19 @@ process.stdin.on('end', () => {
         }
 
         console.error(`[skill-orchestrator] Injected ${loaded.length} skills: ${loaded.map(s => `${s.id}(${s.score})`).join(', ')}`);
+
+        // Track injections for reputation system
+        for (const skill of loaded) {
+          recordSkillInjection(skill.id);
+        }
+        saveReputation();
+
+        // Record this turn's skills in multi-turn memory
+        const memory = loadSkillMemory();
+        memory.turns.push(loaded.map(s => s.id));
+        // Keep last 10 turns max
+        if (memory.turns.length > 10) memory.turns = memory.turns.slice(-10);
+        saveSkillMemory(memory);
       }
     }
 
