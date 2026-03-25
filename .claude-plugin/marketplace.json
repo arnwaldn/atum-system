@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "atum-system",
-      "description": "The ultimate Claude Code plugin. 78 agents, 181 skills, 89 commands, 35 rules, 34 hooks, 34 MCP servers. Full autonomy from idea to deployed product. EU AI Act compliant.",
+      "description": "The ultimate Claude Code plugin. 78 agents, 181 skills, 89 commands, 35 rules, 34 hooks, 34 MCP servers. One plugin, zero dependencies. Full autonomy from idea to deployed product. EU AI Act compliant.",
       "version": "4.2.0",
       "source": "./"
     }
