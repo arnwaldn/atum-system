@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "generated": "2026-03-25T13:07:07.176Z",
-  "count": 152,
+  "generated": "2026-03-25T13:56:26.135Z",
+  "count": 181,
   "skills": {
     "agent-browser": {
       "activation": {
@@ -156,6 +156,47 @@
       "dependencies": [],
       "path": "skills/ai-first-engineering/SKILL.md"
     },
+    "ai-regression-testing": {
+      "activation": {
+        "onKeyword": [
+          "regression",
+          "testing",
+          "strategies",
+          "ai-assisted",
+          "development",
+          "sandbox-mode",
+          "api",
+          "without",
+          "database",
+          "dependencies",
+          "automated",
+          "bug-check",
+          "workflows",
+          "patterns",
+          "catch",
+          "blind",
+          "spots",
+          "model",
+          "writes",
+          "reviews"
+        ],
+        "onIntent": [
+          "ai agent (claude code, cursor, codex) has modified api routes or backend logic",
+          "a bug was found and fixed — need to prevent re-introduction",
+          "project has a sandbox/mock mode that can be leveraged for db-free testing",
+          "running `/bug-check` or similar review commands after code changes",
+          "multiple code paths exist (sandbox vs production, feature flags, etc.)"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "data",
+      "token_cost": 2840,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/ai-regression-testing/SKILL.md"
+    },
     "api-design": {
       "activation": {
         "onKeyword": [
@@ -201,6 +242,47 @@
       "priority": "normal",
       "dependencies": [],
       "path": "skills/api-design/SKILL.md"
+    },
+    "architecture-decision-records": {
+      "activation": {
+        "onKeyword": [
+          "architecture",
+          "decision",
+          "records",
+          "capture",
+          "architectural",
+          "decisions",
+          "made",
+          "claude",
+          "code",
+          "sessions",
+          "structured",
+          "adrs",
+          "auto-detects",
+          "moments",
+          "context",
+          "alternatives",
+          "considered",
+          "rationale",
+          "maintains",
+          "adr"
+        ],
+        "onIntent": [
+          "user explicitly says \"let's record this decision\" or \"adr this\"",
+          "user chooses between significant alternatives (framework, library, pattern, database, api design)",
+          "user says \"we decided to...\" or \"the reason we're doing x instead of y is...\"",
+          "user asks \"why did we choose x?\" (read existing adrs)",
+          "during planning phases when architectural trade-offs are discussed"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 1759,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/architecture-decision-records/SKILL.md"
     },
     "article-writing": {
       "activation": {
@@ -369,7 +451,7 @@
         "onProjectType": []
       },
       "category": "workflow",
-      "token_cost": 6876,
+      "token_cost": 6586,
       "priority": "normal",
       "dependencies": [
         "common-ground",
@@ -413,6 +495,28 @@
       "priority": "normal",
       "dependencies": [],
       "path": "skills/backend-patterns/SKILL.md"
+    },
+    "benchmark": {
+      "activation": {
+        "onKeyword": [
+          "benchmark"
+        ],
+        "onIntent": [
+          "before and after a pr to measure performance impact",
+          "setting up performance baselines for a project",
+          "when users report \"it feels slow\"",
+          "before a launch — ensure you meet performance targets",
+          "comparing your stack against alternatives"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 534,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/benchmark/SKILL.md"
     },
     "brainstorming": {
       "activation": {
@@ -525,6 +629,47 @@
         "high-perf-browser"
       ],
       "path": "skills/claude-a11y-skill/SKILL.md"
+    },
+    "claude-api": {
+      "activation": {
+        "onKeyword": [
+          "claude",
+          "api",
+          "anthropic",
+          "patterns",
+          "python",
+          "typescript",
+          "covers",
+          "messages",
+          "streaming",
+          "tool",
+          "vision",
+          "extended",
+          "thinking",
+          "batches",
+          "prompt",
+          "caching",
+          "agent",
+          "sdk",
+          "building",
+          "applications"
+        ],
+        "onIntent": [
+          "building applications that call the claude api",
+          "code imports `anthropic` (python) or `@anthropic-ai/sdk` (typescript)",
+          "user asks about claude api patterns, tool use, streaming, or vision",
+          "implementing agent workflows with claude agent sdk",
+          "optimi"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 2136,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/claude-api/SKILL.md"
     },
     "claude-automation-recommender": {
       "activation": {
@@ -741,6 +886,47 @@
       "dependencies": [],
       "path": "skills/code-connect-components/SKILL.md"
     },
+    "codebase-onboarding": {
+      "activation": {
+        "onKeyword": [
+          "codebase",
+          "onboarding",
+          "analyze",
+          "unfamiliar",
+          "generate",
+          "structured",
+          "guide",
+          "architecture",
+          "map",
+          "key",
+          "entry",
+          "points",
+          "conventions",
+          "starter",
+          "claude",
+          "joining",
+          "new",
+          "project",
+          "setting",
+          "code"
+        ],
+        "onIntent": [
+          "first time opening a project with claude code",
+          "joining a new team or repository",
+          "user asks \"help me understand this codebase\"",
+          "user asks to generate a claude.md for a project",
+          "user says \"onboard me\" or \"walk me through this repo\""
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 2039,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/codebase-onboarding/SKILL.md"
+    },
     "coding-standards": {
       "activation": {
         "onKeyword": [
@@ -954,6 +1140,47 @@
       "priority": "normal",
       "dependencies": [],
       "path": "skills/content-hash-cache-pattern/SKILL.md"
+    },
+    "context-budget": {
+      "activation": {
+        "onKeyword": [
+          "context",
+          "budget",
+          "audits",
+          "claude",
+          "code",
+          "window",
+          "consumption",
+          "across",
+          "agents",
+          "skills",
+          "mcp",
+          "servers",
+          "rules",
+          "identifies",
+          "bloat",
+          "redundant",
+          "components",
+          "produces",
+          "prioritized",
+          "token-savings"
+        ],
+        "onIntent": [
+          "session performance feels sluggish or output quality is degrading",
+          "you've recently added many skills, agents, or mcp servers",
+          "you want to know how much context headroom you actually have",
+          "planning to add more components and need to know if there's room",
+          "running `/context-budget` command (this skill backs it)"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 1324,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/context-budget/SKILL.md"
     },
     "context-engineering-kit": {
       "activation": {
@@ -1331,6 +1558,44 @@
       ],
       "path": "skills/ddia-systems/SKILL.md"
     },
+    "deep-research": {
+      "activation": {
+        "onKeyword": [
+          "deep",
+          "research",
+          "multi-source",
+          "firecrawl",
+          "exa",
+          "mcps",
+          "searches",
+          "web",
+          "synthesizes",
+          "findings",
+          "delivers",
+          "cited",
+          "reports",
+          "source",
+          "attribution",
+          "user",
+          "wants",
+          "thorough",
+          "topic",
+          "evidence"
+        ],
+        "onIntent": [
+          "user asks to research any topic in depth",
+          "competitive analysis, technology evaluation, or market si"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 1143,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/deep-research/SKILL.md"
+    },
     "deploy": {
       "activation": {
         "onKeyword": [
@@ -1432,6 +1697,29 @@
         "audit-flow"
       ],
       "path": "skills/design-doc-mermaid/SKILL.md"
+    },
+    "design-system": {
+      "activation": {
+        "onKeyword": [
+          "design",
+          "system"
+        ],
+        "onIntent": [
+          "starting a new project that needs a design system",
+          "auditing an existing codebase for visual consistency",
+          "before a redesign — understand what you have",
+          "when the ui looks \"off\" but you can't pinpoint why",
+          "reviewing prs that touch styling"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "design",
+      "token_cost": 573,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/design-system/SKILL.md"
     },
     "dispatching-parallel-agents": {
       "activation": {
@@ -1827,6 +2115,48 @@
       "priority": "normal",
       "dependencies": [],
       "path": "skills/eval-harness/SKILL.md"
+    },
+    "exa-search": {
+      "activation": {
+        "onKeyword": [
+          "exa",
+          "search",
+          "neural",
+          "via",
+          "mcp",
+          "web",
+          "code",
+          "company",
+          "research",
+          "user",
+          "needs",
+          "examples",
+          "intel",
+          "people",
+          "lookup",
+          "ai-powered",
+          "deep",
+          "engine",
+          "neural search via",
+          "user needs web"
+        ],
+        "onIntent": [
+          "user needs current web information or news",
+          "searching for code examples, api docs, or technical references",
+          "researching companies, competitors, or market players",
+          "finding professional profiles or people in a domain",
+          "running background research for any development task",
+          "user says \"search for\", \"look up\", \"find\", or \"what's the latest on\""
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 846,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/exa-search/SKILL.md"
     },
     "executing-plans": {
       "activation": {
@@ -2696,6 +3026,274 @@
       "dependencies": [],
       "path": "skills/jpa-patterns/SKILL.md"
     },
+    "kotlin-coroutines-flows": {
+      "activation": {
+        "onKeyword": [
+          "kotlin",
+          "coroutines",
+          "flows",
+          "flow",
+          "patterns",
+          "android",
+          "kmp",
+          "structured",
+          "concurrency",
+          "operators",
+          "stateflow",
+          "error",
+          "handling",
+          "testing",
+          "structured concurrency",
+          "flow operators",
+          "error handling"
+        ],
+        "onIntent": [
+          "writing async code with kotlin coroutines",
+          "using flow, stateflow, or sharedflow for reactive data",
+          "handling concurrent operations (parallel loading, debounce, retry)",
+          "testing coroutines and flows",
+          "managing coroutine scopes and cancellation"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 1926,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/kotlin-coroutines-flows/SKILL.md"
+    },
+    "kotlin-patterns": {
+      "activation": {
+        "onKeyword": [
+          "kotlin",
+          "patterns",
+          "idiomatic",
+          "best",
+          "practices",
+          "conventions",
+          "building",
+          "robust",
+          "efficient",
+          "maintainable",
+          "applications",
+          "coroutines",
+          "null",
+          "safety",
+          "dsl",
+          "builders",
+          "idiomatic kotlin patterns",
+          "best practices",
+          "building robust",
+          "null safety"
+        ],
+        "onIntent": [
+          "writing new kotlin code",
+          "reviewing kotlin code",
+          "refactoring existing kotlin code",
+          "designing kotlin modules or libraries",
+          "configuring gradle kotlin dsl builds"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 4711,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/kotlin-patterns/SKILL.md"
+    },
+    "kotlin-testing": {
+      "activation": {
+        "onKeyword": [
+          "kotlin",
+          "testing",
+          "patterns",
+          "kotest",
+          "mockk",
+          "coroutine",
+          "property-based",
+          "kover",
+          "coverage",
+          "follows",
+          "tdd",
+          "methodology",
+          "idiomatic",
+          "practices",
+          "kotlin testing patterns",
+          "coroutine testing",
+          "property-based testing",
+          "follows tdd methodology"
+        ],
+        "onIntent": [
+          "writing new kotlin functions or classes",
+          "adding test coverage to existing kotlin code",
+          "implementing property-based tests",
+          "following tdd workflow in kotlin projects",
+          "configuring kover for code coverage"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 5167,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/kotlin-testing/SKILL.md"
+    },
+    "laravel-patterns": {
+      "activation": {
+        "onKeyword": [
+          "laravel",
+          "patterns",
+          "architecture",
+          "routing",
+          "controllers",
+          "eloquent",
+          "orm",
+          "service",
+          "layers",
+          "queues",
+          "events",
+          "caching",
+          "api",
+          "resources",
+          "production",
+          "apps",
+          "laravel architecture patterns",
+          "eloquent orm",
+          "service layers"
+        ],
+        "onIntent": [
+          "building laravel web applications or apis",
+          "structuring controllers, services, and domain logic",
+          "working with eloquent models and relationships",
+          "designing apis with resources and pagination",
+          "adding queues, events, caching, and background jobs"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 2599,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/laravel-patterns/SKILL.md"
+    },
+    "laravel-security": {
+      "activation": {
+        "onKeyword": [
+          "laravel",
+          "security",
+          "best",
+          "practices",
+          "authn",
+          "authz",
+          "validation",
+          "csrf",
+          "mass",
+          "assignment",
+          "file",
+          "uploads",
+          "secrets",
+          "rate",
+          "limiting",
+          "secure",
+          "deployment",
+          "laravel security best",
+          "mass assignment",
+          "file uploads"
+        ],
+        "onIntent": [
+          "adding authentication or authori"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 1861,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/laravel-security/SKILL.md"
+    },
+    "laravel-tdd": {
+      "activation": {
+        "onKeyword": [
+          "laravel",
+          "tdd",
+          "test-driven",
+          "development",
+          "phpunit",
+          "pest",
+          "factories",
+          "database",
+          "testing",
+          "fakes",
+          "coverage",
+          "targets",
+          "test-driven development",
+          "database testing"
+        ],
+        "onIntent": [
+          "new features or endpoints in laravel",
+          "bug fixes or refactors",
+          "testing eloquent models, policies, jobs, and notifications",
+          "prefer pest for new tests unless the project already standardi"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 1859,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/laravel-tdd/SKILL.md"
+    },
+    "laravel-verification": {
+      "activation": {
+        "onKeyword": [
+          "laravel",
+          "verification",
+          "loop",
+          "projects",
+          "env",
+          "checks",
+          "linting",
+          "static",
+          "analysis",
+          "tests",
+          "coverage",
+          "security",
+          "scans",
+          "deployment",
+          "readiness",
+          "laravel projects",
+          "env checks",
+          "static analysis",
+          "security scans"
+        ],
+        "onIntent": [
+          "before opening a pull request for a laravel project",
+          "after major refactors or dependency upgrades",
+          "pre-deployment verification for staging or production",
+          "running full lint -> test -> security -> deploy readiness pipeline"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 1062,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/laravel-verification/SKILL.md"
+    },
     "liquid-glass-design": {
       "activation": {
         "onKeyword": [
@@ -2836,6 +3434,41 @@
       "dependencies": [],
       "path": "skills/mcp-integration/SKILL.md"
     },
+    "mcp-server-patterns": {
+      "activation": {
+        "onKeyword": [
+          "mcp",
+          "server",
+          "patterns",
+          "build",
+          "servers",
+          "node",
+          "typescript",
+          "sdk",
+          "tools",
+          "resources",
+          "prompts",
+          "zod",
+          "validation",
+          "stdio",
+          "streamable",
+          "http",
+          "context7",
+          "official",
+          "docs",
+          "latest"
+        ],
+        "onIntent": [],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "tooling",
+      "token_cost": 965,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/mcp-server-patterns/SKILL.md"
+    },
     "monorepo": {
       "activation": {
         "onKeyword": [
@@ -2893,6 +3526,38 @@
       "priority": "normal",
       "dependencies": [],
       "path": "skills/nanoclaw-repl/SKILL.md"
+    },
+    "nextjs-turbopack": {
+      "activation": {
+        "onKeyword": [
+          "nextjs",
+          "turbopack",
+          "next",
+          "incremental",
+          "bundling",
+          "caching",
+          "dev",
+          "speed",
+          "webpack",
+          "js 16",
+          "incremental bundling",
+          "fs caching",
+          "dev speed"
+        ],
+        "onIntent": [
+          "**turbopack (default dev)**: use for day-to-day development. faster cold start and hmr, especially in large apps.",
+          "**webpack (legacy dev)**: use only if you hit a turbopack bug or rely on a webpack-only plugin in dev. disable with `--webpack` (or `--no-turbopack` depending on your next.js version; check the docs for your release).",
+          "**production**: production build behavior (`next build`) may use turbopack or webpack depending on next.js version; check the official next.js docs for your version."
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "frontend",
+      "token_cost": 540,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/nextjs-turbopack/SKILL.md"
     },
     "no-code-maestro": {
       "activation": {
@@ -2974,6 +3639,44 @@
       "dependencies": [],
       "path": "skills/nutrient-document-processing/SKILL.md"
     },
+    "nuxt4-patterns": {
+      "activation": {
+        "onKeyword": [
+          "nuxt4",
+          "patterns",
+          "nuxt",
+          "app",
+          "hydration",
+          "safety",
+          "performance",
+          "route",
+          "rules",
+          "lazy",
+          "loading",
+          "ssr-safe",
+          "data",
+          "fetching",
+          "usefetch",
+          "useasyncdata",
+          "nuxt 4 app",
+          "route rules",
+          "lazy loading"
+        ],
+        "onIntent": [
+          "hydration mismatches between server html and client state",
+          "route-level rendering decisions such as prerender, swr, isr, or client-only sections",
+          "performance work around la"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 1161,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/nuxt4-patterns/SKILL.md"
+    },
     "open-source-license-compliance": {
       "activation": {
         "onKeyword": [
@@ -3050,6 +3753,121 @@
         "xlsx"
       ],
       "path": "skills/pdf/SKILL.md"
+    },
+    "perl-patterns": {
+      "activation": {
+        "onKeyword": [
+          "perl",
+          "patterns",
+          "modern",
+          "idioms",
+          "best",
+          "practices",
+          "conventions",
+          "building",
+          "robust",
+          "maintainable",
+          "applications",
+          "modern perl 5",
+          "best practices",
+          "building robust",
+          "maintainable perl applications"
+        ],
+        "onIntent": [
+          "writing new perl code or modules",
+          "reviewing perl code for idiom compliance",
+          "refactoring legacy perl to modern standards",
+          "designing perl module architecture",
+          "migrating pre-5.36 code to modern perl"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 2853,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/perl-patterns/SKILL.md"
+    },
+    "perl-security": {
+      "activation": {
+        "onKeyword": [
+          "perl",
+          "security",
+          "comprehensive",
+          "covering",
+          "taint",
+          "mode",
+          "input",
+          "validation",
+          "safe",
+          "process",
+          "execution",
+          "dbi",
+          "parameterized",
+          "queries",
+          "web",
+          "xss",
+          "sqli",
+          "csrf",
+          "perlcritic",
+          "policies"
+        ],
+        "onIntent": [
+          "handling user input in perl applications",
+          "building perl web applications (cgi, mojolicious, dancer2, catalyst)",
+          "reviewing perl code for security vulnerabilities",
+          "performing file operations with user-supplied paths",
+          "executing system commands from perl",
+          "writing dbi database queries"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 3432,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/perl-security/SKILL.md"
+    },
+    "perl-testing": {
+      "activation": {
+        "onKeyword": [
+          "perl",
+          "testing",
+          "patterns",
+          "test2",
+          "test",
+          "prove",
+          "runner",
+          "mocking",
+          "coverage",
+          "devel",
+          "cover",
+          "tdd",
+          "methodology",
+          "perl testing patterns",
+          "prove runner"
+        ],
+        "onIntent": [
+          "writing new perl code (follow tdd: red, green, refactor)",
+          "designing test suites for perl modules or applications",
+          "reviewing perl test coverage",
+          "setting up perl testing infrastructure",
+          "migrating tests from test::more to test2::v0",
+          "debugging failing perl tests"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 2768,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/perl-testing/SKILL.md"
     },
     "plankton-code-quality": {
       "activation": {
@@ -3450,6 +4268,25 @@
       ],
       "path": "skills/prompt-architect/SKILL.md"
     },
+    "prompt-optimizer": {
+      "activation": {
+        "onKeyword": [
+          "prompt",
+          "optimizer"
+        ],
+        "onIntent": [
+          "user says \"optimi"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 3829,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/prompt-optimizer/SKILL.md"
+    },
     "property-based-testing": {
       "activation": {
         "onKeyword": [
@@ -3559,6 +4396,44 @@
       "priority": "normal",
       "dependencies": [],
       "path": "skills/python-testing/SKILL.md"
+    },
+    "pytorch-patterns": {
+      "activation": {
+        "onKeyword": [
+          "pytorch",
+          "patterns",
+          "deep",
+          "learning",
+          "best",
+          "practices",
+          "building",
+          "robust",
+          "efficient",
+          "reproducible",
+          "training",
+          "pipelines",
+          "model",
+          "architectures",
+          "data",
+          "loading",
+          "pytorch deep learning",
+          "model architectures"
+        ],
+        "onIntent": [
+          "writing new pytorch models or training scripts",
+          "reviewing deep learning code",
+          "debugging training loops or data pipelines",
+          "optimi"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 2914,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/pytorch-patterns/SKILL.md"
     },
     "rag-architect": {
       "activation": {
@@ -3845,6 +4720,138 @@
         "chaos-engineer"
       ],
       "path": "skills/resilience/SKILL.md"
+    },
+    "rules-distill": {
+      "activation": {
+        "onKeyword": [
+          "rules",
+          "distill",
+          "scan",
+          "skills",
+          "extract",
+          "cross-cutting",
+          "principles",
+          "append",
+          "revise",
+          "create",
+          "new",
+          "rule",
+          "files",
+          "extract cross-cutting",
+          "rule files"
+        ],
+        "onIntent": [
+          "periodic rules maintenance (monthly or after installing new skills)",
+          "after a skill-stocktake reveals patterns that should be rules",
+          "when rules feel incomplete relative to the skills being used"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 2320,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/rules-distill/SKILL.md"
+    },
+    "rust-patterns": {
+      "activation": {
+        "onKeyword": [
+          "rust",
+          "patterns",
+          "idiomatic",
+          "ownership",
+          "error",
+          "handling",
+          "traits",
+          "concurrency",
+          "best",
+          "practices",
+          "building",
+          "safe",
+          "performant",
+          "applications",
+          "idiomatic rust patterns",
+          "error handling",
+          "performant applications"
+        ],
+        "onIntent": [
+          "writing new rust code",
+          "reviewing rust code",
+          "refactoring existing rust code",
+          "designing crate structure and module layout"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 3307,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/rust-patterns/SKILL.md"
+    },
+    "rust-testing": {
+      "activation": {
+        "onKeyword": [
+          "rust",
+          "testing",
+          "patterns",
+          "unit",
+          "tests",
+          "integration",
+          "async",
+          "property-based",
+          "mocking",
+          "coverage",
+          "follows",
+          "tdd",
+          "methodology",
+          "rust testing patterns",
+          "integration tests",
+          "async testing",
+          "property-based testing",
+          "follows tdd methodology"
+        ],
+        "onIntent": [
+          "writing new rust functions, methods, or traits",
+          "adding test coverage to existing code",
+          "creating benchmarks for performance-critical code",
+          "implementing property-based tests for input validation",
+          "following tdd workflow in rust projects"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "quality",
+      "token_cost": 2904,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/rust-testing/SKILL.md"
+    },
+    "safety-guard": {
+      "activation": {
+        "onKeyword": [
+          "safety",
+          "guard"
+        ],
+        "onIntent": [
+          "when working on production systems",
+          "when agents are running autonomously (full-auto mode)",
+          "when you want to restrict edits to a specific directory",
+          "during sensitive operations (migrations, deploys, data changes)"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "general",
+      "token_cost": 441,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/safety-guard/SKILL.md"
     },
     "search-first": {
       "activation": {
@@ -4192,6 +5199,46 @@
       "priority": "normal",
       "dependencies": [],
       "path": "skills/setup/SKILL.md"
+    },
+    "skill-comply": {
+      "activation": {
+        "onKeyword": [
+          "skill",
+          "comply",
+          "visualize",
+          "whether",
+          "skills",
+          "rules",
+          "agent",
+          "definitions",
+          "actually",
+          "followed",
+          "auto-generates",
+          "scenarios",
+          "prompt",
+          "strictness",
+          "levels",
+          "runs",
+          "agents",
+          "classifies",
+          "behavioral",
+          "sequences"
+        ],
+        "onIntent": [
+          "user runs `/skill-comply <path>`",
+          "user asks \"is this rule actually being followed?\"",
+          "after adding new rules/skills, to verify agent compliance",
+          "periodically as part of quality maintenance"
+        ],
+        "onFileType": [],
+        "onTool": [],
+        "onProjectType": []
+      },
+      "category": "compliance",
+      "token_cost": 587,
+      "priority": "normal",
+      "dependencies": [],
+      "path": "skills/skill-comply/SKILL.md"
     },
     "skill-creator": {
       "activation": {

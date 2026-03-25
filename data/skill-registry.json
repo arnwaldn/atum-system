@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "generated": "2026-03-25T13:07:07.167Z",
-  "count": 152,
+  "generated": "2026-03-25T13:56:26.133Z",
+  "count": 181,
   "skills": [
     {
       "id": "agent-browser",
@@ -79,6 +79,21 @@
       ]
     },
     {
+      "id": "ai-regression-testing",
+      "description": "Regression testing strategies for AI-assisted development. Sandbox-mode API testing without database dependencies, automated bug-check workflows, and patterns to catch AI blind spots where the same mo",
+      "category": "data",
+      "keywords": [
+        "regression",
+        "testing",
+        "strategies",
+        "ai-assisted",
+        "development",
+        "sandbox-mode",
+        "api",
+        "without"
+      ]
+    },
+    {
       "id": "api-design",
       "description": "REST API design patterns including resource naming, status codes, pagination, filtering, error responses, versioning, and rate limiting for production APIs.",
       "category": "api",
@@ -91,6 +106,21 @@
         "naming",
         "status",
         "codes"
+      ]
+    },
+    {
+      "id": "architecture-decision-records",
+      "description": "Capture architectural decisions made during Claude Code sessions as structured ADRs. Auto-detects decision moments, records context, alternatives considered, and rationale. Maintains an ADR log so fut",
+      "category": "general",
+      "keywords": [
+        "architecture",
+        "decision",
+        "records",
+        "capture",
+        "architectural",
+        "decisions",
+        "made",
+        "claude"
       ]
     },
     {
@@ -182,6 +212,14 @@
       ]
     },
     {
+      "id": "benchmark",
+      "description": "",
+      "category": "general",
+      "keywords": [
+        "benchmark"
+      ]
+    },
+    {
       "id": "brainstorming",
       "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
       "category": "general",
@@ -224,6 +262,21 @@
         "help",
         "aria",
         "patterns"
+      ]
+    },
+    {
+      "id": "claude-api",
+      "description": "Anthropic Claude API patterns for Python and TypeScript. Covers Messages API, streaming, tool use, vision, extended thinking, batches, prompt caching, and Claude Agent SDK. Use when building applicati",
+      "category": "tooling",
+      "keywords": [
+        "claude",
+        "api",
+        "anthropic",
+        "patterns",
+        "python",
+        "typescript",
+        "covers",
+        "messages"
       ]
     },
     {
@@ -317,6 +370,21 @@
       ]
     },
     {
+      "id": "codebase-onboarding",
+      "description": "Analyze an unfamiliar codebase and generate a structured onboarding guide with architecture map, key entry points, conventions, and a starter CLAUDE.md. Use when joining a new project or setting up Cl",
+      "category": "general",
+      "keywords": [
+        "codebase",
+        "onboarding",
+        "analyze",
+        "unfamiliar",
+        "generate",
+        "structured",
+        "guide",
+        "architecture"
+      ]
+    },
+    {
       "id": "coding-standards",
       "description": "Universal coding standards, best practices, and patterns for TypeScript, JavaScript, React, and Node.js development.",
       "category": "frontend",
@@ -404,6 +472,21 @@
         "file",
         "processing",
         "results"
+      ]
+    },
+    {
+      "id": "context-budget",
+      "description": "Audits Claude Code context window consumption across agents, skills, MCP servers, and rules. Identifies bloat, redundant components, and produces prioritized token-savings recommendations.",
+      "category": "tooling",
+      "keywords": [
+        "context",
+        "budget",
+        "audits",
+        "claude",
+        "code",
+        "window",
+        "consumption",
+        "across"
       ]
     },
     {
@@ -557,6 +640,21 @@
       ]
     },
     {
+      "id": "deep-research",
+      "description": "Multi-source deep research using firecrawl and exa MCPs. Searches the web, synthesizes findings, and delivers cited reports with source attribution. Use when the user wants thorough research on any to",
+      "category": "general",
+      "keywords": [
+        "deep",
+        "research",
+        "multi-source",
+        "firecrawl",
+        "exa",
+        "mcps",
+        "searches",
+        "web"
+      ]
+    },
+    {
       "id": "deploy",
       "description": "Deploy applications to Vercel. Use when the user says \"deploy\", \"deploy to Vercel\", \"push to production\", \"deploy my app\", or \"go live\".",
       "category": "infrastructure",
@@ -599,6 +697,15 @@
         "sequence",
         "activity",
         "deployment"
+      ]
+    },
+    {
+      "id": "design-system",
+      "description": "",
+      "category": "design",
+      "keywords": [
+        "design",
+        "system"
       ]
     },
     {
@@ -764,6 +871,21 @@
         "claude",
         "code",
         "sessions"
+      ]
+    },
+    {
+      "id": "exa-search",
+      "description": "Neural search via Exa MCP for web, code, and company research. Use when the user needs web search, code examples, company intel, people lookup, or AI-powered deep research with Exa's neural search eng",
+      "category": "tooling",
+      "keywords": [
+        "exa",
+        "search",
+        "neural",
+        "via",
+        "mcp",
+        "web",
+        "code",
+        "company"
       ]
     },
     {
@@ -1136,6 +1258,111 @@
       ]
     },
     {
+      "id": "kotlin-coroutines-flows",
+      "description": "Kotlin Coroutines and Flow patterns for Android and KMP — structured concurrency, Flow operators, StateFlow, error handling, and testing.",
+      "category": "general",
+      "keywords": [
+        "kotlin",
+        "coroutines",
+        "flows",
+        "flow",
+        "patterns",
+        "android",
+        "kmp",
+        "structured"
+      ]
+    },
+    {
+      "id": "kotlin-patterns",
+      "description": "Idiomatic Kotlin patterns, best practices, and conventions for building robust, efficient, and maintainable Kotlin applications with coroutines, null safety, and DSL builders.",
+      "category": "general",
+      "keywords": [
+        "kotlin",
+        "patterns",
+        "idiomatic",
+        "best",
+        "practices",
+        "conventions",
+        "building",
+        "robust"
+      ]
+    },
+    {
+      "id": "kotlin-testing",
+      "description": "Kotlin testing patterns with Kotest, MockK, coroutine testing, property-based testing, and Kover coverage. Follows TDD methodology with idiomatic Kotlin practices.",
+      "category": "quality",
+      "keywords": [
+        "kotlin",
+        "testing",
+        "patterns",
+        "kotest",
+        "mockk",
+        "coroutine",
+        "property-based",
+        "kover"
+      ]
+    },
+    {
+      "id": "laravel-patterns",
+      "description": "Laravel architecture patterns, routing/controllers, Eloquent ORM, service layers, queues, events, caching, and API resources for production apps.",
+      "category": "general",
+      "keywords": [
+        "laravel",
+        "patterns",
+        "architecture",
+        "routing",
+        "controllers",
+        "eloquent",
+        "orm",
+        "service"
+      ]
+    },
+    {
+      "id": "laravel-security",
+      "description": "Laravel security best practices for authn/authz, validation, CSRF, mass assignment, file uploads, secrets, rate limiting, and secure deployment.",
+      "category": "general",
+      "keywords": [
+        "laravel",
+        "security",
+        "best",
+        "practices",
+        "authn",
+        "authz",
+        "validation",
+        "csrf"
+      ]
+    },
+    {
+      "id": "laravel-tdd",
+      "description": "Test-driven development for Laravel with PHPUnit and Pest, factories, database testing, fakes, and coverage targets.",
+      "category": "quality",
+      "keywords": [
+        "laravel",
+        "tdd",
+        "test-driven",
+        "development",
+        "phpunit",
+        "pest",
+        "factories",
+        "database"
+      ]
+    },
+    {
+      "id": "laravel-verification",
+      "description": "Verification loop for Laravel projects: env checks, linting, static analysis, tests with coverage, security scans, and deployment readiness.",
+      "category": "general",
+      "keywords": [
+        "laravel",
+        "verification",
+        "loop",
+        "projects",
+        "env",
+        "checks",
+        "linting",
+        "static"
+      ]
+    },
+    {
       "id": "liquid-glass-design",
       "description": "iOS 26 Liquid Glass design system — dynamic glass material with blur, reflection, and interactive morphing for SwiftUI, UIKit, and WidgetKit.",
       "category": "swift",
@@ -1196,6 +1423,21 @@
       ]
     },
     {
+      "id": "mcp-server-patterns",
+      "description": "Build MCP servers with Node/TypeScript SDK — tools, resources, prompts, Zod validation, stdio vs Streamable HTTP. Use Context7 or official MCP docs for latest API.",
+      "category": "tooling",
+      "keywords": [
+        "mcp",
+        "server",
+        "patterns",
+        "build",
+        "servers",
+        "node",
+        "typescript",
+        "sdk"
+      ]
+    },
+    {
       "id": "monorepo",
       "description": "Conventions et patterns pour monorepos (Turborepo, Nx, pnpm workspaces). Use when project has turbo.json, nx.json, or workspace config.",
       "category": "devops",
@@ -1223,6 +1465,21 @@
         "zero-dependency",
         "session-aware",
         "built"
+      ]
+    },
+    {
+      "id": "nextjs-turbopack",
+      "description": "Next.js 16+ and Turbopack — incremental bundling, FS caching, dev speed, and when to use Turbopack vs webpack.",
+      "category": "frontend",
+      "keywords": [
+        "nextjs",
+        "turbopack",
+        "next",
+        "incremental",
+        "bundling",
+        "caching",
+        "dev",
+        "speed"
       ]
     },
     {
@@ -1256,6 +1513,21 @@
       ]
     },
     {
+      "id": "nuxt4-patterns",
+      "description": "Nuxt 4 app patterns for hydration safety, performance, route rules, lazy loading, and SSR-safe data fetching with useFetch and useAsyncData.",
+      "category": "general",
+      "keywords": [
+        "nuxt4",
+        "patterns",
+        "nuxt",
+        "app",
+        "hydration",
+        "safety",
+        "performance",
+        "route"
+      ]
+    },
+    {
       "id": "open-source-license-compliance",
       "description": "Detect and audit open-source licenses in project dependencies. Use when reviewing license compatibility, checking for copyleft contamination, generating compliance reports, or evaluating SPDX identifi",
       "category": "compliance",
@@ -1283,6 +1555,51 @@
         "watermark",
         "fill",
         "form"
+      ]
+    },
+    {
+      "id": "perl-patterns",
+      "description": "Modern Perl 5.36+ idioms, best practices, and conventions for building robust, maintainable Perl applications.",
+      "category": "general",
+      "keywords": [
+        "perl",
+        "patterns",
+        "modern",
+        "idioms",
+        "best",
+        "practices",
+        "conventions",
+        "building"
+      ]
+    },
+    {
+      "id": "perl-security",
+      "description": "Comprehensive Perl security covering taint mode, input validation, safe process execution, DBI parameterized queries, web security (XSS/SQLi/CSRF), and perlcritic security policies.",
+      "category": "general",
+      "keywords": [
+        "perl",
+        "security",
+        "comprehensive",
+        "covering",
+        "taint",
+        "mode",
+        "input",
+        "validation"
+      ]
+    },
+    {
+      "id": "perl-testing",
+      "description": "Perl testing patterns using Test2::V0, Test::More, prove runner, mocking, coverage with Devel::Cover, and TDD methodology.",
+      "category": "quality",
+      "keywords": [
+        "perl",
+        "testing",
+        "patterns",
+        "test2",
+        "test",
+        "prove",
+        "runner",
+        "mocking"
       ]
     },
     {
@@ -1451,6 +1768,15 @@
       ]
     },
     {
+      "id": "prompt-optimizer",
+      "description": ">-",
+      "category": "general",
+      "keywords": [
+        "prompt",
+        "optimizer"
+      ]
+    },
+    {
       "id": "property-based-testing",
       "description": "Provides guidance for property-based testing across multiple languages and smart contracts. Use when writing tests, reviewing code with serialization/validation/parsing patterns, designing features, o",
       "category": "quality",
@@ -1493,6 +1819,21 @@
         "methodology",
         "fixtures",
         "mocking"
+      ]
+    },
+    {
+      "id": "pytorch-patterns",
+      "description": "PyTorch deep learning patterns and best practices for building robust, efficient, and reproducible training pipelines, model architectures, and data loading.",
+      "category": "general",
+      "keywords": [
+        "pytorch",
+        "patterns",
+        "deep",
+        "learning",
+        "best",
+        "practices",
+        "building",
+        "robust"
       ]
     },
     {
@@ -1613,6 +1954,60 @@
         "fallback",
         "rate",
         "limiting"
+      ]
+    },
+    {
+      "id": "rules-distill",
+      "description": "Scan skills to extract cross-cutting principles and distill them into rules — append, revise, or create new rule files",
+      "category": "general",
+      "keywords": [
+        "rules",
+        "distill",
+        "scan",
+        "skills",
+        "extract",
+        "cross-cutting",
+        "principles",
+        "append"
+      ]
+    },
+    {
+      "id": "rust-patterns",
+      "description": "Idiomatic Rust patterns, ownership, error handling, traits, concurrency, and best practices for building safe, performant applications.",
+      "category": "general",
+      "keywords": [
+        "rust",
+        "patterns",
+        "idiomatic",
+        "ownership",
+        "error",
+        "handling",
+        "traits",
+        "concurrency"
+      ]
+    },
+    {
+      "id": "rust-testing",
+      "description": "Rust testing patterns including unit tests, integration tests, async testing, property-based testing, mocking, and coverage. Follows TDD methodology.",
+      "category": "quality",
+      "keywords": [
+        "rust",
+        "testing",
+        "patterns",
+        "unit",
+        "tests",
+        "integration",
+        "async",
+        "property-based"
+      ]
+    },
+    {
+      "id": "safety-guard",
+      "description": "",
+      "category": "general",
+      "keywords": [
+        "safety",
+        "guard"
       ]
     },
     {
@@ -1763,6 +2158,21 @@
         "configuration",
         "user",
         "says"
+      ]
+    },
+    {
+      "id": "skill-comply",
+      "description": "Visualize whether skills, rules, and agent definitions are actually followed — auto-generates scenarios at 3 prompt strictness levels, runs agents, classifies behavioral sequences, and reports complia",
+      "category": "compliance",
+      "keywords": [
+        "skill",
+        "comply",
+        "visualize",
+        "whether",
+        "skills",
+        "rules",
+        "agent",
+        "definitions"
       ]
     },
     {
